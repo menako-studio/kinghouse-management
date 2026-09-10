@@ -23,7 +23,7 @@ export function SearchFilterBar() {
   }
 
   return (
-    <div className="relative -mt-10 z-40 mx-auto max-w-5xl px-4 sm:px-6">
+    <div className="relative mt-4 sm:-mt-10 lg:-mt-12 z-40 mx-auto max-w-5xl px-4 sm:px-6">
       <form
         onSubmit={handleSearch}
         className="flex flex-col md:flex-row items-stretch md:items-center divide-y md:divide-y-0 md:divide-x divide-[#EBEBEB] rounded-2xl md:rounded-full bg-white p-2.5 shadow-[0_12px_45px_rgba(0,0,0,0.08)] border border-[#EBEBEB]"
