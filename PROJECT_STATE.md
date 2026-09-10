@@ -64,9 +64,14 @@ kinghouse-mockup/
 │   │   ├── layout.tsx                # Dashboard layout with dark collapsible sidebar
 │   │   └── page.tsx                  # Portfolio KPIs & multi-channel OTA status
 │   ├── events/                       # Events & garden wedding venue pages
+│   ├── faq/page.tsx                  # Interactive FAQ knowledge base
 │   ├── locations/[area]/             # Dynamic area landing pages (TouristDestination schema)
 │   ├── login/page.tsx                # Sana Labs styled administrative login portal
+│   ├── management-inquiry/page.tsx   # Dedicated property owner onboarding inquiry & fast-track audit
 │   ├── owner-services/page.tsx       # Tiered fees (15% vs 20%), ROI case studies, audit form
+│   ├── press/page.tsx                # Press releases, media coverage, and media kit downloads
+│   ├── privacy/page.tsx              # Indonesian UU PDP compliant privacy policy
+│   ├── terms/page.tsx                # Official terms & conditions and booking policies
 │   ├── villas/                       # Property catalog & single villa editorial detail
 │   ├── about/page.tsx                # Company profile & hospitality standards
 │   ├── contact/page.tsx              # Contact info & direct WhatsApp concierge
@@ -80,7 +85,7 @@ kinghouse-mockup/
 │   ├── home/                         # Hero slider, search bar, trust proof
 │   ├── layout/                       # Sticky header navigation & editorial footer
 │   ├── owner/                        # Pricing tables, ROI metrics, lead audit form
-│   ├── ui/                           # Badge, button, card, input primitives
+│   ├── ui/                           # Badge, button, card, floating-whatsapp, input primitives
 │   └── villas/                       # Amenities grid, booking sidebar, map, villa card
 ├── lib/
 │   ├── erp/                          # Calculations, types, export engine, seed data
@@ -273,15 +278,57 @@ kinghouse-mockup/
     4. *Kelola Sendiri vs Jasa Manajemen Properti Airbnb: Perbandingan Biaya, Waktu, & ROI 2026* (`kelola-sendiri-vs-jasa-manajemen-properti-airbnb`)
     5. *Tips Memilih Villa Private Pool Mewah & Asri di Jakarta Selatan untuk Weekend Escape* (`tips-staycation-villa-private-pool-jakarta-selatan`)
   - Rich internal linking to `/owner-services`, `/events`, `/villas`, and specific property pages.
-- [x] **Automated Testing Suite (`tests/`, Vitest)**:
-  - 33 comprehensive unit & integration tests passing (100% test coverage for security, ERP, SEO, iCal, compendiums, and analytics).
+### Phase 3.3 — Nakula-Style Cinematic Responsive Video Hero & Versatile House Asset Upgrade (Completed)
+- [x] **Nakula-Inspired Editorial Video Hero (`components/home/hero-slider.tsx`)**:
+  - Responsive HTML5 background video architecture:
+    - **Desktop & Tablet Horizontal (Landscape)**: `/properties/versatile-house/talent-act.mp4` / `/properties/versatile-house/empty.mp4` (1920x1080).
+    - **Mobile Portrait (Vertical)**: `/properties/versatile-house/talent-act-vertical.mp4` / `/properties/versatile-house/empty-vertical.mp4` (607x1080).
+    - Fallback poster: `/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg` to eliminate black flashes on slow connections.
+  - Interactive Luxury Controls Dock:
+    - Scene mode switcher: `[✦ Lifestyle Experience]` (talent-act) vs `[🏛 Architectural View]` (empty).
+    - Glassmorphism Play / Pause controller button with synced video states.
+    - Floating property specs bar: "Versatile House With Garden • Jagakarsa, South Jakarta • 12 Guests • 5BR Private Pool" with direct explore link.
+    - Soft animated scroll-down chevron indicator.
+- [x] **Complete Versatile House High-Resolution Asset Upgrade**:
+  - Replaced legacy photos across `lib/data.ts`, `lib/guest-guide/data.ts`, `app/events/page.tsx`, `app/villas/page.tsx`, and `components/home/dual-path-split.tsx` with all 11 new photos from `/public/properties/versatile-house/new`:
+    1. `VersatileHouse_01_Pool_Hero.jpg` (Pool Hero)
+    2. `VersatileHouse_02_Living_Hall.jpg` (Grand Double-Height Living Hall)
+    3. `VersatileHouse_03_Master_Bedroom.jpg` (Master Bedroom Suite)
+    4. `VersatileHouse_04_Patio_Terrace.jpg` (Outdoor Patio Terrace)
+    5. `VersatileHouse_05_Master_Bathroom.jpg` (En-suite Bathroom with Freestanding Soaking Tub)
+    6. `VersatileHouse_06_Dining_Chandelier.jpg` (10-Seater Dining Hall & Crystal Chandelier)
+    7. `VersatileHouse_07_Kitchen.jpg` (Gourmet Chef Kitchen & Prep Island)
+    8. `VersatileHouse_08_Media_Lounge.jpg` (Smart 4K Entertainment Lounge)
+    9. `VersatileHouse_09_Zen_Courtyard.jpg` (Zen Courtyard Garden Corridor)
+    10. `VersatileHouse_10_Twin_Bedroom.jpg` (Guest Twin Bedroom)
+    11. `gate.jpg` (Private Entrance Gate & Parking Court)
+  - Updated Versatile House Event Packages (Garden Wedding, Corporate Retreat, Milestone Birthday) with high-res assets.
+### Phase 3.4 — Layout Best Practices, Navigation Optimization, Missing Pages & Floating WhatsApp (Completed)
+- [x] **Header / Navbar UX Best Practice Optimization (`components/layout/header.tsx`)**:
+  - Removed placeholder `REWARDS` dropdown and replaced with direct high-priority link to `OWNER SERVICES` (`/owner-services`).
+  - Removed exposed internal CMS `SIGN IN` pill button from public header and replaced with a conversion-focused `EXPLORE VILLAS` / `BOOK A STAY` CTA linking to `/villas`.
+  - Replaced mobile drawer login button with an `ENQUIRE` concierge CTA.
+- [x] **Footer Streamlining & Floating WhatsApp Concierge**:
+  - Streamlined contact block in `components/layout/footer.tsx`: Eliminated 3x redundant email/WhatsApp repetitions into a single, high-converting Direct Concierge & Reservations block.
+  - Removed cookie button and inline chat icon from footer bottom bar.
+  - Created persistent, accessible **Sticky Floating WhatsApp Concierge Button** (`components/ui/floating-whatsapp.tsx`) mounted in `components/layout/site-shell.tsx` with live online status and tooltip.
+  - Activated all 8 footer navigation links (`/about`, `/blog`, `/press`, `/contact`, `/faq`, `/terms`, `/privacy`, `/management-inquiry`).
+- [x] **Dedicated Editorial & Static Pages Created**:
+  - `/press`: Official press releases, media quotes, and brand asset media kit downloads.
+  - `/faq`: Interactive accordion FAQ for guests, property owners, and operations.
+  - `/terms`: Professional hospitality terms, cancellation rules, and legal jurisdiction.
+  - `/privacy`: Indonesian UU PDP No. 27/2022 compliant privacy guidelines.
+  - `/management-inquiry`: Dedicated property owner onboarding and instant WhatsApp yield audit.
+- [x] **High-Performance Blog Hub (`app/blog/page.tsx`, `lib/blog/service.ts`)**:
+  - Implemented ISR caching (`revalidate = 120`) and a 1500ms Supabase query race timeout with seamless runtime fallback to eliminate cold-start loading delays.
+  - Updated `app/sitemap.ts` to include all new routes for full SEO indexing.
 
 ---
 
 ## 4. VERIFICATION COMMANDS
 
 ```bash
-# Run automated Vitest test suite (33 tests)
+# Run automated Vitest test suite
 npm test
 
 # Run TypeScript strict type verification
@@ -290,7 +337,7 @@ npx tsc --noEmit
 # Run ESLint validation (0 errors)
 npm run lint
 
-# Run Next.js optimized production build (57 static & dynamic routes)
+# Run Next.js optimized production build (63 static & dynamic routes)
 npm run build
 ```
 

@@ -23,6 +23,14 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
 - **Dynamic IDR/USD Pricing**: Real-time rate calculation, cleaning fees, and service breakdown.
 - **Location Proximity Maps**: Distances and drive times to MRT stations, KRL, industrial estates, and airports.
 - **Events & Wedding Packages**: Dedicated garden wedding, corporate retreat, and party packages at the Jagakarsa private garden house.
+- **Sticky Floating WhatsApp Concierge Button**: Persistent bottom-right WhatsApp widget with online status indicator, reply time badge, and pre-filled inquiry routing.
+- **Dedicated Public Pages & Editorial Hubs**:
+  - **Press & Media Center (`/press`)**: Official announcements, media coverage quotes, and brand asset media kit downloads.
+  - **Comprehensive Knowledge Base & FAQ (`/faq`)**: Interactive categorization covering guest stays, house rules, and owner asset management.
+  - **Terms & Conditions (`/terms`)**: Professional hospitality terms, cancellation schedules, and legal governing law for Indonesia.
+  - **Privacy Policy (`/privacy`)**: Indonesian UU PDP No. 27/2022 compliant data protection guidelines.
+  - **Property Owner Management Inquiry (`/management-inquiry`)**: High-converting lead intake form with 24-hour yield estimate and instant WhatsApp fast-track.
+  - **High-Performance Blog Hub (`/blog`)**: ISR cached (`revalidate = 120`) and 1500ms timeout race to guarantee instantaneous page loads.
 
 ### 🛎️ For In-House Guests (Digital Guest Compendium & Upselling Suite — `/stay`)
 - **Vouch-Style Digital Guest Compendium (`/stay/[slug]`)**:
