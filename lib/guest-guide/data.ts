@@ -76,7 +76,7 @@ export const GUEST_COMPENDIUMS: Record<string, GuestCompendium> = {
     propertySlug: "versatile-house-jagakarsa",
     propertyName: "Versatile House With Beautiful Garden Beyond",
     area: "Jagakarsa, Jakarta Selatan",
-    heroImage: "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
+    heroImage: "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
     whatsappConciergePhone: "6282123933218",
     wifi: {
       networkName: "VersatileHouse_Guest_5G",

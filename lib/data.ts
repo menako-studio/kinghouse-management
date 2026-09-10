@@ -74,32 +74,62 @@ export const CURATED_VILLAS: Villa[] = [
       bathrooms: 3,
     },
     heroImage:
-      "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
+      "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
     gallery: [
       {
-        url: "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
-        caption: "Lush private garden, swimming pool and tropical exterior facade of the Jagakarsa residence",
-        category: "exterior",
+        url: "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
+        caption: "Lush private garden, sparkling swimming pool and tropical modern architecture in Jagakarsa",
+        category: "pool",
       },
       {
-        url: "/properties/versatile-house/VersatileHouse_LivingRoom_Lounge.jpg",
-        caption: "Spacious open-plan living lounge with high ceiling and natural ventilation",
+        url: "/properties/versatile-house/new/VersatileHouse_02_Living_Hall.jpg",
+        caption: "Grand double-height open living hall with soaring ceiling and direct pool terrace access",
         category: "living",
       },
       {
-        url: "/properties/versatile-house/VersatileHouse_MasterBedroom_GardenAccess.webp",
-        caption: "Master bedroom retreat with plush bedding and direct garden access",
+        url: "/properties/versatile-house/new/VersatileHouse_03_Master_Bedroom.jpg",
+        caption: "Master bedroom retreat with king bed, hotel-grade linens, and panoramic garden views",
         category: "bedroom",
       },
       {
-        url: "/properties/versatile-house/VersatileHouse_DiningRoom_Chandelier.jpg",
-        caption: "Grand dining hall with chandelier lighting designed for family feasts & group gatherings",
+        url: "/properties/versatile-house/new/VersatileHouse_04_Patio_Terrace.jpg",
+        caption: "Covered outdoor patio terrace for alfresco dining and garden relaxation",
+        category: "garden",
+      },
+      {
+        url: "/properties/versatile-house/new/VersatileHouse_05_Master_Bathroom.jpg",
+        caption: "Luxury en-suite master bathroom with deep soaking bathtub overlooking private greenery",
+        category: "bathroom",
+      },
+      {
+        url: "/properties/versatile-house/new/VersatileHouse_06_Dining_Chandelier.jpg",
+        caption: "Formal dining hall crowned by an opulent designer crystal chandelier for group banquets",
+        category: "dining",
+      },
+      {
+        url: "/properties/versatile-house/new/VersatileHouse_07_Kitchen.jpg",
+        caption: "Fully equipped gourmet kitchen with prep island, gas range, refrigerator, and coffee station",
+        category: "kitchen",
+      },
+      {
+        url: "/properties/versatile-house/new/VersatileHouse_08_Media_Lounge.jpg",
+        caption: "Cozy entertainment media lounge with plush seating and 4K Smart TV",
         category: "living",
       },
       {
-        url: "/properties/versatile-house/VersatileHouse_Bathroom_BathtubGardenView.webp",
-        caption: "Luxury en-suite bathroom with deep soaking bathtub overlooking private greenery",
-        category: "bathroom",
+        url: "/properties/versatile-house/new/VersatileHouse_09_Zen_Courtyard.jpg",
+        caption: "Tranquil zen courtyard garden corridor providing natural light and tropical cross-ventilation",
+        category: "garden",
+      },
+      {
+        url: "/properties/versatile-house/new/VersatileHouse_10_Twin_Bedroom.jpg",
+        caption: "Second guest bedroom with comfortable twin bedding and tranquil courtyard views",
+        category: "bedroom",
+      },
+      {
+        url: "/properties/versatile-house/new/gate.jpg",
+        caption: "Private gated entrance, spacious multi-car parking court, and tropical facade",
+        category: "exterior",
       },
     ],
     editorialDescription: {
@@ -145,7 +175,7 @@ export const CURATED_VILLAS: Villa[] = [
         "Spacious 2-6 bedroom home in Jagakarsa for up to 12 guests. Private garden, pool, full kitchen, free parking. Book via Airbnb, Agoda, or Direct WhatsApp with perks.",
       focusKeyword: "rumah sewa jagakarsa jakarta selatan",
       ogImage:
-        "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
+        "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
     },
   },
   {
@@ -563,7 +593,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     propertyName: "Versatile House With Beautiful Garden Beyond",
     location: "Jagakarsa, Jakarta Selatan",
     image:
-      "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
+      "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
     period: "90-Day Onboarding Performance",
     beforeMetrics: {
       occupancyRate: 28,
@@ -1011,7 +1041,7 @@ Terletak di kawasan asri Jakarta Selatan, [Versatile House Jagakarsa](/events/ga
     publishedAt: "2026-08-28",
     author: AUTHOR_KINGHOUSE,
     heroImage:
-      "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
+      "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
     tags: ["villa wedding jakarta", "intimate wedding", "family gathering", "jagakarsa", "private pool villa"],
     seoKeywords: [
       "villa intimate wedding jakarta",
@@ -1306,11 +1336,12 @@ export const VILLA_EVENTS: VillaEvent[] = [
       "The lush 500m² private garden of our Jagakarsa property creates a magical backdrop for intimate weddings and akad nikah ceremonies. Surrounded by tropical greenery, swimming pool, and space for up to 50 seated guests, this is South Jakarta's best-kept secret for a private garden-style celebration. No vendor corkage fee — book the entire residence and garden exclusively.",
     maxCapacity: 50,
     heroImage:
-      "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
+      "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
     gallery: [
-      "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
-      "/properties/versatile-house/VersatileHouse_LivingRoom_Lounge.jpg",
-      "/properties/versatile-house/VersatileHouse_DiningRoom_Chandelier.jpg",
+      "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
+      "/properties/versatile-house/new/VersatileHouse_04_Patio_Terrace.jpg",
+      "/properties/versatile-house/new/VersatileHouse_09_Zen_Courtyard.jpg",
+      "/properties/versatile-house/new/VersatileHouse_06_Dining_Chandelier.jpg",
     ],
     packages: [
       {
@@ -1392,11 +1423,12 @@ export const VILLA_EVENTS: VillaEvent[] = [
       "Escape the office without leaving the city. Our Jagakarsa home provides the ideal setting for team strategy sessions, quarterly reviews, and creative workshops — with dedicated indoor breakout zones, tropical garden lawn, high-speed WiFi, and overnight accommodation for up to 15 team members.",
     maxCapacity: 50,
     heroImage:
-      "/properties/versatile-house/VersatileHouse_LivingRoom_Lounge.jpg",
+      "/properties/versatile-house/new/VersatileHouse_02_Living_Hall.jpg",
     gallery: [
-      "/properties/versatile-house/VersatileHouse_LivingRoom_Lounge.jpg",
-      "/properties/versatile-house/VersatileHouse_DiningRoom_Chandelier.jpg",
-      "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
+      "/properties/versatile-house/new/VersatileHouse_02_Living_Hall.jpg",
+      "/properties/versatile-house/new/VersatileHouse_06_Dining_Chandelier.jpg",
+      "/properties/versatile-house/new/VersatileHouse_08_Media_Lounge.jpg",
+      "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
     ],
     packages: [
       {
@@ -1474,11 +1506,12 @@ export const VILLA_EVENTS: VillaEvent[] = [
       "Why rent an overcrowded venue when you can have an entire private home, pool, and garden for your party? Our Jagakarsa property is the perfect setting for milestone birthdays, graduation parties, family reunions, and bridal showers — with full indoor and outdoor flexibility and no corkage fees.",
     maxCapacity: 50,
     heroImage:
-      "/properties/versatile-house/VersatileHouse_DiningRoom_Chandelier.jpg",
+      "/properties/versatile-house/new/VersatileHouse_04_Patio_Terrace.jpg",
     gallery: [
-      "/properties/versatile-house/VersatileHouse_DiningRoom_Chandelier.jpg",
-      "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
-      "/properties/versatile-house/VersatileHouse_LivingRoom_Lounge.jpg",
+      "/properties/versatile-house/new/VersatileHouse_04_Patio_Terrace.jpg",
+      "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
+      "/properties/versatile-house/new/VersatileHouse_06_Dining_Chandelier.jpg",
+      "/properties/versatile-house/new/VersatileHouse_02_Living_Hall.jpg",
     ],
     packages: [
       {

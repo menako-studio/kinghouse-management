@@ -78,7 +78,7 @@ const CATEGORY_OPTIONS = [
 const IMAGE_PRESETS = [
   {
     name: "Versatile House Garden Pool (Jagakarsa)",
-    url: "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
+    url: "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
     altSuggestion: "Kolam renang dan taman luas private villa Jagakarsa Jakarta Selatan",
   },
   {
@@ -381,7 +381,7 @@ export default function DashboardBlogPage() {
     setFormExcerpt("")
     setFormFocusKeyword("sewa villa jagakarsa")
     setFormContent(
-      "## Mengapa Pasar Hospitality di Jabodetabek Terus Bertumbuh\n\nPermintaan sewa villa keluarga dan staycation di area Jabodetabek mengalami lonjakan signifikan sepanjang tahun 2026.\n\n![Kolam renang dan taman luas private villa Jagakarsa](/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp)\n\n### 3 Faktor Utama Pendorong Okupansi Tinggi\n\n- **Kualitas Fasilitas & Kebersihan Hotel**: Tamu modern mendambakan standar linen dan AC prima.\n- **Konektivitas OTA 2-Arah**: Kalender sinkron tanpa double-booking.\n- **Topical SEO & Google Map Presence**: Listing yang mudah ditemukan di Google Organik.\n\n> 🏡 **Rekomendasi KingHouse**: [Lihat detail Versatile House Jagakarsa](/villas/versatile-house-jagakarsa) untuk inspirasi tata kelola aset premium."
+      "## Mengapa Pasar Hospitality di Jabodetabek Terus Bertumbuh\n\nPermintaan sewa villa keluarga dan staycation di area Jabodetabek mengalami lonjakan signifikan sepanjang tahun 2026.\n\n![Kolam renang dan taman luas private villa Jagakarsa](/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg)\n\n### 3 Faktor Utama Pendorong Okupansi Tinggi\n\n- **Kualitas Fasilitas & Kebersihan Hotel**: Tamu modern mendambakan standar linen dan AC prima.\n- **Konektivitas OTA 2-Arah**: Kalender sinkron tanpa double-booking.\n- **Topical SEO & Google Map Presence**: Listing yang mudah ditemukan di Google Organik.\n\n> 🏡 **Rekomendasi KingHouse**: [Lihat detail Versatile House Jagakarsa](/villas/versatile-house-jagakarsa) untuk inspirasi tata kelola aset premium."
     )
     setFormHeroImage(IMAGE_PRESETS[0].url)
     setFormKeywords("sewa villa jagakarsa, airbnb superhost, tips properti, yield manajemen")

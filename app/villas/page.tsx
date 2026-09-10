@@ -309,7 +309,7 @@ function VillasCatalogContent() {
       {/* 1. Hero Banner Matching properties.png */}
       <section className="relative h-[48vh] sm:h-[58vh] flex items-center justify-center text-center overflow-hidden">
         <Image
-          src="/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp"
+          src="/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg"
           alt="Large private villas with over 5 bedrooms"
           fill
           className="object-cover"
@@ -678,7 +678,7 @@ function VillasCatalogContent() {
             {[
               {
                 title: "Versatile House Jagakarsa",
-                image: "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
+                image: "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
                 type: "5BR Sanctuary Villa",
               },
               {

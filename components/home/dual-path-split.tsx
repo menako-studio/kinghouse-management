@@ -13,7 +13,7 @@ export function DualPathSplit() {
             {/* Background Lifestyle Image */}
             <div className="absolute inset-0 z-0 overflow-hidden">
               <Image
-                src="/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp"
+                src="/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg"
                 alt="Versatile house garden and private pool"
                 fill
                 className="object-cover brightness-[0.45] transition-transform duration-700 ease-out group-hover:scale-105"

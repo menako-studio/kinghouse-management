@@ -256,7 +256,7 @@ export default function EventsPage() {
       {/* 1. Hero Banner Matching events.png */}
       <section className="relative h-[48vh] sm:h-[58vh] flex items-center justify-center text-center overflow-hidden">
         <Image
-          src="/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp"
+          src="/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg"
           alt="A Guide to Your Dream Wedding & Events"
           fill
           className="object-cover"
