@@ -4,34 +4,100 @@ import { useState, useMemo } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import {
-  Heart,
-  Briefcase,
-  Cake,
   Users,
   ArrowUpRight,
   Star,
-  CheckCircle2,
-  Calendar,
-  Clock,
-  Home,
   MessageCircle,
-  RotateCcw,
   Sparkles,
-  ShieldCheck,
   ChevronRight,
   ChevronDown,
   Search,
   SlidersHorizontal,
   Maximize2,
   Download,
-  FileText,
+  Camera,
+  X,
+  Eye,
 } from "lucide-react"
 import { VILLA_EVENTS, VERSATILE_HOUSE_EVENT_PRICELIST, CURATED_VILLAS } from "@/lib/data"
 import { VillaEvent } from "@/lib/types"
-import { Button } from "@/components/ui/button"
 import { trackBrochureDownload, trackWhatsAppClick } from "@/lib/analytics"
 
 type SortOption = "recommended" | "price-asc" | "price-desc" | "capacity"
+
+interface EventShowcasePhoto {
+  id: string
+  title: string
+  category: "all" | "wedding" | "cocktail" | "banquet" | "bridal"
+  categoryLabel: string
+  image: string
+  caption: string
+  area: string
+  capacity: string
+}
+
+const EVENT_SHOWCASE_PHOTOS: EventShowcasePhoto[] = [
+  {
+    id: "photo-1",
+    title: "Lush Lawn Altar & Ceremonial Pool Reflection",
+    category: "wedding",
+    categoryLabel: "Wedding Ceremony",
+    image: "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
+    caption: "Exchange vows beside manicured tropical lawns and an azure pool, flanked by towering palm canopies.",
+    area: "500m² Tropical Garden",
+    capacity: "Up to 50 Guests Seated",
+  },
+  {
+    id: "photo-2",
+    title: "Grand Dining Hall & Chandelier Banquet",
+    category: "banquet",
+    categoryLabel: "Intimate Banquet",
+    image: "/properties/versatile-house/new/VersatileHouse_06_Dining_Chandelier.jpg",
+    caption: "Family dining tables under an artistic branch chandelier with floor-to-ceiling garden vistas.",
+    area: "Formal Dining Salon",
+    capacity: "16-24 Pax Dining",
+  },
+  {
+    id: "photo-3",
+    title: "Covered Garden Patio & Cocktail Lounge",
+    category: "cocktail",
+    categoryLabel: "Cocktail & Reception",
+    image: "/properties/versatile-house/new/VersatileHouse_04_Patio_Terrace.jpg",
+    caption: "All-weather sheltered terrace connecting the pool deck with breezy conversation seating.",
+    area: "Outdoor Covered Terrace",
+    capacity: "35 Guests Standing Cocktail",
+  },
+  {
+    id: "photo-4",
+    title: "Tranquil Zen Courtyard for Editorial Photos",
+    category: "wedding",
+    categoryLabel: "Wedding Photo Corner",
+    image: "/properties/versatile-house/new/VersatileHouse_09_Zen_Courtyard.jpg",
+    caption: "An architectural stone courtyard offering natural diffused light for bridal portraits and pre-wedding captures.",
+    area: "Zen Botanical Courtyard",
+    capacity: "Private Photo Zone",
+  },
+  {
+    id: "photo-5",
+    title: "Expansive Air-Conditioned Plenary Hall",
+    category: "cocktail",
+    categoryLabel: "Indoor Reception",
+    image: "/properties/versatile-house/new/VersatileHouse_02_Living_Hall.jpg",
+    caption: "High-ceiling central hall equipped with climate control, ideal for indoor ceremony backup or reception mingle.",
+    area: "Grand Living Hall",
+    capacity: "45 Guests Gathering",
+  },
+  {
+    id: "photo-6",
+    title: "Bridal Master Suite & Powder Sanctuary",
+    category: "bridal",
+    categoryLabel: "Bridal Suite",
+    image: "/properties/versatile-house/new/VersatileHouse_03_Master_Bedroom.jpg",
+    caption: "Spacious private master wing dedicated for bridal dress changes, hair & makeup artists, and moments of calm.",
+    area: "Master Bridal Wing",
+    capacity: "Private Bridal Suite",
+  },
+]
 
 const versatileHouse = CURATED_VILLAS.find((v) => v.id === "villa-1")
 
@@ -181,6 +247,15 @@ export default function EventsPage() {
   const [gridSearchQuery, setGridSearchQuery] = useState<string>("")
   const [sortBy, setSortBy] = useState<SortOption>("recommended")
   const [showMobileFilters, setShowMobileFilters] = useState<boolean>(false)
+
+  // Gallery showcase state
+  const [activeGalleryFilter, setActiveGalleryFilter] = useState<string>("all")
+  const [lightboxPhoto, setLightboxPhoto] = useState<EventShowcasePhoto | null>(null)
+
+  const filteredGalleryPhotos = useMemo(() => {
+    if (activeGalleryFilter === "all") return EVENT_SHOWCASE_PHOTOS
+    return EVENT_SHOWCASE_PHOTOS.filter((p) => p.category === activeGalleryFilter)
+  }, [activeGalleryFilter])
 
   // Tab state for pricelist matrix
   const [activePriceTab, setActivePriceTab] = useState<"half-day" | "full-day" | "full-board">("half-day")
@@ -524,7 +599,208 @@ export default function EventsPage() {
         </div>
       </section>
 
-      {/* 4. OFFICIAL EVENT PRICE LIST MATRIX (Direct from pricelist-villa.pdf) */}
+      {/* 4. REAL CELEBRATIONS & VENUE INSPIRATION GALLERY (Matching Nakula Event Imagery Focus) */}
+      <section className="border-t border-[#E8E4DC] bg-[#FAF8F5] py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <div className="max-w-2xl space-y-2">
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-[#8C7F5F]">
+                <Camera className="h-3.5 w-3.5" />
+                <span>REAL OCCASIONS & VENUE INSPIRATION</span>
+              </div>
+              <h2 className="font-serif text-3xl sm:text-4xl text-[#222225] font-normal leading-tight">
+                Moments of Celebration at KingHouse
+              </h2>
+              <p className="text-xs sm:text-sm text-[#6B6862] leading-relaxed">
+                Explore real wedding setups, open-air lawn ceremonies, intimate banquets, and bridal sanctuaries across our 500m² private enclave in Jagakarsa.
+              </p>
+            </div>
+
+            {/* Gallery Category Filter Tabs */}
+            <div className="flex flex-wrap gap-2">
+              {[
+                { id: "all", label: "All Setups" },
+                { id: "wedding", label: "Weddings & Ceremonies" },
+                { id: "cocktail", label: "Cocktails & Receptions" },
+                { id: "banquet", label: "Intimate Banquets" },
+                { id: "bridal", label: "Bridal Suites" },
+              ].map((tab) => {
+                const isActive = activeGalleryFilter === tab.id
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveGalleryFilter(tab.id)}
+                    className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wider transition-all cursor-pointer ${
+                      isActive
+                        ? "bg-[#8C7F5F] text-white shadow-xs"
+                        : "bg-white text-[#6B6862] hover:text-[#222225] hover:bg-[#F3EFE6] border border-[#E8E4DC]"
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Gallery Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredGalleryPhotos.map((photo) => (
+              <div
+                key={photo.id}
+                onClick={() => setLightboxPhoto(photo)}
+                className="group relative overflow-hidden rounded-2xl bg-white border border-[#E8E4DC] shadow-xs cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+              >
+                {/* Image Container with 4:3 Aspect */}
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#F0ECE1]">
+                  <Image
+                    src={photo.image}
+                    alt={photo.title}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-108"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  {/* Subtle Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-60 group-hover:opacity-85 transition-opacity" />
+
+                  {/* Top Badge: Category */}
+                  <div className="absolute top-3 left-3">
+                    <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-white/90 text-[#222225] backdrop-blur-md shadow-xs">
+                      {photo.categoryLabel}
+                    </span>
+                  </div>
+
+                  {/* Top Right: Zoom / Inspect Icon */}
+                  <div className="absolute top-3 right-3 h-8 w-8 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-md text-white flex items-center justify-center transition-transform group-hover:scale-110">
+                    <Eye className="h-3.5 w-3.5" />
+                  </div>
+
+                  {/* Bottom Image Info */}
+                  <div className="absolute bottom-3 left-3 right-3 text-white">
+                    <span className="text-[10px] text-white/80 font-medium uppercase tracking-wider block">
+                      {photo.area} &bull; {photo.capacity}
+                    </span>
+                    <h3 className="font-serif text-base font-normal leading-snug line-clamp-1 drop-shadow-sm">
+                      {photo.title}
+                    </h3>
+                  </div>
+                </div>
+
+                {/* Card Description */}
+                <div className="p-4 space-y-2">
+                  <p className="text-xs text-[#6B6862] leading-relaxed line-clamp-2">
+                    {photo.caption}
+                  </p>
+                  <div className="flex items-center justify-between pt-1 text-[11px] font-semibold text-[#8C7F5F]">
+                    <span>View Setup Details</span>
+                    <ChevronRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Quick Value Props Banner matching Nakula Standard */}
+          <div className="mt-12 rounded-2xl border border-[#E8E4DC] bg-white p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xs">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-left">
+              <div className="h-12 w-12 rounded-full bg-[#FAF8F5] border border-[#E8E4DC] flex items-center justify-center shrink-0 text-[#8C7F5F]">
+                <Sparkles className="h-6 w-6" />
+              </div>
+              <div className="space-y-1">
+                <h4 className="font-serif text-lg text-[#222225]">
+                  0% Vendor Corkage & Total Flexibility
+                </h4>
+                <p className="text-xs text-[#6B6862]">
+                  Bring your preferred catering, florist, wedding planner, and MUA with zero surcharge or corkage fees.
+                </p>
+              </div>
+            </div>
+
+            <a
+              href={`https://wa.me/6282123933218?text=${encodeURIComponent("Hello KingHouse Concierge! I am interested in viewing more wedding & event venue photos and checking date availability.")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 rounded-full bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-colors shadow-sm cursor-pointer shrink-0"
+            >
+              Request Venue Tour
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive Lightbox Modal */}
+      {lightboxPhoto && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 sm:p-6 backdrop-blur-sm"
+          onClick={() => setLightboxPhoto(null)}
+        >
+          <div
+            className="relative max-w-3xl w-full rounded-2xl bg-white overflow-hidden shadow-2xl border border-[#E8E4DC]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setLightboxPhoto(null)}
+              className="absolute top-4 right-4 z-20 h-9 w-9 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center transition-colors cursor-pointer"
+              aria-label="Close photo preview"
+            >
+              <X className="h-5 w-5" />
+            </button>
+
+            {/* Full Image */}
+            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full bg-[#111]">
+              <Image
+                src={lightboxPhoto.image}
+                alt={lightboxPhoto.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 800px"
+              />
+            </div>
+
+            {/* Lightbox Details & Inquire Button */}
+            <div className="p-6 space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#F0ECE1] pb-3">
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#8C7F5F]">
+                    {lightboxPhoto.categoryLabel} &bull; {lightboxPhoto.area}
+                  </span>
+                  <h3 className="font-serif text-xl sm:text-2xl text-[#222225] font-normal">
+                    {lightboxPhoto.title}
+                  </h3>
+                </div>
+                <span className="inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-[#FAF8F5] text-[#8C7F5F] border border-[#E8E4DC] self-start sm:self-auto">
+                  {lightboxPhoto.capacity}
+                </span>
+              </div>
+
+              <p className="text-xs sm:text-sm text-[#6B6862] leading-relaxed">
+                {lightboxPhoto.caption}
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+                <span className="text-xs text-[#888888]">
+                  KingHouse Curated Residences &bull; Jagakarsa, South Jakarta
+                </span>
+                <a
+                  href={`https://wa.me/6282123933218?text=${encodeURIComponent(`Hello KingHouse! I saw the "${lightboxPhoto.title}" setup in your events gallery and would like to inquire about date availability and package rates.`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-xl bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-xs font-semibold uppercase tracking-wider transition-colors shadow-sm"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  <span>Inquire This Setup on WhatsApp</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 5. OFFICIAL EVENT PRICE LIST MATRIX (Direct from pricelist-villa.pdf) */}
       <section id="pricelist" className="mx-auto max-w-7xl px-6 lg:px-12 pt-16 pb-12 border-t border-[#E8E4DC]">
         <div className="rounded-3xl border border-[#E8E4DC] bg-[#FAF8F5] p-6 sm:p-10 shadow-xs">
           <div className="max-w-3xl mb-8">
