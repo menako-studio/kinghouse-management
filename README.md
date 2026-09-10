@@ -101,11 +101,17 @@ npx tsc --noEmit
 # Run ESLint validation (0 errors)
 npm run lint
 
-# Run Next.js production build (57/57 routes verified)
+# Run Next.js production build (63/63 routes verified)
 npm run build
 ```
 
 The project includes an automated test suite powered by **Vitest** covering ERP calculations, 2-way iCal sync, commission fee splits, Zod validators, rate limiters, GA4/GTM tracking, and XML sitemaps.
+
+### UI/UX & Media Performance Architecture:
+- **Responsive Viewport-Aware Video Streaming**: Automatically serves portrait vertical video on mobile and landscape video on desktop, using `preload="metadata"` to prevent downloading multiple streams or stalling bandwidth.
+- **Header Navigation Consistency**: Strict single-line whitespace preservation (`whitespace-nowrap`), uncluttered layout (redundant "Home" link removed and covered by brand logo).
+- **Mobile Collision-Free Layout**: Dynamic responsive spacing preventing floating search components from obscuring bottom hero specifications.
+- **Events Showcase Gallery**: Nakula-inspired visual gallery with interactive category filters, real event and wedding setup photos, and instant WhatsApp booking inquiry.
 
 ### Test Coverage Highlights:
 - `tests/erp-calculations.test.ts`: Validates 15% vs 20% commission splits, cleaning fee exemptions, net owner payouts, ADR, and RevPAR math.

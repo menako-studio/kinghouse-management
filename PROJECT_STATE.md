@@ -323,6 +323,25 @@ kinghouse-mockup/
   - Implemented ISR caching (`revalidate = 120`) and a 1500ms Supabase query race timeout with seamless runtime fallback to eliminate cold-start loading delays.
   - Updated `app/sitemap.ts` to include all new routes for full SEO indexing.
 
+### Phase 3.5 — Header Alignment, Mobile Hero Fix, Events Gallery Showcase & Video Bandwidth Optimization (Completed)
+- [x] **Header Navigation Alignment & Spacing (`components/layout/header.tsx`)**:
+  - Removed redundant "HOME" text link from desktop navbar and mobile navigation drawer (navigation back to home is naturally covered by the KINGHOUSE brand logo).
+  - Applied `whitespace-nowrap` across all primary navigation items (`OUR PROPERTIES`, `MONTHLY OFFERS`, `EVENTS`, `OWNER SERVICES`, `ENQUIRE`) to eliminate awkward multi-line wrapping on mid-sized viewports (1024px–1280px).
+  - Enforced consistent `space-x-6 xl:space-x-8` horizontal spacing and uniform vertical alignment, matching Nakula's clean luxury aesthetic.
+- [x] **Mobile Hero Viewport & Collision Fix (`components/home/hero-slider.tsx`, `components/home/search-filter-bar.tsx`)**:
+  - Changed `SearchFilterBar` top margin on mobile to `mt-4 sm:-mt-10 lg:-mt-12` so the floating search bar sits cleanly beneath the hero section on mobile screens (<640px) without overlapping or obscuring the bottom property specs and villa title.
+  - Adjusted mobile hero button padding from `py-6` to `py-3.5 sm:py-6` and tuned container typography (`text-3xl sm:text-6xl`) to guarantee full visibility of featured property details ("Versatile House With Garden • Jagakarsa, Jakarta Selatan").
+- [x] **Video Bandwidth & Page Speed Optimization (`components/home/hero-slider.tsx`)**:
+  - Replaced dual simultaneous `<video>` elements with dynamic viewport-aware single-stream rendering, downloading only landscape (desktop/tablet) OR portrait (mobile) video.
+  - Switched video preloading strategy from `preload="auto"` to `preload="metadata"`, saving over ~50MB of eager data transfer on initial page load and eliminating bandwidth congestion.
+  - Maintained instant First Contentful Paint (<200ms) with `POSTER_IMAGE` loaded via Next.js `Image` with `priority`.
+- [x] **Events Real Celebrations & Venue Inspiration Gallery (`app/events/page.tsx`)**:
+  - Added a curated visual showcase section highlighting real event setups (Lush Lawn Altar & Ceremonial Pool, Grand Chandelier Banquet, Covered Patio Cocktail Lounge, Zen Courtyard Photo Zone, Plenary Living Hall, Bridal Master Suite).
+  - Integrated interactive category filter pills (`All Setups`, `Weddings & Ceremonies`, `Cocktails & Receptions`, `Intimate Banquets`, `Bridal Suites`).
+  - Implemented an interactive full-screen Lightbox Modal with high-resolution photography inspection, area specs, and direct WhatsApp booking inquiry.
+- [x] **Footer Newsletter Streamlining (`components/layout/footer.tsx`)**:
+  - Temporarily hid the unconfigured newsletter form and removed external Unsplash background image fetch to reduce initial page weight and avoid user confusion before a dedicated free-tier ESP (e.g., Resend or Brevo) is integrated.
+
 ---
 
 ## 4. VERIFICATION COMMANDS
