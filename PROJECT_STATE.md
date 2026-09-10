@@ -342,6 +342,17 @@ kinghouse-mockup/
 - [x] **Footer Newsletter Streamlining (`components/layout/footer.tsx`)**:
   - Temporarily hid the unconfigured newsletter form and removed external Unsplash background image fetch to reduce initial page weight and avoid user confusion before a dedicated free-tier ESP (e.g., Resend or Brevo) is integrated.
 
+### Phase 3.6 — Luxury Wedding & Event Setup Visual Assets Generation (Nakula-Grade)
+- [x] **Generated Bespoke Event Visuals Based on Versatile House Real Architecture (`public/properties/versatile-house/events/`)**:
+  - Generated high-converting, photo-realistic visual assets using the actual architectural footprint, pool geometry, and tropical greenery of Versatile House Jagakarsa:
+    1. `wedding-ceremony-lawn-pool.jpg`: Exquisite circular floral moon gate arch adorned with white roses and tropical greenery beside the azure pool, with rows of white cross-back wedding chairs on emerald manicured lawns.
+    2. `evening-garden-party-banquet.jpg`: Romantic twilight celebration featuring warm canopy festoon string bistro lights, long wooden banquet dining tables, floating pool candles, and lush floral runners.
+    3. `cocktail-reception-terrace-lounge.jpg`: Chic pop-up champagne & mixology bar on the covered patio terrace overlooking the pool, high cocktail tables, and resort evening atmosphere.
+- [x] **Events Page & Catalog Integration (`app/events/page.tsx` & `lib/data.ts`)**:
+  - Elevated the Hero Banner of `/events` with the signature `wedding-ceremony-lawn-pool.jpg` ceremony shot to immediately capture wedding planners and bridal couples, matching the high-end appeal of Nakula's "A Guide to Your Dream Wedding".
+  - Upgraded `EVENT_SHOWCASE_PHOTOS` with the new wedding, evening banquet, and cocktail lounge visuals with interactive lightbox previews.
+  - Updated `VILLA_EVENTS` catalog items (`event-1` Garden Wedding & `event-3` Birthday / Milestone Party) with dedicated event hero covers and enriched multi-photo galleries.
+
 ---
 
 ## 4. VERIFICATION COMMANDS
