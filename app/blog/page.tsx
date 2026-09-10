@@ -4,8 +4,7 @@ import { getBlogPosts } from "@/lib/blog/service"
 import { BlogIndexClient } from "@/components/blog/blog-index-client"
 import { SITE_CONFIG } from "@/lib/constants"
 
-export const dynamic = "force-dynamic"
-export const revalidate = 0
+export const revalidate = 120
 
 export const metadata: Metadata = {
   title: "Blog & Hospitality Insights | KingHouse",

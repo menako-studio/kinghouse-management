@@ -62,7 +62,14 @@ export async function getBlogPosts(options?: BlogFilterOptions): Promise<(BlogPo
         query = query.eq("slug", options.slug)
       }
 
-      const { data, error } = await query
+      const timeoutPromise = new Promise<{ data: null; error: Error }>((resolve) =>
+        setTimeout(() => resolve({ data: null, error: new Error("Supabase fetch timeout") }), 1500)
+      )
+
+      const { data, error } = (await Promise.race([query, timeoutPromise])) as {
+        data: Record<string, unknown>[] | null
+        error: unknown
+      }
 
       if (!error && data && data.length > 0) {
         let results = data.map(mapRowToBlogPost)
@@ -122,12 +129,21 @@ export async function getBlogPostBySlug(slug: string): Promise<(BlogPost & { sta
 
   if (supabase) {
     try {
-      const { data, error } = await supabase
+      const query = supabase
         .from("blog_posts")
         .select("*")
         .eq("slug", slug)
         .limit(1)
         .maybeSingle()
+
+      const timeoutPromise = new Promise<{ data: null; error: Error }>((resolve) =>
+        setTimeout(() => resolve({ data: null, error: new Error("Supabase single fetch timeout") }), 1500)
+      )
+
+      const { data, error } = (await Promise.race([query, timeoutPromise])) as {
+        data: Record<string, unknown> | null
+        error: unknown
+      }
 
       if (!error && data) {
         return mapRowToBlogPost(data)
