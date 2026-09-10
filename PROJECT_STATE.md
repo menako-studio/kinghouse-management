@@ -26,7 +26,7 @@ The platform serves two primary user personas:
 
 | Category | Technology | Version / Configuration | Purpose |
 | :--- | :--- | :--- | :--- |
-| **Framework** | Next.js (App Router) | `16.0.7` (`next dev --turbopack`) | Core fullstack framework & static/dynamic generation |
+| **Framework** | Next.js (App Router) | `16.3.4` (`next dev --turbopack`) | Core fullstack framework & static/dynamic generation |
 | **Runtime / Core** | React / React DOM | `19.2.0` | Modern React UI with Server/Client Components |
 | **Language** | TypeScript | `^5.0` (Strict mode) | Type safety across schemas, state, and props |
 | **Typography** | Philosopher & Plus Jakarta Sans | Google Fonts (`next/font/google`) | Luxury editorial headers (`Philosopher`) & ultra-clean UI |
