@@ -116,16 +116,7 @@ export function Header() {
         </Link>
 
         {/* Center: Desktop Navigation Bar */}
-        <nav className="hidden lg:flex items-center space-x-7">
-          <Link
-            href="/"
-            className={`text-xs font-medium uppercase tracking-[0.15em] transition-colors py-2 ${
-              pathname === "/" ? "text-[#8C7F5F] font-semibold" : "text-[#555555] hover:text-[#8C7F5F]"
-            }`}
-          >
-            {t("home")}
-          </Link>
-
+        <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
           {/* OUR PROPERTIES dropdown toggle */}
           <div className="relative">
             <button
@@ -136,7 +127,7 @@ export function Header() {
                 setLanguageDropdownOpen(false)
               }}
               onMouseEnter={() => setPropertiesMenuOpen(true)}
-              className={`flex items-center space-x-1 text-xs font-medium uppercase tracking-[0.15em] transition-colors py-2 cursor-pointer ${
+              className={`flex items-center space-x-1 text-xs font-medium uppercase tracking-[0.15em] whitespace-nowrap transition-colors py-2 cursor-pointer ${
                 propertiesMenuOpen || pathname.startsWith("/villas") || pathname.startsWith("/locations")
                   ? "text-[#8C7F5F] font-semibold"
                   : "text-[#555555] hover:text-[#8C7F5F]"
@@ -153,7 +144,7 @@ export function Header() {
 
           <Link
             href="/villas"
-            className={`text-xs font-medium uppercase tracking-[0.15em] transition-colors py-2 ${
+            className={`text-xs font-medium uppercase tracking-[0.15em] whitespace-nowrap transition-colors py-2 ${
               pathname === "/offers" ? "text-[#8C7F5F] font-semibold" : "text-[#555555] hover:text-[#8C7F5F]"
             }`}
           >
@@ -162,7 +153,7 @@ export function Header() {
 
           <Link
             href="/events"
-            className={`text-xs font-medium uppercase tracking-[0.15em] transition-colors py-2 ${
+            className={`text-xs font-medium uppercase tracking-[0.15em] whitespace-nowrap transition-colors py-2 ${
               pathname === "/events" ? "text-[#8C7F5F] font-semibold" : "text-[#555555] hover:text-[#8C7F5F]"
             }`}
           >
@@ -172,7 +163,7 @@ export function Header() {
           {/* OWNER SERVICES */}
           <Link
             href="/owner-services"
-            className={`text-xs font-medium uppercase tracking-[0.15em] transition-colors py-2 ${
+            className={`text-xs font-medium uppercase tracking-[0.15em] whitespace-nowrap transition-colors py-2 ${
               pathname === "/owner-services" ? "text-[#8C7F5F] font-semibold" : "text-[#555555] hover:text-[#8C7F5F]"
             }`}
           >
@@ -182,7 +173,7 @@ export function Header() {
           {/* ENQUIRE underlined */}
           <Link
             href="/contact"
-            className="text-xs font-semibold uppercase tracking-[0.15em] text-[#8C7F5F] underline underline-offset-4 hover:text-[#776B4E] transition-colors py-2"
+            className="text-xs font-semibold uppercase tracking-[0.15em] whitespace-nowrap text-[#8C7F5F] underline underline-offset-4 hover:text-[#776B4E] transition-colors py-2"
           >
             {t("enquire")}
           </Link>
@@ -473,13 +464,6 @@ export function Header() {
 
             {/* Mobile Nav Links */}
             <nav className="flex flex-col space-y-3">
-              <Link
-                href="/"
-                className="font-serif text-xl text-[#222222] hover:text-[#8C7F5F] py-1 border-b border-[#F5F3EF]"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {t("home")}
-              </Link>
               <Link
                 href="/villas"
                 className="font-serif text-xl text-[#222222] hover:text-[#8C7F5F] py-1 border-b border-[#F5F3EF]"
