@@ -1,17 +1,13 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
-import { useState } from "react"
 import {
   Mail,
   Phone,
   ArrowRight,
-  CheckCircle2,
 } from "lucide-react"
 import { useLocalization } from "@/lib/context/localization-context"
 import {
-  trackEvent,
   trackWhatsAppClick,
   trackEmailClick,
 } from "@/lib/analytics"
@@ -20,93 +16,10 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
   const { t } = useLocalization()
 
-  const [email, setEmail] = useState("")
-  const [isSubscribed, setIsSubscribed] = useState(false)
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (email.trim()) {
-      trackEvent("newsletter_subscribe", {
-        event_category: "Engagement",
-        event_label: "Footer Newsletter",
-        email_submitted: email.trim(),
-      })
-      setIsSubscribed(true)
-      setTimeout(() => {
-        setEmail("")
-        setIsSubscribed(false)
-      }, 4000)
-    }
-  }
-
 
   return (
     <footer className="w-full">
-      {/* 1. Top Newsletter Banner (Exact Nakula Style from footer.png) */}
-      <div className="relative overflow-hidden bg-[#24221F] py-14 lg:py-16">
-        {/* Background Image with Dark Gradient Overlay */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1600&q=80"
-            alt="KingHouse Luxury Property"
-            fill
-            className="object-cover opacity-25"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/75" />
-        </div>
-
-        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-            {/* Headline */}
-            <div className="max-w-xl text-center lg:text-left">
-              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl uppercase tracking-[0.12em] text-white leading-tight">
-                {t("newsletterHeadline")}
-              </h2>
-            </div>
-
-            {/* Newsletter Subscription Box */}
-            <div className="w-full max-w-md rounded-lg bg-white/95 backdrop-blur-md p-6 shadow-2xl">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-[#222222] mb-1">
-                {t("subscribeNewsletter")}
-              </h3>
-              <p className="text-xs text-[#666666] mb-4">
-                Receive handpicked villa collections, seasonal promotions, and owner yield reports.
-              </p>
-
-              {isSubscribed ? (
-                <div className="flex items-center space-x-2 rounded-md bg-[#FAF8F3] p-3 text-xs font-semibold text-[#8C7F5F] border border-[#8C7F5F]/30">
-                  <CheckCircle2 className="h-4 w-4 text-[#8C7F5F]" />
-                  <span>Thank you for subscribing to KingHouse!</span>
-                </div>
-              ) : (
-                <form onSubmit={handleSubscribe} className="space-y-3">
-                  <div>
-                    <label htmlFor="newsletter-email" className="block text-[10px] uppercase tracking-widest font-semibold text-[#777777] mb-1">
-                      EMAIL
-                    </label>
-                    <input
-                      id="newsletter-email"
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder={t("emailPlaceholder")}
-                      required
-                      className="w-full rounded border border-[#E0DCD3] bg-[#FAFAF8] px-3.5 py-2.5 text-xs text-[#222222] placeholder:text-[#999999] focus:border-[#8C7F5F] focus:outline-none"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="w-full rounded bg-[#8C7F5F] px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#776B4E] transition-colors shadow-sm"
-                  >
-                    {t("signUp")}
-                  </button>
-                </form>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-
+      {/* Newsletter Section: Hidden until an email service provider (Resend/Brevo/Mailchimp) is configured */}
       {/* 2. Main Footer Body (Exact Nakula Olive/Khaki Palette #8C7F5F) */}
       <div className="bg-[#8C7F5F] text-[#F5F2EB] pt-16 pb-12">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
