@@ -35,7 +35,6 @@ export function Header() {
 
   const [isScrolled, setIsScrolled] = useState(false)
   const [propertiesMenuOpen, setPropertiesMenuOpen] = useState(false)
-  const [rewardsMenuOpen, setRewardsMenuOpen] = useState(false)
   const [currencyDropdownOpen, setCurrencyDropdownOpen] = useState(false)
   const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -60,7 +59,6 @@ export function Header() {
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setPropertiesMenuOpen(false)
-    setRewardsMenuOpen(false)
     setCurrencyDropdownOpen(false)
     setLanguageDropdownOpen(false)
     setMobileMenuOpen(false)
@@ -86,7 +84,6 @@ export function Header() {
         !navRef.current.contains(event.target as Node)
       ) {
         setPropertiesMenuOpen(false)
-        setRewardsMenuOpen(false)
       }
     }
     document.addEventListener("mousedown", handleClickOutside)
@@ -109,7 +106,6 @@ export function Header() {
           className="group flex items-center space-x-2.5"
           onClick={() => {
             setPropertiesMenuOpen(false)
-            setRewardsMenuOpen(false)
           }}
         >
           <div className="flex flex-col">
@@ -136,7 +132,6 @@ export function Header() {
               type="button"
               onClick={() => {
                 setPropertiesMenuOpen(!propertiesMenuOpen)
-                setRewardsMenuOpen(false)
                 setCurrencyDropdownOpen(false)
                 setLanguageDropdownOpen(false)
               }}
@@ -174,45 +169,15 @@ export function Header() {
             {t("events")}
           </Link>
 
-          {/* REWARDS dropdown toggle */}
-          <div className="relative">
-            <button
-              type="button"
-              onClick={() => {
-                setRewardsMenuOpen(!rewardsMenuOpen)
-                setPropertiesMenuOpen(false)
-              }}
-              className={`flex items-center space-x-1 text-xs font-medium uppercase tracking-[0.15em] transition-colors py-2 cursor-pointer ${
-                rewardsMenuOpen ? "text-[#8C7F5F] font-semibold" : "text-[#555555] hover:text-[#8C7F5F]"
-              }`}
-            >
-              <span>{t("rewards")}</span>
-              <ChevronDown
-                className={`h-3.5 w-3.5 transition-transform duration-200 ${
-                  rewardsMenuOpen ? "rotate-180 text-[#8C7F5F]" : "text-[#888888]"
-                }`}
-              />
-            </button>
-
-            {rewardsMenuOpen && (
-              <div className="absolute left-0 mt-2 w-56 rounded-md bg-[#8C7F5F] p-3 text-white shadow-xl ring-1 ring-black/10 z-50">
-                <Link
-                  href="/owner-services"
-                  className="block rounded px-3 py-2 text-xs font-medium hover:bg-black/15 transition-colors"
-                  onClick={() => setRewardsMenuOpen(false)}
-                >
-                  👑 Owner Superhost Rewards
-                </Link>
-                <Link
-                  href="/stay"
-                  className="block rounded px-3 py-2 text-xs font-medium hover:bg-black/15 transition-colors"
-                  onClick={() => setRewardsMenuOpen(false)}
-                >
-                  🛎️ Guest Loyalty & Perks
-                </Link>
-              </div>
-            )}
-          </div>
+          {/* OWNER SERVICES */}
+          <Link
+            href="/owner-services"
+            className={`text-xs font-medium uppercase tracking-[0.15em] transition-colors py-2 ${
+              pathname === "/owner-services" ? "text-[#8C7F5F] font-semibold" : "text-[#555555] hover:text-[#8C7F5F]"
+            }`}
+          >
+            {t("ownerServices")}
+          </Link>
 
           {/* ENQUIRE underlined */}
           <Link
@@ -333,12 +298,12 @@ export function Header() {
             )}
           </div>
 
-          {/* SIGN IN Pill Button (Nakula Style) */}
+          {/* EXPLORE PROPERTIES Pill Button */}
           <Link
-            href="/login"
-            className="inline-flex items-center justify-center rounded-full border border-[#8C7F5F] px-5 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#8C7F5F] hover:bg-[#8C7F5F] hover:text-white transition-all shadow-xs"
+            href="/villas"
+            className="inline-flex items-center justify-center rounded-full bg-[#8C7F5F] px-5 py-2 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#776B4E] transition-all shadow-xs"
           >
-            {t("signIn")}
+            {t("exploreProperties")}
           </Link>
         </div>
 
@@ -555,11 +520,11 @@ export function Header() {
                 {t("exploreProperties")}
               </Link>
               <Link
-                href="/login"
-                className="w-full flex items-center justify-center rounded-lg border border-[#8C7F5F] py-3 text-xs font-semibold uppercase tracking-wider text-[#8C7F5F]"
+                href="/contact"
+                className="w-full flex items-center justify-center rounded-lg border border-[#8C7F5F] py-3 text-xs font-semibold uppercase tracking-wider text-[#8C7F5F] hover:bg-[#FAF8F3] transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                {t("signIn")}
+                {t("enquire")}
               </Link>
             </div>
           </div>
