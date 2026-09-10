@@ -39,16 +39,36 @@ interface EventShowcasePhoto {
 const EVENT_SHOWCASE_PHOTOS: EventShowcasePhoto[] = [
   {
     id: "photo-1",
-    title: "Lush Lawn Altar & Ceremonial Pool Reflection",
+    title: "Lush Lawn Floral Altar & Ceremonial Pool Reflection",
     category: "wedding",
     categoryLabel: "Wedding Ceremony",
-    image: "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
-    caption: "Exchange vows beside manicured tropical lawns and an azure pool, flanked by towering palm canopies.",
-    area: "500m² Tropical Garden",
+    image: "/properties/versatile-house/events/wedding-ceremony-lawn-pool.jpg",
+    caption: "Exchange vows before an exquisite circular floral moon gate beside the pool, with rows of white cross-back chairs on manicured lawns.",
+    area: "500m² Tropical Garden & Pool",
     capacity: "Up to 50 Guests Seated",
   },
   {
     id: "photo-2",
+    title: "Romantic Twilight Garden Banquet with Fairy Lights",
+    category: "banquet",
+    categoryLabel: "Evening Garden Banquet",
+    image: "/properties/versatile-house/events/evening-garden-party-banquet.jpg",
+    caption: "Magical night dinner under canopy festoon fairy lights, long wooden banquet tables, glowing pool lanterns, and fresh floral runners.",
+    area: "Poolside Lawn & Banquet Deck",
+    capacity: "30–50 Guests Seated Dinner",
+  },
+  {
+    id: "photo-3",
+    title: "Covered Patio Cocktail Bar & Garden Lounge",
+    category: "cocktail",
+    categoryLabel: "Cocktail & Reception",
+    image: "/properties/versatile-house/events/cocktail-reception-terrace-lounge.jpg",
+    caption: "Pop-up champagne bar and high cocktail tables with seamless indoor-outdoor flow opening to the garden and pool.",
+    area: "Outdoor Sheltered Terrace",
+    capacity: "40 Guests Standing Cocktail",
+  },
+  {
+    id: "photo-4",
     title: "Grand Dining Hall & Chandelier Banquet",
     category: "banquet",
     categoryLabel: "Intimate Banquet",
@@ -58,17 +78,7 @@ const EVENT_SHOWCASE_PHOTOS: EventShowcasePhoto[] = [
     capacity: "16-24 Pax Dining",
   },
   {
-    id: "photo-3",
-    title: "Covered Garden Patio & Cocktail Lounge",
-    category: "cocktail",
-    categoryLabel: "Cocktail & Reception",
-    image: "/properties/versatile-house/new/VersatileHouse_04_Patio_Terrace.jpg",
-    caption: "All-weather sheltered terrace connecting the pool deck with breezy conversation seating.",
-    area: "Outdoor Covered Terrace",
-    capacity: "35 Guests Standing Cocktail",
-  },
-  {
-    id: "photo-4",
+    id: "photo-5",
     title: "Tranquil Zen Courtyard for Editorial Photos",
     category: "wedding",
     categoryLabel: "Wedding Photo Corner",
@@ -76,16 +86,6 @@ const EVENT_SHOWCASE_PHOTOS: EventShowcasePhoto[] = [
     caption: "An architectural stone courtyard offering natural diffused light for bridal portraits and pre-wedding captures.",
     area: "Zen Botanical Courtyard",
     capacity: "Private Photo Zone",
-  },
-  {
-    id: "photo-5",
-    title: "Expansive Air-Conditioned Plenary Hall",
-    category: "cocktail",
-    categoryLabel: "Indoor Reception",
-    image: "/properties/versatile-house/new/VersatileHouse_02_Living_Hall.jpg",
-    caption: "High-ceiling central hall equipped with climate control, ideal for indoor ceremony backup or reception mingle.",
-    area: "Grand Living Hall",
-    capacity: "45 Guests Gathering",
   },
   {
     id: "photo-6",
@@ -329,15 +329,15 @@ export default function EventsPage() {
   return (
     <main className="min-h-screen bg-[#FFFFFF] text-[#222225]">
       {/* 1. Hero Banner Matching events.png */}
-      <section className="relative h-[48vh] sm:h-[58vh] flex items-center justify-center text-center overflow-hidden">
+      <section className="relative h-[52vh] sm:h-[62vh] flex items-center justify-center text-center overflow-hidden">
         <Image
-          src="/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg"
-          alt="A Guide to Your Dream Wedding & Events"
+          src="/properties/versatile-house/events/wedding-ceremony-lawn-pool.jpg"
+          alt="A Guide to Your Dream Wedding & Events at KingHouse"
           fill
-          className="object-cover"
+          className="object-cover object-center"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/35" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/35" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 space-y-3">
           <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-white font-normal uppercase tracking-wide leading-tight">
