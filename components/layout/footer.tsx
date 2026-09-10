@@ -8,15 +8,11 @@ import {
   Phone,
   ArrowRight,
   CheckCircle2,
-  MessageSquare,
-  Cookie,
 } from "lucide-react"
 import { useLocalization } from "@/lib/context/localization-context"
-import { SITE_CONFIG } from "@/lib/constants"
 import {
   trackEvent,
   trackWhatsAppClick,
-  trackPhoneCall,
   trackEmailClick,
 } from "@/lib/analytics"
 
@@ -150,7 +146,7 @@ export function Footer() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/blog" className="hover:text-white transition-colors">
+                    <Link href="/press" className="hover:text-white transition-colors">
                       Press
                     </Link>
                   </li>
@@ -160,7 +156,7 @@ export function Footer() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/owner-services#audit" className="hover:text-white transition-colors">
+                    <Link href="/faq" className="hover:text-white transition-colors">
                       FAQ
                     </Link>
                   </li>
@@ -175,7 +171,7 @@ export function Footer() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/owner-services" className="hover:text-white font-medium text-white transition-colors">
+                    <Link href="/management-inquiry" className="hover:text-white font-medium text-white transition-colors">
                       Management Enquiry
                     </Link>
                   </li>
@@ -183,95 +179,69 @@ export function Footer() {
               </div>
             </div>
 
-            {/* Column 2: RESERVATION, GUEST ASSISTANCE, MANAGEMENT */}
-            <div className="lg:col-span-5 space-y-6">
-              {/* RESERVATION */}
-              <div className="space-y-1.5">
-                <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-white">
-                  {t("reservation")}
+            {/* Column 2: DIRECT CONCIERGE & INQUIRIES (Streamlined & Non-Redundant) */}
+            <div className="lg:col-span-5 space-y-5">
+              <div>
+                <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-white mb-2">
+                  Direct Concierge & Reservations
                 </h4>
-                <p className="text-xs font-light text-[#F0EBE0] flex items-center space-x-2">
-                  <Mail className="h-3 w-3 opacity-70" />
-                  <a
-                    href="mailto:ptkreasiusmangosse@gmail.com"
-                    onClick={() => trackEmailClick({ source: "footer_reservation", email: "ptkreasiusmangosse@gmail.com" })}
-                    className="hover:text-white transition-colors"
-                  >
-                    ptkreasiusmangosse@gmail.com
-                  </a>
-                </p>
-                <p className="text-xs font-light text-[#F0EBE0] flex items-center space-x-2">
-                  <Phone className="h-3 w-3 opacity-70" />
-                  <a
-                    href="https://wa.me/6282123933218"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => trackWhatsAppClick({ source: "footer", context: "reservation" })}
-                    className="hover:text-white transition-colors"
-                  >
-                    +62 821 2393 3218
-                  </a>
+                <p className="text-xs text-[#F0EBE0] font-light leading-relaxed">
+                  Connect with our dedicated hospitality desk for guest bookings, custom event stays, or villa asset management partnerships across Jabodetabek.
                 </p>
               </div>
 
-              {/* GUEST ASSISTANCE */}
-              <div className="space-y-1.5 pt-2">
-                <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-white">
-                  {t("guestAssistance")}
-                </h4>
-                <p className="text-xs font-light text-[#F0EBE0] flex items-center space-x-2">
-                  <Mail className="h-3 w-3 opacity-70" />
-                  <a
-                    href="mailto:ptkreasiusmangosse@gmail.com"
-                    onClick={() => trackEmailClick({ source: "footer_guest_assistance", email: "ptkreasiusmangosse@gmail.com" })}
-                    className="hover:text-white transition-colors"
-                  >
-                    ptkreasiusmangosse@gmail.com
-                  </a>
-                </p>
-                <p className="text-xs font-light text-[#F0EBE0] flex items-center space-x-2">
-                  <Phone className="h-3 w-3 opacity-70" />
-                  <a
-                    href="https://wa.me/6282123933218"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => trackWhatsAppClick({ source: "footer", context: "guest_assistance" })}
-                    className="hover:text-white transition-colors"
-                  >
-                    +62 821 2393 3218
-                  </a>
-                </p>
+              <div className="space-y-2.5 text-xs font-light text-[#F0EBE0] bg-black/10 rounded-lg p-4 border border-white/10">
+                <div className="flex items-start space-x-2.5">
+                  <Phone className="h-3.5 w-3.5 text-[#DFC58E] shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-[10px] uppercase tracking-wider text-[#DFC58E] font-semibold block">
+                      Hotline & WhatsApp Desk
+                    </span>
+                    <a
+                      href="https://wa.me/6282123933218"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => trackWhatsAppClick({ source: "footer", context: "streamlined_hotline" })}
+                      className="font-medium text-white hover:underline transition-colors text-sm"
+                    >
+                      +62 821 2393 3218
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-2.5 pt-2 border-t border-white/10">
+                  <Mail className="h-3.5 w-3.5 text-[#DFC58E] shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-[10px] uppercase tracking-wider text-[#DFC58E] font-semibold block">
+                      Direct Email Inquiries
+                    </span>
+                    <a
+                      href="mailto:ptkreasiusmangosse@gmail.com"
+                      onClick={() => trackEmailClick({ source: "footer", email: "ptkreasiusmangosse@gmail.com" })}
+                      className="font-medium text-white hover:underline transition-colors"
+                    >
+                      ptkreasiusmangosse@gmail.com
+                    </a>
+                  </div>
+                </div>
               </div>
 
-              {/* MANAGEMENT */}
-              <div className="space-y-1.5 pt-2">
-                <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-white">
-                  {t("management")}
-                </h4>
-                <p className="text-xs font-light text-[#F0EBE0] flex items-center space-x-2">
-                  <Mail className="h-3 w-3 opacity-70" />
-                  <a
-                    href="mailto:ptkreasiusmangosse@gmail.com"
-                    onClick={() => trackEmailClick({ source: "footer_management", email: "ptkreasiusmangosse@gmail.com" })}
-                    className="hover:text-white transition-colors"
-                  >
-                    ptkreasiusmangosse@gmail.com
-                  </a>
-                </p>
-                <p className="text-xs font-light text-[#F0EBE0] flex items-center space-x-2">
-                  <Phone className="h-3 w-3 opacity-70" />
-                  <a
-                    href="https://wa.me/6282123933218"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => trackWhatsAppClick({ source: "footer", context: "management" })}
-                    className="hover:text-white transition-colors"
-                  >
-                    +62 821 2393 3218
-                  </a>
-                </p>
+              <div className="flex flex-wrap gap-2.5 pt-1">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-medium text-white transition-colors"
+                >
+                  <span>Guest Assistance</span>
+                  <ArrowRight className="h-3 w-3 opacity-70" />
+                </Link>
+                <Link
+                  href="/management-inquiry"
+                  className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-white text-[#8C7F5F] hover:bg-[#FAF8F5] text-xs font-semibold transition-colors"
+                >
+                  <span>Property Owner Inquiry</span>
+                  <ArrowRight className="h-3 w-3" />
+                </Link>
               </div>
-
             </div>
 
             {/* Column 3: OFFICE, HOURS, CONNECT WITH US */}
@@ -294,7 +264,7 @@ export function Footer() {
                 </h4>
                 <p className="text-xs font-light text-[#F0EBE0]">
                   08:00 - 18:00 (GMT+7)<br />
-                  Monday - Friday
+                  Monday - Friday (Concierge 24/7 on WhatsApp)
                 </p>
               </div>
 
@@ -322,17 +292,9 @@ export function Footer() {
 
           </div>
 
-          {/* 3. Bottom Bar & Floating Interactive Buttons */}
+          {/* 3. Bottom Bar (Clean Editorial Legal Footer) */}
           <div className="mt-14 pt-8 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#E0DACB]">
-            <div className="flex items-center space-x-3">
-              <button
-                type="button"
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-black/20 text-white hover:bg-black/30 transition-colors"
-                title="Cookie Settings"
-                aria-label="Cookie Settings"
-              >
-                <Cookie className="h-4 w-4" />
-              </button>
+            <div>
               <p>&copy; {currentYear} KingHouse Villa & Property Asset Management. All rights reserved.</p>
             </div>
 
@@ -341,20 +303,17 @@ export function Footer() {
                 Guest Guide
               </Link>
               <span>&bull;</span>
-              <Link href="/login" className="hover:text-white transition-colors">
-                Admin Portal
+              <Link href="/terms" className="hover:text-white transition-colors">
+                Terms & Conditions
               </Link>
               <span>&bull;</span>
-              <a
-                href="https://wa.me/6282123933218?text=Hello%20KingHouse!%20I%20am%20interested%20in%20your%20villa%20and%20property%20services."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-[#25D366] text-white hover:opacity-90 hover:scale-105 transition-all shadow-md"
-                title="WhatsApp Direct Concierge"
-                aria-label="WhatsApp Direct Concierge"
-              >
-                <MessageSquare className="h-4 w-4 fill-white" />
-              </a>
+              <Link href="/privacy" className="hover:text-white transition-colors">
+                Privacy Policy
+              </Link>
+              <span>&bull;</span>
+              <Link href="/login" className="hover:text-white transition-colors opacity-70 hover:opacity-100">
+                Admin Portal
+              </Link>
             </div>
           </div>
         </div>
