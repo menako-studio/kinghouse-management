@@ -31,7 +31,7 @@ const SCENE_DATA: Record<SceneMode, VideoSource> = {
     title: "The Living Sanctuary Experience",
     subtitle: "Versatile House • Jagakarsa, Jakarta Selatan",
     tag: "✦ Lifestyle Experience",
-    desktop: "/properties/versatile-house/talent-act.mp4",
+    desktop: "/properties/versatile-house/talent-act-comp.mp4",
     mobile: "/properties/versatile-house/talent-act-vertical.mp4",
     description: "An intimate escape where tropical warmth, laughter, and private poolside moments seamlessly unite.",
   },
