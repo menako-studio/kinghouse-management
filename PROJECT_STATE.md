@@ -281,7 +281,7 @@ kinghouse-mockup/
 ### Phase 3.3 — Nakula-Style Cinematic Responsive Video Hero & Versatile House Asset Upgrade (Completed)
 - [x] **Nakula-Inspired Editorial Video Hero (`components/home/hero-slider.tsx`)**:
   - Responsive HTML5 background video architecture:
-    - **Desktop & Tablet Horizontal (Landscape)**: `/properties/versatile-house/talent-act.mp4` / `/properties/versatile-house/empty.mp4` (1920x1080).
+    - **Desktop & Tablet Horizontal (Landscape)**: `/properties/versatile-house/talent-act-comp.mp4` / `/properties/versatile-house/empty.mp4` (1920x1080).
     - **Mobile Portrait (Vertical)**: `/properties/versatile-house/talent-act-vertical.mp4` / `/properties/versatile-house/empty-vertical.mp4` (607x1080).
     - Fallback poster: `/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg` to eliminate black flashes on slow connections.
   - Interactive Luxury Controls Dock:
