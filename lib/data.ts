@@ -1336,12 +1336,14 @@ export const VILLA_EVENTS: VillaEvent[] = [
       "The lush 500m² private garden of our Jagakarsa property creates a magical backdrop for intimate weddings and akad nikah ceremonies. Surrounded by tropical greenery, swimming pool, and space for up to 50 seated guests, this is South Jakarta's best-kept secret for a private garden-style celebration. No vendor corkage fee — book the entire residence and garden exclusively.",
     maxCapacity: 50,
     heroImage:
-      "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
+      "/properties/versatile-house/events/wedding-ceremony-lawn-pool.jpg",
     gallery: [
-      "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
-      "/properties/versatile-house/new/VersatileHouse_04_Patio_Terrace.jpg",
-      "/properties/versatile-house/new/VersatileHouse_09_Zen_Courtyard.jpg",
+      "/properties/versatile-house/events/wedding-ceremony-lawn-pool.jpg",
+      "/properties/versatile-house/events/evening-garden-party-banquet.jpg",
+      "/properties/versatile-house/events/cocktail-reception-terrace-lounge.jpg",
       "/properties/versatile-house/new/VersatileHouse_06_Dining_Chandelier.jpg",
+      "/properties/versatile-house/new/VersatileHouse_09_Zen_Courtyard.jpg",
+      "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
     ],
     packages: [
       {
@@ -1426,6 +1428,7 @@ export const VILLA_EVENTS: VillaEvent[] = [
       "/properties/versatile-house/new/VersatileHouse_02_Living_Hall.jpg",
     gallery: [
       "/properties/versatile-house/new/VersatileHouse_02_Living_Hall.jpg",
+      "/properties/versatile-house/events/cocktail-reception-terrace-lounge.jpg",
       "/properties/versatile-house/new/VersatileHouse_06_Dining_Chandelier.jpg",
       "/properties/versatile-house/new/VersatileHouse_08_Media_Lounge.jpg",
       "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
@@ -1506,12 +1509,13 @@ export const VILLA_EVENTS: VillaEvent[] = [
       "Why rent an overcrowded venue when you can have an entire private home, pool, and garden for your party? Our Jagakarsa property is the perfect setting for milestone birthdays, graduation parties, family reunions, and bridal showers — with full indoor and outdoor flexibility and no corkage fees.",
     maxCapacity: 50,
     heroImage:
-      "/properties/versatile-house/new/VersatileHouse_04_Patio_Terrace.jpg",
+      "/properties/versatile-house/events/evening-garden-party-banquet.jpg",
     gallery: [
+      "/properties/versatile-house/events/evening-garden-party-banquet.jpg",
+      "/properties/versatile-house/events/cocktail-reception-terrace-lounge.jpg",
+      "/properties/versatile-house/events/wedding-ceremony-lawn-pool.jpg",
       "/properties/versatile-house/new/VersatileHouse_04_Patio_Terrace.jpg",
       "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
-      "/properties/versatile-house/new/VersatileHouse_06_Dining_Chandelier.jpg",
-      "/properties/versatile-house/new/VersatileHouse_02_Living_Hall.jpg",
     ],
     packages: [
       {
