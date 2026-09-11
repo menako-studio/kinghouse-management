@@ -200,7 +200,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     },
     publisher: {
       "@type": "Organization",
-      name: "KingHouse Management",
+      name: "Kinghouse Management",
       logo: { "@type": "ImageObject", url: `${SITE_CONFIG.baseUrl}/favicon.ico` },
     },
     keywords: post.seoKeywords.join(", "),

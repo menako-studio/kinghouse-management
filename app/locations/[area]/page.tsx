@@ -23,11 +23,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const areaData = MANAGED_AREAS.find((a) => a.slug === area)
 
   if (!areaData) {
-    return { title: "Area Not Found | KingHouse Management" }
+    return { title: "Area Not Found | Kinghouse Management" }
   }
 
-  const title = `Short-Stay Rentals & Airbnb in ${areaData.name}, ${areaData.region} | KingHouse Management`
-  const description = `${areaData.description} Explore curated accommodations in ${areaData.name} operated to KingHouse Management Airbnb Superhost standards.`
+  const title = `Short-Stay Rentals & Airbnb in ${areaData.name}, ${areaData.region} | Kinghouse Management`
+  const description = `${areaData.description} Explore curated accommodations in ${areaData.name} operated to Kinghouse Management Airbnb Superhost standards.`
 
   return {
     title,
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       `airbnb ${areaData.slug}`,
       `accommodations ${areaData.name}`,
       `villa rentals ${areaData.name} ${areaData.region}`,
-      "KingHouse Management",
+      "Kinghouse Management",
       "King House",
       "kinghousemanagement.com",
     ],

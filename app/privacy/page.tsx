@@ -3,14 +3,14 @@ import Link from "next/link"
 import { Shield, Lock, ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | KingHouse Management",
+  title: "Privacy Policy | Kinghouse Management",
   description:
-    "Learn how KingHouse Management collects, utilizes, and protects guest, property owner, and visitor personal data under Indonesian UU PDP.",
+    "Learn how Kinghouse Management collects, utilizes, and protects guest, property owner, and visitor personal data under Indonesian UU PDP.",
   alternates: { canonical: "/privacy" },
   openGraph: {
-    title: "Privacy Policy | KingHouse Management",
+    title: "Privacy Policy | Kinghouse Management",
     description:
-      "Learn how KingHouse Management collects, utilizes, and protects guest and property owner personal data.",
+      "Learn how Kinghouse Management collects, utilizes, and protects guest and property owner personal data.",
     url: "/privacy",
     type: "website",
   },
@@ -48,7 +48,7 @@ export default function PrivacyPolicyPage() {
                 1. Overview &amp; Commitment to Privacy
               </h2>
               <p className="text-sm">
-                <strong>PT Kreasi Usman Gosse</strong> doing business as <strong>KingHouse Management</strong> (&ldquo;KingHouse&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) is dedicated to protecting your personal data. This Privacy Policy details how we collect, process, store, and safeguard information obtained through <strong>kinghousemanagement.com</strong>, our direct reservation channels, WhatsApp concierge, and property management onboarding, in strict compliance with Indonesian Law No. 27 of 2022 on Personal Data Protection (UU PDP).
+                <strong>PT Kreasi Usman Gosse</strong> doing business as <strong>Kinghouse Management</strong> (&ldquo;KingHouse&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) is dedicated to protecting your personal data. This Privacy Policy details how we collect, process, store, and safeguard information obtained through <strong>kinghousemanagement.com</strong>, our direct reservation channels, WhatsApp concierge, and property management onboarding, in strict compliance with Indonesian Law No. 27 of 2022 on Personal Data Protection (UU PDP).
               </p>
             </div>
 

@@ -182,8 +182,8 @@ describe("Google Analytics 4 & Tag Manager Event Dispatcher", () => {
 describe("SEO, Sitemaps & Technical Optimization", () => {
   it("verifies SITE_CONFIG domain and brand aliases for Google ranking", () => {
     expect(SITE_CONFIG.domain).toBe("kinghousemanagement.com")
-    expect(SITE_CONFIG.name).toBe("KingHouse Management")
-    expect(SITE_CONFIG.brandAliases).toContain("KingHouse Management")
+    expect(SITE_CONFIG.name).toBe("Kinghouse Management")
+    expect(SITE_CONFIG.brandAliases).toContain("Kinghouse Management")
     expect(SITE_CONFIG.brandAliases).toContain("King House Management")
     expect(SITE_CONFIG.brandAliases).toContain("kinghousemanagement.com")
     expect(SITE_CONFIG.brandAliases).toContain("www.kinghousemanagement.com")

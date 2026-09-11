@@ -23,15 +23,15 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "KingHouse Management | Short-Stay & Villa Asset Management",
-    template: "%s | KingHouse Management",
+    default: "Kinghouse Management | Short-Stay & Villa Asset Management",
+    template: "%s | Kinghouse Management",
   },
   description:
-    "Jasa manajemen properti sewa harian & villa profesional di Jabodetabek. Maksimalkan okupansi Airbnb, dynamic pricing, dan 24/7 concierge bersama KingHouse.",
+    "Jasa manajemen properti sewa harian & villa profesional di Jabodetabek. Maksimalkan okupansi Airbnb, dynamic pricing, dan 24/7 concierge bersama Kinghouse.",
   keywords: [
-    "KingHouse Management",
+    "Kinghouse Management",
     "King House Management",
-    "KingHouse",
+    "Kinghouse",
     "King House Property Management",
     "kinghousemanagement.com",
     "www.kinghousemanagement.com",
@@ -51,9 +51,9 @@ export const metadata: Metadata = {
     "jasa kelola villa jabodetabek",
     "manajemen apartemen harian",
   ],
-  authors: [{ name: "KingHouse Management" }],
-  creator: "KingHouse Management",
-  publisher: "KingHouse Management",
+  authors: [{ name: "Kinghouse Management" }],
+  creator: "Kinghouse Management",
+  publisher: "Kinghouse Management",
   metadataBase: new URL(SITE_CONFIG.baseUrl),
   alternates: {
     canonical: "/",
@@ -73,28 +73,28 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "KingHouse Management — Editorial Short-Stay Property Management in Jabodetabek",
+    title: "Kinghouse Management — Editorial Short-Stay Property Management in Jabodetabek",
     description:
-      "Maximize property occupancy and revenue on Airbnb with KingHouse Management. Editorial photography, keyword-optimized SEO, dynamic pricing, and 24/7 guest concierge.",
+      "Maximize property occupancy and revenue on Airbnb with Kinghouse Management. Editorial photography, keyword-optimized SEO, dynamic pricing, and 24/7 guest concierge.",
     type: "website",
     locale: "id_ID",
     alternateLocale: ["en_US"],
-    siteName: "KingHouse Management",
+    siteName: "Kinghouse Management",
     url: SITE_CONFIG.baseUrl,
     images: [
       {
         url: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=85",
         width: 1200,
         height: 630,
-        alt: "KingHouse Management — Curated Short-Stay Hospitality in Greater Jakarta",
+        alt: "Kinghouse Management — Curated Short-Stay Hospitality in Greater Jakarta",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "KingHouse Management — Editorial Short-Stay Property Management",
+    title: "Kinghouse Management — Editorial Short-Stay Property Management",
     description:
-      "Maximize property occupancy and revenue on Airbnb with KingHouse Management. Editorial photography, keyword-optimized SEO, dynamic pricing, and 24/7 guest care.",
+      "Maximize property occupancy and revenue on Airbnb with Kinghouse Management. Editorial photography, keyword-optimized SEO, dynamic pricing, and 24/7 guest care.",
     images: [
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=85",
     ],
@@ -107,10 +107,10 @@ const comprehensiveSchema = {
     {
       "@type": "WebSite",
       "@id": `${SITE_CONFIG.baseUrl}/#website`,
-      name: "KingHouse Management",
+      name: "Kinghouse Management",
       alternateName: [
         "King House Management",
-        "KingHouse",
+        "Kinghouse",
         "King House Property Management",
         "kinghousemanagement.com",
         "www.kinghousemanagement.com",
@@ -118,7 +118,7 @@ const comprehensiveSchema = {
 
       url: SITE_CONFIG.baseUrl,
       description:
-        "KingHouse Management adalah jasa manajemen properti sewa harian dan villa profesional di Jabodetabek (Jakarta Selatan, Tangerang, Jakarta Barat, Cikarang).",
+        "Kinghouse Management adalah jasa manajemen properti sewa harian dan villa profesional di Jabodetabek (Jakarta Selatan, Tangerang, Jakarta Barat, Cikarang).",
       potentialAction: {
         "@type": "SearchAction",
         target: `${SITE_CONFIG.baseUrl}/villas?search={search_term_string}`,
@@ -128,16 +128,16 @@ const comprehensiveSchema = {
     {
       "@type": "Organization",
       "@id": `${SITE_CONFIG.baseUrl}/#organization`,
-      name: "KingHouse Management",
+      name: "Kinghouse Management",
       alternateName: [
         "King House Management",
-        "KingHouse",
+        "Kinghouse",
         "King House Property Management",
       ],
       url: SITE_CONFIG.baseUrl,
       logo: `${SITE_CONFIG.baseUrl}/favicon.ico`,
       description:
-        "KingHouse Management adalah perusahaan manajemen properti sewa jangka pendek profesional di Jabodetabek, Indonesia. Kami mengoptimalkan listing Airbnb klien melalui fotografi editorial, SEO listing, dynamic pricing, dan operasional end-to-end.",
+        "Kinghouse Management adalah perusahaan manajemen properti sewa jangka pendek profesional di Jabodetabek, Indonesia. Kami mengoptimalkan listing Airbnb klien melalui fotografi editorial, SEO listing, dynamic pricing, dan operasional end-to-end.",
       contactPoint: {
         "@type": "ContactPoint",
         contactType: "customer service",
@@ -160,7 +160,7 @@ const comprehensiveSchema = {
     {
       "@type": "LocalBusiness",
       "@id": `${SITE_CONFIG.baseUrl}/#localbusiness`,
-      name: "KingHouse Management — Property & Villa Operations",
+      name: "Kinghouse Management — Property & Villa Operations",
       image:
         "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=85",
       telephone: "+6282123933218",

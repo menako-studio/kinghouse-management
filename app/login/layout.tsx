@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "CMS Portal Login | KingHouse Management",
+  title: "CMS Portal Login | Kinghouse Management",
   description: "Secure administrative login portal for KingHouse Hospitality Suite.",
   robots: {
     index: false,

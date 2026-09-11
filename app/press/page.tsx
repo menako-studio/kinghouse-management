@@ -4,14 +4,14 @@ import Image from "next/image"
 import { Newspaper, Download, Mail, ExternalLink, ArrowRight, Award, Sparkles } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Press & Media Center | KingHouse Management",
+  title: "Press & Media Center | Kinghouse Management",
   description:
     "Official news, press releases, media mentions, and downloadable brand assets from KingHouse Villa & Short-Stay Asset Management in Greater Jakarta.",
   alternates: { canonical: "/press" },
   openGraph: {
-    title: "Press & Media Center | KingHouse Management",
+    title: "Press & Media Center | Kinghouse Management",
     description:
-      "Official news, press releases, media mentions, and downloadable brand assets from KingHouse Management.",
+      "Official news, press releases, media mentions, and downloadable brand assets from Kinghouse Management.",
     url: "/press",
     type: "website",
   },
@@ -155,7 +155,7 @@ export default function PressPage() {
               </h2>
             </div>
             <p className="text-xs text-[#777777] mt-2 md:mt-0">
-              Showing official communications from KingHouse Management
+              Showing official communications from Kinghouse Management
             </p>
           </div>
 

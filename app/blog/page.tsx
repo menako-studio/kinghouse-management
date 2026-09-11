@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Panduan strategi Airbnb, SEO listing, optimasi okupansi, dan analisis pasar sewa properti jangka pendek di Jabodetabek bersama KingHouse.",
   keywords: [
-    "KingHouse Management blog",
+    "Kinghouse Management blog",
     "King House Management",
     "kinghousemanagement.com",
     "airbnb property management blog",
@@ -36,13 +36,13 @@ export default async function BlogPage() {
   const blogIndexSchema = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    name: "KingHouse Management Blog",
+    name: "Kinghouse Management Blog",
     description:
-      "Tips, strategies, and property management guides for Airbnb hosts across Greater Jakarta from KingHouse Management.",
+      "Tips, strategies, and property management guides for Airbnb hosts across Greater Jakarta from Kinghouse Management.",
     url: `${SITE_CONFIG.baseUrl}/blog`,
     author: {
       "@type": "Organization",
-      name: "KingHouse Management",
+      name: "Kinghouse Management",
       url: SITE_CONFIG.baseUrl,
     },
     blogPost: posts.map((post) => ({

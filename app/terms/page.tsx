@@ -3,14 +3,14 @@ import Link from "next/link"
 import { FileText, Shield, ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions | KingHouse Management",
+  title: "Terms & Conditions | Kinghouse Management",
   description:
-    "Official Terms and Conditions governing guest reservations, property asset management, and concierge services provided by KingHouse Management.",
+    "Official Terms and Conditions governing guest reservations, property asset management, and concierge services provided by Kinghouse Management.",
   alternates: { canonical: "/terms" },
   openGraph: {
-    title: "Terms & Conditions | KingHouse Management",
+    title: "Terms & Conditions | Kinghouse Management",
     description:
-      "Official Terms and Conditions governing guest reservations, property asset management, and concierge services provided by KingHouse Management.",
+      "Official Terms and Conditions governing guest reservations, property asset management, and concierge services provided by Kinghouse Management.",
     url: "/terms",
     type: "website",
   },
@@ -151,7 +151,7 @@ export default function TermsPage() {
                 If you have questions regarding these Terms &amp; Conditions or require formal legal correspondence, please contact:
               </p>
               <div className="bg-[#FAF8F5] p-5 rounded-xl border border-[#E8E4DC] text-xs space-y-1 text-[#555555]">
-                <p className="font-semibold text-[#222222]">PT Kreasi Usman Gosse / KingHouse Management</p>
+                <p className="font-semibold text-[#222222]">PT Kreasi Usman Gosse / Kinghouse Management</p>
                 <p>Legal &amp; Compliance Department</p>
                 <p>Email: ptkreasiusmangosse@gmail.com</p>
                 <p>WhatsApp Hotline: +62 821 2393 3218</p>

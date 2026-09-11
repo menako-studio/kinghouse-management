@@ -32,7 +32,7 @@ export default function ManagementInquiryPage() {
     e.preventDefault()
     // Prepare WhatsApp Message
     const message = encodeURIComponent(
-      `Hello KingHouse Management! I would like to submit a property management inquiry:\n\n` +
+      `Hello Kinghouse Management! I would like to submit a property management inquiry:\n\n` +
       `👤 Name: ${formData.name}\n` +
       `📞 WhatsApp: ${formData.phone}\n` +
       `✉️ Email: ${formData.email}\n` +

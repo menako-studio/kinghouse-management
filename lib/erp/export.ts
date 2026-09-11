@@ -288,7 +288,7 @@ export function printOwnerStatement(statement: OwnerStatement): void {
           <span class="font-mono">- ${formatCurrency(statement.totalCleaningFeeIdr, "IDR")}</span>
         </div>
         <div class="total-row" style="color: #717171;">
-          <span>(-) KingHouse Management Fee (${statement.managementFeePercent}%)</span>
+          <span>(-) Kinghouse Management Fee (${statement.managementFeePercent}%)</span>
           <span class="font-mono">- ${formatCurrency(statement.totalManagementFeeIdr, "IDR")}</span>
         </div>
         <div class="total-row" style="color: #717171;">

@@ -2,29 +2,29 @@
 // Covers: Jabodetabek region (Jakarta, Tangerang, Bekasi, Cikarang)
 
 export const SITE_CONFIG = {
-  name: "KingHouse Management",
-  shortName: "KingHouse",
+  name: "Kinghouse Management",
+  shortName: "Kinghouse",
   domain: "kinghousemanagement.com",
   baseUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://www.kinghousemanagement.com",
   tagline: "Professional Short-Stay Property Management & Villa Concierge in Jabodetabek",
   brandAliases: [
-    "KingHouse Management",
+    "Kinghouse Management",
     "King House Management",
-    "KingHouse",
+    "Kinghouse",
     "King House Property Management",
     "kinghousemanagement.com",
     "www.kinghousemanagement.com",
   ],
   description: {
-    en: "KingHouse Management is a premier editorial short-stay property management agency in Greater Jakarta (Jagakarsa, Tangerang, Palmerah, Cikarang). We maximize owner revenue and Airbnb occupancy through dynamic pricing, 24/7 guest concierge, and professional hospitality operations.",
-    id: "KingHouse Management adalah jasa manajemen properti sewa jangka pendek dan villa profesional di Jabodetabek (Jakarta Selatan, Tangerang, Jakarta Barat, Cikarang). Kami memaksimalkan pendapatan pemilik properti dan okupansi Airbnb dengan dynamic pricing dan layanan concierge 24/7.",
+    en: "Kinghouse Management is a premier editorial short-stay property management agency in Greater Jakarta (Jagakarsa, Tangerang, Palmerah, Cikarang). We maximize owner revenue and Airbnb occupancy through dynamic pricing, 24/7 guest concierge, and professional hospitality operations.",
+    id: "Kinghouse Management adalah jasa manajemen properti sewa jangka pendek dan villa profesional di Jabodetabek (Jakarta Selatan, Tangerang, Jakarta Barat, Cikarang). Kami memaksimalkan pendapatan pemilik properti dan okupansi Airbnb dengan dynamic pricing dan layanan concierge 24/7.",
   },
 
   contact: {
     email: "ptkreasiusmangosse@gmail.com",
     phone: "+62 821-2393-3218",
     whatsapp: "+62 821-2393-3218",
-    whatsappMessage: "Hello KingHouse Management, I am interested in your property management and villa booking services.",
+    whatsappMessage: "Hello Kinghouse Management, I am interested in your property management and villa booking services.",
     address: "Jakarta, Indonesia",
   },
   social: {

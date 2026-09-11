@@ -21,20 +21,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const villa = CURATED_VILLAS.find((v) => v.slug === resolvedParams.slug)
 
   if (!villa) {
-    return { title: "Property Not Found | KingHouse Management" }
+    return { title: "Property Not Found | Kinghouse Management" }
   }
 
-  const title = villa.seoMeta?.metaTitle ?? `${villa.name} — ${villa.area} | KingHouse Management`
+  const title = villa.seoMeta?.metaTitle ?? `${villa.name} — ${villa.area} | Kinghouse Management`
   const description =
     villa.seoMeta?.metaDescription ??
-    `${villa.editorialDescription.lead} Professionally managed by KingHouse Management on Airbnb.`
+    `${villa.editorialDescription.lead} Professionally managed by Kinghouse Management on Airbnb.`
   const canonicalUrl = `/locations/${villa.areaSlug}/villas/${villa.slug}`
 
   return {
     title,
     description,
     keywords: villa.seoMeta
-      ? [villa.seoMeta.focusKeyword, villa.area, "airbnb", "KingHouse Management", "King House", "short stay villa"]
+      ? [villa.seoMeta.focusKeyword, villa.area, "airbnb", "Kinghouse Management", "King House", "short stay villa"]
       : undefined,
     alternates: { canonical: canonicalUrl },
     openGraph: {

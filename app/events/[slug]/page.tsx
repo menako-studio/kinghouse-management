@@ -20,11 +20,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const event = VILLA_EVENTS.find((e) => e.slug === slug)
 
   if (!event) {
-    return { title: "Event Not Found | KingHouse Management" }
+    return { title: "Event Not Found | Kinghouse Management" }
   }
 
   return {
-    title: `${event.title} — ${event.propertyName} | KingHouse Management`,
+    title: `${event.title} — ${event.propertyName} | Kinghouse Management`,
     description: event.description.slice(0, 155),
     alternates: { canonical: `/events/${event.slug}` },
     openGraph: {
@@ -64,7 +64,7 @@ export default async function EventDetailPage({ params }: PageProps) {
     url: `${SITE_CONFIG.baseUrl}/events/${event.slug}`,
     organizer: {
       "@type": "Organization",
-      name: "KingHouse Management",
+      name: "Kinghouse Management",
       url: SITE_CONFIG.baseUrl,
     },
     location: {

@@ -13,7 +13,7 @@ export function PerformanceMetrics() {
             Empirical Results
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#222222]">
-            Before vs. After KingHouse Management
+            Before vs. After Kinghouse Management
           </h2>
           <p className="text-sm sm:text-base text-[#717171] leading-relaxed">
             Real performance audits from flagship properties under KingHouse asset management. Verified metrics independently audited from live Airbnb and OTA reporting.
