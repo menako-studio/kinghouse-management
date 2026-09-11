@@ -365,7 +365,7 @@ kinghouse-mockup/
   - Added differentiation between guest bookings (`SUMMARY:Reserved`) and blocked owner dates (`SUMMARY:Airbnb (Not available)`).
 - [x] **Multi-Unit Batch Sync Engine & Vercel Cron Automation (`app/api/erp/ical-sync/route.ts`, `vercel.json`)**:
   - Added `syncAllConfiguredProperties()` running all active units in a single call.
-  - Configured `vercel.json` with cron schedule `0 */2 * * *` (every 2 hours) on 100% free Vercel Hobby tier.
+  - Configured `vercel.json` with cron schedule `0 2 * * *` (daily at 02:00 UTC) to strictly comply with Vercel Hobby plan limit (max once per day).
   - Linked CMS `/dashboard/bookings` "Sinkronkan Sekarang" button directly to `/api/erp/ical-sync?action=sync-all`.
 - [x] **Automated Testing Suite (`tests/ical-sync-engine.test.ts`, Vitest)**:
   - 34 comprehensive unit tests running and passing with 100% success.

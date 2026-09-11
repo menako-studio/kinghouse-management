@@ -2,7 +2,7 @@
   "crons": [
     {
       "path": "/api/erp/ical-sync?action=sync-all",
-      "schedule": "0 */2 * * *"
+      "schedule": "0 2 * * *"
     }
   ]
 }
