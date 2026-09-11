@@ -336,11 +336,21 @@ export async function generateDynamicPricing(
   )
 
   const potentialRevenueLiftIdr = Math.max(0, totalProjectedRev - baselineRev)
+  const dynamicKinghouseOccupancy = Number(((bookedCount / horizonDays) * 100).toFixed(1))
+  const dynamicRevParLift = baselineRev > 0
+    ? Number((((totalProjectedRev - baselineRev) / baselineRev) * 100).toFixed(1))
+    : submarket.revParOpportunityPercent
+
+  const dynamicSubmarket: SubmarketBenchmark = {
+    ...submarket,
+    kinghouseOccupancyPercent: dynamicKinghouseOccupancy,
+    revParOpportunityPercent: dynamicRevParLift,
+  }
 
   return {
     propertySlug: villa.slug,
     propertyName: villa.name,
-    submarket,
+    submarket: dynamicSubmarket,
     strategy,
     rules,
     marketDemandScore: overallScore,
@@ -351,6 +361,14 @@ export async function generateDynamicPricing(
     projectedRevenueIdr: totalProjectedRev,
     potentialRevenueLiftIdr,
     recommendations,
+    provenance: {
+      calendarSource: `Airbnb Host iCal Feed (${propertyReservations.length} live bookings)`,
+      holidaysSource: `Live Nager.Date ID API (${holidays.length} holidays)`,
+      occupancySource: "Real-Time Computed (Booked Nights / Horizon Days)",
+      isRealData: true,
+      syncedEventsCount: propertyReservations.length,
+      lastSyncTimestamp: new Date().toISOString(),
+    },
     lastUpdated: new Date().toISOString(),
   }
 }

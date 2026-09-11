@@ -6,8 +6,10 @@ import {
   removePriceOverride,
   setPropertyRuleOverrides,
 } from "@/lib/pricing/store"
-import { getReservationsStore } from "@/lib/erp/store"
+import { getReservationsStore, upsertReservationsToStore } from "@/lib/erp/store"
 import { syncAllConfiguredProperties } from "@/lib/ical/sync"
+import { getSupabaseServerClient } from "@/lib/supabase/server"
+import { Reservation } from "@/lib/erp/types"
 
 export async function GET(request: NextRequest) {
   try {
@@ -17,7 +19,43 @@ export async function GET(request: NextRequest) {
     const horizon = parseInt(searchParams.get("horizon") || "60", 10)
     const forceSync = searchParams.get("sync") === "true"
 
-    // If reservations store is empty, proactively trigger actual Airbnb iCal sync
+    // 1. Sync from Supabase PostgreSQL if configured
+    const supabase = getSupabaseServerClient()
+    if (supabase) {
+      try {
+        const { data, error } = await supabase.from("reservations").select("*")
+        if (!error && data && data.length > 0) {
+          const mapped: Reservation[] = data.map((row: any) => ({
+            id: row.id,
+            propertyId: row.property_id,
+            propertySlug: row.property_slug,
+            propertyName: row.property_name,
+            guestName: row.guest_name,
+            guestPhone: row.guest_phone || undefined,
+            guestEmail: row.guest_email || undefined,
+            channel: row.channel,
+            checkIn: typeof row.check_in === "string" ? row.check_in.split("T")[0] : row.check_in,
+            checkOut: typeof row.check_out === "string" ? row.check_out.split("T")[0] : row.check_out,
+            nights: Number(row.nights),
+            guests: Number(row.guests),
+            grossPayoutIdr: Number(row.gross_payout_idr),
+            cleaningFeeIdr: Number(row.cleaning_fee_idr),
+            feeTier: row.fee_tier,
+            managementFeePercent: Number(row.management_fee_percent),
+            managementFeeIdr: Number(row.management_fee_idr),
+            netOwnerPayoutIdr: Number(row.net_owner_payout_idr),
+            status: row.status,
+            notes: row.notes || undefined,
+            createdAt: row.created_at,
+          }))
+          upsertReservationsToStore(mapped)
+        }
+      } catch (err) {
+        console.warn("Supabase query notice in dynamic pricing:", err)
+      }
+    }
+
+    // 2. If store is empty or forced sync requested, proactively fetch actual Airbnb iCal feeds
     const currentStore = getReservationsStore()
     if (currentStore.length === 0 || forceSync) {
       try {

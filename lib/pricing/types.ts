@@ -54,6 +54,15 @@ export interface SubmarketBenchmark {
   marketPaceDescription: string
 }
 
+export interface DataSourceProvenance {
+  calendarSource: string
+  holidaysSource: string
+  occupancySource: string
+  isRealData: boolean
+  syncedEventsCount: number
+  lastSyncTimestamp: string
+}
+
 export interface DynamicPricingResponse {
   propertySlug: string
   propertyName: string
@@ -68,6 +77,7 @@ export interface DynamicPricingResponse {
   projectedRevenueIdr: number
   potentialRevenueLiftIdr: number
   recommendations: DailyPriceRecommendation[]
+  provenance: DataSourceProvenance
   lastUpdated: string
 }
 

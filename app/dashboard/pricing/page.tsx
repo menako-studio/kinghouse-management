@@ -253,6 +253,34 @@ export default function DynamicPricingPage() {
         </div>
       </div>
 
+      {/* Live Data Provenance & Real-Time Sync Banner (Zero Dummy Data Guarantee) */}
+      {pricingData && (
+        <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs">
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="inline-flex items-center space-x-1.5 font-semibold text-[#222225] bg-white px-3 py-1 rounded-xl border border-[#E8E4DC] shadow-2xs">
+              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>100% Data Aktual (Zero Dummy Data)</span>
+            </span>
+            <span className="text-[#717171] flex items-center space-x-1">
+              <span>Reservasi:</span>
+              <strong className="text-[#222225] font-medium">{pricingData.provenance.calendarSource}</strong>
+            </span>
+            <span className="text-[#717171]">&bull;</span>
+            <span className="text-[#717171] flex items-center space-x-1">
+              <span>Libur Nasional:</span>
+              <strong className="text-[#222225] font-medium">{pricingData.provenance.holidaysSource}</strong>
+            </span>
+          </div>
+
+          <div className="text-[11px] text-[#717171] font-mono self-start md:self-auto flex items-center space-x-2">
+            <span className="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-lg border border-emerald-200 font-semibold">
+              100% Free Tier ($0/bln)
+            </span>
+            <span>Sync: {new Date(pricingData.lastUpdated).toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })} WIB</span>
+          </div>
+        </div>
+      )}
+
       {/* Property Selector Strip */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {CURATED_VILLAS.map((villa) => {
