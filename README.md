@@ -64,6 +64,16 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
   - **Live Dynamic Overview Dashboard (`/dashboard`)**: Computes real-time gross booking turnover, occupancy rate, total nights, and active reservations from active Airbnb iCal events and authentic guest review scores.
   - **Airbnb Payout CSV Importer (`/dashboard/analytics`)**: Integrated 1-click modal parser for official Airbnb Host Payout CSV files (*Earnings > Completed Payouts*), calculating net IDR revenues alongside manual reservation and expense ledgers.
   - **Persistent In-Memory Pipeline (`lib/erp/store.ts`)**: Auto-triggers inbound live Airbnb `.ics` calendar sync on first request/boot, immediately populating authentic reservations across all units.
+- **AirDNA-Grade Dynamic Pricing & Smart Rates Suite (`/dashboard/pricing`)**:
+  - **100% Actual Data Fetching (Zero Dummy Data)**: Connects real live Airbnb iCal reservation dates, live Indonesian public holidays API (`date.nager.at`), and Jabodetabek submarket benchmarks (Jagakarsa, Alam Sutera/Pinang, Palmerah, Cikarang Orange County).
+  - **Hospitality Revenue Management Formula**: $P_d = \operatorname{Clamp}(P_{\text{base}} \times M_{\text{dow}} \times M_{\text{season}} \times M_{\text{holiday}} \times M_{\text{leadTime}} \times M_{\text{pacing}}, P_{\text{min}}, P_{\text{max}})$.
+  - **Submarket-Aware Day-of-Week Curves**: Inverted weekday/weekend logic distinguishing staycation group villas (weekend surge +35%) from expat industrial apartments (Mon-Thu peak, weekend discount).
+  - **Lead-Time Urgency Curve**: Automated last-minute fire-sale discount (-15% on H-2) preventing zero-occupancy nights, and early bird protection premium (>45 days).
+  - **Occupancy Velocity Pacing**: Dynamically surges remaining unbooked dates (+15% to +25%) when month occupancy exceeds target velocity threshold (>60%).
+  - **Interactive 60-Day Pricing Heatmap Calendar**: Month switcher tabs, live status chips (*Terpesona*, *Weekend Surge*, *Libur Nasional*, *Last-Minute*, *Custom Override*), and price deviation tags.
+  - **Calculation Breakdown & Custom Rate Override Modal**: React Portal modal inspecting day-by-day multiplier factors with 1-click admin price override and reset capabilities.
+  - **Guardrail Drawer**: Configurable Floor & Ceiling price limits, weekend surge %, and last-minute discount sliders.
+  - **1-Click CSV Exporter (`lib/pricing/export.ts`)**: Instant `.csv` generation for OTA multi-calendar rate imports.
 - **Universal Brand Standardization (`Kinghouse Management`)**: Standardized brand naming to `Kinghouse Management` across all site metadata, Schema.org JSON-LD (Organization, LocalBusiness, WebSite), OpenGraph tags, page titles, footer, headers, legal terms, and automated test suites.
 - **Complete CMS Management Suite & Notification Hub**:
   - **Dynamic System Alerts & In-App Toasts**: Real-time bell notification dropdown with live unread badge, category tagging, and automatic floating toast feedback for every operator action.
@@ -71,6 +81,7 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
   - **Portal Modal Architecture**: Full-viewport frosted glass backdrops (`createPortal`) eliminating CSS transform clipping, with fixed headers and sticky save footers.
   - **Overview (`/dashboard`)**: Multi-channel OTA status, occupancy KPIs, and quick shortcuts.
   - **Properties (`/dashboard/properties`)**: Portfolio inventory, 1-click iCal URL copy, and step-by-step Airbnb sync guide.
+  - **Dynamic Pricing (`/dashboard/pricing`)**: AirDNA-grade smart rate calendar heatmap, submarket ADR benchmark, yield lift forecast, and custom date override controls.
   - **SEO Manager (`/dashboard/seo`)**: Interactive per-property Meta Title & Description editor, real-time Google SERP preview, and SEO health checklist.
   - **Bookings Hub (`/dashboard/bookings`)**: Multi-channel reservation table, visual Gantt timeline switcher, Inbound iCal sync modal, manual WhatsApp booking modal, and 1-click CSV export.
   - **Revenue & POS Analytics (`/dashboard/analytics`)**: Financial yield intelligence (ADR, RevPAR, Occupancy rate), POS expense ledger with deletion flow, and printable Owner Statement generator.
@@ -91,7 +102,8 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
 | **Icons & Motion** | Lucide React + Framer Motion | Accessible vector icons and smooth physics |
 | **Validation** | Zod (`zod`) | Strict runtime schema validation for forms and APIs |
 | **Security** | Web Crypto HMAC-SHA256 + Rate Limiter | Zero-cost edge authentication and brute-force defense |
-| **Testing** | Vitest (`vitest`) | Lightning fast automated unit testing suite (34 tests passing) |
+| **Testing** | Vitest (`vitest`) | Lightning fast automated unit testing suite (53 tests passing across 8 suites) |
+| **Dynamic Pricing** | AirDNA-Grade Multi-Factor Revenue Engine | 100% actual data fetch, submarket benchmarks, and CSV exporter |
 | **Channel Sync** | Native RFC 5545 iCal Generator | Free 2-way calendar sync for Airbnb / Agoda / Booking.com |
 | **Localization** | Multi-Currency & i18n Context | 10 currencies (IDR, USD, EUR, etc.) & 9 languages |
 | **Guest Upsell** | Vouch-Style Digital Compendium | Interactive add-on cart & dynamic WhatsApp dispatch |
@@ -102,7 +114,7 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
 ## 🧪 Automated Testing & Production Quality Assurance
 
 ```bash
-# Run automated Vitest test suite (34 comprehensive tests)
+# Run automated Vitest test suite (53 comprehensive tests across 8 suites)
 npm test
 
 # Run TypeScript strict compilation
@@ -111,7 +123,7 @@ npx tsc --noEmit
 # Run ESLint validation (0 errors)
 npm run lint
 
-# Run Next.js production build (63/63 routes verified)
+# Run Next.js production build (66/66 routes verified)
 npm run build
 ```
 
@@ -125,6 +137,7 @@ The project includes an automated test suite powered by **Vitest** covering ERP 
 - **Events Showcase Gallery**: Nakula-inspired visual gallery with interactive category filters, real event and wedding setup photos, and instant WhatsApp booking inquiry.
 
 ### Test Coverage Highlights:
+- `tests/dynamic-pricing.test.ts`: Validates AirDNA-grade dynamic pricing formula, DOW multipliers for staycation vs business submarkets, official Indonesian public holiday detection, urgency curve discounts, floor/ceiling clamps, admin overrides, and CSV exports.
 - `tests/erp-calculations.test.ts`: Validates 15% vs 20% commission splits, cleaning fee exemptions, net owner payouts, ADR, and RevPAR math.
 - `tests/ical-sync-engine.test.ts`: Validates 2-way iCal synchronization and RFC 5545 parsing.
 - `tests/guest-compendium.test.ts`: Verifies house rules, amenities, and digital compendium structure.

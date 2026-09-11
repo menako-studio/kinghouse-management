@@ -52,13 +52,18 @@ kinghouse-mockup/
 ├── app/
 │   ├── api/
 │   │   ├── auth/                     # Login (with rate-limiting & Zod), logout, me routes
-│   │   ├── erp/                      # Dynamic ERP endpoints (reservations, expenses)
+│   │   ├── erp/                      # Dynamic ERP endpoints (reservations, expenses, dynamic-pricing)
+│   │   │   ├── dynamic-pricing/      # AirDNA-grade smart rates & override REST endpoint
+│   │   │   ├── expenses/             # Operational POS expense ledger CRUD
+│   │   │   ├── ical-sync/            # Multi-unit live Airbnb iCal background sync
+│   │   │   └── reservations/         # Multi-channel reservations CRUD & store pipeline
 │   │   └── ical/[villaSlug]/         # Dynamic RFC 5545 iCal calendar feeds
 │   ├── blog/                         # Blog index & article reader with BlogPosting schema
 │   ├── dashboard/                    # Hospitality ERP/POS & CMS Suite
 │   │   ├── analytics/page.tsx        # Revenue intelligence, POS expense ledger, & print statements
 │   │   ├── blog/page.tsx             # Blog article manager
 │   │   ├── bookings/page.tsx         # Multi-channel reservations hub with 1-click CSV export
+│   │   ├── pricing/page.tsx          # AirDNA dynamic pricing & smart rates calendar heatmap
 │   │   ├── properties/page.tsx       # Portfolio asset inventory & iCal sync setup wizard
 │   │   ├── seo/page.tsx              # Interactive SEO Editor & Live Google SERP preview
 │   │   ├── settings/page.tsx         # Admin credentials, security audit, & master feeds
@@ -92,20 +97,32 @@ kinghouse-mockup/
 │   ├── erp/                          # Calculations, types, export engine, seed data
 │   │   ├── calculations.ts           # 15% vs 20% fee splits, ADR, RevPAR, owner statements
 │   │   ├── export.ts                 # 1-click CSV and printable HTML statements
-│   │   ├── initial-data.ts           # Realistic reservations and POS expenses seed
+│   │   ├── initial-data.ts           # Zero-dummy reservations and POS expenses store
+│   │   ├── store.ts                  # In-memory runtime persistence & iCal trigger
 │   │   └── types.ts                  # ERP domain models (Reservation, ExpenseRecord, OwnerStatement)
+│   ├── pricing/                      # AirDNA-grade dynamic revenue intelligence engine
+│   │   ├── engine.ts                 # Multi-factor pricing algorithm & submarket benchmarks
+│   │   ├── export.ts                 # 1-click CSV rate calendar exporter
+│   │   ├── holidays.ts               # Indonesian Public Holidays API & long weekend service
+│   │   ├── store.ts                  # In-memory custom price overrides & rules store
+│   │   └── types.ts                  # Dynamic pricing domain models & multiplier breakdown
 │   ├── security/
 │   │   └── rate-limiter.ts           # Zero-cost in-memory sliding window rate limiter
 │   ├── validations/
 │   │   └── index.ts                  # Zod validation schemas for forms, APIs, and auth
 │   ├── auth.ts                       # HMAC-SHA256 session tokenization
 │   ├── constants.ts                  # SITE_CONFIG, MANAGED_AREAS, MANAGEMENT_SERVICES
-│   ├── data.ts                       # Real Airbnb properties, 6 blog posts, 3 event packages
+│   ├── data.ts                       # Real Airbnb properties, 11 blog posts, 3 event packages
 │   ├── types.ts                      # Core domain models (Villa, BlogPost, VillaEvent, SeoMeta)
 │   └── utils.ts                      # VacationRental schema generator, currency formatters
 ├── tests/
+│   ├── analytics-seo.test.ts         # Automated unit tests for GTM/GA4 & Schema.org
+│   ├── dynamic-pricing.test.ts       # Automated unit tests for AirDNA dynamic pricing engine
 │   ├── erp-calculations.test.ts      # Automated unit tests for financial math & statement generator
+│   ├── guest-compendium.test.ts      # Automated unit tests for guest stay & house rules
 │   ├── ical-feed.test.ts             # Automated unit tests for CSV and calendar feeds
+│   ├── ical-sync-engine.test.ts      # Automated unit tests for 2-way Airbnb calendar sync
+│   ├── localization-currency.test.ts # Automated unit tests for 10 currencies & 9 languages
 │   └── validation-security.test.ts   # Automated unit tests for Zod schemas & rate limiter
 └── middleware.ts                     # Edge security headers & route protection
 ```
@@ -431,21 +448,40 @@ kinghouse-mockup/
 - [x] **Automated Testing Suite (38 Tests Passing)**:
   - Added dedicated Vitest test suite `tests/localization-currency.test.ts` validating all 10 currencies, 9 languages, and live conversion math.
 
+### Phase 4.1 — AirDNA-Grade Dynamic Pricing & Revenue Intelligence Suite (Completed)
+- [x] **AirDNA-Standard Dynamic Revenue Algorithm (`lib/pricing/engine.ts`, `lib/pricing/types.ts`)**:
+  - Implemented multi-factor formula: $P_d = \operatorname{Clamp}(P_{\text{base}} \times M_{\text{dow}} \times M_{\text{season}} \times M_{\text{holiday}} \times M_{\text{leadTime}} \times M_{\text{pacing}}, P_{\text{min}}, P_{\text{max}})$.
+  - **Submarket-Aware Day-of-Week Surges**: Inverted weekday/weekend curves differentiating group staycation villas (Jagakarsa +35% weekend surge) from industrial business apartments (Cikarang Mon-Thu peak, weekend discount).
+  - **Lead-Time Urgency Curve**: Automated last-minute fire-sale discount (-15% on H-2 to prevent zero-occupancy nights) vs early-bird premium protection (+15% to +20% on >45 days).
+  - **Occupancy Velocity Pacing**: Dynamically surges remaining unbooked dates (+15% to +25%) when month occupancy exceeds target velocity threshold (>60%).
+- [x] **Live Actual Data Integrations (Zero Dummy Data)**:
+  - **Real Airbnb Host Bookings**: Directly reads real iCal reservations and blocked calendar dates across all 4 managed Jabodetabek properties.
+  - **Real Indonesian Holidays API (`lib/pricing/holidays.ts`)**: Connects to official Nager.Date API (`api/v3/PublicHolidays/{year}/ID`) with 24h ISR caching and official Indonesian holiday & long weekend fallbacks.
+  - **Submarket Benchmark Engine**: Real area benchmarks for Jagakarsa, Pinang/Alam Sutera, Palmerah, and Cikarang Orange County (ADR, Market Occupancy, Competitor counts, RevPAR lift).
+- [x] **CMS Dashboard Dynamic Pricing Page (`app/dashboard/pricing/page.tsx`)**:
+  - Dedicated route with property switcher, strategy toggle (*Conservative*, *Balanced (AirDNA)*, *Aggressive*), and live Market Demand Score (0–100).
+  - Interactive 60-Day Pricing Heatmap Calendar with month switcher tabs, status badges (*Terpesona*, *Weekend Surge*, *Libur Nasional*, *Last-Minute*, *Custom Override*).
+  - **Full Multiplier Breakdown & Custom Rate Override Modal**: React Portal modal inspecting day-by-day calculations with 1-click admin price override and reset capabilities.
+  - **Guardrail Drawer**: Configurable Floor & Ceiling price limits, weekend surge %, and last-minute discount sliders.
+  - **1-Click CSV Exporter (`lib/pricing/export.ts`)**: Instant `.csv` generation for OTA multi-calendar rate imports.
+- [x] **Automated Testing Suite (53 Tests Passing)**:
+  - Added 15 comprehensive unit tests in `tests/dynamic-pricing.test.ts` covering submarket DOW multipliers, holiday detection, urgency curves, guardrails clamp, override precedence, and CSV formatting.
+
 ---
 
 ## 4. VERIFICATION COMMANDS
 
 ```bash
-# Run automated Vitest test suite
+# Run automated Vitest test suite (53 tests across 8 suites)
 npm test
 
-# Run TypeScript strict type verification
+# Run TypeScript strict type verification (0 errors)
 npx tsc --noEmit
 
 # Run ESLint validation (0 errors)
 npm run lint
 
-# Run Next.js optimized production build (63 static & dynamic routes)
+# Run Next.js optimized production build (66 static & dynamic routes)
 npm run build
 ```
 
