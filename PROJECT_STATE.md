@@ -248,7 +248,7 @@ kinghouse-mockup/
 - [x] **Google Search Console & Technical SEO Infrastructure** (`app/sitemap.ts`, `app/robots.ts`, `app/layout.tsx`):
   - Dynamic XML Sitemap generator (`app/sitemap.ts`) indexing static pages, dynamic areas, properties, blog posts, and guest stay manuals.
   - Robots.txt (`app/robots.ts`) with custom Googlebot directives, sitemap pointer, and security route exclusions (`/dashboard/*`, `/api/*`, `/login`).
-  - WebSite JSON-LD with Sitelinks `SearchAction`, Organization, LocalBusiness, Breadcrumbs, and Brand Aliases targeting `kinghousemanagemet.com` / `KingHouse Management`.
+  - WebSite JSON-LD with Sitelinks `SearchAction`, Organization, LocalBusiness, Breadcrumbs, and Brand Aliases targeting `kinghousemanagemet.com` / `Kinghouse Management`.
   - GSC verification meta tag integration via `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`.
 - [x] **Full-Funnel Commercial Event Tracking Across All Pages**:
   - WhatsApp concierge inquiries (Header, Footer, Villa detail, Event packages, Contact desk, Guest stay).
@@ -369,6 +369,24 @@ kinghouse-mockup/
   - Linked CMS `/dashboard/bookings` "Sinkronkan Sekarang" button directly to `/api/erp/ical-sync?action=sync-all`.
 - [x] **Automated Testing Suite (`tests/ical-sync-engine.test.ts`, Vitest)**:
   - 34 comprehensive unit tests running and passing with 100% success.
+
+### Phase 3.8 — Pure Dynamic Actual Data Architecture & Brand Standardization (Completed)
+- [x] **Universal Brand Name Standardization**:
+  - Standardized every instance of `KingHouse Management` to `Kinghouse Management` across all site metadata, Schema.org JSON-LD (`Organization`, `LocalBusiness`, `WebSite`), constants, routes, footers, headers, and unit tests.
+- [x] **Elimination of All Dummy Data (`lib/erp/initial-data.ts`)**:
+  - Removed all fake/mock dummy reservations and expenses (`Hartono & Family`, `Adrian Kowalski`, fake PLN receipts).
+  - Both `INITIAL_RESERVATIONS` and `INITIAL_EXPENSES` initialized strictly as empty arrays.
+- [x] **100% Actual Dynamic Overview Dashboard (`app/dashboard/page.tsx`)**:
+  - Replaced hardcoded static cards (`Rp 82.5 M`, `81.4%`, `148 guests`) with real-time calculated metrics directly computed from active Airbnb iCal reservations and verified listing reviews.
+- [x] **Live In-Memory & Auto-Sync Pipeline (`lib/erp/store.ts`, `app/api/erp/reservations/route.ts`)**:
+  - Implemented persistent runtime store with automatic trigger of live Airbnb inbound `.ics` sync on boot/first request, immediately populating the 16 real Airbnb reservations.
+- [x] **Financial Intelligence & Airbnb Payout CSV Importer (`app/dashboard/analytics/page.tsx`)**:
+  - Added 1-Click modal importer for official Airbnb Host Payout CSV files (*Earnings > Completed Payouts*).
+  - Clean zero-dummy empty state for operational expense ledgers with instant IDR calculations.
+- [x] **Automated Testing & Production Build**:
+  - 34 Vitest unit tests passing across all suites.
+  - TypeScript strict mode 0 errors.
+  - Next.js production build succeeded across all 63 static and dynamic routes.
 
 ---
 

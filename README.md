@@ -59,6 +59,12 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
   - **Runtime Zod Schema Validation**: Form inputs, numeric bounds, dates, and API payloads validated strictly via Zod.
   - **Edge Route Protection Middleware**: Intercepts unauthenticated dashboard requests with secure HttpOnly SameSite=Lax HMAC-SHA256 session tokens.
   - **Defense-in-Depth HTTP Security Headers**: `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy` injected on all responses.
+- **Pure Dynamic Actual Data Architecture & 100% Real Live Metrics**:
+  - **Zero Dummy Data**: Initialized reservation and expense state strictly as empty arrays (`INITIAL_RESERVATIONS = []`, `INITIAL_EXPENSES = []`), removing all artificial mock names or placeholder PLN transactions.
+  - **Live Dynamic Overview Dashboard (`/dashboard`)**: Computes real-time gross booking turnover, occupancy rate, total nights, and active reservations from active Airbnb iCal events and authentic guest review scores.
+  - **Airbnb Payout CSV Importer (`/dashboard/analytics`)**: Integrated 1-click modal parser for official Airbnb Host Payout CSV files (*Earnings > Completed Payouts*), calculating net IDR revenues alongside manual reservation and expense ledgers.
+  - **Persistent In-Memory Pipeline (`lib/erp/store.ts`)**: Auto-triggers inbound live Airbnb `.ics` calendar sync on first request/boot, immediately populating authentic reservations across all units.
+- **Universal Brand Standardization (`Kinghouse Management`)**: Standardized brand naming to `Kinghouse Management` across all site metadata, Schema.org JSON-LD (Organization, LocalBusiness, WebSite), OpenGraph tags, page titles, footer, headers, legal terms, and automated test suites.
 - **Complete CMS Management Suite & Notification Hub**:
   - **Dynamic System Alerts & In-App Toasts**: Real-time bell notification dropdown with live unread badge, category tagging, and automatic floating toast feedback for every operator action.
   - **Editorial Blog CRUD Suite (`/dashboard/blog`)**: Non-tech friendly modal form with auto-slug generation, villa photo presets, live card preview tab, automatic SEO quality score calculator, and 1-click Published/Draft toggles.
