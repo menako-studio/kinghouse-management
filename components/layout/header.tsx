@@ -100,7 +100,7 @@ export function Header() {
           : "border-b border-[#F0ECE1] bg-white"
       }`}
     >
-      <div className="mx-auto flex h-20 lg:h-22 xl:h-24 max-w-[1440px] items-center justify-between px-6 lg:px-10 xl:px-14">
+      <div className="mx-auto flex h-20 lg:h-22 xl:h-24 max-w-[1440px] items-center px-6 lg:px-10 xl:px-14 gap-x-8 xl:gap-x-12">
         {/* Left: Official Brandmark Logo (Secondary Horizontal - Enlarged for clear legibility) */}
         <Link
           href="/"
@@ -120,7 +120,7 @@ export function Header() {
           />
         </Link>
 
-        {/* Center: Desktop Navigation Bar (Nakula-inspired spacing & hierarchy) */}
+        {/* Center: Desktop Navigation Bar (Nakula-inspired — left-aligned after logo, not centered) */}
         <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
           <Link
             href="/"
@@ -192,6 +192,9 @@ export function Header() {
             {t("enquire")}
           </Link>
         </nav>
+
+        {/* Flex spacer — pushes right controls to far right (Nakula layout) */}
+        <div className="hidden lg:block flex-1" />
 
         {/* Right: Currency, Language & Pill Button (Exact Nakula.com layout: $ RP v, Globe EN v, SIGN IN) */}
         <div className="hidden md:flex items-center space-x-4 lg:space-x-5 xl:space-x-6 shrink-0">
