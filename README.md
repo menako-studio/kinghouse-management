@@ -49,9 +49,11 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
   - **Print-Ready Owner Payout Statements (Laporan Bagi Hasil)**: Official printable A4 formatted revenue statements with commission breakdown (15% Standard vs 20% Premium) and expense deductions.
   - **POS Operational Expense Ledger**: Track PLN tokens, laundry linen, guest amenities, and technician maintenance with vendor tagging.
   - **Little Hotelier Front-Desk Visual Timeline Gantt (`/dashboard/bookings`)**: Interactive daily room turnover grid with property rows, color-coded OTA channel chips (Airbnb, Direct WhatsApp, Booking.com, Agoda), and 1-click guest/commission popups.
-  - **2-Way OTA Synchronization Engine (Outbound & Inbound iCal)**:
-    - *Outbound*: Per-property dynamic RFC 5545 `.ics` feeds (`/api/ical/[villaSlug]`) to export to Airbnb, Agoda, and Booking.com.
-    - *Inbound Parser*: Direct `.ics` import modal (`/api/erp/ical-sync`) to pull external Airbnb/Agoda calendars, deduplicate UIDs, and auto-block dates on the timeline.
+  - **2-Way OTA Synchronization Engine (Outbound & Inbound iCal - 100% Free Tier)**:
+    - *Outbound*: Per-property dynamic RFC 5545 `.ics` feeds (`/api/ical/[villaSlug]`) queried directly from live Supabase reservations with fallback, exporting cleanly to Airbnb, Agoda, and Booking.com.
+    - *Inbound Parser & Batch Sync*: Multi-unit background parser (`/api/erp/ical-sync?action=sync-all`) actively connected to 4 verified live Airbnb feeds (Versatile House Stay, Versatile House Events, Sky House Tangerang, and Skyline Luxury Cikarang).
+    - *Vercel Cron Automation*: Scheduled cron (`vercel.json`) running every 2 hours on Vercel Hobby Free Tier (`0 */2 * * *`), automatically refreshing calendars with zero manual effort.
+    - *Collision-Resistant Architecture*: Suffix-based UID deduplication, Airbnb confirmation code extraction (`HMB8PSTSB9`), and guest contact phone suffix extraction.
 - **Production-Grade CMS Authorization & Security (`/login`, `/dashboard`)**:
   - **In-Memory Sliding Window Rate Limiting**: Brute-force protection on `/api/auth/login` blocking credential stuffing.
   - **Runtime Zod Schema Validation**: Form inputs, numeric bounds, dates, and API payloads validated strictly via Zod.
@@ -81,7 +83,7 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
 | **Icons & Motion** | Lucide React + Framer Motion | Accessible vector icons and smooth physics |
 | **Validation** | Zod (`zod`) | Strict runtime schema validation for forms and APIs |
 | **Security** | Web Crypto HMAC-SHA256 + Rate Limiter | Zero-cost edge authentication and brute-force defense |
-| **Testing** | Vitest (`vitest`) | Lightning fast automated unit testing suite (19 tests passing) |
+| **Testing** | Vitest (`vitest`) | Lightning fast automated unit testing suite (34 tests passing) |
 | **Channel Sync** | Native RFC 5545 iCal Generator | Free 2-way calendar sync for Airbnb / Agoda / Booking.com |
 | **Localization** | Multi-Currency & i18n Context | 10 currencies (IDR, USD, EUR, etc.) & 9 languages |
 | **Guest Upsell** | Vouch-Style Digital Compendium | Interactive add-on cart & dynamic WhatsApp dispatch |
@@ -92,7 +94,7 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
 ## 🧪 Automated Testing & Production Quality Assurance
 
 ```bash
-# Run automated Vitest test suite (33 comprehensive tests)
+# Run automated Vitest test suite (34 comprehensive tests)
 npm test
 
 # Run TypeScript strict compilation

@@ -352,6 +352,23 @@ kinghouse-mockup/
   - Elevated the Hero Banner of `/events` with the signature `wedding-ceremony-lawn-pool.jpg` ceremony shot to immediately capture wedding planners and bridal couples, matching the high-end appeal of Nakula's "A Guide to Your Dream Wedding".
   - Upgraded `EVENT_SHOWCASE_PHOTOS` with the new wedding, evening banquet, and cocktail lounge visuals with interactive lightbox previews.
   - Updated `VILLA_EVENTS` catalog items (`event-1` Garden Wedding & `event-3` Birthday / Milestone Party) with dedicated event hero covers and enriched multi-photo galleries.
+### Phase 3.7 — Live Airbnb Host iCal Feeds Integration & 100% Free-Tier Vercel Cron Auto-Sync (Completed)
+- [x] **Verified Airbnb Host Inbound Feeds Configured (`lib/data.ts`, `lib/types.ts`)**:
+  - Attached real verified `.ics` calendar feeds for active Airbnb properties:
+    1. *Versatile House Jagakarsa (Stay)* (`versatile-house-jagakarsa`): `45834267.ics`
+    2. *Versatile House Jagakarsa (Events)* (`versatile-house-jagakarsa`): `1172798010727828525.ics`
+    3. *Sky House Tangerang* (`sky-house-tangerang`): `1325106294978348497.ics`
+    4. *Skyline Luxury Orange County Cikarang* (`skyline-luxury-orange-county-cikarang`): `1691723711820833674.ics`
+- [x] **Collision-Resistant UID Parsing & Metadata Extraction (`lib/ical/sync.ts`)**:
+  - Implemented suffix-based unique reservation ID generation (`SYNC-[uidSuffix]-[idx]`) preventing Supabase row overwrites on identical Airbnb blocked date UID prefixes.
+  - Added regex parsing for Airbnb confirmation codes (`details/HMYYBDR3RF`) and guest contact digits (`Phone Number: 4831`).
+  - Added differentiation between guest bookings (`SUMMARY:Reserved`) and blocked owner dates (`SUMMARY:Airbnb (Not available)`).
+- [x] **Multi-Unit Batch Sync Engine & Vercel Cron Automation (`app/api/erp/ical-sync/route.ts`, `vercel.json`)**:
+  - Added `syncAllConfiguredProperties()` running all active units in a single call.
+  - Configured `vercel.json` with cron schedule `0 */2 * * *` (every 2 hours) on 100% free Vercel Hobby tier.
+  - Linked CMS `/dashboard/bookings` "Sinkronkan Sekarang" button directly to `/api/erp/ical-sync?action=sync-all`.
+- [x] **Automated Testing Suite (`tests/ical-sync-engine.test.ts`, Vitest)**:
+  - 34 comprehensive unit tests running and passing with 100% success.
 
 ---
 
