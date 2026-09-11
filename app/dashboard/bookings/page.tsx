@@ -22,7 +22,6 @@ import {
   HelpCircle,
   Trash2,
 } from "lucide-react"
-import { INITIAL_RESERVATIONS } from "@/lib/erp/initial-data"
 import { CURATED_VILLAS } from "@/lib/data"
 import { Reservation, ChannelType, ReservationStatus, FeeTier } from "@/lib/erp/types"
 import { calculateReservationPayout } from "@/lib/erp/calculations"
@@ -35,7 +34,7 @@ export default function DashboardBookingsPage() {
   const { addAlert, showToast } = useNotifications()
   const [mounted, setMounted] = useState(false)
   const [viewMode, setViewMode] = useState<"gantt" | "table">("gantt")
-  const [reservations, setReservations] = useState<Reservation[]>(INITIAL_RESERVATIONS)
+  const [reservations, setReservations] = useState<Reservation[]>([])
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedChannel, setSelectedChannel] = useState<string>("all")
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -47,15 +46,22 @@ export default function DashboardBookingsPage() {
   const [inboundSyncUrl, setInboundSyncUrl] = useState("")
   const [syncVillaSlug, setSyncVillaSlug] = useState(CURATED_VILLAS[0].slug)
 
-
   useEffect(() => {
     setMounted(true)
     const loadReservations = async () => {
       try {
-        const res = await fetch("/api/erp/reservations")
-        const data = await res.json()
+        let res = await fetch("/api/erp/reservations")
+        let data = await res.json()
         if (data.success && Array.isArray(data.reservations) && data.reservations.length > 0) {
           setReservations(data.reservations)
+        } else {
+          // Auto-sync real Airbnb iCal feeds if local store is empty
+          await fetch("/api/erp/ical-sync?action=sync-all")
+          res = await fetch("/api/erp/reservations")
+          data = await res.json()
+          if (data.success && Array.isArray(data.reservations)) {
+            setReservations(data.reservations)
+          }
         }
       } catch (err) {
         console.warn("Failed to load reservations from API:", err)

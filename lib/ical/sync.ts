@@ -3,6 +3,7 @@ import { Reservation, ChannelType } from "@/lib/erp/types"
 import { calculateReservationPayout } from "@/lib/erp/calculations"
 import { CURATED_VILLAS } from "@/lib/data"
 import { getSupabaseServerClient } from "@/lib/supabase/server"
+import { upsertReservationsToStore } from "@/lib/erp/store"
 
 export interface PropertyIcalConfig {
   propertyId: string
@@ -28,7 +29,7 @@ export async function syncPropertyIcal(
 
     const response = await fetch(icalUrl, {
       headers: {
-        "User-Agent": "KingHouse-Hospitality-Sync/1.0",
+        "User-Agent": "Kinghouse-Hospitality-Sync/1.0",
       },
       next: { revalidate: 0 },
     })
@@ -130,6 +131,11 @@ export async function syncPropertyIcal(
       }))
 
       await supabase.from("reservations").upsert(recordsToUpsert, { onConflict: "id" })
+    }
+
+    // Always keep runtime in-memory store synced
+    if (newReservations.length > 0) {
+      upsertReservationsToStore(newReservations)
     }
 
     return {

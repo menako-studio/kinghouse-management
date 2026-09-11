@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
 import { CURATED_VILLAS } from "@/lib/data"
-import { INITIAL_RESERVATIONS } from "@/lib/erp/initial-data"
 import { Reservation } from "@/lib/erp/types"
 import { getSupabaseServerClient } from "@/lib/supabase/server"
+import { getReservationsStore } from "@/lib/erp/store"
 
 export async function GET(
   request: NextRequest,
@@ -50,12 +50,12 @@ export async function GET(
         }))
       }
     } catch {
-      // Graceful fallback to initial seed
+      // Fallback
     }
   }
 
   if (villaReservations.length === 0) {
-    villaReservations = INITIAL_RESERVATIONS.filter(
+    villaReservations = getReservationsStore().filter(
       (r) => (r.propertySlug === villaSlug || r.propertyId === villa.id) && r.status !== "Cancelled"
     )
   }
@@ -67,8 +67,8 @@ export async function GET(
   const icsLines: string[] = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//KingHouse Hospitality//EN",
-    `X-WR-CALNAME:KingHouse - ${villa.name}`,
+    "PRODID:-//Kinghouse Hospitality//EN",
+    `X-WR-CALNAME:Kinghouse - ${villa.name}`,
     "X-WR-CALDESC:Real-time availability calendar feed for OTA synchronization",
     "X-WR-TIMEZONE:Asia/Jakarta",
     "CALSCALE:GREGORIAN",

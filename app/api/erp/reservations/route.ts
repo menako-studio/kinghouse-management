@@ -1,12 +1,14 @@
 import { NextRequest, NextResponse } from "next/server"
 import { ReservationSchema } from "@/lib/validations"
 import { calculateReservationPayout } from "@/lib/erp/calculations"
-import { INITIAL_RESERVATIONS } from "@/lib/erp/initial-data"
 import { Reservation } from "@/lib/erp/types"
 import { getSupabaseServerClient } from "@/lib/supabase/server"
-
-// In-memory fallback store
-const fallbackReservationsStore: Reservation[] = [...INITIAL_RESERVATIONS]
+import {
+  getReservationsStore,
+  upsertReservationsToStore,
+  deleteReservationFromStore,
+} from "@/lib/erp/store"
+import { syncAllConfiguredProperties } from "@/lib/ical/sync"
 
 // Map snake_case database row to TypeScript domain model
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -40,6 +42,7 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   const propertyId = searchParams.get("propertyId")
   const channel = searchParams.get("channel")
+  const forceSync = searchParams.get("sync") === "true"
 
   const supabase = getSupabaseServerClient()
 
@@ -56,8 +59,9 @@ export async function GET(request: NextRequest) {
 
       const { data, error } = await query
 
-      if (!error && data) {
+      if (!error && data && data.length > 0) {
         const mapped = data.map(mapRowToReservation)
+        upsertReservationsToStore(mapped)
         return NextResponse.json({
           success: true,
           source: "supabase",
@@ -70,8 +74,18 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  // Fallback to in-memory store
-  let filtered = [...fallbackReservationsStore]
+  // If local store is empty or forced sync requested, automatically pull actual Airbnb iCal feeds
+  let storeReservations = getReservationsStore()
+  if (storeReservations.length === 0 || forceSync) {
+    try {
+      await syncAllConfiguredProperties()
+      storeReservations = getReservationsStore()
+    } catch (err) {
+      console.warn("Auto iCal sync error:", err)
+    }
+  }
+
+  let filtered = [...storeReservations]
   if (propertyId) {
     filtered = filtered.filter((r) => r.propertyId === propertyId || r.propertySlug === propertyId)
   }
@@ -81,7 +95,7 @@ export async function GET(request: NextRequest) {
 
   return NextResponse.json({
     success: true,
-    source: "local-fallback",
+    source: "actual-sync",
     total: filtered.length,
     reservations: filtered,
   })
@@ -159,6 +173,7 @@ export async function POST(request: NextRequest) {
         })
 
         if (!error) {
+          upsertReservationsToStore([newReservation])
           return NextResponse.json({
             success: true,
             source: "supabase",
@@ -171,12 +186,12 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    fallbackReservationsStore.unshift(newReservation)
+    upsertReservationsToStore([newReservation])
 
     return NextResponse.json({
       success: true,
-      source: "local-fallback",
-      message: "Reservasi berhasil ditambahkan ke kalender ERP (local).",
+      source: "actual-store",
+      message: "Reservasi berhasil ditambahkan ke kalender ERP.",
       reservation: newReservation,
     }, { status: 201 })
   } catch {
@@ -205,10 +220,7 @@ export async function DELETE(request: NextRequest) {
       }
     }
 
-    const idx = fallbackReservationsStore.findIndex((r) => r.id === id)
-    if (idx >= 0) {
-      fallbackReservationsStore.splice(idx, 1)
-    }
+    deleteReservationFromStore(id)
 
     return NextResponse.json({
       success: true,
@@ -218,4 +230,3 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({ error: "Gagal menghapus reservasi." }, { status: 500 })
   }
 }
-

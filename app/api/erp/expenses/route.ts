@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from "next/server"
 import { ExpenseSchema } from "@/lib/validations"
-import { INITIAL_EXPENSES } from "@/lib/erp/initial-data"
 import { ExpenseRecord } from "@/lib/erp/types"
 import { getSupabaseServerClient } from "@/lib/supabase/server"
-
-const fallbackExpensesStore: ExpenseRecord[] = [...INITIAL_EXPENSES]
+import {
+  getExpensesStore,
+  addExpenseToStore,
+  deleteExpenseFromStore,
+} from "@/lib/erp/store"
 
 // Map snake_case database row to TypeScript domain model
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -60,7 +62,7 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  let filtered = [...fallbackExpensesStore]
+  let filtered = [...getExpensesStore()]
   if (propertyId) {
     filtered = filtered.filter((e) => e.propertyId === propertyId || e.propertySlug === propertyId)
   }
@@ -72,7 +74,7 @@ export async function GET(request: NextRequest) {
 
   return NextResponse.json({
     success: true,
-    source: "local-fallback",
+    source: "actual-store",
     totalCount: filtered.length,
     totalAmountIdr: totalAmount,
     expenses: filtered,
@@ -124,6 +126,7 @@ export async function POST(request: NextRequest) {
         })
 
         if (!error) {
+          addExpenseToStore(newExpense)
           return NextResponse.json({
             success: true,
             source: "supabase",
@@ -136,12 +139,12 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    fallbackExpensesStore.unshift(newExpense)
+    addExpenseToStore(newExpense)
 
     return NextResponse.json({
       success: true,
-      source: "local-fallback",
-      message: "Biaya operasional properti berhasil dicatat (local).",
+      source: "actual-store",
+      message: "Biaya operasional properti berhasil dicatat.",
       expense: newExpense,
     }, { status: 201 })
   } catch {
@@ -170,10 +173,7 @@ export async function DELETE(request: NextRequest) {
       }
     }
 
-    const idx = fallbackExpensesStore.findIndex((e) => e.id === id)
-    if (idx >= 0) {
-      fallbackExpensesStore.splice(idx, 1)
-    }
+    deleteExpenseFromStore(id)
 
     return NextResponse.json({
       success: true,
@@ -183,4 +183,3 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({ error: "Gagal menghapus pengeluaran." }, { status: 500 })
   }
 }
-
