@@ -35,6 +35,7 @@ export function Footer() {
                   alt="Kinghouse Management"
                   width={180}
                   height={52}
+                  quality={100}
                   className="h-10 w-auto object-contain transition-opacity group-hover:opacity-85"
                 />
               </Link>

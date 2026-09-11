@@ -115,21 +115,14 @@ export function Header() {
             alt="Kinghouse Management"
             width={240}
             height={64}
+            quality={100}
             priority
             className="h-10 sm:h-11 md:h-13 lg:h-14 xl:h-16 w-auto object-contain transition-opacity duration-200 group-hover:opacity-85"
           />
         </Link>
-
+<div className="hidden lg:block flex-1" />
         {/* Center: Desktop Navigation Bar (Nakula-inspired — left-aligned after logo, not centered) */}
         <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
-          <Link
-            href="/"
-            className={`text-xs font-medium uppercase tracking-[0.16em] whitespace-nowrap transition-colors py-2 ${
-              pathname === "/" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
-            }`}
-          >
-            {t("home") || "Home"}
-          </Link>
 
           {/* OUR PROPERTIES dropdown toggle */}
           <div className="relative">
@@ -197,7 +190,7 @@ export function Header() {
         <div className="hidden lg:block flex-1" />
 
         {/* Right: Currency, Language & Pill Button (Exact Nakula.com layout: $ RP v, Globe EN v, SIGN IN) */}
-        <div className="hidden md:flex items-center space-x-4 lg:space-x-5 xl:space-x-6 shrink-0">
+        <div className="hidden md:flex items-center space-x-4 shrink-0">
           {/* Currency Dropdown (matching Nakula '$ RP v' aesthetic) */}
           <div className="relative" ref={currencyRef}>
             <button
@@ -531,7 +524,7 @@ export function Header() {
           </div>
 
           <div className="pt-6 border-t border-[#E8E4DC] text-xs text-[#717171] space-y-1">
-            <p className="font-medium text-[#222222]">KingHouse Hospitality Concierge</p>
+            <p className="font-medium text-[#222222]">Kinghouse Hospitality Concierge</p>
             <p>Jakarta Selatan, Greater Jakarta, Indonesia</p>
           </div>
         </div>

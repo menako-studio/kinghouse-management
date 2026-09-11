@@ -3,9 +3,11 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Search, MapPin, Calendar, Users } from "lucide-react"
+import { useLocalization } from "@/lib/context/localization-context"
 
 export function SearchFilterBar() {
   const router = useRouter()
+  const { t } = useLocalization()
   const [destination, setDestination] = useState("")
   const [checkIn, setCheckIn] = useState("")
   const [checkOut, setCheckOut] = useState("")
@@ -35,14 +37,14 @@ export function SearchFilterBar() {
           </div>
           <div className="flex flex-col w-full">
             <span className="text-[10px] font-bold uppercase tracking-wider text-[#222222]">
-              Destination
+              {t("destinationLabel")}
             </span>
             <select
               value={destination}
               onChange={(e) => setDestination(e.target.value)}
               className="w-full bg-transparent text-xs sm:text-sm font-normal text-[#717171] focus:outline-none focus:text-[#222222] cursor-pointer"
             >
-              <option value="">All Greater Jakarta Enclaves</option>
+              <option value="">{t("allGreaterJakarta")}</option>
               <option value="jagakarsa">Jagakarsa (South Jakarta)</option>
               <option value="tangerang">Tangerang (Banten)</option>
               <option value="palmerah">Palmerah (West Jakarta)</option>
@@ -58,7 +60,7 @@ export function SearchFilterBar() {
           </div>
           <div className="flex flex-col w-full">
             <span className="text-[10px] font-bold uppercase tracking-wider text-[#222222]">
-              Dates
+              {t("datesLabel")}
             </span>
             <div className="flex items-center space-x-2 text-xs sm:text-sm text-[#717171]">
               <input
@@ -87,7 +89,7 @@ export function SearchFilterBar() {
           </div>
           <div className="flex flex-col w-full">
             <span className="text-[10px] font-bold uppercase tracking-wider text-[#222222]">
-              Guests
+              {t("guestsLabel")}
             </span>
             <select
               value={guests}
@@ -112,7 +114,7 @@ export function SearchFilterBar() {
           >
             <Search className="h-4 w-4" />
             <span className="ml-2 text-xs font-semibold uppercase tracking-wider md:hidden">
-              Search Availability
+              {t("searchVillas")}
             </span>
           </button>
         </div>

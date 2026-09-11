@@ -14,6 +14,7 @@ import {
   Building2,
   Film,
 } from "lucide-react"
+import { useLocalization } from "@/lib/context/localization-context"
 
 type SceneMode = "lifestyle" | "architecture"
 
@@ -48,6 +49,7 @@ const SCENE_DATA: Record<SceneMode, VideoSource> = {
 const POSTER_IMAGE = "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg"
 
 export function HeroSlider() {
+  const { t } = useLocalization()
   const [scene, setScene] = useState<SceneMode>("lifestyle")
   const [isPlaying, setIsPlaying] = useState(true)
   const [isLoaded, setIsLoaded] = useState(false)
@@ -86,15 +88,18 @@ export function HeroSlider() {
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.load()
-      if (isPlaying) {
-        videoRef.current.play().catch(() => {})
+      const playPromise = videoRef.current.play()
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => setIsPlaying(true))
+          .catch(() => setIsPlaying(false))
       }
     }
-  }, [videoSrc, isPlaying])
+  }, [scene, isMobile])
 
   return (
-    <section className="relative min-h-[660px] sm:min-h-screen sm:h-screen w-full overflow-hidden bg-[#0D0D0E] select-none">
-      {/* 1. Poster Image Placeholder (eliminates black flash before video load) */}
+    <section className="relative h-[660px] sm:h-[84vh] md:h-screen w-full overflow-hidden bg-black select-none">
+      {/* 1. Low-Quality Image Placeholder / Fallback Poster */}
       <div
         className={`absolute inset-0 z-0 transition-opacity duration-1000 ${
           isLoaded ? "opacity-0 pointer-events-none" : "opacity-100"
@@ -102,14 +107,15 @@ export function HeroSlider() {
       >
         <Image
           src={POSTER_IMAGE}
-          alt="KingHouse Luxury Hospitality Background"
+          alt="Kinghouse Luxury Villa Portfolio"
           fill
           priority
-          className="object-cover brightness-[0.55]"
+          sizes="100vw"
+          className="object-cover brightness-[0.75]"
         />
       </div>
 
-      {/* 2. Responsive HTML5 Background Video (loads ONLY matching viewport video stream with preload="metadata") */}
+      {/* 2. Responsive Native HTML5 Background Video */}
       <video
         ref={videoRef}
         key={videoSrc}
@@ -120,7 +126,7 @@ export function HeroSlider() {
         preload="metadata"
         poster={POSTER_IMAGE}
         onLoadedData={() => setIsLoaded(true)}
-        className="absolute inset-0 z-0 h-full w-full object-cover brightness-[0.62] contrast-[1.05] transition-opacity duration-700"
+        className="absolute inset-0 z-0 h-full w-full object-cover brightness-[0.82] contrast-[1.05] transition-opacity duration-700"
       >
         <source src={videoSrc} type="video/mp4" />
       </video>
@@ -139,7 +145,7 @@ export function HeroSlider() {
         <div className="flex items-center justify-between">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-3.5 py-1 sm:px-4 sm:py-1.5 text-[10px] sm:text-[11px] font-medium tracking-[0.18em] sm:tracking-[0.22em] uppercase text-[#E8DFC8] backdrop-blur-md shadow-2xl">
             <Sparkles className="h-3 w-3 text-[#B8934C]" />
-            <span>KingHouse Curated Residences • Jabodetabek</span>
+            <span>{t("curatedResidencesJabodetabek")}</span>
           </div>
 
           {/* Quick Scene Pill Badge (Desktop View) */}
@@ -153,18 +159,18 @@ export function HeroSlider() {
         <div className="max-w-4xl space-y-4 sm:space-y-8 my-auto pt-4 sm:pt-6">
           <div className="space-y-2 sm:space-y-3">
             <p className="text-xs sm:text-sm font-light tracking-[0.22em] sm:tracking-[0.25em] uppercase text-[#DFC58E]">
-              Extraordinary Hospitality & Asset Management
+              {t("extraordinaryHospitality")}
             </p>
             <h1 className="font-serif text-3xl sm:text-6xl md:text-7xl lg:text-[5.25rem] font-normal leading-[1.08] sm:leading-[1.06] tracking-tight text-white drop-shadow-md">
-              Curated Villas, <br />
+              {t("curatedVillasTitle")} <br />
               <span className="italic font-light text-[#EFEBE4]">
-                Managed to Perfection.
+                {t("managedToPerfection")}
               </span>
             </h1>
           </div>
 
           <p className="max-w-2xl text-xs sm:text-lg text-white/85 font-light leading-relaxed drop-shadow">
-            Immerse in architectural retreats across South Jakarta, Tangerang, Palmerah, and Cikarang — paired with institutional-grade asset management delivering superior yield for property owners.
+            {t("heroDescription")}
           </p>
 
           {/* Dual Conversion CTA Buttons */}
@@ -176,7 +182,7 @@ export function HeroSlider() {
             >
               <Link href="/villas" className="flex items-center justify-center gap-2">
                 <Compass className="h-4 w-4 text-[#8C7F5F]" />
-                <span>Explore Villas (B2C)</span>
+                <span>{t("exploreVillasB2C")}</span>
                 <ArrowUpRight className="h-4 w-4" />
               </Link>
             </Button>
@@ -189,7 +195,7 @@ export function HeroSlider() {
             >
               <Link href="/owner-services" className="flex items-center justify-center gap-2">
                 <Building2 className="h-4 w-4 text-[#DFC58E]" />
-                <span>Partner With Us (B2B)</span>
+                <span>{t("partnerWithUsB2B")}</span>
               </Link>
             </Button>
           </div>
@@ -224,7 +230,7 @@ export function HeroSlider() {
                 }`}
               >
                 <Film className="h-3 w-3" />
-                <span>Lifestyle</span>
+                <span>{t("lifestyle")}</span>
               </button>
 
               <button
@@ -236,14 +242,14 @@ export function HeroSlider() {
                 }`}
               >
                 <Building2 className="h-3 w-3" />
-                <span>Architecture</span>
+                <span>{t("architecture")}</span>
               </button>
             </div>
           </div>
 
           {/* Center: Scroll Down Indicator */}
           <div className="hidden lg:flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-white/70">
-            <span>Scroll to Discover</span>
+            <span>{t("scrollToDiscover")}</span>
             <ChevronDown className="h-3.5 w-3.5 text-[#DFC58E] animate-bounce" />
           </div>
 

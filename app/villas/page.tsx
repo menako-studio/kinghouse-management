@@ -34,7 +34,7 @@ type SortOption = "recommended" | "price-asc" | "price-desc" | "rating"
 
 // Nakula Editorial Card matching properties.png
 function NakulaVillaCard({ villa }: { villa: Villa }) {
-  const { formatPrice } = useLocalization()
+  const { formatPrice, t } = useLocalization()
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   // Specs & pills computation
@@ -77,13 +77,13 @@ function NakulaVillaCard({ villa }: { villa: Villa }) {
           {/* Bottom Left: Start From IDR Price Overlay */}
           <div className="absolute bottom-3.5 left-4 text-white">
             <span className="text-[10px] uppercase font-medium tracking-wider text-white/80 block">
-              Start From
+              {t("startFrom")}
             </span>
             <div className="flex items-baseline space-x-1.5">
               <span className="font-semibold text-base sm:text-lg tracking-tight text-white">
                 {formatPrice(villa.price.idr)}
               </span>
-              <span className="text-[11px] text-white/80 font-light">/ Night</span>
+              <span className="text-[11px] text-white/80 font-light"> {t("perNight")}</span>
             </div>
           </div>
 
@@ -179,6 +179,7 @@ function NakulaVillaCard({ villa }: { villa: Villa }) {
 }
 
 function VillasCatalogContent() {
+  const { t } = useLocalization()
   const searchParams = useSearchParams()
   const initialArea = searchParams.get("area") || "all"
 
@@ -287,16 +288,16 @@ function VillasCatalogContent() {
       a: "Our private villas like Versatile House in Jagakarsa offer 500m² of private garden, swimming pool, and bespoke luxury amenities designed specifically for multi-generational families and intimate gatherings with zero intrusion.",
     },
     {
-      q: "What facilities are included in KingHouse standalone residences?",
-      a: "Every KingHouse residence includes high-speed Wi-Fi, fully equipped kitchenettes, air conditioning in all rooms, daily housekeeping, premium linens, parking spaces, and dedicated guest concierge support.",
+      q: "What facilities are included in Kinghouse standalone residences?",
+      a: "Every Kinghouse residence includes high-speed Wi-Fi, fully equipped kitchenettes, air conditioning in all rooms, daily housekeeping, premium linens, parking spaces, and dedicated guest concierge support.",
     },
     {
       q: "Are the villas suitable for private events and celebrations?",
       a: "Yes! Versatile House Jagakarsa is fully equipped for garden weddings, corporate offsites, and birthdays with up to 50 guests, zero vendor corkage fees, and flexible room configuration options.",
     },
     {
-      q: "How do KingHouse private residences compare to hotel accommodations?",
-      a: "KingHouse offers expansive square footage, dedicated living and dining areas, total privacy, and multi-bedroom setups that provide far better value and communal warmth for families compared to booking multiple hotel rooms.",
+      q: "How do Kinghouse private residences compare to hotel accommodations?",
+      a: "Kinghouse offers expansive square footage, dedicated living and dining areas, total privacy, and multi-bedroom setups that provide far better value and communal warmth for families compared to booking multiple hotel rooms.",
     },
     {
       q: "What should you consider before booking a standalone villa?",
@@ -381,21 +382,21 @@ function VillasCatalogContent() {
             {/* Sidebar Title */}
             <div className="pb-3 border-b border-[#222225]">
               <h2 className="text-sm font-bold uppercase tracking-widest text-[#222225]">
-                FILTERS
+                {t("filtersHeader")}
               </h2>
             </div>
 
             {/* 1. Property Type Checkboxes */}
             <div className="space-y-3">
               <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6862] block">
-                PROPERTY TYPE
+                {t("propertyTypeHeader")}
               </span>
               <div className="space-y-2.5">
                 {[
-                  { id: "events", label: "Villa for Events" },
-                  { id: "up-to-4", label: "Villa up to 4 Bedrooms" },
-                  { id: "5-plus", label: "Villa 5 Bedroom and Above" },
-                  { id: "apartment", label: "Entire Apartment / Suite" },
+                  { id: "events", label: t("villaForEvents") },
+                  { id: "up-to-4", label: t("villaUpTo4Label") },
+                  { id: "5-plus", label: t("villa5PlusLabel") },
+                  { id: "apartment", label: t("entireApartmentLabel") },
                 ].map((item) => {
                   const checked = propertyTypes.includes(item.id)
                   return (
@@ -419,7 +420,7 @@ function VillasCatalogContent() {
             {/* 2. Availability Date Selector */}
             <div className="space-y-2">
               <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6862] block">
-                AVAILABILITY
+                {t("availabilityHeader")}
               </span>
               <div className="relative">
                 <input
@@ -434,7 +435,7 @@ function VillasCatalogContent() {
             {/* 3. Destination Dropdown */}
             <div className="space-y-2">
               <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6862] block">
-                DESTINATION
+                {t("destinationHeader")}
               </span>
               <div className="relative">
                 <select
@@ -442,7 +443,7 @@ function VillasCatalogContent() {
                   onChange={(e) => setSelectedArea(e.target.value)}
                   className="w-full appearance-none px-3 py-2 pr-8 text-xs border border-[#E8E4DC] rounded-md bg-[#FAF8F5] text-[#222225] focus:outline-none focus:border-[#8C7F5F] cursor-pointer"
                 >
-                  <option value="all">All Destinations</option>
+                  <option value="all">{t("allDestinations")}</option>
                   {MANAGED_AREAS.map((area) => (
                     <option key={area.slug} value={area.slug}>
                       {area.name}
@@ -456,7 +457,7 @@ function VillasCatalogContent() {
             {/* 4. No of Rooms Dropdown */}
             <div className="space-y-2">
               <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6862] block">
-                NO OF ROOMS
+                {t("bedrooms")}
               </span>
               <div className="relative">
                 <select
@@ -464,7 +465,7 @@ function VillasCatalogContent() {
                   onChange={(e) => setSelectedRooms(e.target.value)}
                   className="w-full appearance-none px-3 py-2 pr-8 text-xs border border-[#E8E4DC] rounded-md bg-[#FAF8F5] text-[#222225] focus:outline-none focus:border-[#8C7F5F] cursor-pointer"
                 >
-                  <option value="all">Select Rooms</option>
+                  <option value="all">{t("allLocations")}</option>
                   <option value="1">1 Bedroom</option>
                   <option value="2-4">2 - 4 Bedrooms</option>
                   <option value="5+">5+ Bedrooms</option>
@@ -485,12 +486,12 @@ function VillasCatalogContent() {
             {/* 5. Have a Villa in Mind Search */}
             <div className="space-y-2">
               <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6862] block">
-                HAVE A VILLA IN MIND?
+                {t("haveVillaInMind")}
               </span>
               <div className="relative">
                 <input
                   type="text"
-                  placeholder="Search..."
+                  placeholder={t("searchByNameOrArea")}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full pl-3 pr-8 py-2 text-xs border border-[#E8E4DC] rounded-md bg-[#FAF8F5] text-[#222225] placeholder-[#A59877] focus:outline-none focus:border-[#8C7F5F]"
@@ -506,14 +507,14 @@ function VillasCatalogContent() {
                 onClick={() => setShowMobileFilters(false)}
                 className="w-full py-2.5 px-3 bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-xs font-semibold uppercase tracking-widest rounded-md transition-colors text-center cursor-pointer shadow-xs"
               >
-                APPLY
+                {t("applyButton")}
               </button>
               <button
                 type="button"
                 onClick={handleClear}
                 className="w-full py-2.5 px-3 bg-white hover:bg-[#FAF8F5] border border-[#D5CFC3] text-[#222225] text-xs font-semibold uppercase tracking-widest rounded-md transition-colors text-center cursor-pointer"
               >
-                CLEAR
+                {t("clearButton")}
               </button>
             </div>
           </aside>
@@ -523,7 +524,7 @@ function VillasCatalogContent() {
             {/* Top Bar above grid matching properties.png */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E8E4DC]">
               <h2 className="font-serif text-2xl sm:text-3xl text-[#222225] uppercase tracking-wide">
-                FIND A STAY IN JABODETABEK
+                {t("findStayHeader")}
               </h2>
 
               <div className="flex items-center space-x-3 text-xs shrink-0">
@@ -531,7 +532,7 @@ function VillasCatalogContent() {
                 <div className="relative">
                   <input
                     type="text"
-                    placeholder="PROPERTY NAME"
+                    placeholder={t("propertyNamePlaceholder")}
                     value={gridSearchQuery}
                     onChange={(e) => setGridSearchQuery(e.target.value)}
                     className="w-36 sm:w-44 pl-3 pr-7 py-1.5 text-[11px] font-medium uppercase tracking-wider border border-[#E8E4DC] rounded-full bg-[#FAF8F5] text-[#222225] placeholder-[#6B6862] focus:outline-none focus:border-[#8C7F5F]"
@@ -546,10 +547,10 @@ function VillasCatalogContent() {
                     onChange={(e) => setSortBy(e.target.value as SortOption)}
                     className="appearance-none pl-3 pr-7 py-1.5 text-[11px] font-semibold uppercase tracking-wider border border-[#E8E4DC] rounded-full bg-[#FAF8F5] text-[#222225] focus:outline-none focus:border-[#8C7F5F] cursor-pointer"
                   >
-                    <option value="recommended">SORT BY</option>
-                    <option value="price-asc">PRICE: LOW TO HIGH</option>
-                    <option value="price-desc">PRICE: HIGH TO LOW</option>
-                    <option value="rating">HIGHEST RATED</option>
+                    <option value="recommended">{t("sortByHeader")}</option>
+                    <option value="price-asc">{t("sortPriceLowHigh")}</option>
+                    <option value="price-desc">{t("sortPriceHighLow")}</option>
+                    <option value="rating">{t("sortHighestRated")}</option>
                   </select>
                   <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 h-3 w-3 text-[#6B6862] pointer-events-none" />
                 </div>
@@ -565,15 +566,12 @@ function VillasCatalogContent() {
               </div>
             ) : (
               <div className="rounded-2xl border border-[#E8E4DC] bg-[#FAF8F5] py-16 px-6 text-center space-y-4">
-                <p className="font-serif text-2xl text-[#222225]">No Properties Found</p>
-                <p className="text-xs text-[#6B6862] max-w-sm mx-auto">
-                  Try clearing your filters or selecting a different destination to browse our full collection.
-                </p>
+                <p className="font-serif text-2xl text-[#222225]">{t("noVillasFoundMessage")}</p>
                 <button
                   onClick={handleClear}
                   className="px-5 py-2 bg-[#8C7F5F] text-white text-xs font-semibold uppercase tracking-wider rounded-md hover:bg-[#776B4E] transition-colors cursor-pointer"
                 >
-                  Clear All Filters
+                  {t("resetFiltersButton")}
                 </button>
               </div>
             )}
@@ -605,7 +603,7 @@ function VillasCatalogContent() {
                 MORE THAN 5 BEDROOMS
               </h3>
               <p className="text-xs sm:text-sm text-[#6B6862] leading-relaxed font-light">
-                When the group is large, the estate needs to match. KingHouse&apos;s large residences in Jabodetabek (with up to 6 bedrooms and 500m² private grounds) are selected specifically for their ability to accommodate extended families, multi-generational groups, and private celebrations without sacrificing the intimacy of a private home.
+                When the group is large, the estate needs to match. Kinghouse&apos;s large residences in Jabodetabek (with up to 6 bedrooms and 500m² private grounds) are selected specifically for their ability to accommodate extended families, multi-generational groups, and private celebrations without sacrificing the intimacy of a private home.
               </p>
               <div className="pt-2">
                 <Link
@@ -765,7 +763,7 @@ export default function VillasCatalogPage() {
     <Suspense
       fallback={
         <div className="min-h-screen flex items-center justify-center font-serif text-[#8C7F5F]">
-          Loading KingHouse Portfolio...
+          Loading Kinghouse Portfolio...
         </div>
       }
     >

@@ -3,14 +3,16 @@
 import { useState } from "react"
 import { MessageCircle, X } from "lucide-react"
 import { trackWhatsAppClick } from "@/lib/analytics"
+import { useLocalization } from "@/lib/context/localization-context"
 
 export function FloatingWhatsApp() {
+  const { t } = useLocalization()
   const [isTooltipDismissed, setIsTooltipDismissed] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
 
   const phoneNumber = "6282123933218"
   const defaultMessage = encodeURIComponent(
-    "Hello KingHouse Hospitality! I would like to inquire about villa booking and property management services."
+    "Hello Kinghouse Hospitality! I would like to inquire about villa booking and property management services."
   )
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${defaultMessage}`
 
@@ -59,12 +61,12 @@ export function FloatingWhatsApp() {
           <div className="flex flex-col text-left">
             <div className="flex items-center space-x-1.5">
               <span className="text-[11px] font-semibold tracking-wider text-[#222222] uppercase">
-                KingHouse Concierge
+                {t("conciergeOnline")}
               </span>
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
             </div>
             <p className="text-[10px] text-[#666666] font-light">
-              Need assistance? WhatsApp us directly
+              {t("conciergeResponseTime")}
             </p>
           </div>
 

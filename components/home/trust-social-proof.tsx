@@ -5,8 +5,10 @@ import Image from "next/image"
 import { Star, ChevronLeft, ChevronRight, Quote, Award, CheckCircle } from "lucide-react"
 import { TESTIMONIALS, TRUST_PARTNERS } from "@/lib/data"
 import { Badge } from "@/components/ui/badge"
+import { useLocalization } from "@/lib/context/localization-context"
 
 export function TrustSocialProof() {
+  const { t } = useLocalization()
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
 
   const nextTestimonial = () => {
@@ -25,7 +27,7 @@ export function TrustSocialProof() {
         {/* Partner Badges & Trust Banner */}
         <div className="flex flex-col items-center text-center space-y-6">
           <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#717171]">
-            Global Distribution & Verified Hospitality Accreditations
+            {t("globalDistributionHeader")}
           </span>
 
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14 pt-2">
@@ -56,7 +58,7 @@ export function TrustSocialProof() {
                   variant={current.type === "owner" ? "accent" : "secondary"}
                   className="text-[11px] uppercase tracking-wider font-semibold"
                 >
-                  {current.type === "owner" ? "Verified Villa Owner" : "Verified Guest"}
+                  {current.type === "owner" ? t("verifiedVillaOwner") : t("verifiedGuestReview")}
                 </Badge>
                 {current.propertyName && (
                   <span className="text-xs text-[#717171] hidden sm:inline">
@@ -81,7 +83,7 @@ export function TrustSocialProof() {
             {current.metricLift && (
               <div className="inline-flex items-center space-x-2 text-xs font-semibold text-[#222222] bg-[#FAFAFA] border border-[#EBEBEB] rounded-lg px-3 py-1.5 self-start">
                 <CheckCircle className="h-3.5 w-3.5 text-[#A69C8E]" />
-                <span>Verified Metric: {current.metricLift}</span>
+                <span>{t("verifiedMetricHighlight")}: {current.metricLift}</span>
               </div>
             )}
 

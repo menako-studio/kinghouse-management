@@ -22,6 +22,7 @@ import {
 import { VILLA_EVENTS, VERSATILE_HOUSE_EVENT_PRICELIST, CURATED_VILLAS } from "@/lib/data"
 import { VillaEvent } from "@/lib/types"
 import { trackBrochureDownload, trackWhatsAppClick } from "@/lib/analytics"
+import { useLocalization } from "@/lib/context/localization-context"
 
 type SortOption = "recommended" | "price-asc" | "price-desc" | "capacity"
 
@@ -103,6 +104,7 @@ const versatileHouse = CURATED_VILLAS.find((v) => v.id === "villa-1")
 
 // Nakula Event Card matching events.png
 function NakulaEventCard({ event }: { event: VillaEvent }) {
+  const { formatPrice } = useLocalization()
   const lowestPackage = event.packages[0]
   const startingPriceIdr = lowestPackage ? lowestPackage.priceIdr : 2800000
 
@@ -112,7 +114,7 @@ function NakulaEventCard({ event }: { event: VillaEvent }) {
   const areaSqm = 500
 
   const whatsappMessage = encodeURIComponent(
-    `Hello KingHouse Concierge! I would like to download the brochure and inquire about hosting "${event.title}" at ${event.propertyName} (Jagakarsa, South Jakarta). Please share date availability and official brochure.`
+    `Hello Kinghouse Concierge! I would like to download the brochure and inquire about hosting "${event.title}" at ${event.propertyName} (Jagakarsa, South Jakarta). Please share date availability and official brochure.`
   )
 
   return (
@@ -140,7 +142,7 @@ function NakulaEventCard({ event }: { event: VillaEvent }) {
           </span>
           <div className="flex items-baseline space-x-1.5">
             <span className="font-semibold text-base sm:text-lg tracking-tight text-white">
-              IDR {startingPriceIdr.toLocaleString("id-ID")}
+              {formatPrice(startingPriceIdr)}
             </span>
             <span className="text-[11px] text-white/80 font-light">/ Event</span>
           </div>
@@ -239,6 +241,7 @@ function NakulaEventCard({ event }: { event: VillaEvent }) {
 }
 
 export default function EventsPage() {
+  const { formatPrice, t } = useLocalization()
   const [eventTypes, setEventTypes] = useState<string[]>([])
   const [selectedDestination, setSelectedDestination] = useState<string>("all")
   const [selectedPax, setSelectedPax] = useState<string>("all")
@@ -332,7 +335,7 @@ export default function EventsPage() {
       <section className="relative h-[52vh] sm:h-[62vh] flex items-center justify-center text-center overflow-hidden">
         <Image
           src="/properties/versatile-house/events/wedding-ceremony-lawn-pool.jpg"
-          alt="A Guide to Your Dream Wedding & Events at KingHouse"
+          alt="A Guide to Your Dream Wedding & Events at Kinghouse"
           fill
           className="object-cover object-center"
           priority
@@ -361,7 +364,7 @@ export default function EventsPage() {
             <span className="text-[#8C7F5F] font-semibold">EVENTS & VENUES</span>
           </nav>
           <p className="text-xs sm:text-sm text-[#6B6862] max-w-3xl mx-auto font-light leading-relaxed">
-            At KingHouse, we&apos;ve curated a collection of private villa venues across Greater Jakarta &mdash; each one a beautiful, intimate setting where your celebration can unfold with total privacy, zero vendor markup, and dedicated staff.
+            At Kinghouse, we&apos;ve curated a collection of private villa venues across Greater Jakarta &mdash; each one a beautiful, intimate setting where your celebration can unfold with total privacy, zero vendor markup, and dedicated staff.
           </p>
         </div>
       </section>
@@ -610,7 +613,7 @@ export default function EventsPage() {
                 <span>REAL OCCASIONS & VENUE INSPIRATION</span>
               </div>
               <h2 className="font-serif text-3xl sm:text-4xl text-[#222225] font-normal leading-tight">
-                Moments of Celebration at KingHouse
+                Moments of Celebration at Kinghouse
               </h2>
               <p className="text-xs sm:text-sm text-[#6B6862] leading-relaxed">
                 Explore real wedding setups, open-air lawn ceremonies, intimate banquets, and bridal sanctuaries across our 500m² private enclave in Jagakarsa.
@@ -718,7 +721,7 @@ export default function EventsPage() {
             </div>
 
             <a
-              href={`https://wa.me/6282123933218?text=${encodeURIComponent("Hello KingHouse Concierge! I am interested in viewing more wedding & event venue photos and checking date availability.")}`}
+              href={`https://wa.me/6282123933218?text=${encodeURIComponent("Hello Kinghouse Concierge! I am interested in viewing more wedding & event venue photos and checking date availability.")}`}
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 rounded-full bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-colors shadow-sm cursor-pointer shrink-0"
@@ -783,10 +786,10 @@ export default function EventsPage() {
 
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
                 <span className="text-xs text-[#888888]">
-                  KingHouse Curated Residences &bull; Jagakarsa, South Jakarta
+                  Kinghouse Curated Residences &bull; Jagakarsa, South Jakarta
                 </span>
                 <a
-                  href={`https://wa.me/6282123933218?text=${encodeURIComponent(`Hello KingHouse! I saw the "${lightboxPhoto.title}" setup in your events gallery and would like to inquire about date availability and package rates.`)}`}
+                  href={`https://wa.me/6282123933218?text=${encodeURIComponent(`Hello Kinghouse! I saw the "${lightboxPhoto.title}" setup in your events gallery and would like to inquire about date availability and package rates.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-xl bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-xs font-semibold uppercase tracking-wider transition-colors shadow-sm"
@@ -857,7 +860,7 @@ export default function EventsPage() {
                       : "text-[#6B6862] hover:text-[#222225]"
                   }`}
                 >
-                  Weekday Rate
+                  {t("weekdayRateHeader")}
                 </button>
                 <button
                   onClick={() => setActiveRateType("weekend")}
@@ -867,7 +870,7 @@ export default function EventsPage() {
                       : "text-[#6B6862] hover:text-[#222225]"
                   }`}
                 >
-                  Weekend Rate
+                  {t("weekendRateHeader")}
                 </button>
               </div>
             </div>
@@ -878,18 +881,18 @@ export default function EventsPage() {
             <table className="w-full text-left text-xs">
               <thead className="bg-[#FAF8F5] text-[#222225] font-serif uppercase tracking-wider text-[11px] border-b border-[#E8E4DC]">
                 <tr>
-                  <th className="px-5 py-4 font-semibold">Package Tier</th>
-                  <th className="px-5 py-4 font-semibold">Event Capacity</th>
-                  <th className="px-5 py-4 font-semibold">Duration / Stay</th>
-                  <th className="px-5 py-4 font-semibold">Weekday Price</th>
-                  <th className="px-5 py-4 font-semibold">Weekend Price</th>
+                  <th className="px-5 py-4 font-semibold">{t("packageTierHeader")}</th>
+                  <th className="px-5 py-4 font-semibold">{t("capacityHeader")}</th>
+                  <th className="px-5 py-4 font-semibold">{t("durationHeader")}</th>
+                  <th className="px-5 py-4 font-semibold">{t("weekdayRateHeader")}</th>
+                  <th className="px-5 py-4 font-semibold">{t("weekendRateHeader")}</th>
                   <th className="px-5 py-4 font-semibold text-right">Inquiry</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#E8E4DC]">
                 {currentPricelistTier?.tiers.map((tier) => {
                   const message = encodeURIComponent(
-                    `Hello KingHouse! I would like to book the "${tier.name} (${currentPricelistTier.categoryLabel} - ${tier.pax} Pax)" package at Versatile House Jagakarsa.`
+                    `Hello Kinghouse! I would like to book the "${tier.name} (${currentPricelistTier.categoryLabel} - ${tier.pax} Pax)" package at Versatile House Jagakarsa.`
                   )
                   return (
                     <tr key={tier.name} className="hover:bg-[#FAF8F5] transition-colors">
@@ -901,10 +904,10 @@ export default function EventsPage() {
                       </td>
                       <td className="px-5 py-4 text-[#6B6862]">{tier.duration}</td>
                       <td className={`px-5 py-4 font-semibold ${activeRateType === "weekday" ? "text-[#222225] text-sm" : "text-[#6B6862]"}`}>
-                        IDR {(tier.weekdayPriceIdr / 1000000).toLocaleString("id-ID", { minimumFractionDigits: 1, maximumFractionDigits: 1 })} Jt
+                        {formatPrice(tier.weekdayPriceIdr)}
                       </td>
                       <td className={`px-5 py-4 font-semibold ${activeRateType === "weekend" ? "text-[#222225] text-sm" : "text-[#6B6862]"}`}>
-                        IDR {(tier.weekendPriceIdr / 1000000).toLocaleString("id-ID", { minimumFractionDigits: 1, maximumFractionDigits: 1 })} Jt
+                        {formatPrice(tier.weekendPriceIdr)}
                       </td>
                       <td className="px-5 py-4 text-right">
                         <a
@@ -914,7 +917,7 @@ export default function EventsPage() {
                           className="inline-flex items-center space-x-1 px-3 py-1.5 rounded-md bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-[11px] font-semibold transition-colors"
                         >
                           <MessageCircle className="h-3 w-3 text-white" />
-                          <span>Reserve</span>
+                          <span>{t("reserveButton")}</span>
                         </a>
                       </td>
                     </tr>
@@ -937,13 +940,13 @@ export default function EventsPage() {
           <div className="rounded-3xl border border-[#E8E4DC] bg-[#FAF8F5] p-6 sm:p-10 shadow-xs">
             <div className="max-w-3xl mb-8">
               <span className="text-[11px] uppercase tracking-widest font-bold text-[#8C7F5F]">
-                VILLA OVERNIGHT STAY OPTION
+                {t("overnightStayHeader")}
               </span>
               <h2 className="font-serif text-3xl text-[#222225] mt-1 font-normal">
-                Room Configuration & Stay Rates (Versatile House)
+                {t("roomConfigurationHeader")}
               </h2>
               <p className="text-xs sm:text-sm text-[#6B6862] mt-2 leading-relaxed">
-                Need extra accommodation for bridal families or retreat participants? Versatile House supports flexible room unlocks from 2 to 6 bedrooms.
+                {t("roomConfigurationDesc")}
               </p>
             </div>
 
@@ -965,16 +968,16 @@ export default function EventsPage() {
                       <td className="px-5 py-4 font-semibold text-[#222225]">{stay.bedrooms} Bedroom</td>
                       <td className="px-5 py-4 text-[#6B6862]">Max {stay.maxGuests} Guests</td>
                       <td className="px-5 py-4 font-semibold text-[#222225]">
-                        Rp {stay.weekdayPriceIdr.toLocaleString("id-ID")}
+                        {formatPrice(stay.weekdayPriceIdr)}
                       </td>
                       <td className="px-5 py-4 font-semibold text-[#222225]">
-                        Rp {stay.weekendPriceIdr.toLocaleString("id-ID")}
+                        {formatPrice(stay.weekendPriceIdr)}
                       </td>
                       <td className="px-5 py-4 text-[#6B6862]">
-                        Rp {stay.peakSeasonPriceIdr.toLocaleString("id-ID")}
+                        {formatPrice(stay.peakSeasonPriceIdr)}
                       </td>
                       <td className="px-5 py-4 text-[#8C7F5F]">
-                        Rp {stay.extraGuestPriceIdr.toLocaleString("id-ID")}/pax
+                        {formatPrice(stay.extraGuestPriceIdr)}/pax
                       </td>
                     </tr>
                   ))}
@@ -984,10 +987,10 @@ export default function EventsPage() {
 
             <div className="mt-4 flex items-center justify-between text-xs text-[#6B6862] border-t border-[#E8E4DC] pt-3">
               <span className="font-semibold text-[#222225]">
-                One-time Cleaning Fee: Rp {versatileHouse.price.cleaningFeeIdr.toLocaleString("id-ID")}
+                One-time Cleaning Fee: {formatPrice(versatileHouse.price.cleaningFeeIdr)}
               </span>
               <a
-                href={`https://wa.me/6282123933218?text=${encodeURIComponent("Hello KingHouse! I would like to inquire about room stay configurations at Versatile House Jagakarsa.")}`}
+                href={`https://wa.me/6282123933218?text=${encodeURIComponent("Hello Kinghouse! I would like to inquire about room stay configurations at Versatile House Jagakarsa.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center space-x-1 text-[#8C7F5F] hover:text-[#222225] font-semibold"
