@@ -15,7 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 1. Static Core Landing Pages
   const staticRoutes: MetadataRoute.Sitemap = [
     {
-      url: `${baseUrl}/`,
+      url: `${baseUrl}`,
       lastModified: currentDate,
       changeFrequency: "daily",
       priority: 1.0,
@@ -118,15 +118,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ])
 
-  // 4. Dynamic Guest Compendium Pages (/stay/[slug])
-  const stayRoutes: MetadataRoute.Sitemap = CURATED_VILLAS.map((villa) => ({
-    url: `${baseUrl}/stay/${villa.slug}`,
-    lastModified: currentDate,
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }))
-
-  // 5. Dynamic Blog Articles (/blog/[slug])
+  // 4. Dynamic Blog Articles (/blog/[slug])
+  // Note: /stay/[slug] compendiums are private guest stay guides disallowed in robots.txt (/stay/*)
+  // and are intentionally omitted from public sitemap indexing.
   let blogRoutes: MetadataRoute.Sitemap = []
   try {
     const posts = await getBlogPosts()
@@ -146,7 +140,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...staticRoutes,
     ...areaRoutes,
     ...villaRoutes,
-    ...stayRoutes,
     ...blogRoutes,
   ]
 }

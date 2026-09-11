@@ -1,11 +1,17 @@
 // Kinghouse — Core Site Configuration & Metadata
 // Covers: Jabodetabek region (Jakarta, Tangerang, Bekasi, Cikarang)
 
+const rawBaseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.kinghousemanagement.com"
+const sanitizedBaseUrl =
+  rawBaseUrl.includes("kinghousemanagemet") || !rawBaseUrl.startsWith("http")
+    ? "https://www.kinghousemanagement.com"
+    : rawBaseUrl.replace(/\/$/, "")
+
 export const SITE_CONFIG = {
   name: "Kinghouse Management",
   shortName: "Kinghouse",
   domain: "kinghousemanagement.com",
-  baseUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://www.kinghousemanagement.com",
+  baseUrl: sanitizedBaseUrl,
   tagline: "Professional Short-Stay Property Management & Villa Concierge in Jabodetabek",
   brandAliases: [
     "Kinghouse Management",

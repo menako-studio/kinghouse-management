@@ -223,14 +223,15 @@ describe("SEO, Sitemaps & Technical Optimization", () => {
 
     const urls = routes.map((r) => r.url)
     
-    // Ensure administrative and auth routes are NOT in sitemap
+    // Ensure administrative, auth, and private stay routes are NOT in sitemap
     expect(urls.some((u) => u.includes("/dashboard"))).toBe(false)
     expect(urls.some((u) => u.includes("/login"))).toBe(false)
     expect(urls.some((u) => u.includes("/api"))).toBe(false)
+    expect(urls.some((u) => u.includes("/stay/"))).toBe(false)
 
     // Ensure all URLs start with canonical baseUrl
     urls.forEach((url) => {
-      expect(url.startsWith("https://www.kinghousemanagement.com") || url.startsWith("https://kinghousemanagement.com")).toBe(true)
+      expect(url.startsWith("https://www.kinghousemanagement.com")).toBe(true)
     })
 
     // Check newly added organic blog posts are in the sitemap
