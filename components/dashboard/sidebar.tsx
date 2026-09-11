@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname, useRouter } from "next/navigation"
 import {
   LayoutDashboard,
@@ -61,14 +62,20 @@ export function DashboardSidebar({ adminUser }: { adminUser?: AdminUser | null }
       <div className="flex items-center justify-between p-4 border-b border-white/[0.08] h-16 relative">
         {!collapsed ? (
           <Link href="/dashboard" className="flex items-center space-x-3 group">
-            <div className="h-8 w-8 rounded-xl bg-gradient-to-br from-[#B8934C] to-[#8C7F5F] flex items-center justify-center font-bold text-[#19191B] shadow-[0_0_15px_rgba(184,147,76,0.25)] transition-transform group-hover:scale-105">
-              K
+            <div className="h-9 w-9 rounded-xl bg-[#231F1A] border border-[#CBBEA0]/30 flex items-center justify-center p-1.5 shadow-[0_0_15px_rgba(203,190,160,0.15)] transition-transform group-hover:scale-105">
+              <Image
+                src="/brand/icon-bone.svg"
+                alt="Kinghouse Icon"
+                width={28}
+                height={28}
+                className="h-6 w-auto object-contain"
+              />
             </div>
             <div className="flex flex-col">
-              <span className="text-sm font-semibold text-white tracking-tight leading-tight group-hover:text-[#DFC58E] transition-colors">
-                KingHouse
+              <span className="text-sm font-semibold text-white tracking-tight leading-tight group-hover:text-[#CBBEA0] transition-colors">
+                Kinghouse
               </span>
-              <span className="text-[8px] uppercase tracking-[0.25em] text-[#DFC58E] font-medium leading-none mt-0.5">
+              <span className="text-[8px] uppercase tracking-[0.25em] text-[#CBBEA0] font-medium leading-none mt-0.5">
                 Hospitality CMS
               </span>
             </div>
@@ -76,10 +83,16 @@ export function DashboardSidebar({ adminUser }: { adminUser?: AdminUser | null }
         ) : (
           <Link
             href="/dashboard"
-            className="h-8 w-8 rounded-xl bg-gradient-to-br from-[#B8934C] to-[#8C7F5F] flex items-center justify-center font-bold text-[#19191B] mx-auto hover:scale-105 transition-transform shadow-[0_0_15px_rgba(184,147,76,0.2)]"
-            title="KingHouse CMS"
+            className="h-9 w-9 rounded-xl bg-[#231F1A] border border-[#CBBEA0]/30 flex items-center justify-center p-1.5 mx-auto hover:scale-105 transition-transform shadow-[0_0_15px_rgba(203,190,160,0.15)]"
+            title="Kinghouse CMS"
           >
-            K
+            <Image
+              src="/brand/icon-bone.svg"
+              alt="Kinghouse Icon"
+              width={28}
+              height={28}
+              className="h-6 w-auto object-contain"
+            />
           </Link>
         )}
       </div>

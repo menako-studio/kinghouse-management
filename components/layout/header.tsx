@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { useState, useEffect, useRef } from "react"
 import {
@@ -99,24 +100,37 @@ export function Header() {
           : "border-b border-[#F0ECE1] bg-white"
       }`}
     >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-12">
-        {/* Left: Brand Logo in Nakula Minimalist Luxury Style */}
+      <div className="mx-auto flex h-20 max-w-[1400px] items-center justify-between px-6 lg:px-12 xl:px-16">
+        {/* Left: Official Brandmark Logo (Secondary Horizontal) */}
         <Link
           href="/"
-          className="group flex items-center space-x-2.5"
+          className="group flex items-center shrink-0 py-1"
           onClick={() => {
             setPropertiesMenuOpen(false)
           }}
+          aria-label="Kinghouse Management Home"
         >
-          <div className="flex flex-col">
-            <span className="font-serif text-2xl sm:text-3xl tracking-[0.22em] text-[#8C7F5F] uppercase transition-colors group-hover:text-[#776B4E]">
-              KINGHOUSE
-            </span>
-          </div>
+          <Image
+            src="/brand/logo-secondary-charcoal.svg"
+            alt="Kinghouse Management"
+            width={160}
+            height={46}
+            priority
+            className="h-8 sm:h-9 md:h-10 w-auto object-contain transition-opacity duration-200 group-hover:opacity-80"
+          />
         </Link>
 
-        {/* Center: Desktop Navigation Bar */}
+        {/* Center: Desktop Navigation Bar (Nakula-inspired spacing & hierarchy) */}
         <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+          <Link
+            href="/"
+            className={`text-xs font-medium uppercase tracking-[0.16em] whitespace-nowrap transition-colors py-2 ${
+              pathname === "/" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
+            }`}
+          >
+            {t("home") || "Home"}
+          </Link>
+
           {/* OUR PROPERTIES dropdown toggle */}
           <div className="relative">
             <button
@@ -127,10 +141,10 @@ export function Header() {
                 setLanguageDropdownOpen(false)
               }}
               onMouseEnter={() => setPropertiesMenuOpen(true)}
-              className={`flex items-center space-x-1 text-xs font-medium uppercase tracking-[0.15em] whitespace-nowrap transition-colors py-2 cursor-pointer ${
+              className={`flex items-center space-x-1 text-xs font-medium uppercase tracking-[0.16em] whitespace-nowrap transition-colors py-2 cursor-pointer ${
                 propertiesMenuOpen || pathname.startsWith("/villas") || pathname.startsWith("/locations")
                   ? "text-[#8C7F5F] font-semibold"
-                  : "text-[#555555] hover:text-[#8C7F5F]"
+                  : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
               }`}
             >
               <span>{t("ourProperties")}</span>
@@ -144,8 +158,8 @@ export function Header() {
 
           <Link
             href="/villas"
-            className={`text-xs font-medium uppercase tracking-[0.15em] whitespace-nowrap transition-colors py-2 ${
-              pathname === "/offers" ? "text-[#8C7F5F] font-semibold" : "text-[#555555] hover:text-[#8C7F5F]"
+            className={`text-xs font-medium uppercase tracking-[0.16em] whitespace-nowrap transition-colors py-2 ${
+              pathname === "/offers" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
             }`}
           >
             {t("monthlyOffers")}
@@ -153,8 +167,8 @@ export function Header() {
 
           <Link
             href="/events"
-            className={`text-xs font-medium uppercase tracking-[0.15em] whitespace-nowrap transition-colors py-2 ${
-              pathname === "/events" ? "text-[#8C7F5F] font-semibold" : "text-[#555555] hover:text-[#8C7F5F]"
+            className={`text-xs font-medium uppercase tracking-[0.16em] whitespace-nowrap transition-colors py-2 ${
+              pathname === "/events" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
             }`}
           >
             {t("events")}
@@ -163,8 +177,8 @@ export function Header() {
           {/* OWNER SERVICES */}
           <Link
             href="/owner-services"
-            className={`text-xs font-medium uppercase tracking-[0.15em] whitespace-nowrap transition-colors py-2 ${
-              pathname === "/owner-services" ? "text-[#8C7F5F] font-semibold" : "text-[#555555] hover:text-[#8C7F5F]"
+            className={`text-xs font-medium uppercase tracking-[0.16em] whitespace-nowrap transition-colors py-2 ${
+              pathname === "/owner-services" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
             }`}
           >
             {t("ownerServices")}
@@ -173,14 +187,14 @@ export function Header() {
           {/* ENQUIRE underlined */}
           <Link
             href="/contact"
-            className="text-xs font-semibold uppercase tracking-[0.15em] whitespace-nowrap text-[#8C7F5F] underline underline-offset-4 hover:text-[#776B4E] transition-colors py-2"
+            className="text-xs font-semibold uppercase tracking-[0.16em] whitespace-nowrap text-[#8C7F5F] underline underline-offset-4 hover:text-[#776B4E] transition-colors py-2"
           >
             {t("enquire")}
           </Link>
         </nav>
 
-        {/* Right: Currency, Language & Sign In */}
-        <div className="hidden md:flex items-center space-x-4 lg:space-x-5">
+        {/* Right: Currency, Language & Pill Button (Nakula layout) */}
+        <div className="hidden md:flex items-center space-x-4 lg:space-x-5 xl:space-x-6 shrink-0">
           {/* Currency Dropdown (matching currency.png) */}
           <div className="relative" ref={currencyRef}>
             <button
@@ -190,12 +204,12 @@ export function Header() {
                 setLanguageDropdownOpen(false)
                 setPropertiesMenuOpen(false)
               }}
-              className="flex items-center space-x-1.5 text-xs uppercase tracking-wider font-medium text-[#444444] hover:text-[#8C7F5F] transition-colors py-1.5 px-2 rounded-md hover:bg-[#F5F2EB]"
+              className="flex items-center space-x-1.5 text-xs uppercase tracking-wider font-medium text-[#231F1A] hover:text-[#8C7F5F] transition-colors py-1.5 px-2 rounded-md hover:bg-[#F5F2EB]"
             >
-              <DollarSign className="h-3.5 w-3.5 text-[#8C7F5F]" />
+              <DollarSign className="h-3.5 w-3.5 text-[#231F1A]" />
               <span className="font-semibold">{currentCurrencyConfig.short}</span>
               <ChevronDown
-                className={`h-3 w-3 text-[#777777] transition-transform ${
+                className={`h-3 w-3 text-[#5C5347] transition-transform ${
                   currencyDropdownOpen ? "rotate-180" : ""
                 }`}
               />
@@ -244,12 +258,12 @@ export function Header() {
                 setCurrencyDropdownOpen(false)
                 setPropertiesMenuOpen(false)
               }}
-              className="flex items-center space-x-1.5 text-xs uppercase tracking-wider font-medium text-[#444444] hover:text-[#8C7F5F] transition-colors py-1.5 px-2 rounded-md hover:bg-[#F5F2EB]"
+              className="flex items-center space-x-1.5 text-xs uppercase tracking-wider font-medium text-[#231F1A] hover:text-[#8C7F5F] transition-colors py-1.5 px-2 rounded-md hover:bg-[#F5F2EB]"
             >
-              <Globe className="h-3.5 w-3.5 text-[#8C7F5F]" />
+              <Globe className="h-3.5 w-3.5 text-[#231F1A]" />
               <span className="font-semibold">{currentLanguageConfig.code}</span>
               <ChevronDown
-                className={`h-3 w-3 text-[#777777] transition-transform ${
+                className={`h-3 w-3 text-[#5C5347] transition-transform ${
                   languageDropdownOpen ? "rotate-180" : ""
                 }`}
               />
@@ -289,10 +303,10 @@ export function Header() {
             )}
           </div>
 
-          {/* EXPLORE PROPERTIES Pill Button */}
+          {/* EXPLORE PROPERTIES Pill Button (matching Nakula button aesthetic) */}
           <Link
             href="/villas"
-            className="inline-flex items-center justify-center rounded-full bg-[#8C7F5F] px-5 py-2 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#776B4E] transition-all shadow-xs"
+            className="inline-flex items-center justify-center rounded-full border border-[#231F1A] bg-transparent px-5 py-2 text-xs font-medium uppercase tracking-[0.16em] text-[#231F1A] hover:bg-[#231F1A] hover:text-[#FAF7F1] transition-all duration-200"
           >
             {t("exploreProperties")}
           </Link>

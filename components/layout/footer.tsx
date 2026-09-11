@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import {
   Mail,
   Phone,
@@ -27,19 +28,15 @@ export function Footer() {
             
             {/* Column 1: Monogram & ABOUT US */}
             <div className="lg:col-span-3 space-y-6">
-              {/* Stylized Brand Emblem */}
-              <Link href="/" className="inline-flex items-center space-x-3 group">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white transition-transform group-hover:scale-105">
-                  <span className="font-serif text-2xl font-bold tracking-widest">K</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-serif text-xl tracking-[0.2em] text-white uppercase font-normal">
-                    KINGHOUSE
-                  </span>
-                  <span className="text-[9px] uppercase tracking-[0.25em] text-[#E0DACB]">
-                    Hospitality Management
-                  </span>
-                </div>
+              {/* Stylized Official Brand Logo */}
+              <Link href="/" className="inline-flex items-center group py-1">
+                <Image
+                  src="/brand/logo-secondary-bone.svg"
+                  alt="Kinghouse Management"
+                  width={180}
+                  height={52}
+                  className="h-10 w-auto object-contain transition-opacity group-hover:opacity-85"
+                />
               </Link>
 
               {/* ABOUT US Links */}
