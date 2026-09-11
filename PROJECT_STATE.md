@@ -29,9 +29,10 @@ The platform serves two primary user personas:
 | **Framework** | Next.js (App Router) | `16.3.4` (`next dev --turbopack`) | Core fullstack framework & static/dynamic generation |
 | **Runtime / Core** | React / React DOM | `19.2.0` | Modern React UI with Server/Client Components |
 | **Language** | TypeScript | `^5.0` (Strict mode) | Type safety across schemas, state, and props |
-| **Typography** | Philosopher & Plus Jakarta Sans | Google Fonts (`next/font/google`) | Luxury editorial headers (`Philosopher`) & ultra-clean UI |
+| **Typography** | Cormorant Garamond & Inter | Google Fonts (`next/font/google`) | Official Brand Guidelines Vol II: Cormorant Garamond (editorial/display) & Inter (interface/body) |
 | **Localization** | Multi-Language & Multi-Currency Context | Custom `LocalizationProvider` | Real-time conversions (10 currencies) & i18n (9 languages: JA, ZH, FR, ES, DE, RU, ID, EN) |
-| **Styling** | Tailwind CSS v4 + PostCSS | `@tailwindcss/postcss ^4`, `tailwindcss ^4` | Nakula Olive-Khaki (`#8C7F5F`) + KingHouse Gold (`#B8934C`) & Slate |
+| **Styling** | Tailwind CSS v4 + PostCSS | `@tailwindcss/postcss ^4`, `tailwindcss ^4` | Kinghouse Official Palette: Charcoal Ink (`#231F1A`), Bone (`#FAF7F1`), Sandstone (`#CBBEA0`), Warm Stone (`#5C5347`) + Nakula Olive-Khaki (`#8C7F5F`) |
+| **Brand Assets** | Official Monoline Ambang Pintu Post-and-Lintel | `public/brand/` (SVG & PNG) | Primary vertical, secondary horizontal, and tertiary icon brandmarks with 1X secure area |
 | **UI Primitives** | Radix UI Slot, CVA | `class-variance-authority ^0.7.1`, `clsx`, `tailwind-merge` | Headless, accessible components |
 | **Animations** | Framer Motion | `^12.23.25` | Fluid micro-interactions and transitions |
 | **Icons** | Lucide React | `^0.556.0` | Vector iconography |
@@ -383,6 +384,19 @@ kinghouse-mockup/
 - [x] **Financial Intelligence & Airbnb Payout CSV Importer (`app/dashboard/analytics/page.tsx`)**:
   - Added 1-Click modal importer for official Airbnb Host Payout CSV files (*Earnings > Completed Payouts*).
   - Clean zero-dummy empty state for operational expense ledgers with instant IDR calculations.
+- [x] **Brand Identity Guidelines Overhaul (Volume II - Confidential)**:
+  - Updated `app/globals.css` with Charcoal Ink (`#231F1A`), Bone (`#FAF7F1`), Sandstone (`#CBBEA0`), Warm Stone (`#5C5347`), and architectural blueprint supergraphics.
+  - Implemented Next.js Google Fonts using `Cormorant_Garamond` (display/editorial) and `Inter` (interface/body).
+  - Deployed official brandmark assets to `public/brand/` (`logo-primary-charcoal`, `logo-secondary-charcoal`, `logo-secondary-bone`, `icon-charcoal`, `icon-bone`) and configured App Router metadata icons & favicons.
+  - Replaced legacy text mark and monogram with official secondary horizontal brandmark in header, footer, and dashboard sidebar.
+- [x] **Guest Compendium Portal (`/stay`, `/stay/[slug]`) Image Assets Fix**:
+  - Remapped hero images to verified existing files on disk (`SkyHouse_IKEA_KamarUtama_Wide.jpeg`, `BrightAiry_Apartment_Kamar_Wide.webp`, `SkylineLuxury_OrangeCounty_KamarUtama.webp`), resolving all broken property cards.
+  - Standardized portal branding, brand badge, and back link navigation.
+- [x] **Desktop Navbar Alignment & Nakula.com Luxury Spacing**:
+  - Structured desktop container with `max-w-[1400px]` and balanced horizontal padding (`px-6 lg:px-12 xl:px-16`).
+  - Positioned official secondary horizontal brandmark on far left meeting 120px minimum digital size requirement.
+  - Incorporated `Home` as first navigation item with clean letter tracking (`tracking-[0.16em]`).
+  - Aligned right-hand controls (Currency, Language) and styled `EXPLORE PROPERTIES` as a sleek pill-outline button matching Nakula layout.
 - [x] **Automated Testing & Production Build**:
   - 34 Vitest unit tests passing across all suites.
   - TypeScript strict mode 0 errors.

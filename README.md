@@ -82,10 +82,12 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
 
 | Category | Technology | Purpose & Free Tier Capability |
 | :--- | :--- | :--- |
-| **Framework** | Next.js 16.0.7 (App Router) | High-speed SSR, ISR, and API endpoints |
+| **Framework** | Next.js 16 (App Router, Turbopack) | High-speed SSR, ISR, and API endpoints |
 | **Database** | Supabase (PostgreSQL) | Isolated `kinghouse` dedicated schema for persistent ERP & CMS |
 | **Runtime & UI** | React 19.2.0 + TypeScript 5 | Type safety across schemas, state, and props |
-| **Styling** | Tailwind CSS v4 + PostCSS | Luxury minimalist styling with Sana tokens |
+| **Typography** | Cormorant Garamond & Inter | Brand Guidelines Vol II: Cormorant Garamond (editorial/display) & Inter (interface/body) |
+| **Styling** | Tailwind CSS v4 + PostCSS | Kinghouse Official Palette: Charcoal Ink (`#231F1A`), Bone (`#FAF7F1`), Sandstone (`#CBBEA0`), Warm Stone (`#5C5347`) + Nakula Khaki (`#8C7F5F`) |
+| **Brand Identity** | Official Ambang Pintu Post-and-Lintel Mark | `public/brand/` SVGs & PNGs for primary, secondary horizontal, and icon marks with 1X secure area |
 | **Icons & Motion** | Lucide React + Framer Motion | Accessible vector icons and smooth physics |
 | **Validation** | Zod (`zod`) | Strict runtime schema validation for forms and APIs |
 | **Security** | Web Crypto HMAC-SHA256 + Rate Limiter | Zero-cost edge authentication and brute-force defense |
@@ -116,8 +118,9 @@ npm run build
 The project includes an automated test suite powered by **Vitest** covering ERP calculations, 2-way iCal sync, commission fee splits, Zod validators, rate limiters, GA4/GTM tracking, and XML sitemaps.
 
 ### UI/UX & Media Performance Architecture:
+- **Desktop Navbar & Nakula.com Luxury Spacing**: Generous `max-w-[1400px]` container with `px-6 lg:px-12 xl:px-16` padding, secondary horizontal brandmark on far left (≥120px digital minimum size), clean menu hierarchy starting with `Home`, and sleek pill-outline CTA button matching the minimalist elegance of `nakula.com`.
 - **Responsive Viewport-Aware Video Streaming**: Automatically serves portrait vertical video on mobile and landscape video on desktop, using `preload="metadata"` to prevent downloading multiple streams or stalling bandwidth.
-- **Header Navigation Consistency**: Strict single-line whitespace preservation (`whitespace-nowrap`), uncluttered layout (redundant "Home" link removed and covered by brand logo).
+- **Guest Compendium Asset Resilience (`/stay`)**: Verified local photography assets mapped cleanly to each managed unit, eliminating broken or missing images across all Jabodetabek properties.
 - **Mobile Collision-Free Layout**: Dynamic responsive spacing preventing floating search components from obscuring bottom hero specifications.
 - **Events Showcase Gallery**: Nakula-inspired visual gallery with interactive category filters, real event and wedding setup photos, and instant WhatsApp booking inquiry.
 
