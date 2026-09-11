@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Philosopher, Plus_Jakarta_Sans } from "next/font/google"
+import { Cormorant_Garamond, Inter } from "next/font/google"
 import Script from "next/script"
 import "./globals.css"
 import { SiteShell } from "@/components/layout/site-shell"
@@ -8,15 +8,16 @@ import { GoogleAnalytics } from "@/components/analytics/google-analytics"
 import { PageViewTracker } from "@/components/analytics/page-view-tracker"
 import { SITE_CONFIG } from "@/lib/constants"
 
-const philosopher = Philosopher({
-  weight: ["400", "700"],
+const cormorant = Cormorant_Garamond({
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-serif",
   display: "swap",
 })
 
-const plusJakarta = Plus_Jakarta_Sans({
+const inter = Inter({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-sans",
   display: "swap",
 })
@@ -55,6 +56,13 @@ export const metadata: Metadata = {
   creator: "Kinghouse Management",
   publisher: "Kinghouse Management",
   metadataBase: new URL(SITE_CONFIG.baseUrl),
+  icons: {
+    icon: [
+      { url: "/brand/icon-charcoal.svg", type: "image/svg+xml" },
+      { url: "/brand/icon-charcoal.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: "/brand/icon-charcoal.png",
+  },
   alternates: {
     canonical: "/",
   },
@@ -196,8 +204,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="id" className={`${philosopher.variable} ${plusJakarta.variable} scroll-smooth`}>
-      <body className="min-h-screen bg-[var(--bg-main)] font-sans text-[var(--text-primary)] antialiased selection:bg-[#B8934C] selection:text-white">
+    <html lang="id" className={`${cormorant.variable} ${inter.variable} scroll-smooth`}>
+      <body className="min-h-screen bg-[var(--bg-main)] font-sans text-[var(--text-primary)] antialiased selection:bg-[#CBBEA0] selection:text-[#231F1A]">
         {/* Google Analytics 4 & Google Tag Manager */}
         <GoogleAnalytics />
         {/* Virtual Page View Route Tracker */}

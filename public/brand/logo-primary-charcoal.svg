@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  
+  <g fill="none" stroke="#231F1A" stroke-width="6" stroke-linecap="square" transform="translate(140,40) scale(1.2)">
+    <line x1="20" y1="14" x2="80" y2="14"/>
+    <line x1="30" y1="14" x2="30" y2="96"/>
+    <line x1="70" y1="14" x2="70" y2="96"/>
+    <line x1="40" y1="106" x2="60" y2="106"/>
+  </g>
+  <text x="200" y="230" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-weight="500" font-size="34" letter-spacing="6" fill="#231F1A">KINGHOUSE</text>
+  <text x="200" y="254" text-anchor="middle" font-family="'Inter', Helvetica, Arial, sans-serif" font-weight="600" font-size="13" letter-spacing="4" fill="#5C5347">MANAGEMENT</text>
+</svg>
