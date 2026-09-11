@@ -68,7 +68,7 @@ export function LeadAuditForm() {
                 >
                   <a
                     href={`https://wa.me/6282123933218?text=${encodeURIComponent(
-                      `Hello KingHouse, I just requested an audit for my villa in ${formData.villaLinkOrLocation}.`
+                      `Hello Kinghouse, I just requested an audit for my villa in ${formData.villaLinkOrLocation}.`
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"

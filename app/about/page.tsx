@@ -4,9 +4,9 @@ import { ArrowRight, Compass, ShieldCheck, Sparkles, Building2, Award } from "lu
 import { Button } from "@/components/ui/button"
 
 export const metadata = {
-  title: "About KingHouse | Editorial Hospitality & Asset Management",
+  title: "About Kinghouse | Editorial Hospitality & Asset Management",
   description:
-    "Discover the KingHouse philosophy: fusing editorial architectural curation with institutional-grade villa asset management in Greater Jakarta.",
+    "Discover the Kinghouse philosophy: fusing editorial architectural curation with institutional-grade villa asset management in Greater Jakarta.",
   alternates: {
     canonical: "/about",
   },
@@ -48,7 +48,7 @@ export default function AboutPage() {
               <span className="italic text-[#717171]">Frictionless Hospitality.</span>
             </h1>
             <p className="text-base sm:text-lg text-[#555555] font-light leading-relaxed">
-              KingHouse was created to bridge the divide between world-class architectural residential design and professional, institutional asset management. We believe every villa has a soul, and that exceptional spaces deserve meticulous, data-driven stewardship.
+              Kinghouse was created to bridge the divide between world-class architectural residential design and professional, institutional asset management. We believe every villa has a soul, and that exceptional spaces deserve meticulous, data-driven stewardship.
             </p>
           </div>
         </div>
@@ -70,7 +70,7 @@ export default function AboutPage() {
                   We are inspired by the purity of micro-architectural documentaries and the seamless UX of the world&apos;s leading hospitality platforms. Our properties are not generic hotel rooms—they are bespoke spaces with distinct spatial stories.
                 </p>
                 <p>
-                  For guests, we remove friction by integrating directly with Airbnb&apos;s trusted ecosystem, offering instant booking peace of mind, backed by on-site KingHouse butlers and concierge staff.
+                  For guests, we remove friction by integrating directly with Airbnb&apos;s trusted ecosystem, offering instant booking peace of mind, backed by on-site Kinghouse butlers and concierge staff.
                 </p>
                 <p>
                   For owners, we deliver institutional transparency: live accounting, dynamic RevPAR algorithms, and preventative estate maintenance that preserves long-term asset value.

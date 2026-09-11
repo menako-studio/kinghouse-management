@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
       category: category || "owner-tips",
       heroImage: heroImage || "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
       author: {
-        name: authorName || "KingHouse Hospitality",
+        name: authorName || "Kinghouse Hospitality",
         avatar: "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
         role: authorRole || "Property Management Specialist",
       },
@@ -108,7 +108,7 @@ export async function PUT(request: NextRequest) {
       category: category || existing?.category || "owner-tips",
       heroImage: heroImage || existing?.heroImage || "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
       author: {
-        name: authorName || existing?.author.name || "KingHouse Hospitality",
+        name: authorName || existing?.author.name || "Kinghouse Hospitality",
         avatar: existing?.author.avatar || "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
         role: authorRole || existing?.author.role || "Property Management Specialist",
       },

@@ -1,4 +1,4 @@
-// KingHouse — Core Site Configuration & Metadata
+// Kinghouse — Core Site Configuration & Metadata
 // Covers: Jabodetabek region (Jakarta, Tangerang, Bekasi, Cikarang)
 
 export const SITE_CONFIG = {
@@ -126,7 +126,7 @@ export const MANAGEMENT_SERVICES = {
     {
       title: "Verified Properties",
       description:
-        "Every listing is personally inspected, photographed, and approved by the KingHouse team before going live.",
+        "Every listing is personally inspected, photographed, and approved by the Kinghouse team before going live.",
       icon: "ShieldCheck",
     },
     {

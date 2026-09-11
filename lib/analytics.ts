@@ -1,5 +1,5 @@
 /**
- * KingHouse Hospitality Analytics & Event Dispatcher
+ * Kinghouse Hospitality Analytics & Event Dispatcher
  * Integrates Google Analytics 4 (gtag.js) and Google Tag Manager (dataLayer)
  * for deep conversion and interaction tracking across all digital touchpoints.
  */

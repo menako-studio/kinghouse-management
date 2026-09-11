@@ -23,9 +23,9 @@ const FAQ_CATEGORIES: FaqCategory[] = [
     icon: Key,
     items: [
       {
-        question: "How do check-in and check-out work at KingHouse properties?",
+        question: "How do check-in and check-out work at Kinghouse properties?",
         answer:
-          "Standard check-in is at 14:00 (2:00 PM) and check-out is at 12:00 PM (noon). All KingHouse properties feature smart keypad self check-in or a dedicated butler meet-and-greet. 24 hours before your arrival, you will receive full access codes and a localized arrival guide.",
+          "Standard check-in is at 14:00 (2:00 PM) and check-out is at 12:00 PM (noon). All Kinghouse properties feature smart keypad self check-in or a dedicated butler meet-and-greet. 24 hours before your arrival, you will receive full access codes and a localized arrival guide.",
       },
       {
         question: "Can I host private events or garden weddings?",
@@ -35,10 +35,10 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       {
         question: "What is the cancellation policy for guest bookings?",
         answer:
-          "Direct bookings through KingHouse qualify for a full 100% refund if cancelled at least 14 days before check-in, and a 50% refund if cancelled up to 7 days before check-in. Bookings made via Airbnb follow the strict or moderate policy indicated on the respective listing.",
+          "Direct bookings through Kinghouse qualify for a full 100% refund if cancelled at least 14 days before check-in, and a 50% refund if cancelled up to 7 days before check-in. Bookings made via Airbnb follow the strict or moderate policy indicated on the respective listing.",
       },
       {
-        question: "Are pets allowed at KingHouse villas?",
+        question: "Are pets allowed at Kinghouse villas?",
         answer:
           "Pet policies vary by property. Standalone estates with enclosed gardens (like Versatile House) allow well-behaved small-to-medium pets with prior notification and a standard pet sanitation deposit. High-rise apartment suites in Palmerah and Cikarang observe building management pet regulations.",
       },
@@ -50,7 +50,7 @@ const FAQ_CATEGORIES: FaqCategory[] = [
     icon: Home,
     items: [
       {
-        question: "How does KingHouse calculate owner revenue and management fees?",
+        question: "How does Kinghouse calculate owner revenue and management fees?",
         answer:
           "We offer two transparent models: 15% Standard (full OTA management, dynamic pricing, guest communications, calendar sync) and 20% Premium (adds full end-to-end linen laundry, amenities replenishment, and dedicated on-site butler operations). Owners receive transparent monthly statements with zero hidden markups.",
       },
@@ -60,12 +60,12 @@ const FAQ_CATEGORIES: FaqCategory[] = [
           "Statements and payouts are disbursed automatically on the 5th business day of each calendar month via Indonesian bank transfer (BCA, Mandiri, BNI, BRI) or international wire, accompanied by a 1-click downloadable CSV/PDF ledger of all gross bookings, cleaning fees, and net yield.",
       },
       {
-        question: "What dynamic pricing strategy does KingHouse employ?",
+        question: "What dynamic pricing strategy does Kinghouse employ?",
         answer:
           "Our revenue desk uses real-time market occupancy signals, seasonal concert/expo demand in Jakarta, weekend vs weekday elasticity, and competitor benchmarking to optimize nightly rates dynamically, routinely lifting client RevPAR by 25% to 40%.",
       },
       {
-        question: "How does KingHouse vet incoming guests to safeguard my property?",
+        question: "How does Kinghouse vet incoming guests to safeguard my property?",
         answer:
           "All prospective guests undergo ID verification, Airbnb review history screening, and party-risk assessment. For standalone villas, security deposits are held, and noise monitoring decibel thresholds are actively enforced.",
       },
@@ -77,7 +77,7 @@ const FAQ_CATEGORIES: FaqCategory[] = [
     icon: ShieldCheck,
     items: [
       {
-        question: "What are KingHouse's linen and hygiene standards?",
+        question: "What are Kinghouse's linen and hygiene standards?",
         answer:
           "We maintain commercial hotel-grade white cotton 300+ thread count linens, sanitized duvets, and vacuum-sealed guest amenities (shampoo, body wash, dental kit). Every turnover follows a 48-point deep cleaning protocol inspected by a supervisor before guest arrival.",
       },
@@ -104,7 +104,7 @@ export default function FaqPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12 text-center">
           <div className="inline-flex items-center space-x-2 text-[#DFC58E] text-xs uppercase tracking-[0.2em] font-semibold mb-3">
             <HelpCircle className="h-4 w-4" />
-            <span>KingHouse Knowledge Base</span>
+            <span>Kinghouse Knowledge Base</span>
           </div>
           <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl uppercase tracking-[0.1em] font-normal leading-tight">
             Frequently Asked Questions
@@ -193,7 +193,7 @@ export default function FaqPage() {
 
             <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0">
               <a
-                href="https://wa.me/6282123933218?text=Hello%20KingHouse!%20I%20have%20a%20question%20regarding%20your%20services."
+                href="https://wa.me/6282123933218?text=Hello%20Kinghouse!%20I%20have%20a%20question%20regarding%20your%20services."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center space-x-2 rounded-full bg-white text-[#8C7F5F] px-6 py-3 text-xs font-semibold uppercase tracking-wider hover:bg-[#FAF8F5] transition-all shadow-sm"

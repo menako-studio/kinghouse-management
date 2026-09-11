@@ -38,7 +38,7 @@ export function ValuePropsGrid() {
         {/* Section Header */}
         <div className="max-w-3xl mb-16 space-y-4">
           <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#A69C8E]">
-            The KingHouse Advantage
+            The Kinghouse Advantage
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#222222]">
             Institutional Rigor. Bespoke Hospitality.

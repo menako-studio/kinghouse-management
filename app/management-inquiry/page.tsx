@@ -59,7 +59,7 @@ export default function ManagementInquiryPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80"
-            alt="KingHouse Luxury Villa Management"
+            alt="Kinghouse Luxury Villa Management"
             fill
             className="object-cover opacity-20"
             priority
@@ -107,7 +107,7 @@ export default function ManagementInquiryPage() {
                 Send property photos and location to our WhatsApp for a 24-hour yield estimate.
               </p>
               <a
-                href="https://wa.me/6282123933218?text=Hello%20KingHouse!%20I%20would%20like%20a%20property%20management%20audit%20for%20my%20property."
+                href="https://wa.me/6282123933218?text=Hello%20Kinghouse!%20I%20would%20like%20a%20property%20management%20audit%20for%20my%20property."
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick({ source: "management_inquiry", context: "fast_track" })}
@@ -129,7 +129,7 @@ export default function ManagementInquiryPage() {
               End-to-End Asset Care
             </span>
             <h2 className="font-serif text-2xl sm:text-4xl text-[#222222] uppercase tracking-wider font-normal mt-1">
-              Why Owners Choose KingHouse
+              Why Owners Choose Kinghouse
             </h2>
           </div>
 

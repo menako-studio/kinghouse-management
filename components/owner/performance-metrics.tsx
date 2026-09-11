@@ -1,9 +1,13 @@
+"use client"
+
 import Image from "next/image"
 import { TrendingUp, Award, Star, CheckCircle } from "lucide-react"
 import { CASE_STUDIES } from "@/lib/data"
-import { formatCurrency } from "@/lib/utils"
+import { useLocalization } from "@/lib/context/localization-context"
 
 export function PerformanceMetrics() {
+  const { formatPrice } = useLocalization()
+
   return (
     <section id="case-studies" className="section-macro-spacing bg-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-12 space-y-16">
@@ -16,7 +20,7 @@ export function PerformanceMetrics() {
             Before vs. After Kinghouse Management
           </h2>
           <p className="text-sm sm:text-base text-[#717171] leading-relaxed">
-            Real performance audits from flagship properties under KingHouse asset management. Verified metrics independently audited from live Airbnb and OTA reporting.
+            Real performance audits from flagship properties under Kinghouse asset management. Verified metrics independently audited from live Airbnb and OTA reporting.
           </p>
         </div>
 
@@ -89,10 +93,10 @@ export function PerformanceMetrics() {
                       </span>
                       <div className="flex items-baseline space-x-1.5">
                         <span className="text-xs text-[#999999] line-through">
-                          Rp {(cs.beforeMetrics.monthlyRevenueIdr / 1000000).toFixed(0)}jt
+                          {formatPrice(cs.beforeMetrics.monthlyRevenueIdr)}
                         </span>
                         <span className="text-lg font-bold text-[#222222]">
-                          Rp {(cs.afterMetrics.monthlyRevenueIdr / 1000000).toFixed(0)}jt
+                          {formatPrice(cs.afterMetrics.monthlyRevenueIdr)}
                         </span>
                       </div>
                       <span className="text-[10px] font-semibold text-[#25D366] block">

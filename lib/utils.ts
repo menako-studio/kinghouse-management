@@ -37,7 +37,7 @@ export function generateVacationRentalSchema(villa: Villa, baseUrl = SITE_CONFIG
   const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "VacationRental",
-    "name": villa.seoMeta?.metaTitle ?? `${villa.name} | KingHouse`,
+    "name": villa.seoMeta?.metaTitle ?? `${villa.name} | Kinghouse`,
     "description": villa.editorialDescription.lead,
     "image": villa.gallery.map((g) => g.url),
     "url": `${baseUrl}/locations/${villa.areaSlug}/villas/${villa.slug}`,

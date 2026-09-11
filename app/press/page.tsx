@@ -6,7 +6,7 @@ import { Newspaper, Download, Mail, ExternalLink, ArrowRight, Award, Sparkles } 
 export const metadata: Metadata = {
   title: "Press & Media Center | Kinghouse Management",
   description:
-    "Official news, press releases, media mentions, and downloadable brand assets from KingHouse Villa & Short-Stay Asset Management in Greater Jakarta.",
+    "Official news, press releases, media mentions, and downloadable brand assets from Kinghouse Villa & Short-Stay Asset Management in Greater Jakarta.",
   alternates: { canonical: "/press" },
   openGraph: {
     title: "Press & Media Center | Kinghouse Management",
@@ -22,17 +22,17 @@ const PRESS_RELEASES = [
     id: "press-1",
     date: "August 18, 2026",
     category: "Corporate Expansion",
-    title: "KingHouse Expands Managed Villa Portfolio Across Jabodetabek with 85%+ Occupancy Benchmark",
+    title: "Kinghouse Expands Managed Villa Portfolio Across Jabodetabek with 85%+ Occupancy Benchmark",
     excerpt:
-      "KingHouse Hospitality Management announces the integration of 4 new luxury short-stay estates across South Jakarta and Tangerang, surpassing regional occupancy averages through proprietary dynamic pricing algorithms.",
+      "Kinghouse Hospitality Management announces the integration of 4 new luxury short-stay estates across South Jakarta and Tangerang, surpassing regional occupancy averages through proprietary dynamic pricing algorithms.",
     readTime: "3 min read",
-    publication: "KingHouse Newsroom",
+    publication: "Kinghouse Newsroom",
   },
   {
     id: "press-2",
     date: "June 04, 2026",
     category: "Industry Recognition",
-    title: "KingHouse Awarded Top Superhost Hospitality Partner in Greater Jakarta",
+    title: "Kinghouse Awarded Top Superhost Hospitality Partner in Greater Jakarta",
     excerpt:
       "Recognized for outstanding 4.9+ average guest reviews, 100% response rates, and editorial interior photography standards that set a new benchmark for private vacation rentals.",
     readTime: "2 min read",
@@ -44,7 +44,7 @@ const PRESS_RELEASES = [
     category: "Technology & Operations",
     title: "Zero-Commission Direct Booking Concierge & Multi-OTA Calendar Sync Launch",
     excerpt:
-      "KingHouse unveils real-time calendar synchronization across Airbnb, Booking.com, and direct WhatsApp concierge, protecting property owners from double-booking risks and maximizing ADR.",
+      "Kinghouse unveils real-time calendar synchronization across Airbnb, Booking.com, and direct WhatsApp concierge, protecting property owners from double-booking risks and maximizing ADR.",
     readTime: "4 min read",
     publication: "Property Management Weekly",
   },
@@ -53,17 +53,17 @@ const PRESS_RELEASES = [
 const MEDIA_MENTIONS = [
   {
     outlet: "Hospitality Asia",
-    quote: "“KingHouse is reshaping short-stay asset management in Indonesia with hotel-grade linen operations and bespoke owner dashboards.”",
+    quote: "“Kinghouse is reshaping short-stay asset management in Indonesia with hotel-grade linen operations and bespoke owner dashboards.”",
     author: "Editorial Review",
   },
   {
     outlet: "Jakarta Property Review",
-    quote: "“By turning vacant private estates into cashflow-generating boutique retreats, KingHouse offers an enviable 2.4x yield uplift.”",
+    quote: "“By turning vacant private estates into cashflow-generating boutique retreats, Kinghouse offers an enviable 2.4x yield uplift.”",
     author: "Special Report",
   },
   {
     outlet: "Urban Stay Digest",
-    quote: "“From garden wedding venues in Jagakarsa to high-floor expat suites in Cikarang, KingHouse curates spaces that tell a story.”",
+    quote: "“From garden wedding venues in Jagakarsa to high-floor expat suites in Cikarang, Kinghouse curates spaces that tell a story.”",
     author: "Travel & Leisure",
   },
 ]
@@ -76,7 +76,7 @@ export default function PressPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80"
-            alt="KingHouse Luxury Press"
+            alt="Kinghouse Luxury Press"
             fill
             className="object-cover opacity-20"
             priority
@@ -87,7 +87,7 @@ export default function PressPage() {
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
           <div className="flex items-center space-x-2.5 text-[#DFC58E] text-xs uppercase tracking-[0.2em] font-semibold mb-4">
             <Newspaper className="h-4 w-4" />
-            <span>KingHouse Newsroom & Media</span>
+            <span>Kinghouse Newsroom & Media</span>
           </div>
           <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl uppercase tracking-[0.12em] font-normal leading-tight max-w-3xl">
             Press & Media Center
@@ -205,18 +205,18 @@ export default function PressPage() {
             <div className="max-w-3xl">
               <div className="inline-flex items-center space-x-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-medium uppercase tracking-wider mb-4">
                 <Award className="h-3.5 w-3.5" />
-                <span>KingHouse Official Brand Kit</span>
+                <span>Kinghouse Official Brand Kit</span>
               </div>
               <h2 className="font-serif text-2xl sm:text-4xl uppercase tracking-[0.1em] font-normal leading-tight">
                 Download Press & Media Assets
               </h2>
               <p className="mt-3 text-sm sm:text-base text-[#F0EBE0] font-light leading-relaxed">
-                Access official KingHouse logos in high-resolution vector and PNG formats, executive portraits, and approved property photography for publications.
+                Access official Kinghouse logos in high-resolution vector and PNG formats, executive portraits, and approved property photography for publications.
               </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a
-                  href="mailto:ptkreasiusmangosse@gmail.com?subject=Media%20Kit%20Request%20-%20KingHouse"
+                  href="mailto:ptkreasiusmangosse@gmail.com?subject=Media%20Kit%20Request%20-%20Kinghouse"
                   className="inline-flex items-center space-x-2 rounded-full bg-white text-[#8C7F5F] px-6 py-3 text-xs font-semibold uppercase tracking-wider hover:bg-[#FAF8F5] transition-all shadow-md"
                 >
                   <Mail className="h-4 w-4" />

@@ -177,7 +177,7 @@ export const CURATED_VILLAS: Villa[] = [
     featured: true,
     architecturalStyle: "Modern Tropical",
     seoMeta: {
-      metaTitle: "Versatile House With Garden — Jagakarsa, South Jakarta | KingHouse",
+      metaTitle: "Versatile House With Garden — Jagakarsa, South Jakarta | Kinghouse",
       metaDescription:
         "Spacious 2-6 bedroom home in Jagakarsa for up to 12 guests. Private garden, pool, full kitchen, free parking. Book via Airbnb, Agoda, or Direct WhatsApp with perks.",
       focusKeyword: "rumah sewa jagakarsa jakarta selatan",
@@ -282,111 +282,15 @@ export const CURATED_VILLAS: Villa[] = [
     featured: true,
     architecturalStyle: "Scandinavian Minimalist",
     seoMeta: {
-      metaTitle: "Sky House Tangerang — Hotel-Style Room Near IKEA Alam Sutera | KingHouse",
+      metaTitle: "Sky House Tangerang — Hotel-Style Room Near IKEA Alam Sutera | Kinghouse",
       metaDescription:
-        "Boutique hotel-feel private room in Pinang, Tangerang. 5 min from IKEA Alam Sutera. Premium bed, fast WiFi, en-suite bathroom. Book on Airbnb, Agoda, or Direct via KingHouse.",
+        "Boutique hotel-feel private room in Pinang, Tangerang. 5 min from IKEA Alam Sutera. Premium bed, fast WiFi, en-suite bathroom. Book on Airbnb, Agoda, or Direct via Kinghouse.",
       focusKeyword: "sewa kamar tangerang dekat ikea alam sutera",
       ogImage:
         "/properties/sky-house/SkyHouse_IKEA_KamarUtama_Wide.jpeg",
     },
   },
-  {
-    id: "villa-3",
-    name: "Bright & Airy Apartment",
-    tagline: "Central Jakarta West apartment filled with natural light and urban convenience",
-    slug: "bright-airy-apartment-palmerah",
-    area: "Palmerah",
-    areaSlug: "palmerah",
-    location: "Palmerah, Jakarta Barat",
-    propertyType: "entire-apartment",
-    airbnbUrl: "https://www.airbnb.com/rooms/1444158185166882045",
-    superhost: false,
-    guestFavorite: false,
-    rating: 0,
-    reviewsCount: 0,
-    price: {
-      usd: 18,
-      idr: 280000,
-      cleaningFeeIdr: 75000,
-      serviceFeePercent: 14,
-    },
-    capacity: {
-      guests: 2,
-      bedrooms: 1,
-      beds: 1,
-      bathrooms: 1,
-    },
-    heroImage:
-      "/properties/bright-airy/BrightAiry_Apartment_Kamar_Wide.webp",
-    gallery: [
-      {
-        url: "/properties/bright-airy/BrightAiry_Apartment_Kamar_Wide.webp",
-        caption: "Sun-drenched master bedroom with wide city-view windows and queen hotel bed",
-        category: "bedroom",
-      },
-      {
-        url: "/properties/bright-airy/BrightAiry_Apartment_Kamar_Wide-2.webp",
-        caption: "Comfortable bedroom lounge perspective featuring natural lighting and clean layout",
-        category: "bedroom",
-      },
-      {
-        url: "/properties/bright-airy/BrightAiry_Apartment_Kamar_Wide.webp",
-        caption: "Crisp white minimalist room aesthetic tailored for remote work and short-stay comfort",
-        category: "living",
-      },
-      {
-        url: "/properties/bright-airy/BrightAiry_Apartment_Kamar_Wide-2.webp",
-        caption: "Warm afternoon natural light across the bedroom suite",
-        category: "living",
-      },
-      {
-        url: "/properties/bright-airy/BrightAiry_Apartment_Kamar_Wide.webp",
-        caption: "Air-conditioned modern suite in central Palmerah Jakarta Barat",
-        category: "exterior",
-      },
-    ],
-    editorialDescription: {
-      lead: "A bright, cheerful apartment in the strategic Palmerah district of West Jakarta — minutes from Palmerah Station, Senayan, and major business corridors. New listing with first-class KingHouse hospitality standards.",
-      architecturalHighlights:
-        "The apartment maximizes its floor-to-ceiling windows to flood the interior with morning light, creating an energizing environment ideal for professionals working remotely or short business stays in the capital.",
-      theSpace:
-        "A complete entire apartment for two: cosy bedroom with fresh hotel linen, bright living-dining area, a kitchenette with refrigerator and cooking equipment, and a clean bathroom with hot water. Air conditioning and fast WiFi throughout.",
-    },
-    amenities: [
-      { name: "Entire Private Apartment", category: "essentials", icon: "Home" },
-      { name: "High-Speed WiFi", category: "essentials", icon: "Wifi" },
-      { name: "Air Conditioning", category: "essentials", icon: "Wind" },
-      { name: "Kitchenette", category: "essentials", icon: "UtensilsCrossed" },
-      { name: "Hot Water Shower", category: "essentials", icon: "Droplets" },
-      { name: "Smart TV", category: "luxury", icon: "Tv" },
-      { name: "Self Check-in", category: "services", icon: "Key" },
-      { name: "Free Street Parking", category: "essentials", icon: "Car" },
-    ],
-    nearbySpots: [
-      { name: "Palmerah Station (KRL)", category: "transport", distance: "800 m", travelTime: "10 min walk" },
-      { name: "Senayan City Mall", category: "mall", distance: "3 km", travelTime: "10 min drive" },
-      { name: "Grand Indonesia", category: "mall", distance: "5 km", travelTime: "15 min drive" },
-      { name: "Soekarno-Hatta Airport", category: "airport", distance: "30 km", travelTime: "50 min drive" },
-    ],
-    houseRules: [
-      "No smoking inside the unit.",
-      "No pets allowed.",
-      "No parties or unauthorized external guests.",
-      "Keep kitchen clean & dispose garbage in shaft room.",
-      "Quiet hours: Harap menjaga ketenangan setelah pukul 22:00 WIB.",
-      "Check-in: 3:00 PM • Check-out: 12:00 PM.",
-    ],
-    featured: false,
-    architecturalStyle: "Urban Contemporary",
-    seoMeta: {
-      metaTitle: "Bright & Airy Apartment Palmerah, Jakarta Barat | KingHouse",
-      metaDescription:
-        "Entire modern apartment in Palmerah, West Jakarta. 10 min walk to Palmerah KRL Station. Bright interior, full amenities for 2 guests. Managed by KingHouse.",
-      focusKeyword: "sewa apartemen palmerah jakarta barat airbnb",
-      ogImage:
-        "/properties/bright-airy/BrightAiry_Apartment_Kamar_Wide.webp",
-    },
-  },
+
   {
     id: "villa-4",
     name: "Skyline Luxury at Orange County",
@@ -485,12 +389,109 @@ export const CURATED_VILLAS: Villa[] = [
     featured: true,
     architecturalStyle: "Contemporary Executive",
     seoMeta: {
-      metaTitle: "Skyline Luxury — Orange County Cikarang Apartment | KingHouse",
+      metaTitle: "Skyline Luxury — Orange County Cikarang Apartment | Kinghouse",
       metaDescription:
-        "Executive apartment with skyline view inside Orange County, Cikarang Selatan. Perfect for expats & professionals near Jababeka & EJIP. Managed by KingHouse on Airbnb.",
+        "Executive apartment with skyline view inside Orange County, Cikarang Selatan. Perfect for expats & professionals near Jababeka & EJIP. Managed by Kinghouse on Airbnb.",
       focusKeyword: "apartemen orange county cikarang expat airbnb",
       ogImage:
         "/properties/skyline-luxury/SkylineLuxury_OrangeCounty_PemandanganView.jpeg",
+    },
+  },
+    {
+    id: "villa-3",
+    name: "Bright & Airy Apartment",
+    tagline: "Central Jakarta West apartment filled with natural light and urban convenience",
+    slug: "bright-airy-apartment-palmerah",
+    area: "Palmerah",
+    areaSlug: "palmerah",
+    location: "Palmerah, Jakarta Barat",
+    propertyType: "entire-apartment",
+    airbnbUrl: "https://www.airbnb.com/rooms/1444158185166882045",
+    superhost: false,
+    guestFavorite: false,
+    rating: 0,
+    reviewsCount: 0,
+    price: {
+      usd: 18,
+      idr: 280000,
+      cleaningFeeIdr: 75000,
+      serviceFeePercent: 14,
+    },
+    capacity: {
+      guests: 2,
+      bedrooms: 1,
+      beds: 1,
+      bathrooms: 1,
+    },
+    heroImage:
+      "/properties/bright-airy/BrightAiry_Apartment_Kamar_Wide.webp",
+    gallery: [
+      {
+        url: "/properties/bright-airy/BrightAiry_Apartment_Kamar_Wide.webp",
+        caption: "Sun-drenched master bedroom with wide city-view windows and queen hotel bed",
+        category: "bedroom",
+      },
+      {
+        url: "/properties/bright-airy/BrightAiry_Apartment_Kamar_Wide-2.webp",
+        caption: "Comfortable bedroom lounge perspective featuring natural lighting and clean layout",
+        category: "bedroom",
+      },
+      {
+        url: "/properties/bright-airy/BrightAiry_Apartment_Kamar_Wide.webp",
+        caption: "Crisp white minimalist room aesthetic tailored for remote work and short-stay comfort",
+        category: "living",
+      },
+      {
+        url: "/properties/bright-airy/BrightAiry_Apartment_Kamar_Wide-2.webp",
+        caption: "Warm afternoon natural light across the bedroom suite",
+        category: "living",
+      },
+      {
+        url: "/properties/bright-airy/BrightAiry_Apartment_Kamar_Wide.webp",
+        caption: "Air-conditioned modern suite in central Palmerah Jakarta Barat",
+        category: "exterior",
+      },
+    ],
+    editorialDescription: {
+      lead: "A bright, cheerful apartment in the strategic Palmerah district of West Jakarta — minutes from Palmerah Station, Senayan, and major business corridors. New listing with first-class Kinghouse hospitality standards.",
+      architecturalHighlights:
+        "The apartment maximizes its floor-to-ceiling windows to flood the interior with morning light, creating an energizing environment ideal for professionals working remotely or short business stays in the capital.",
+      theSpace:
+        "A complete entire apartment for two: cosy bedroom with fresh hotel linen, bright living-dining area, a kitchenette with refrigerator and cooking equipment, and a clean bathroom with hot water. Air conditioning and fast WiFi throughout.",
+    },
+    amenities: [
+      { name: "Entire Private Apartment", category: "essentials", icon: "Home" },
+      { name: "High-Speed WiFi", category: "essentials", icon: "Wifi" },
+      { name: "Air Conditioning", category: "essentials", icon: "Wind" },
+      { name: "Kitchenette", category: "essentials", icon: "UtensilsCrossed" },
+      { name: "Hot Water Shower", category: "essentials", icon: "Droplets" },
+      { name: "Smart TV", category: "luxury", icon: "Tv" },
+      { name: "Self Check-in", category: "services", icon: "Key" },
+      { name: "Free Street Parking", category: "essentials", icon: "Car" },
+    ],
+    nearbySpots: [
+      { name: "Palmerah Station (KRL)", category: "transport", distance: "800 m", travelTime: "10 min walk" },
+      { name: "Senayan City Mall", category: "mall", distance: "3 km", travelTime: "10 min drive" },
+      { name: "Grand Indonesia", category: "mall", distance: "5 km", travelTime: "15 min drive" },
+      { name: "Soekarno-Hatta Airport", category: "airport", distance: "30 km", travelTime: "50 min drive" },
+    ],
+    houseRules: [
+      "No smoking inside the unit.",
+      "No pets allowed.",
+      "No parties or unauthorized external guests.",
+      "Keep kitchen clean & dispose garbage in shaft room.",
+      "Quiet hours: Harap menjaga ketenangan setelah pukul 22:00 WIB.",
+      "Check-in: 3:00 PM • Check-out: 12:00 PM.",
+    ],
+    featured: false,
+    architecturalStyle: "Urban Contemporary",
+    seoMeta: {
+      metaTitle: "Bright & Airy Apartment Palmerah, Jakarta Barat | Kinghouse",
+      metaDescription:
+        "Entire modern apartment in Palmerah, West Jakarta. 10 min walk to Palmerah KRL Station. Bright interior, full amenities for 2 guests. Managed by Kinghouse.",
+      focusKeyword: "sewa apartemen palmerah jakarta barat airbnb",
+      ogImage:
+        "/properties/bright-airy/BrightAiry_Apartment_Kamar_Wide.webp",
     },
   },
 ]
@@ -506,7 +507,7 @@ export const TESTIMONIALS: Testimonial[] = [
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80",
     rating: 5,
     quote:
-      "KingHouse transformed our family home in Jagakarsa into a steady income stream. From zero bookings to 80%+ occupancy in 3 months — their Airbnb SEO and listing optimization is genuinely impressive.",
+      "Kinghouse transformed our family home in Jagakarsa into a steady income stream. From zero bookings to 80%+ occupancy in 3 months — their Airbnb SEO and listing optimization is genuinely impressive.",
     propertyName: "Versatile House With Beautiful Garden Beyond",
     metricLift: "+80% Occupancy in 90 Days",
   },
@@ -518,7 +519,7 @@ export const TESTIMONIALS: Testimonial[] = [
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80",
     rating: 5,
     quote:
-      "Stayed at the Orange County apartment for 2 weeks while overseeing our Jababeka plant. The location is perfect, the apartment felt like a hotel suite, and KingHouse's WhatsApp support was instant. Will rebook.",
+      "Stayed at the Orange County apartment for 2 weeks while overseeing our Jababeka plant. The location is perfect, the apartment felt like a hotel suite, and Kinghouse's WhatsApp support was instant. Will rebook.",
     propertyName: "Skyline Luxury at Orange County",
   },
   {
@@ -556,7 +557,7 @@ export const MANAGEMENT_TIERS: ManagementTier[] = [
     feePercentage: 15,
     feeNote: "of gross rental revenue (performance-based)",
     description:
-      "Designed for property owners who handle their own cleaning and operations, but want KingHouse's Airbnb SEO expertise, dynamic pricing, and professional listing management to maximize bookings.",
+      "Designed for property owners who handle their own cleaning and operations, but want Kinghouse's Airbnb SEO expertise, dynamic pricing, and professional listing management to maximize bookings.",
     idealFor: "Owners with existing cleaning support who want maximum Airbnb revenue without full management.",
     popular: false,
     features: [
@@ -622,7 +623,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     summary:
       "Repositioned from an under-priced family home listing to a sought-after Jagakarsa group stay destination. Editorial photography, keyword-optimized copy, and dynamic weekend pricing tripled monthly revenue in 90 days.",
     quote: {
-      text: "I had no idea our house could earn this much. KingHouse basically turned a burden into a business.",
+      text: "I had no idea our house could earn this much. Kinghouse basically turned a burden into a business.",
       author: "Budi Santoso (Owner)",
     },
   },
@@ -666,7 +667,7 @@ export const TRUST_PARTNERS = [
 // ─── BLOG POSTS ───────────────────────────────────────────────────────────────
 
 const AUTHOR_KINGHOUSE = {
-  name: "KingHouse Team",
+  name: "Kinghouse Team",
   role: "Property Management Experts",
   avatar:
     "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80",
@@ -691,7 +692,7 @@ Data Airbnb menunjukkan listing dengan foto profesional mendapatkan 40% lebih ba
 
 ## 3. Dynamic Pricing Sesuai Musim dan Event
 
-Harga flat sepanjang tahun adalah kesalahan terbesar. Naikkan harga 20-35% di akhir pekan, libur nasional, dan musim liburan (Juni-Juli, Desember). Gunakan tools seperti PriceLabs atau biarkan KingHouse mengelolanya.
+Harga flat sepanjang tahun adalah kesalahan terbesar. Naikkan harga 20-35% di akhir pekan, libur nasional, dan musim liburan (Juni-Juli, Desember). Gunakan tools seperti PriceLabs atau biarkan Kinghouse mengelolanya.
 
 ## 4. Targetkan Segmen Tamu yang Tepat
 
@@ -699,7 +700,7 @@ Rumah besar di Jagakarsa cocok untuk: arisan keluarga, team offsite perusahaan, 
 
 ## 5. Respons Cepat = Lebih Banyak Booking
 
-Airbnb memprioritaskan listing dengan response rate tinggi (>90%) dan response time <1 jam. Aktifkan notifikasi atau gunakan layanan manajemen seperti KingHouse yang merespons tamu 24/7.`,
+Airbnb memprioritaskan listing dengan response rate tinggi (>90%) dan response time <1 jam. Aktifkan notifikasi atau gunakan layanan manajemen seperti Kinghouse yang merespons tamu 24/7.`,
     category: "owner-tips",
     publishedAt: "2026-07-15",
     author: AUTHOR_KINGHOUSE,
@@ -761,7 +762,7 @@ Dengan harga sewa Airbnb Rp 400.000–700.000/malam dan occupancy 70-85% dari se
     title: "Airbnb SEO: Cara Listing Properti Anda Muncul di Halaman 1 Pencarian",
     slug: "airbnb-seo-tips-halaman-1-pencarian",
     excerpt:
-      "Airbnb memiliki algoritma pencarian sendiri yang menentukan mana listing yang ditampilkan. Pelajari faktor-faktor kunci dan cara KingHouse mengoptimalkan setiap listing untuk mendapatkan lebih banyak klik dan booking.",
+      "Airbnb memiliki algoritma pencarian sendiri yang menentukan mana listing yang ditampilkan. Pelajari faktor-faktor kunci dan cara Kinghouse mengoptimalkan setiap listing untuk mendapatkan lebih banyak klik dan booking.",
     content: `Airbnb Search Algorithm (atau yang disebut internal sebagai 'Superhost Algorithm') mempertimbangkan puluhan sinyal untuk menentukan ranking listing. Berikut faktor-faktor yang paling berpengaruh.
 
 ## Faktor Utama Airbnb SEO
@@ -784,7 +785,7 @@ Listing dengan harga terlalu jauh di atas rata-rata pasar lokal cenderung mendap
 ### 6. Instant Book
 Listing dengan fitur Instant Book (tidak memerlukan konfirmasi host) mendapat prioritas tampilan di hasil pencarian.
 
-## Bagaimana KingHouse Mengoptimalkan SEO Airbnb Klien Kami
+## Bagaimana Kinghouse Mengoptimalkan SEO Airbnb Klien Kami
 
 Kami melakukan audit SEO menyeluruh untuk setiap properti baru: judul dan deskripsi berbasis riset kata kunci, foto profesional dengan caption SEO-friendly, kelengkapan 100%, dan setup Instant Book. Hasilnya rata-rata peningkatan tayangan 3-5x dalam 30 hari pertama.`,
     category: "airbnb-seo",
@@ -832,7 +833,7 @@ Kami melakukan audit SEO menyeluruh untuk setiap properti baru: judul dan deskri
 
 ## Kesimpulan
 
-Tangerang Kota lebih cocok untuk **investor value** yang mencari yield konsisten dengan modal lebih rendah. BSD City lebih cocok untuk **investor premium** yang mengejar harga malam lebih tinggi dan profil tamu lebih premium. KingHouse mengelola properti di kedua area — hubungi kami untuk analisis properti Anda.`,
+Tangerang Kota lebih cocok untuk **investor value** yang mencari yield konsisten dengan modal lebih rendah. BSD City lebih cocok untuk **investor premium** yang mengejar harga malam lebih tinggi dan profil tamu lebih premium. Kinghouse mengelola properti di kedua area — hubungi kami untuk analisis properti Anda.`,
     category: "revenue-management",
     publishedAt: "2026-08-10",
     author: AUTHOR_KINGHOUSE,
@@ -878,7 +879,7 @@ Fokus pada ulasan yang menyebut kebersihan, respons host, dan keakuratan deskrip
 ### 4. Konfirmasi Check-in & Parking
 Tanyakan prosedur check-in (self check-in atau perlu bertemu host?) dan ketersediaan parkir sebelum booking — terutama jika membawa kendaraan.
 
-## KingHouse-Managed Properties di Jakarta Barat
+## Kinghouse-Managed Properties di Jakarta Barat
 
 Bright & Airy Apartment kami di Palmerah dikelola dengan standar hotel: foto profesional, deskripsi akurat, respons 24/7, dan kebersihan terverifikasi. Booking langsung melalui Airbnb untuk harga terbaik.`,
     category: "jabodetabek-guide",
@@ -901,8 +902,8 @@ Bright & Airy Apartment kami di Palmerah dikelola dengan standar hotel: foto pro
     title: "Dari 28% ke 82% Occupancy: Kisah Sukses Rumah di Jagakarsa",
     slug: "kisah-sukses-jagakarsa-occupancy-82-persen",
     excerpt:
-      "Bagaimana sebuah rumah keluarga biasa di Jagakarsa berhasil meraih occupancy 82% dalam 90 hari pertama bersama KingHouse? Ini adalah studi kasus lengkap transformasi listing Airbnb.",
-    content: `Pak Budi mendekati KingHouse dengan frustrasi. Rumah 5 kamarnya di Jagakarsa sudah terdaftar di Airbnb selama 8 bulan — namun occupancy-nya stagnan di 28%, jauh di bawah potensinya.
+      "Bagaimana sebuah rumah keluarga biasa di Jagakarsa berhasil meraih occupancy 82% dalam 90 hari pertama bersama Kinghouse? Ini adalah studi kasus lengkap transformasi listing Airbnb.",
+    content: `Pak Budi mendekati Kinghouse dengan frustrasi. Rumah 5 kamarnya di Jagakarsa sudah terdaftar di Airbnb selama 8 bulan — namun occupancy-nya stagnan di 28%, jauh di bawah potensinya.
 
 ## Masalah yang Ditemukan
 
@@ -928,7 +929,7 @@ Deskripsi baru menyasar segmen keluarga besar, arisan, dan team offsite — leng
 Implementasi dynamic pricing: Rp 1.200.000–1.800.000/malam (weekday vs weekend vs peak holiday). Ini meningkatkan average nightly rate dari Rp 750K ke Rp 1.45 juta.
 
 ### Ongoing: 24/7 Guest Communication
-Tim KingHouse merespons semua inquiry dalam <30 menit, meningkatkan response rate ke 98%.
+Tim Kinghouse merespons semua inquiry dalam <30 menit, meningkatkan response rate ke 98%.
 
 ## Hasil Setelah 90 Hari
 
@@ -937,7 +938,7 @@ Tim KingHouse merespons semua inquiry dalam <30 menit, meningkatkan response rat
 - Average Rating: **4.5 → 4.9**
 - Response Rate: **62% → 98%**
 
-*"Saya tidak menyangka bisa secepat ini. KingHouse benar-benar mengubah cara pandang saya tentang properti sebagai aset."* — Pak Budi, Owner`,
+*"Saya tidak menyangka bisa secepat ini. Kinghouse benar-benar mengubah cara pandang saya tentang properti sebagai aset."* — Pak Budi, Owner`,
     category: "owner-tips",
     publishedAt: "2026-08-18",
     author: AUTHOR_KINGHOUSE,
@@ -998,7 +999,7 @@ Airbnb memberikan ranking istimewa kepada Host dengan response time di bawah 15 
 ### 4. Operasional Turnover & Housekeeping Standar Hotel
 Standar kebersihan adalah faktor penentu ulasan tamu. Pastikan sanitasi berkala, linen hotel premium, dan inspeksi 120-titik sebelum setiap tamu check-in.
 
-> Pelajari lebih lanjut bagaimana KingHouse membantu pemilik aset mengotomasi seluruh operasional melalui [Layanan Manajemen Properti KingHouse](/owner-services).`,
+> Pelajari lebih lanjut bagaimana Kinghouse membantu pemilik aset mengotomasi seluruh operasional melalui [Layanan Manajemen Properti Kinghouse](/owner-services).`,
     category: "revenue-management",
     publishedAt: "2026-08-25",
     author: AUTHOR_KINGHOUSE,
@@ -1049,7 +1050,7 @@ Terletak di kawasan asri Jakarta Selatan, [Versatile House Jagakarsa](/events/ga
 2. **Bawa Katering Langganan:** Nikmati kebebasan memilih menu makanan favorit keluarga tanpa minimum order dari hotel.
 3. **Manfaatkan Pencahayaan Alami:** Gelar akad nikah di pagi hari atau resepsi senja (*sunset ceremony*) untuk hasil foto estetik maksimal.
 
-> Jelajahi paket pricelist lengkap dan unduh brosur resmi di [Halaman Paket Acara & Wedding KingHouse](/events).`,
+> Jelajahi paket pricelist lengkap dan unduh brosur resmi di [Halaman Paket Acara & Wedding Kinghouse](/events).`,
     category: "guest-experience",
     publishedAt: "2026-08-28",
     author: AUTHOR_KINGHOUSE,
@@ -1097,7 +1098,7 @@ Jangan hanya terpaku pada satu platform. Hubungkan kalender reservasi dengan sin
 ### 3. Dukungan Respon Cepat & Self Check-in Digital
 Tamu bisnis kerap tiba pada larut malam setelah penerbangan internasional. Sistem Smart Lock self check-in dipadukan dengan panduan digital berbahasa Inggris/Jepang memastikan pengalaman kedatangan yang mulus tanpa repot.
 
-> Ingin apartemen Anda di Cikarang dikelola dengan sistem revenue management otomatis? [Konsultasikan properti Anda bersama tim KingHouse](/owner-services).`,
+> Ingin apartemen Anda di Cikarang dikelola dengan sistem revenue management otomatis? [Konsultasikan properti Anda bersama tim Kinghouse](/owner-services).`,
     category: "airbnb-seo",
     publishedAt: "2026-08-29",
     author: AUTHOR_KINGHOUSE,
@@ -1122,11 +1123,11 @@ Tamu bisnis kerap tiba pada larut malam setelah penerbangan internasional. Siste
       "Bingung memilih antara mengelola Airbnb sendiri atau menggunakan jasa property management profesional? Simak perbandingan mendalam biaya operasional, efisiensi waktu, dan net profit.",
     content: `Memiliki properti sewa harian adalah bisnis yang sangat menguntungkan, namun operasional hariannya menuntut waktu dan dedikasi penuh. Banyak pemilik properti (*hosts*) memulai dengan mengelola unit mereka sendiri, sebelum akhirnya menyadari bahwa manajemen hospitality memerlukan keahlian multi-disiplin: dari dynamic pricing, marketing SEO, hingga penanganan darurat 24 jam.
 
-Berikut adalah perbandingan objektif antara model **Self-Managed (Kelola Sendiri)** vs **Full-Service Property Management (KingHouse)**.
+Berikut adalah perbandingan objektif antara model **Self-Managed (Kelola Sendiri)** vs **Full-Service Property Management (Kinghouse)**.
 
 ## Perbandingan Komprehensif
 
-| Aspek Operasional | Kelola Sendiri (Self-Managed) | Manajemen Profesional (KingHouse) |
+| Aspek Operasional | Kelola Sendiri (Self-Managed) | Manajemen Profesional (Kinghouse) |
 | :--- | :--- | :--- |
 | **Alokasi Waktu Owner** | 20–35 jam / minggu (chat, komplain, cuci linen, check-in) | **0 jam / minggu (100% Pasif)** |
 | **Strategi Penetapan Harga** | Harga statis atau manual tebak-tebakan | **Algoritma Dynamic Pricing berbasis AI real-time** |
@@ -1140,11 +1141,11 @@ Berikut adalah perbandingan objektif antara model **Self-Managed (Kelola Sendiri
 
 Banyak pemilik khawatir dengan potongan komisi manajemen (15%–20%). Namun secara finansial, **80% dari pendapatan Rp 40 juta jauh lebih besar daripada 100% dari pendapatan Rp 15 juta**.
 
-1. **Lonjakan Okupansi & ADR:** Melalui SEO listing dan dynamic pricing, KingHouse mampu melipatgandakan tingkat hunian properti.
+1. **Lonjakan Okupansi & ADR:** Melalui SEO listing dan dynamic pricing, Kinghouse mampu melipatgandakan tingkat hunian properti.
 2. **Review Positif Berkelanjutan:** Tamu yang puas dengan kebersihan hotel-grade dan concierge 24 jam akan memberikan review bintang 5 yang mendongkrak peringkat Superhost.
 3. **Perawatan Preventif Aset:** Inspeksi rutin memastikan fasilitas AC, pompa air, dan furniture tetap terawat prima tanpa depresiasi berlebihan.
 
-> Hitung potensi pendapatan properti Anda dengan [Kalkulator ROI & Layanan Manajemen KingHouse](/owner-services).`,
+> Hitung potensi pendapatan properti Anda dengan [Kalkulator ROI & Layanan Manajemen Kinghouse](/owner-services).`,
     category: "owner-tips",
     publishedAt: "2026-08-30",
     author: AUTHOR_KINGHOUSE,
@@ -1184,9 +1185,9 @@ Jakarta Selatan, khususnya kawasan hijau Jagakarsa dan Cilandak, menyimpan sejum
 - **Dapur Lengkap (Fully Equipped Kitchen):** Tersedia kulkas besar, kompor, microwave, dan alat makan lengkap untuk memasak bersama atau mengadakan pesta BBQ.
 - **Area Parkir Luas:** Keamanan 24 jam dan ruang parkir yang memadai untuk beberapa kendaraan keluarga.
 
-Koleksi properti seperti [Versatile House Jagakarsa](/locations/jagakarsa/villas/versatile-house-jagakarsa) dan [Katalog Lengkap Villa KingHouse](/villas) dirancang untuk memberikan standar hospitality hotel bintang 5 dengan kehangatan rumah pribadi.
+Koleksi properti seperti [Versatile House Jagakarsa](/locations/jagakarsa/villas/versatile-house-jagakarsa) dan [Katalog Lengkap Villa Kinghouse](/villas) dirancang untuk memberikan standar hospitality hotel bintang 5 dengan kehangatan rumah pribadi.
 
-> Temukan pilihan villa impian Anda dan lakukan reservasi instan melalui [Portal Katalog Villa KingHouse](/villas).`,
+> Temukan pilihan villa impian Anda dan lakukan reservasi instan melalui [Portal Katalog Villa Kinghouse](/villas).`,
     category: "jabodetabek-guide",
     publishedAt: "2026-08-31",
     author: AUTHOR_KINGHOUSE,
@@ -1409,7 +1410,7 @@ export const VILLA_EVENTS: VillaEvent[] = [
           "Full property & event access + overnight accommodation for 15 guests",
           "5 to 6 private bedrooms with hotel-grade linens",
           "Swimming pool & private garden access throughout the stay",
-          "Dedicated KingHouse day-of coordination contact",
+          "Dedicated Kinghouse day-of coordination contact",
           "Kitchen facilities for family dining & morning coffee",
           "Zero corkage fee for outside catering",
           "Free parking for multiple vehicles",

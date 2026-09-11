@@ -7,9 +7,9 @@ import { SITE_CONFIG } from "@/lib/constants"
 export const revalidate = 120
 
 export const metadata: Metadata = {
-  title: "Blog & Hospitality Insights | KingHouse",
+  title: "Blog & Hospitality Insights | Kinghouse",
   description:
-    "Panduan strategi Airbnb, SEO listing, optimasi okupansi, dan analisis pasar sewa properti jangka pendek di Jabodetabek bersama KingHouse.",
+    "Panduan strategi Airbnb, SEO listing, optimasi okupansi, dan analisis pasar sewa properti jangka pendek di Jabodetabek bersama Kinghouse.",
   keywords: [
     "Kinghouse Management blog",
     "King House Management",
@@ -22,9 +22,9 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/blog" },
   openGraph: {
-    title: "Blog & Hospitality Insights | KingHouse",
+    title: "Blog & Hospitality Insights | Kinghouse",
     description:
-      "Panduan strategi Airbnb, SEO listing, optimasi okupansi, dan analisis pasar sewa properti jangka pendek di Jabodetabek bersama KingHouse.",
+      "Panduan strategi Airbnb, SEO listing, optimasi okupansi, dan analisis pasar sewa properti jangka pendek di Jabodetabek bersama Kinghouse.",
     url: "/blog",
     type: "website",
   },
@@ -77,7 +77,7 @@ export default async function BlogPage() {
               <BookOpen className="h-4 w-4 text-[#A69C8E]" />
             </div>
             <span className="text-xs font-semibold uppercase tracking-[0.15em] text-[#A69C8E]">
-              KingHouse Journal
+              Kinghouse Journal
             </span>
           </div>
           <div className="max-w-3xl">
@@ -87,7 +87,7 @@ export default async function BlogPage() {
               <span className="text-[#A69C8E]">for Jabodetabek Properties</span>
             </h1>
             <p className="text-base sm:text-lg text-[#717171] font-light leading-relaxed max-w-xl">
-              Airbnb algorithms, regional market analyses, and operational guides from the KingHouse team to maximize your property yields.
+              Airbnb algorithms, regional market analyses, and operational guides from the Kinghouse team to maximize your property yields.
             </p>
           </div>
 
@@ -123,10 +123,10 @@ export default async function BlogPage() {
             Ready to Maximize Your Property Yields?
           </h2>
           <p className="text-[#A69C8E] text-sm mb-8 max-w-md mx-auto">
-            Consult with KingHouse asset managers regarding your Airbnb listing. Zero commitment, complimentary audit.
+            Consult with Kinghouse asset managers regarding your Airbnb listing. Zero commitment, complimentary audit.
           </p>
           <a
-            href="https://wa.me/6282123933218?text=Hello%20KingHouse!%20I%20would%20like%20a%20consultation%20regarding%20my%20Airbnb%20property%20management."
+            href="https://wa.me/6282123933218?text=Hello%20Kinghouse!%20I%20would%20like%20a%20consultation%20regarding%20my%20Airbnb%20property%20management."
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center space-x-2 bg-white text-[#222222] px-8 py-3 rounded-full text-sm font-semibold hover:bg-[#F5F4F0] transition-colors"

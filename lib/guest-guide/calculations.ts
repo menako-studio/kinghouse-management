@@ -60,7 +60,7 @@ export function generateUpsellWhatsAppUrl(
     maximumFractionDigits: 0,
   }).format(order.totalAmountIdr)
 
-  let text = `Halo Concierge KingHouse! 🛎️\n\n`
+  let text = `Halo Concierge Kinghouse! 🛎️\n\n`
   text += `Saya ingin memesan *In-Stay Add-On Services* untuk penginapan saya:\n`
   text += `🏡 *Properti:* ${propertyName}\n`
   if (guestName.trim()) {

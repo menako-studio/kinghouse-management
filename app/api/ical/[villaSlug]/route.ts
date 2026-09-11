@@ -85,7 +85,7 @@ export async function GET(
       `DTSTAMP:${timestamp}`,
       `DTSTART;VALUE=DATE:${dtStart}`,
       `DTEND;VALUE=DATE:${dtEnd}`,
-      `SUMMARY:Reserved - KingHouse (${res.channel})`,
+      `SUMMARY:Reserved - Kinghouse (${res.channel})`,
       `DESCRIPTION:Channel: ${res.channel} | Stay for ${res.guests} guests | Booking Ref: ${res.id}`,
       "STATUS:CONFIRMED",
       "TRANSP:OPAQUE",

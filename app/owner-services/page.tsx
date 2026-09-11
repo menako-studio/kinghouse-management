@@ -9,9 +9,9 @@ import { OnboardingTimeline } from "@/components/owner/onboarding-timeline"
 import { LeadAuditForm } from "@/components/owner/lead-audit-form"
 
 export const metadata = {
-  title: "Property Management & Owner Services | KingHouse",
+  title: "Property Management & Owner Services | Kinghouse",
   description:
-    "Institutional villa asset management, dynamic yield optimization, and transparent 15%–20% fee structures. Maximize your property EBITDA with KingHouse.",
+    "Institutional villa asset management, dynamic yield optimization, and transparent 15%–20% fee structures. Maximize your property EBITDA with Kinghouse.",
   alternates: {
     canonical: "/owner-services",
   },
@@ -95,7 +95,7 @@ export default function OwnerServicesPage() {
         </div>
       </section>
 
-      {/* 2. The KingHouse Advantage (4-Column Value Props Grid) */}
+      {/* 2. The Kinghouse Advantage (4-Column Value Props Grid) */}
       <ValuePropsGrid />
 
       {/* 3. Tiered Management Models & Pricing Table */}

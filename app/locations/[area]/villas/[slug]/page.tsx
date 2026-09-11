@@ -102,7 +102,7 @@ export default async function VillaDetailPage({ params }: PageProps) {
         name: "How do I reserve this property?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: `This property is available for instant booking via Airbnb at ${villa.airbnbUrl}. You can also connect with the KingHouse WhatsApp concierge for direct assistance.`,
+          text: `This property is available for instant booking via Airbnb at ${villa.airbnbUrl}. You can also connect with the Kinghouse WhatsApp concierge for direct assistance.`,
         },
       },
       {
@@ -208,7 +208,7 @@ export default async function VillaDetailPage({ params }: PageProps) {
             <div className="flex items-center justify-between pb-8 border-b border-[#EBEBEB]">
               <div className="space-y-1">
                 <h2 className="font-serif text-2xl text-[#222222]">
-                  {PROPERTY_TYPE_LABELS[villa.propertyType] ?? "Property"} — Managed by KingHouse
+                  {PROPERTY_TYPE_LABELS[villa.propertyType] ?? "Property"} — Managed by Kinghouse
                 </h2>
                 <div className="flex items-center space-x-4 text-xs sm:text-sm text-[#717171]">
                   <span>{villa.capacity.guests} Guests</span>
@@ -249,7 +249,7 @@ export default async function VillaDetailPage({ params }: PageProps) {
                 <ShieldCheck className="h-5 w-5 text-[#A69C8E]" />
               </div>
               <div className="space-y-1">
-                <h4 className="text-sm font-semibold text-[#222222]">KingHouse Superhost Standard</h4>
+                <h4 className="text-sm font-semibold text-[#222222]">Kinghouse Superhost Standard</h4>
                 <p className="text-xs text-[#717171] leading-relaxed">
                   Every stay includes daily housekeeping, linen changes, private butler service on demand, and 24/7 WhatsApp concierge backing.
                 </p>

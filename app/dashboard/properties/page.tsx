@@ -230,7 +230,7 @@ export default function DashboardPropertiesPage() {
 
             <div className="space-y-4 pt-4 text-xs text-[#555] leading-relaxed">
               <p className="font-medium text-[#222225]">
-                Ikuti 3 langkah mudah ini untuk menghubungkan kalender KingHouse ke akun Airbnb Anda agar tidak terjadi double-booking:
+                Ikuti 3 langkah mudah ini untuk menghubungkan kalender Kinghouse ke akun Airbnb Anda agar tidak terjadi double-booking:
               </p>
 
               <div className="space-y-3">
@@ -260,7 +260,7 @@ export default function DashboardPropertiesPage() {
                   </span>
                   <div>
                     <strong className="text-[#222225] block">Paste Link & Simpan</strong>
-                    <span>Tempelkan URL link iCal yang tadi disalin, beri nama &quot;KingHouse Direct Sync&quot;, lalu klik <strong>Import Calendar</strong>. Selesai!</span>
+                    <span>Tempelkan URL link iCal yang tadi disalin, beri nama &quot;Kinghouse Direct Sync&quot;, lalu klik <strong>Import Calendar</strong>. Selesai!</span>
                   </div>
                 </div>
               </div>

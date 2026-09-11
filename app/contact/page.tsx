@@ -43,7 +43,7 @@ export default function ContactPage() {
               Direct Communication Desk
             </span>
             <h1 className="font-serif text-4xl sm:text-6xl text-[#222222] font-normal leading-[1.1]">
-              Get in Touch with KingHouse
+              Get in Touch with Kinghouse
             </h1>
             <p className="text-base sm:text-lg text-[#717171] font-light leading-relaxed">
               Whether you are planning an architectural escape or seeking high-yield management for your luxury villa asset, our team is at your disposal.
@@ -80,7 +80,7 @@ export default function ContactPage() {
                 </div>
                 <Button asChild className="w-full text-xs uppercase tracking-wider font-semibold">
                   <a
-                    href="https://wa.me/6282123933218?text=Hello%20KingHouse%2C%20I%20would%20like%20to%20inquire%20about%20your%20services."
+                    href="https://wa.me/6282123933218?text=Hello%20Kinghouse%2C%20I%20would%20like%20to%20inquire%20about%20your%20services."
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => trackWhatsAppClick({ source: "contact_page", context: "instant_concierge" })}
@@ -145,7 +145,7 @@ export default function ContactPage() {
                     </div>
                     <h3 className="font-serif text-2xl text-[#222222]">Message Dispatched</h3>
                     <p className="text-xs text-[#717171] max-w-sm mx-auto">
-                      Thank you for contacting KingHouse. Our hospitality concierge or senior asset manager will follow up shortly.
+                      Thank you for contacting Kinghouse. Our hospitality concierge or senior asset manager will follow up shortly.
                     </p>
                     <Button variant="outline" size="sm" onClick={() => setSubmitted(false)}>
                       Send Another Message

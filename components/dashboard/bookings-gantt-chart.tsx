@@ -350,7 +350,7 @@ export function BookingsGanttChart({ reservations }: BookingsGanttChartProps) {
                 </span>
               </div>
               <div className="flex justify-between text-stone-400">
-                <span>Komisi KingHouse ({selectedRes.managementFeePercent}%)</span>
+                <span>Komisi Kinghouse ({selectedRes.managementFeePercent}%)</span>
                 <span className="font-mono text-amber-400">
                   - {formatCurrency(selectedRes.managementFeeIdr)}
                 </span>

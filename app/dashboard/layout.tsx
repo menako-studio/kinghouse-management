@@ -5,8 +5,8 @@ import { DashboardHeader } from "@/components/dashboard/dashboard-header"
 import { getAdminSession } from "@/lib/auth-server"
 
 export const metadata: Metadata = {
-  title: "CMS Dashboard — KingHouse Property Management",
-  description: "Enterprise multi-channel CMS dashboard & SEO management platform for KingHouse properties.",
+  title: "CMS Dashboard — Kinghouse Property Management",
+  description: "Enterprise multi-channel CMS dashboard & SEO management platform for Kinghouse properties.",
   robots: {
     index: false,
     follow: false,

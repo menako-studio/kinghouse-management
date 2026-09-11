@@ -16,7 +16,7 @@ export function mapRowToBlogPost(row: any): BlogPost & { status: string; seoScor
     category: row.category,
     heroImage: row.cover_image || "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
     author: {
-      name: row.author_name || "KingHouse Hospitality",
+      name: row.author_name || "Kinghouse Hospitality",
       avatar: row.author_avatar || "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
       role: "Property Management Specialist",
     },

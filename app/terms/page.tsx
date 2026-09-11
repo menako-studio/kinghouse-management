@@ -48,7 +48,7 @@ export default function TermsPage() {
                 1. Acceptance of Terms & Scope of Services
               </h2>
               <p className="text-sm">
-                These Terms and Conditions (&ldquo;Terms&rdquo;) constitute a legally binding agreement between you (&ldquo;Guest&rdquo;, &ldquo;Owner&rdquo;, or &ldquo;User&rdquo;) and <strong>PT Kreasi Usman Gosse</strong> operating as <strong>KingHouse Hospitality & Property Management</strong> (&ldquo;KingHouse&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;). By accessing our website, booking a stay, reserving an event venue, or entering into an asset management agreement, you expressly agree to abide by these Terms.
+                These Terms and Conditions (&ldquo;Terms&rdquo;) constitute a legally binding agreement between you (&ldquo;Guest&rdquo;, &ldquo;Owner&rdquo;, or &ldquo;User&rdquo;) and <strong>PT Kreasi Usman Gosse</strong> operating as <strong>Kinghouse Hospitality & Property Management</strong> (&ldquo;Kinghouse&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;). By accessing our website, booking a stay, reserving an event venue, or entering into an asset management agreement, you expressly agree to abide by these Terms.
               </p>
             </div>
 
@@ -59,10 +59,10 @@ export default function TermsPage() {
               </h2>
               <ul className="list-disc pl-5 text-sm space-y-2">
                 <li>
-                  <strong>Booking Confirmation:</strong> Reservations made directly through KingHouse require full payment or an agreed deposit before confirmation vouchers and smart keypad access codes are issued.
+                  <strong>Booking Confirmation:</strong> Reservations made directly through Kinghouse require full payment or an agreed deposit before confirmation vouchers and smart keypad access codes are issued.
                 </li>
                 <li>
-                  <strong>Third-Party Portals (Airbnb, Booking.com):</strong> Bookings made through external online travel agencies remain subject to their respective terms alongside KingHouse house rules.
+                  <strong>Third-Party Portals (Airbnb, Booking.com):</strong> Bookings made through external online travel agencies remain subject to their respective terms alongside Kinghouse house rules.
                 </li>
                 <li>
                   <strong>Check-in and Check-out:</strong> Check-in commences at 14:00 (2:00 PM) Western Indonesia Time (WIB) and check-out is strictly at 12:00 PM (noon). Early arrivals or late departures are subject to availability and supplementary fees.
@@ -107,11 +107,11 @@ export default function TermsPage() {
                 5. Property Owner Asset Management Provisions
               </h2>
               <p className="text-sm mb-3">
-                For property owners entrusting estates or apartments to KingHouse:
+                For property owners entrusting estates or apartments to Kinghouse:
               </p>
               <ul className="list-disc pl-5 text-sm space-y-2">
                 <li>
-                  <strong>Management Commission:</strong> KingHouse deducts an agreed management commission (15% Standard or 20% Premium) from gross booking revenue, as defined in the bespoke Asset Management Schedule.
+                  <strong>Management Commission:</strong> Kinghouse deducts an agreed management commission (15% Standard or 20% Premium) from gross booking revenue, as defined in the bespoke Asset Management Schedule.
                 </li>
                 <li>
                   <strong>Monthly Statements & Disbursements:</strong> Revenue statements and disbursements are issued on or before the 5th of every calendar month following audited ledger reconciliation.
@@ -128,7 +128,7 @@ export default function TermsPage() {
                 6. Limitation of Liability & Force Majeure
               </h2>
               <p className="text-sm">
-                KingHouse Hospitality Management shall not be held liable for personal injury, theft, loss of personal effects, or disruptions caused by events beyond reasonable control (including acts of nature, municipal utility interruptions, government restrictions, or force majeure). Guests are encouraged to maintain comprehensive travel and personal property insurance.
+                Kinghouse Hospitality Management shall not be held liable for personal injury, theft, loss of personal effects, or disruptions caused by events beyond reasonable control (including acts of nature, municipal utility interruptions, government restrictions, or force majeure). Guests are encouraged to maintain comprehensive travel and personal property insurance.
               </p>
             </div>
 

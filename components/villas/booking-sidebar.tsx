@@ -32,7 +32,7 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
   const estimatedTotal = baseTotal + cleaningFee + serviceFee
 
   const whatsappMessage = encodeURIComponent(
-    `Hello KingHouse! I am interested in booking ${villa.name} in ${villa.area} for ${nights} nights (${checkIn} to ${checkOut}) for ${guestCount} guests. Please share availability and details.`
+    `Hello Kinghouse! I am interested in booking ${villa.name} in ${villa.area} for ${nights} nights (${checkIn} to ${checkOut}) for ${guestCount} guests. Please share availability and details.`
   )
   const whatsappUrl = `https://wa.me/6282123933218?text=${whatsappMessage}`
 
@@ -232,7 +232,7 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
         </div>
         <div className="flex items-center space-x-2">
           <Sparkles className="h-4 w-4 text-[#B8934C]" />
-          <span>KingHouse dedicated on-site butler & daily housekeeping</span>
+          <span>Kinghouse dedicated on-site butler & daily housekeeping</span>
         </div>
       </div>
     </div>

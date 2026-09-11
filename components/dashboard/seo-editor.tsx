@@ -22,11 +22,11 @@ export function SeoEditor() {
 
   // Local state per property
   const [metaTitle, setMetaTitle] = useState<string>(
-    currentVilla.seoMeta?.metaTitle || `${currentVilla.name} — ${currentVilla.area} | KingHouse`
+    currentVilla.seoMeta?.metaTitle || `${currentVilla.name} — ${currentVilla.area} | Kinghouse`
   )
   const [metaDescription, setMetaDescription] = useState<string>(
     currentVilla.seoMeta?.metaDescription ||
-      `${currentVilla.editorialDescription.lead} Professionally managed by KingHouse on Airbnb.`
+      `${currentVilla.editorialDescription.lead} Professionally managed by Kinghouse on Airbnb.`
   )
   const [focusKeyword, setFocusKeyword] = useState<string>(
     currentVilla.seoMeta?.focusKeyword || `airbnb ${currentVilla.areaSlug}`
@@ -39,10 +39,10 @@ export function SeoEditor() {
   // Switch property handler
   const handleSelectProperty = (villa: Villa) => {
     setSelectedVillaId(villa.id)
-    setMetaTitle(villa.seoMeta?.metaTitle || `${villa.name} — ${villa.area} | KingHouse`)
+    setMetaTitle(villa.seoMeta?.metaTitle || `${villa.name} — ${villa.area} | Kinghouse`)
     setMetaDescription(
       villa.seoMeta?.metaDescription ||
-        `${villa.editorialDescription.lead} Professionally managed by KingHouse on Airbnb.`
+        `${villa.editorialDescription.lead} Professionally managed by Kinghouse on Airbnb.`
     )
     setFocusKeyword(villa.seoMeta?.focusKeyword || `airbnb ${villa.areaSlug}`)
     setCanonicalUrl(`https://www.kinghousemanagement.com/locations/${villa.areaSlug}/villas/${villa.slug}`)
@@ -231,7 +231,7 @@ export function SeoEditor() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-4 flex flex-col justify-end">
                   <span className="text-[10px] uppercase font-bold tracking-widest text-[#D4B896]">
-                    KingHouse Curated Property &bull; {currentVilla.area}
+                    Kinghouse Curated Property &bull; {currentVilla.area}
                   </span>
                   <p className="text-sm font-semibold text-white truncate">
                     {metaTitle}
@@ -317,7 +317,7 @@ export function SeoEditor() {
               </h4>
             </div>
             <p className="text-xs text-[#717171] leading-relaxed">
-              Listings utilizing the KingHouse editorial framework demonstrate average impression gains of
+              Listings utilizing the Kinghouse editorial framework demonstrate average impression gains of
               <strong className="text-[#222222]"> +280% </strong> on Airbnb search and up to
               <strong className="text-[#222222]"> 3x booking conversion lift </strong> within the first 60 days.
             </p>

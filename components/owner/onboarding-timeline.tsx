@@ -20,7 +20,7 @@ const ONBOARDING_STEPS = [
     title: "Media Production & Staff Protocol Onboarding",
     duration: "Day 4 – 10",
     description:
-      "Our creative crew captures architectural photography, video reels, and 3D floorplans while our hospitality operations team trains staff to KingHouse 5-star standards.",
+      "Our creative crew captures architectural photography, video reels, and 3D floorplans while our hospitality operations team trains staff to Kinghouse 5-star standards.",
     deliverables: [
       "Editorial photography & drone videography",
       "Standard Operating Procedures (SOP) deployment",
@@ -33,7 +33,7 @@ const ONBOARDING_STEPS = [
     title: "Global Syndication & Revenue Launch",
     duration: "Day 11 – 14",
     description:
-      "Your property goes live on Airbnb Superhost networks, VRBO, Booking.com, and KingHouse editorial channels with algorithmic dynamic pricing active immediately.",
+      "Your property goes live on Airbnb Superhost networks, VRBO, Booking.com, and Kinghouse editorial channels with algorithmic dynamic pricing active immediately.",
     deliverables: [
       "Instant multi-channel listing deployment",
       "24/7 guest communication activation",

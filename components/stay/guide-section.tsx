@@ -197,7 +197,7 @@ export function GuideSection({
               Peraturan & Ketentuan Menginap (House Rules)
             </h4>
             <span className="text-[11px] font-semibold text-amber-400/90 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">
-              KingHouse Hospitality Standard
+              Kinghouse Hospitality Standard
             </span>
           </div>
 

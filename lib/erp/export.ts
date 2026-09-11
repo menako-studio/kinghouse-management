@@ -304,7 +304,7 @@ export function printOwnerStatement(statement: OwnerStatement): void {
       <div class="signatures">
         <div class="sign-box">
           <div>Disiapkan Oleh,</div>
-          <div><strong>KingHouse Operations</strong></div>
+          <div><strong>Kinghouse Operations</strong></div>
           <div class="sign-line"></div>
           <div style="margin-top: 4px; font-size: 11px; color: #717171;">Finance & Asset Manager</div>
         </div>
@@ -317,7 +317,7 @@ export function printOwnerStatement(statement: OwnerStatement): void {
       </div>
 
       <div class="footer">
-        <div>Dicetak otomatis melalui KingHouse Hospitality CMS Platform &bull; kinghousemanagement.com</div>
+        <div>Dicetak otomatis melalui Kinghouse Hospitality CMS Platform &bull; kinghousemanagement.com</div>
         <div>Dokumen Resmi &bull; Generated: ${new Date(statement.generatedAt).toLocaleString("id-ID")}</div>
       </div>
 

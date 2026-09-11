@@ -2,7 +2,7 @@ import { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "CMS Portal Login | Kinghouse Management",
-  description: "Secure administrative login portal for KingHouse Hospitality Suite.",
+  description: "Secure administrative login portal for Kinghouse Hospitality Suite.",
   robots: {
     index: false,
     follow: false,

@@ -5,7 +5,7 @@ import { TrustSocialProof } from "@/components/home/trust-social-proof"
 import { DualPathSplit } from "@/components/home/dual-path-split"
 
 export const metadata = {
-  title: "KingHouse — Curated Villas, Managed to Perfection",
+  title: "Kinghouse — Curated Villas, Managed to Perfection",
   description:
     "Experience curated vacation retreats in Jabodetabek with seamless Airbnb booking and institutional-grade property asset management for owners.",
   alternates: {

@@ -24,11 +24,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const post = await getBlogPostBySlug(slug)
 
   if (!post) {
-    return { title: "Article Not Found | KingHouse" }
+    return { title: "Article Not Found | Kinghouse" }
   }
 
   return {
-    title: `${post.title} | KingHouse Blog`,
+    title: `${post.title} | Kinghouse Blog`,
     description: post.excerpt,
     keywords: post.seoKeywords,
     alternates: { canonical: `/blog/${post.slug}` },
@@ -96,7 +96,7 @@ function renderContent(content: string) {
     else if (line.startsWith("![") && line.includes("](") && line.endsWith(")")) {
       const match = line.match(/^!\[(.*?)\]\((.*?)\)$/)
       if (match) {
-        const altText = match[1] || "KingHouse Hospitality Visual"
+        const altText = match[1] || "Kinghouse Hospitality Visual"
         const imageUrl = match[2]
         elements.push(
           <figure key={`img-${i}`} className="my-8 rounded-3xl overflow-hidden border border-[#E8E4DC] bg-[#FAF8F5] p-2 space-y-2 shadow-xs">
@@ -315,13 +315,13 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className="mx-auto max-w-4xl px-6 lg:px-12">
           <div className="rounded-3xl bg-[#222222] p-10 sm:p-14 text-center">
             <h2 className="font-serif text-3xl sm:text-4xl text-white mb-3">
-              Optimize Your Property with KingHouse
+              Optimize Your Property with Kinghouse
             </h2>
             <p className="text-[#A69C8E] text-sm mb-8 max-w-sm mx-auto">
               Complimentary asset audit for villas and apartments across Greater Jakarta.
             </p>
             <a
-              href="https://wa.me/6282123933218?text=Hello%20KingHouse!%20I%20read%20your%20journal%20article%20and%20would%20like%20a%20consultation%20for%20my%20property."
+              href="https://wa.me/6282123933218?text=Hello%20Kinghouse!%20I%20read%20your%20journal%20article%20and%20would%20like%20a%20consultation%20for%20my%20property."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 bg-white text-[#222222] px-8 py-3 rounded-full text-sm font-semibold hover:bg-[#F5F4F0] transition-colors"

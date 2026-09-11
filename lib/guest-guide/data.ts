@@ -114,7 +114,7 @@ export const GUEST_COMPENDIUMS: Record<string, GuestCompendium> = {
         icon: "Tv",
         instructions: [
           "Nyalakan TV dengan remote hitam Samsung.",
-          "Profil 'Guest KingHouse' sudah login otomatis untuk Netflix & YouTube Premium 4K.",
+          "Profil 'Guest Kinghouse' sudah login otomatis untuk Netflix & YouTube Premium 4K.",
         ],
       },
       {

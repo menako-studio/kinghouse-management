@@ -91,7 +91,7 @@ export default async function EventDetailPage({ params }: PageProps) {
 
 
   const whatsappText = encodeURIComponent(
-    `Hello KingHouse! I am interested in the "${event.title}" package at ${event.propertyName}. Could you please provide date availability and package details?`
+    `Hello Kinghouse! I am interested in the "${event.title}" package at ${event.propertyName}. Could you please provide date availability and package details?`
   )
 
   return (

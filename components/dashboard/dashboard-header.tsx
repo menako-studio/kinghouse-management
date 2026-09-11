@@ -105,7 +105,7 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
             href="/dashboard"
             className="font-medium text-[#6B6862] hover:text-[#222225] transition-colors"
           >
-            KingHouse CMS
+            Kinghouse CMS
           </Link>
           <ChevronRight className="h-3.5 w-3.5 text-[#B8934C]" />
           <span className="font-semibold text-[#222225] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E8E4DC] text-[11px] tracking-wide">
@@ -382,7 +382,7 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
                     Admin Profile & Credentials
                   </h3>
                   <p className="text-xs text-[#DFC58E]">
-                    KingHouse Hospitality Asset Management Suite
+                    Kinghouse Hospitality Asset Management Suite
                   </p>
                 </div>
               </div>

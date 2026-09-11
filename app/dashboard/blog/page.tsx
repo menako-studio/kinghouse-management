@@ -166,7 +166,7 @@ export default function DashboardBlogPage() {
   const [formTitle, setFormTitle] = useState("")
   const [formSlug, setFormSlug] = useState("")
   const [formCategory, setFormCategory] = useState("Owner Tips")
-  const [formAuthorName, setFormAuthorName] = useState("KingHouse Editorial")
+  const [formAuthorName, setFormAuthorName] = useState("Kinghouse Editorial")
   const [formAuthorRole, setFormAuthorRole] = useState("Hospitality Asset Manager")
   const [formExcerpt, setFormExcerpt] = useState("")
   const [formContent, setFormContent] = useState("")
@@ -212,7 +212,7 @@ export default function DashboardBlogPage() {
               ? "Guest Experience"
               : "Jabodetabek Guide",
           author: p.author || {
-            name: "KingHouse Editorial",
+            name: "Kinghouse Editorial",
             role: "Hospitality Asset Manager",
             avatar: "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
           },
@@ -342,7 +342,7 @@ export default function DashboardBlogPage() {
   // Insert Internal Villa Link Helper
   const insertVillaLink = (villaSlug: string, villaName: string) => {
     const linkText = `[Lihat detail ${villaName}](/villas/${villaSlug})`
-    insertMarkdownSyntax(`\n\n> 🏡 **Rekomendasi KingHouse**: `, `${linkText}\n\n`)
+    insertMarkdownSyntax(`\n\n> 🏡 **Rekomendasi Kinghouse**: `, `${linkText}\n\n`)
     showToast("Internal Link Disisipkan!", `Tautan ke ${villaName} ditambahkan untuk meningkatkan SEO Topical Authority.`, "info")
   }
 
@@ -351,7 +351,7 @@ export default function DashboardBlogPage() {
     const targetUrl = imagePickerTab === "presets" ? selectedPresetImage : customImageUrl.trim()
     if (!targetUrl) return
 
-    const alt = imageAltText.trim() || formTitle || "Visual KingHouse Hospitality"
+    const alt = imageAltText.trim() || formTitle || "Visual Kinghouse Hospitality"
     const markdownImage = `\n\n![${alt}](${targetUrl})\n\n`
 
     const textarea = contentTextareaRef.current
@@ -376,12 +376,12 @@ export default function DashboardBlogPage() {
     setFormTitle("")
     setFormSlug("")
     setFormCategory("Owner Tips")
-    setFormAuthorName("KingHouse Editorial")
+    setFormAuthorName("Kinghouse Editorial")
     setFormAuthorRole("Hospitality Asset Manager")
     setFormExcerpt("")
     setFormFocusKeyword("sewa villa jagakarsa")
     setFormContent(
-      "## Mengapa Pasar Hospitality di Jabodetabek Terus Bertumbuh\n\nPermintaan sewa villa keluarga dan staycation di area Jabodetabek mengalami lonjakan signifikan sepanjang tahun 2026.\n\n![Kolam renang dan taman luas private villa Jagakarsa](/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg)\n\n### 3 Faktor Utama Pendorong Okupansi Tinggi\n\n- **Kualitas Fasilitas & Kebersihan Hotel**: Tamu modern mendambakan standar linen dan AC prima.\n- **Konektivitas OTA 2-Arah**: Kalender sinkron tanpa double-booking.\n- **Topical SEO & Google Map Presence**: Listing yang mudah ditemukan di Google Organik.\n\n> 🏡 **Rekomendasi KingHouse**: [Lihat detail Versatile House Jagakarsa](/villas/versatile-house-jagakarsa) untuk inspirasi tata kelola aset premium."
+      "## Mengapa Pasar Hospitality di Jabodetabek Terus Bertumbuh\n\nPermintaan sewa villa keluarga dan staycation di area Jabodetabek mengalami lonjakan signifikan sepanjang tahun 2026.\n\n![Kolam renang dan taman luas private villa Jagakarsa](/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg)\n\n### 3 Faktor Utama Pendorong Okupansi Tinggi\n\n- **Kualitas Fasilitas & Kebersihan Hotel**: Tamu modern mendambakan standar linen dan AC prima.\n- **Konektivitas OTA 2-Arah**: Kalender sinkron tanpa double-booking.\n- **Topical SEO & Google Map Presence**: Listing yang mudah ditemukan di Google Organik.\n\n> 🏡 **Rekomendasi Kinghouse**: [Lihat detail Versatile House Jagakarsa](/villas/versatile-house-jagakarsa) untuk inspirasi tata kelola aset premium."
     )
     setFormHeroImage(IMAGE_PRESETS[0].url)
     setFormKeywords("sewa villa jagakarsa, airbnb superhost, tips properti, yield manajemen")
@@ -433,7 +433,7 @@ export default function DashboardBlogPage() {
       excerpt: formExcerpt || formContent.slice(0, 140) + "...",
       content: formContent,
       heroImage: formHeroImage,
-      authorName: formAuthorName || "KingHouse Editorial",
+      authorName: formAuthorName || "Kinghouse Editorial",
       authorRole: formAuthorRole || "Hospitality Asset Manager",
       tags: [formCategory.toLowerCase().replace(/\s+/g, "-")],
       seoKeywords: rawKeywords,
@@ -1322,7 +1322,7 @@ export default function DashboardBlogPage() {
                           <span className="truncate">https://www.kinghousemanagement.com/blog/{formSlug || "artikel"}</span>
                         </div>
                         <p className="font-semibold text-blue-700 text-sm hover:underline line-clamp-1">
-                          {formTitle || "Judul Artikel KingHouse"}
+                          {formTitle || "Judul Artikel Kinghouse"}
                         </p>
                         <p className="text-[11px] text-[#555] line-clamp-2 leading-relaxed">
                           {formExcerpt || "Ringkasan artikel Anda akan muncul di sini sebagai cuplikan hasil pencarian Google..."}
@@ -1373,7 +1373,7 @@ export default function DashboardBlogPage() {
                           {seoChecklist.hasInternalLink ? <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0" /> : <AlertCircle className="h-5 w-5 text-amber-600 shrink-0" />}
                           <div>
                             <strong className="block font-semibold">Tautan Internal (Internal Link)</strong>
-                            <span className="text-[11px] opacity-85">Tautkan ke salah satu listing properti KingHouse.</span>
+                            <span className="text-[11px] opacity-85">Tautkan ke salah satu listing properti Kinghouse.</span>
                           </div>
                         </div>
 

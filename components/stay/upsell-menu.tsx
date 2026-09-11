@@ -113,7 +113,7 @@ export function UpsellMenu({
             Layanan & Fasilitas Tambahan
           </h3>
           <p className="text-sm text-stone-400 mt-1">
-            Pesan langsung ke tim operasional KingHouse via WhatsApp tanpa biaya platform.
+            Pesan langsung ke tim operasional Kinghouse via WhatsApp tanpa biaya platform.
           </p>
         </div>
       </div>

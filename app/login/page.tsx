@@ -56,7 +56,7 @@ function LoginForm() {
         return
       }
 
-      setSuccessMessage("Identity verified. Initializing KingHouse CMS Suite...")
+      setSuccessMessage("Identity verified. Initializing Kinghouse CMS Suite...")
 
       setTimeout(() => {
         router.push(callbackUrl)
@@ -70,7 +70,7 @@ function LoginForm() {
 
   return (
     <div className="relative min-h-screen bg-[#19191B] text-white flex flex-col justify-between overflow-hidden selection:bg-[#B8934C] selection:text-[#19191B]">
-      {/* Brand Ambient Glow Lighting Orbs (KingHouse Gold & Khaki Palette) */}
+      {/* Brand Ambient Glow Lighting Orbs (Kinghouse Gold & Khaki Palette) */}
       <div className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] rounded-full bg-gradient-to-br from-[#B8934C]/15 via-[#8C7F5F]/15 to-transparent blur-[120px] pointer-events-none animate-sana-glow" />
       <div className="absolute bottom-[-15%] right-[15%] w-[600px] h-[600px] rounded-full bg-gradient-to-tl from-[#DFC58E]/10 via-[#28282B]/30 to-transparent blur-[140px] pointer-events-none animate-sana-float" />
       <div className="absolute top-[40%] right-[-5%] w-[350px] h-[350px] rounded-full bg-[#8C7F5F]/10 blur-[100px] pointer-events-none" />
@@ -86,7 +86,7 @@ function LoginForm() {
           </div>
           <div className="flex flex-col">
             <span className="text-lg font-semibold tracking-tight text-white group-hover:text-[#DFC58E] transition-colors">
-              KingHouse
+              Kinghouse
             </span>
             <span className="text-[8px] uppercase tracking-[0.25em] text-[#DFC58E] -mt-1 font-medium">
               Hospitality Portal
@@ -242,14 +242,14 @@ function LoginForm() {
           {/* Footer Security Badge */}
           <div className="mt-6 flex items-center justify-center space-x-2 text-[11px] text-white/50 text-center">
             <Fingerprint className="h-3.5 w-3.5 text-[#DFC58E]" />
-            <span>KingHouse Hospitality Group &bull; Secure HMAC-SHA256 Token Auth</span>
+            <span>Kinghouse Hospitality Group &bull; Secure HMAC-SHA256 Token Auth</span>
           </div>
         </div>
       </main>
 
       {/* Page Footer */}
       <footer className="relative z-10 px-6 py-4 text-center text-xs text-white/50 border-t border-white/[0.08] backdrop-blur-md">
-        <span>KingHouse Asset Management Suite &bull; Greater Jakarta Region (Jabodetabek)</span>
+        <span>Kinghouse Asset Management Suite &bull; Greater Jakarta Region (Jabodetabek)</span>
       </footer>
     </div>
   )
@@ -262,7 +262,7 @@ export default function LoginPage() {
         <div className="min-h-screen bg-[#19191B] flex items-center justify-center text-white">
           <div className="flex items-center space-x-3 text-[#DFC58E]">
             <Loader2 className="h-6 w-6 animate-spin" />
-            <span className="text-sm font-medium">Loading KingHouse Portal...</span>
+            <span className="text-sm font-medium">Loading Kinghouse Portal...</span>
           </div>
         </div>
       }

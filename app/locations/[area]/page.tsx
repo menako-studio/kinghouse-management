@@ -134,7 +134,7 @@ export default async function AreaLandingPage({ params }: PageProps) {
                 Accommodations in {areaData.name}
               </h2>
               <p className="text-xs text-[#717171] mt-1">
-                {villasInArea.length} verified listings managed to KingHouse Superhost standards
+                {villasInArea.length} verified listings managed to Kinghouse Superhost standards
               </p>
             </div>
             <span className="text-xs text-[#A69C8E] font-medium uppercase tracking-wider">
@@ -195,7 +195,7 @@ export default async function AreaLandingPage({ params }: PageProps) {
                       Own a Property in {areaData.name}?
                     </h3>
                     <p className="text-xs text-[#717171]">
-                      Maximize your occupancy rate and revenue with KingHouse
+                      Maximize your occupancy rate and revenue with Kinghouse
                     </p>
                   </div>
                 </div>
@@ -212,7 +212,7 @@ export default async function AreaLandingPage({ params }: PageProps) {
                 </div>
 
                 <a
-                  href={`https://wa.me/6282123933218?text=Hello%20KingHouse!%20I%20own%20a%20property%20in%20${areaData.name}%20and%20would%20like%20a%20management%20consultation.`}
+                  href={`https://wa.me/6282123933218?text=Hello%20Kinghouse!%20I%20own%20a%20property%20in%20${areaData.name}%20and%20would%20like%20a%20management%20consultation.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center space-x-2 w-full bg-[#222222] text-white py-3 rounded-xl text-xs font-semibold hover:bg-[#333333] transition-colors"

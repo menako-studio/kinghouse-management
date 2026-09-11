@@ -32,12 +32,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!compendium) {
     return {
-      title: "Digital Guest Guide | KingHouse Hospitality",
+      title: "Digital Guest Guide | Kinghouse Hospitality",
     }
   }
 
   return {
-    title: `Panduan Tamu & Layanan • ${compendium.propertyName} | KingHouse`,
+    title: `Panduan Tamu & Layanan • ${compendium.propertyName} | Kinghouse`,
     description: `Buku panduan digital, password WiFi, petunjuk check-in, dan pemesanan layanan tambahan untuk ${compendium.propertyName}.`,
   }
 }
@@ -51,7 +51,7 @@ export default async function GuestStayPage({ params }: PageProps) {
   }
 
   const directWaUrl = `https://wa.me/${compendium.whatsappConciergePhone}?text=${encodeURIComponent(
-    `Halo Concierge KingHouse! Saya sedang menginap di ${compendium.propertyName} dan membutuhkan bantuan operasional.`
+    `Halo Concierge Kinghouse! Saya sedang menginap di ${compendium.propertyName} dan membutuhkan bantuan operasional.`
   )}`
 
   return (
@@ -155,7 +155,7 @@ export default async function GuestStayPage({ params }: PageProps) {
             Butuh Bantuan Mendesak Selama Menginap?
           </h4>
           <p className="text-xs text-stone-400 max-w-md mx-auto mt-1 mb-4">
-            Tim operasional dan *on-ground caretaker* KingHouse siaga membantu kebutuhan Anda mulai dari penggantian token listrik, linen tambahan, hingga keadaan darurat.
+            Tim operasional dan *on-ground caretaker* Kinghouse siaga membantu kebutuhan Anda mulai dari penggantian token listrik, linen tambahan, hingga keadaan darurat.
           </p>
           <a
             href={directWaUrl}

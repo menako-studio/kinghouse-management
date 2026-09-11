@@ -256,7 +256,7 @@ export default function DashboardBookingsPage() {
   const handleExportCsv = () => {
     const csvData = exportReservationsToCsv(reservations)
     const today = new Date().toISOString().split("T")[0]
-    downloadCsvFile(csvData, `KingHouse-Reservations-${today}.csv`)
+    downloadCsvFile(csvData, `Kinghouse-Reservations-${today}.csv`)
     showToast("File CSV Berhasil Diunduh", "Buka di Excel atau Google Sheets untuk laporan keuangan.", "success")
   }
 
@@ -742,7 +742,7 @@ export default function DashboardBookingsPage() {
 
                   <div>
                     <label className="block font-semibold text-[#555] uppercase tracking-wider mb-1">
-                      Tier Fee KingHouse
+                      Tier Fee Kinghouse
                     </label>
                     <select
                       value={formFeeTier}

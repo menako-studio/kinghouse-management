@@ -10,7 +10,7 @@ import { SeoEditor } from "@/components/dashboard/seo-editor"
 import { BLOG_POSTS } from "@/lib/data"
 
 export const metadata: Metadata = {
-  title: "SEO Manager & Listing Optimizer — KingHouse CMS",
+  title: "SEO Manager & Listing Optimizer — Kinghouse CMS",
   description: "Property SEO optimization and ranking strategies on Airbnb & Google to maximize occupancy rates.",
 }
 
@@ -34,7 +34,7 @@ export default function SeoManagerPage() {
           </h1>
 
           <p className="text-white/70 text-sm sm:text-base leading-relaxed font-light">
-            Why do KingHouse properties consistently outperform market occupancy? Every property is architected with
+            Why do Kinghouse properties consistently outperform market occupancy? Every property is architected with
             dynamic metadata that converts Google local searches and Airbnb Superhost algorithms into high-intent,
             longer-stay bookings.
           </p>
@@ -154,11 +154,11 @@ export default function SeoManagerPage() {
             CLIENT PITCHING FRAMEWORK
           </span>
           <h3 className="text-2xl sm:text-3xl text-[#222225] font-semibold mt-2 mb-3">
-            The KingHouse Formula: Transforming Properties into Guest Magnets
+            The Kinghouse Formula: Transforming Properties into Guest Magnets
           </h3>
           <p className="text-xs sm:text-sm text-[#717171] leading-relaxed font-light">
             Most property owners rely solely on default Airbnb traffic without algorithmic optimization.
-            KingHouse deploys a comprehensive 3-tier distribution strategy:
+            Kinghouse deploys a comprehensive 3-tier distribution strategy:
           </p>
         </div>
 

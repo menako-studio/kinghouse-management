@@ -103,7 +103,7 @@ export default function DashboardSettingsPage() {
           </div>
           <div>
             <div className="flex items-center space-x-2">
-              <h3 className="text-xl text-[#222225] font-semibold">KingHouse Principal Admin</h3>
+              <h3 className="text-xl text-[#222225] font-semibold">Kinghouse Principal Admin</h3>
               <span className="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
                 <ShieldCheck className="h-3 w-3 text-emerald-600" />
                 <span>Super Admin</span>
@@ -121,7 +121,7 @@ export default function DashboardSettingsPage() {
               </label>
               <input
                 type="text"
-                defaultValue="KingHouse Principal Admin"
+                defaultValue="Kinghouse Principal Admin"
                 className="w-full px-4 py-2.5 rounded-2xl border border-[#E8E4DC] text-xs font-medium text-[#222225] focus:outline-none focus:border-[#B8934C] focus:ring-2 focus:ring-[#B8934C]/15 bg-[#FAF8F5]/50 transition-all"
               />
             </div>
