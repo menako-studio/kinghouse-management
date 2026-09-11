@@ -393,10 +393,10 @@ kinghouse-mockup/
   - Remapped hero images to verified existing files on disk (`SkyHouse_IKEA_KamarUtama_Wide.jpeg`, `BrightAiry_Apartment_Kamar_Wide.webp`, `SkylineLuxury_OrangeCounty_KamarUtama.webp`), resolving all broken property cards.
   - Standardized portal branding, brand badge, and back link navigation.
 - [x] **Desktop Navbar Alignment & Nakula.com Luxury Spacing**:
-  - Structured desktop container with `max-w-[1400px]` and balanced horizontal padding (`px-6 lg:px-12 xl:px-16`).
-  - Positioned official secondary horizontal brandmark on far left meeting 120px minimum digital size requirement.
-  - Incorporated `Home` as first navigation item with clean letter tracking (`tracking-[0.16em]`).
-  - Aligned right-hand controls (Currency, Language) and styled `EXPLORE PROPERTIES` as a sleek pill-outline button matching Nakula layout.
+  - Structured desktop container with `max-w-[1440px]` and generous padding (`px-6 sm:px-8 lg:px-12 xl:px-16`).
+  - Positioned official secondary horizontal brandmark anchored on the far left with maximum breathing whitespace.
+  - Clustered navigation links (`HOME`, `OUR PROPERTIES ˅`, `MONTHLY OFFERS`, `EVENTS`, `OWNER SERVICES`, `ENQUIRE`) on the right side using Cormorant Garamond (`font-serif uppercase tracking-[0.2em] text-[13px]`) with editorial underline on `ENQUIRE`.
+  - Right-aligned utility controls (`$ RP ˅`, `🌐 EN ˅`) and styled `EXPLORE PROPERTIES` as a refined pill outline button matching Nakula.com proportions.
 - [x] **Automated Testing & Production Build**:
   - 34 Vitest unit tests passing across all suites.
   - TypeScript strict mode 0 errors.
