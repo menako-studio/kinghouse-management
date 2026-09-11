@@ -1,4 +1,4 @@
-# PROJECT_STATE.md — KingHouse Hospitality Web Platform
+# PROJECT_STATE.md — Kinghouse Hospitality Web Platform
 
 > **Single Source of Truth (SSOT)** for AI Coding Agents (Claude 4.6 Sonnet, Gemini 3.7 Flash, Antigravity, etc.).  
 > Read this document to understand architectural standards, technical stack, current implementation status, data schemas, and development workflows without rescanning the entire repository.
@@ -8,7 +8,7 @@
 ## 1. EXECUTIVE SUMMARY & SCOPE
 
 ### 1.1 Core Purpose & Scope
-**KingHouse** is an editorial-grade property management, SEO CMS, 100% Free-Tier Hospitality ERP/POS, and dual-path short-stay booking platform focused on **Jabodetabek** (Jagakarsa - Jakarta Selatan, Pinang - Tangerang, Palmerah - Jakarta Barat, and Cikarang Selatan - Bekasi).
+**Kinghouse** is an editorial-grade property management, SEO CMS, 100% Free-Tier Hospitality ERP/POS, and dual-path short-stay booking platform focused on **Jabodetabek** (Jagakarsa - Jakarta Selatan, Pinang - Tangerang, Palmerah - Jakarta Barat, and Cikarang Selatan - Bekasi).
 
 The platform serves two primary user personas:
 1. **Discerning Guests**: Seeking curated, hotel-standard short-stay accommodations and event venues with rich architectural bento photo galleries, IDR pricing, amenity breakdowns, proximity maps, and seamless Airbnb booking.
@@ -185,7 +185,7 @@ kinghouse-mockup/
   - **Nakula Editorial 2-Col Grid**: Cards styled with bottom-left `Start From IDR X / Night` (or `/ Event`) price badges, bottom-right `↗` action buttons, meta lines, rating/reviews, `DOWNLOAD BROCHURE` buttons, capacity specs, and pill tags.
   - Retained rich editorial sections on `/villas` (About, Summary Table, Photo Strip, FAQ Accordion) and `/events` (Official Price Matrix and Stay Configurations).
 - [x] **Complete CMS Suite & Login Color Palette Harmonization (`app/globals.css`)**:
-  - Replaced legacy neon pinks (`#FF3B70`) and non-standard dark purple surfaces with official KingHouse Gold (`#B8934C`, `#DFC58E`), Nakula Khaki (`#8C7F5F`), and Luxury Charcoal (`#19191B`, `#222225`, `#28282B`).
+  - Replaced legacy neon pinks (`#FF3B70`) and non-standard dark purple surfaces with official Kinghouse Gold (`#B8934C`, `#DFC58E`), Nakula Khaki (`#8C7F5F`), and Luxury Charcoal (`#19191B`, `#222225`, `#28282B`).
   - Standardized all CMS pages (`/dashboard`, `/dashboard/bookings`, `/dashboard/analytics`, `/dashboard/blog`, `/dashboard/properties`, `/dashboard/seo`, `/dashboard/settings`) and `/login` to use consistent design tokens, glassmorphism, and border colors (`#E8E4DC`, `#FAF8F5`).
 
 ### Phase 2.6 — Property House Rules & Digital Compendium Synchronization (Completed)
@@ -416,6 +416,20 @@ kinghouse-mockup/
   - Added affiliate backlink in bottom copyright bar alongside legal policies.
 - [x] **Google Business Profile (GBP) Multi-Entity Architecture Strategy**:
   - Formalized recommendation for dual GBP profiles (Cleaning SAB vs Property Management Corporate) plus individual property Google Maps pins (e.g., Versatile House Jagakarsa) to capture distinct search intents without category confusion or suspension risks.
+
+### Phase 4.0 — Universal Brand Consistency, Dynamic Multi-Currency Engine & Global Multi-Language System (Completed)
+- [x] **Brand Consistency & Copywriting Standardization Across All Pages**:
+  - Standardized every instance of `KingHouse Management` / `KingHouse` to `Kinghouse Management` and `Kinghouse` across all pages (`/`, `/about`, `/villas`, `/events`, `/owner-services`, `/contact`, `/faq`, `/terms`, `/privacy`, `/press`, `/stay/[slug]`, `/dashboard/*`, `/login`).
+  - Updated all Schema.org metadata, SEO titles, WhatsApp auto-inquiry links, digital compendiums, ERP exports, and documentation to strictly adhere to official brand casing.
+- [x] **Universal Dynamic Multi-Currency Engine**:
+  - Live currency conversion engine now powers all customer-facing surfaces: Header, Footer, Villa cards on Catalog (`/villas`), Events cards and Price Matrix tables (`/events`), Owner Services performance metrics and interactive net yield calculator (`/owner-services`), Digital compendium upsells (`/stay/[slug]`), and Booking Sidebars.
+  - Connected 10 global currencies (`IDR`, `USD`, `EUR`, `CNY`, `TWD`, `RUB`, `JPY`, `AUD`, `SGD`, `GBP`) with instant reactive recalculation upon user selection.
+- [x] **Universal Multi-Language Localization System**:
+  - Expanded `TRANSLATIONS` in `lib/context/localization-context.tsx` across all 9 supported languages (`EN`, `ID`, `JA`, `ZH-CN`, `ZH-TW`, `FR`, `ES`, `DE`, `RU`).
+  - Integrated `useLocalization().t` across Hero slider, Search filter bar, Curated grid, Dual-path split, Trust social proof, Villa catalog sidebar filters, Events pricelist matrix, Owner services calculator, and Floating WhatsApp concierge.
+  - Switching language in `components/layout/header.tsx` dynamically translates all pages synchronously.
+- [x] **Automated Testing Suite (38 Tests Passing)**:
+  - Added dedicated Vitest test suite `tests/localization-currency.test.ts` validating all 10 currencies, 9 languages, and live conversion math.
 
 ---
 
