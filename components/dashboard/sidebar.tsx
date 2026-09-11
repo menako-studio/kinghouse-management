@@ -18,12 +18,14 @@ import {
   ShieldCheck,
   Globe,
   Sparkles,
+  Coins,
 } from "lucide-react"
 import { AdminUser } from "@/lib/auth"
 
 const NAV_ITEMS = [
   { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
   { href: "/dashboard/properties", label: "Properties", icon: Home },
+  { href: "/dashboard/pricing", label: "Dynamic Pricing", icon: Coins, badge: "Smart" },
   { href: "/dashboard/seo", label: "SEO Manager", icon: Search, badge: "Rank" },
   { href: "/dashboard/blog", label: "Blog Posts", icon: BookOpen },
   { href: "/dashboard/bookings", label: "Calendar", icon: CalendarDays },
