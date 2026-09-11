@@ -266,7 +266,7 @@ kinghouse-mockup/
 - [x] **Google Search Console & Technical SEO Infrastructure** (`app/sitemap.ts`, `app/robots.ts`, `app/layout.tsx`):
   - Dynamic XML Sitemap generator (`app/sitemap.ts`) indexing static pages, dynamic areas, properties, blog posts, and guest stay manuals.
   - Robots.txt (`app/robots.ts`) with custom Googlebot directives, sitemap pointer, and security route exclusions (`/dashboard/*`, `/api/*`, `/login`).
-  - WebSite JSON-LD with Sitelinks `SearchAction`, Organization, LocalBusiness, Breadcrumbs, and Brand Aliases targeting `kinghousemanagemet.com` / `Kinghouse Management`.
+  - WebSite JSON-LD with Sitelinks `SearchAction`, Organization, LocalBusiness, Breadcrumbs, and Brand Aliases targeting `kinghousemanagement.com` / `Kinghouse Management`.
   - GSC verification meta tag integration via `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`.
 - [x] **Full-Funnel Commercial Event Tracking Across All Pages**:
   - WhatsApp concierge inquiries (Header, Footer, Villa detail, Event packages, Contact desk, Guest stay).
@@ -466,6 +466,20 @@ kinghouse-mockup/
   - **1-Click CSV Exporter (`lib/pricing/export.ts`)**: Instant `.csv` generation for OTA multi-calendar rate imports.
 - [x] **Automated Testing Suite (53 Tests Passing)**:
   - Added 15 comprehensive unit tests in `tests/dynamic-pricing.test.ts` covering submarket DOW multipliers, holiday detection, urgency curves, guardrails clamp, override precedence, and CSV formatting.
+
+### Phase 4.2 — Editorial 404 Not Found Experience & Search Console Sitemap Fortification (Completed)
+- [x] **Editorial Custom 404 Not Found Page (`app/not-found.tsx`)**:
+  - Conforms to Kinghouse Brandmark Volume II and `app/globals.css` design system.
+  - Features `supergraphic-blueprint-bone` architectural pattern, radial ambient gold glow, and `sana-glass` elevated badges.
+  - Large display 404 typography in Cormorant Garamond (`font-serif font-light text-8xl sm:text-9xl lg:text-[11rem]`).
+  - Seamless bilingual support via `useLocalization()` (Bahasa Indonesia & English).
+  - Quick destination discovery bento cards for Jagakarsa, Tangerang, Palmerah, and Cikarang.
+  - Direct action buttons ("Kembali ke Beranda", "Jelajahi Villa", and direct 24/7 WhatsApp Concierge assistance).
+- [x] **Sitemap & Canonical Base URL Fortification (`app/sitemap.ts`, `lib/constants.ts`)**:
+  - Added defensive sanitization in `SITE_CONFIG.baseUrl` (`lib/constants.ts`) to immediately correct legacy typo `kinghousemanagemet` or invalid protocols to canonical `https://www.kinghousemanagement.com`.
+  - Harmonized root URL in `app/sitemap.ts` without trailing slash to match canonical URL structure.
+  - Removed private stay compendiums (`/stay/[slug]`) from `app/sitemap.ts` to strictly adhere to `app/robots.ts` disallow rules (`/stay/*`), eliminating GSC "Indexed, though blocked by robots.txt" indexing conflicts.
+  - Updated Vitest assertions in `tests/analytics-seo.test.ts` to enforce canonical URL prefixes and verify zero disallowed stay URLs in sitemap output.
 
 ---
 
