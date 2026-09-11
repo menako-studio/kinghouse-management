@@ -14,6 +14,13 @@ export const CURATED_VILLAS: Villa[] = [
     location: "Jagakarsa, Jakarta Selatan",
     propertyType: "entire-home",
     airbnbUrl: "https://www.airbnb.com/rooms/45834267",
+    airbnbIcalUrl:
+      process.env.AIRBNB_ICAL_VERSATILE_STAY ||
+      "https://www.airbnb.com/calendar/ical/45834267.ics?t=79bf0763f91b42bab99d46765c2bc64b",
+    airbnbEventUrl: "https://www.airbnb.com/rooms/1172798010727828525",
+    airbnbEventIcalUrl:
+      process.env.AIRBNB_ICAL_VERSATILE_EVENTS ||
+      "https://www.airbnb.com/calendar/ical/1172798010727828525.ics?t=9688f0b50b1d4ddc9ab128b33cfc1e44",
     agodaUrl: "https://www.agoda.com/versatile-house-with-beautiful-garden-beyond-h88935814/hotel/jakarta-id.html",
     superhost: false,
     guestFavorite: false,
@@ -188,6 +195,9 @@ export const CURATED_VILLAS: Villa[] = [
     location: "Pinang, Tangerang, Banten",
     propertyType: "private-room",
     airbnbUrl: "https://www.airbnb.com/rooms/1325106294978348497",
+    airbnbIcalUrl:
+      process.env.AIRBNB_ICAL_SKYHOUSE_TANGERANG ||
+      "https://www.airbnb.com/calendar/ical/1325106294978348497.ics?t=2588041978df48fc81d21dbf1d690cee",
     agodaUrl: "https://www.agoda.com/sky-house-hotel-style-bed-ikea-5min/hotel/tangerang-id.html",
     superhost: false,
     guestFavorite: false,
@@ -387,6 +397,9 @@ export const CURATED_VILLAS: Villa[] = [
     location: "Cikarang Selatan, Bekasi",
     propertyType: "entire-apartment",
     airbnbUrl: "https://www.airbnb.com/rooms/1691723711820833674",
+    airbnbIcalUrl:
+      process.env.AIRBNB_ICAL_SKYLINE_CIKARANG ||
+      "https://www.airbnb.com/calendar/ical/1691723711820833674.ics?t=e3300f11899546bebe679aa7570e8f5d",
     agodaUrl: "https://www.agoda.com/skyline-luxury-at-orange-county/hotel/cikarang-id.html",
     superhost: false,
     guestFavorite: false,
