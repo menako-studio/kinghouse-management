@@ -170,7 +170,7 @@ export const GUEST_COMPENDIUMS: Record<string, GuestCompendium> = {
     propertySlug: "sky-house-tangerang",
     propertyName: "Sky House • Hotel-Style Bed + IKEA 5min",
     area: "Pinang, Kota Tangerang (Alam Sutera)",
-    heroImage: "/properties/sky-house/SkyHouse_LivingArea_BedView.webp",
+    heroImage: "/properties/sky-house/SkyHouse_IKEA_KamarUtama_Wide.jpeg",
     whatsappConciergePhone: "6282123933218",
     wifi: {
       networkName: "KINGSKYHOUSE22",
@@ -249,7 +249,7 @@ export const GUEST_COMPENDIUMS: Record<string, GuestCompendium> = {
     propertySlug: "bright-airy-apartment-palmerah",
     propertyName: "Bright & Airy Apartment",
     area: "Palmerah, Jakarta Barat",
-    heroImage: "/properties/bright-airy-palmerah/BrightAiry_Living_Sofa_TV.jpg",
+    heroImage: "/properties/bright-airy/BrightAiry_Apartment_Kamar_Wide.webp",
     whatsappConciergePhone: "6282123933218",
     wifi: {
       networkName: "BrightPalmerah_Fast",
@@ -304,7 +304,7 @@ export const GUEST_COMPENDIUMS: Record<string, GuestCompendium> = {
     propertySlug: "skyline-luxury-orange-county-cikarang",
     propertyName: "Skyline Luxury at Orange County",
     area: "Cikarang Selatan, Bekasi",
-    heroImage: "/properties/skyline-luxury-orange-county-cikarang/SkylineLuxury_Living_Sofa_Balcony.jpg",
+    heroImage: "/properties/skyline-luxury/SkylineLuxury_OrangeCounty_KamarUtama.webp",
     whatsappConciergePhone: "6282123933218",
     wifi: {
       networkName: "N0510",

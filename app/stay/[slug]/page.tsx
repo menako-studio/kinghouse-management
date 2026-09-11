@@ -60,11 +60,18 @@ export default async function GuestStayPage({ params }: PageProps) {
       <header className="sticky top-0 z-40 border-b border-stone-800/80 bg-stone-950/80 backdrop-blur-xl px-4 py-3">
         <div className="mx-auto flex max-w-3xl items-center justify-between">
           <Link
-            href="/"
-            className="flex items-center gap-1.5 text-xs font-semibold text-stone-400 hover:text-white transition-colors"
+            href="/stay"
+            className="flex items-center gap-2 text-xs font-semibold text-stone-400 hover:text-white transition-colors"
           >
             <ChevronLeft className="h-4 w-4" />
-            <span>KingHouse</span>
+            <Image
+              src="/brand/icon-bone.svg"
+              alt="Kinghouse"
+              width={20}
+              height={20}
+              className="h-4 w-auto object-contain"
+            />
+            <span>Kinghouse Stay</span>
           </Link>
 
           <div className="flex items-center gap-2">
@@ -98,7 +105,7 @@ export default async function GuestStayPage({ params }: PageProps) {
 
         <div className="absolute bottom-0 inset-x-0 p-4 sm:p-6">
           <div className="mx-auto max-w-3xl">
-            <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/20 px-3 py-1 text-xs font-semibold text-amber-300 backdrop-blur-md border border-amber-500/30 mb-2">
+            <div className="inline-flex items-center gap-1.5 rounded-full bg-[#CBBEA0]/20 px-3 py-1 text-xs font-semibold text-[#CBBEA0] backdrop-blur-md border border-[#CBBEA0]/30 mb-2">
               <Sparkles className="h-3.5 w-3.5" />
               Digital Guest Compendium & Concierge
             </div>
@@ -106,12 +113,12 @@ export default async function GuestStayPage({ params }: PageProps) {
               {compendium.propertyName}
             </h1>
             <div className="flex items-center gap-2 text-xs sm:text-sm text-stone-300 mt-1">
-              <MapPin className="h-3.5 w-3.5 text-amber-400 shrink-0" />
+              <MapPin className="h-3.5 w-3.5 text-[#CBBEA0] shrink-0" />
               <span>{compendium.area}</span>
               <span className="text-stone-600">•</span>
               <span className="text-emerald-400 font-medium flex items-center gap-1">
                 <ShieldCheck className="h-3.5 w-3.5" />
-                Managed by KingHouse
+                Managed by Kinghouse
               </span>
             </div>
           </div>
