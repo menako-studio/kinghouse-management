@@ -1,9 +1,9 @@
 import { MetadataRoute } from "next"
-import { SITE_CONFIG } from "@/lib/constants"
+
+// Hardcoded canonical URL — never depends on environment variables
+const CANONICAL_BASE_URL = "https://www.kinghousemanagement.com"
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = SITE_CONFIG.baseUrl
-
   return {
     rules: [
       {
@@ -14,6 +14,7 @@ export default function robots(): MetadataRoute.Robots {
           "/dashboard/*",
           "/api/*",
           "/login",
+          "/stay/*",
         ],
       },
       {
@@ -24,10 +25,11 @@ export default function robots(): MetadataRoute.Robots {
           "/dashboard/*",
           "/api/*",
           "/login",
+          "/stay/*",
         ],
       },
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
-    host: baseUrl,
+    sitemap: `${CANONICAL_BASE_URL}/sitemap.xml`,
+    host: CANONICAL_BASE_URL,
   }
 }

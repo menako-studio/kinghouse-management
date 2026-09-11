@@ -1,19 +1,21 @@
 import { MetadataRoute } from "next"
-import { SITE_CONFIG, MANAGED_AREAS } from "@/lib/constants"
+import { MANAGED_AREAS } from "@/lib/constants"
 import { CURATED_VILLAS } from "@/lib/data"
 import { getBlogPosts } from "@/lib/blog/service"
 
-export const dynamic = "force-dynamic"
-export const revalidate = 3600 // Revalidate hourly
+// Revalidate sitemap every hour to pick up new blog posts & property pages
+export const revalidate = 3600
+
+const CANONICAL_BASE_URL = "https://www.kinghousemanagement.com"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = SITE_CONFIG.baseUrl
+  const baseUrl = CANONICAL_BASE_URL
   const currentDate = new Date()
 
   // 1. Static Core Landing Pages
   const staticRoutes: MetadataRoute.Sitemap = [
     {
-      url: `${baseUrl}`,
+      url: `${baseUrl}/`,
       lastModified: currentDate,
       changeFrequency: "daily",
       priority: 1.0,
