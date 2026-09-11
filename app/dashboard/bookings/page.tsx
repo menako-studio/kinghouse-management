@@ -183,19 +183,24 @@ export default function DashboardBookingsPage() {
   const handleForceSync = async () => {
     setIsSyncing(true)
     try {
-      // Refresh reservations from server
+      // 1. Trigger live batch sync across all configured OTA iCal feeds
+      const syncRes = await fetch("/api/erp/ical-sync?action=sync-all")
+      const syncData = await syncRes.json().catch(() => ({}))
+
+      // 2. Refresh reservations from server
       const res = await fetch("/api/erp/reservations")
       const data = await res.json()
       if (data.success && Array.isArray(data.reservations)) {
         setReservations(data.reservations)
       }
-      setSyncStatus("Baru saja disinkronkan (0 konflik terdeteksi)")
+      const importedText = syncData.totalImported ? ` (${syncData.totalImported} jadwal aktif)` : ""
+      setSyncStatus(`Baru saja disinkronkan langsung dari Airbnb${importedText}`)
       addAlert({
-        title: "Sinkronisasi iCal 2-Arah Berhasil",
-        message: "Seluruh 4 kalender unit Jabodetabek berhasil disinkronkan tanpa bentrok.",
+        title: "Sinkronisasi Airbnb Live Berhasil",
+        message: `Kalender unit Airbnb berhasil disinkronkan${importedText}.`,
         category: "sync",
       })
-      showToast("Sinkronisasi 2-Arah Sukses!", "Kalender OTA & direct booking telah diperbarui.", "success")
+      showToast("Sinkronisasi Live Sukses!", `Jadwal Airbnb & WhatsApp telah diperbarui${importedText}.`, "success")
     } catch {
       showToast("Sinkronisasi Selesai", "Status kalender up to date.", "info")
     } finally {

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
 import { CURATED_VILLAS } from "@/lib/data"
 import { INITIAL_RESERVATIONS } from "@/lib/erp/initial-data"
+import { Reservation } from "@/lib/erp/types"
+import { getSupabaseServerClient } from "@/lib/supabase/server"
 
 export async function GET(
   request: NextRequest,
@@ -13,10 +15,50 @@ export async function GET(
     return new NextResponse("Property calendar not found", { status: 404 })
   }
 
-  // Filter reservations for this villa
-  const villaReservations = INITIAL_RESERVATIONS.filter(
-    (r) => (r.propertySlug === villaSlug || r.propertyId === villa.id) && r.status !== "Cancelled"
-  )
+  let villaReservations: Reservation[] = []
+
+  const supabase = getSupabaseServerClient()
+  if (supabase) {
+    try {
+      const { data, error } = await supabase
+        .from("reservations")
+        .select("*")
+        .or(`property_slug.eq.${villa.slug},property_id.eq.${villa.id}`)
+        .neq("status", "Cancelled")
+
+      if (!error && data && data.length > 0) {
+        villaReservations = data.map((row) => ({
+          id: row.id,
+          propertyId: row.property_id,
+          propertySlug: row.property_slug,
+          propertyName: row.property_name,
+          guestName: row.guest_name,
+          channel: row.channel,
+          checkIn: typeof row.check_in === "string" ? row.check_in.split("T")[0] : row.check_in,
+          checkOut: typeof row.check_out === "string" ? row.check_out.split("T")[0] : row.check_out,
+          nights: Number(row.nights),
+          guests: Number(row.guests),
+          grossPayoutIdr: Number(row.gross_payout_idr),
+          cleaningFeeIdr: Number(row.cleaning_fee_idr),
+          feeTier: row.fee_tier,
+          managementFeePercent: Number(row.management_fee_percent),
+          managementFeeIdr: Number(row.management_fee_idr),
+          netOwnerPayoutIdr: Number(row.net_owner_payout_idr),
+          status: row.status,
+          notes: row.notes,
+          createdAt: row.created_at,
+        }))
+      }
+    } catch {
+      // Graceful fallback to initial seed
+    }
+  }
+
+  if (villaReservations.length === 0) {
+    villaReservations = INITIAL_RESERVATIONS.filter(
+      (r) => (r.propertySlug === villaSlug || r.propertyId === villa.id) && r.status !== "Cancelled"
+    )
+  }
 
   const now = new Date()
   const timestamp = now.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z"

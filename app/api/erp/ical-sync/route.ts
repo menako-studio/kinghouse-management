@@ -1,12 +1,23 @@
 import { NextRequest, NextResponse } from "next/server"
-import { syncPropertyIcal } from "@/lib/ical/sync"
+import { syncPropertyIcal, syncAllConfiguredProperties } from "@/lib/ical/sync"
 import { CURATED_VILLAS } from "@/lib/data"
 import { ChannelType } from "@/lib/erp/types"
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json().catch(() => ({}))
-    const { propertySlug, icalUrl, channel } = body
+    const { propertySlug, icalUrl, channel, action } = body
+
+    // Batch sync all configured properties (from Vercel Cron or CMS Sync All button)
+    if (action === "sync-all" || (!propertySlug && !icalUrl)) {
+      const batchResult = await syncAllConfiguredProperties()
+      return NextResponse.json({
+        success: true,
+        message: `Sinkronisasi selesai. Total ${batchResult.totalImported} jadwal berhasil diperbarui.`,
+        totalImported: batchResult.totalImported,
+        details: batchResult.results,
+      })
+    }
 
     if (!propertySlug || !icalUrl) {
       return NextResponse.json(
@@ -44,7 +55,18 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
-  const propertySlug = searchParams.get("propertySlug")
+  const action = searchParams.get("action")
+
+  // Allow GET /api/erp/ical-sync?action=sync-all for Vercel Cron
+  if (action === "sync-all") {
+    const batchResult = await syncAllConfiguredProperties()
+    return NextResponse.json({
+      success: true,
+      timestamp: new Date().toISOString(),
+      totalImported: batchResult.totalImported,
+      details: batchResult.results,
+    })
+  }
 
   return NextResponse.json({
     status: "online",
@@ -53,6 +75,8 @@ export async function GET(request: NextRequest) {
       propertyName: v.name,
       outboundIcalUrl: `/api/ical/${v.slug}`,
       airbnbListingId: v.airbnbUrl.split("/rooms/")[1] || null,
+      hasAirbnbIcalConfigured: !!v.airbnbIcalUrl,
+      hasAgodaIcalConfigured: !!v.agodaIcalUrl,
     })),
   })
 }
