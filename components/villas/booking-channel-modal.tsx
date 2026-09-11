@@ -86,14 +86,14 @@ export function BookingChannelModal({ villa, isOpen, onClose }: BookingChannelMo
   const generateWhatsAppUrl = () => {
     let transferNote = ""
     if (selectedTransfer === "pickup") {
-      transferNote = " + Airport Pick-up Service (Rp 350.000)"
+      transferNote = ` + Airport Pick-up Service (${formatPrice(350000)})`
     } else if (selectedTransfer === "dropoff") {
-      transferNote = " + Airport Drop-off Service (Rp 350.000)"
+      transferNote = ` + Airport Drop-off Service (${formatPrice(350000)})`
     } else if (selectedTransfer === "roundtrip") {
-      transferNote = " + Roundtrip VIP Airport Transfer (Rp 600.000)"
+      transferNote = ` + Roundtrip VIP Airport Transfer (${formatPrice(600000)})`
     }
 
-    const message = `Hello KingHouse! I would like to book "${villa.name}" (${villa.area}).\n\nRate: ${formatPrice(villa.price.idr)}/night\nUpselling Add-on:${transferNote ? transferNote : " None (Stay Only)"}\n\nPlease share available dates and direct booking perks!`
+    const message = `Hello Kinghouse! I would like to book "${villa.name}" (${villa.area}).\n\nRate: ${formatPrice(villa.price.idr)}/night\nUpselling Add-on:${transferNote ? transferNote : " None (Stay Only)"}\n\nPlease share available dates and direct booking perks!`
     return `https://wa.me/6282123933218?text=${encodeURIComponent(message)}`
   }
 
@@ -119,7 +119,7 @@ export function BookingChannelModal({ villa, isOpen, onClose }: BookingChannelMo
             BOOK DIRECT — EXCLUSIVE PERKS
           </p>
           <p className="mt-1 text-xs text-white/80 font-light">
-            Every perk, only when you book directly with KingHouse
+            Every perk, only when you book directly with Kinghouse
           </p>
         </div>
 
@@ -197,7 +197,7 @@ export function BookingChannelModal({ villa, isOpen, onClose }: BookingChannelMo
                 <Award className="h-4 w-4" />
               </div>
               <div className="flex-1">
-                <h4 className="text-xs font-semibold text-[#222222]">KingHouse Member Perks</h4>
+                <h4 className="text-xs font-semibold text-[#222222]">Kinghouse Member Perks</h4>
                 <p className="text-[11px] text-[#717171]">
                   Priority early check-in / late check-out (subject to availability) & 24/7 butler line.
                 </p>
@@ -217,7 +217,7 @@ export function BookingChannelModal({ villa, isOpen, onClose }: BookingChannelMo
               <span className="text-[10px] font-semibold text-[#8C7F5F] uppercase">Optional</span>
             </div>
             <p className="text-[11px] text-[#717171]">
-              Private air-conditioned MPV with dedicated KingHouse chauffeur from Soekarno-Hatta (CGK) or Halim (HLP).
+              Private air-conditioned MPV with dedicated Kinghouse chauffeur from Soekarno-Hatta (CGK) or Halim (HLP).
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
@@ -333,7 +333,7 @@ export function BookingChannelModal({ villa, isOpen, onClose }: BookingChannelMo
                   </a>
                 ) : (
                   <a
-                    href={`https://wa.me/6282123933218?text=${encodeURIComponent(`Hello KingHouse! I am inquiring about OTA booking for ${villa.name}.`)}`}
+                    href={`https://wa.me/6282123933218?text=${encodeURIComponent(`Hello Kinghouse! I am inquiring about OTA booking for ${villa.name}.`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => trackWhatsAppClick({ source: "booking_modal", propertyName: villa.name, context: "ota_inquiry" })}

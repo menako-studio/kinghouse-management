@@ -6,10 +6,11 @@ import { Check, X, ArrowRight, Sparkles, Calculator } from "lucide-react"
 import { MANAGEMENT_TIERS } from "@/lib/data"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { formatCurrency } from "@/lib/utils"
+import { useLocalization } from "@/lib/context/localization-context"
 
 export function TieredPricingTable() {
-  const [estimatedMonthlyRevenue, setEstimatedMonthlyRevenue] = useState(15000)
+  const { formatPrice, t } = useLocalization()
+  const [estimatedMonthlyRevenue, setEstimatedMonthlyRevenue] = useState(250000000)
 
   const optionAFee = Math.round(estimatedMonthlyRevenue * 0.15)
   const optionANet = estimatedMonthlyRevenue - optionAFee
@@ -153,7 +154,7 @@ export function TieredPricingTable() {
             <div className="text-right">
               <span className="text-xs text-[#717171] block">Estimated Gross Revenue</span>
               <span className="font-serif text-2xl text-[#222222]">
-                {formatCurrency(estimatedMonthlyRevenue, "USD")} / mo
+                {formatPrice(estimatedMonthlyRevenue)} / mo
               </span>
             </div>
           </div>
@@ -161,17 +162,17 @@ export function TieredPricingTable() {
           <div className="space-y-2">
             <input
               type="range"
-              min="5000"
-              max="50000"
-              step="1000"
+              min="50000000"
+              max="500000000"
+              step="10000000"
               value={estimatedMonthlyRevenue}
               onChange={(e) => setEstimatedMonthlyRevenue(Number(e.target.value))}
               className="w-full accent-[#222222] cursor-pointer"
             />
             <div className="flex justify-between text-[11px] text-[#717171]">
-              <span>$5,000 / mo</span>
-              <span>$25,000 / mo</span>
-              <span>$50,000 / mo</span>
+              <span>{formatPrice(50000000)} / mo</span>
+              <span>{formatPrice(250000000)} / mo</span>
+              <span>{formatPrice(500000000)} / mo</span>
             </div>
           </div>
 
@@ -179,16 +180,16 @@ export function TieredPricingTable() {
             <div className="p-4 rounded-xl bg-[#FAFAFA] border border-[#EBEBEB]">
               <span className="text-xs font-semibold text-[#717171] block">Option A (15% Exclusive Marketing)</span>
               <div className="flex justify-between items-baseline mt-1">
-                <span className="text-xs text-[#717171]">Management Fee: {formatCurrency(optionAFee, "USD")}</span>
-                <span className="text-sm font-semibold text-[#222222]">Net Owner: {formatCurrency(optionANet, "USD")}</span>
+                <span className="text-xs text-[#717171]">Management Fee: {formatPrice(optionAFee)}</span>
+                <span className="text-sm font-semibold text-[#222222]">Net Owner: {formatPrice(optionANet)}</span>
               </div>
             </div>
 
             <div className="p-4 rounded-xl bg-[#F5F4F0] border border-[#E4E0D8]">
               <span className="text-xs font-semibold text-[#222222] block">Option B (20% Full Turnkey Management)</span>
               <div className="flex justify-between items-baseline mt-1">
-                <span className="text-xs text-[#717171]">Management Fee: {formatCurrency(optionBFee, "USD")}</span>
-                <span className="text-sm font-semibold text-[#222222]">Net Owner: {formatCurrency(optionBNet, "USD")}</span>
+                <span className="text-xs text-[#717171]">Management Fee: {formatPrice(optionBFee)}</span>
+                <span className="text-sm font-semibold text-[#222222]">Net Owner: {formatPrice(optionBNet)}</span>
               </div>
             </div>
           </div>
