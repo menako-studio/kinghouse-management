@@ -38,8 +38,12 @@ export interface Villa {
   location: string
   propertyType: "entire-home" | "private-room" | "entire-apartment" | "villa"
   airbnbUrl: string
+  airbnbIcalUrl?: string
+  airbnbEventUrl?: string
+  airbnbEventIcalUrl?: string
   bookingComUrl?: string
   agodaUrl?: string
+  agodaIcalUrl?: string
   superhost: boolean
   guestFavorite: boolean
   rating: number

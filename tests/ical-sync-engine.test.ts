@@ -49,4 +49,12 @@ describe("2-Way Inbound iCal Synchronization Engine", () => {
     expect(parseIcalString("")).toEqual([])
     expect(parseIcalString("NOT_VALID_ICS")).toEqual([])
   })
+
+  it("extracts Airbnb reservation confirmation URL and details accurately", () => {
+    const events = parseIcalString(SAMPLE_AIRBNB_ICS)
+    const event = events[0]
+    expect(event.description).toContain("details/HM12345")
+    const codeMatch = event.description?.match(/details\/([A-Z0-9]+)/i)
+    expect(codeMatch?.[1]).toBe("HM12345")
+  })
 })

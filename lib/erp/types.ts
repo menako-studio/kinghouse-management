@@ -1,6 +1,6 @@
 export type ChannelType = "Airbnb" | "Direct WhatsApp" | "Booking.com" | "Agoda" | "Walk-in"
 
-export type ReservationStatus = "Confirmed" | "Checked-in Ready" | "Active Stay" | "Completed" | "Cancelled"
+export type ReservationStatus = "Confirmed" | "Checked-in Ready" | "Active Stay" | "Completed" | "Cancelled" | "Blocked"
 
 export type FeeTier = "standard" | "premium" // standard: 15%, premium: 20%
 

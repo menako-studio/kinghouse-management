@@ -1,4 +1,4 @@
-import { parseIcalString, ParsedIcalEvent } from "./parser"
+import { parseIcalString } from "./parser"
 import { Reservation, ChannelType } from "@/lib/erp/types"
 import { calculateReservationPayout } from "@/lib/erp/calculations"
 import { CURATED_VILLAS } from "@/lib/data"
@@ -56,10 +56,31 @@ export async function syncPropertyIcal(
       const cleaningFeeIdr = villa.price.cleaningFeeIdr
       const payout = calculateReservationPayout(grossPayoutIdr, cleaningFeeIdr, "standard")
 
-      const guestName = evt.summary.replace(/^Reserved\s*-\s*/i, "").trim() || `OTA Guest (#${idx + 1})`
+      const isBlocked = evt.summary.toLowerCase().includes("not available")
+      const guestName = isBlocked
+        ? "Airbnb (Dates Blocked)"
+        : evt.summary.replace(/^Reserved\s*-\s*/i, "").trim() || "Airbnb Guest"
+
+      // Extract Airbnb confirmation code if available (e.g. details/HMYYBDR3RF)
+      const codeMatch = evt.description?.match(/details\/([A-Z0-9]+)/i)
+      const confirmationCode = codeMatch ? codeMatch[1] : undefined
+
+      // Extract phone number digits if available
+      const phoneMatch = evt.description?.match(/Phone Number[^:]*:\s*(\d+)/i)
+      const phoneSuffix = phoneMatch ? `***${phoneMatch[1]}` : undefined
+
+      // Generate guaranteed unique ID across all parsed events
+      const uidClean = evt.uid.replace(/[^a-zA-Z0-9]/g, "")
+      const uidSuffix = uidClean.length > 12 ? uidClean.slice(-12) : uidClean
+      const reservationId = `SYNC-${uidSuffix}-${idx + 1}`
+
+      const notesArr: string[] = [`Auto-synced via ${channel} iCal.`]
+      if (confirmationCode) notesArr.push(`Kode: ${confirmationCode}`)
+      if (phoneSuffix) notesArr.push(`Tel: ${phoneSuffix}`)
+      notesArr.push(`UID: ${evt.uid}`)
 
       return {
-        id: `SYNC-${evt.uid.replace(/[^a-zA-Z0-9]/g, "").substring(0, 10)}`,
+        id: reservationId,
         propertyId: villa.id,
         propertySlug: villa.slug,
         propertyName: villa.name,
@@ -75,8 +96,8 @@ export async function syncPropertyIcal(
         managementFeePercent: payout.managementFeePercent,
         managementFeeIdr: payout.managementFeeIdr,
         netOwnerPayoutIdr: payout.netOwnerPayoutIdr,
-        status: "Confirmed",
-        notes: `Auto-synced via ${channel} iCal feed. UID: ${evt.uid}`,
+        status: isBlocked ? "Blocked" : "Confirmed",
+        notes: notesArr.join(" | "),
         createdAt: new Date().toISOString(),
       }
     })
@@ -124,5 +145,76 @@ export async function syncPropertyIcal(
       reservations: [],
       error: errorMessage,
     }
+  }
+}
+
+/**
+ * Syncs all properties that have configured external iCal feeds
+ */
+export async function syncAllConfiguredProperties(): Promise<{
+  success: boolean
+  totalImported: number
+  results: Array<{
+    propertySlug: string
+    propertyName: string
+    channel: ChannelType
+    importedCount: number
+    error?: string
+  }>
+}> {
+  const propertiesWithIcal = CURATED_VILLAS.filter(
+    (v) => v.airbnbIcalUrl || v.airbnbEventIcalUrl || v.agodaIcalUrl
+  )
+  const results = []
+  let totalImported = 0
+
+  for (const villa of propertiesWithIcal) {
+    if (villa.airbnbIcalUrl) {
+      const res = await syncPropertyIcal(villa.slug, villa.airbnbIcalUrl, "Airbnb")
+      if (res.success) {
+        totalImported += res.importedCount
+      }
+      results.push({
+        propertySlug: villa.slug,
+        propertyName: villa.name,
+        channel: "Airbnb" as ChannelType,
+        importedCount: res.importedCount,
+        error: res.error,
+      })
+    }
+
+    if (villa.airbnbEventIcalUrl) {
+      const res = await syncPropertyIcal(villa.slug, villa.airbnbEventIcalUrl, "Airbnb")
+      if (res.success) {
+        totalImported += res.importedCount
+      }
+      results.push({
+        propertySlug: villa.slug,
+        propertyName: `${villa.name} (Event Listing)`,
+        channel: "Airbnb" as ChannelType,
+        importedCount: res.importedCount,
+        error: res.error,
+      })
+    }
+
+    if (villa.agodaIcalUrl) {
+      const res = await syncPropertyIcal(villa.slug, villa.agodaIcalUrl, "Agoda")
+      if (res.success) {
+        totalImported += res.importedCount
+      }
+      results.push({
+        propertySlug: villa.slug,
+        propertyName: villa.name,
+        channel: "Agoda" as ChannelType,
+        importedCount: res.importedCount,
+        error: res.error,
+      })
+    }
+  }
+
+  return {
+    success: true,
+    totalImported,
+    results,
   }
 }

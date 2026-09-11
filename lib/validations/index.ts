@@ -20,7 +20,7 @@ export const ReservationSchema = z.object({
   grossPayoutIdr: z.number().nonnegative("Nilai gross payout tidak boleh negatif"),
   cleaningFeeIdr: z.number().nonnegative("Cleaning fee tidak boleh negatif").default(0),
   feeTier: z.enum(["standard", "premium"]).default("standard"),
-  status: z.enum(["Confirmed", "Checked-in Ready", "Active Stay", "Completed", "Cancelled"]).default("Confirmed"),
+  status: z.enum(["Confirmed", "Checked-in Ready", "Active Stay", "Completed", "Cancelled", "Blocked"]).default("Confirmed"),
   notes: z.string().optional(),
 }).refine((data) => new Date(data.checkOut) > new Date(data.checkIn), {
   message: "Tanggal check-out harus setelah tanggal check-in",
