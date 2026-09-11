@@ -100,8 +100,8 @@ export function Header() {
           : "border-b border-[#F0ECE1] bg-white"
       }`}
     >
-      <div className="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-6 sm:px-8 lg:px-12 xl:px-16">
-        {/* Left: Official Brandmark Logo (Secondary Horizontal) */}
+      <div className="mx-auto flex h-20 lg:h-22 xl:h-24 max-w-[1440px] items-center justify-between px-6 lg:px-10 xl:px-14">
+        {/* Left: Official Brandmark Logo (Secondary Horizontal - Enlarged for clear legibility) */}
         <Link
           href="/"
           className="group flex items-center shrink-0 py-1"
@@ -113,205 +113,203 @@ export function Header() {
           <Image
             src="/brand/logo-secondary-charcoal.svg"
             alt="Kinghouse Management"
-            width={160}
-            height={46}
+            width={240}
+            height={64}
             priority
-            className="h-8 sm:h-9 md:h-10 w-auto object-contain transition-opacity duration-200 group-hover:opacity-80"
+            className="h-10 sm:h-11 md:h-13 lg:h-14 xl:h-16 w-auto object-contain transition-opacity duration-200 group-hover:opacity-85"
           />
         </Link>
 
-        {/* Right Section: Desktop Navigation Links + Utility Controls Grouped Together (Nakula.com Layout) */}
-        <div className="hidden lg:flex items-center space-x-7 xl:space-x-10 shrink-0">
-          {/* Navigation Bar in Cormorant Garamond Serif */}
-          <nav className="flex items-center space-x-5 xl:space-x-7">
-            <Link
-              href="/"
-              className={`font-serif text-[13px] uppercase tracking-[0.2em] whitespace-nowrap transition-colors py-1 ${
-                pathname === "/" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A] hover:text-[#8C7F5F]"
+        {/* Center: Desktop Navigation Bar (Nakula-inspired spacing & hierarchy) */}
+        <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+          <Link
+            href="/"
+            className={`text-xs font-medium uppercase tracking-[0.16em] whitespace-nowrap transition-colors py-2 ${
+              pathname === "/" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
+            }`}
+          >
+            {t("home") || "Home"}
+          </Link>
+
+          {/* OUR PROPERTIES dropdown toggle */}
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => {
+                setPropertiesMenuOpen(!propertiesMenuOpen)
+                setCurrencyDropdownOpen(false)
+                setLanguageDropdownOpen(false)
+              }}
+              onMouseEnter={() => setPropertiesMenuOpen(true)}
+              className={`flex items-center space-x-1 text-xs font-medium uppercase tracking-[0.16em] whitespace-nowrap transition-colors py-2 cursor-pointer ${
+                propertiesMenuOpen || pathname.startsWith("/villas") || pathname.startsWith("/locations")
+                  ? "text-[#8C7F5F] font-semibold"
+                  : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
               }`}
             >
-              {t("home") || "Home"}
-            </Link>
-
-            {/* OUR PROPERTIES dropdown toggle */}
-            <div className="relative">
-              <button
-                type="button"
-                onClick={() => {
-                  setPropertiesMenuOpen(!propertiesMenuOpen)
-                  setCurrencyDropdownOpen(false)
-                  setLanguageDropdownOpen(false)
-                }}
-                onMouseEnter={() => setPropertiesMenuOpen(true)}
-                className={`flex items-center space-x-1 font-serif text-[13px] uppercase tracking-[0.2em] whitespace-nowrap transition-colors py-1 cursor-pointer ${
-                  propertiesMenuOpen || pathname.startsWith("/villas") || pathname.startsWith("/locations")
-                    ? "text-[#8C7F5F] font-semibold"
-                    : "text-[#231F1A] hover:text-[#8C7F5F]"
+              <span>{t("ourProperties")}</span>
+              <ChevronDown
+                className={`h-3.5 w-3.5 transition-transform duration-200 ${
+                  propertiesMenuOpen ? "rotate-180 text-[#8C7F5F]" : "text-[#888888]"
                 }`}
-              >
-                <span>{t("ourProperties")}</span>
-                <ChevronDown
-                  className={`h-3 w-3 stroke-[1.5] transition-transform duration-200 ${
-                    propertiesMenuOpen ? "rotate-180 text-[#8C7F5F]" : "text-[#231F1A]/70"
-                  }`}
-                />
-              </button>
-            </div>
-
-            <Link
-              href="/villas"
-              className={`font-serif text-[13px] uppercase tracking-[0.2em] whitespace-nowrap transition-colors py-1 ${
-                pathname === "/offers" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A] hover:text-[#8C7F5F]"
-              }`}
-            >
-              {t("monthlyOffers")}
-            </Link>
-
-            <Link
-              href="/events"
-              className={`font-serif text-[13px] uppercase tracking-[0.2em] whitespace-nowrap transition-colors py-1 ${
-                pathname === "/events" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A] hover:text-[#8C7F5F]"
-              }`}
-            >
-              {t("events")}
-            </Link>
-
-            {/* OWNER SERVICES */}
-            <Link
-              href="/owner-services"
-              className={`font-serif text-[13px] uppercase tracking-[0.2em] whitespace-nowrap transition-colors py-1 ${
-                pathname === "/owner-services" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A] hover:text-[#8C7F5F]"
-              }`}
-            >
-              {t("ownerServices")}
-            </Link>
-
-            {/* ENQUIRE underlined with editorial offset */}
-            <Link
-              href="/contact"
-              className="font-serif text-[13px] uppercase tracking-[0.2em] whitespace-nowrap text-[#231F1A] hover:text-[#8C7F5F] underline underline-offset-8 decoration-1 transition-colors py-1"
-            >
-              {t("enquire")}
-            </Link>
-          </nav>
-
-          {/* Right Utilities: Currency, Language & Pill Button */}
-          <div className="flex items-center space-x-5 xl:space-x-6 shrink-0">
-            {/* Currency Dropdown (matching nakula.com) */}
-            <div className="relative" ref={currencyRef}>
-              <button
-                type="button"
-                onClick={() => {
-                  setCurrencyDropdownOpen(!currencyDropdownOpen)
-                  setLanguageDropdownOpen(false)
-                  setPropertiesMenuOpen(false)
-                }}
-                className="flex items-center space-x-1 font-serif text-[13px] uppercase tracking-[0.16em] text-[#231F1A] hover:text-[#8C7F5F] transition-colors py-1 cursor-pointer"
-              >
-                <span>$ {currentCurrencyConfig.short}</span>
-                <ChevronDown
-                  className={`h-3 w-3 stroke-[1.5] text-[#231F1A]/70 transition-transform ${
-                    currencyDropdownOpen ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-
-              {currencyDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 rounded-lg bg-white py-1.5 shadow-2xl border border-[#E8E4DC] ring-1 ring-black/5 z-50">
-                  <div className="px-3 py-1 text-[10px] uppercase font-semibold text-[#8C7F5F] tracking-wider border-b border-[#F0ECE1]">
-                    Select Currency
-                  </div>
-                  <div className="max-h-64 overflow-y-auto py-1">
-                    {SUPPORTED_CURRENCIES.map((curr) => (
-                      <button
-                        key={curr.code}
-                        type="button"
-                        onClick={() => {
-                          setCurrency(curr.code)
-                          setCurrencyDropdownOpen(false)
-                        }}
-                        className={`w-full flex items-center justify-between px-3.5 py-2 text-left text-xs transition-colors ${
-                          currency === curr.code
-                            ? "bg-[#FAF8F3] text-[#8C7F5F] font-semibold"
-                            : "text-[#444444] hover:bg-[#F7F5F0] hover:text-[#222222]"
-                        }`}
-                      >
-                        <div className="flex items-center space-x-2">
-                          <span className="w-6 font-semibold text-center text-[#8C7F5F]">
-                            {curr.symbol}
-                          </span>
-                          <span>{curr.label}</span>
-                        </div>
-                        {currency === curr.code && <Check className="h-3.5 w-3.5 text-[#8C7F5F]" />}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Language Dropdown (matching nakula.com) */}
-            <div className="relative" ref={languageRef}>
-              <button
-                type="button"
-                onClick={() => {
-                  setLanguageDropdownOpen(!languageDropdownOpen)
-                  setCurrencyDropdownOpen(false)
-                  setPropertiesMenuOpen(false)
-                }}
-                className="flex items-center space-x-1.5 font-serif text-[13px] uppercase tracking-[0.16em] text-[#231F1A] hover:text-[#8C7F5F] transition-colors py-1 cursor-pointer"
-              >
-                <Globe className="h-3.5 w-3.5 stroke-[1.25] text-[#231F1A]" />
-                <span>{currentLanguageConfig.code}</span>
-                <ChevronDown
-                  className={`h-3 w-3 stroke-[1.5] text-[#231F1A]/70 transition-transform ${
-                    languageDropdownOpen ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-
-              {languageDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-52 rounded-lg bg-white py-1.5 shadow-2xl border border-[#E8E4DC] ring-1 ring-black/5 z-50">
-                  <div className="px-3 py-1 text-[10px] uppercase font-semibold text-[#8C7F5F] tracking-wider border-b border-[#F0ECE1]">
-                    Select Language
-                  </div>
-                  <div className="max-h-72 overflow-y-auto py-1">
-                    {SUPPORTED_LANGUAGES.map((lang) => (
-                      <button
-                        key={lang.code}
-                        type="button"
-                        onClick={() => {
-                          setLanguage(lang.code)
-                          setLanguageDropdownOpen(false)
-                        }}
-                        className={`w-full flex items-center justify-between px-3.5 py-2 text-left text-xs transition-colors ${
-                          language === lang.code
-                            ? "bg-[#FAF8F3] text-[#8C7F5F] font-semibold"
-                            : "text-[#444444] hover:bg-[#F7F5F0] hover:text-[#222222]"
-                        }`}
-                      >
-                        <div className="flex items-center space-x-2.5">
-                          <span className="w-9 font-mono text-[11px] font-semibold text-[#8C7F5F]">
-                            {lang.code}
-                          </span>
-                          <span>{lang.nativeName}</span>
-                        </div>
-                        {language === lang.code && <Check className="h-3.5 w-3.5 text-[#8C7F5F]" />}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* EXPLORE PROPERTIES Pill Button (matching Nakula button aesthetic) */}
-            <Link
-              href="/villas"
-              className="inline-flex items-center justify-center rounded-full border border-[#231F1A] bg-transparent px-5 py-1.5 font-serif text-[11px] uppercase tracking-[0.2em] text-[#231F1A] hover:bg-[#231F1A] hover:text-[#FAF7F1] transition-all duration-300 shadow-xs"
-            >
-              {t("exploreProperties")}
-            </Link>
+              />
+            </button>
           </div>
+
+          <Link
+            href="/villas"
+            className={`text-xs font-medium uppercase tracking-[0.16em] whitespace-nowrap transition-colors py-2 ${
+              pathname === "/offers" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
+            }`}
+          >
+            {t("monthlyOffers")}
+          </Link>
+
+          <Link
+            href="/events"
+            className={`text-xs font-medium uppercase tracking-[0.16em] whitespace-nowrap transition-colors py-2 ${
+              pathname === "/events" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
+            }`}
+          >
+            {t("events")}
+          </Link>
+
+          {/* OWNER SERVICES */}
+          <Link
+            href="/owner-services"
+            className={`text-xs font-medium uppercase tracking-[0.16em] whitespace-nowrap transition-colors py-2 ${
+              pathname === "/owner-services" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
+            }`}
+          >
+            {t("ownerServices")}
+          </Link>
+
+          {/* ENQUIRE underlined (Exact Nakula styling) */}
+          <Link
+            href="/contact"
+            className="text-xs font-semibold uppercase tracking-[0.16em] whitespace-nowrap text-[#8C7F5F] underline underline-offset-6 decoration-1 hover:text-[#776B4E] transition-colors py-2"
+          >
+            {t("enquire")}
+          </Link>
+        </nav>
+
+        {/* Right: Currency, Language & Pill Button (Exact Nakula.com layout: $ RP v, Globe EN v, SIGN IN) */}
+        <div className="hidden md:flex items-center space-x-4 lg:space-x-5 xl:space-x-6 shrink-0">
+          {/* Currency Dropdown (matching Nakula '$ RP v' aesthetic) */}
+          <div className="relative" ref={currencyRef}>
+            <button
+              type="button"
+              onClick={() => {
+                setCurrencyDropdownOpen(!currencyDropdownOpen)
+                setLanguageDropdownOpen(false)
+                setPropertiesMenuOpen(false)
+              }}
+              className="flex items-center space-x-1.5 text-xs uppercase tracking-[0.14em] font-medium text-[#231F1A]/90 hover:text-[#8C7F5F] transition-colors py-1.5 px-2 rounded-md hover:bg-[#F5F2EB]/80 cursor-pointer"
+            >
+              <span className="text-xs font-light text-[#231F1A]">$</span>
+              <span className="font-semibold text-xs">{currentCurrencyConfig.short}</span>
+              <ChevronDown
+                className={`h-3 w-3 text-[#5C5347] transition-transform duration-200 ${
+                  currencyDropdownOpen ? "rotate-180 text-[#8C7F5F]" : ""
+                }`}
+              />
+            </button>
+
+            {currencyDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-48 rounded-lg bg-white py-1.5 shadow-2xl border border-[#E8E4DC] ring-1 ring-black/5 z-50">
+                <div className="px-3 py-1 text-[10px] uppercase font-semibold text-[#8C7F5F] tracking-wider border-b border-[#F0ECE1]">
+                  Select Currency
+                </div>
+                <div className="max-h-64 overflow-y-auto py-1">
+                  {SUPPORTED_CURRENCIES.map((curr) => (
+                    <button
+                      key={curr.code}
+                      type="button"
+                      onClick={() => {
+                        setCurrency(curr.code)
+                        setCurrencyDropdownOpen(false)
+                      }}
+                      className={`w-full flex items-center justify-between px-3.5 py-2 text-left text-xs transition-colors ${
+                        currency === curr.code
+                          ? "bg-[#FAF8F3] text-[#8C7F5F] font-semibold"
+                          : "text-[#444444] hover:bg-[#F7F5F0] hover:text-[#222222]"
+                      }`}
+                    >
+                      <div className="flex items-center space-x-2">
+                        <span className="w-6 font-semibold text-center text-[#8C7F5F]">
+                          {curr.symbol}
+                        </span>
+                        <span>{curr.label}</span>
+                      </div>
+                      {currency === curr.code && <Check className="h-3.5 w-3.5 text-[#8C7F5F]" />}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Language Dropdown (matching Nakula 'Globe EN v' aesthetic) */}
+          <div className="relative" ref={languageRef}>
+            <button
+              type="button"
+              onClick={() => {
+                setLanguageDropdownOpen(!languageDropdownOpen)
+                setCurrencyDropdownOpen(false)
+                setPropertiesMenuOpen(false)
+              }}
+              className="flex items-center space-x-1.5 text-xs uppercase tracking-[0.14em] font-medium text-[#231F1A]/90 hover:text-[#8C7F5F] transition-colors py-1.5 px-2 rounded-md hover:bg-[#F5F2EB]/80 cursor-pointer"
+            >
+              <Globe className="h-3.5 w-3.5 text-[#231F1A]/85" />
+              <span className="font-semibold text-xs">{currentLanguageConfig.code}</span>
+              <ChevronDown
+                className={`h-3 w-3 text-[#5C5347] transition-transform duration-200 ${
+                  languageDropdownOpen ? "rotate-180 text-[#8C7F5F]" : ""
+                }`}
+              />
+            </button>
+
+            {languageDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-52 rounded-lg bg-white py-1.5 shadow-2xl border border-[#E8E4DC] ring-1 ring-black/5 z-50">
+                <div className="px-3 py-1 text-[10px] uppercase font-semibold text-[#8C7F5F] tracking-wider border-b border-[#F0ECE1]">
+                  Select Language
+                </div>
+                <div className="max-h-72 overflow-y-auto py-1">
+                  {SUPPORTED_LANGUAGES.map((lang) => (
+                    <button
+                      key={lang.code}
+                      type="button"
+                      onClick={() => {
+                        setLanguage(lang.code)
+                        setLanguageDropdownOpen(false)
+                      }}
+                      className={`w-full flex items-center justify-between px-3.5 py-2 text-left text-xs transition-colors ${
+                        language === lang.code
+                          ? "bg-[#FAF8F3] text-[#8C7F5F] font-semibold"
+                          : "text-[#444444] hover:bg-[#F7F5F0] hover:text-[#222222]"
+                      }`}
+                    >
+                      <div className="flex items-center space-x-2.5">
+                        <span className="w-9 font-mono text-[11px] font-semibold text-[#8C7F5F]">
+                          {lang.code}
+                        </span>
+                        <span>{lang.nativeName}</span>
+                      </div>
+                      {language === lang.code && <Check className="h-3.5 w-3.5 text-[#8C7F5F]" />}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* SIGN IN Pill Button (Exact Nakula button aesthetic & placement) */}
+          <Link
+            href="/login"
+            className="inline-flex items-center justify-center rounded-full border border-[#231F1A] bg-transparent px-5 py-2 text-xs font-medium uppercase tracking-[0.16em] text-[#231F1A] hover:bg-[#231F1A] hover:text-[#FAF7F1] transition-all duration-200"
+          >
+            {t("signIn") || "SIGN IN"}
+          </Link>
         </div>
 
         {/* Mobile Hamburger Toggle */}

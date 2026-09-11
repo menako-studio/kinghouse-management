@@ -85,6 +85,17 @@ export function Footer() {
                       Management Enquiry
                     </Link>
                   </li>
+                  <li>
+                    <a
+                      href="https://www.kinghousecleaning.id/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-white font-medium text-[#DFC58E] transition-colors inline-flex items-center space-x-1"
+                    >
+                      <span>Kinghouse Cleaning</span>
+                      <span className="text-[10px]">↗</span>
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -154,7 +165,7 @@ export function Footer() {
               </div>
             </div>
 
-            {/* Column 3: OFFICE, HOURS, CONNECT WITH US */}
+            {/* Column 3: OFFICE, HOURS, CONNECT WITH US & ECOSYSTEM */}
             <div className="lg:col-span-4 space-y-6">
               {/* OFFICE */}
               <div className="space-y-1.5">
@@ -198,6 +209,29 @@ export function Footer() {
                   </a>
                 </div>
               </div>
+
+              {/* AFFILIATE BUSINESS LINE: KINGHOUSE CLEANING */}
+              <div className="space-y-2 pt-2 border-t border-white/10">
+                <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-white">
+                  Our Business Lines
+                </h4>
+                <a
+                  href="https://www.kinghousecleaning.id/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between p-3 rounded-lg bg-black/15 border border-white/10 hover:border-[#DFC58E]/50 hover:bg-black/25 transition-all text-xs"
+                >
+                  <div>
+                    <span className="font-medium text-white block group-hover:text-[#DFC58E] transition-colors">
+                      Kinghouse Cleaning
+                    </span>
+                    <span className="text-[11px] text-[#F0EBE0]/80 font-light block">
+                      Housekeeping, Villa Turnover & Deep Cleaning
+                    </span>
+                  </div>
+                  <ArrowRight className="h-3.5 w-3.5 text-[#DFC58E] opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all shrink-0 ml-2" />
+                </a>
+              </div>
             </div>
 
           </div>
@@ -205,13 +239,22 @@ export function Footer() {
           {/* 3. Bottom Bar (Clean Editorial Legal Footer) */}
           <div className="mt-14 pt-8 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#E0DACB]">
             <div>
-              <p>&copy; {currentYear} KingHouse Villa & Property Asset Management. All rights reserved.</p>
+              <p>&copy; {currentYear} Kinghouse Villa & Property Asset Management. All rights reserved.</p>
             </div>
 
             <div className="flex items-center space-x-4">
               <Link href="/stay" className="hover:text-white transition-colors">
                 Guest Guide
               </Link>
+              <span>&bull;</span>
+              <a
+                href="https://www.kinghousecleaning.id/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white text-[#DFC58E] font-medium transition-colors"
+              >
+                Kinghouse Cleaning
+              </a>
               <span>&bull;</span>
               <Link href="/terms" className="hover:text-white transition-colors">
                 Terms & Conditions

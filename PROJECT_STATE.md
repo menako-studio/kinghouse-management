@@ -393,14 +393,29 @@ kinghouse-mockup/
   - Remapped hero images to verified existing files on disk (`SkyHouse_IKEA_KamarUtama_Wide.jpeg`, `BrightAiry_Apartment_Kamar_Wide.webp`, `SkylineLuxury_OrangeCounty_KamarUtama.webp`), resolving all broken property cards.
   - Standardized portal branding, brand badge, and back link navigation.
 - [x] **Desktop Navbar Alignment & Nakula.com Luxury Spacing**:
-  - Structured desktop container with `max-w-[1440px]` and generous padding (`px-6 sm:px-8 lg:px-12 xl:px-16`).
-  - Positioned official secondary horizontal brandmark anchored on the far left with maximum breathing whitespace.
-  - Clustered navigation links (`HOME`, `OUR PROPERTIES ˅`, `MONTHLY OFFERS`, `EVENTS`, `OWNER SERVICES`, `ENQUIRE`) on the right side using Cormorant Garamond (`font-serif uppercase tracking-[0.2em] text-[13px]`) with editorial underline on `ENQUIRE`.
-  - Right-aligned utility controls (`$ RP ˅`, `🌐 EN ˅`) and styled `EXPLORE PROPERTIES` as a refined pill outline button matching Nakula.com proportions.
+  - Structured desktop container with `max-w-[1400px]` and balanced horizontal padding (`px-6 lg:px-12 xl:px-16`).
+  - Positioned official secondary horizontal brandmark on far left meeting 120px minimum digital size requirement.
+  - Incorporated `Home` as first navigation item with clean letter tracking (`tracking-[0.16em]`).
+  - Aligned right-hand controls (Currency, Language) and styled `EXPLORE PROPERTIES` as a sleek pill-outline button matching Nakula layout.
 - [x] **Automated Testing & Production Build**:
   - 34 Vitest unit tests passing across all suites.
   - TypeScript strict mode 0 errors.
   - Next.js production build succeeded across all 63 static and dynamic routes.
+
+### Phase 3.9 — Header Nakula-Grade Alignment, Kinghouse Cleaning Ecosystem & Local GBP Strategy (Completed)
+- [x] **Secondary Horizontal Brandmark Typography & Viewport Boost (`public/brand/logo-secondary-charcoal.svg`, `public/brand/logo-secondary-bone.svg`)**:
+  - Re-anchored SVG `viewBox` from `0 0 480 140` to snug `35 18 410 108`, eliminating dead padding borders.
+  - Elevated "KINGHOUSE" typography weight (600, size 32) and "MANAGEMENT" subtitle (700, size 12) for razor-sharp legibility on retina and 4K displays.
+- [x] **Desktop Header Alignment & Nakula.com 1:1 Layout (`components/layout/header.tsx`)**:
+  - Expanded desktop header container (`h-20 lg:h-22 xl:h-24 max-w-[1440px] px-6 lg:px-10 xl:px-14`) with logo dimensions `width={240} height={64}` (`h-10 sm:h-11 md:h-13 lg:h-14 xl:h-16`), solving logo readability issues.
+  - Re-aligned right navigation dock matching Nakula: text currency selector (`$ RP ⌵`), language selector (`Globe EN ⌵`), and pill outline button (`SIGN IN` linking to `/login`).
+  - Styled `ENQUIRE` with luxury editorial underline (`underline underline-offset-6 decoration-1`).
+- [x] **Kinghouse Cleaning Affiliate Integration (`components/layout/footer.tsx`)**:
+  - Added direct link to `https://www.kinghousecleaning.id/` under "About Us" navigation column.
+  - Added dedicated "Our Business Lines" card in Column 3 highlighting villa turnover, housekeeping, and deep cleaning services.
+  - Added affiliate backlink in bottom copyright bar alongside legal policies.
+- [x] **Google Business Profile (GBP) Multi-Entity Architecture Strategy**:
+  - Formalized recommendation for dual GBP profiles (Cleaning SAB vs Property Management Corporate) plus individual property Google Maps pins (e.g., Versatile House Jagakarsa) to capture distinct search intents without category confusion or suspension risks.
 
 ---
 
