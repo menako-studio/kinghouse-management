@@ -184,14 +184,9 @@ export function Footer() {
             <div className="lg:col-span-4 space-y-6">
               {/* OFFICE / CORPORATE HEADQUARTERS */}
               <div className="space-y-2">
-                <div className="flex items-center space-x-2">
-                  <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-white">
-                    Corporate Headquarters
-                  </h4>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-black/20 text-[#DFC58E] font-medium border border-white/10">
-                    PT Kreasi Usman Gosse
-                  </span>
-                </div>
+                <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-white">
+                  Corporate Headquarters
+                </h4>
                 <div className="text-xs font-light text-[#F0EBE0] leading-relaxed">
                   <p className="font-semibold text-white">PT Kreasi Usman Gosse</p>
                   <p className="mt-0.5">
@@ -199,8 +194,8 @@ export function Footer() {
                   </p>
                 </div>
 
-                {/* Google Maps / Google Business Profile Link */}
-                <div className="pt-1 flex flex-wrap gap-2">
+                {/* Google Maps & Reviews Link */}
+                <div className="pt-1">
                   <a
                     href="https://share.google/WHLcKlmJf8zZo27gO"
                     target="_blank"
@@ -208,16 +203,8 @@ export function Footer() {
                     className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-md bg-black/20 hover:bg-black/35 border border-white/15 text-xs text-white transition-all group"
                   >
                     <MapPin className="h-3.5 w-3.5 text-[#DFC58E]" />
-                    <span className="font-medium group-hover:text-[#DFC58E] transition-colors">Google Business Profile</span>
+                    <span className="font-medium group-hover:text-[#DFC58E] transition-colors">Google Maps &amp; Reviews</span>
                     <span className="text-[10px] opacity-70">↗</span>
-                  </a>
-                  <a
-                    href="https://www.google.com/search?sca_esv=d3239205b7f4fd26&hl=en&authuser=0&sxsrf=APpeQnukDFQYH45v1JGZCq_i_OhLcXqWIg:1789184395314&q=kinghouse+management+kota+tangerang+selatan+address&ludocid=8424800831686466391&sa=X&ved=2ahUKEwjmvMeij-iWAxXOm-EIHb6pFWsQ6BN6BAgmEAI"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-1 px-2.5 py-1.5 rounded-md bg-white/10 hover:bg-white/20 text-[11px] text-[#F0EBE0] hover:text-white transition-all"
-                  >
-                    <span>View Address & Reviews</span>
                   </a>
                 </div>
               </div>
