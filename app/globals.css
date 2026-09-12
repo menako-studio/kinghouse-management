@@ -5,9 +5,11 @@
   --brand-charcoal: #231F1A;       /* Charcoal Ink: Primary brandmark & dark surfaces */
   --brand-charcoal-dark: #191714;  /* Deep Charcoal: Darkest contrast baseline */
   --brand-bone: #FAF7F1;           /* Bone: Primary warm light background & inverted marks */
-  --brand-sandstone: #CBBEA0;      /* Sandstone / Brass: Subtle divider lines & accent */
-  --brand-warm-stone: #5C5347;      /* Warm Stone: Subtitles & secondary typography */
-  --brand-brass: #CBBEA0;          /* Brass Monochrome collateral */
+  --brand-bone-warm: #F5EFEB;      /* Warm Bone: Secondary warm surface */
+  --brand-sandstone: #CBBEA0;      /* Sandstone: Subtle divider lines, accents & reversed subtitle */
+  --brand-warm-stone: #5C5347;     /* Warm Stone: Subtitles & secondary typography */
+  --brand-brass: #6B4B2A;          /* Brass: Official Brass Monochrome mark & collateral */
+  --brand-brass-tint: #EFE2CE;     /* Brass Tint / Warm Parchment: Premium collateral surface */
 
   /* Global Surfaces */
   --bg-main: #FFFFFF;
@@ -60,9 +62,11 @@
   --color-brand-charcoal: var(--brand-charcoal);
   --color-brand-charcoal-dark: var(--brand-charcoal-dark);
   --color-brand-bone: var(--brand-bone);
+  --color-brand-bone-warm: var(--brand-bone-warm);
   --color-brand-sandstone: var(--brand-sandstone);
   --color-brand-warm-stone: var(--brand-warm-stone);
   --color-brand-brass: var(--brand-brass);
+  --color-brand-brass-tint: var(--brand-brass-tint);
   --color-nakula-khaki: var(--nakula-khaki);
   --color-cta: var(--cta-primary);
   --color-border-subtle: var(--border-subtle);
@@ -251,7 +255,8 @@ h3, h4, h5, h6 {
   background: #A69C8E;
 }
 
-/* Kinghouse Supergraphic Architectural Blueprint Patterns (Brand Guidelines Volume II) */
+/* Kinghouse Supergraphic Architectural Blueprint Patterns (Brand Guidelines Volume II - Ver. 02) */
+/* Pattern 01: Blueprint Grid on Bone */
 .supergraphic-blueprint-bone {
   background-color: var(--brand-bone);
   background-image: 
@@ -260,6 +265,7 @@ h3, h4, h5, h6 {
   background-size: 32px 32px;
 }
 
+/* Pattern 02: Blueprint Grid on Charcoal (Brass line) */
 .supergraphic-blueprint-charcoal {
   background-color: var(--brand-charcoal);
   background-image: 
@@ -268,13 +274,21 @@ h3, h4, h5, h6 {
   background-size: 32px 32px;
 }
 
+/* Pattern 03: Section divider with sandstone gradient & subtle opacity */
 .supergraphic-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent 0%, var(--brand-sandstone) 25%, var(--brand-sandstone) 75%, transparent 100%);
   opacity: 0.6;
 }
 
-/* Brandmark Typography Tracking & Secure Area (Rule: 1X = jamb-to-threshold) */
+/* Brandmark Secure Area & Minimum Size Specifications (Brand Guidelines Volume II):
+   - Mark: Monoline Quiet Custodian Key (pemegang akses & penjaga kepercayaan)
+   - Secure Area: 1X on all sides (1X = lebar cincin / bow pada kepala kunci di icon)
+   - Primary: 160px digital / 40mm print
+   - Secondary: 120px digital / 30mm print
+   - Tertiary (Icon): 24px digital / 6mm print
+   - Favicon (simplified): 16px digital (single-tooth key, optimized stroke)
+*/
 .tracking-brandmark {
   letter-spacing: 0.22em;
 }
