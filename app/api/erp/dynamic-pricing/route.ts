@@ -25,6 +25,7 @@ export async function GET(request: NextRequest) {
       try {
         const { data, error } = await supabase.from("reservations").select("*")
         if (!error && data && data.length > 0) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const mapped: Reservation[] = data.map((row: any) => ({
             id: row.id,
             propertyId: row.property_id,
