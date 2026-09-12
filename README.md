@@ -97,8 +97,8 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
 | **Database** | Supabase (PostgreSQL) | Isolated `kinghouse` dedicated schema for persistent ERP & CMS |
 | **Runtime & UI** | React 19.2.0 + TypeScript 5 | Type safety across schemas, state, and props |
 | **Typography** | Cormorant Garamond & Inter | Brand Guidelines Vol II: Cormorant Garamond (editorial/display) & Inter (interface/body) |
-| **Styling** | Tailwind CSS v4 + PostCSS | Kinghouse Official Palette: Charcoal Ink (`#231F1A`), Bone (`#FAF7F1`), Sandstone (`#CBBEA0`), Warm Stone (`#5C5347`) + Nakula Khaki (`#8C7F5F`) |
-| **Brand Identity** | Official Ambang Pintu Post-and-Lintel Mark | `public/brand/` SVGs & PNGs for primary, secondary horizontal, and icon marks with 1X secure area |
+| **Styling** | Tailwind CSS v4 + PostCSS | Kinghouse Official Palette: Charcoal Ink (`#231F1A`), Bone (`#FAF7F1`), Warm Bone (`#F5EFEB`), Sandstone (`#CBBEA0`), Warm Stone (`#5C5347`), Brass Monochrome (`#6B4B2A` / `#EFE2CE`) + Nakula Khaki (`#8C7F5F`) |
+| **Brand Identity** | Official Monoline Quiet Custodian Key | `public/brand/` SVGs & PNGs for primary, secondary horizontal, and icon marks with 1X secure area |
 | **Icons & Motion** | Lucide React + Framer Motion | Accessible vector icons and smooth physics |
 | **Validation** | Zod (`zod`) | Strict runtime schema validation for forms and APIs |
 | **Security** | Web Crypto HMAC-SHA256 + Rate Limiter | Zero-cost edge authentication and brute-force defense |

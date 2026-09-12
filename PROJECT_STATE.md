@@ -31,8 +31,8 @@ The platform serves two primary user personas:
 | **Language** | TypeScript | `^5.0` (Strict mode) | Type safety across schemas, state, and props |
 | **Typography** | Cormorant Garamond & Inter | Google Fonts (`next/font/google`) | Official Brand Guidelines Vol II: Cormorant Garamond (editorial/display) & Inter (interface/body) |
 | **Localization** | Multi-Language & Multi-Currency Context | Custom `LocalizationProvider` | Real-time conversions (10 currencies) & i18n (9 languages: JA, ZH, FR, ES, DE, RU, ID, EN) |
-| **Styling** | Tailwind CSS v4 + PostCSS | `@tailwindcss/postcss ^4`, `tailwindcss ^4` | Kinghouse Official Palette: Charcoal Ink (`#231F1A`), Bone (`#FAF7F1`), Sandstone (`#CBBEA0`), Warm Stone (`#5C5347`) + Nakula Olive-Khaki (`#8C7F5F`) |
-| **Brand Assets** | Official Monoline Ambang Pintu Post-and-Lintel | `public/brand/` (SVG & PNG) | Primary vertical, secondary horizontal, and tertiary icon brandmarks with 1X secure area |
+| **Styling** | Tailwind CSS v4 + PostCSS | `@tailwindcss/postcss ^4`, `tailwindcss ^4` | Kinghouse Official Palette: Charcoal Ink (`#231F1A`), Bone (`#FAF7F1`), Warm Bone (`#F5EFEB`), Sandstone (`#CBBEA0`), Warm Stone (`#5C5347`), Brass Monochrome (`#6B4B2A` / `#EFE2CE`) + Nakula Olive-Khaki (`#8C7F5F`) |
+| **Brand Assets** | Official Monoline Quiet Custodian Key | `public/brand/` (SVG & PNG) | Primary vertical, secondary horizontal, and tertiary icon brandmarks with 1X secure area (bow width) |
 | **UI Primitives** | Radix UI Slot, CVA | `class-variance-authority ^0.7.1`, `clsx`, `tailwind-merge` | Headless, accessible components |
 | **Animations** | Framer Motion | `^12.23.25` | Fluid micro-interactions and transitions |
 | **Icons** | Lucide React | `^0.556.0` | Vector iconography |
@@ -480,6 +480,26 @@ kinghouse-mockup/
   - Harmonized root URL in `app/sitemap.ts` without trailing slash to match canonical URL structure.
   - Removed private stay compendiums (`/stay/[slug]`) from `app/sitemap.ts` to strictly adhere to `app/robots.ts` disallow rules (`/stay/*`), eliminating GSC "Indexed, though blocked by robots.txt" indexing conflicts.
   - Updated Vitest assertions in `tests/analytics-seo.test.ts` to enforce canonical URL prefixes and verify zero disallowed stay URLs in sitemap output.
+
+### Phase 4.3 — Official Brandmark Guidelines Volume II (Ver. 02) & Favicon Suite Integration (Completed)
+- [x] **Monoline Quiet Custodian Key Brandmark Overhaul (`public/brand/`, `public/brand_guide/`)**:
+  - Replaced legacy door post-and-lintel mark with the official Monoline Key brandmark symbolizing Kinghouse as the Quiet Custodian (pemegang akses dan penjaga kepercayaan properti yang dikelola).
+  - Deployed full high-resolution vector (SVG) and raster (PNG) asset suite across all 3 official configurations:
+    1. *Primary Brandmark (Vertical)*: `logo-primary-full-color`, `logo-primary-reversed`, `logo-primary-brass-monochrome`.
+    2. *Secondary Brandmark (Horizontal)*: `logo-secondary-full-color`, `logo-secondary-reversed`, `logo-secondary-brass-monochrome`, and transparent inverted `logo-secondary-bone.svg`.
+    3. *Tertiary Brandmark (Icon)*: `icon-full-color`, `icon-reversed`, `icon-brass-monochrome`, and transparent `icon-bone.svg`.
+  - Maintained full backwards-compatible aliases (`logo-secondary-charcoal`, `icon-charcoal`, `logo-primary-charcoal`).
+- [x] **Dedicated Favicon & App Icon Suite (`app/favicon.ico`, `public/favicon.ico`, `app/icon.svg`)**:
+  - Integrated official 16px single-tooth simplified key icon (`icon-favicon-simplified.svg`, `icon-favicon-simplified.png`) with stroke optimized for high legibility at micro sizes.
+  - Generated multi-resolution `favicon.ico` (16x16, 32x32, 48x48) in both `app/` and `public/`.
+  - Updated `app/layout.tsx` metadata icons to declare simplified SVG, ICO, and PNG fallbacks.
+- [x] **Brand Guidelines Vol II Design Tokens & Supergraphics (`app/globals.css`)**:
+  - Added official Brass Monochrome palette tokens (`--brand-brass: #6B4B2A;`, `--brand-brass-tint: #EFE2CE;`) and Warm Bone (`--brand-bone-warm: #F5EFEB;`).
+  - Updated Tailwind v4 `@theme inline` mappings for `--color-brand-brass`, `--color-brand-brass-tint`, and `--color-brand-bone-warm`.
+  - Formalized 1X key-bow secure area and minimum size reproduction rules (Primary >=160px, Secondary >=120px, Tertiary >=24px, Favicon 16px).
+  - Synchronized architectural blueprint supergraphic patterns (Bone grid, Charcoal brass grid, Sandstone divider).
+- [x] **Component Rendering & Visual Verification**:
+  - Synchronized `components/layout/header.tsx` (secondary full-color/charcoal), `components/layout/footer.tsx` (secondary bone transparent over khaki background), `components/dashboard/sidebar.tsx` (bone icon), `app/stay/page.tsx`, and `app/stay/[slug]/page.tsx`.
 
 ---
 
