@@ -102,10 +102,12 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
 | **Icons & Motion** | Lucide React + Framer Motion | Accessible vector icons and smooth physics |
 | **Validation** | Zod (`zod`) | Strict runtime schema validation for forms and APIs |
 | **Security** | Web Crypto HMAC-SHA256 + Rate Limiter | Zero-cost edge authentication and brute-force defense |
-| **Testing** | Vitest (`vitest`) | Lightning fast automated unit testing suite (53 tests passing across 8 suites) |
+| **Testing** | Vitest (`vitest`) | Lightning fast automated unit testing suite (56 tests passing across 9 suites) |
 | **Dynamic Pricing** | AirDNA-Grade Multi-Factor Revenue Engine | 100% actual data fetch, submarket benchmarks, and CSV exporter |
 | **Channel Sync** | Native RFC 5545 iCal Generator | Free 2-way calendar sync for Airbnb / Agoda / Booking.com |
-| **Localization** | Multi-Currency & i18n Context | 10 currencies (IDR, USD, EUR, etc.) & 9 languages |
+| **Localization** | Multi-Currency & i18n Context | English default + 9 languages & 10 currencies (IDR, USD, EUR, etc.) |
+| **Revenue Simulator** | AirDNA-Grade Rentalizer (`/owner-services`) | Live submarket benchmarks, dynamic yield comparison, 1-click A4 audit sheet |
+| **SEO & Rich Snippets** | Schema.org JSON-LD Suite | LocalBusiness (AggregateRating 4.90★), FAQPage, Service/OfferCatalog, ItemList |
 | **Guest Upsell** | Vouch-Style Digital Compendium | Interactive add-on cart & dynamic WhatsApp dispatch |
 | **Hosting** | Vercel Free Hobby Tier | 100% Free Tier Compatible ($0/month) |
 
@@ -114,7 +116,7 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
 ## 🧪 Automated Testing & Production Quality Assurance
 
 ```bash
-# Run automated Vitest test suite (53 comprehensive tests across 8 suites)
+# Run automated Vitest test suite (56 comprehensive tests across 9 suites)
 npm test
 
 # Run TypeScript strict compilation
@@ -127,23 +129,26 @@ npm run lint
 npm run build
 ```
 
-The project includes an automated test suite powered by **Vitest** covering ERP calculations, 2-way iCal sync, commission fee splits, Zod validators, rate limiters, GA4/GTM tracking, and XML sitemaps.
+The project includes an automated test suite powered by **Vitest** covering ERP calculations, 2-way iCal sync, commission fee splits, Zod validators, rate limiters, GA4/GTM tracking, dynamic pricing, and revenue simulation.
 
 ### UI/UX & Media Performance Architecture:
-- **Desktop Navbar & Nakula.com Luxury Spacing**: Generous `max-w-[1400px]` container with `px-6 lg:px-12 xl:px-16` padding, secondary horizontal brandmark on far left (≥120px digital minimum size), clean menu hierarchy starting with `Home`, and sleek pill-outline CTA button matching the minimalist elegance of `nakula.com`.
+- **Desktop Navbar & Luxury Spacing**: Generous `max-w-[1400px]` container with `px-6 lg:px-12 xl:px-16` padding, secondary horizontal brandmark on far left (≥120px digital minimum size), clean menu hierarchy starting with `Home`, and sleek pill-outline CTA button.
+- **English Default & Multilingual Capabilities**: Universal English (`en`) default locale with fluid switching to Indonesian (`id`), Japanese (`ja`), Chinese (`zh`), French (`fr`), Spanish (`es`), German (`de`), and Russian (`ru`), backed by canonical hreflang tags.
 - **Responsive Viewport-Aware Video Streaming**: Automatically serves portrait vertical video on mobile and landscape video on desktop, using `preload="metadata"` to prevent downloading multiple streams or stalling bandwidth.
 - **Guest Compendium Asset Resilience (`/stay`)**: Verified local photography assets mapped cleanly to each managed unit, eliminating broken or missing images across all Jabodetabek properties.
 - **Mobile Collision-Free Layout**: Dynamic responsive spacing preventing floating search components from obscuring bottom hero specifications.
-- **Events Showcase Gallery**: Nakula-inspired visual gallery with interactive category filters, real event and wedding setup photos, and instant WhatsApp booking inquiry.
+- **Events Showcase Gallery**: Visual gallery with interactive category filters, real event and wedding setup photos, and instant WhatsApp booking inquiry.
 
 ### Test Coverage Highlights:
-- `tests/dynamic-pricing.test.ts`: Validates AirDNA-grade dynamic pricing formula, DOW multipliers for staycation vs business submarkets, official Indonesian public holiday detection, urgency curve discounts, floor/ceiling clamps, admin overrides, and CSV exports.
+- `tests/property-revenue-calculator.test.ts`: Validates AirDNA-grade submarket benchmarks, occupancy velocity formulas, 15% vs 20% commission net payouts, and annual surplus math.
+- `tests/dynamic-pricing.test.ts`: Validates dynamic pricing formula, DOW multipliers for staycation vs business submarkets, official Indonesian public holiday detection, urgency curve discounts, floor/ceiling clamps, admin overrides, and CSV exports.
 - `tests/erp-calculations.test.ts`: Validates 15% vs 20% commission splits, cleaning fee exemptions, net owner payouts, ADR, and RevPAR math.
 - `tests/ical-sync-engine.test.ts`: Validates 2-way iCal synchronization and RFC 5545 parsing.
 - `tests/guest-compendium.test.ts`: Verifies house rules, amenities, and digital compendium structure.
 - `tests/validation-security.test.ts`: Verifies Zod schema boundaries, timing-safe authentication, and rate-limiting sliding windows.
 - `tests/analytics-seo.test.ts`: Verifies GTM/GA4 event dispatching, VacationRental Schema.org, robots.txt directives, and dynamic sitemap generation.
 - `tests/ical-feed.test.ts`: Verifies CSV export engine headers and row escaping.
+- `tests/localization-currency.test.ts`: Verifies multi-currency conversion rates and multi-language dictionary fallbacks.
 
 ---
 
@@ -165,19 +170,29 @@ The CMS Dashboard is fortified and only accessible with verified administrative 
 | **GA4 ID** | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Google Analytics Measurement ID |
 | **GTM ID** | `NEXT_PUBLIC_GTM_ID` | Google Tag Manager Container ID |
 
-### Environment Variables:
+### Environment Variables Template (`.env.example`):
 ```env
-# Optional overrides for production deployment
-ADMIN_EMAIL=ptkreasiusmangosse@gmail.com
-ADMIN_PASSWORD=KingHouse2026!Admin
-AUTH_SECRET=kinghouse-hospitality-production-secret-key-2026-secure-jwt-hmac-token
+# Server Administration Credentials
+ADMIN_EMAIL=admin@example.com
+ADMIN_PASSWORD=your_strong_admin_password_here
+AUTH_SECRET_KEY=your_hmac_sha256_session_secret_key_here
+
+# Site Configuration
+NEXT_PUBLIC_SITE_URL=https://www.kinghousemanagement.com
+
+# Analytics & Tracking (Optional)
+NEXT_PUBLIC_GA_MEASUREMENT_ID=
+NEXT_PUBLIC_GTM_ID=
 ```
 
 ---
 
 ## 📞 Official Corporate Contact & Social Media
 
+- **Corporate Entity**: PT Kreasi Usman Gosse
 - **WhatsApp Concierge & Desk**: `082123933218` / `+62 821-2393-3218` (`https://wa.me/6282123933218`)
 - **Corporate Email**: `ptkreasiusmangosse@gmail.com`
-- **Official TikTok**: [`@kinghouse.id`](https://www.tiktok.com/@kinghouse.id) (`https://www.tiktok.com/@kinghouse.id`)
-- **Location**: Jabodetabek (Jakarta Selatan, Tangerang, Jakarta Barat, Cikarang Selatan)
+- **Official TikTok**: [`@kinghouse.id`](https://www.tiktok.com/@kinghouse.id)
+- **Official Instagram**: [`@kinghouse.id`](https://instagram.com/kinghouse.id)
+- **Verified Locations**: Jabodetabek (Jagakarsa - Jakarta Selatan, Pinang - Tangerang, Palmerah - Jakarta Barat, Cikarang Selatan - Bekasi)
+

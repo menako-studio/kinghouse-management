@@ -535,12 +535,62 @@ kinghouse-mockup/
   - 53 Vitest unit tests passing across all suites.
   - Next.js production build succeeded across all 66 static and dynamic routes.
 
+### Phase 4.6 — AirDNA & Little Hotelier Strategic Suite (100% Free-Tier Production Ready) (Completed)
+- [x] **AirDNA-Grade "Rentalizer" Property Revenue & Yield Simulator (`components/owner/property-revenue-calculator.tsx`, `app/owner-services/page.tsx`)**:
+  - Embedded interactive simulator directly into `/owner-services#calculator` with Hero CTA hook ("Simulasi Potensi Cuan (AirDNA)").
+  - **Zero Dummy Data**: Pulls live submarket benchmarks (`SUBMARKET_BENCHMARKS`) for Jagakarsa, Pinang/Alam Sutera, Palmerah, and Cikarang Orange County.
+  - Computes empirical comparison: **Self-Managed (~45% occupancy, flat rate)** vs **Kinghouse Dynamic Pricing (~78% occupancy, weekend surge +35%, holiday surge +40%)**.
+  - Transparent fee deduction: 15% Standard vs 20% Premium net payout calculator with highlighted annual net surplus.
+  - **High-Converting WhatsApp Lead Action**: Pre-populates structured WhatsApp message containing property specs, ADR, and simulation results sent to Reizky (`082123933218`).
+  - **1-Click Official Printable Audit Sheet**: Formatted for standard A4 print/PDF with Kinghouse Management & PT Kreasi Usman Gosse branding for in-person pitching.
+- [x] **Retained Core Yield Intelligence**: Maintained high-converting AirDNA Property Revenue Simulator with English default and full bilingual support on `/owner-services#calculator`.
+
+### Phase 4.7 — Strategic Scope Streamlining, Universal English Default & Page 1 Google SEO Overhaul (Completed)
+- [x] **Feature Removal & Codebase Streamlining**:
+  - Completely decommissioned and deleted `/owner-portal/[slug]` routes and `components/owner/owner-portal-view.tsx` to streamline scope and eliminate unnecessary portal overhead.
+  - Removed `/dashboard/housekeeping` route and removed Housekeeping item from `components/dashboard/sidebar.tsx` navigation.
+  - Purged Next.js cache; verified routes cleanly return `404 Not Found`.
+- [x] **Universal English Default Localization**:
+  - Standardized root `<html lang="en">` in `app/layout.tsx`.
+  - Refactored `components/owner/property-revenue-calculator.tsx` with English as default language while retaining fluid Indonesian toggle.
+  - Added alternate hreflang canonical links (`en`, `id`, `x-default`) pointing to `https://www.kinghousemanagement.com`.
+  - Configured OpenGraph `alternateLocale` for `id_ID`, `ja_JP`, `zh_CN`, `fr_FR`, `es_ES`, `de_DE`, and `ru_RU`.
+- [x] **Google Page 1 Organic SEO & Rich Snippets Optimization**:
+  - **Root (`app/layout.tsx`)**: Injected `AggregateRating` (4.90★ from 96 reviews across Airbnb listings) into `LocalBusiness` schema, with geo-coordinates and full corporate entity links (`PT Kreasi Usman Gosse`). Optimized meta title & description for maximum CTR.
+  - **Owner Services (`app/owner-services/page.tsx`)**: Added `Service` and `OfferCatalog` Schema.org JSON-LD targeting Airbnb co-hosting, dynamic pricing, and 15%/20% management fees.
+  - **Villas Catalog (`app/villas/layout.tsx`)**: Added `ItemList` Schema.org JSON-LD cataloging all 4 managed properties.
+  - **Events Venue (`app/events/layout.tsx`)**: Added `EventVenue` Schema.org JSON-LD for Versatile House Jagakarsa.
+  - **Contact (`app/contact/layout.tsx`)**: Added `ContactPage` Schema.org JSON-LD with corporate headquarters and concierge endpoints.
+  - **FAQ Knowledge Base (`app/faq/layout.tsx`)**: Added `FAQPage` Schema.org JSON-LD with 10 high-intent Q&As to capture Google SERP rich expandable accordions.
+- [x] **Quality Assurance & Verification**:
+  - All 56 Vitest unit tests pass across 9 test files.
+  - Strict TypeScript check passed with 0 errors (`npx tsc --noEmit`).
+  - ESLint passed with 0 errors (`npm run lint`).
+  - Next.js production build succeeded across all 66 static and dynamic routes.
+
+### Phase 4.8 — Owner Privacy Decommissioning & Secrets Hardening (Completed)
+- [x] **Owner Spotlight Removal (`app/about/page.tsx`)**:
+  - Completely removed the Founder & Leadership Spotlight section (Section 3) along with all associated quotes, credentials, and narrative keys in both Indonesian and English.
+  - Preserved seamless transition between Management Pillars, architectural supergraphic divider, and Kinghouse Cleaning foundational history.
+  - Removed unused `Linkedin` import and safely removed the `/team/reizky-syaher.jpg` photo asset.
+- [x] **Schema.org & Social Privacy Protection (`app/layout.tsx`, `lib/constants.ts`)**:
+  - Removed personal founder LinkedIn profile from `sameAs` array in `LocalBusiness` Schema.org JSON-LD to prevent search engine indexing of personal profile.
+  - Removed personal LinkedIn link from `social` configuration in `lib/constants.ts`.
+- [x] **Secrets Hardening in Documentation (`README.md`, `PROJECT_STATE.md`)**:
+  - Sanitized `README.md` to eliminate real passwords and session secrets, replacing them with standard `.env.example` placeholder templates.
+  - Updated testing metrics in `README.md` to reflect 56 tests passing across 9 test suites and documented latest rich Schema.org suites and revenue calculator.
+- [x] **Zero-Regression Verification**:
+  - 56 Vitest unit tests pass with 100% success.
+  - Strict TypeScript check passed with 0 errors.
+  - ESLint validation passed with 0 errors.
+  - Next.js production build succeeded with 66 routes.
+
 ---
 
 ## 4. VERIFICATION COMMANDS
 
 ```bash
-# Run automated Vitest test suite (53 tests across 8 suites)
+# Run automated Vitest test suite (56 tests across 9 suites)
 npm test
 
 # Run TypeScript strict type verification (0 errors)
