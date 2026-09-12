@@ -155,7 +155,7 @@ export default function TermsPage() {
                 <p>Legal &amp; Compliance Department</p>
                 <p>Email: ptkreasiusmangosse@gmail.com</p>
                 <p>WhatsApp Hotline: +62 821 2393 3218</p>
-                <p>Address: Jalan Jagakarsa No. 9, Jakarta Selatan, DKI Jakarta 12620, Indonesia</p>
+                <p>Address: Jl. Reni Jaya Blk. K2 No.16, Pd. Ranji, Kec. Ciputat Tim., Kota Tangerang Selatan, Banten 15416, Indonesia</p>
               </div>
             </div>
 

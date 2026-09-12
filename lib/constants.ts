@@ -26,16 +26,26 @@ export const SITE_CONFIG = {
     id: "Kinghouse Management adalah jasa manajemen properti sewa jangka pendek dan villa profesional di Jabodetabek (Jakarta Selatan, Tangerang, Jakarta Barat, Cikarang). Kami memaksimalkan pendapatan pemilik properti dan okupansi Airbnb dengan dynamic pricing dan layanan concierge 24/7.",
   },
 
+  company: {
+    legalName: "PT Kreasi Usman Gosse",
+    brandName: "Kinghouse Management",
+    cleaningBrandName: "Kinghouse Cleaning",
+    googleBusinessProfile: "https://share.google/WHLcKlmJf8zZo27gO",
+    careersUrl: "https://glints.com/id/en/companies/pt-kreasi-usman-gosse/351bd7d6-fff5-4a77-a91b-f69918d3b2fe",
+    cleaningWebsite: "https://www.kinghousecleaning.id/",
+  },
   contact: {
     email: "ptkreasiusmangosse@gmail.com",
     phone: "+62 821-2393-3218",
     whatsapp: "+62 821-2393-3218",
     whatsappMessage: "Hello Kinghouse Management, I am interested in your property management and villa booking services.",
-    address: "Jakarta, Indonesia",
+    address: "Jl. Reni Jaya Blk. K2 No.16, Pd. Ranji, Kec. Ciputat Tim., Kota Tangerang Selatan, Banten 15416",
+    mapsUrl: "https://www.google.com/search?sca_esv=d3239205b7f4fd26&hl=en&authuser=0&sxsrf=APpeQnukDFQYH45v1JGZCq_i_OhLcXqWIg:1789184395314&q=kinghouse+management+kota+tangerang+selatan+address&ludocid=8424800831686466391&sa=X&ved=2ahUKEwjmvMeij-iWAxXOm-EIHb6pFWsQ6BN6BAgmEAI",
   },
   social: {
     tiktok: "https://www.tiktok.com/@kinghouse.id",
     instagram: "https://instagram.com/kinghouse.id",
+    linkedin: "https://www.linkedin.com/in/reizky-syaher/",
   },
   airbnbHostProfile:
     "https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace",

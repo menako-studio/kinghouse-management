@@ -126,9 +126,25 @@ export default function ContactPage() {
                 <div className="flex items-start space-x-3">
                   <MapPin className="h-5 w-5 text-[#A69C8E] shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-xs text-[#717171] block">Principal Studio</span>
-                    <span className="text-xs text-[#717171] leading-relaxed block">
-                      Jakarta Selatan, Jabodetabek, Indonesia
+                    <span className="text-xs text-[#717171] block">Headquarters &bull; PT Kreasi Usman Gosse</span>
+                    <a
+                      href="https://share.google/WHLcKlmJf8zZo27gO"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-[#222222] font-medium leading-relaxed block hover:text-[#8C7F5F] hover:underline transition-colors"
+                    >
+                      Jl. Reni Jaya Blk. K2 No.16, Pd. Ranji, Kec. Ciputat Tim., Kota Tangerang Selatan, Banten 15416
+                    </a>
+                    <span className="inline-flex items-center space-x-1 text-[11px] text-[#8C7F5F] mt-1 font-semibold">
+                      <a
+                        href="https://share.google/WHLcKlmJf8zZo27gO"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline inline-flex items-center space-x-1"
+                      >
+                        <span>Verified Google Business Profile</span>
+                        <ArrowUpRight className="h-3 w-3" />
+                      </a>
                     </span>
                   </div>
                 </div>
