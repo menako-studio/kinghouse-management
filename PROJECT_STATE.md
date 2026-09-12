@@ -498,8 +498,25 @@ kinghouse-mockup/
   - Updated Tailwind v4 `@theme inline` mappings for `--color-brand-brass`, `--color-brand-brass-tint`, and `--color-brand-bone-warm`.
   - Formalized 1X key-bow secure area and minimum size reproduction rules (Primary >=160px, Secondary >=120px, Tertiary >=24px, Favicon 16px).
   - Synchronized architectural blueprint supergraphic patterns (Bone grid, Charcoal brass grid, Sandstone divider).
-- [x] **Component Rendering & Visual Verification**:
-  - Synchronized `components/layout/header.tsx` (secondary full-color/charcoal), `components/layout/footer.tsx` (secondary bone transparent over khaki background), `components/dashboard/sidebar.tsx` (bone icon), `app/stay/page.tsx`, and `app/stay/[slug]/page.tsx`.
+### Phase 4.4 — Corporate Entity Credibility, Glints Career Integration, Google Business Profile & Founder Spotlight (Completed)
+- [x] **Corporate Legal Entity & Footer Authority (`components/layout/footer.tsx`, `lib/constants.ts`)**:
+  - Added official corporate parent name **PT Kreasi Usman Gosse** prominently in footer Column 3 (Corporate Headquarters) and bottom copyright bar.
+  - Updated corporate headquarters address: `Jl. Reni Jaya Blk. K2 No.16, Pd. Ranji, Kec. Ciputat Tim., Kota Tangerang Selatan, Banten 15416`.
+  - Added direct link to verified Google Search Address & Reviews.
+  - Linked official Glints Career Portal (`https://glints.com/id/en/companies/pt-kreasi-usman-gosse/351bd7d6-fff5-4a77-a91b-f69918d3b2fe`) in Column 1 and bottom legal bar.
+  - Linked verified Google Business Profile (`https://share.google/WHLcKlmJf8zZo27gO`) in footer and contact page.
+- [x] **Comprehensive About Us Page Overhaul (`app/about/page.tsx`)**:
+  - Combined Kinghouse Management's property management & co-hosting narrative with Kinghouse Cleaning's 2020 foundation story.
+  - Documented social enterprise mission: empowering single mothers and female heads of households with technical on-the-job training, dignified wages, and entrepreneurial support.
+  - Core philosophy: *"The act of cleaning is more than just hygiene; it’s the opportunity to start over."*
+  - Showcased 11 Cleaning Services (Commercial, Residential, Rental Turnover, Move Out/In, Common Area, Construction, Event, Day Porter, Floor & Carpet Care, Window Washing, Disinfecting).
+  - Showcased 14 Industries Served (Short-term rentals Airbnb, Real-Estate, Hospitality, Office Buildings, Production Offices & Studios, Record Studios, Editing Suites, Warehouses, Distribution Centers, Medical Facilities, etc.).
+  - Detailed Founder Spotlight: **Reizky Syaher PU** (Founder & Managing Director) with scraped high-resolution verified photo (`/team/reizky-syaher.jpg`), Universitas Padjadjaran & RevoU background, Kemenparekraf & BEKRAF public sector experience, conversion rate optimization expertise, and direct LinkedIn profile link.
+- [x] **Local SEO & Schema.org LocalBusiness Harmonization (`app/layout.tsx`)**:
+  - Injected `legalName: "PT Kreasi Usman Gosse"` into Organization and LocalBusiness schemas.
+  - Updated PostalAddress to Ciputat Timur, Kota Tangerang Selatan, Banten 15416.
+  - Added `hasMap` pointing to Google Business Profile (`https://share.google/WHLcKlmJf8zZo27gO`).
+  - Added Glints company URL and LinkedIn founder URL into schema `sameAs`.
 
 ---
 
