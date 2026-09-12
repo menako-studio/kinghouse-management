@@ -24,11 +24,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Kinghouse Management | Short-Stay & Villa Asset Management",
+    default: "Kinghouse Management | Luxury Villa & Airbnb Property Management Jakarta",
     template: "%s | Kinghouse Management",
   },
   description:
-    "Jasa manajemen properti sewa harian & villa profesional di Jabodetabek. Maksimalkan okupansi Airbnb, dynamic pricing, dan 24/7 concierge bersama Kinghouse.",
+    "Institutional short-stay villa & Airbnb asset management in Greater Jakarta. Maximize net yield with algorithmic dynamic pricing, 5-star operations, and global OTA syndication.",
   keywords: [
     "Kinghouse Management",
     "King House Management",
@@ -38,19 +38,29 @@ export const metadata: Metadata = {
     "www.kinghousemanagement.com",
     "kinghouse",
 
-    "property management jakarta",
-    "airbnb property management jabodetabek",
-    "short stay villa jakarta selatan",
-    "airbnb management indonesia",
+    // High-Intent English Search Queries
+    "airbnb property management jakarta",
     "villa management south jakarta",
+    "short stay asset management jabodetabek",
+    "airbnb co-host jakarta",
+    "luxury villa rental jakarta",
+    "airbnb management indonesia",
+    "vacation rental management jakarta",
+    "short term rental asset management",
+    "maximize airbnb occupancy",
+
+    // High-Intent Domestic Search Queries
+    "jasa kelola airbnb jakarta",
+    "manajemen villa jakarta selatan",
+    "jasa kelola villa jabodetabek",
+    "manajemen apartemen harian",
+    "sewa villa intimate wedding jakarta",
+    "sewa apartemen harian ikea tangerang",
+    "co-hosting airbnb cikarang",
     "airbnb jagakarsa",
     "airbnb cikarang",
     "airbnb tangerang",
     "airbnb palmerah",
-    "short term rental asset management",
-    "maximize airbnb occupancy",
-    "jasa kelola villa jabodetabek",
-    "manajemen apartemen harian",
   ],
   authors: [{ name: "Kinghouse Management" }],
   creator: "Kinghouse Management",
@@ -66,7 +76,12 @@ export const metadata: Metadata = {
     apple: "/brand/icon-favicon-simplified.png",
   },
   alternates: {
-    canonical: "/",
+    canonical: SITE_CONFIG.baseUrl,
+    languages: {
+      "en": SITE_CONFIG.baseUrl,
+      "id": `${SITE_CONFIG.baseUrl}?lang=id`,
+      "x-default": SITE_CONFIG.baseUrl,
+    },
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
@@ -83,12 +98,12 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Kinghouse Management — Editorial Short-Stay Property Management in Jabodetabek",
+    title: "Kinghouse Management — Luxury Villa & Airbnb Property Management in Greater Jakarta",
     description:
-      "Maximize property occupancy and revenue on Airbnb with Kinghouse Management. Editorial photography, keyword-optimized SEO, dynamic pricing, and 24/7 guest concierge.",
+      "Institutional short-stay villa & Airbnb asset management across South Jakarta, Tangerang, and Cikarang. Superior owner EBITDA, algorithmic dynamic pricing, and 24/7 guest concierge.",
     type: "website",
-    locale: "id_ID",
-    alternateLocale: ["en_US"],
+    locale: "en_US",
+    alternateLocale: ["id_ID", "ja_JP", "zh_CN", "fr_FR", "es_ES", "de_DE", "ru_RU"],
     siteName: "Kinghouse Management",
     url: SITE_CONFIG.baseUrl,
     images: [
@@ -102,9 +117,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kinghouse Management — Editorial Short-Stay Property Management",
+    title: "Kinghouse Management — Luxury Villa & Airbnb Asset Management",
     description:
-      "Maximize property occupancy and revenue on Airbnb with Kinghouse Management. Editorial photography, keyword-optimized SEO, dynamic pricing, and 24/7 guest care.",
+      "Institutional short-stay villa & Airbnb asset management in Greater Jakarta. Maximize net yield with algorithmic dynamic pricing and 5-star operations.",
     images: [
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=85",
     ],
@@ -128,7 +143,7 @@ const comprehensiveSchema = {
 
       url: SITE_CONFIG.baseUrl,
       description:
-        "Kinghouse Management adalah jasa manajemen properti sewa harian dan villa profesional di Jabodetabek (Jakarta Selatan, Tangerang, Jakarta Barat, Cikarang).",
+        "Kinghouse Management is an editorial short-stay villa and property asset management firm in Greater Jakarta (South Jakarta, Tangerang, West Jakarta, Cikarang) operated by PT Kreasi Usman Gosse.",
       potentialAction: {
         "@type": "SearchAction",
         target: `${SITE_CONFIG.baseUrl}/villas?search={search_term_string}`,
@@ -149,12 +164,12 @@ const comprehensiveSchema = {
       url: SITE_CONFIG.baseUrl,
       logo: `${SITE_CONFIG.baseUrl}/favicon.ico`,
       description:
-        "Kinghouse Management adalah perusahaan manajemen properti sewa jangka pendek profesional di bawah PT Kreasi Usman Gosse. Kami mengoptimalkan listing Airbnb melalui fotografi editorial, SEO listing, dynamic pricing, dan operasional end-to-end.",
+        "Institutional short-stay property management company under PT Kreasi Usman Gosse. We optimize luxury villas and apartments through editorial photography, algorithmic dynamic pricing, and 5-star operations.",
       contactPoint: {
         "@type": "ContactPoint",
         contactType: "customer service",
         telephone: "+6282123933218",
-        availableLanguage: ["Indonesian", "English"],
+        availableLanguage: ["English", "Indonesian"],
         areaServed: "ID",
       },
       areaServed: [
@@ -170,7 +185,6 @@ const comprehensiveSchema = {
         "https://www.airbnb.com/users/profile/1470743715397835749",
         "https://share.google/WHLcKlmJf8zZo27gO",
         "https://glints.com/id/en/companies/pt-kreasi-usman-gosse/351bd7d6-fff5-4a77-a91b-f69918d3b2fe",
-        "https://www.linkedin.com/in/reizky-syaher/",
       ],
     },
     {
@@ -183,6 +197,13 @@ const comprehensiveSchema = {
       telephone: "+6282123933218",
       email: "ptkreasiusmangosse@gmail.com",
       hasMap: "https://share.google/WHLcKlmJf8zZo27gO",
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.90",
+        reviewCount: "96",
+        bestRating: "5",
+        worstRating: "1",
+      },
       address: {
         "@type": "PostalAddress",
         streetAddress: "Jl. Reni Jaya Blk. K2 No.16, Pd. Ranji, Kec. Ciputat Tim.",
@@ -197,7 +218,7 @@ const comprehensiveSchema = {
         longitude: 106.7447,
       },
       url: SITE_CONFIG.baseUrl,
-      priceRange: "Rp 280.000 - Rp 1.800.000 / malam",
+      priceRange: "Rp 280.000 - Rp 1.900.000 / night",
       openingHoursSpecification: [
         {
           "@type": "OpeningHoursSpecification",
@@ -216,7 +237,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="id" className={`${cormorant.variable} ${inter.variable} scroll-smooth`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${cormorant.variable} ${inter.variable} scroll-smooth`}>
       <body className="min-h-screen bg-[var(--bg-main)] font-sans text-[var(--text-primary)] antialiased selection:bg-[#CBBEA0] selection:text-[#231F1A]">
         {/* Google Analytics 4 & Google Tag Manager */}
         <GoogleAnalytics />
