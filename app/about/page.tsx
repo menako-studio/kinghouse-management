@@ -15,7 +15,6 @@ import {
   Clock,
   Briefcase,
   Users,
-  Linkedin,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useLocalization } from "@/lib/context/localization-context"
@@ -79,29 +78,6 @@ export default function AboutPage() {
             desc: "Preventative maintenance berkala (AC, plumbing, kelistrikan), inventarisasi berkala, serta laporan keuangan transparan setiap bulan bagi pemilik.",
           },
         ] as PillarItem[],
-
-        founderEyebrow: "Founder & Kepemimpinan",
-        founderHeadline: "Dedikasi Kepemimpinan di Balik PT Kreasi Usman Gosse",
-        founderRole: "Founder & Managing Director",
-        founderCompany: "PT Kreasi Usman Gosse • Kinghouse",
-        founderLinkedIn: "Connect di LinkedIn",
-        founderSubheading: "Mengubah Properti Konvensional Menjadi Aset Hospitalitas Unggulan",
-        founderBio1:
-          "Sebagai pendiri PT Kreasi Usman Gosse, Reizky Syaher memiliki visi mendalam dalam memajukan sektor ekonomi kreatif dan pariwisata di Indonesia. Berbekal pengalaman profesional di lingkungan Kementerian Pariwisata dan Ekonomi Kreatif (Kemenparekraf) serta Badan Ekonomi Kreatif (BEKRAF), Reizky memiliki keahlian komprehensif dalam penguatan ekosistem startup, relasi publik, dan pengembangan program berskala nasional.",
-        founderBio2:
-          "Latar belakang akademik di Universitas Padjadjaran serta spesialisasi digital marketing & performance dari RevoU melengkapi strateginya dalam menerapkan pendekatan berbasis data untuk mengelola properti sewa: mulai dari optimasi rasio konversi (CVR), dynamic pricing algorithm, SEO on-page, hingga direct multi-channel marketing.",
-        founderQuote:
-          "“Bagi kami, kebersihan dan manajemen properti bukan sekadar rutinitas operasional; ini adalah tentang memberdayakan komunitas lokal kami dan mentransformasi aset properti menjadi ruang tinggal bernilai tinggi yang menghadirkan ketenangan bagi pemilik dan kehangatan bagi setiap tamu.”",
-        founderQuoteAuthor: "— Reizky Syaher PU, Founder & Managing Director",
-        credEdu: "Pendidikan & Keahlian",
-        credEduSub: "Universitas Padjadjaran & RevoU",
-        credEduDetail: "Digital Performance & SEO",
-        credPub: "Pengalaman Publik",
-        credPubSub: "Kemenparekraf & BEKRAF",
-        credPubDetail: "Tourism & Creative Economy",
-        credBiz: "Fokus Bisnis",
-        credBizSub: "Co-Hosting & Hospitality",
-        credBizDetail: "Social Enterprise Leadership",
 
         heritageEyebrow: "Sejarah Awal • Social Enterprise Berkelanjutan",
         heritageTitle: "Kinghouse Cleaning:",
@@ -214,29 +190,6 @@ export default function AboutPage() {
             desc: "Routine preventative maintenance (HVAC, plumbing, electrical), periodic inventory audits, and transparent monthly financial reporting for owners.",
           },
         ] as PillarItem[],
-
-        founderEyebrow: "Founder & Leadership",
-        founderHeadline: "Dedicated Leadership Behind PT Kreasi Usman Gosse",
-        founderRole: "Founder & Managing Director",
-        founderCompany: "PT Kreasi Usman Gosse • Kinghouse",
-        founderLinkedIn: "Connect on LinkedIn",
-        founderSubheading: "Transforming Conventional Real Estate into Premier Hospitality Assets",
-        founderBio1:
-          "As the founder of PT Kreasi Usman Gosse, Reizky Syaher brings a profound commitment to advancing Indonesia's creative economy and tourism ecosystem. With distinguished professional experience across the Ministry of Tourism and Creative Economy (Kemenparekraf) and the Indonesian Creative Economy Agency (BEKRAF), Reizky possesses extensive expertise in startup ecosystem strengthening, public-private partnerships, and national-scale development programs.",
-        founderBio2:
-          "His academic foundation from Padjadjaran University combined with digital performance and growth marketing specialization from RevoU guides his data-driven methodology in property portfolio management: encompassing conversion rate optimization (CVR), dynamic pricing algorithms, technical on-page SEO, and multi-channel direct distribution.",
-        founderQuote:
-          "“For us, cleanliness and property management transcend routine operations; it is about empowering our local communities and transforming real estate assets into high-value living sanctuaries that bring peace of mind to owners and warmth to every guest.”",
-        founderQuoteAuthor: "— Reizky Syaher PU, Founder & Managing Director",
-        credEdu: "Education & Expertise",
-        credEduSub: "Padjadjaran University & RevoU",
-        credEduDetail: "Digital Performance & SEO",
-        credPub: "Public Sector Experience",
-        credPubSub: "Kemenparekraf & BEKRAF",
-        credPubDetail: "Tourism & Creative Economy",
-        credBiz: "Core Business Focus",
-        credBizSub: "Co-Hosting & Hospitality",
-        credBizDetail: "Social Enterprise Leadership",
 
         heritageEyebrow: "Origins & Heritage • Sustainable Social Enterprise",
         heritageTitle: "Kinghouse Cleaning:",
@@ -438,130 +391,7 @@ export default function AboutPage() {
       {/* Supergraphic Architectural Divider */}
       <div className="supergraphic-divider" />
 
-      {/* 3. FOUNDER & LEADERSHIP SPOTLIGHT (REIZKY SYAHER PU) */}
-      <section className="py-20 bg-[#FAF7F1] border-b border-[#E8E4DC]">
-        <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <div className="max-w-3xl mb-12 space-y-3">
-            <span className="text-xs uppercase tracking-[0.22em] font-semibold text-[#8C7F5F]">
-              {content.founderEyebrow}
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl text-[#231F1A] font-normal">
-              {content.founderHeadline}
-            </h2>
-          </div>
-
-          <div className="rounded-3xl border border-[#E8E4DC] bg-white p-8 sm:p-12 shadow-xs">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-              
-              {/* Founder Photo */}
-              <div className="lg:col-span-4 flex flex-col items-center text-center">
-                <div className="relative aspect-square w-60 sm:w-64 rounded-2xl overflow-hidden border-2 border-[#CBBEA0] shadow-md bg-[#231F1A]">
-                  <Image
-                    src="/team/reizky-syaher.jpg"
-                    alt="Reizky Syaher PU — Founder & Managing Director PT Kreasi Usman Gosse"
-                    fill
-                    sizes="(max-width: 640px) 240px, 256px"
-                    className="object-cover object-top"
-                    priority
-                  />
-                </div>
-                <div className="mt-4 space-y-1">
-                  <h3 className="font-serif text-2xl text-[#231F1A] font-semibold">
-                    Reizky Syaher PU
-                  </h3>
-                  <p className="text-xs uppercase tracking-wider text-[#8C7F5F] font-semibold">
-                    {content.founderRole}
-                  </p>
-                  <p className="text-xs text-[#5C5347]">
-                    {content.founderCompany}
-                  </p>
-                </div>
-
-                <div className="mt-4 pt-2">
-                  <a
-                    href="https://www.linkedin.com/in/reizky-syaher/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-[#0A66C2] hover:bg-[#084e96] text-white text-xs font-semibold shadow-xs transition-colors"
-                  >
-                    <Linkedin className="h-3.5 w-3.5 fill-current" />
-                    <span>{content.founderLinkedIn}</span>
-                    <ExternalLink className="h-3 w-3 opacity-80" />
-                  </a>
-                </div>
-              </div>
-
-              {/* Founder Bio & Narrative */}
-              <div className="lg:col-span-8 space-y-5 text-[#5C5347] text-sm leading-relaxed font-light">
-                <div className="space-y-3">
-                  <h4 className="font-serif text-xl text-[#231F1A] font-normal">
-                    {content.founderSubheading}
-                  </h4>
-                  <p>
-                    {content.founderBio1}
-                  </p>
-                  <p>
-                    {content.founderBio2}
-                  </p>
-                </div>
-
-                {/* Founder Quote Card */}
-                <div className="bg-[#FAF7F1] border-l-4 border-[#8C7F5F] p-4 rounded-r-xl italic text-xs sm:text-sm text-[#231F1A] supergraphic-blueprint-bone">
-                  {content.founderQuote}
-                  <span className="block mt-2 not-italic font-semibold text-[#8C7F5F] text-xs">
-                    {content.founderQuoteAuthor}
-                  </span>
-                </div>
-
-                {/* Badges / Credentials */}
-                <div className="pt-2 grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <div className="p-3.5 rounded-xl bg-[#FAF7F1] border border-[#E8E4DC] space-y-1">
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-[#8C7F5F] block">
-                      {content.credEdu}
-                    </span>
-                    <span className="text-xs font-semibold text-[#231F1A] block">
-                      {content.credEduSub}
-                    </span>
-                    <span className="text-[11px] text-[#5C5347] block">
-                      {content.credEduDetail}
-                    </span>
-                  </div>
-
-                  <div className="p-3.5 rounded-xl bg-[#FAF7F1] border border-[#E8E4DC] space-y-1">
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-[#8C7F5F] block">
-                      {content.credPub}
-                    </span>
-                    <span className="text-xs font-semibold text-[#231F1A] block">
-                      {content.credPubSub}
-                    </span>
-                    <span className="text-[11px] text-[#5C5347] block">
-                      {content.credPubDetail}
-                    </span>
-                  </div>
-
-                  <div className="p-3.5 rounded-xl bg-[#FAF7F1] border border-[#E8E4DC] space-y-1">
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-[#8C7F5F] block">
-                      {content.credBiz}
-                    </span>
-                    <span className="text-xs font-semibold text-[#231F1A] block">
-                      {content.credBizSub}
-                    </span>
-                    <span className="text-[11px] text-[#5C5347] block">
-                      {content.credBizDetail}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Supergraphic Architectural Divider */}
-      <div className="supergraphic-divider" />
-
-      {/* 4. THE FOUNDATIONAL ROOTS: KINGHOUSE CLEANING (EST. 2020) */}
+      {/* 3. THE FOUNDATIONAL ROOTS: KINGHOUSE CLEANING (EST. 2020) */}
       <section className="py-20 bg-white border-b border-[#E8E4DC]">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 space-y-12">
           

@@ -45,7 +45,6 @@ export const SITE_CONFIG = {
   social: {
     tiktok: "https://www.tiktok.com/@kinghouse.id",
     instagram: "https://instagram.com/kinghouse.id",
-    linkedin: "https://www.linkedin.com/in/reizky-syaher/",
   },
   airbnbHostProfile:
     "https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace",
