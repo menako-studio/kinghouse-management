@@ -518,6 +518,23 @@ kinghouse-mockup/
   - Added `hasMap` pointing to Google Business Profile (`https://share.google/WHLcKlmJf8zZo27gO`).
   - Added Glints company URL and LinkedIn founder URL into schema `sameAs`.
 
+### Phase 4.5 — Multilingual About Us Architecture & Brand System Harmonization (Completed)
+- [x] **Dynamic Multilingual & English-Default About Us Architecture (`app/about/page.tsx`, `app/about/layout.tsx`)**:
+  - Refactored `app/about/page.tsx` into a high-performance Client Component integrating `useLocalization()`.
+  - Enforced **English as the primary default language** across all sections, seamlessly switching to Bahasa Indonesia when the user selects `ID` in `components/layout/header.tsx` (or other languages with graceful fallback).
+  - Created `app/about/layout.tsx` to maintain server-rendered SEO metadata (`Metadata`, OpenGraph, canonical URLs) without compromising client-side localization responsiveness.
+  - Complete bilingual coverage: Hero, Vision & Co-Hosting service, 4 Management Pillars, Founder & Leadership Spotlight (Reizky Syaher PU), Kinghouse Cleaning Heritage & Social Enterprise, 11 Specialized Cleaning Services, 13 Industries Served, Corporate Transparency (PT Kreasi Usman Gosse, GBP, Glints), and Bottom CTAs.
+- [x] **Universal Styling Harmonization Inline with `app/globals.css`**:
+  - Replaced all non-standard off-brand dark backgrounds (`#24221F`) across `/terms`, `/privacy`, `/faq`, `/press`, `/management-inquiry`, and `/about` with official Kinghouse Charcoal Ink (`#231F1A`).
+  - Standardized background surfaces to official Bone (`#FAF7F1`), borders to Subtle Border (`#E8E4DC`), and subtitles to Warm Stone (`#5C5347`).
+  - Integrated `supergraphic-blueprint-charcoal`, `supergraphic-blueprint-bone`, and `supergraphic-divider` across editorial hero and quote sections for rich brand consistency.
+- [x] **Footer Corporate Headquarters Streamlining (`components/layout/footer.tsx`)**:
+  - Eliminated redundant `PT Kreasi Usman Gosse` pill badge adjacent to the section title.
+  - Merged duplicate Google Maps/Reviews buttons into a single clean, high-conversion action button (`Google Maps & Reviews ↗`).
+- [x] **Automated Testing & Production Build**:
+  - 53 Vitest unit tests passing across all suites.
+  - Next.js production build succeeded across all 66 static and dynamic routes.
+
 ---
 
 ## 4. VERIFICATION COMMANDS
