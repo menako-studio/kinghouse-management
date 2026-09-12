@@ -20,9 +20,9 @@ export default function TermsPage() {
   const lastUpdated = "September 1, 2026"
 
   return (
-    <main className="min-h-screen bg-[#FAF8F5]">
+    <main className="min-h-screen bg-[#FAF7F1]">
       {/* Header */}
-      <section className="bg-[#24221F] text-white pt-28 pb-16 lg:pt-32 lg:pb-20">
+      <section className="bg-[#231F1A] text-white pt-28 pb-16 lg:pt-32 lg:pb-20 supergraphic-blueprint-charcoal">
         <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
           <div className="inline-flex items-center space-x-2 text-[#DFC58E] text-xs uppercase tracking-[0.2em] font-semibold mb-3">
             <FileText className="h-4 w-4" />

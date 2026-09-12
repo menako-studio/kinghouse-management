@@ -70,9 +70,9 @@ const MEDIA_MENTIONS = [
 
 export default function PressPage() {
   return (
-    <main className="min-h-screen bg-[#FAF8F5]">
+    <main className="min-h-screen bg-[#FAF7F1]">
       {/* 1. Hero Header */}
-      <section className="relative overflow-hidden bg-[#24221F] text-white pt-28 pb-20 lg:pt-32 lg:pb-24">
+      <section className="relative overflow-hidden bg-[#231F1A] text-white pt-28 pb-20 lg:pt-32 lg:pb-24 supergraphic-blueprint-charcoal">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80"
@@ -81,7 +81,7 @@ export default function PressPage() {
             className="object-cover opacity-20"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#24221F] via-[#24221F]/80 to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#231F1A] via-[#231F1A]/80 to-black/60" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
