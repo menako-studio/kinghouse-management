@@ -58,10 +58,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.baseUrl),
   icons: {
     icon: [
-      { url: "/brand/icon-charcoal.svg", type: "image/svg+xml" },
-      { url: "/brand/icon-charcoal.png", sizes: "32x32", type: "image/png" },
+      { url: "/brand/icon-favicon-simplified.svg", type: "image/svg+xml" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/brand/icon-favicon-simplified.png", sizes: "32x32", type: "image/png" },
     ],
-    apple: "/brand/icon-charcoal.png",
+    apple: "/brand/icon-favicon-simplified.png",
   },
   alternates: {
     canonical: "/",
