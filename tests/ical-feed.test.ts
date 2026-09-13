@@ -58,4 +58,48 @@ describe("Distribution Feed & Export Engine", () => {
     expect(csv).toContain("PLN & Utilities")
     expect(csv).toContain("Token Listrik PLN")
   })
+
+  it("generates valid RFC 5545 iCalendar feed for OTA sync", async () => {
+    const { generateIcalFeed } = await import("@/lib/ical/generator")
+    const { CURATED_VILLAS } = await import("@/lib/data")
+
+    const villa = CURATED_VILLAS[0]
+    const reservations: Reservation[] = [
+      {
+        id: "RES-TEST-1",
+        propertyId: villa.id,
+        propertySlug: villa.slug,
+        propertyName: villa.name,
+        guestName: "Budi Santoso",
+        channel: "Direct WhatsApp",
+        checkIn: "2026-10-01",
+        checkOut: "2026-10-04",
+        nights: 3,
+        guests: 6,
+        grossPayoutIdr: 7500000,
+        cleaningFeeIdr: 350000,
+        feeTier: "standard",
+        managementFeePercent: 15,
+        managementFeeIdr: 1072500,
+        netOwnerPayoutIdr: 6077500,
+        status: "Confirmed",
+        createdAt: "2026-09-01T00:00:00Z",
+      },
+    ]
+
+    const ics = generateIcalFeed(villa, reservations)
+
+    expect(ics).toContain("BEGIN:VCALENDAR")
+    expect(ics).toContain("VERSION:2.0")
+    expect(ics).toContain("PRODID:-//Kinghouse Hospitality//EN")
+    expect(ics).toContain("METHOD:PUBLISH")
+    expect(ics).toContain("BEGIN:VEVENT")
+    expect(ics).toContain("UID:RES-TEST-1@kinghouse.id")
+    expect(ics).toContain("DTSTART;VALUE=DATE:20261001")
+    expect(ics).toContain("DTEND;VALUE=DATE:20261004")
+    expect(ics).toContain("SUMMARY:Reserved - Kinghouse (Direct WhatsApp)")
+    expect(ics).toContain("END:VEVENT")
+    expect(ics).toContain("END:VCALENDAR")
+  })
 })
+

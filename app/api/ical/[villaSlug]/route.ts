@@ -3,13 +3,51 @@ import { CURATED_VILLAS } from "@/lib/data"
 import { Reservation } from "@/lib/erp/types"
 import { getSupabaseServerClient } from "@/lib/supabase/server"
 import { getReservationsStore } from "@/lib/erp/store"
+import { generateIcalFeed } from "@/lib/ical/generator"
+
+const PROPERTY_ALIASES: Record<string, string[]> = {
+  "villa-1": [
+    "versatile-house-jagakarsa",
+    "versatile-house-with-beautiful-garden-beyond",
+    "villa-jagakarsa",
+    "villa-1",
+    "45834267",
+  ],
+  "villa-2": [
+    "sky-house-tangerang",
+    "sky-house-hotel-style-bed-ikea-5min",
+    "sky-house-bsd",
+    "villa-2",
+    "1325106294978348497",
+  ],
+  "villa-3": [
+    "skyline-luxury-orange-county-cikarang",
+    "skyline-luxury-at-orange-county",
+    "cikarang-luxury",
+    "villa-3",
+    "1691723711820833674",
+  ],
+  "villa-4": [
+    "bright-airy-apartment-palmerah",
+    "bright-airy-apartment",
+    "palmerah-apt",
+    "villa-4",
+    "1444158185166882045",
+  ],
+}
 
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ villaSlug: string }> }
 ) {
   const { villaSlug } = await params
-  const villa = CURATED_VILLAS.find((v) => v.slug === villaSlug || v.id === villaSlug)
+  const normalizedSlug = villaSlug.toLowerCase().trim()
+
+  const villa = CURATED_VILLAS.find((v) => {
+    if (v.slug === normalizedSlug || v.id === normalizedSlug) return true
+    const aliases = PROPERTY_ALIASES[v.id] || []
+    return aliases.includes(normalizedSlug)
+  })
 
   if (!villa) {
     return new NextResponse("Property calendar not found", { status: 404 })
@@ -26,10 +64,17 @@ export async function GET(
     const controller = new AbortController()
     const timeoutId = setTimeout(() => controller.abort(), 4000)
     try {
+      const aliases = PROPERTY_ALIASES[villa.id] || [villa.slug, villa.id]
+      const orFilters = [
+        ...aliases.map((a) => `property_slug.eq.${a}`),
+        ...aliases.map((a) => `property_id.eq.${a}`),
+        `property_name.ilike.%${villa.name.slice(0, 15)}%`,
+      ].join(",")
+
       const { data, error } = await supabase
         .from("reservations")
         .select("*")
-        .or(`property_slug.eq.${villa.slug},property_id.eq.${villa.id}`)
+        .or(orFilters)
         .neq("status", "Cancelled")
         .abortSignal(controller.signal)
 
@@ -64,53 +109,23 @@ export async function GET(
   }
 
   if (villaReservations.length === 0) {
+    const aliases = PROPERTY_ALIASES[villa.id] || [villa.slug, villa.id]
     villaReservations = getReservationsStore().filter(
-      (r) => (r.propertySlug === villaSlug || r.propertyId === villa.id) && r.status !== "Cancelled"
+      (r) =>
+        (aliases.includes(r.propertySlug) ||
+          aliases.includes(r.propertyId) ||
+          r.propertyName.toLowerCase().includes(villa.name.toLowerCase().slice(0, 15))) &&
+        r.status !== "Cancelled"
     )
   }
 
-  const now = new Date()
-  const timestamp = now.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z"
-
-  // Build RFC 5545 iCalendar content
-  const icsLines: string[] = [
-    "BEGIN:VCALENDAR",
-    "VERSION:2.0",
-    "PRODID:-//Kinghouse Hospitality//EN",
-    `X-WR-CALNAME:Kinghouse - ${villa.name}`,
-    "X-WR-CALDESC:Real-time availability calendar feed for OTA synchronization",
-    "X-WR-TIMEZONE:Asia/Jakarta",
-    "CALSCALE:GREGORIAN",
-    "METHOD:PUBLISH",
-  ]
-
-  villaReservations.forEach((res) => {
-    const dtStart = res.checkIn.replace(/-/g, "")
-    const dtEnd = res.checkOut.replace(/-/g, "")
-
-    icsLines.push(
-      "BEGIN:VEVENT",
-      `UID:${res.id}@kinghouse.id`,
-      `DTSTAMP:${timestamp}`,
-      `DTSTART;VALUE=DATE:${dtStart}`,
-      `DTEND;VALUE=DATE:${dtEnd}`,
-      `SUMMARY:Reserved - Kinghouse (${res.channel})`,
-      `DESCRIPTION:Channel: ${res.channel} | Stay for ${res.guests} guests | Booking Ref: ${res.id}`,
-      "STATUS:CONFIRMED",
-      "TRANSP:OPAQUE",
-      "END:VEVENT"
-    )
-  })
-
-  icsLines.push("END:VCALENDAR")
-
-  const icsBody = icsLines.join("\r\n")
+  const icsBody = generateIcalFeed(villa, villaReservations)
 
   return new NextResponse(icsBody, {
     status: 200,
     headers: {
       "Content-Type": "text/calendar; charset=utf-8",
-      "Content-Disposition": `attachment; filename="${villaSlug}-calendar.ics"`,
+      "Content-Disposition": `attachment; filename="${villa.slug}-calendar.ics"`,
       "Cache-Control": "no-cache, no-store, must-revalidate",
     },
   })
