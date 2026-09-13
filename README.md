@@ -1,4 +1,4 @@
-# KingHouse - Short-Stay Property Management & Hospitality Platform
+# Kinghouse Management - Short-Stay Property Management & Hospitality Platform
 
 An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality ERP/POS platform built with Next.js 16 (App Router, React 19), Tailwind CSS v4, TypeScript, Vitest, and Framer Motion for Greater Jakarta & Jabodetabek (Jagakarsa, Tangerang, Palmerah, Cikarang Selatan).
 
