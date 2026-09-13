@@ -19,12 +19,19 @@ export async function GET(
 
   const supabase = getSupabaseServerClient()
   if (supabase) {
+    // Airbnb (and other OTAs) abandon a calendar sync if the endpoint is slow,
+    // so a Supabase host that is unreachable/misconfigured must never be allowed
+    // to stall this response — bound the query and fall back to the in-memory
+    // store on timeout instead of hanging until the platform's own limit.
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 4000)
     try {
       const { data, error } = await supabase
         .from("reservations")
         .select("*")
         .or(`property_slug.eq.${villa.slug},property_id.eq.${villa.id}`)
         .neq("status", "Cancelled")
+        .abortSignal(controller.signal)
 
       if (!error && data && data.length > 0) {
         villaReservations = data.map((row) => ({
@@ -50,7 +57,9 @@ export async function GET(
         }))
       }
     } catch {
-      // Fallback
+      // Supabase unreachable or timed out — fall back to the in-memory store below.
+    } finally {
+      clearTimeout(timeoutId)
     }
   }
 
