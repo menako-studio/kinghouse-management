@@ -109,7 +109,7 @@ export default function DashboardSettingsPage() {
                 <span>Super Admin</span>
               </span>
             </div>
-            <p className="text-xs text-[#717171] font-mono mt-0.5">admin@kinghousemanagement.com</p>
+            <p className="text-xs text-[#717171] font-mono mt-0.5">info@kinghousemanagement.com</p>
           </div>
         </div>
 
@@ -132,7 +132,7 @@ export default function DashboardSettingsPage() {
               </label>
               <input
                 type="email"
-                defaultValue="admin@kinghousemanagement.com"
+                defaultValue="info@kinghousemanagement.com"
                 className="w-full px-4 py-2.5 rounded-2xl border border-[#E8E4DC] text-xs font-mono text-[#222225] focus:outline-none focus:border-[#B8934C] focus:ring-2 focus:ring-[#B8934C]/15 bg-[#FAF8F5]/50 transition-all"
               />
             </div>

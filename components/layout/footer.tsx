@@ -152,11 +152,11 @@ export function Footer() {
                       Direct Email Inquiries
                     </span>
                     <a
-                      href="mailto:ptkreasiusmangosse@gmail.com"
-                      onClick={() => trackEmailClick({ source: "footer", email: "ptkreasiusmangosse@gmail.com" })}
+                      href="mailto:info@kinghousemanagement.com"
+                      onClick={() => trackEmailClick({ source: "footer", email: "info@kinghousemanagement.com" })}
                       className="font-medium text-white hover:underline transition-colors"
                     >
-                      ptkreasiusmangosse@gmail.com
+                      info@kinghousemanagement.com
                     </a>
                   </div>
                 </div>

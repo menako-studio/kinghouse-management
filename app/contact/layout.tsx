@@ -35,7 +35,7 @@ const contactPageSchema = {
     "@type": "LocalBusiness",
     name: "Kinghouse Management — PT Kreasi Usman Gosse",
     telephone: "+6282123933218",
-    email: "ptkreasiusmangosse@gmail.com",
+    email: "info@kinghousemanagement.com",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Jl. Reni Jaya Blk. K2 No.16, Pd. Ranji, Kec. Ciputat Tim.",

@@ -35,7 +35,7 @@ export const SITE_CONFIG = {
     cleaningWebsite: "https://www.kinghousecleaning.id/",
   },
   contact: {
-    email: "ptkreasiusmangosse@gmail.com",
+    email: "info@kinghousemanagement.com",
     phone: "+62 821-2393-3218",
     whatsapp: "+62 821-2393-3218",
     whatsappMessage: "Hello Kinghouse Management, I am interested in your property management and villa booking services.",

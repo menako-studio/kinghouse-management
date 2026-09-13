@@ -153,7 +153,7 @@ export default function TermsPage() {
               <div className="bg-[#FAF8F5] p-5 rounded-xl border border-[#E8E4DC] text-xs space-y-1 text-[#555555]">
                 <p className="font-semibold text-[#222222]">PT Kreasi Usman Gosse / Kinghouse Management</p>
                 <p>Legal &amp; Compliance Department</p>
-                <p>Email: ptkreasiusmangosse@gmail.com</p>
+                <p>Email: info@kinghousemanagement.com</p>
                 <p>WhatsApp Hotline: +62 821 2393 3218</p>
                 <p>Address: Jl. Reni Jaya Blk. K2 No.16, Pd. Ranji, Kec. Ciputat Tim., Kota Tangerang Selatan, Banten 15416, Indonesia</p>
               </div>

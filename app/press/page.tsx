@@ -185,7 +185,7 @@ export default function PressPage() {
                 <div className="mt-5 pt-4 border-t border-[#F5F3EE] flex items-center justify-between">
                   <span className="text-xs font-medium text-[#888888]">Source: {item.publication}</span>
                   <a
-                    href="mailto:ptkreasiusmangosse@gmail.com?subject=Press%20Inquiry:%20"
+                    href="mailto:info@kinghousemanagement.com?subject=Press%20Inquiry:%20"
                     className="inline-flex items-center space-x-1.5 text-xs font-semibold text-[#8C7F5F] hover:text-[#776B4E]"
                   >
                     <span>Request Full Media Pack</span>
@@ -216,7 +216,7 @@ export default function PressPage() {
 
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a
-                  href="mailto:ptkreasiusmangosse@gmail.com?subject=Media%20Kit%20Request%20-%20Kinghouse"
+                  href="mailto:info@kinghousemanagement.com?subject=Media%20Kit%20Request%20-%20Kinghouse"
                   className="inline-flex items-center space-x-2 rounded-full bg-white text-[#8C7F5F] px-6 py-3 text-xs font-semibold uppercase tracking-wider hover:bg-[#FAF8F5] transition-all shadow-md"
                 >
                   <Mail className="h-4 w-4" />

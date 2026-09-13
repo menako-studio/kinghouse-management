@@ -149,7 +149,7 @@ export default function PrivacyPolicyPage() {
               <div className="bg-[#FAF8F5] p-5 rounded-xl border border-[#E8E4DC] text-xs space-y-1 text-[#555555]">
                 <p className="font-semibold text-[#222222]">Kinghouse Data Privacy Desk</p>
                 <p>PT Kreasi Usman Gosse</p>
-                <p>Email: ptkreasiusmangosse@gmail.com</p>
+                <p>Email: info@kinghousemanagement.com</p>
                 <p>Phone / WhatsApp: +62 821 2393 3218</p>
                 <p>Address: Jl. Reni Jaya Blk. K2 No.16, Pd. Ranji, Kec. Ciputat Tim., Kota Tangerang Selatan, Banten 15416, Indonesia</p>
               </div>

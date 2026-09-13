@@ -195,7 +195,7 @@ const comprehensiveSchema = {
       image:
         "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=85",
       telephone: "+6282123933218",
-      email: "ptkreasiusmangosse@gmail.com",
+      email: "info@kinghousemanagement.com",
       hasMap: "https://share.google/WHLcKlmJf8zZo27gO",
       aggregateRating: {
         "@type": "AggregateRating",

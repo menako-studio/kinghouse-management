@@ -97,11 +97,11 @@ export default function ContactPage() {
                   <div>
                     <span className="text-xs text-[#717171] block">Direct Inquiries</span>
                     <a
-                      href="mailto:ptkreasiusmangosse@gmail.com"
-                      onClick={() => trackEmailClick({ source: "contact_page", email: "ptkreasiusmangosse@gmail.com" })}
+                      href="mailto:info@kinghousemanagement.com"
+                      onClick={() => trackEmailClick({ source: "contact_page", email: "info@kinghousemanagement.com" })}
                       className="font-medium hover:underline"
                     >
-                      ptkreasiusmangosse@gmail.com
+                      info@kinghousemanagement.com
                     </a>
                   </div>
                 </div>

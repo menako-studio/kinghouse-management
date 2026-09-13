@@ -104,14 +104,14 @@ describe("Security & Schema Validation", () => {
     it("authenticates valid credentials and rejects incorrect passwords or emails", async () => {
       const { verifyAdminCredentials } = await import("@/lib/auth")
       
-      const valid = verifyAdminCredentials("ptkreasiusmangosse@gmail.com", "KingHouse2026!Admin")
+      const valid = verifyAdminCredentials("info@kinghousemanagement.com", "KingHouse2026!Admin")
       expect(valid).not.toBeNull()
       expect(valid?.role).toBe("admin")
 
       const invalidEmail = verifyAdminCredentials("hacker@malicious.com", "KingHouse2026!Admin")
       expect(invalidEmail).toBeNull()
 
-      const invalidPass = verifyAdminCredentials("ptkreasiusmangosse@gmail.com", "WrongPassword123")
+      const invalidPass = verifyAdminCredentials("info@kinghousemanagement.com", "WrongPassword123")
       expect(invalidPass).toBeNull()
     })
   })
