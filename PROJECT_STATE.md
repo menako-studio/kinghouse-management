@@ -136,7 +136,7 @@ kinghouse-mockup/
 - [x] **Real Property Assets**: 4 real Jabodetabek Airbnb properties with high-res photography galleries and dynamic pricing.
 - [x] **SEO Schema Suite**: Organization, LocalBusiness, VacationRental, FAQPage, BreadcrumbList, TouristDestination, BlogPosting, Event JSON-LD schemas.
 - [x] **Sana Labs Design System**: Minimalist luxury tokens, ambient glow meshes, frosted glassmorphism, and responsive bento layouts.
-- [x] **Official Contact & Social Integration**: Desk & WhatsApp (`082123933218`), Email (`ptkreasiusmangosse@gmail.com`), and TikTok ([`@kinghouse.id`](https://www.tiktok.com/@kinghouse.id)).
+- [x] **Official Contact & Social Integration**: Desk & WhatsApp (`082123933218`), Email (`info@kinghousemanagement.com`), and TikTok ([`@kinghouse.id`](https://www.tiktok.com/@kinghouse.id)).
 
 ### Phase 2.0 — Production-Ready UMKM Hospitality ERP/POS & Fortified CMS (Completed)
 - [x] **Hospitality ERP & Financial Calculation Engine** (`lib/erp/`):
@@ -584,6 +584,22 @@ kinghouse-mockup/
   - Strict TypeScript check passed with 0 errors.
   - ESLint validation passed with 0 errors.
   - Next.js production build succeeded with 66 routes.
+
+### Phase 4.9 — Official Corporate Email Transition & Full Repo Standardization (Completed)
+- [x] **Custom Domain Email Infrastructure (`info@kinghousemanagement.com`)**:
+  - Activated zero-cost, enterprise-grade inbound routing using **Cloudflare Email Routing** with automated MX and SPF DNS records.
+  - Configured outbound authenticated SMTP alias using **Brevo Relay** (`smtp-relay.brevo.com:587`) for `ptkreasiusmangosse@gmail.com` with sender authentication and unblocked IP policy.
+- [x] **Codebase-Wide Standardization & Public Touchpoints**:
+  - Synchronized `lib/constants.ts` (`brand.contact.email`).
+  - Standardized default admin credentials and timing-safe authentication in `lib/auth.ts` and `tests/validation-security.test.ts`.
+  - Updated all public touchpoints: Global Footer (`components/layout/footer.tsx`), Contact Page (`app/contact/page.tsx`), Press Inquiries & Media Kit (`app/press/page.tsx`), Privacy Policy DPO (`app/privacy/page.tsx`), and Terms & Conditions Legal Desk (`app/terms/page.tsx`).
+  - Aligned Schema.org JSON-LD LocalBusiness & ContactPage schemas in `app/layout.tsx` and `app/contact/layout.tsx`.
+  - Standardized CMS settings and login views (`app/dashboard/settings/page.tsx`, `app/login/page.tsx`).
+  - Updated `.env.example`, `.env.production.example`, and `README.md`.
+- [x] **Verification & Tests**:
+  - Automated Vitest test suite running 56 tests passing with 100% success rate.
+  - Strict TypeScript validation passing with 0 errors.
+  - Next.js production build succeeded across all routes.
 
 ---
 

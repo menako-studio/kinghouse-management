@@ -173,7 +173,7 @@ The CMS Dashboard is fortified and only accessible with verified administrative 
 ### Environment Variables Template (`.env.example`):
 ```env
 # Server Administration Credentials
-ADMIN_EMAIL=admin@example.com
+ADMIN_EMAIL=info@kinghousemanagement.com
 ADMIN_PASSWORD=your_strong_admin_password_here
 AUTH_SECRET_KEY=your_hmac_sha256_session_secret_key_here
 
@@ -191,7 +191,7 @@ NEXT_PUBLIC_GTM_ID=
 
 - **Corporate Entity**: PT Kreasi Usman Gosse
 - **WhatsApp Concierge & Desk**: `082123933218` / `+62 821-2393-3218` (`https://wa.me/6282123933218`)
-- **Corporate Email**: `ptkreasiusmangosse@gmail.com`
+- **Corporate Email**: `info@kinghousemanagement.com`
 - **Official TikTok**: [`@kinghouse.id`](https://www.tiktok.com/@kinghouse.id)
 - **Official Instagram**: [`@kinghouse.id`](https://instagram.com/kinghouse.id)
 - **Verified Locations**: Jabodetabek (Jagakarsa - Jakarta Selatan, Pinang - Tangerang, Palmerah - Jakarta Barat, Cikarang Selatan - Bekasi)
