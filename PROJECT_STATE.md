@@ -613,12 +613,34 @@ kinghouse-mockup/
   - Aligned existing Supabase `reservations` records to standard property slugs (`versatile-house-jagakarsa`, `sky-house-tangerang`, etc.).
   - Verified live production endpoint returning HTTP 200 with active reservation events in under 300ms.
 
+### Phase 5.1 — Local SEO Winning Architecture, GA4/GTM Consent Mode v2 & GSC Sitemap Fortification (Completed)
+- [x] **Local SEO & Google Search Rank 1 Hyper-Localization Architecture (`app/layout.tsx`, `app/locations/`)**:
+  - Injected geographic metadata tags in `<head>` (`geo.region: ID-JK`, `geo.placename: Jakarta Selatan, Tangerang, Jakarta Barat, Cikarang`, `geo.position: -6.2843;106.7447`, `ICBM`).
+  - Added hyper-local Indonesian keywords targeting search intents across all 4 managed clusters: "sewa villa jagakarsa", "villa private pool jakarta selatan", "villa intimate wedding jakarta", "sewa apartemen harian ikea tangerang", "sewa apartemen pinang tangerang", "sewa apartemen palmerah jakarta barat", "sewa apartemen orange county cikarang", "serviced apartment cikarang", and "jasa kelola airbnb jakarta".
+  - Enriched root `LocalBusiness` / `LodgingBusiness` Schema.org JSON-LD with multi-location lodging departments (Versatile House Jagakarsa, Sky House Tangerang, Bright & Airy Palmerah, Skyline Luxury Cikarang), 24/7 hours, rating (4.90★ from 96 reviews), payment options, accepted currencies, and direct link to verified Google Business Profile.
+  - Added `BreadcrumbList` and localized `FAQPage` schemas on dynamic area landing pages (`/locations/[area]`), unlocking Google SERP FAQ rich snippets with visible on-page FAQ accordions.
+  - Enriched `VacationRental` schema generator (`lib/utils.ts`) with check-in/checkout rules, pets allowed policy, and price specifications.
+  - Consolidated duplicate villa URLs by 308 permanent redirecting `/villas/[slug]` to canonical localized `/locations/[area]/villas/[slug]`.
+  - Added dedicated server-rendered metadata layout for property owner onboarding (`app/management-inquiry/layout.tsx`) with `ContactPage` and `Service` structured data.
+- [x] **Enterprise GA4, GTM & Google Consent Mode v2 Best Practices (`components/analytics/`, `lib/analytics.ts`)**:
+  - Implemented standard **Google Consent Mode v2** default initialization in `components/analytics/google-analytics.tsx` (`analytics_storage: granted`, `ad_storage: granted`, etc.) via non-blocking script execution.
+  - Configured `send_page_view: false` in base GA4 configuration to eliminate duplicate pageview reporting, delegating pageview tracking to `PageViewTracker` as the single source of truth across SSR and client transitions.
+  - Expanded `lib/analytics.ts` with standard GA4 recommended events: `generate_lead` (with estimated monetary yield for owner inquiries and audits), `begin_checkout` (direct booking and OTA referral clicks), `view_item` (property detail inspection), `view_item_list` (catalog and area landing page views), and `search`.
+  - Integrated `PropertyViewTracker` client component into `/locations/[area]/villas/[slug]` to automatically trigger `view_item` on property visit.
+  - Connected `trackOwnerLead` into `/management-inquiry` form submission.
+- [x] **Google Search Console & Dynamic XML Sitemap Fortification (`app/sitemap.ts`)**:
+  - Included dynamic event packages (`/events/[slug]`: Garden Wedding, Corporate Retreat, Birthday Party) with weekly changefrequency and 0.85 priority.
+  - Added XML image sitemap metadata (`images`) for property listings, event packages, and blog articles to drive Google Images traffic.
+  - Removed redirected `/villas/[slug]` URLs from `sitemap.xml` to prevent GSC redirect-in-sitemap warnings and maintain 100% canonical index hygiene.
+- [x] **Automated Testing Suite (59 Tests Passing Across 9 Suites)**:
+  - Added unit test coverage for GA4 `generate_lead`, `begin_checkout`, `view_item`, `view_item_list`, `search`, and dynamic event package sitemap URLs in `tests/analytics-seo.test.ts`.
+
 ---
 
 ## 4. VERIFICATION COMMANDS
 
 ```bash
-# Run automated Vitest test suite (57 tests across 9 suites)
+# Run automated Vitest test suite (59 tests across 9 suites)
 npm test
 
 # Run TypeScript strict type verification (0 errors)

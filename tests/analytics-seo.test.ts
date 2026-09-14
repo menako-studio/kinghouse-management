@@ -288,6 +288,10 @@ describe("SEO, Sitemaps & Technical Optimization", () => {
     expect(urls.some((u) => u.includes("panduan-investasi-airbnb-jabodetabek-2026"))).toBe(true)
     expect(urls.some((u) => u.includes("rekomendasi-villa-intimate-wedding-family-gathering-jakarta"))).toBe(true)
     expect(urls.some((u) => u.includes("strategi-maksimalkan-okupansi-apartemen-cikarang"))).toBe(true)
+
+    // Check event routes and canonical property routes are indexed
+    expect(urls.some((u) => u.includes("/events/garden-wedding-jagakarsa"))).toBe(true)
+    expect(urls.some((u) => u.includes("/locations/jagakarsa/villas/versatile-house-jagakarsa"))).toBe(true)
   })
 })
 

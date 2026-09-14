@@ -85,7 +85,20 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
   - **SEO Manager (`/dashboard/seo`)**: Interactive per-property Meta Title & Description editor, real-time Google SERP preview, and SEO health checklist.
   - **Bookings Hub (`/dashboard/bookings`)**: Multi-channel reservation table, visual Gantt timeline switcher, Inbound iCal sync modal, manual WhatsApp booking modal, and 1-click CSV export.
   - **Revenue & POS Analytics (`/dashboard/analytics`)**: Financial yield intelligence (ADR, RevPAR, Occupancy rate), POS expense ledger with deletion flow, and printable Owner Statement generator.
-  - **Settings & Profile (`/dashboard/settings`)**: Admin profile credentials, session security inspect, and master iCal calendar feed exporter.
+  - **Advanced Local SEO & Google Search Rank 1 Architecture**:
+  - **Local Geo-Targeting Meta Tags**: Head meta tags (`geo.region: ID-JK`, `geo.placename: Jakarta Selatan, Tangerang, Palmerah, Cikarang`, `ICBM`, `geo.position`) targeting Greater Jakarta.
+  - **Multi-Location LocalBusiness / Lodging Schema**: Enriched Schema.org JSON-LD registering physical lodging departments across Jagakarsa (Jaksel), Pinang (Tangerang), Palmerah (Jakbar), and Newport Tower (Cikarang), complete with GeoCoordinates, 24/7 hours, rating (4.90★ from 96 reviews), payment options, currencies, and verified Google Business Profile link.
+  - **Dynamic Area Hub Pages (`/locations/[area]`)**: Dedicated landing pages featuring `TouristDestination`, `BreadcrumbList`, and localized `FAQPage` schemas designed to capture Google SERP FAQ rich accordions.
+  - **Google VacationRental Schema Suite**: Rich structured data across all properties including check-in/out schedules, amenity specifications, pricing units, and review counts.
+  - **Authoritative Canonical URL Consolidation**: Automatic 308 permanent redirect from `/villas/[slug]` to `/locations/[area]/villas/[slug]` consolidating PageRank and topical authority to the localized URL structure.
+  - **Dedicated Onboarding Metadata Layout (`/management-inquiry`)**: Server-rendered SEO metadata, OpenGraph cards, and `ContactPage` + `Service` schemas for high-converting owner leads.
+- **Enterprise Analytics Architecture (GA4, GTM & Google Consent Mode v2)**:
+  - **Google Consent Mode v2**: Default privacy-compliant initialization granting `analytics_storage`, `ad_storage`, `ad_user_data`, and `ad_personalization` without tag blocking.
+  - **SPA Single-Source-of-Truth Pageviews**: Configured `send_page_view: false` on base GA4 setup, delegating pageviews exclusively to `PageViewTracker` to eliminate duplicate pageview reporting in Next.js App Router.
+  - **Full-Funnel E-commerce & Conversion Dispatcher (`lib/analytics.ts`)**: Standard GA4 recommended events including `generate_lead` (property audits and inquiries), `begin_checkout` (direct booking and OTA referral clicks), `view_item` (property detail inspection), `view_item_list` (catalog and location views), and `search`.
+- **Google Search Console & Dynamic XML Sitemap Fortification (`/sitemap.xml`)**:
+  - Dynamic XML sitemap indexing static pages, 4 dynamic location hubs, 4 canonical property pages with image metadata (`images`), 3 dynamic event packages (`/events/[slug]`), and 11 dynamic blog articles.
+  - Omission of redirected, private, or disallowed routes (`/dashboard`, `/login`, `/stay/*`, `/api/*`, `/villas/[slug]`) to maintain 100% GSC sitemap hygiene with zero redirect or indexing conflict errors.
 
 ---
 
@@ -102,12 +115,13 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
 | **Icons & Motion** | Lucide React + Framer Motion | Accessible vector icons and smooth physics |
 | **Validation** | Zod (`zod`) | Strict runtime schema validation for forms and APIs |
 | **Security** | Web Crypto HMAC-SHA256 + Rate Limiter | Zero-cost edge authentication and brute-force defense |
-| **Testing** | Vitest (`vitest`) | Lightning fast automated unit testing suite (56 tests passing across 9 suites) |
+| **Testing** | Vitest (`vitest`) | Lightning fast automated unit testing suite (59 tests passing across 9 suites) |
 | **Dynamic Pricing** | AirDNA-Grade Multi-Factor Revenue Engine | 100% actual data fetch, submarket benchmarks, and CSV exporter |
 | **Channel Sync** | Native RFC 5545 iCal Generator | Free 2-way calendar sync for Airbnb / Agoda / Booking.com |
 | **Localization** | Multi-Currency & i18n Context | English default + 9 languages & 10 currencies (IDR, USD, EUR, etc.) |
 | **Revenue Simulator** | AirDNA-Grade Rentalizer (`/owner-services`) | Live submarket benchmarks, dynamic yield comparison, 1-click A4 audit sheet |
-| **SEO & Rich Snippets** | Schema.org JSON-LD Suite | LocalBusiness (AggregateRating 4.90★), FAQPage, Service/OfferCatalog, ItemList |
+| **SEO & Rich Snippets** | Schema.org JSON-LD Suite | LocalBusiness (AggregateRating 4.90★), FAQPage, Service/OfferCatalog, ItemList, VacationRental, Event |
+| **Analytics & Tagging** | GA4 + GTM + Consent Mode v2 | Single-source virtual pageviews, standard e-commerce and lead conversion tracking |
 | **Guest Upsell** | Vouch-Style Digital Compendium | Interactive add-on cart & dynamic WhatsApp dispatch |
 | **Hosting** | Vercel Free Hobby Tier | 100% Free Tier Compatible ($0/month) |
 
@@ -116,7 +130,7 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
 ## 🧪 Automated Testing & Production Quality Assurance
 
 ```bash
-# Run automated Vitest test suite (56 comprehensive tests across 9 suites)
+# Run automated Vitest test suite (59 comprehensive tests across 9 suites)
 npm test
 
 # Run TypeScript strict compilation

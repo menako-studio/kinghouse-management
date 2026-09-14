@@ -11,7 +11,7 @@ export function GoogleAnalytics() {
       {/* 0. Google Consent Mode v2 Default Initialization */}
       <Script
         id="google-consent-mode-v2"
-        strategy="beforeInteractive"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
