@@ -8,6 +8,24 @@ import { GA_MEASUREMENT_ID, GTM_ID } from "@/lib/analytics"
 export function GoogleAnalytics() {
   return (
     <>
+      {/* 0. Google Consent Mode v2 Default Initialization */}
+      <Script
+        id="google-consent-mode-v2"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('consent', 'default', {
+              'analytics_storage': 'granted',
+              'ad_storage': 'granted',
+              'ad_user_data': 'granted',
+              'ad_personalization': 'granted'
+            });
+          `,
+        }}
+      />
+
       {/* 1. Google Tag Manager (Script) */}
       {GTM_ID && (
         <Script
@@ -41,7 +59,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 gtag('js', new Date());
                 gtag('config', '${GA_MEASUREMENT_ID}', {
                   page_path: window.location.pathname,
-                  send_page_view: true
+                  send_page_view: false
                 });
               `,
             }}

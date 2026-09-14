@@ -119,6 +119,7 @@ export function trackBookingInquiry(options: {
   guests?: number
   estimatedTotal?: number
 }) {
+  // 1. GTM dataLayer event
   trackEvent("booking_inquiry", {
     event_category: "Ecommerce",
     event_label: `${options.propertyName} - ${options.channel}`,
@@ -129,6 +130,22 @@ export function trackBookingInquiry(options: {
     guest_count: options.guests,
     currency: "IDR",
     value: options.estimatedTotal,
+  })
+
+  // 2. GA4 standard begin_checkout ecommerce conversion event
+  trackEvent("begin_checkout", {
+    event_category: "Ecommerce",
+    currency: "IDR",
+    value: options.estimatedTotal,
+    items: [
+      {
+        item_id: options.propertyName,
+        item_name: options.propertyName,
+        item_category: "VacationRental",
+        price: options.estimatedTotal,
+        quantity: 1,
+      },
+    ],
   })
 }
 
@@ -141,7 +158,9 @@ export function trackOwnerLead(options: {
   bedrooms?: string | number
   ownerName?: string
   serviceTier?: string
+  estimatedYield?: number
 }) {
+  // 1. GTM dataLayer event
   trackEvent("owner_lead_submit", {
     event_category: "Lead Generation",
     event_label: `${options.propertyType} in ${options.area}`,
@@ -150,6 +169,66 @@ export function trackOwnerLead(options: {
     bedrooms: options.bedrooms,
     owner_name: options.ownerName,
     service_tier: options.serviceTier || "15% Full Service",
+  })
+
+  // 2. GA4 standard recommended generate_lead conversion event
+  trackEvent("generate_lead", {
+    event_category: "Lead Generation",
+    currency: "IDR",
+    value: options.estimatedYield || 5000000,
+    lead_type: "owner_management_inquiry",
+    property_type: options.propertyType,
+    property_area: options.area,
+  })
+}
+
+/**
+ * Track Property / Villa View Item (GA4 Standard Ecommerce)
+ */
+export function trackViewItem(options: {
+  propertyId: string
+  propertyName: string
+  area: string
+  price: number
+  currency?: string
+}) {
+  trackEvent("view_item", {
+    event_category: "Ecommerce",
+    currency: options.currency || "IDR",
+    value: options.price,
+    items: [
+      {
+        item_id: options.propertyId,
+        item_name: options.propertyName,
+        item_category: "VacationRental",
+        item_category2: options.area,
+        price: options.price,
+        quantity: 1,
+      },
+    ],
+  })
+}
+
+/**
+ * Track Catalog / Location Property List View (GA4 Standard Ecommerce)
+ */
+export function trackViewItemList(options: {
+  listName: string
+  itemCount: number
+}) {
+  trackEvent("view_item_list", {
+    event_category: "Ecommerce",
+    item_list_name: options.listName,
+    items_count: options.itemCount,
+  })
+}
+
+/**
+ * Track User Search Queries
+ */
+export function trackSearch(searchTerm: string) {
+  trackEvent("search", {
+    search_term: searchTerm,
   })
 }
 

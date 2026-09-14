@@ -6,6 +6,9 @@ import {
   trackAirbnbClick,
   trackBookingInquiry,
   trackOwnerLead,
+  trackViewItem,
+  trackViewItemList,
+  trackSearch,
   trackBrochureDownload,
   trackSearchFilter,
   trackWiFiCopy,
@@ -101,9 +104,15 @@ describe("Google Analytics 4 & Tag Manager Event Dispatcher", () => {
       currency: "IDR",
       value: 1500000,
     })
+    expect(window.dataLayer![1]).toMatchObject({
+      event: "begin_checkout",
+      event_category: "Ecommerce",
+      currency: "IDR",
+      value: 1500000,
+    })
   })
 
-  it("dispatches trackOwnerLead on free revenue audit form submission", () => {
+  it("dispatches trackOwnerLead on free revenue audit form submission with generate_lead conversion", () => {
     trackOwnerLead({
       propertyType: "villa",
       area: "Jagakarsa",
@@ -120,6 +129,47 @@ describe("Google Analytics 4 & Tag Manager Event Dispatcher", () => {
       bedrooms: 5,
       owner_name: "Budi Santoso",
       service_tier: "15% Full Service",
+    })
+    expect(window.dataLayer![1]).toMatchObject({
+      event: "generate_lead",
+      event_category: "Lead Generation",
+      lead_type: "owner_management_inquiry",
+      currency: "IDR",
+      value: 5000000,
+    })
+  })
+
+  it("dispatches trackViewItem and trackViewItemList for GA4 ecommerce tracking", () => {
+    trackViewItem({
+      propertyId: "villa-1",
+      propertyName: "Versatile House",
+      area: "Jagakarsa",
+      price: 1900000,
+    })
+    trackViewItemList({
+      listName: "Jakarta Selatan Accommodations",
+      itemCount: 4,
+    })
+
+    expect(window.dataLayer![0]).toMatchObject({
+      event: "view_item",
+      event_category: "Ecommerce",
+      currency: "IDR",
+      value: 1900000,
+    })
+    expect(window.dataLayer![1]).toMatchObject({
+      event: "view_item_list",
+      item_list_name: "Jakarta Selatan Accommodations",
+      items_count: 4,
+    })
+  })
+
+  it("dispatches trackSearch for user search queries", () => {
+    trackSearch("villa kolam renang jagakarsa")
+
+    expect(window.dataLayer![0]).toMatchObject({
+      event: "search",
+      search_term: "villa kolam renang jagakarsa",
     })
   })
 

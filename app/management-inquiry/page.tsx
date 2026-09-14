@@ -12,7 +12,7 @@ import {
   ArrowRight,
   Sparkles,
 } from "lucide-react"
-import { trackWhatsAppClick } from "@/lib/analytics"
+import { trackWhatsAppClick, trackOwnerLead } from "@/lib/analytics"
 
 export default function ManagementInquiryPage() {
   const [formData, setFormData] = useState({
@@ -46,6 +46,14 @@ export default function ManagementInquiryPage() {
     trackWhatsAppClick({
       source: "management_inquiry",
       context: "owner_lead",
+    })
+
+    trackOwnerLead({
+      propertyType: formData.propertyType,
+      area: formData.location,
+      bedrooms: formData.bedrooms,
+      ownerName: formData.name,
+      serviceTier: "15% Full Service",
     })
 
     setSubmitted(true)

@@ -9,6 +9,7 @@ import { BookingSidebar } from "@/components/villas/booking-sidebar"
 import { AmenitiesGrid } from "@/components/villas/amenities-grid"
 import { LocationProximityMap } from "@/components/villas/location-proximity-map"
 import { SchemaMarkup } from "@/components/villas/schema-markup"
+import { PropertyViewTracker } from "@/components/villas/property-view-tracker"
 import { Badge } from "@/components/ui/badge"
 
 interface PageProps {
@@ -125,6 +126,14 @@ export default async function VillaDetailPage({ params }: PageProps) {
 
   return (
     <main className="min-h-screen bg-white pb-24">
+      {/* GA4 View Item Tracker */}
+      <PropertyViewTracker
+        propertyId={villa.id}
+        propertyName={villa.name}
+        area={villa.area}
+        price={villa.price.idr}
+      />
+
       {/* SEO Schemas */}
       <SchemaMarkup villa={villa} />
       <script
