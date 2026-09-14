@@ -26,30 +26,82 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: "Area Not Found | Kinghouse Management" }
   }
 
-  const title = `Short-Stay Rentals & Airbnb in ${areaData.name}, ${areaData.region} | Kinghouse Management`
-  const description = `${areaData.description} Explore curated accommodations in ${areaData.name} operated to Kinghouse Management Airbnb Superhost standards.`
+  const title = `Sewa Villa & Apartemen Harian ${areaData.name}, ${areaData.region} | Kinghouse Management`
+  const description = `${areaData.description} Jelajahi akomodasi terkurasi dan terverifikasi di ${areaData.name} dengan standar kebersihan hotel dan manajemen Airbnb Superhost Kinghouse.`
+  const canonicalUrl = `${SITE_CONFIG.baseUrl}/locations/${areaData.slug}`
 
   return {
     title,
     description,
     keywords: [
-      `short stay ${areaData.slug}`,
+      `sewa villa ${areaData.slug}`,
+      `sewa apartemen harian ${areaData.slug}`,
       `airbnb ${areaData.slug}`,
-      `accommodations ${areaData.name}`,
-      `villa rentals ${areaData.name} ${areaData.region}`,
+      `akomodasi ${areaData.name}`,
+      `short stay ${areaData.name} ${areaData.region}`,
       "Kinghouse Management",
       "King House",
       "kinghousemanagement.com",
     ],
-
-    alternates: { canonical: `/locations/${areaData.slug}` },
+    alternates: { canonical: canonicalUrl },
     openGraph: {
       title,
       description,
-      url: `/locations/${areaData.slug}`,
+      url: canonicalUrl,
       type: "website",
     },
   }
+}
+
+const AREA_FAQS: Record<string, Array<{ question: string; answer: string }>> = {
+  jagakarsa: [
+    {
+      question: "Berapa kapasitas dan tarif sewa villa di Jagakarsa Jakarta Selatan?",
+      answer: "Akomodasi unggulan kami, Versatile House Jagakarsa, dapat menampung hingga 12 tamu dengan 5 kamar tidur luas, 9 tempat tidur, dan private pool. Tarif sewa mulai dari Rp 1.900.000 per malam dengan fasilitas hotel bintang 5.",
+    },
+    {
+      question: "Apakah villa di Jagakarsa bisa digunakan untuk intimate wedding atau family gathering?",
+      answer: "Bisa. Versatile House memiliki halaman rumput tropis luas, teras terbuka, dan area semi-outdoor yang sangat ideal untuk intimate wedding, akad nikah, arisan keluarga, serta corporate team retreat.",
+    },
+    {
+      question: "Bagaimana aksesibilitas lokasi villa Jagakarsa dari pusat Jakarta?",
+      answer: "Jagakarsa memiliki akses strategis via Tol Desari (Depok-Antasari) exit Andara/Brigif dan Tol JORR TB Simatupang, sehingga memudahkan perjalanan dari Cilandak, Kemang, maupun bandara.",
+    },
+  ],
+  tangerang: [
+    {
+      question: "Berapa jarak akomodasi Sky House Tangerang ke IKEA & Mall Alam Sutera?",
+      answer: "Sky House Tangerang berjarak hanya 5 menit berkendara (sekitar 2 km) dari IKEA Alam Sutera, Mall @ Alam Sutera, dan Decathlon.",
+    },
+    {
+      question: "Apa saja fasilitas yang tersedia di apartemen short-stay Tangerang?",
+      answer: "Unit dilengkapi queen bed standar hotel, AC dingin, high-speed WiFi, smart TV, water heater, kitchenette, self check-in fleksibel, serta akses kolam renang dan gym.",
+    },
+    {
+      question: "Apakah Sky House Tangerang cocok untuk business traveler?",
+      answer: "Sangat ideal bagi pebisnis, profesional ekspatriat, dan pengunjung konferensi di ICE BSD karena dekat dengan akses Tol Jakarta-Merak dan kawasan bisnis Alam Sutera.",
+    },
+  ],
+  palmerah: [
+    {
+      question: "Berapa jarak Bright & Airy Apartment ke Stasiun Palmerah dan Senayan?",
+      answer: "Apartemen berjarak sekitar 800 meter (10 menit jalan kaki) dari Stasiun KRL Palmerah dan hanya 10 menit berkendara menuju Senayan City, Plaza Senayan, dan GBK.",
+    },
+    {
+      question: "Apakah apartemen di Palmerah cocok untuk staycation atau work-from-home?",
+      answer: "Sangat cocok. Unit dirancang dengan jendela besar penuh cahaya alami, meja kerja nyaman, WiFi fiber berkecepatan tinggi, AC, dan dapur lengkap untuk kenyamanan kerja jarak jauh.",
+    },
+  ],
+  cikarang: [
+    {
+      question: "Apa keunggulan menginap di Skyline Luxury Orange County Cikarang?",
+      answer: "Unit berada di tower prestisius Newport Orange County dengan pemandangan skyline kota yang spektakuler, kolam renang onsen ala Jepang, pusat kebugaran lengkap, dan akses langsung ke ritel.",
+    },
+    {
+      question: "Apakah apartemen di Cikarang melayani sewa harian untuk ekspatriat dan eksekutif?",
+      answer: "Ya, kami melayani sewa harian hingga bulanan untuk eksekutif industri di Jababeka, EJIP, dan MM2100 dengan standar kebersihan premium dan WhatsApp concierge 24 jam.",
+    },
+  ],
 }
 
 export default async function AreaLandingPage({ params }: PageProps) {
@@ -61,8 +113,9 @@ export default async function AreaLandingPage({ params }: PageProps) {
   }
 
   const villasInArea = CURATED_VILLAS.filter((v) => v.areaSlug === area)
+  const areaFaqs = AREA_FAQS[area] || []
 
-  // Local TouristDestination & ItemList Schema
+  // Local TouristDestination Schema
   const areaSchema = {
     "@context": "https://schema.org",
     "@type": "TouristDestination",
@@ -80,6 +133,30 @@ export default async function AreaLandingPage({ params }: PageProps) {
     })),
   }
 
+  // BreadcrumbList JSON-LD
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_CONFIG.baseUrl },
+      { "@type": "ListItem", position: 2, name: "Properties", item: `${SITE_CONFIG.baseUrl}/villas` },
+      { "@type": "ListItem", position: 3, name: areaData.name, item: `${SITE_CONFIG.baseUrl}/locations/${areaData.slug}` },
+    ],
+  }
+
+  // FAQPage JSON-LD
+  const faqSchema = areaFaqs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: areaFaqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  } : null
 
   return (
     <main className="min-h-screen bg-white">
@@ -88,6 +165,18 @@ export default async function AreaLandingPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(areaSchema) }}
       />
+      <script
+        id="area-breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      {faqSchema && (
+        <script
+          id="area-faq-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
 
       {/* Hero Header */}
       <section className="bg-[#FAFAFA] border-b border-[#EBEBEB] pt-24 pb-16">
@@ -225,6 +314,41 @@ export default async function AreaLandingPage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      {/* Local Area FAQ Accordion Section */}
+      {areaFaqs.length > 0 && (
+        <section className="bg-white border-b border-[#EBEBEB] py-20">
+          <div className="mx-auto max-w-4xl px-6 lg:px-12">
+            <div className="text-center space-y-3 mb-12">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#A69C8E]">
+                Frequently Asked Questions
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl text-[#222222]">
+                Tanya Jawab Seputar Akomodasi di {areaData.name}
+              </h2>
+              <p className="text-sm text-[#717171]">
+                Informasi penting dan panduan reservasi properti short-stay di {areaData.name}, {areaData.region}.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              {areaFaqs.map((faq, idx) => (
+                <div
+                  key={idx}
+                  className="rounded-2xl border border-[#EBEBEB] bg-[#FAFAFA] p-6 space-y-2 hover:border-[#222222]/30 transition-colors"
+                >
+                  <h3 className="font-serif text-lg text-[#222222] font-medium">
+                    {faq.question}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#717171] leading-relaxed">
+                    {faq.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Explore Other Areas */}
       <section className="py-20">

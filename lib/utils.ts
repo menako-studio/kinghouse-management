@@ -53,6 +53,9 @@ export function generateVacationRentalSchema(villa: Villa, baseUrl = SITE_CONFIG
       "latitude": geo.lat,
       "longitude": geo.lng,
     },
+    "checkinTime": "15:00",
+    "checkoutTime": "12:00",
+    "petsAllowed": false,
     "numberOfRooms": villa.capacity.bedrooms,
     "occupancy": {
       "@type": "QuantitativeValue",
@@ -71,6 +74,12 @@ export function generateVacationRentalSchema(villa: Villa, baseUrl = SITE_CONFIG
       "availability": "https://schema.org/InStock",
       "url": villa.airbnbUrl,
       "validFrom": "2026-01-01",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": villa.price.idr,
+        "priceCurrency": "IDR",
+        "unitText": "DAY",
+      },
     },
   }
 

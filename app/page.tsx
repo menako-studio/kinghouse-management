@@ -1,15 +1,17 @@
+import type { Metadata } from "next"
 import { HeroSlider } from "@/components/home/hero-slider"
 import { SearchFilterBar } from "@/components/home/search-filter-bar"
 import { CuratedGrid } from "@/components/home/curated-grid"
 import { TrustSocialProof } from "@/components/home/trust-social-proof"
 import { DualPathSplit } from "@/components/home/dual-path-split"
+import { SITE_CONFIG } from "@/lib/constants"
 
-export const metadata = {
-  title: "Kinghouse — Curated Villas, Managed to Perfection",
+export const metadata: Metadata = {
+  title: "Kinghouse Management — Curated Villas & Airbnb Management in Jakarta",
   description:
-    "Experience curated vacation retreats in Jabodetabek with seamless Airbnb booking and institutional-grade property asset management for owners.",
+    "Curated short-stay villas and apartments in Greater Jakarta (Jagakarsa, Tangerang, Palmerah, Cikarang) with 5-star hotel hygiene and institutional-grade property management.",
   alternates: {
-    canonical: "/",
+    canonical: SITE_CONFIG.baseUrl,
   },
 }
 

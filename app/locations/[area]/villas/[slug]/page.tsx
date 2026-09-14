@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     villa.seoMeta?.metaDescription ??
     `${villa.editorialDescription.lead} Professionally managed by Kinghouse Management on Airbnb.`
   const image = villa.seoMeta?.ogImage ?? villa.heroImage
-  const canonicalUrl = `/locations/${villa.areaSlug}/villas/${villa.slug}`
+  const canonicalUrl = `${SITE_CONFIG.baseUrl}/locations/${villa.areaSlug}/villas/${villa.slug}`
 
   return {
     title,
