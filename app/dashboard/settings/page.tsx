@@ -197,7 +197,7 @@ export default function DashboardSettingsPage() {
               <input
                 type="text"
                 readOnly
-                value="https://kinghouse.id/api/ical/sync/jabodetabek-master.ics"
+                value="https://www.kinghousemanagement.com/api/ical/sync/jabodetabek-master.ics"
                 className="flex-1 px-4 py-2.5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] text-xs font-mono text-[#555555] focus:outline-none"
               />
               <button

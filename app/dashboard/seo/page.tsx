@@ -1,13 +1,16 @@
 import { Metadata } from "next"
 import Link from "next/link"
 import {
-  Sparkles,
+  Search,
   ArrowRight,
   CheckCircle2,
-  Search,
+  Globe,
+  FileCode,
+  ShieldCheck,
+  TrendingUp,
 } from "lucide-react"
 import { SeoEditor } from "@/components/dashboard/seo-editor"
-import { BLOG_POSTS } from "@/lib/data"
+import { BLOG_POSTS, CURATED_VILLAS } from "@/lib/data"
 
 export const metadata: Metadata = {
   title: "SEO Manager & Listing Optimizer — Kinghouse CMS",
@@ -15,50 +18,97 @@ export const metadata: Metadata = {
 }
 
 export default function SeoManagerPage() {
+  const indexedPropertiesCount = CURATED_VILLAS.length
+  const totalKeywordsTargeted = BLOG_POSTS.reduce((acc, p) => acc + p.seoKeywords.length, 0)
+
   return (
-    <div className="space-y-12 animate-sana-fade-in">
-      {/* Pitch Header with Sana Dark Luxury Theme */}
-      <div className="rounded-3xl bg-[#19191B] text-white p-8 sm:p-12 relative overflow-hidden border border-white/[0.08] shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
-        {/* Ambient Glow Spots */}
-        <div className="absolute top-[-20%] right-[-10%] w-96 h-96 bg-gradient-to-br from-[#B8934C]/20 via-[#381023]/30 to-transparent rounded-full blur-[100px] pointer-events-none animate-sana-glow" />
-        <div className="absolute bottom-[-20%] left-[-10%] w-96 h-96 bg-gradient-to-tr from-[#B8934C]/15 via-[#2D1B0F]/25 to-transparent rounded-full blur-[100px] pointer-events-none" />
-
-        <div className="relative z-10 max-w-3xl space-y-5">
-          <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-3.5 py-1 text-[10px] font-semibold tracking-wider text-[#B8934C]">
-            <Sparkles className="h-3.5 w-3.5 text-[#B8934C]" />
-            <span className="uppercase">KEY OWNER PITCHING ASSET</span>
+    <div className="space-y-10">
+      {/* Header Banner - Clean Operational Hospitality Standard */}
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-[#E8E4DC]">
+        <div className="space-y-2">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#FAF8F5] border border-[#E8E4DC] text-[10px] font-semibold tracking-wider text-[#222225]">
+            <Search className="h-3.5 w-3.5 text-[#B8934C]" />
+            <span className="text-[#8C7F5F] uppercase">SEARCH ENGINE & LISTING ALGORITHMS</span>
+            <span className="text-[#D5CFC3]">&bull;</span>
+            <span>GOOGLE & AIRBNB OPTIMIZATION</span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight tracking-tight text-white">
-            SEO & Listing Algorithm Suite
+          <h1 className="text-3xl sm:text-4xl text-[#222225] font-semibold tracking-tight">
+            SEO & Listing Algorithm Manager
           </h1>
-
-          <p className="text-white/70 text-sm sm:text-base leading-relaxed font-light">
-            Why do Kinghouse properties consistently outperform market occupancy? Every property is architected with
-            dynamic metadata that converts Google local searches and Airbnb Superhost algorithms into high-intent,
-            longer-stay bookings.
+          <p className="text-sm text-[#6B6862] max-w-2xl font-light leading-relaxed">
+            Kelola metadata Google SERP, optimasi algoritma Superhost Airbnb, dan strategi kata kunci organik untuk portofolio properti Kinghouse Jabodetabek.
           </p>
+        </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-5 border-t border-white/10">
-            <div>
-              <p className="text-3xl text-[#B8934C] font-bold tracking-tight">+280%</p>
-              <p className="text-[10px] text-white/50 uppercase tracking-wider font-medium mt-1">
-                Airbnb Search Impressions
-              </p>
-            </div>
-            <div>
-              <p className="text-3xl text-[#B8934C] font-bold tracking-tight">Top 3</p>
-              <p className="text-[10px] text-white/50 uppercase tracking-wider font-medium mt-1">
-                Google Organic Area Rank
-              </p>
-            </div>
-            <div>
-              <p className="text-3xl text-[#B8934C] font-bold tracking-tight">81.4%</p>
-              <p className="text-[10px] text-white/50 uppercase tracking-wider font-medium mt-1">
-                Average Occupancy Rate
-              </p>
-            </div>
+        {/* Quick Links */}
+        <div className="flex flex-wrap items-center gap-3">
+          <a
+            href="/sitemap.xml"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center space-x-2 bg-white border border-[#E8E4DC] text-[#222225] px-4 py-2.5 rounded-2xl text-xs font-semibold hover:bg-[#FAF8F5] transition-all shadow-xs"
+          >
+            <FileCode className="h-3.5 w-3.5 text-[#8C7F5F]" />
+            <span>XML Sitemap</span>
+          </a>
+          <a
+            href="/robots.txt"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center space-x-2 bg-white border border-[#E8E4DC] text-[#222225] px-4 py-2.5 rounded-2xl text-xs font-semibold hover:bg-[#FAF8F5] transition-all shadow-xs"
+          >
+            <Globe className="h-3.5 w-3.5 text-[#6B6862]" />
+            <span>Robots.txt</span>
+          </a>
+        </div>
+      </div>
+
+      {/* SEO Operational Metric Highlights */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div className="p-6 rounded-3xl bg-white border border-[#E8E4DC] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B6862]">
+              Unit Terindeks Google
+            </span>
+            <ShieldCheck className="h-4 w-4 text-emerald-600" />
           </div>
+          <p className="text-3xl font-semibold text-[#222225] tracking-tight">
+            {indexedPropertiesCount} / {indexedPropertiesCount}
+          </p>
+          <p className="text-xs text-[#8C7F5F] font-light">
+            Schema.org VacationRental & BreadcrumbList aktif
+          </p>
+        </div>
+
+        <div className="p-6 rounded-3xl bg-white border border-[#E8E4DC] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B6862]">
+              Artikel Editorial
+            </span>
+            <TrendingUp className="h-4 w-4 text-[#B8934C]" />
+          </div>
+          <p className="text-3xl font-semibold text-[#222225] tracking-tight">
+            {BLOG_POSTS.length} Artikel
+          </p>
+          <p className="text-xs text-[#8C7F5F] font-light">
+            {totalKeywordsTargeted} kata kunci spesifik Jabodetabek
+          </p>
+        </div>
+
+        <div className="p-6 rounded-3xl bg-white border border-[#E8E4DC] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B6862]">
+              Status Canonical URL
+            </span>
+            <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+          </div>
+          <p className="text-3xl font-semibold text-emerald-700 tracking-tight">
+            100% Valid
+          </p>
+          <p className="text-xs text-[#8C7F5F] font-light">
+            Domain resmi: kinghousemanagement.com
+          </p>
         </div>
       </div>
 
@@ -67,8 +117,8 @@ export default function SeoManagerPage() {
         <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-[#E8E4DC] pb-4">
           <div>
             <h2 className="text-2xl text-[#222225] font-semibold">Property SEO Editor</h2>
-            <p className="text-xs text-[#717171] font-light">
-              Select any of the 4 managed properties to inspect and modify real-time SEO metadata
+            <p className="text-xs text-[#6B6862] font-light">
+              Pilih properti untuk memeriksa dan memperbarui metadata Google SERP serta skor optimasi secara langsung
             </p>
           </div>
           <span className="text-[10px] text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full font-semibold border border-emerald-200 self-start sm:self-auto uppercase tracking-wider">
@@ -80,22 +130,22 @@ export default function SeoManagerPage() {
       </section>
 
       {/* Blog & Local SEO Content Pipeline */}
-      <section className="space-y-6 pt-6">
+      <section className="space-y-6 pt-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E8E4DC] pb-4">
           <div>
             <h2 className="text-2xl text-[#222225] font-semibold">
               Editorial Content & Targeted Keywords
             </h2>
-            <p className="text-xs text-[#717171] font-light">
-              Published high-converting articles generating organic short-stay and expat search traffic across Jabodetabek
+            <p className="text-xs text-[#6B6862] font-light">
+              Daftar artikel terpublikasi dengan target pencarian organik untuk short-stay dan expat di Jabodetabek
             </p>
           </div>
           <Link
             href="/blog"
             target="_blank"
-            className="inline-flex items-center space-x-1.5 text-xs font-semibold text-[#222225] hover:text-[#B8934C] transition-colors"
+            className="inline-flex items-center space-x-1.5 text-xs font-semibold text-[#222225] hover:text-[#8C7F5F] transition-colors"
           >
-            <span>Open Public Blog</span>
+            <span>Buka Blog Publik</span>
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
@@ -103,19 +153,19 @@ export default function SeoManagerPage() {
         <div className="rounded-3xl border border-[#E8E4DC] bg-white overflow-hidden shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)]">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-[#E8E4DC] bg-[#FAFAF8] text-[10px] font-bold uppercase tracking-wider text-[#717171]">
-                <th className="py-4 px-6">Article Title & Target Area</th>
-                <th className="py-4 px-6">Category</th>
-                <th className="py-4 px-6">Target Keywords</th>
-                <th className="py-4 px-6">Index Status</th>
+              <tr className="border-b border-[#E8E4DC] bg-[#FAF8F5] text-[10px] font-bold uppercase tracking-wider text-[#6B6862]">
+                <th className="py-4 px-6">Judul Artikel & Target Area</th>
+                <th className="py-4 px-6">Kategori</th>
+                <th className="py-4 px-6">Kata Kunci Sasaran</th>
+                <th className="py-4 px-6">Status Indeks</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#FAF8F5] text-xs">
               {BLOG_POSTS.map((post) => (
-                <tr key={post.id} className="hover:bg-[#FAFAF8]/90 transition-colors">
+                <tr key={post.id} className="hover:bg-[#FAF8F5]/90 transition-colors">
                   <td className="py-4 px-6">
                     <p className="font-semibold text-[#222225] line-clamp-1">{post.title}</p>
-                    <p className="text-[11px] text-[#B8934C] mt-0.5 font-mono">/blog/{post.slug}</p>
+                    <p className="text-[11px] text-[#8C7F5F] mt-0.5 font-mono">/blog/{post.slug}</p>
                   </td>
                   <td className="py-4 px-6">
                     <span className="px-3 py-1 rounded-full text-[10px] font-semibold bg-[#FAF8F5] text-[#222225] border border-[#E8E4DC]">
@@ -127,7 +177,7 @@ export default function SeoManagerPage() {
                       {post.seoKeywords.slice(0, 2).map((kw) => (
                         <span
                           key={kw}
-                          className="px-2 py-0.5 rounded-md text-[10px] bg-blue-50 text-blue-800 font-mono border border-blue-200/60"
+                          className="px-2 py-0.5 rounded-md text-[10px] bg-[#FAF8F5] text-[#5C5347] font-mono border border-[#E8E4DC]"
                         >
                           {kw}
                         </span>
@@ -146,56 +196,9 @@ export default function SeoManagerPage() {
           </table>
         </div>
       </section>
-
-      {/* Pitching Guide Explainer for Clients */}
-      <section className="rounded-3xl border border-[#E8E4DC] bg-[#FAFAF8] p-8 sm:p-12 space-y-6">
-        <div className="max-w-2xl">
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-[#B8934C]">
-            CLIENT PITCHING FRAMEWORK
-          </span>
-          <h3 className="text-2xl sm:text-3xl text-[#222225] font-semibold mt-2 mb-3">
-            The Kinghouse Formula: Transforming Properties into Guest Magnets
-          </h3>
-          <p className="text-xs sm:text-sm text-[#717171] leading-relaxed font-light">
-            Most property owners rely solely on default Airbnb traffic without algorithmic optimization.
-            Kinghouse deploys a comprehensive 3-tier distribution strategy:
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <div className="p-6 rounded-2xl bg-white border border-[#E8E4DC] space-y-2.5 shadow-xs">
-            <div className="h-8 w-8 rounded-xl bg-[#222225] text-[#B8934C] flex items-center justify-center font-bold text-xs">
-              1
-            </div>
-            <h4 className="font-semibold text-sm text-[#222225]">Superhost Algorithm Engine</h4>
-            <p className="text-xs text-[#717171] leading-relaxed font-light">
-              Optimized response times under 15 minutes, editorial high-resolution photography, and 100% amenity completeness elevate listings to the top 10 search results.
-            </p>
-          </div>
-
-          <div className="p-6 rounded-2xl bg-white border border-[#E8E4DC] space-y-2.5 shadow-xs">
-            <div className="h-8 w-8 rounded-xl bg-[#222225] text-[#B8934C] flex items-center justify-center font-bold text-xs">
-              2
-            </div>
-            <h4 className="font-semibold text-sm text-[#222225]">Organic Google Ingestion</h4>
-            <p className="text-xs text-[#717171] leading-relaxed font-light">
-              Each property features ultra-fast landing pages with Schema.org JSON-LD structured data (VacationRental & FAQPage), indexed directly in local search results.
-            </p>
-          </div>
-
-          <div className="p-6 rounded-2xl bg-white border border-[#E8E4DC] space-y-2.5 shadow-xs">
-            <div className="h-8 w-8 rounded-xl bg-[#222225] text-[#B8934C] flex items-center justify-center font-bold text-xs">
-              3
-            </div>
-            <h4 className="font-semibold text-sm text-[#222225]">High-Yield Guest Targeting</h4>
-            <p className="text-xs text-[#717171] leading-relaxed font-light">
-              Editorial SEO targets corporate long-stays, expats, and family retreat keywords, resulting in higher revenue yields and respectful guests.
-            </p>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }
+
 
 

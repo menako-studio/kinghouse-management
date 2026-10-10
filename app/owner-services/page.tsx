@@ -131,7 +131,7 @@ export default function OwnerServicesPage() {
               >
                 <a href="#calculator">
                   <Sparkles className="mr-2 h-4 w-4 text-[#B8934C]" />
-                  Simulasi Potensi Cuan (AirDNA)
+                  Simulasi Proyeksi Yield & Pendapatan
                 </a>
               </Button>
 

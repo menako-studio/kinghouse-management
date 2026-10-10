@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { createPortal } from "react-dom"
 import Image from "next/image"
 import Link from "next/link"
 import {
@@ -24,8 +25,13 @@ import { ChannelBadge } from "@/components/dashboard/channel-badge"
 import { formatCurrency } from "@/lib/utils"
 
 export default function DashboardPropertiesPage() {
+  const [mounted, setMounted] = useState(false)
   const [copiedSlug, setCopiedSlug] = useState<string | null>(null)
   const [selectedGuideVilla, setSelectedGuideVilla] = useState<string | null>(null)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleCopyIcal = (slug: string) => {
     const origin = typeof window !== "undefined" ? window.location.origin : "https://www.kinghousemanagement.com"
@@ -211,9 +217,9 @@ export default function DashboardPropertiesPage() {
       </div>
 
       {/* iCal Guide Modal for Non-Tech Staff */}
-      {selectedGuideVilla && (
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-[#E8E4DC] max-h-[90vh] overflow-y-auto animate-sana-glow">
+      {mounted && selectedGuideVilla && createPortal(
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-[#E8E4DC] max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-4 border-b border-[#E8E4DC]">
               <div>
                 <h3 className="text-2xl text-[#222225] font-semibold">Panduan Sinkronisasi Kalender</h3>
@@ -276,7 +282,8 @@ export default function DashboardPropertiesPage() {
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   )

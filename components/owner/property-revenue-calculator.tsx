@@ -189,7 +189,7 @@ export function PropertyRevenueCalculator() {
   const whatsappUrl = useMemo(() => {
     const propertyType = isId ? currentSubmarket.propertyTypeId : currentSubmarket.propertyTypeEn
     const message = isId
-      ? `Halo Kinghouse Management, saya ingin konsultasi hasil simulasi potensi cuan properti saya:
+      ? `Halo Kinghouse Management, saya ingin konsultasi hasil simulasi proyeksi yield & pendapatan properti saya:
 - Lokasi: ${currentSubmarket.area}
 - Tipe/Kamar: ${bedrooms} Bedroom (${propertyType})
 - Estimasi ADR: ${formatPrice(calculations.baseAdr)} / malam

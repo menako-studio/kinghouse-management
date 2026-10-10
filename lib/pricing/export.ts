@@ -31,7 +31,7 @@ export function generatePricingCsv(
 
   const rows = recommendations.map((rec) => {
     const diff = rec.recommendedPriceIdr - rec.basePriceIdr
-    const statusStr = rec.isBooked ? "Terpesona" : "Tersedia"
+    const statusStr = rec.isBooked ? "Terpesan" : "Tersedia"
     const channelStr = rec.bookingChannel || "-"
     const holidayStr = rec.holidayName ? `"${rec.holidayName.replace(/"/g, '""')}"` : "-"
     const overrideStr = rec.overridePriceIdr ? `Rp ${rec.overridePriceIdr.toLocaleString("id-ID")}` : "Tidak"

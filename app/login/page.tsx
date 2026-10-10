@@ -16,6 +16,8 @@ import {
   Fingerprint,
 } from "lucide-react"
 
+import Image from "next/image"
+
 function LoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -69,20 +71,18 @@ function LoginForm() {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#19191B] text-white flex flex-col justify-between overflow-hidden selection:bg-[#B8934C] selection:text-[#19191B]">
-      {/* Brand Ambient Glow Lighting Orbs (Kinghouse Gold & Khaki Palette) */}
-      <div className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] rounded-full bg-gradient-to-br from-[#B8934C]/15 via-[#8C7F5F]/15 to-transparent blur-[120px] pointer-events-none animate-sana-glow" />
-      <div className="absolute bottom-[-15%] right-[15%] w-[600px] h-[600px] rounded-full bg-gradient-to-tl from-[#DFC58E]/10 via-[#28282B]/30 to-transparent blur-[140px] pointer-events-none animate-sana-float" />
-      <div className="absolute top-[40%] right-[-5%] w-[350px] h-[350px] rounded-full bg-[#8C7F5F]/10 blur-[100px] pointer-events-none" />
-
-      {/* Subtle Grid Overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-50" />
-
+    <div className="relative min-h-screen bg-[#19191B] text-white flex flex-col justify-between overflow-hidden selection:bg-[#B8934C] selection:text-[#19191B] supergraphic-blueprint-charcoal">
       {/* Top Bar Navigation */}
       <header className="relative z-10 px-6 py-6 sm:px-12 flex items-center justify-between border-b border-white/[0.08] backdrop-blur-md">
         <Link href="/" className="group flex items-center space-x-3.5">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#B8934C]/40 bg-gradient-to-br from-[#B8934C] to-[#8C7F5F] text-[#19191B] font-bold text-lg transition-all duration-300 group-hover:scale-105 shadow-[0_0_20px_rgba(184,147,76,0.2)]">
-            <span>K</span>
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#CBBEA0]/30 bg-[#231F1A] p-1.5 transition-all duration-300 group-hover:scale-105 shadow-xs">
+            <Image
+              src="/brand/icon-bone.svg"
+              alt="Kinghouse Icon"
+              width={24}
+              height={24}
+              className="h-5 w-auto object-contain"
+            />
           </div>
           <div className="flex flex-col">
             <span className="text-lg font-semibold tracking-tight text-white group-hover:text-[#DFC58E] transition-colors">
@@ -105,23 +105,23 @@ function LoginForm() {
 
       {/* Main Authentication Section */}
       <main className="relative z-10 flex-1 flex items-center justify-center p-6 sm:p-10 my-4">
-        <div className="w-full max-w-md animate-sana-fade-in">
+        <div className="w-full max-w-md">
           {/* Card Container */}
-          <div className="rounded-3xl p-8 sm:p-10 relative overflow-hidden bg-[#222225]/85 backdrop-blur-xl border border-white/[0.12] shadow-[0_30px_90px_rgba(0,0,0,0.6)]">
-            {/* Top Gold Shimmer Border */}
-            <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[#B8934C]/60 to-transparent" />
+          <div className="rounded-3xl p-8 sm:p-10 relative overflow-hidden bg-[#222225] border border-white/[0.1] shadow-[0_30px_90px_rgba(0,0,0,0.6)]">
+            {/* Top Gold Subtle Border */}
+            <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[#B8934C]/50 to-transparent" />
 
             {/* Protocol Badge Header */}
             <div className="flex items-center justify-between mb-7">
               <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#B8934C]/15 border border-[#B8934C]/30 text-[10px] font-semibold tracking-wider text-white/90">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#DFC58E] animate-pulse" />
                 <span className="text-[#DFC58E] uppercase">
-                  MANAGEMENT CMS 2026
+                  MANAGEMENT CMS
                 </span>
               </div>
               <div className="flex items-center space-x-1.5 text-[10px] uppercase font-mono tracking-widest text-white/50">
                 <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
-                <span>256-Bit SSL</span>
+                <span>Admin Protected</span>
               </div>
             </div>
 

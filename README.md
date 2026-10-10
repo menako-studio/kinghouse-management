@@ -70,7 +70,7 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
   - **Submarket-Aware Day-of-Week Curves**: Inverted weekday/weekend logic distinguishing staycation group villas (weekend surge +35%) from expat industrial apartments (Mon-Thu peak, weekend discount).
   - **Lead-Time Urgency Curve**: Automated last-minute fire-sale discount (-15% on H-2) preventing zero-occupancy nights, and early bird protection premium (>45 days).
   - **Occupancy Velocity Pacing**: Dynamically surges remaining unbooked dates (+15% to +25%) when month occupancy exceeds target velocity threshold (>60%).
-  - **Interactive 60-Day Pricing Heatmap Calendar**: Month switcher tabs, live status chips (*Terpesona*, *Weekend Surge*, *Libur Nasional*, *Last-Minute*, *Custom Override*), and price deviation tags.
+  - **Interactive 60-Day Pricing Heatmap Calendar**: Month switcher tabs, live status chips (*Terpesan*, *Weekend Surge*, *Libur Nasional*, *Last-Minute*, *Custom Override*), and price deviation tags.
   - **Calculation Breakdown & Custom Rate Override Modal**: React Portal modal inspecting day-by-day multiplier factors with 1-click admin price override and reset capabilities.
   - **Guardrail Drawer**: Configurable Floor & Ceiling price limits, weekend surge %, and last-minute discount sliders.
   - **1-Click CSV Exporter (`lib/pricing/export.ts`)**: Instant `.csv` generation for OTA multi-calendar rate imports.

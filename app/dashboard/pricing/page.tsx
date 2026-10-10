@@ -253,30 +253,29 @@ export default function DynamicPricingPage() {
         </div>
       </div>
 
-      {/* Live Data Provenance & Real-Time Sync Banner (Zero Dummy Data Guarantee) */}
+      {/* Live Data Provenance & Real-Time Sync Status */}
       {pricingData && (
         <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs">
           <div className="flex flex-wrap items-center gap-3">
             <span className="inline-flex items-center space-x-1.5 font-semibold text-[#222225] bg-white px-3 py-1 rounded-xl border border-[#E8E4DC] shadow-2xs">
               <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>100% Data Aktual (Zero Dummy Data)</span>
+              <span>Sinkronisasi Kalender Aktif</span>
             </span>
             <span className="text-[#717171] flex items-center space-x-1">
-              <span>Reservasi:</span>
+              <span>Kalender OTA:</span>
               <strong className="text-[#222225] font-medium">{pricingData.provenance.calendarSource}</strong>
             </span>
             <span className="text-[#717171]">&bull;</span>
             <span className="text-[#717171] flex items-center space-x-1">
-              <span>Libur Nasional:</span>
+              <span>Kalender Libur:</span>
               <strong className="text-[#222225] font-medium">{pricingData.provenance.holidaysSource}</strong>
             </span>
           </div>
 
           <div className="text-[11px] text-[#717171] font-mono self-start md:self-auto flex items-center space-x-2">
-            <span className="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-lg border border-emerald-200 font-semibold">
-              100% Free Tier ($0/bln)
+            <span className="bg-white text-[#5C5347] px-2.5 py-0.5 rounded-lg border border-[#E8E4DC] font-medium">
+              Terakhir Diperbarui: {new Date(pricingData.lastUpdated).toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })} WIB
             </span>
-            <span>Sync: {new Date(pricingData.lastUpdated).toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })} WIB</span>
           </div>
         </div>
       )}
@@ -442,13 +441,13 @@ export default function DynamicPricingPage() {
             <div className="pt-2 border-t border-[#FAF8F5] flex items-center justify-between text-xs">
               <span className="text-[#717171]">Status 60 Hari:</span>
               <span className="font-semibold text-[#222225]">
-                {pricingData.bookedDays} Terpesona / {pricingData.availableDays} Kosong
+                {pricingData.bookedDays} Terpesan / {pricingData.availableDays} Tersedia
               </span>
             </div>
           </div>
 
           {/* Card 4: RevPAR Lift Opportunity */}
-          <div className="p-5 rounded-3xl bg-gradient-to-br from-[#231F1A] to-[#19191B] text-white shadow-md flex flex-col justify-between">
+          <div className="p-5 rounded-3xl bg-[#231F1A] border border-[#352F27] text-white shadow-md flex flex-col justify-between">
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-[#CBBEA0] uppercase tracking-wider flex items-center space-x-1">
                 <Sparkles className="h-3 w-3 text-[#B8934C]" />
@@ -515,7 +514,7 @@ export default function DynamicPricingPage() {
           <span className="font-semibold text-[#222225] text-[11px] uppercase tracking-wider">Keterangan:</span>
           <span className="flex items-center space-x-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
-            <span>Terpesona (iCal Airbnb)</span>
+            <span>Terpesan (iCal Airbnb)</span>
           </span>
           <span className="flex items-center space-x-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-amber-500" />
@@ -675,7 +674,7 @@ export default function DynamicPricingPage() {
                     </span>
                     {selectedDateRec.isBooked && (
                       <span className="text-[10px] font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">
-                        Terpesona ({selectedDateRec.bookingChannel || "Airbnb"})
+                        Terpesan ({selectedDateRec.bookingChannel || "Airbnb"})
                       </span>
                     )}
                   </div>
