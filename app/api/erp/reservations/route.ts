@@ -9,6 +9,7 @@ import {
   deleteReservationFromStore,
 } from "@/lib/erp/store"
 import { syncAllConfiguredProperties } from "@/lib/ical/sync"
+import { verifyAdminRequest } from "@/lib/auth-server"
 
 // Map snake_case database row to TypeScript domain model
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -103,6 +104,11 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    const admin = await verifyAdminRequest(request)
+    if (!admin) {
+      return NextResponse.json({ error: "Akses ditolak: Diperlukan sesi admin Kinghouse." }, { status: 401 })
+    }
+
     const body = await request.json().catch(() => ({}))
     const parseResult = ReservationSchema.safeParse(body)
 
@@ -204,6 +210,11 @@ export async function POST(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   try {
+    const admin = await verifyAdminRequest(request)
+    if (!admin) {
+      return NextResponse.json({ error: "Akses ditolak: Diperlukan sesi admin Kinghouse." }, { status: 401 })
+    }
+
     const { searchParams } = new URL(request.url)
     const id = searchParams.get("id")
 

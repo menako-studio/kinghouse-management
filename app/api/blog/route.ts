@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getBlogPosts, getBlogPostBySlug, saveBlogPost, deleteBlogPost, restoreBlogPost } from "@/lib/blog/service"
 import { BlogPost } from "@/lib/types"
+import { verifyAdminRequest } from "@/lib/auth-server"
 
 export async function GET(request: NextRequest) {
   try {
@@ -33,6 +34,11 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    const admin = await verifyAdminRequest(request)
+    if (!admin) {
+      return NextResponse.json({ error: "Akses ditolak: Diperlukan sesi admin Kinghouse." }, { status: 401 })
+    }
+
     const body = await request.json().catch(() => ({}))
     const { action, id, slug } = body
 
@@ -88,6 +94,11 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
+    const admin = await verifyAdminRequest(request)
+    if (!admin) {
+      return NextResponse.json({ error: "Akses ditolak: Diperlukan sesi admin Kinghouse." }, { status: 401 })
+    }
+
     const body = await request.json().catch(() => ({}))
     const { id, slug, title, excerpt, content, category, heroImage, authorName, authorRole, tags, seoKeywords, seoScore, readTime, status } = body
 
@@ -134,6 +145,11 @@ export async function PUT(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   try {
+    const admin = await verifyAdminRequest(request)
+    if (!admin) {
+      return NextResponse.json({ error: "Akses ditolak: Diperlukan sesi admin Kinghouse." }, { status: 401 })
+    }
+
     const { searchParams } = new URL(request.url)
     const id = searchParams.get("id")
     const slug = searchParams.get("slug")

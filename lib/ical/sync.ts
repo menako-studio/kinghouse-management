@@ -14,6 +14,54 @@ export interface PropertyIcalConfig {
 }
 
 /**
+ * Validates external iCal URL against SSRF and local network access attacks
+ */
+export function validateSafeIcalUrl(urlStr: string): { valid: boolean; reason?: string } {
+  try {
+    const parsed = new URL(urlStr)
+    if (!["http:", "https:"].includes(parsed.protocol)) {
+      return { valid: false, reason: "Prohibited protocol. Only HTTP and HTTPS are permitted." }
+    }
+
+    const host = parsed.hostname.toLowerCase()
+    const cleanHost = host.replace(/^\[|\]$/g, "")
+
+    // Block loopback and link-local addresses
+    if (
+      cleanHost === "localhost" ||
+      cleanHost === "127.0.0.1" ||
+      cleanHost === "::1" ||
+      cleanHost === "0.0.0.0" ||
+      cleanHost.endsWith(".local") ||
+      cleanHost.endsWith(".internal")
+    ) {
+      return { valid: false, reason: "Local network addresses are prohibited." }
+    }
+
+    // Block AWS / Cloud metadata service IP
+    if (host === "169.254.169.254" || host.startsWith("169.254.")) {
+      return { valid: false, reason: "Access to cloud metadata services is blocked." }
+    }
+
+    // Block private RFC 1918 IPv4 ranges (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16)
+    const ipv4Parts = host.split(".").map(Number)
+    if (ipv4Parts.length === 4 && ipv4Parts.every((p) => !isNaN(p) && p >= 0 && p <= 255)) {
+      if (
+        ipv4Parts[0] === 10 ||
+        (ipv4Parts[0] === 172 && ipv4Parts[1] >= 16 && ipv4Parts[1] <= 31) ||
+        (ipv4Parts[0] === 192 && ipv4Parts[1] === 168)
+      ) {
+        return { valid: false, reason: "Private subnet IP addresses are prohibited." }
+      }
+    }
+
+    return { valid: true }
+  } catch {
+    return { valid: false, reason: "Malformed URL format." }
+  }
+}
+
+/**
  * Syncs external iCal feed for a specific property
  */
 export async function syncPropertyIcal(
@@ -22,6 +70,16 @@ export async function syncPropertyIcal(
   channel: ChannelType = "Airbnb"
 ): Promise<{ success: boolean; importedCount: number; reservations: Reservation[]; error?: string }> {
   try {
+    const urlValidation = validateSafeIcalUrl(icalUrl)
+    if (!urlValidation.valid) {
+      return {
+        success: false,
+        importedCount: 0,
+        reservations: [],
+        error: `Security SSRF Protection: ${urlValidation.reason}`,
+      }
+    }
+
     const villa = CURATED_VILLAS.find((v) => v.slug === propertySlug || v.id === propertySlug)
     if (!villa) {
       return { success: false, importedCount: 0, reservations: [], error: "Property not found." }

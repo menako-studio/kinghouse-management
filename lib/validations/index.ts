@@ -43,7 +43,12 @@ export const ExpenseSchema = z.object({
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Format tanggal harus YYYY-MM-DD"),
   recordedBy: z.string().min(2, "Nama pencatat wajib diisi"),
   vendorName: z.string().optional(),
-  receiptUrl: z.string().url("URL kwitansi tidak valid").optional().or(z.literal("")),
+  receiptUrl: z
+    .string()
+    .regex(/^https?:\/\//i, "URL kwitansi harus diawali dengan http:// atau https://")
+    .url("URL kwitansi tidak valid")
+    .optional()
+    .or(z.literal("")),
 })
 
 export const SeoUpdateSchema = z.object({
@@ -51,7 +56,12 @@ export const SeoUpdateSchema = z.object({
   metaTitle: z.string().min(10, "Meta title minimal 10 karakter").max(70, "Meta title maksimal 70 karakter"),
   metaDescription: z.string().min(50, "Meta description minimal 50 karakter").max(160, "Meta description maksimal 160 karakter"),
   focusKeyword: z.string().min(2, "Focus keyword wajib diisi"),
-  canonicalUrl: z.string().url("URL canonical tidak valid").optional().or(z.literal("")),
+  canonicalUrl: z
+    .string()
+    .regex(/^https?:\/\//i, "URL canonical harus diawali dengan http:// atau https://")
+    .url("URL canonical tidak valid")
+    .optional()
+    .or(z.literal("")),
 })
 
 export type LoginInput = z.infer<typeof LoginSchema>

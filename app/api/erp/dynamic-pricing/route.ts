@@ -10,6 +10,7 @@ import { getReservationsStore, upsertReservationsToStore } from "@/lib/erp/store
 import { syncAllConfiguredProperties } from "@/lib/ical/sync"
 import { getSupabaseServerClient } from "@/lib/supabase/server"
 import { Reservation } from "@/lib/erp/types"
+import { verifyAdminRequest } from "@/lib/auth-server"
 
 export async function GET(request: NextRequest) {
   try {
@@ -80,6 +81,11 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    const admin = await verifyAdminRequest(request)
+    if (!admin) {
+      return NextResponse.json({ success: false, error: "Akses ditolak: Diperlukan sesi admin Kinghouse." }, { status: 401 })
+    }
+
     const body = await request.json()
     const { action, propertySlug, date, overridePriceIdr, reason, rules } = body
 
@@ -131,6 +137,11 @@ export async function POST(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   try {
+    const admin = await verifyAdminRequest(request)
+    if (!admin) {
+      return NextResponse.json({ success: false, error: "Akses ditolak: Diperlukan sesi admin Kinghouse." }, { status: 401 })
+    }
+
     const body = await request.json()
     const { propertySlug, date } = body
 

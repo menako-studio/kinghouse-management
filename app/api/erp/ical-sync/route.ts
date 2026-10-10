@@ -2,9 +2,18 @@ import { NextRequest, NextResponse } from "next/server"
 import { syncPropertyIcal, syncAllConfiguredProperties } from "@/lib/ical/sync"
 import { CURATED_VILLAS } from "@/lib/data"
 import { ChannelType } from "@/lib/erp/types"
+import { verifyAdminRequest } from "@/lib/auth-server"
 
 export async function POST(request: NextRequest) {
   try {
+    const admin = await verifyAdminRequest(request)
+    const isCronAuthorized =
+      request.headers.get("authorization") === `Bearer ${process.env.CRON_SECRET || "kinghouse-cron-secret-2026"}`
+
+    if (!admin && !isCronAuthorized) {
+      return NextResponse.json({ error: "Akses ditolak: Diperlukan sesi admin Kinghouse atau CRON_SECRET." }, { status: 401 })
+    }
+
     const body = await request.json().catch(() => ({}))
     const { propertySlug, icalUrl, channel, action } = body
 
