@@ -634,7 +634,7 @@ kinghouse-mockup/
   - Removed redirected `/villas/[slug]` URLs from `sitemap.xml` to prevent GSC redirect-in-sitemap warnings and maintain 100% canonical index hygiene.
 - [x] **Official Airbnb Superhost Recognition & Verified Credentials**:
   - Emphasized official Superhost status ([Airbnb Host #1470743715397835749](https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace)) across the home hero slider pill, home trust proof spotlight, `/owner-services`, `/contact`, and footer.
-  - Verified credentials highlighted: 4.5★ rating, 10 authentic guest reviews, 1 year hosting history, and verified host identity.
+  - Replaced synthetic custom UI widgets with authentic Airbnb Superhost profile screenshot card (`/brand/airbnb-superhost-profile-card.png`) displaying live Superhost key badge, 4.5★ rating, 10 authentic reviews, and 1-year hosting history for higher conversion and credibility.
 - [x] **Real Contextual Media Assets & Zero Placeholder Images**:
   - Replaced all external Unsplash images across `/owner-services`, `/contact`, `/management-inquiry`, and `/press` with authentic high-resolution assets from `public/properties/versatile-house/new/`.
   - Updated root OpenGraph and Twitter card preview images in `app/layout.tsx` to point to the flagship pool visual.

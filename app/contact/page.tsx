@@ -91,52 +91,37 @@ export default function ContactPage() {
                 </h2>
               </div>
 
-              {/* Official Airbnb Superhost Card */}
-              <div className="rounded-2xl border border-[#DFC58E]/40 bg-[#FAF8F5] p-5 space-y-3 shadow-xs">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#8C7F5F]">
-                      Profil Resmi Airbnb
-                    </span>
+              {/* Official Airbnb Superhost Screenshot Card */}
+              <a
+                href="https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block rounded-2xl border border-[#E8E4DC] bg-white overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer"
+                title="Buka profil asli Superhost Kinghouse Management di Airbnb"
+              >
+                <div className="bg-[#FAF8F5] px-3.5 py-2 border-b border-[#E8E4DC] flex items-center justify-between text-[11px]">
+                  <div className="flex items-center space-x-1.5">
+                    <span className="h-2 w-2 rounded-full bg-[#FF385C]" />
+                    <span className="font-semibold text-[#222222]">Profil Resmi Airbnb Superhost</span>
                   </div>
-                  <span className="text-[10px] bg-[#222222] text-[#DFC58E] font-semibold px-2.5 py-0.5 rounded-full">
-                    Superhost
+                  <span className="text-[10px] text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                    Terverifikasi
                   </span>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <div className="h-11 w-11 rounded-full bg-[#222222] text-white flex items-center justify-center font-serif text-lg font-bold border border-[#E8E4DC]">
-                    K
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-[#222222]">Kinghouse Management</h4>
-                    <p className="text-xs text-[#717171]">@kinghousemanagement &bull; Identitas Terverifikasi</p>
-                  </div>
+                <div className="p-3 bg-white flex items-center justify-center">
+                  <Image
+                    src="/brand/airbnb-superhost-profile-card.png"
+                    alt="Profil Resmi Airbnb Superhost Kinghouse Management"
+                    width={725}
+                    height={507}
+                    className="w-full h-auto rounded-xl object-contain shadow-xs transition-transform duration-300 group-hover:scale-[1.01]"
+                  />
                 </div>
-                <div className="grid grid-cols-3 gap-2 pt-2 border-t border-[#E8E4DC] text-center text-xs">
-                  <div>
-                    <span className="font-bold text-[#222222] block">10</span>
-                    <span className="text-[10px] text-[#717171]">Ulasan</span>
-                  </div>
-                  <div>
-                    <span className="font-bold text-[#222222] block">4.5★</span>
-                    <span className="text-[10px] text-[#717171]">Rating</span>
-                  </div>
-                  <div>
-                    <span className="font-bold text-[#222222] block">1 Thn</span>
-                    <span className="text-[10px] text-[#717171]">Hosting</span>
-                  </div>
+                <div className="bg-[#FAF8F5] px-4 py-2.5 border-t border-[#E8E4DC] flex items-center justify-between text-xs text-[#8C7F5F] font-semibold group-hover:bg-[#F2ECE1] transition-colors">
+                  <span>Lihat Profil Asli di airbnb.com</span>
+                  <ArrowUpRight className="h-3.5 w-3.5" />
                 </div>
-                <a
-                  href="https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center space-x-1.5 w-full py-2 rounded-xl bg-[#222222] text-white hover:bg-[#333333] text-xs font-semibold transition-all mt-1 cursor-pointer"
-                >
-                  <span>Lihat Profil Superhost di Airbnb</span>
-                  <ArrowUpRight className="h-3.5 w-3.5 text-[#DFC58E]" />
-                </a>
-              </div>
+              </a>
 
               {/* Fast WhatsApp Channel */}
               <div className="rounded-2xl border border-[#EBEBEB] bg-[#FAFAFA] p-6 space-y-4">
