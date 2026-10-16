@@ -2,7 +2,7 @@ import { notFound } from "next/navigation"
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { CheckCircle2, ArrowLeft, ArrowRight, Users, MessageSquare } from "lucide-react"
+import { CheckCircle2, ArrowLeft, ArrowRight, Users, MessageSquare, Globe } from "lucide-react"
 import { VILLA_EVENTS, CURATED_VILLAS } from "@/lib/data"
 import { SITE_CONFIG } from "@/lib/constants"
 import { formatCurrency } from "@/lib/utils"
@@ -185,10 +185,39 @@ export default async function EventDetailPage({ params }: PageProps) {
                   </div>
                   <Link
                     href={`/locations/${property.areaSlug}/villas/${property.slug}`}
-                    className="text-xs font-medium text-[#222222] hover:underline flex-shrink-0"
+                    className="text-xs font-medium text-[#222225] hover:underline flex-shrink-0"
                   >
                     View Villa →
                   </Link>
+                </div>
+              </div>
+            )}
+
+            {/* International / Expat Couples Concierge Box */}
+            {event.category === "wedding" && (
+              <div className="rounded-2xl border border-[#DFC58E]/40 bg-[#FAF8F5] p-6 space-y-4">
+                <div className="flex items-center space-x-2 text-[#8C7F5F]">
+                  <Globe className="h-4 w-4" />
+                  <span className="text-xs uppercase tracking-widest font-bold">
+                    International &amp; Destination Couples Desk
+                  </span>
+                </div>
+                <h4 className="font-serif text-lg text-[#222222]">
+                  Planning from Overseas or Hosting International Guests?
+                </h4>
+                <p className="text-xs text-[#6B6862] leading-relaxed">
+                  We specialize in private Jakarta villa celebrations for international and multicultural couples. Enjoy <strong>100% vendor freedom with 0% corkage fees</strong>, 35-min airport highway connectivity, overnight stay for 15 family members, and multi-currency pricing (USD, EUR, AUD, SGD).
+                </p>
+                <div className="pt-2">
+                  <a
+                    href={`https://wa.me/6282123933218?text=${encodeURIComponent(`Hello Kinghouse Concierge! We are an international couple interested in hosting our wedding ceremony at ${event.propertyName}. Could you please share the international lookbook and availability?`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-[#222225] text-white hover:bg-[#333333] text-xs font-semibold transition-colors"
+                  >
+                    <MessageSquare className="h-3.5 w-3.5 text-[#DFC58E]" />
+                    <span>Inquire with International Concierge</span>
+                  </a>
                 </div>
               </div>
             )}

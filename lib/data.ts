@@ -1350,14 +1350,16 @@ export const VILLA_EVENTS: VillaEvent[] = [
       "The lush 500m² private garden of our Jagakarsa property creates a magical backdrop for intimate weddings and akad nikah ceremonies. Surrounded by tropical greenery, swimming pool, and space for up to 50 seated guests, this is South Jakarta's best-kept secret for a private garden-style celebration. No vendor corkage fee — book the entire residence and garden exclusively.",
     maxCapacity: 50,
     heroImage:
-      "/properties/versatile-house/events/wedding-ceremony-lawn-pool.jpg",
+      "/properties/versatile-house/events/portfolio/ceremony-lawn-altar.jpg",
     gallery: [
+      "/properties/versatile-house/events/portfolio/ceremony-lawn-altar.jpg",
+      "/properties/versatile-house/events/portfolio/twilight-dinner-reception.jpg",
+      "/properties/versatile-house/events/portfolio/bridal-suite-prep.jpg",
+      "/properties/versatile-house/events/portfolio/blessing-ceremony-terrace.jpg",
       "/properties/versatile-house/events/wedding-ceremony-lawn-pool.jpg",
       "/properties/versatile-house/events/evening-garden-party-banquet.jpg",
       "/properties/versatile-house/events/cocktail-reception-terrace-lounge.jpg",
       "/properties/versatile-house/new/VersatileHouse_06_Dining_Chandelier.jpg",
-      "/properties/versatile-house/new/VersatileHouse_09_Zen_Courtyard.jpg",
-      "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
     ],
     packages: [
       {

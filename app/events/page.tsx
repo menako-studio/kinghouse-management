@@ -18,6 +18,13 @@ import {
   Camera,
   X,
   Eye,
+  Globe,
+  ShieldCheck,
+  Plane,
+  CloudSun,
+  UtensilsCrossed,
+  FileText,
+  CheckCircle2,
 } from "lucide-react"
 import { VILLA_EVENTS, VERSATILE_HOUSE_EVENT_PRICELIST, CURATED_VILLAS } from "@/lib/data"
 import { VillaEvent } from "@/lib/types"
@@ -40,16 +47,56 @@ interface EventShowcasePhoto {
 const EVENT_SHOWCASE_PHOTOS: EventShowcasePhoto[] = [
   {
     id: "photo-1",
-    title: "Lush Lawn Floral Altar & Ceremonial Pool Reflection",
+    title: "Lush Lawn Floral Moon Gate & Poolside Altar",
     category: "wedding",
     categoryLabel: "Wedding Ceremony",
-    image: "/properties/versatile-house/events/wedding-ceremony-lawn-pool.jpg",
-    caption: "Exchange vows before an exquisite circular floral moon gate beside the pool, with rows of white cross-back chairs on manicured lawns.",
+    image: "/properties/versatile-house/events/portfolio/ceremony-lawn-altar.jpg",
+    caption: "Exchange vows in front of a breathtaking circular floral moon gate arch set on manicured grass, with white cross-back chairs and turquoise pool reflections.",
     area: "500m² Tropical Garden & Pool",
     capacity: "Up to 50 Guests Seated",
   },
   {
     id: "photo-2",
+    title: "Intimate Twilight Banquet & Canopy Fairy Lights",
+    category: "banquet",
+    categoryLabel: "Evening Garden Banquet",
+    image: "/properties/versatile-house/events/portfolio/twilight-dinner-reception.jpg",
+    caption: "Magical evening dinner under a canopy of glowing fairy lights, rustic long banquet tables, white linen runners, candlelight lanterns, and floating pool candles.",
+    area: "Poolside Lawn & Banquet Deck",
+    capacity: "30–50 Guests Seated Dinner",
+  },
+  {
+    id: "photo-3",
+    title: "Bridal Master Suite Sanctuary & Garden Deck",
+    category: "bridal",
+    categoryLabel: "Bridal Suite",
+    image: "/properties/versatile-house/events/portfolio/bridal-suite-prep.jpg",
+    caption: "Serene master bedroom suite dedicated for bridal dress changes, hair & makeup artists, and intimate morning photos with floor-to-ceiling garden views.",
+    area: "Master Bridal Wing",
+    capacity: "Private Bridal Suite",
+  },
+  {
+    id: "photo-4",
+    title: "Covered Patio Blessing & Akad Nikah Altar",
+    category: "wedding",
+    categoryLabel: "Akad / Blessing Ceremony",
+    image: "/properties/versatile-house/events/portfolio/blessing-ceremony-terrace.jpg",
+    caption: "Intimate ceremonial table adorned with fresh white orchids and sheer drapes on the sheltered stone terrace overlooking the lawn and swimming pool.",
+    area: "Sheltered Garden Terrace",
+    capacity: "20–40 Guests",
+  },
+  {
+    id: "photo-5",
+    title: "Poolside Altar Reflection & Manicured Lawn",
+    category: "wedding",
+    categoryLabel: "Wedding Ceremony",
+    image: "/properties/versatile-house/events/wedding-ceremony-lawn-pool.jpg",
+    caption: "Classic daytime garden ceremony setup overlooking the crystalline pool, tropical palm backdrop, and white crossback guest seating.",
+    area: "Lawn & Pool Enclave",
+    capacity: "Up to 50 Guests Seated",
+  },
+  {
+    id: "photo-6",
     title: "Romantic Twilight Garden Banquet with Fairy Lights",
     category: "banquet",
     categoryLabel: "Evening Garden Banquet",
@@ -59,7 +106,7 @@ const EVENT_SHOWCASE_PHOTOS: EventShowcasePhoto[] = [
     capacity: "30–50 Guests Seated Dinner",
   },
   {
-    id: "photo-3",
+    id: "photo-7",
     title: "Covered Patio Cocktail Bar & Garden Lounge",
     category: "cocktail",
     categoryLabel: "Cocktail & Reception",
@@ -69,17 +116,17 @@ const EVENT_SHOWCASE_PHOTOS: EventShowcasePhoto[] = [
     capacity: "40 Guests Standing Cocktail",
   },
   {
-    id: "photo-4",
+    id: "photo-8",
     title: "Grand Dining Hall & Chandelier Banquet",
     category: "banquet",
     categoryLabel: "Intimate Banquet",
     image: "/properties/versatile-house/new/VersatileHouse_06_Dining_Chandelier.jpg",
-    caption: "Family dining tables under an artistic branch chandelier with floor-to-ceiling garden vistas.",
+    caption: "Family dining tables under an artistic branch chandelier with floor-to-ceiling garden vistas, serving as an air-conditioned rain backup.",
     area: "Formal Dining Salon",
     capacity: "16-24 Pax Dining",
   },
   {
-    id: "photo-5",
+    id: "photo-9",
     title: "Tranquil Zen Courtyard for Editorial Photos",
     category: "wedding",
     categoryLabel: "Wedding Photo Corner",
@@ -87,16 +134,6 @@ const EVENT_SHOWCASE_PHOTOS: EventShowcasePhoto[] = [
     caption: "An architectural stone courtyard offering natural diffused light for bridal portraits and pre-wedding captures.",
     area: "Zen Botanical Courtyard",
     capacity: "Private Photo Zone",
-  },
-  {
-    id: "photo-6",
-    title: "Bridal Master Suite & Powder Sanctuary",
-    category: "bridal",
-    categoryLabel: "Bridal Suite",
-    image: "/properties/versatile-house/new/VersatileHouse_03_Master_Bedroom.jpg",
-    caption: "Spacious private master wing dedicated for bridal dress changes, hair & makeup artists, and moments of calm.",
-    area: "Master Bridal Wing",
-    capacity: "Private Bridal Suite",
   },
 ]
 
@@ -930,6 +967,132 @@ export default function EventsPage() {
           <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between text-[11px] text-[#6B6862] gap-2">
             <span>* Zero vendor corkage fee. Outside catering, florist, & photographer welcome.</span>
             <span>Official commercial invoice & tax receipts provided for corporate bookings.</span>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. INTERNATIONAL & EXPAT WEDDING CONCIERGE (Foreigner-Friendly Direct Desk) */}
+      <section className="mx-auto max-w-7xl px-6 lg:px-12 pt-8 pb-16">
+        <div className="relative overflow-hidden rounded-3xl border border-[#DFC58E]/40 bg-gradient-to-br from-[#222225] via-[#1E1E22] to-[#141416] p-8 sm:p-12 text-white shadow-xl">
+          {/* Ambient Gold Glow */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#DFC58E]/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 max-w-3xl mb-10 space-y-3">
+            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-[#DFC58E]/30 text-xs font-semibold text-[#DFC58E]">
+              <Globe className="h-3.5 w-3.5" />
+              <span className="uppercase tracking-widest text-[10px]">International &amp; Destination Wedding Desk</span>
+            </div>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal leading-tight">
+              Planning an Expat or Destination Villa Wedding in Jakarta?
+            </h2>
+            <p className="text-white/80 text-sm sm:text-base leading-relaxed font-light">
+              Versatile House Jagakarsa provides the seclusion and botanical luxury of a Bali private villa without the logistical hurdles of island travel. We welcome international couples, multicultural families, and expat celebrations with 100% vendor freedom and dedicated bilingual concierge support.
+            </p>
+          </div>
+
+          {/* 6 Key Guarantees for Foreign Clients */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10 mb-10">
+            <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2">
+              <div className="flex items-center space-x-2.5 text-[#DFC58E]">
+                <UtensilsCrossed className="h-5 w-5" />
+                <h4 className="font-semibold text-sm text-white">0% Vendor Corkage</h4>
+              </div>
+              <p className="text-xs text-white/70 leading-relaxed font-light">
+                Bring your preferred international wedding planner, private chef, local or western caterer, wine collection, and photographer with zero corkage fees or vendor penalties.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2">
+              <div className="flex items-center space-x-2.5 text-[#DFC58E]">
+                <Plane className="h-5 w-5" />
+                <h4 className="font-semibold text-sm text-white">Airport &amp; Hotel Proximity</h4>
+              </div>
+              <p className="text-xs text-white/70 leading-relaxed font-light">
+                Convenient 35–45 min direct highway connection from Soekarno-Hatta (CGK) via Desari toll. 4-star and 5-star partner hotels on TB Simatupang are just 10 mins away for overflow guests.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2">
+              <div className="flex items-center space-x-2.5 text-[#DFC58E]">
+                <CloudSun className="h-5 w-5" />
+                <h4 className="font-semibold text-sm text-white">100% Weather Backup Plan</h4>
+              </div>
+              <p className="text-xs text-white/70 leading-relaxed font-light">
+                Sudden tropical rain? Seamlessly transition from the 500m² lawn to our Grand Living Hall with 5-meter ceilings and sheltered garden terrace, comfortably seating up to 50 guests.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2">
+              <div className="flex items-center space-x-2.5 text-[#DFC58E]">
+                <ShieldCheck className="h-5 w-5" />
+                <h4 className="font-semibold text-sm text-white">Any Ceremony Style Welcomed</h4>
+              </div>
+              <p className="text-xs text-white/70 leading-relaxed font-light">
+                From intimate Christian or secular vow exchanges to traditional Akad Nikah, tea ceremonies, or vow renewals, our private residence offers complete peace and sacred privacy.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2">
+              <div className="flex items-center space-x-2.5 text-[#DFC58E]">
+                <Users className="h-5 w-5" />
+                <h4 className="font-semibold text-sm text-white">15 Pax Family Accommodation</h4>
+              </div>
+              <p className="text-xs text-white/70 leading-relaxed font-light">
+                The full 5-bedroom residence is exclusively yours. Close family members can stay together overnight with private pool access, hotel-grade linens, and daily housekeeping.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2">
+              <div className="flex items-center space-x-2.5 text-[#DFC58E]">
+                <Globe className="h-5 w-5" />
+                <h4 className="font-semibold text-sm text-white">Multi-Currency &amp; Virtual Tours</h4>
+              </div>
+              <p className="text-xs text-white/70 leading-relaxed font-light">
+                Transparent quotes and contracts in USD, EUR, AUD, SGD, or IDR. We offer live WhatsApp or FaceTime video walkthroughs for overseas couples before signing.
+              </p>
+            </div>
+          </div>
+
+          {/* Action CTAs */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-6 border-t border-white/10 relative z-10">
+            <div className="text-xs text-white/60">
+              English-speaking concierge &bull; Average inquiry response under 15 minutes &bull; Live FaceTime walkthroughs available
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href="https://wa.me/6282123933218?text=Hello%20Kinghouse%20Concierge!%20We%20are%20an%20international%20couple%20inquiring%20about%20hosting%20a%20private%20destination%20wedding%20at%20Versatile%20House%20Jagakarsa.%20Could%20you%20please%20share%20the%20international%20wedding%20lookbook,%20available%20dates,%20and%20rates%20in%20USD/IDR%3F"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  trackWhatsAppClick({
+                    source: "event_page",
+                    propertyName: "Versatile House Jagakarsa",
+                    context: "International Expat Wedding Desk",
+                  })
+                }}
+                className="inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-2xl bg-[#DFC58E] hover:bg-[#C9A96E] text-[#19191B] text-xs font-bold uppercase tracking-wider transition-all shadow-md hover:scale-[1.02] cursor-pointer"
+              >
+                <MessageCircle className="h-4 w-4" />
+                <span>Chat with International Concierge</span>
+              </a>
+
+              <a
+                href="https://wa.me/6282123933218?text=Hello%20Kinghouse!%20Please%20send%20me%20the%20Official%20Wedding%20Lookbook%202026%20and%20Floorplan%20Deck%20for%20Versatile%20House%20Jagakarsa."
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  trackBrochureDownload({
+                    brochureType: "event",
+                    itemName: "Versatile House Wedding Lookbook 2026",
+                  })
+                }}
+                className="inline-flex items-center justify-center space-x-2 px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs font-semibold tracking-wider transition-all cursor-pointer"
+              >
+                <Download className="h-3.5 w-3.5" />
+                <span>Download Wedding Deck (PDF)</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
