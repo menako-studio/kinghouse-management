@@ -76,25 +76,37 @@ export default function OwnerServicesPage() {
       />
       {/* 1. Sophisticated Architectural Dark Hero Section */}
       <section className="relative min-h-[75vh] w-full overflow-hidden bg-[#111111] flex items-center select-none">
-        {/* Background Architectural Visual */}
+        {/* Background Architectural Visual - Real Asset from Versatile House Flagship */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=2200&q=85"
-            alt="Architectural Villa Exterior"
+            src="/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg"
+            alt="Versatile House Jagakarsa Flagship Villa"
             fill
             priority
-            className="object-cover brightness-[0.35]"
+            className="object-cover brightness-[0.38]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-black/50" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-black/60" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl px-6 py-20 lg:px-12 lg:py-28">
           <div className="max-w-3xl space-y-6">
-            <div className="flex items-center space-x-2">
+            <div className="flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center rounded-full bg-[#A69C8E]/25 px-3.5 py-1 text-[11px] font-semibold uppercase tracking-widest text-[#EAE8E4] backdrop-blur-md border border-[#A69C8E]/40">
-                <TrendingUp className="mr-1.5 h-3.5 w-3.5 text-[#A69C8E]" />
+                <TrendingUp className="mr-1.5 h-3.5 w-3.5 text-[#DFC58E]" />
                 Institutional Villa Asset Management
               </span>
+
+              {/* Verified Airbnb Superhost Trust Badge */}
+              <a
+                href="https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-full bg-[#DFC58E]/20 hover:bg-[#DFC58E]/30 px-3.5 py-1 text-[11px] font-semibold uppercase tracking-widest text-[#DFC58E] backdrop-blur-md border border-[#DFC58E]/50 transition-all hover:scale-105"
+                title="Lihat Profil Resmi Superhost Kinghouse Management di Airbnb"
+              >
+                <Sparkles className="mr-1.5 h-3.5 w-3.5 text-[#DFC58E]" />
+                <span>Official Airbnb Superhost &bull; 4.5★ (10 Ulasan) ↗</span>
+              </a>
             </div>
 
             <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal leading-[1.08] text-white">
@@ -103,22 +115,33 @@ export default function OwnerServicesPage() {
             </h1>
 
             <p className="text-base sm:text-lg text-white/80 font-light leading-relaxed max-w-2xl">
-              We engineer luxury private villas into high-performing hospitality assets. Transparent performance-based fee structures, algorithmic dynamic pricing, 5-star operations, and comprehensive owner reporting.
+              Kami mentransformasi properti villa dan apartemen privat di Jabodetabek menjadi aset hospitality berkinerja tinggi. Didukung langsung oleh status <strong>Resmi Airbnb Superhost</strong>, algoritma dynamic pricing harian, standar kebersihan hotel bintang 5, dan transparansi laporan bagi hasil tanpa potongan fiktif.
             </p>
 
-            {/* Quick Metrics Bar */}
+            {/* Quick Metrics Bar with Verified Superhost Status */}
             <div className="grid grid-cols-3 gap-6 pt-4 border-t border-white/15 max-w-xl text-white">
               <div>
                 <span className="font-serif text-2xl sm:text-3xl text-white font-normal block">91%</span>
                 <span className="text-[11px] text-[#A0A0A0] uppercase tracking-wider">Avg Occupancy</span>
               </div>
               <div>
-                <span className="font-serif text-2xl sm:text-3xl text-[#A69C8E] font-normal block">+48%</span>
+                <span className="font-serif text-2xl sm:text-3xl text-[#DFC58E] font-normal block">+48%</span>
                 <span className="text-[11px] text-[#A0A0A0] uppercase tracking-wider">EBITDA Lift</span>
               </div>
               <div>
-                <span className="font-serif text-2xl sm:text-3xl text-white font-normal block">4.98</span>
-                <span className="text-[11px] text-[#A0A0A0] uppercase tracking-wider">Superhost Rating</span>
+                <a
+                  href="https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block"
+                >
+                  <span className="font-serif text-2xl sm:text-3xl text-white font-normal group-hover:text-[#DFC58E] transition-colors flex items-center">
+                    Superhost <span className="text-xs ml-1 opacity-70">↗</span>
+                  </span>
+                  <span className="text-[11px] text-[#DFC58E] uppercase tracking-wider group-hover:underline">
+                    Verified by Airbnb
+                  </span>
+                </a>
               </div>
             </div>
 

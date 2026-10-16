@@ -66,10 +66,10 @@ export default function ManagementInquiryPage() {
       <section className="relative overflow-hidden bg-[#231F1A] text-white pt-28 pb-16 lg:pt-32 lg:pb-24 supergraphic-blueprint-charcoal">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80"
-            alt="Kinghouse Luxury Villa Management"
+            src="/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg"
+            alt="Versatile House Flagship Villa"
             fill
-            className="object-cover opacity-20"
+            className="object-cover opacity-25"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#231F1A] via-[#231F1A]/80 to-black/60" />
@@ -78,9 +78,20 @@ export default function ManagementInquiryPage() {
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12 text-center lg:text-left">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
             <div className="max-w-2xl">
-              <div className="inline-flex items-center space-x-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-[#DFC58E] mb-4">
-                <Building2 className="h-3.5 w-3.5" />
-                <span>Villa &amp; Property Asset Management</span>
+              <div className="flex flex-wrap items-center gap-2 mb-4">
+                <div className="inline-flex items-center space-x-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-[#DFC58E]">
+                  <Building2 className="h-3.5 w-3.5" />
+                  <span>Villa &amp; Property Asset Management</span>
+                </div>
+                <a
+                  href="https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-1.5 rounded-full bg-[#DFC58E]/20 hover:bg-[#DFC58E]/30 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#DFC58E] border border-[#DFC58E]/50 transition-all"
+                >
+                  <Sparkles className="h-3.5 w-3.5" />
+                  <span>Official Airbnb Superhost ↗</span>
+                </a>
               </div>
               <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl uppercase tracking-[0.1em] font-normal leading-tight">
                 Unlock Maximum Yield <br />
@@ -101,8 +112,15 @@ export default function ManagementInquiryPage() {
                   <p className="text-[11px] uppercase tracking-wider text-[#DFC58E]">Yield vs Long-Term</p>
                 </div>
                 <div>
-                  <p className="font-serif text-2xl sm:text-3xl text-white">4.9★</p>
-                  <p className="text-[11px] uppercase tracking-wider text-[#DFC58E]">Guest Review Avg</p>
+                  <a
+                    href="https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group"
+                  >
+                    <p className="font-serif text-2xl sm:text-3xl text-white group-hover:text-[#DFC58E] transition-colors">Superhost ↗</p>
+                    <p className="text-[11px] uppercase tracking-wider text-[#DFC58E]">Verified Airbnb Host</p>
+                  </a>
                 </div>
               </div>
             </div>

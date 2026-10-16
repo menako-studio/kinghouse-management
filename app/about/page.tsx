@@ -135,9 +135,9 @@ export default function AboutPage() {
 
         corpEyebrow: "Badan Hukum & Entitas Perusahaan",
         corpCompany: "PT Kreasi Usman Gosse",
-        corpAddressLabel: "Kantor Operasional & Registrasi Resmi:",
+        corpAddressLabel: "Kantor Operasional & Virtual Office Resmi:",
         corpAddress:
-          "Jl. Reni Jaya Blk. K2 No.16, Pd. Ranji, Kec. Ciputat Tim., Kota Tangerang Selatan, Banten 15416",
+          "18 Office Park Building 21th Floor Unit C. Jl. TB Simatupang Kav. 18, Jakarta Selatan, 12520",
         btnGbp: "Google Business Profile",
         btnCareers: "Karir di Glints",
 
@@ -247,9 +247,9 @@ export default function AboutPage() {
 
         corpEyebrow: "Legal Entity & Corporate Governance",
         corpCompany: "PT Kreasi Usman Gosse",
-        corpAddressLabel: "Official Registered Operational Headquarters:",
+        corpAddressLabel: "Official Corporate Headquarters & Virtual Office:",
         corpAddress:
-          "Jl. Reni Jaya Blk. K2 No.16, Pd. Ranji, Kec. Ciputat Tim., Kota Tangerang Selatan, Banten 15416",
+          "18 Office Park Building 21th Floor Unit C. Jl. TB Simatupang Kav. 18, Jakarta Selatan, 12520",
         btnGbp: "Google Business Profile",
         btnCareers: "Careers on Glints",
 

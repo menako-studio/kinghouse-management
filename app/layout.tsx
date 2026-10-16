@@ -120,7 +120,7 @@ export const metadata: Metadata = {
     url: SITE_CONFIG.baseUrl,
     images: [
       {
-        url: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=85",
+        url: `${SITE_CONFIG.baseUrl}/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg`,
         width: 1200,
         height: 630,
         alt: "Kinghouse Management — Curated Short-Stay Hospitality in Greater Jakarta",
@@ -133,7 +133,7 @@ export const metadata: Metadata = {
     description:
       "Institutional short-stay villa & Airbnb asset management in Greater Jakarta. Maximize net yield with algorithmic dynamic pricing and 5-star operations.",
     images: [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=85",
+      `${SITE_CONFIG.baseUrl}/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg`,
     ],
   },
 }
@@ -191,7 +191,7 @@ const comprehensiveSchema = {
         { "@type": "City", name: "Cikarang" },
       ],
       sameAs: [
-        "https://www.tiktok.com/@kinghouse.id",
+        "https://www.tiktok.com/@kinghousemanagement",
         "https://instagram.com/kinghouse.id",
         "https://www.airbnb.com/users/profile/1470743715397835749",
         "https://share.google/WHLcKlmJf8zZo27gO",
@@ -207,7 +207,7 @@ const comprehensiveSchema = {
         "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=85",
       telephone: "+6282123933218",
       email: "info@kinghousemanagement.com",
-      hasMap: "https://share.google/WHLcKlmJf8zZo27gO",
+      hasMap: "https://maps.google.com/?q=18+Office+Park+Building+Jl.+TB+Simatupang+Kav.+18+Jakarta+Selatan+12520",
       knowsAbout: [
         "Sewa Villa Jakarta Selatan",
         "Villa Jagakarsa Private Pool",
@@ -231,16 +231,16 @@ const comprehensiveSchema = {
       },
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Jl. Reni Jaya Blk. K2 No.16, Pd. Ranji, Kec. Ciputat Tim.",
-        addressLocality: "Kota Tangerang Selatan",
-        addressRegion: "Banten",
-        postalCode: "15416",
+        streetAddress: "18 Office Park Building 21th Floor Unit C. Jl. TB Simatupang Kav. 18",
+        addressLocality: "Jakarta Selatan",
+        addressRegion: "DKI Jakarta",
+        postalCode: "12520",
         addressCountry: "ID",
       },
       geo: {
         "@type": "GeoCoordinates",
-        latitude: -6.2843,
-        longitude: 106.7447,
+        latitude: -6.3013,
+        longitude: 106.8344,
       },
       url: SITE_CONFIG.baseUrl,
       priceRange: "Rp 280.000 - Rp 1.900.000 / night",
@@ -348,8 +348,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${cormorant.variable} ${inter.variable} scroll-smooth`}>
-      <body className="min-h-screen bg-[var(--bg-main)] font-sans text-[var(--text-primary)] antialiased selection:bg-[#CBBEA0] selection:text-[#231F1A]">
+    <html lang="en" data-scroll-behavior="smooth" className={`${cormorant.variable} ${inter.variable} scroll-smooth`} suppressHydrationWarning>
+      <body suppressHydrationWarning className="min-h-screen bg-[var(--bg-main)] font-sans text-[var(--text-primary)] antialiased selection:bg-[#CBBEA0] selection:text-[#231F1A]">
         {/* Google Analytics 4 & Google Tag Manager */}
         <GoogleAnalytics />
         {/* Virtual Page View Route Tracker */}

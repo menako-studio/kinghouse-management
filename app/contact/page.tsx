@@ -2,7 +2,8 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { Mail, Phone, MapPin, MessageSquare, ArrowUpRight, CheckCircle2, ShieldCheck } from "lucide-react"
+import Image from "next/image"
+import { Mail, Phone, MapPin, MessageSquare, ArrowUpRight, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -35,18 +36,41 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen bg-white pb-24">
-      {/* Editorial Header */}
-      <section className="section-macro-spacing bg-[#FAFAFA] border-b border-[#EBEBEB]">
-        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+      {/* Editorial Architectural Header with Real Flagship Asset */}
+      <section className="relative overflow-hidden bg-[#1E1B18] text-white pt-24 pb-20 lg:pt-32 lg:pb-24 border-b border-[#352F27]">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/properties/versatile-house/new/VersatileHouse_02_Living_Hall.jpg"
+            alt="Versatile House Flagship Living Hall"
+            fill
+            priority
+            className="object-cover brightness-[0.32]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1E1B18] via-[#1E1B18]/70 to-black/60" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
           <div className="max-w-3xl space-y-4">
-            <span className="text-xs uppercase tracking-[0.25em] font-semibold text-[#A69C8E]">
-              Direct Communication Desk
-            </span>
-            <h1 className="font-serif text-4xl sm:text-6xl text-[#222222] font-normal leading-[1.1]">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center rounded-full bg-white/10 px-3.5 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#DFC58E] backdrop-blur-md border border-white/15">
+                Direct Communication Desk
+              </span>
+              <a
+                href="https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-full bg-[#DFC58E]/20 hover:bg-[#DFC58E]/30 px-3.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-[#DFC58E] backdrop-blur-md border border-[#DFC58E]/50 transition-all hover:scale-105"
+              >
+                <Sparkles className="mr-1.5 h-3.5 w-3.5 text-[#DFC58E]" />
+                <span>Official Airbnb Superhost &bull; 4.5★ ↗</span>
+              </a>
+            </div>
+
+            <h1 className="font-serif text-4xl sm:text-6xl text-white font-normal leading-[1.1]">
               Get in Touch with Kinghouse
             </h1>
-            <p className="text-base sm:text-lg text-[#717171] font-light leading-relaxed">
-              Whether you are planning an architectural escape or seeking high-yield management for your luxury villa asset, our team is at your disposal.
+            <p className="text-base sm:text-lg text-[#E0DACB] font-light leading-relaxed">
+              Baik Anda merencanakan liburan privat, menggelar intimate wedding di villa, atau mencari manajemen properti bagi hasil transparan di Jabodetabek, tim hospitality kami siap melayani Anda 24/7.
             </p>
           </div>
         </div>
@@ -63,8 +87,55 @@ export default function ContactPage() {
                   Direct Channels
                 </span>
                 <h2 className="font-serif text-3xl text-[#222222]">
-                  Concierge & Asset Management Desk
+                  Concierge &amp; Asset Management Desk
                 </h2>
+              </div>
+
+              {/* Official Airbnb Superhost Card */}
+              <div className="rounded-2xl border border-[#DFC58E]/40 bg-[#FAF8F5] p-5 space-y-3 shadow-xs">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#8C7F5F]">
+                      Profil Resmi Airbnb
+                    </span>
+                  </div>
+                  <span className="text-[10px] bg-[#222222] text-[#DFC58E] font-semibold px-2.5 py-0.5 rounded-full">
+                    Superhost
+                  </span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="h-11 w-11 rounded-full bg-[#222222] text-white flex items-center justify-center font-serif text-lg font-bold border border-[#E8E4DC]">
+                    K
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-[#222222]">Kinghouse Management</h4>
+                    <p className="text-xs text-[#717171]">@kinghousemanagement &bull; Identitas Terverifikasi</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-3 gap-2 pt-2 border-t border-[#E8E4DC] text-center text-xs">
+                  <div>
+                    <span className="font-bold text-[#222222] block">10</span>
+                    <span className="text-[10px] text-[#717171]">Ulasan</span>
+                  </div>
+                  <div>
+                    <span className="font-bold text-[#222222] block">4.5★</span>
+                    <span className="text-[10px] text-[#717171]">Rating</span>
+                  </div>
+                  <div>
+                    <span className="font-bold text-[#222222] block">1 Thn</span>
+                    <span className="text-[10px] text-[#717171]">Hosting</span>
+                  </div>
+                </div>
+                <a
+                  href="https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center space-x-1.5 w-full py-2 rounded-xl bg-[#222222] text-white hover:bg-[#333333] text-xs font-semibold transition-all mt-1 cursor-pointer"
+                >
+                  <span>Lihat Profil Superhost di Airbnb</span>
+                  <ArrowUpRight className="h-3.5 w-3.5 text-[#DFC58E]" />
+                </a>
               </div>
 
               {/* Fast WhatsApp Channel */}
@@ -128,21 +199,21 @@ export default function ContactPage() {
                   <div>
                     <span className="text-xs text-[#717171] block">Headquarters &bull; PT Kreasi Usman Gosse</span>
                     <a
-                      href="https://share.google/WHLcKlmJf8zZo27gO"
+                      href="https://maps.google.com/?q=18+Office+Park+Building+Jl.+TB+Simatupang+Kav.+18+Jakarta+Selatan+12520"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-xs text-[#222222] font-medium leading-relaxed block hover:text-[#8C7F5F] hover:underline transition-colors"
                     >
-                      Jl. Reni Jaya Blk. K2 No.16, Pd. Ranji, Kec. Ciputat Tim., Kota Tangerang Selatan, Banten 15416
+                      18 Office Park Building 21th Floor Unit C. Jl. TB Simatupang Kav. 18, Jakarta Selatan, 12520
                     </a>
                     <span className="inline-flex items-center space-x-1 text-[11px] text-[#8C7F5F] mt-1 font-semibold">
                       <a
-                        href="https://share.google/WHLcKlmJf8zZo27gO"
+                        href="https://maps.google.com/?q=18+Office+Park+Building+Jl.+TB+Simatupang+Kav.+18+Jakarta+Selatan+12520"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="hover:underline inline-flex items-center space-x-1"
                       >
-                        <span>Verified Google Business Profile</span>
+                        <span>Open in Google Maps</span>
                         <ArrowUpRight className="h-3 w-3" />
                       </a>
                     </span>

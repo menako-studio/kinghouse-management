@@ -151,7 +151,7 @@ export default function PrivacyPolicyPage() {
                 <p>PT Kreasi Usman Gosse</p>
                 <p>Email: info@kinghousemanagement.com</p>
                 <p>Phone / WhatsApp: +62 821 2393 3218</p>
-                <p>Address: Jl. Reni Jaya Blk. K2 No.16, Pd. Ranji, Kec. Ciputat Tim., Kota Tangerang Selatan, Banten 15416, Indonesia</p>
+                <p>Address: 18 Office Park Building 21th Floor Unit C. Jl. TB Simatupang Kav. 18, Jakarta Selatan, 12520, Indonesia</p>
               </div>
             </div>
 

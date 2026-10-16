@@ -39,11 +39,11 @@ export const SITE_CONFIG = {
     phone: "+62 821-2393-3218",
     whatsapp: "+62 821-2393-3218",
     whatsappMessage: "Hello Kinghouse Management, I am interested in your property management and villa booking services.",
-    address: "Jl. Reni Jaya Blk. K2 No.16, Pd. Ranji, Kec. Ciputat Tim., Kota Tangerang Selatan, Banten 15416",
-    mapsUrl: "https://www.google.com/search?sca_esv=d3239205b7f4fd26&hl=en&authuser=0&sxsrf=APpeQnukDFQYH45v1JGZCq_i_OhLcXqWIg:1789184395314&q=kinghouse+management+kota+tangerang+selatan+address&ludocid=8424800831686466391&sa=X&ved=2ahUKEwjmvMeij-iWAxXOm-EIHb6pFWsQ6BN6BAgmEAI",
+    address: "18 Office Park Building 21th Floor Unit C. Jl. TB Simatupang Kav. 18, Jakarta Selatan, 12520",
+    mapsUrl: "https://maps.google.com/?q=18+Office+Park+Building+Jl.+TB+Simatupang+Kav.+18+Jakarta+Selatan+12520",
   },
   social: {
-    tiktok: "https://www.tiktok.com/@kinghouse.id",
+    tiktok: "https://www.tiktok.com/@kinghousemanagement",
     instagram: "https://instagram.com/kinghouse.id",
   },
   airbnbHostProfile:

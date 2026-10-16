@@ -142,10 +142,25 @@ export function HeroSlider() {
       {/* 4. Luxury Content Container */}
       <div className="relative z-20 mx-auto flex h-full min-h-[660px] sm:min-h-screen max-w-7xl flex-col justify-between px-5 pt-20 pb-8 sm:px-10 sm:pt-28 sm:pb-12 lg:px-12 lg:pt-32 lg:pb-12">
         {/* Top Eyebrow Tag */}
-        <div className="flex items-center justify-between">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-3.5 py-1 sm:px-4 sm:py-1.5 text-[10px] sm:text-[11px] font-medium tracking-[0.18em] sm:tracking-[0.22em] uppercase text-[#E8DFC8] backdrop-blur-md shadow-2xl">
-            <Sparkles className="h-3 w-3 text-[#B8934C]" />
-            <span>{t("curatedResidencesJabodetabek")}</span>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-3.5 py-1 sm:px-4 sm:py-1.5 text-[10px] sm:text-[11px] font-medium tracking-[0.18em] sm:tracking-[0.22em] uppercase text-[#E8DFC8] backdrop-blur-md shadow-2xl">
+              <Sparkles className="h-3 w-3 text-[#B8934C]" />
+              <span>{t("curatedResidencesJabodetabek")}</span>
+            </div>
+
+            {/* Official Airbnb Superhost Pill */}
+            <a
+              href="https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full border border-[#DFC58E]/50 bg-black/50 hover:bg-black/75 px-3 py-1 sm:px-3.5 sm:py-1.5 text-[10px] sm:text-[11px] font-semibold text-[#DFC58E] backdrop-blur-md shadow-xl transition-all hover:scale-105 cursor-pointer"
+              title="Official Airbnb Superhost Profile — Kinghouse Management"
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>Official Airbnb Superhost</span>
+              <span className="text-[10px] text-white/80 font-normal">★ 4.5 &bull; 10 Reviews ↗</span>
+            </a>
           </div>
 
           {/* Quick Scene Pill Badge (Desktop View) */}

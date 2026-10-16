@@ -190,20 +190,20 @@ export function Footer() {
                 <div className="text-xs font-light text-[#F0EBE0] leading-relaxed">
                   <p className="font-semibold text-white">PT Kreasi Usman Gosse</p>
                   <p className="mt-0.5">
-                    Jl. Reni Jaya Blk. K2 No.16, Pd. Ranji, Kec. Ciputat Tim., Kota Tangerang Selatan, Banten 15416
+                    18 Office Park Building 21th Floor Unit C. Jl. TB Simatupang Kav. 18, Jakarta Selatan, 12520
                   </p>
                 </div>
 
-                {/* Google Maps & Reviews Link */}
+                {/* Google Maps Link */}
                 <div className="pt-1">
                   <a
-                    href="https://share.google/WHLcKlmJf8zZo27gO"
+                    href="https://maps.google.com/?q=18+Office+Park+Building+Jl.+TB+Simatupang+Kav.+18+Jakarta+Selatan+12520"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-md bg-black/20 hover:bg-black/35 border border-white/15 text-xs text-white transition-all group"
                   >
                     <MapPin className="h-3.5 w-3.5 text-[#DFC58E]" />
-                    <span className="font-medium group-hover:text-[#DFC58E] transition-colors">Google Maps &amp; Reviews</span>
+                    <span className="font-medium group-hover:text-[#DFC58E] transition-colors">Google Maps &amp; Direction</span>
                     <span className="text-[10px] opacity-70">↗</span>
                   </a>
                 </div>
@@ -225,18 +225,29 @@ export function Footer() {
                 <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-white">
                   {t("connectWithUs")}
                 </h4>
-                <div className="flex items-center space-x-3">
+                <div className="flex flex-wrap items-center gap-2.5">
                   <a
-                    href="https://www.tiktok.com/@kinghouse.id"
+                    href="https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace"
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="TikTok @kinghouse.id"
+                    aria-label="Airbnb Superhost Profile"
+                    className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-[#DFC58E] text-[#1E1C1A] hover:bg-[#F3DCB0] hover:scale-105 transition-all text-xs font-bold shadow-xs cursor-pointer"
+                  >
+                    <span>★ Airbnb Superhost</span>
+                    <span className="text-[10px] font-normal opacity-75">↗</span>
+                  </a>
+
+                  <a
+                    href="https://www.tiktok.com/@kinghousemanagement"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="TikTok @kinghousemanagement"
                     className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white text-[#8C7F5F] hover:bg-[#FAF8F3] hover:scale-105 transition-all text-xs font-semibold shadow-xs"
                   >
                     <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24">
                       <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.77 1.52V6.76c-.99-.02-1.95-.07-1.8-.07z" />
                     </svg>
-                    <span>TikTok @kinghouse.id</span>
+                    <span>TikTok @kinghousemanagement</span>
                   </a>
                 </div>
               </div>

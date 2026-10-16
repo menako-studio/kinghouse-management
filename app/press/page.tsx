@@ -75,10 +75,10 @@ export default function PressPage() {
       <section className="relative overflow-hidden bg-[#231F1A] text-white pt-28 pb-20 lg:pt-32 lg:pb-24 supergraphic-blueprint-charcoal">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80"
-            alt="Kinghouse Luxury Press"
+            src="/properties/versatile-house/new/VersatileHouse_06_Dining_Chandelier.jpg"
+            alt="Kinghouse Luxury Architectural Asset"
             fill
-            className="object-cover opacity-20"
+            className="object-cover opacity-25"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#231F1A] via-[#231F1A]/80 to-black/60" />

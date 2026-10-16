@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { Metadata } from "next"
-import { Star, ShieldCheck, ChevronRight, Bed, Bath, Users, Sparkles, MapPin, ArrowLeft } from "lucide-react"
+import Image from "next/image"
+import { Star, ShieldCheck, ChevronRight, Bed, Bath, Users, Sparkles, MapPin, ArrowLeft, MessageCircle, ArrowUpRight } from "lucide-react"
 import { CURATED_VILLAS } from "@/lib/data"
 import { SITE_CONFIG } from "@/lib/constants"
 import { BentoGallery } from "@/components/bento/bento-gallery"
@@ -264,6 +265,71 @@ export default async function VillaDetailPage({ params }: PageProps) {
                 </p>
               </div>
             </div>
+
+            {/* Wedding & Private Event Spotlight (Exclusive to Versatile House) */}
+            {villa.slug === "versatile-house-jagakarsa" && (
+              <div className="relative overflow-hidden rounded-3xl border border-[#DFC58E]/40 bg-gradient-to-br from-[#222225] via-[#1E1E22] to-[#141416] p-6 sm:p-8 text-white shadow-lg space-y-6">
+                <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden border border-white/10 shadow-md">
+                  <Image
+                    src="/properties/versatile-house/events/portfolio/ceremony-lawn-altar.jpg"
+                    alt="Intimate Wedding Ceremony Altar at Versatile House Jagakarsa"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute top-3 left-3">
+                    <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#DFC58E] text-[#19191B] shadow-sm">
+                      Wedding &amp; Event Venue
+                    </span>
+                  </div>
+                  <div className="absolute bottom-3 left-4 right-4 text-white">
+                    <span className="text-[11px] text-[#DFC58E] uppercase tracking-wider font-semibold block">
+                      500m² Tropical Garden &bull; Up to 50 Guests Seated
+                    </span>
+                    <h3 className="font-serif text-xl sm:text-2xl font-normal drop-shadow-sm">
+                      Host Your Intimate Wedding or Private Event Here
+                    </h3>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <p className="text-xs sm:text-sm text-white/80 font-light leading-relaxed">
+                    Planning a private garden wedding, Akad Nikah, or twilight banquet? Versatile House Jagakarsa offers 100% vendor freedom with <strong>0% vendor corkage fees</strong>, overnight accommodation for 15 family members, and weather backup spaces.
+                  </p>
+                  
+                  <div className="flex flex-wrap items-center gap-2 pt-1 text-[11px] text-white/70">
+                    <span className="px-2.5 py-1 rounded-full bg-white/10 border border-white/10">0% Corkage Fee</span>
+                    <span className="px-2.5 py-1 rounded-full bg-white/10 border border-white/10">Foreigner-Friendly Desk</span>
+                    <span className="px-2.5 py-1 rounded-full bg-white/10 border border-white/10">Bridal Master Suite</span>
+                    <span className="px-2.5 py-1 rounded-full bg-white/10 border border-white/10">Rain Backup Hall</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 border-t border-white/10">
+                  <span className="text-xs text-white/60">
+                    Starting from Rp 2.800.000 / event session
+                  </span>
+                  <div className="flex items-center gap-2.5 w-full sm:w-auto">
+                    <Link
+                      href="/events/garden-wedding-jagakarsa"
+                      className="flex-1 sm:flex-none inline-flex items-center justify-center space-x-1.5 px-4 py-2.5 rounded-xl bg-white text-[#222225] text-xs font-semibold hover:bg-[#FAF8F5] transition-all"
+                    >
+                      <span>Lihat Paket Wedding &amp; Lookbook</span>
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </Link>
+                    <a
+                      href="https://wa.me/6282123933218?text=Halo%20Kinghouse!%20Saya%20tertarik%20untuk%20menanyakan%20event%20/%20wedding%20di%20Versatile%20House%20Jagakarsa."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center p-2.5 rounded-xl bg-[#25D366] text-white hover:bg-[#20ba59] transition-colors"
+                      title="Konsultasi Wedding via WhatsApp"
+                    >
+                      <MessageCircle className="h-4 w-4" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* 2-Column Amenities Grid */}
             <AmenitiesGrid amenities={villa.amenities} />
