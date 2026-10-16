@@ -54,63 +54,50 @@ export function TrustSocialProof() {
             <div className="space-y-4 max-w-xl">
               <div className="inline-flex items-center space-x-2 rounded-full bg-[#DFC58E]/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-[#DFC58E] border border-[#DFC58E]/30">
                 <Sparkles className="h-3 w-3" />
-                <span>Verified Airbnb Superhost Status</span>
+                <span>{t("superhostBadge")}</span>
               </div>
               <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-white font-normal leading-tight">
-                Officially Recognized on Airbnb
+                {t("superhostTitle")}
               </h3>
               <p className="text-xs sm:text-sm text-white/75 font-light leading-relaxed">
-                Kinghouse Management memegang status resmi <strong>Airbnb Superhost</strong> dengan identitas host 100% terverifikasi, peringkat 4.5★, dan reputasi pelayanan prima di seluruh portofolio villa terkelola Jabodetabek.
+                {t("superhostDescription")}
               </p>
               <div className="pt-2 flex flex-wrap items-center gap-3 text-xs text-white/70">
                 <div className="flex items-center space-x-2">
                   <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="font-medium text-white">Live &amp; Active Host</span>
+                  <span className="font-medium text-white">{t("superhostActiveHost")}</span>
                 </div>
                 <span>&bull;</span>
                 <span>Airbnb Host ID: 1470743715397835749</span>
               </div>
             </div>
 
-            {/* Authentic Airbnb Superhost Profile Card Screenshot */}
+            {/* Airbnb Superhost Profile Card */}
             <a
               href="https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative block w-full md:w-[320px] lg:w-[340px] shrink-0 overflow-hidden rounded-2xl bg-white shadow-2xl transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] border-2 border-white/30 cursor-pointer"
-              title="Buka profil asli Superhost Kinghouse Management di Airbnb"
+              className="group relative block w-full md:w-[320px] lg:w-[340px] shrink-0 overflow-hidden rounded-2xl bg-white shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_20px_40px_rgba(0,0,0,0.35)] border border-white/20 cursor-pointer"
+              title="Airbnb Superhost — Kinghouse Management"
             >
-              {/* Header bar with official Airbnb identity */}
-              <div className="bg-[#FAFAFA] px-3.5 py-2 border-b border-[#EBEBEB] flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#FF385C]" />
-                  <span className="text-[11px] font-semibold text-[#222222] tracking-tight">airbnb.com/users/profile</span>
-                </div>
-                <span className="inline-flex items-center text-[10px] font-bold uppercase tracking-wider text-[#FF385C] bg-[#FF385C]/10 px-2 py-0.5 rounded-full">
-                  Authentic
-                </span>
-              </div>
-
-              {/* Genuine Airbnb Profile Screenshot */}
-              <div className="p-2.5 sm:p-3 bg-white flex items-center justify-center">
+              <div className="p-3 bg-white flex items-center justify-center">
                 <Image
                   src="/brand/airbnb-superhost-profile-card.png"
-                  alt="Tangkapan Layar Profil Resmi Airbnb Superhost Kinghouse Management"
+                  alt="Airbnb Superhost — Kinghouse Management"
                   width={725}
                   height={507}
-                  className="w-full h-auto rounded-xl object-contain shadow-xs transition-transform duration-300 group-hover:scale-[1.01]"
+                  className="w-full h-auto rounded-xl object-contain shadow-xs"
                   priority
                 />
               </div>
 
-              {/* Bottom interactive action bar */}
-              <div className="bg-[#FAF8F5] px-4 py-2.5 border-t border-[#EBEBEB] flex items-center justify-between text-xs text-[#222222] font-medium group-hover:bg-[#F2ECE1] transition-colors">
-                <span className="flex items-center space-x-1.5 text-[#717171]">
-                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                  <span className="text-[11px]">Screenshot Langsung</span>
+              <div className="bg-[#FAF8F5] px-4 py-3 border-t border-[#EBEBEB] flex items-center justify-between text-xs text-[#222222] font-semibold group-hover:bg-[#F2ECE1] transition-colors">
+                <span className="flex items-center space-x-2 text-[#717171]">
+                  <span className="inline-block h-2 w-2 rounded-full bg-emerald-500" />
+                  <span className="text-xs font-medium text-[#222222]">{t("superhostActiveHost")}</span>
                 </span>
-                <span className="text-[11px] font-semibold text-[#8C7F5F] flex items-center space-x-1">
-                  <span>Buka Profil Asli</span>
+                <span className="text-xs font-semibold text-[#8C7F5F] flex items-center space-x-1 group-hover:underline">
+                  <span>{t("viewOnAirbnb")}</span>
                   <ArrowUpRight className="h-3.5 w-3.5" />
                 </span>
               </div>

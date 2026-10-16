@@ -116,7 +116,7 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
 | **Icons & Motion** | Lucide React + Framer Motion | Accessible vector icons and smooth physics |
 | **Validation** | Zod (`zod`) | Strict runtime schema validation for forms and APIs |
 | **Security** | Web Crypto HMAC-SHA256 + Rate Limiter | Zero-cost edge authentication and brute-force defense |
-| **Testing** | Vitest (`vitest`) | Lightning fast automated unit testing suite (59 tests passing across 9 suites) |
+| **Testing** | Vitest (`vitest`) | Lightning fast automated unit testing suite (88 tests passing across 11 suites) |
 | **Dynamic Pricing** | AirDNA-Grade Multi-Factor Revenue Engine | 100% actual data fetch, submarket benchmarks, and CSV exporter |
 | **Channel Sync** | Native RFC 5545 iCal Generator | Free 2-way calendar sync for Airbnb / Agoda / Booking.com |
 | **Localization** | Multi-Currency & i18n Context | English default + 9 languages & 10 currencies (IDR, USD, EUR, etc.) |
@@ -131,7 +131,7 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
 ## 🧪 Automated Testing & Production Quality Assurance
 
 ```bash
-# Run automated Vitest test suite (87 comprehensive tests across 11 suites)
+# Run automated Vitest test suite (88 comprehensive tests across 11 suites)
 npm test
 
 # Run TypeScript strict compilation

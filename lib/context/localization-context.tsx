@@ -187,6 +187,13 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     conciergeOnline: "Concierge Online",
     conciergeResponseTime: "Typically replies in under 15 minutes",
     chatWhatsApp: "Chat on WhatsApp",
+
+    // Airbnb Superhost Section
+    superhostBadge: "Verified Airbnb Superhost Status",
+    superhostTitle: "Officially Recognized on Airbnb",
+    superhostDescription: "Kinghouse Management holds active Superhost status with 100% verified host identity, a 4.5★ rating, and a proven track record of exceptional hospitality across all managed residences in Greater Jakarta.",
+    superhostActiveHost: "Active Host",
+    viewOnAirbnb: "View on Airbnb",
   },
   ID: {
     home: "BERANDA",
@@ -325,6 +332,13 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     conciergeOnline: "Concierge Online",
     conciergeResponseTime: "Biasanya membalas dalam 15 menit",
     chatWhatsApp: "Chat via WhatsApp",
+
+    // Airbnb Superhost Section
+    superhostBadge: "Status Resmi Airbnb Superhost",
+    superhostTitle: "Diakui Resmi di Airbnb",
+    superhostDescription: "Kinghouse Management memegang status aktif Superhost dengan identitas 100% terverifikasi, rating 4.5★, serta rekam jejak pelayanan bintang 5 di seluruh properti terkelola di Jabodetabek.",
+    superhostActiveHost: "Host Aktif",
+    viewOnAirbnb: "Buka di Airbnb",
   },
   JA: {
     home: "ホーム",
@@ -463,6 +477,13 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     conciergeOnline: "コンシェルジュ対応中",
     conciergeResponseTime: "通常15分以内に返答いたします",
     chatWhatsApp: "WhatsAppでチャットする",
+
+    // Airbnb Superhost Section
+    superhostBadge: "Airbnb公式スーパーホスト認定",
+    superhostTitle: "Airbnb公式認定スーパーホスト",
+    superhostDescription: "Kinghouse Managementは、100%本人確認済みのホストID、4.5★の高評価、ジャカルタ首都圏で管理する全宿泊施設における卓越したホスピタリティ実績を持つ公式スーパーホストです。",
+    superhostActiveHost: "現役ホスト",
+    viewOnAirbnb: "Airbnbで確認",
   },
   "ZH-CN": {
     home: "首页",
@@ -601,6 +622,13 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     conciergeOnline: "客服在线",
     conciergeResponseTime: "通常在 15 分钟内快速响应",
     chatWhatsApp: "通过 WhatsApp 咨询",
+
+    // Airbnb Superhost Section
+    superhostBadge: "爱彼迎官方超赞房东认证",
+    superhostTitle: "爱彼迎官方认可",
+    superhostDescription: "Kinghouse Management拥有活跃的超赞房东身份，100%实名认证，4.5★评分，并在大雅加达所有托管物业中保持卓越的服务水准。",
+    superhostActiveHost: "活跃房东",
+    viewOnAirbnb: "在Airbnb查看",
   },
   "ZH-TW": {
     home: "首頁",
@@ -739,6 +767,13 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     conciergeOnline: "客服線上中",
     conciergeResponseTime: "通常在 15 分鐘內快速回覆",
     chatWhatsApp: "透過 WhatsApp 諮詢",
+
+    // Airbnb Superhost Section
+    superhostBadge: "Airbnb官方超讚房東認證",
+    superhostTitle: "Airbnb官方認可",
+    superhostDescription: "Kinghouse Management擁有活躍的超讚房東身份，100%實名認證，4.5★評分，並在大雅加達所有託管物業中保持卓越的服務水準。",
+    superhostActiveHost: "活躍房東",
+    viewOnAirbnb: "在Airbnb查看",
   },
   FR: {
     home: "ACCUEIL",
@@ -877,6 +912,13 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     conciergeOnline: "Conciergerie en ligne",
     conciergeResponseTime: "Réponse habituelle en moins de 15 minutes",
     chatWhatsApp: "Discuter sur WhatsApp",
+
+    // Airbnb Superhost Section
+    superhostBadge: "Statut Superhost Airbnb Vérifié",
+    superhostTitle: "Officiellement Reconnu sur Airbnb",
+    superhostDescription: "Kinghouse Management détient le statut Superhost avec une identité 100% vérifiée, une note de 4,5★ et des avis d'excellence dans tout le Grand Jakarta.",
+    superhostActiveHost: "Hôte Actif",
+    viewOnAirbnb: "Voir sur Airbnb",
   },
   ES: {
     home: "INICIO",
@@ -1015,6 +1057,13 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     conciergeOnline: "Conserje en línea",
     conciergeResponseTime: "Respuesta habitual en menos de 15 minutos",
     chatWhatsApp: "Chatear por WhatsApp",
+
+    // Airbnb Superhost Section
+    superhostBadge: "Estado de Superhost en Airbnb Verificado",
+    superhostTitle: "Reconocido Oficialmente en Airbnb",
+    superhostDescription: "Kinghouse Management cuenta con estatus activo de Superhost con identidad 100% verificada, calificación de 4.5★ y excelentes reseñas en el Gran Yakarta.",
+    superhostActiveHost: "Anfitrión Activo",
+    viewOnAirbnb: "Ver en Airbnb",
   },
   DE: {
     home: "STARTSEITE",
@@ -1153,6 +1202,13 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     conciergeOnline: "Concierge online",
     conciergeResponseTime: "Antwortet gewöhnlich in unter 15 Minuten",
     chatWhatsApp: "Über WhatsApp chatten",
+
+    // Airbnb Superhost Section
+    superhostBadge: "Verifizierter Airbnb Superhost Status",
+    superhostTitle: "Offiziell anerkannt auf Airbnb",
+    superhostDescription: "Kinghouse Management besitzt aktiven Superhost-Status mit 100% verifizierter Identität, 4,5★ Bewertung und erstklassigen Gästebewertungen im Großraum Jakarta.",
+    superhostActiveHost: "Aktiver Gastgeber",
+    viewOnAirbnb: "Auf Airbnb ansehen",
   },
   RU: {
     home: "ГЛАВНАЯ",
@@ -1291,6 +1347,13 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     conciergeOnline: "Консьерж на связи",
     conciergeResponseTime: "Обычно отвечает в течение 15 минут",
     chatWhatsApp: "Написать в WhatsApp",
+
+    // Airbnb Superhost Section
+    superhostBadge: "Подтвержденный статус Airbnb Superhost",
+    superhostTitle: "Официально признано на Airbnb",
+    superhostDescription: "Kinghouse Management обладает официальным статусом Superhost со 100% подтвержденной личностью, рейтингом 4.5★ и безупречной репутацией в Большой Джакарте.",
+    superhostActiveHost: "Активный хозяин",
+    viewOnAirbnb: "Открыть на Airbnb",
   },
 }
 
