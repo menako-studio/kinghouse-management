@@ -14,15 +14,16 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
 ## 🌟 Key Platform Features
 
 ### 🌴 For Discerning Guests & Travelers
+- **Official Airbnb Superhost Status**: Verified host profile ([@kinghousemanagement](https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace)), 4.5★ rating, 10+ authentic reviews, and 1 year hosting history.
 - **4 Real Curated Properties with Actual Photography**: 
   - *Versatile House With Beautiful Garden Beyond* (Jagakarsa, Jakarta Selatan — 12 guests, 5BR, private pool & garden)
   - *Sky House • Hotel-Style Bed + IKEA 5min* (Pinang, Tangerang — 2 guests, 1BR, Scandinavian aesthetic & gym)
   - *Bright & Airy Apartment* (Palmerah, Jakarta Barat — 2 guests, 1BR, urban natural light suite)
   - *Skyline Luxury at Orange County* (Cikarang Selatan, Bekasi — 2 guests, 1BR, executive skyline view & pool/gym)
-- **High-Resolution Architectural Bento Gallery**: Dynamic 5-photo bento grid with fullscreen lightbox modal powered by real property assets.
+- **High-Resolution Architectural Bento Gallery**: Dynamic 5-photo bento grid with fullscreen lightbox modal powered by real property assets (zero placeholder images).
+- **Wedding Portfolio & International Concierge Desk**: Dedicated high-resolution wedding setup photography (lawn moon-gate altar, twilight poolside dinner banquet, bridal suite, terrace blessing) and specialized international expat wedding guarantees (0% corkage, multi-currency invoicing, 35-min airport highway link).
 - **Dynamic IDR/USD Pricing**: Real-time rate calculation, cleaning fees, and service breakdown.
 - **Location Proximity Maps**: Distances and drive times to MRT stations, KRL, industrial estates, and airports.
-- **Events & Wedding Packages**: Dedicated garden wedding, corporate retreat, and party packages at the Jagakarsa private garden house.
 - **Sticky Floating WhatsApp Concierge Button**: Persistent bottom-right WhatsApp widget with online status indicator, reply time badge, and pre-filled inquiry routing.
 - **Dedicated Public Pages & Editorial Hubs**:
   - **Press & Media Center (`/press`)**: Official announcements, media coverage quotes, and brand asset media kit downloads.
@@ -130,7 +131,7 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
 ## 🧪 Automated Testing & Production Quality Assurance
 
 ```bash
-# Run automated Vitest test suite (59 comprehensive tests across 9 suites)
+# Run automated Vitest test suite (87 comprehensive tests across 11 suites)
 npm test
 
 # Run TypeScript strict compilation
@@ -204,9 +205,11 @@ NEXT_PUBLIC_GTM_ID=
 ## 📞 Official Corporate Contact & Social Media
 
 - **Corporate Entity**: PT Kreasi Usman Gosse
+- **Headquarters (Virtual Office)**: 18 Office Park Building 21th Floor Unit C. Jl. TB Simatupang Kav. 18, Jakarta Selatan, 12520
 - **WhatsApp Concierge & Desk**: `082123933218` / `+62 821-2393-3218` (`https://wa.me/6282123933218`)
 - **Corporate Email**: `info@kinghousemanagement.com`
-- **Official TikTok**: [`@kinghouse.id`](https://www.tiktok.com/@kinghouse.id)
+- **Official Airbnb Superhost**: [Airbnb Host #1470743715397835749](https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace)
+- **Official TikTok**: [`@kinghousemanagement`](https://www.tiktok.com/@kinghousemanagement)
 - **Official Instagram**: [`@kinghouse.id`](https://instagram.com/kinghouse.id)
 - **Verified Locations**: Jabodetabek (Jagakarsa - Jakarta Selatan, Pinang - Tangerang, Palmerah - Jakarta Barat, Cikarang Selatan - Bekasi)
 

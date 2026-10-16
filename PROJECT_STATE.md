@@ -632,15 +632,32 @@ kinghouse-mockup/
   - Included dynamic event packages (`/events/[slug]`: Garden Wedding, Corporate Retreat, Birthday Party) with weekly changefrequency and 0.85 priority.
   - Added XML image sitemap metadata (`images`) for property listings, event packages, and blog articles to drive Google Images traffic.
   - Removed redirected `/villas/[slug]` URLs from `sitemap.xml` to prevent GSC redirect-in-sitemap warnings and maintain 100% canonical index hygiene.
-- [x] **Automated Testing Suite (59 Tests Passing Across 9 Suites)**:
-  - Added unit test coverage for GA4 `generate_lead`, `begin_checkout`, `view_item`, `view_item_list`, `search`, and dynamic event package sitemap URLs in `tests/analytics-seo.test.ts`.
+- [x] **Official Airbnb Superhost Recognition & Verified Credentials**:
+  - Emphasized official Superhost status ([Airbnb Host #1470743715397835749](https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace)) across the home hero slider pill, home trust proof spotlight, `/owner-services`, `/contact`, and footer.
+  - Verified credentials highlighted: 4.5★ rating, 10 authentic guest reviews, 1 year hosting history, and verified host identity.
+- [x] **Real Contextual Media Assets & Zero Placeholder Images**:
+  - Replaced all external Unsplash images across `/owner-services`, `/contact`, `/management-inquiry`, and `/press` with authentic high-resolution assets from `public/properties/versatile-house/new/`.
+  - Updated root OpenGraph and Twitter card preview images in `app/layout.tsx` to point to the flagship pool visual.
+- [x] **Versatile House Wedding Portfolio & International Expat Wedding Desk**:
+  - Generated and integrated 4 photorealistic wedding setup assets: lawn moon-gate altar, twilight poolside dinner banquet, bridal suite preparation, and terrace akad/blessing ceremony.
+  - Built dedicated **International & Expat Wedding Concierge** section on `/events` with 6 core guarantees (0% corkage, multi-currency invoicing, 35-min airport highway link, all-weather covered backup, 15-guest overnight accommodation, English coordinator).
+- [x] **Sitemap XML Parsing & React Hydration Bug Fixes**:
+  - Implemented XML sanitization in `app/sitemap.ts` (`sanitizeXmlUrl()`) to escape query parameter ampersands (`&` to `&amp;`), resolving browser XML parser errors (`EntityRef: expecting ';'`).
+  - Added `suppressHydrationWarning` on `<html>` and `<body>` in `app/layout.tsx` to eliminate false-positive hydration warnings caused by browser extensions (e.g. Grammarly attributes).
+- [x] **Non-Tech Operator Friendly CMS & Bahasa Indonesia Transformation**:
+  - Refactored entire CMS dashboard (`/dashboard`, `/dashboard/properties`, `/dashboard/pricing`, `/dashboard/seo`, `/dashboard/bookings`, `/dashboard/analytics`, `/dashboard/settings`, `/dashboard/blog`) into friendly, accessible Bahasa Indonesia.
+  - Removed technical jargon (*RFC 5545, inbound iCal telemetry, AirDNA yield algorithm, SERP weights*) and simplified copy to prevent over-explaining.
+- [x] **Virtual Office Corporate Headquarters Update**:
+  - Updated corporate address across site to: `18 Office Park Building 21th Floor Unit C. Jl. TB Simatupang Kav. 18, Jakarta Selatan, 12520`.
+- [x] **Automated Testing Suite (87 Tests Passing Across 11 Suites)**:
+  - Added unit test coverage for XML sitemap escaping, dynamic pricing formulas, and calendar sync.
 
 ---
 
 ## 4. VERIFICATION COMMANDS
 
 ```bash
-# Run automated Vitest test suite (59 tests across 9 suites)
+# Run automated Vitest test suite (87 tests across 11 suites)
 npm test
 
 # Run TypeScript strict type verification (0 errors)
