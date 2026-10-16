@@ -292,6 +292,15 @@ describe("SEO, Sitemaps & Technical Optimization", () => {
     // Check event routes and canonical property routes are indexed
     expect(urls.some((u) => u.includes("/events/garden-wedding-jagakarsa"))).toBe(true)
     expect(urls.some((u) => u.includes("/locations/jagakarsa/villas/versatile-house-jagakarsa"))).toBe(true)
+
+    // Ensure all images are valid XML entities without unescaped ampersands
+    routes.forEach((route) => {
+      if (route.images) {
+        route.images.forEach((img) => {
+          expect(img).not.toMatch(/&(?!(amp|lt|gt|quot|apos);)/)
+        })
+      }
+    })
   })
 })
 

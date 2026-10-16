@@ -8,6 +8,16 @@ export const revalidate = 3600
 
 const CANONICAL_BASE_URL = "https://www.kinghousemanagement.com"
 
+/**
+ * XML sitemaps strictly require '&' characters to be encoded as '&amp;'.
+ * Next.js built-in sitemap serialization does not auto-escape '&' inside <image:loc>,
+ * which causes browser XML parsing failures ('EntityRef: expecting ;').
+ */
+function sanitizeXmlUrl(url: string): string {
+  if (!url) return ""
+  return url.replace(/&(?!(amp|lt|gt|quot|apos);)/g, "&amp;")
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = CANONICAL_BASE_URL
   const currentDate = new Date()
@@ -110,7 +120,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: currentDate,
     changeFrequency: "daily",
     priority: 0.9,
-    images: villa.gallery.map((g) => (g.url.startsWith("http") ? g.url : `${baseUrl}${g.url}`)),
+    images: villa.gallery
+      .map((g) => (g.url.startsWith("http") ? g.url : `${baseUrl}${g.url}`))
+      .map(sanitizeXmlUrl),
   }))
 
   // 4. Dynamic Event Packages (/events/[slug])
@@ -119,7 +131,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: currentDate,
     changeFrequency: "weekly",
     priority: 0.85,
-    images: [event.heroImage.startsWith("http") ? event.heroImage : `${baseUrl}${event.heroImage}`],
+    images: [
+      sanitizeXmlUrl(event.heroImage.startsWith("http") ? event.heroImage : `${baseUrl}${event.heroImage}`),
+    ],
   }))
 
   // 5. Dynamic Blog Articles (/blog/[slug])
@@ -135,7 +149,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(post.publishedAt || currentDate),
         changeFrequency: "weekly",
         priority: 0.8,
-        images: [post.heroImage.startsWith("http") ? post.heroImage : `${baseUrl}${post.heroImage}`],
+        images: [
+          sanitizeXmlUrl(post.heroImage.startsWith("http") ? post.heroImage : `${baseUrl}${post.heroImage}`),
+        ],
       }))
   } catch (error) {
     console.error("[Sitemap] Failed to fetch dynamic blog posts:", error)
