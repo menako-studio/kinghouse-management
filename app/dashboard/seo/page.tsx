@@ -13,8 +13,8 @@ import { SeoEditor } from "@/components/dashboard/seo-editor"
 import { BLOG_POSTS, CURATED_VILLAS } from "@/lib/data"
 
 export const metadata: Metadata = {
-  title: "SEO Manager & Listing Optimizer — Kinghouse CMS",
-  description: "Property SEO optimization and ranking strategies on Airbnb & Google to maximize occupancy rates.",
+  title: "Status Google & Kata Kunci (SEO) — Kinghouse CMS",
+  description: "Optimasi kata kunci pencarian Google & listing Airbnb untuk memaksimalkan okupansi villa dan apartemen.",
 }
 
 export default function SeoManagerPage() {
@@ -28,16 +28,16 @@ export default function SeoManagerPage() {
         <div className="space-y-2">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#FAF8F5] border border-[#E8E4DC] text-[10px] font-semibold tracking-wider text-[#222225]">
             <Search className="h-3.5 w-3.5 text-[#B8934C]" />
-            <span className="text-[#8C7F5F] uppercase">SEARCH ENGINE & LISTING ALGORITHMS</span>
+            <span className="text-[#8C7F5F] uppercase">PENCARIAN GOOGLE & AIRBNB</span>
             <span className="text-[#D5CFC3]">&bull;</span>
-            <span>GOOGLE & AIRBNB OPTIMIZATION</span>
+            <span>TRAFIK ORGANIK</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl text-[#222225] font-semibold tracking-tight">
-            SEO & Listing Algorithm Manager
+            Status Google & Kata Kunci (SEO)
           </h1>
           <p className="text-sm text-[#6B6862] max-w-2xl font-light leading-relaxed">
-            Kelola metadata Google SERP, optimasi algoritma Superhost Airbnb, dan strategi kata kunci organik untuk portofolio properti Kinghouse Jabodetabek.
+            Kelola judul dan deskripsi pencarian Google, kata kunci target, serta visibilitas properti Kinghouse agar mudah ditemukan calon tamu.
           </p>
         </div>
 
@@ -116,13 +116,13 @@ export default function SeoManagerPage() {
       <section className="space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-[#E8E4DC] pb-4">
           <div>
-            <h2 className="text-2xl text-[#222225] font-semibold">Property SEO Editor</h2>
+            <h2 className="text-2xl text-[#222225] font-semibold">Pengaturan Kata Kunci & Tampilan Google</h2>
             <p className="text-xs text-[#6B6862] font-light">
-              Pilih properti untuk memeriksa dan memperbarui metadata Google SERP serta skor optimasi secara langsung
+              Pilih properti untuk memeriksa dan memperbarui judul, deskripsi, serta skor optimasi Google
             </p>
           </div>
           <span className="text-[10px] text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full font-semibold border border-emerald-200 self-start sm:self-auto uppercase tracking-wider">
-            Live Google SERP Preview Active
+            Pratinjau Google Aktif
           </span>
         </div>
 
@@ -134,10 +134,10 @@ export default function SeoManagerPage() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E8E4DC] pb-4">
           <div>
             <h2 className="text-2xl text-[#222225] font-semibold">
-              Editorial Content & Targeted Keywords
+              Artikel Blog & Kata Kunci Terpublikasi
             </h2>
             <p className="text-xs text-[#6B6862] font-light">
-              Daftar artikel terpublikasi dengan target pencarian organik untuk short-stay dan expat di Jabodetabek
+              Daftar artikel terpublikasi dengan target pencarian organik untuk sewa villa dan apartemen di Jabodetabek
             </p>
           </div>
           <Link
@@ -145,7 +145,7 @@ export default function SeoManagerPage() {
             target="_blank"
             className="inline-flex items-center space-x-1.5 text-xs font-semibold text-[#222225] hover:text-[#8C7F5F] transition-colors"
           >
-            <span>Buka Blog Publik</span>
+            <span>Buka Halaman Blog</span>
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
@@ -157,7 +157,7 @@ export default function SeoManagerPage() {
                 <th className="py-4 px-6">Judul Artikel & Target Area</th>
                 <th className="py-4 px-6">Kategori</th>
                 <th className="py-4 px-6">Kata Kunci Sasaran</th>
-                <th className="py-4 px-6">Status Indeks</th>
+                <th className="py-4 px-6">Status Google</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#FAF8F5] text-xs">
@@ -187,7 +187,7 @@ export default function SeoManagerPage() {
                   <td className="py-4 px-6">
                     <span className="inline-flex items-center space-x-1 text-[11px] text-emerald-800 font-medium bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
                       <CheckCircle2 className="h-3 w-3 text-emerald-600" />
-                      <span>Google Indexed</span>
+                      <span>Terindeks Google</span>
                     </span>
                   </td>
                 </tr>

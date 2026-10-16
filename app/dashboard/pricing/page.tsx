@@ -210,13 +210,13 @@ export default function DynamicPricingPage() {
         <div>
           <div className="inline-flex items-center space-x-2 text-[10px] font-semibold uppercase tracking-wider text-[#222225] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E8E4DC] mb-3">
             <Coins className="h-3.5 w-3.5 text-[#B8934C]" />
-            <span>REVENUE INTELLIGENCE & SMART RATES</span>
+            <span>PENGATURAN HARGA OTOMATIS</span>
           </div>
           <h1 className="text-3xl sm:text-4xl text-[#222225] font-semibold tracking-tight">
-            Dynamic Pricing & Revenue Management
+            Atur Harga Dinamis &amp; Promo Otomatis
           </h1>
           <p className="text-sm text-[#717171] mt-1 font-light leading-relaxed">
-            Algoritma penetapan tarif otomatis berbasis data aktual kalender reservasi Airbnb, hari libur nasional Indonesia, dan benchmark submarket Jabodetabek (AirDNA-grade).
+            Sistem penyesuaian harga otomatis berdasarkan akhir pekan, hari libur nasional, dan tingkat keterisian villa agar keuntungan Anda maksimal.
           </p>
         </div>
 
@@ -229,7 +229,7 @@ export default function DynamicPricingPage() {
             className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-2xl bg-white border border-[#E8E4DC] text-xs font-semibold text-[#222225] hover:bg-[#FAF8F5] hover:border-[#CBBEA0] shadow-xs transition-all cursor-pointer disabled:opacity-50"
           >
             <RefreshCw className={`h-3.5 w-3.5 text-[#B8934C] ${loading ? "animate-spin" : ""}`} />
-            <span>Sinkron Data Aktual</span>
+            <span>Perbarui Harga</span>
           </button>
 
           <button
@@ -238,7 +238,7 @@ export default function DynamicPricingPage() {
             className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-2xl bg-white border border-[#E8E4DC] text-xs font-semibold text-[#222225] hover:bg-[#FAF8F5] hover:border-[#CBBEA0] shadow-xs transition-all cursor-pointer"
           >
             <SlidersHorizontal className="h-3.5 w-3.5 text-[#8C7F5F]" />
-            <span>Batas Floor & Ceiling</span>
+            <span>Batas Harga Min &amp; Max</span>
           </button>
 
           <button
@@ -248,7 +248,7 @@ export default function DynamicPricingPage() {
             className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-2xl bg-[#231F1A] text-white hover:bg-[#19191B] text-xs font-semibold shadow-sm hover:shadow transition-all cursor-pointer disabled:opacity-50"
           >
             <Download className="h-3.5 w-3.5 text-[#CBBEA0]" />
-            <span>Ekspor Tarif (.CSV)</span>
+            <span>Unduh Tabel Harga (.CSV)</span>
           </button>
         </div>
       </div>

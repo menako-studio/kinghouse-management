@@ -48,13 +48,13 @@ export default function DashboardPropertiesPage() {
         <div>
           <div className="inline-flex items-center space-x-2 text-[10px] font-semibold uppercase tracking-wider text-[#222225] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E8E4DC] mb-3">
             <Sparkles className="h-3.5 w-3.5 text-[#B8934C]" />
-            <span>PORTFOLIO ASSETS & OTA SYNC</span>
+            <span>DAFTAR UNIT & KALENDER OTA</span>
           </div>
           <h1 className="text-3xl sm:text-4xl text-[#222225] font-semibold tracking-tight">
-            Property Portfolio & Channel Sync
+            Daftar Properti & Sinkronisasi Kalender
           </h1>
           <p className="text-sm text-[#717171] mt-1 font-light leading-relaxed">
-            Daftar unit properti aktif, pengaturan komisi bagi hasil, dan link iCal feed sinkronisasi otomatis ke Airbnb / OTA.
+            Daftar unit properti aktif, pengaturan tarif dasar, dan link kalender otomatis ke Airbnb / OTA.
           </p>
         </div>
         <div className="text-xs text-[#717171] bg-white border border-[#E8E4DC] px-4 py-2 rounded-2xl shadow-xs self-start sm:self-auto flex items-center space-x-2">

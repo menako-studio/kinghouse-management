@@ -56,13 +56,14 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
 
   // Derive route breadcrumbs
   const getBreadcrumb = () => {
-    if (pathname === "/dashboard") return "Overview"
-    if (pathname.startsWith("/dashboard/properties")) return "Property Portfolio"
-    if (pathname.startsWith("/dashboard/seo")) return "SEO Manager"
-    if (pathname.startsWith("/dashboard/blog")) return "Blog Posts"
-    if (pathname.startsWith("/dashboard/bookings")) return "Calendar & Bookings"
-    if (pathname.startsWith("/dashboard/analytics")) return "Revenue Analytics"
-    if (pathname.startsWith("/dashboard/settings")) return "Settings & Profile"
+    if (pathname === "/dashboard") return "Ringkasan"
+    if (pathname.startsWith("/dashboard/properties")) return "Daftar Properti"
+    if (pathname.startsWith("/dashboard/pricing")) return "Atur Harga & Promo"
+    if (pathname.startsWith("/dashboard/seo")) return "Status Google (SEO)"
+    if (pathname.startsWith("/dashboard/blog")) return "Artikel Blog"
+    if (pathname.startsWith("/dashboard/bookings")) return "Kalender Booking"
+    if (pathname.startsWith("/dashboard/analytics")) return "Statistik & Laporan"
+    if (pathname.startsWith("/dashboard/settings")) return "Pengaturan Akun"
     return "Dashboard"
   }
 
@@ -117,21 +118,11 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
         <div className="flex items-center space-x-3 sm:space-x-4">
           {/* Environment & Live Sync Status */}
           <div className="hidden lg:flex items-center space-x-2 text-[11px] text-[#6B6862] bg-[#FAF8F5] px-3.5 py-1.5 rounded-full border border-[#E8E4DC]">
-            {process.env.NEXT_PUBLIC_ENVIRONMENT === "staging" ? (
-              <span className="px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300 font-bold text-[9px] uppercase tracking-wider">
-                🧪 Staging DB
-              </span>
-            ) : (
-              <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300 font-bold text-[9px] uppercase tracking-wider">
-                🛡️ Production DB
-              </span>
-            )}
-            <span className="text-[#D5CFC3]">&bull;</span>
             <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-medium">4 Units Synced</span>
+            <span className="font-medium text-[#222225]">4 Properti Terhubung</span>
             <span className="text-[#D5CFC3]">&bull;</span>
             <span className="text-emerald-700 font-semibold flex items-center space-x-1">
-              <span>Airbnb iCal Live</span>
+              <span>Kalender Airbnb Aktif</span>
             </span>
           </div>
 
@@ -144,7 +135,7 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
                 setIsProfileOpen(false)
               }}
               className="relative p-2 rounded-xl text-[#6B6862] hover:text-[#222225] hover:bg-[#FAF8F5] transition-colors focus:outline-none cursor-pointer"
-              aria-label="Notifications"
+              aria-label="Pemberitahuan"
             >
               <Bell className="h-4 w-4" />
               {unreadCount > 0 && (
@@ -157,15 +148,15 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
                 <div className="flex items-center justify-between pb-3 border-b border-[#FAF8F5]">
                   <div className="flex items-center space-x-2">
                     <span className="text-sm font-semibold text-[#222225]">
-                      System Alerts
+                      Pemberitahuan Sistem
                     </span>
                     {unreadCount > 0 ? (
                       <span className="text-[10px] bg-[#B8934C]/15 text-[#B8934C] px-2 py-0.5 rounded-full font-bold">
-                        {unreadCount} New
+                        {unreadCount} Baru
                       </span>
                     ) : (
                       <span className="text-[10px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-bold border border-emerald-200">
-                        All Read
+                        Sudah Dibaca
                       </span>
                     )}
                   </div>
@@ -176,7 +167,7 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
                         onClick={markAllAsRead}
                         className="text-[11px] font-semibold text-[#8C7F5F] hover:text-[#222225] cursor-pointer"
                       >
-                        Read All
+                        Tandai Dibaca
                       </button>
                     )}
                     <button
@@ -323,7 +314,7 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
                     className="w-full flex items-center space-x-2.5 px-3 py-2 rounded-xl hover:bg-[#FAF8F5] transition-colors text-left cursor-pointer"
                   >
                     <User className="h-4 w-4 text-[#6B6862]" />
-                    <span>Account Profile & Security</span>
+                    <span>Profil &amp; Keamanan Akun</span>
                   </button>
 
                   <Link
@@ -332,7 +323,7 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
                     className="w-full flex items-center space-x-2.5 px-3 py-2 rounded-xl hover:bg-[#FAF8F5] transition-colors text-left"
                   >
                     <Settings className="h-4 w-4 text-[#6B6862]" />
-                    <span>CMS & API Settings</span>
+                    <span>Pengaturan CMS &amp; Kontak</span>
                   </Link>
 
                   <a
@@ -343,9 +334,9 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
                   >
                     <span className="flex items-center space-x-2.5">
                       <ExternalLink className="h-4 w-4" />
-                      <span>View Public Website</span>
+                      <span>Buka Website Tamu</span>
                     </span>
-                    <span className="text-[10px] uppercase font-mono text-[#8C7F5F]">Tab</span>
+                    <span className="text-[10px] uppercase font-mono text-[#8C7F5F]">Tab Baru</span>
                   </a>
                 </div>
 
@@ -357,7 +348,7 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
                     className="w-full flex items-center space-x-2.5 px-3 py-2 rounded-xl text-rose-600 hover:bg-rose-50 transition-colors text-xs font-semibold disabled:opacity-50 cursor-pointer"
                   >
                     <LogOut className="h-4 w-4 flex-shrink-0" />
-                    <span>{isLoggingOut ? "Signing Out..." : "Sign Out of CMS"}</span>
+                    <span>{isLoggingOut ? "Sedang keluar..." : "Keluar Akun"}</span>
                   </button>
                 </div>
               </div>

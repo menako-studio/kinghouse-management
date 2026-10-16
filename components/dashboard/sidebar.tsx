@@ -23,14 +23,14 @@ import {
 import { AdminUser } from "@/lib/auth"
 
 const NAV_ITEMS = [
-  { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
-  { href: "/dashboard/properties", label: "Properties", icon: Home },
-  { href: "/dashboard/pricing", label: "Dynamic Pricing", icon: Coins, badge: "Smart" },
-  { href: "/dashboard/seo", label: "SEO Manager", icon: Search, badge: "Rank" },
-  { href: "/dashboard/blog", label: "Blog Posts", icon: BookOpen },
-  { href: "/dashboard/bookings", label: "Calendar", icon: CalendarDays },
-  { href: "/dashboard/analytics", label: "Analytics", icon: TrendingUp },
-  { href: "/dashboard/settings", label: "Settings", icon: Settings },
+  { href: "/dashboard", label: "Ringkasan", icon: LayoutDashboard },
+  { href: "/dashboard/properties", label: "Daftar Properti", icon: Home },
+  { href: "/dashboard/pricing", label: "Atur Harga & Promo", icon: Coins, badge: "Otomatis" },
+  { href: "/dashboard/seo", label: "Status Google (SEO)", icon: Search, badge: "Google" },
+  { href: "/dashboard/blog", label: "Artikel Blog", icon: BookOpen },
+  { href: "/dashboard/bookings", label: "Kalender Booking", icon: CalendarDays },
+  { href: "/dashboard/analytics", label: "Statistik & Laporan", icon: TrendingUp },
+  { href: "/dashboard/settings", label: "Pengaturan Akun", icon: Settings },
 ]
 
 export function DashboardSidebar({ adminUser }: { adminUser?: AdminUser | null }) {
@@ -150,17 +150,17 @@ export function DashboardSidebar({ adminUser }: { adminUser?: AdminUser | null }
         {/* Public Website Preview Link */}
         <div className="pt-4 mt-4 border-t border-white/[0.08]">
           <div className="text-[10px] uppercase font-mono tracking-widest text-white/40 px-3 py-1 mb-1">
-            {!collapsed ? "Public View" : "•"}
+            {!collapsed ? "Halaman Tamu" : "•"}
           </div>
           <a
             href="/"
             target="_blank"
             rel="noopener noreferrer"
-            title={collapsed ? "Public Website" : undefined}
+            title={collapsed ? "Buka Website Publik" : undefined}
             className="flex items-center space-x-3 px-3.5 py-2.5 rounded-2xl text-xs font-medium text-white/60 hover:text-white hover:bg-white/[0.05] transition-all group"
           >
             <Globe className="h-4 w-4 flex-shrink-0 group-hover:text-[#DFC58E] transition-colors" />
-            {!collapsed && <span className="flex-1">Live Public Site ↗</span>}
+            {!collapsed && <span className="flex-1">Buka Website Tamu ↗</span>}
           </a>
         </div>
       </nav>
@@ -193,13 +193,13 @@ export function DashboardSidebar({ adminUser }: { adminUser?: AdminUser | null }
           type="button"
           onClick={handleLogout}
           disabled={isLoggingOut}
-          title={collapsed ? "Sign Out" : undefined}
+          title={collapsed ? "Keluar Akun" : undefined}
           className={`w-full flex items-center space-x-3 px-3 py-2 rounded-2xl text-xs font-semibold text-rose-400/90 hover:text-rose-300 hover:bg-rose-500/10 transition-all group cursor-pointer disabled:opacity-50 ${
             collapsed ? "justify-center" : ""
           }`}
         >
           <LogOut className="h-4 w-4 flex-shrink-0" />
-          {!collapsed && <span>{isLoggingOut ? "Signing Out..." : "Sign Out"}</span>}
+          {!collapsed && <span>{isLoggingOut ? "Sedang keluar..." : "Keluar Akun"}</span>}
         </button>
       </div>
 

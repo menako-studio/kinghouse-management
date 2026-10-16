@@ -267,13 +267,13 @@ export default function DashboardAnalyticsPage() {
         <div>
           <div className="inline-flex items-center space-x-2 text-[10px] font-semibold uppercase tracking-wider text-[#222225] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E8E4DC] mb-3">
             <BarChart3 className="h-3.5 w-3.5 text-[#B8934C]" />
-            <span>FINANCIAL INTELLIGENCE & POS SUITE</span>
+            <span>LAPORAN PENDAPATAN & KEUANGAN</span>
           </div>
           <h1 className="text-3xl sm:text-4xl text-[#222225] font-semibold tracking-tight">
-            Revenue, POS & Owner Yield
+            Pendapatan, Biaya & Bagi Hasil
           </h1>
           <p className="text-sm text-[#717171] mt-1 font-light leading-relaxed">
-            Kalkulasi pendapatan aktual Airbnb iCal, mutasi payout perbankan, buku pengeluaran POS, dan laporan cetak pemilik properti.
+            Ringkasan pendapatan sewa, buku pengeluaran operasional, dan laporan cetak bagi hasil untuk pemilik villa.
           </p>
         </div>
 
@@ -285,7 +285,7 @@ export default function DashboardAnalyticsPage() {
             title="Upload CSV laporan payout resmi dari tab Airbnb Host Earnings"
           >
             <Upload className="h-3.5 w-3.5 text-[#B8934C]" />
-            <span>Import Airbnb Payout (CSV)</span>
+            <span>Impor Payout Airbnb (CSV)</span>
           </button>
 
           <button
@@ -304,7 +304,7 @@ export default function DashboardAnalyticsPage() {
             className="inline-flex items-center space-x-2 bg-[#222225] text-white px-5 py-2.5 rounded-2xl text-xs font-semibold hover:bg-[#2B2A30] transition-all shadow-xs cursor-pointer"
           >
             <Plus className="h-3.5 w-3.5 text-[#B8934C]" />
-            <span>Catat Biaya POS</span>
+            <span>Catat Biaya Operasional</span>
           </button>
         </div>
       </div>
@@ -350,7 +350,7 @@ export default function DashboardAnalyticsPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="p-7 rounded-3xl bg-white border border-[#E8E4DC] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] space-y-2 hover:-translate-y-1 transition-all duration-300">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-semibold text-[#717171] uppercase tracking-wider">Gross Payout Terkumpul</span>
+            <span className="text-[11px] font-semibold text-[#717171] uppercase tracking-wider">Pendapatan Kotor (Gross)</span>
             <div className="h-8 w-8 rounded-xl bg-[#FAF8F5] flex items-center justify-center text-[#222225]">
               <DollarSign className="h-4 w-4 text-[#B8934C]" />
             </div>
@@ -363,20 +363,20 @@ export default function DashboardAnalyticsPage() {
 
         <div className="p-7 rounded-3xl bg-white border border-[#E8E4DC] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] space-y-2 hover:-translate-y-1 transition-all duration-300">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-semibold text-[#717171] uppercase tracking-wider">Net Bagi Hasil Pemilik</span>
+            <span className="text-[11px] font-semibold text-[#717171] uppercase tracking-wider">Bagi Hasil Bersih Pemilik (Net)</span>
             <div className="h-8 w-8 rounded-xl bg-[#FAF8F5] flex items-center justify-center text-[#222225]">
               <Award className="h-4 w-4 text-[#B8934C]" />
             </div>
           </div>
           <p className="text-3xl font-bold text-emerald-700 tracking-tight">{formatCurrency(netOwnerRemittance, "IDR")}</p>
           <span className="inline-block text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-            Setelah dikurangi komisi & POS
+            Setelah dikurangi komisi & operasional
           </span>
         </div>
 
         <div className="p-7 rounded-3xl bg-white border border-[#E8E4DC] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] space-y-2 hover:-translate-y-1 transition-all duration-300">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-semibold text-[#717171] uppercase tracking-wider">Total Biaya Operasional (POS)</span>
+            <span className="text-[11px] font-semibold text-[#717171] uppercase tracking-wider">Total Biaya Operasional</span>
             <div className="h-8 w-8 rounded-xl bg-[#FAF8F5] flex items-center justify-center text-[#222225]">
               <Receipt className="h-4 w-4 text-[#B8934C]" />
             </div>
@@ -389,7 +389,7 @@ export default function DashboardAnalyticsPage() {
 
         <div className="p-7 rounded-3xl bg-white border border-[#E8E4DC] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] space-y-2 hover:-translate-y-1 transition-all duration-300">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-semibold text-[#717171] uppercase tracking-wider">ADR (Rata-Rata Tarif/Malam)</span>
+            <span className="text-[11px] font-semibold text-[#717171] uppercase tracking-wider">Rata-rata Tarif / Malam (ADR)</span>
             <div className="h-8 w-8 rounded-xl bg-[#FAF8F5] flex items-center justify-center text-[#222225]">
               <TrendingUp className="h-4 w-4 text-[#B8934C]" />
             </div>

@@ -279,13 +279,13 @@ export default function DashboardBookingsPage() {
         <div>
           <div className="inline-flex items-center space-x-2 text-[10px] font-semibold uppercase tracking-wider text-[#222225] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E8E4DC] mb-3">
             <CalendarDays className="h-3.5 w-3.5 text-[#B8934C]" />
-            <span>DISTRIBUTION & RESERVATIONS ERP</span>
+            <span>KALENDER & JADWAL RESERVASI</span>
           </div>
           <h1 className="text-3xl sm:text-4xl text-[#222225] font-semibold tracking-tight">
-            Bookings & Calendar Hub
+            Kalender & Data Reservasi
           </h1>
           <p className="text-sm text-[#717171] mt-1 font-light leading-relaxed">
-            Pusat manajemen reservasi multi-channel (Airbnb, Direct WhatsApp, Agoda) dengan kalkulasi otomatis bagi hasil pemilik.
+            Kelola jadwal booking masuk dari Airbnb dan WhatsApp, dengan rincian pendapatan dan bagi hasil pemilik yang rapi.
           </p>
         </div>
 
@@ -302,7 +302,7 @@ export default function DashboardBookingsPage() {
               }`}
             >
               <CalendarDays className="h-3.5 w-3.5" />
-              <span>Gantt Timeline</span>
+              <span>Kalender Jadwal</span>
             </button>
             <button
               type="button"
@@ -325,7 +325,7 @@ export default function DashboardBookingsPage() {
             title="Download file spreadsheet Excel/CSV untuk pembukuan"
           >
             <Download className="h-3.5 w-3.5 text-[#B8934C]" />
-            <span>Export CSV</span>
+            <span>Unduh Excel (CSV)</span>
           </button>
 
           <button

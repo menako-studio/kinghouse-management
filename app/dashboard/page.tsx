@@ -100,14 +100,14 @@ export default async function DashboardOverviewPage() {
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
             <span className="text-[#8C7F5F] uppercase">KINGHOUSE MANAGEMENT</span>
             <span className="text-[#D5CFC3]">&bull;</span>
-            <span>LIVE PORTFOLIO CMS</span>
+            <span>PORTAL BISNIS</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl text-[#222225] font-semibold tracking-tight">
-            Asset Management & Yield Suite
+            Ringkasan Bisnis &amp; Performa Properti
           </h1>
           <p className="text-sm text-[#6B6862] max-w-2xl font-light leading-relaxed">
-            Data aktual real-time dari Airbnb inbound iCal feeds, kalkulasi yield okupansi, dan orkestrasi portofolio properti Jabodetabek.
+            Selamat datang kembali. Pantau pendapatan, tingkat keterisian villa (okupansi), dan kalender booking tamu Anda secara otomatis.
           </p>
         </div>
 
@@ -117,7 +117,7 @@ export default async function DashboardOverviewPage() {
             className="inline-flex items-center space-x-2 bg-[#222225] text-white px-5 py-2.5 rounded-2xl text-xs font-semibold hover:bg-[#19191B] transition-all shadow-xs cursor-pointer"
           >
             <Search className="h-3.5 w-3.5 text-[#DFC58E]" />
-            <span>Kelola Booking & Kalender</span>
+            <span>Kelola Booking &amp; Kalender</span>
           </Link>
           <a
             href="https://www.airbnb.com/users/profile/1470743715397835749"
@@ -125,7 +125,7 @@ export default async function DashboardOverviewPage() {
             rel="noopener noreferrer"
             className="inline-flex items-center space-x-2 bg-white border border-[#E8E4DC] text-[#222225] px-5 py-2.5 rounded-2xl text-xs font-semibold hover:bg-[#FAF8F5] hover:border-[#D5CFC3] transition-all shadow-xs"
           >
-            <span>Airbnb Host Profile</span>
+            <span>Buka Profil Airbnb Host</span>
             <ExternalLink className="h-3.5 w-3.5 text-[#6B6862]" />
           </a>
         </div>
@@ -134,36 +134,36 @@ export default async function DashboardOverviewPage() {
       {/* KPI Stats Grid - Derived 100% Dynamically from Actual Data */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard
-          title="Actual Bookings Revenue"
+          title="Total Pendapatan Terkonfirmasi"
           value={displayRevenue}
-          change={`${confirmedBookings.length} bookings`}
+          change={`${confirmedBookings.length} booking`}
           trend="up"
-          period="actual gross revenue"
+          period="total bruto berjalan"
           icon={DollarSign}
-          subtitle="From confirmed reservations"
+          subtitle="Dari booking yang masuk"
         />
         <StatCard
-          title="Portfolio Occupancy"
+          title="Tingkat Keterisian (Okupansi)"
           value={`${occupancyPercentage}%`}
-          change={`${actualNightsBooked} nights booked`}
+          change={`${actualNightsBooked} malam terisi`}
           trend={occupancyPercentage > 50 ? "up" : "neutral"}
-          period={`of ${totalAvailableNights} unit-nights`}
+          period={`dari ${totalAvailableNights} malam tersedia`}
           icon={TrendingUp}
-          subtitle="Real-time iCal sync benchmark"
+          subtitle="Rasio okupansi 30 hari"
         />
         <StatCard
-          title="Average Portfolio Rating"
+          title="Rating Kepuasan Tamu"
           value={`${averageRating} ★`}
           change="+0.2"
           trend="up"
           period={`${totalReviews} ulasan terverifikasi`}
           icon={Star}
-          subtitle="Airbnb Superhost Standard"
+          subtitle="Standar Airbnb Superhost"
         />
         <StatCard
-          title="Total Guests Hosted"
+          title="Total Tamu Menginap"
           value={String(actualTotalGuests)}
-          change={`${reservations.length} total events`}
+          change={`${reservations.length} total reservasi`}
           trend="up"
           period="terdaftar di kalender"
           icon={Users}
@@ -182,23 +182,23 @@ export default async function DashboardOverviewPage() {
                 <Layers className="h-3.5 w-3.5 text-[#8C7F5F]" />
               </div>
               <h3 className="text-xl text-[#222225] font-semibold">
-                Multi-Channel OTA Synchronization
+                Sinkronisasi Kalender Otomatis
               </h3>
             </div>
             <p className="text-xs text-[#6B6862] leading-relaxed">
-              Sinkronisasi dua arah iCal mencegah double-booking dan memperluas distribusi properti secara otomatis.
+              Kalender properti Anda terhubung otomatis dengan Airbnb dan reservasi langsung untuk mencegah booking ganda (double-booking).
             </p>
           </div>
-          <span className="text-[10px] font-semibold text-[#222225] bg-[#FAF8F5] border border-[#E8E4DC] px-3 py-1.5 rounded-full self-start sm:self-auto uppercase tracking-wider">
-            Live RFC 5545 Feeds Active
+          <span className="text-[10px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-full self-start sm:self-auto uppercase tracking-wider">
+            Sinkronisasi Otomatis Aktif
           </span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative z-10">
-          <ChannelBadge channel="airbnb" status="connected" syncTime="Realtime iCal" />
-          <ChannelBadge channel="booking" status="available" syncTime="Ready for ICS" />
-          <ChannelBadge channel="agoda" status="available" syncTime="Ready for ICS" />
-          <ChannelBadge channel="direct" status="connected" syncTime="WhatsApp / Direct" />
+          <ChannelBadge channel="airbnb" status="connected" syncTime="Otomatis Airbnb" />
+          <ChannelBadge channel="booking" status="available" syncTime="Siap Dihubungkan" />
+          <ChannelBadge channel="agoda" status="available" syncTime="Siap Dihubungkan" />
+          <ChannelBadge channel="direct" status="connected" syncTime="WhatsApp / Langsung" />
         </div>
       </div>
 
@@ -206,16 +206,16 @@ export default async function DashboardOverviewPage() {
       <div className="rounded-3xl border border-[#E8E4DC] bg-white overflow-hidden shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)]">
         <div className="p-6 sm:p-8 border-b border-[#E8E4DC] flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gradient-to-r from-white via-white to-[#FAF8F5]">
           <div className="space-y-1">
-            <h3 className="text-xl text-[#222225] font-semibold">Portfolio Properties (Aktif)</h3>
+            <h3 className="text-xl text-[#222225] font-semibold">Daftar Properti Aktif</h3>
             <p className="text-xs text-[#6B6862]">
-              Metrik operasional riil, tarif menginap, dan status sinkronisasi untuk setiap listing Airbnb
+              Daftar villa dan apartemen yang sedang dikelola beserta tarif per malam dan ulasan tamu
             </p>
           </div>
           <Link
             href="/dashboard/properties"
             className="text-xs font-semibold text-[#8C7F5F] hover:text-[#222225] flex items-center space-x-1.5 transition-colors"
           >
-            <span>Lihat Seluruh Detail</span>
+            <span>Lihat Semua Properti</span>
             <ArrowUpRight className="h-3.5 w-3.5" />
           </Link>
         </div>

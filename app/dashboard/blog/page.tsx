@@ -647,13 +647,13 @@ export default function DashboardBlogPage() {
         <div>
           <div className="inline-flex items-center space-x-2 text-[10px] font-semibold uppercase tracking-wider text-[#222225] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E8E4DC] mb-3">
             <BookOpen className="h-3.5 w-3.5 text-[#B8934C]" />
-            <span>EDITORIAL & SEO CMS SUITE</span>
+            <span>ARTIKEL &amp; BLOG EDUKASI</span>
           </div>
           <h1 className="text-3xl sm:text-4xl text-[#222225] font-semibold tracking-tight">
-            Editorial Blog & SEO Articles
+            Kelola Artikel Blog
           </h1>
           <p className="text-sm text-[#717171] mt-1 font-light leading-relaxed">
-            Buat, edit, dan kelola artikel edukasi hospitality dengan editor media lengkap dan live SEO Scorecard untuk memenangkan peringkat 1 Google.
+            Tulis, edit, dan publikasikan artikel panduan sewa villa untuk menarik calon tamu dari pencarian Google.
           </p>
         </div>
 
@@ -662,7 +662,7 @@ export default function DashboardBlogPage() {
             type="button"
             onClick={fetchArticlesFromApi}
             className="p-2.5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] text-[#717171] hover:text-[#222225] hover:bg-[#EAE7E0] transition-colors cursor-pointer"
-            title="Refresh data dari Supabase API"
+            title="Refresh data dari database"
           >
             <RefreshCw className="h-4 w-4" />
           </button>
@@ -695,27 +695,27 @@ export default function DashboardBlogPage() {
           </span>
           <p className="text-3xl font-bold text-emerald-700 tracking-tight">{publishedCount} Live</p>
           <span className="inline-block text-[10px] font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-            Terindeks di Google & /blog
+            Terindeks di Google &amp; Halaman Blog
           </span>
         </div>
 
         <div className="p-6 rounded-3xl bg-white border border-[#E8E4DC] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] space-y-1 hover:-translate-y-0.5 transition-transform">
           <span className="text-[11px] font-semibold text-[#717171] uppercase tracking-wider">
-            Rata-Rata SEO Score
+            Rata-Rata Skor SEO
           </span>
           <p className="text-3xl font-bold text-[#222225] tracking-tight">{avgSeo} / 100</p>
           <span className="inline-block text-[10px] font-semibold text-[#B8934C] bg-[#FAF8F5] px-2 py-0.5 rounded-full border border-[#E8E4DC]">
-            Standar Editorial SEO
+            Standar Kualitas Google
           </span>
         </div>
 
         <div className="p-6 rounded-3xl bg-white border border-[#E8E4DC] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] space-y-1 hover:-translate-y-0.5 transition-transform">
           <span className="text-[11px] font-semibold text-[#717171] uppercase tracking-wider">
-            Sampah (Soft Deleted)
+            Arsip &amp; Sampah
           </span>
           <p className="text-3xl font-bold text-[#717171] tracking-tight">{archivedCount}</p>
           <span className="inline-block text-[10px] font-semibold text-amber-800 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
-            Zero Broken Link (404)
+            Dapat dipulihkan kapan saja
           </span>
         </div>
       </div>

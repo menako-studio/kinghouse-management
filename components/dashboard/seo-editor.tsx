@@ -61,8 +61,8 @@ export function SeoEditor() {
     })
 
     showToast(
-      "Metadata SEO Disimpan!",
-      `${currentVilla.name} &bull; Score: ${score}%`,
+      "Pengaturan SEO Disimpan!",
+      `${currentVilla.name} &bull; Skor: ${score}%`,
       "success"
     )
 
@@ -78,12 +78,12 @@ export function SeoEditor() {
   const isDescOptimal = descLength >= 120 && descLength <= 165
 
   const checks = [
-    { label: "Optimal Meta Title length (40-65 characters)", passed: isTitleOptimal },
-    { label: "Optimal Meta Description length (120-165 characters)", passed: isDescOptimal },
-    { label: "Focus Keyword included in Meta Title", passed: hasKeywordInTitle && focusKeyword.length > 0 },
-    { label: "Focus Keyword included in Meta Description", passed: hasKeywordInDesc && focusKeyword.length > 0 },
-    { label: "Structured Data (Schema.org VacationRental + FAQ) Active", passed: true },
-    { label: "Canonical URL validated with HTTPS", passed: canonicalUrl.startsWith("https://") },
+    { label: "Panjang Judul Ideal (40-65 karakter)", passed: isTitleOptimal },
+    { label: "Panjang Deskripsi Ideal (120-165 karakter)", passed: isDescOptimal },
+    { label: "Kata Kunci Sasaran Tercantum di Judul", passed: hasKeywordInTitle && focusKeyword.length > 0 },
+    { label: "Kata Kunci Sasaran Tercantum di Deskripsi", passed: hasKeywordInDesc && focusKeyword.length > 0 },
+    { label: "Data Terstruktur (Schema VacationRental) Aktif", passed: true },
+    { label: "Alamat URL Resmi Aman (HTTPS)", passed: canonicalUrl.startsWith("https://") },
   ]
 
   const score = Math.round((checks.filter((c) => c.passed).length / checks.length) * 100)
@@ -117,9 +117,9 @@ export function SeoEditor() {
           <div className="rounded-2xl border border-[#EBEBEB] bg-white p-6 sm:p-8 space-y-6 shadow-sm">
             <div className="flex items-center justify-between border-b border-[#F5F4F0] pb-4">
               <div>
-                <h3 className="text-xl text-[#222222] font-semibold">SEO Metadata Editor</h3>
+                <h3 className="text-xl text-[#222222] font-semibold">Pengaturan Tampilan Google (SEO)</h3>
                 <p className="text-xs text-[#717171]">
-                  Fine-tune Google Search snippets and Airbnb Superhost ranking weights
+                  Atur judul, deskripsi, dan kata kunci yang muncul di pencarian Google &amp; Airbnb
                 </p>
               </div>
               <button
@@ -127,7 +127,7 @@ export function SeoEditor() {
                 className="inline-flex items-center space-x-2 bg-[#222222] text-white px-5 py-2.5 rounded-xl text-xs font-semibold hover:bg-[#333333] transition-colors cursor-pointer"
               >
                 <Save className="h-3.5 w-3.5" />
-                <span>{isSaved ? "Saved! ✓" : "Save Metadata"}</span>
+                <span>{isSaved ? "Tersimpan! ✓" : "Simpan Perubahan"}</span>
               </button>
             </div>
 
@@ -135,9 +135,9 @@ export function SeoEditor() {
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-bold text-[#222222] uppercase tracking-wider">
-                  Target Keyword (Focus Keyword)
+                  Kata Kunci Sasaran (Target Keyword)
                 </label>
-                <span className="text-[11px] text-[#A69C8E]">High-intent guest search query</span>
+                <span className="text-[11px] text-[#A69C8E]">Frasa pencarian yang dicari tamu</span>
               </div>
               <div className="relative">
                 <Search className="absolute left-3.5 top-3 h-4 w-4 text-[#A69C8E]" />
@@ -155,14 +155,14 @@ export function SeoEditor() {
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-bold text-[#222222] uppercase tracking-wider">
-                  Meta Title (Google SERP & Airbnb Title)
+                  Judul di Google (Meta Title)
                 </label>
                 <span
                   className={`text-[11px] font-mono font-medium ${
                     isTitleOptimal ? "text-emerald-600" : "text-amber-600"
                   }`}
                 >
-                  {titleLength}/60 chars {isTitleOptimal ? "✓" : "(Ideal: 40-60)"}
+                  {titleLength}/60 karakter {isTitleOptimal ? "✓" : "(Ideal: 40-60)"}
                 </span>
               </div>
               <input
@@ -177,14 +177,14 @@ export function SeoEditor() {
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-bold text-[#222222] uppercase tracking-wider">
-                  Meta Description
+                  Deskripsi di Google (Meta Description)
                 </label>
                 <span
                   className={`text-[11px] font-mono font-medium ${
                     isDescOptimal ? "text-emerald-600" : "text-amber-600"
                   }`}
                 >
-                  {descLength}/160 chars {isDescOptimal ? "✓" : "(Ideal: 120-160)"}
+                  {descLength}/160 karakter {isDescOptimal ? "✓" : "(Ideal: 120-160)"}
                 </span>
               </div>
               <textarea
@@ -199,9 +199,9 @@ export function SeoEditor() {
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-bold text-[#222222] uppercase tracking-wider">
-                  Canonical URL (Prevents Duplicate Content)
+                  Alamat Web Resmi (Canonical URL)
                 </label>
-                <span className="text-[11px] text-[#A69C8E]">Index Authority</span>
+                <span className="text-[11px] text-[#A69C8E]">Alamat Utama</span>
               </div>
               <div className="relative">
                 <Globe className="absolute left-3.5 top-3 h-4 w-4 text-[#A69C8E]" />
@@ -218,9 +218,9 @@ export function SeoEditor() {
             <div className="space-y-2 pt-2 border-t border-[#F5F4F0]">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-bold text-[#222222] uppercase tracking-wider">
-                  OpenGraph Social Card Preview
+                  Pratinjau Saat Link Dibagikan (WhatsApp / Medsos)
                 </label>
-                <span className="text-[11px] text-emerald-600 font-semibold">1200 x 630px Auto-optimized</span>
+                <span className="text-[11px] text-emerald-600 font-semibold">1200 x 630px Otomatis Dioptimalkan</span>
               </div>
               <div className="relative aspect-[1200/630] rounded-xl overflow-hidden border border-[#EBEBEB] group">
                 <Image
@@ -248,8 +248,8 @@ export function SeoEditor() {
           <div className="rounded-2xl border border-[#EBEBEB] bg-white p-6 shadow-sm space-y-5">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="text-lg text-[#222222] font-semibold">SEO Health Score</h4>
-                <p className="text-xs text-[#717171]">Google search readiness & quality index</p>
+                <h4 className="text-lg text-[#222222] font-semibold">Skor Kesiapan SEO</h4>
+                <p className="text-xs text-[#717171]">Standar optimasi kata kunci Google</p>
               </div>
               <div
                 className={`flex items-center justify-center h-14 w-14 rounded-2xl text-xl font-bold ${
@@ -285,9 +285,9 @@ export function SeoEditor() {
           <div className="rounded-2xl border border-[#EBEBEB] bg-white p-6 shadow-sm space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold uppercase tracking-wider text-[#717171]">
-                Google Search Snippet Preview
+                Pratinjau Hasil Pencarian Google
               </span>
-              <span className="text-[10px] text-[#A69C8E]">Desktop SERP</span>
+              <span className="text-[10px] text-[#A69C8E]">Tampilan Desktop</span>
             </div>
             <div className="p-4 rounded-xl bg-[#FAFAFA] border border-[#EBEBEB] space-y-1.5 font-sans">
               <div className="flex items-center space-x-2 text-[11px] text-[#202124]">
@@ -313,13 +313,11 @@ export function SeoEditor() {
             <div className="flex items-center space-x-2">
               <Sparkles className="h-4 w-4 text-[#A69C8E]" />
               <h4 className="font-semibold text-xs text-[#222222] uppercase tracking-wider">
-                SEO Impact on Airbnb Occupancy
+                Pengaruh Judul Menarik pada Okupansi
               </h4>
             </div>
             <p className="text-xs text-[#717171] leading-relaxed">
-              Listings utilizing the Kinghouse editorial framework demonstrate average impression gains of
-              <strong className="text-[#222222]"> +280% </strong> on Airbnb search and up to
-              <strong className="text-[#222222]"> 3x booking conversion lift </strong> within the first 60 days.
+              Listing properti dengan foto menarik dan judul deskriptif yang rapi terbukti membantu menaikkan impresi pencarian dan meningkatkan konversi booking hingga 3x lipat.
             </p>
             <div className="pt-2">
               <a
@@ -328,7 +326,7 @@ export function SeoEditor() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center space-x-1.5 text-xs font-semibold text-[#222222] hover:underline"
               >
-                <span>View Live Airbnb Listing</span>
+                <span>Buka Listing di Airbnb</span>
                 <ExternalLink className="h-3 w-3" />
               </a>
             </div>

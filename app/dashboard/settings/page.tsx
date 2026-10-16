@@ -29,7 +29,7 @@ export default function DashboardSettingsPage() {
   const handleCopyIcal = () => {
     navigator.clipboard.writeText("https://www.kinghousemanagement.com/api/ical/sync/jabodetabek-master.ics")
     setCopied(true)
-    showToast("Link iCal Disalin!", "Master calendar feed siap diimpor ke channel OTA.", "success")
+    showToast("Link Kalender Disalin!", "Link kalender siap dimasukkan ke akun Airbnb Anda.", "success")
     setTimeout(() => setCopied(false), 2000)
   }
 
@@ -38,12 +38,12 @@ export default function DashboardSettingsPage() {
     setSaveSuccess(true)
 
     addAlert({
-      title: "Pengaturan Profil CMS Disimpan",
-      message: "Data profil admin dan kredensial sistem berhasil diperbarui.",
+      title: "Pengaturan Akun Disimpan",
+      message: "Data profil admin dan pengaturan berhasil diperbarui.",
       category: "system",
     })
 
-    showToast("Profil Berhasil Disimpan!", "Perubahan akun admin aktif.", "success")
+    showToast("Perubahan Disimpan!", "Data akun admin telah diperbarui.", "success")
     setTimeout(() => setSaveSuccess(false), 3000)
   }
 
@@ -67,13 +67,13 @@ export default function DashboardSettingsPage() {
         <div>
           <div className="inline-flex items-center space-x-2 text-[10px] font-semibold uppercase tracking-wider text-[#222225] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E8E4DC] mb-3">
             <Settings className="h-3.5 w-3.5 text-[#B8934C]" />
-            <span>CONFIGURATION & INFRASTRUCTURE</span>
+            <span>PENGATURAN AKUN &amp; SISTEM</span>
           </div>
           <h1 className="text-3xl sm:text-4xl text-[#222225] font-semibold tracking-tight">
-            Admin Profile & System Settings
+            Pengaturan Akun &amp; Kontak Bisnis
           </h1>
           <p className="text-sm text-[#717171] mt-1 font-light leading-relaxed">
-            Manage your administrative credentials, multi-channel distribution API keys, and notification channels.
+            Kelola nama admin, email resmi, dan link kalender otomatis untuk Airbnb &amp; booking tamu.
           </p>
         </div>
 
@@ -84,14 +84,14 @@ export default function DashboardSettingsPage() {
           className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-2xl border border-rose-200 bg-rose-50 text-rose-700 hover:bg-rose-100 text-xs font-semibold transition-all disabled:opacity-50 self-start sm:self-auto cursor-pointer shadow-xs"
         >
           <LogOut className="h-4 w-4" />
-          <span>{isLoggingOut ? "Signing Out..." : "Sign Out of CMS"}</span>
+          <span>{isLoggingOut ? "Sedang keluar..." : "Keluar Akun"}</span>
         </button>
       </div>
 
       {saveSuccess && (
         <div className="p-4 rounded-3xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center space-x-2 animate-sana-fade-in shadow-xs">
           <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0" />
-          <span>Settings successfully saved and synced across CMS infrastructure.</span>
+          <span>Pengaturan berhasil disimpan dan aktif di seluruh sistem.</span>
         </div>
       )}
 
@@ -103,7 +103,7 @@ export default function DashboardSettingsPage() {
           </div>
           <div>
             <div className="flex items-center space-x-2">
-              <h3 className="text-xl text-[#222225] font-semibold">Kinghouse Principal Admin</h3>
+              <h3 className="text-xl text-[#222225] font-semibold">Kinghouse Admin</h3>
               <span className="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
                 <ShieldCheck className="h-3 w-3 text-emerald-600" />
                 <span>Super Admin</span>
@@ -117,7 +117,7 @@ export default function DashboardSettingsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-semibold text-[#555555] uppercase tracking-wider mb-1.5">
-                Full Administrative Name
+                Nama Lengkap Admin
               </label>
               <input
                 type="text"
@@ -128,7 +128,7 @@ export default function DashboardSettingsPage() {
 
             <div>
               <label className="block text-xs font-semibold text-[#555555] uppercase tracking-wider mb-1.5">
-                Administrative Email
+                Email Resmi Kinghouse
               </label>
               <input
                 type="email"
@@ -143,38 +143,38 @@ export default function DashboardSettingsPage() {
               type="submit"
               className="px-6 py-2.5 rounded-2xl bg-[#222225] text-white text-xs font-semibold hover:bg-[#2B2A30] transition-all shadow-xs cursor-pointer"
             >
-              Save Profile Changes
+              Simpan Perubahan
             </button>
           </div>
         </form>
       </div>
 
-      {/* Security & Authentication Protocol */}
+      {/* Security & Access Info */}
       <div className="rounded-3xl border border-[#E8E4DC] bg-white p-6 sm:p-8 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] space-y-6">
         <div className="flex items-center space-x-2.5">
           <div className="h-7 w-7 rounded-xl bg-[#FAF8F5] flex items-center justify-center text-[#222225] border border-[#E8E4DC]">
             <Lock className="h-3.5 w-3.5 text-[#B8934C]" />
           </div>
-          <h3 className="text-xl text-[#222225] font-semibold">Security & Authentication</h3>
+          <h3 className="text-xl text-[#222225] font-semibold">Keamanan &amp; Hak Akses</h3>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
           <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] space-y-1.5">
-            <span className="text-[10px] uppercase font-bold text-[#717171]">Session Architecture</span>
-            <p className="font-semibold text-[#222225]">HMAC-SHA256 Signed JWT</p>
-            <p className="text-[11px] text-[#717171]">HttpOnly, SameSite Lax, 7-Day Expiry</p>
+            <span className="text-[10px] uppercase font-bold text-[#717171]">Status Akun</span>
+            <p className="font-semibold text-emerald-700">Terverifikasi &amp; Aktif</p>
+            <p className="text-[11px] text-[#717171]">Sesi login tersimpan aman selama 7 hari</p>
           </div>
 
           <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] space-y-1.5">
-            <span className="text-[10px] uppercase font-bold text-[#717171]">Two-Factor Authorization</span>
-            <p className="font-semibold text-emerald-700">Enforced by Role Token</p>
-            <p className="text-[11px] text-[#717171]">Required for price adjustments & OTA sync</p>
+            <span className="text-[10px] uppercase font-bold text-[#717171]">Tingkat Akses</span>
+            <p className="font-semibold text-[#222225]">Super Admin Penuh</p>
+            <p className="text-[11px] text-[#717171]">Dapat mengedit harga, blog, dan kalender</p>
           </div>
 
           <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] space-y-1.5">
-            <span className="text-[10px] uppercase font-bold text-[#717171]">Edge Protection</span>
-            <p className="font-semibold text-[#222225]">Next.js Edge Proxy Verified</p>
-            <p className="text-[11px] text-[#717171]">Auto-redirect unauthorized visitors</p>
+            <span className="text-[10px] uppercase font-bold text-[#717171]">Proteksi Website</span>
+            <p className="font-semibold text-[#222225]">Enkripsi SSL Aktif</p>
+            <p className="text-[11px] text-[#717171]">Data dilindungi dari akses pihak luar</p>
           </div>
         </div>
       </div>
@@ -185,13 +185,13 @@ export default function DashboardSettingsPage() {
           <div className="h-7 w-7 rounded-xl bg-[#FAF8F5] flex items-center justify-center text-[#222225] border border-[#E8E4DC]">
             <Layers className="h-3.5 w-3.5 text-[#B8934C]" />
           </div>
-          <h3 className="text-xl text-[#222225] font-semibold">OTA Multi-Channel Integration</h3>
+          <h3 className="text-xl text-[#222225] font-semibold">Link Kalender Otomatis (iCal)</h3>
         </div>
 
         <div className="space-y-4">
           <div>
             <label className="block text-xs font-semibold text-[#555555] uppercase tracking-wider mb-1.5">
-              Master Two-Way iCal Calendar Sync Feed
+              Link Sinkronisasi Kalender Master
             </label>
             <div className="flex items-center space-x-2">
               <input
@@ -208,18 +208,18 @@ export default function DashboardSettingsPage() {
                 {copied ? (
                   <>
                     <Check className="h-3.5 w-3.5 text-emerald-600" />
-                    <span>Copied!</span>
+                    <span>Tersalin!</span>
                   </>
                 ) : (
                   <>
                     <Copy className="h-3.5 w-3.5" />
-                    <span>Copy URL</span>
+                    <span>Salin Link</span>
                   </>
                 )}
               </button>
             </div>
             <p className="text-[11px] text-[#717171] mt-1.5 font-light">
-              Import this URL into Airbnb, Booking.com, and Agoda to synchronize availability in real-time.
+              Salin link ini untuk dimasukkan ke akun Airbnb atau OTA lain agar jadwal booking tamu otomatis tersinkronisasi tanpa bentrok.
             </p>
           </div>
         </div>
