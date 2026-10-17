@@ -4,7 +4,9 @@ import { SITE_CONFIG } from "@/lib/constants"
 import { CURATED_VILLAS } from "@/lib/data"
 
 export const metadata: Metadata = {
-  title: "Curated Luxury Villas & Short-Stay Apartments Jabodetabek | Kinghouse Management",
+  title: {
+    absolute: "Luxury Villas & Short-Stay Rentals Jakarta | Kinghouse",
+  },
   description:
     "Browse curated private villas with pool in Jagakarsa, transit apartments in Tangerang & Palmerah, and business suites in Cikarang. Best rate guarantee.",
   keywords: [
@@ -37,7 +39,7 @@ const villasItemListSchema = {
   itemListElement: CURATED_VILLAS.map((villa, idx) => ({
     "@type": "ListItem",
     position: idx + 1,
-    url: `${SITE_CONFIG.baseUrl}/villas/${villa.slug}`,
+    url: `${SITE_CONFIG.baseUrl}/locations/${villa.areaSlug}/villas/${villa.slug}`,
     name: villa.name,
     description: villa.tagline,
   })),

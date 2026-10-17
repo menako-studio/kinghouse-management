@@ -26,13 +26,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: "Area Not Found | Kinghouse Management" }
   }
 
-  const title = `Sewa Villa & Apartemen Harian ${areaData.name}, ${areaData.region} | Kinghouse Management`
-  const description = `${areaData.description} Jelajahi akomodasi terkurasi dan terverifikasi di ${areaData.name} dengan standar kebersihan hotel dan manajemen Airbnb Superhost Kinghouse.`
+  const pageTitle = `Sewa Villa & Apartemen ${areaData.name} | Kinghouse`
+  const pageDescription = `Pilihan sewa villa & apartemen harian terbaik di ${areaData.name}, ${areaData.region}. Fasilitas lengkap, private pool, higienis, & jaminan tarif terbaik.`
   const canonicalUrl = `${SITE_CONFIG.baseUrl}/locations/${areaData.slug}`
 
   return {
-    title,
-    description,
+    title: {
+      absolute: pageTitle,
+    },
+    description: pageDescription,
     keywords: [
       `sewa villa ${areaData.slug}`,
       `sewa apartemen harian ${areaData.slug}`,
@@ -45,8 +47,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     ],
     alternates: { canonical: canonicalUrl },
     openGraph: {
-      title,
-      description,
+      title: pageTitle,
+      description: pageDescription,
       url: canonicalUrl,
       type: "website",
     },

@@ -3,7 +3,9 @@ import Script from "next/script"
 import { SITE_CONFIG } from "@/lib/constants"
 
 export const metadata: Metadata = {
-  title: "Frequently Asked Questions (FAQ) | Kinghouse Management",
+  title: {
+    absolute: "FAQ: Booking, Check-In & Villa Co-Hosting | Kinghouse",
+  },
   description:
     "Comprehensive answers for guests and property owners on booking policies, check-in, event hosting, 15%–20% management fees, and monthly payouts.",
   keywords: [

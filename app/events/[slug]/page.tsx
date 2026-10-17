@@ -23,14 +23,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: "Event Not Found | Kinghouse Management" }
   }
 
+  const pageTitle = `${event.title} | Kinghouse Events`
+  const canonicalUrl = `${SITE_CONFIG.baseUrl}/events/${event.slug}`
+
   return {
-    title: `${event.title} — ${event.propertyName} | Kinghouse Management`,
+    title: {
+      absolute: pageTitle,
+    },
     description: event.description.slice(0, 155),
-    alternates: { canonical: `/events/${event.slug}` },
+    alternates: { canonical: canonicalUrl },
     openGraph: {
-      title: event.title,
+      title: pageTitle,
       description: event.tagline,
-      url: `/events/${event.slug}`,
+      url: canonicalUrl,
       type: "website",
       images: [{ url: event.heroImage, width: 1200, height: 630, alt: event.title }],
     },

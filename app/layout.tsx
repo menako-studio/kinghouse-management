@@ -24,11 +24,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Kinghouse Management | Luxury Villa & Airbnb Property Management Jakarta",
+    default: "Kinghouse Management | Luxury Villa & Airbnb Management",
     template: "%s | Kinghouse Management",
   },
   description:
-    "Institutional short-stay villa & Airbnb asset management across Greater Jakarta (Jagakarsa, Tangerang, Palmerah, Cikarang). Maximize net yield with algorithmic dynamic pricing, 5-star operations, and global OTA syndication.",
+    "Institutional short-stay villa & Airbnb asset management in Greater Jakarta. Maximize net yield with algorithmic dynamic pricing and 5-star operations.",
   keywords: [
     "Kinghouse Management",
     "King House Management",
@@ -349,6 +349,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${cormorant.variable} ${inter.variable} scroll-smooth`} suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+      </head>
       <body suppressHydrationWarning className="min-h-screen bg-[var(--bg-main)] font-sans text-[var(--text-primary)] antialiased selection:bg-[#CBBEA0] selection:text-[#231F1A]">
         {/* Google Analytics 4 & Google Tag Manager */}
         <GoogleAnalytics />

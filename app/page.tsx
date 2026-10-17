@@ -7,9 +7,11 @@ import { DualPathSplit } from "@/components/home/dual-path-split"
 import { SITE_CONFIG } from "@/lib/constants"
 
 export const metadata: Metadata = {
-  title: "Kinghouse Management — Curated Villas & Airbnb Management in Jakarta",
+  title: {
+    absolute: "Curated Luxury Villas & Airbnb Management Jakarta | Kinghouse",
+  },
   description:
-    "Curated short-stay villas and apartments in Greater Jakarta (Jagakarsa, Tangerang, Palmerah, Cikarang) with 5-star hotel hygiene and institutional-grade property management.",
+    "Curated luxury villas and short-stay apartments in Greater Jakarta (Jagakarsa, Tangerang, Cikarang). Hotel-standard hygiene & high-yield Airbnb co-hosting.",
   alternates: {
     canonical: SITE_CONFIG.baseUrl,
   },

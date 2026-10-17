@@ -35,22 +35,25 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: "Property Not Found | Kinghouse Management" }
   }
 
-  const title = villa.seoMeta?.metaTitle ?? `${villa.name} — ${villa.area} | Kinghouse Management`
-  const description =
+  const rawTitle = villa.seoMeta?.metaTitle ?? `${villa.name} | Kinghouse`
+  const rawDescription =
     villa.seoMeta?.metaDescription ??
-    `${villa.editorialDescription.lead} Professionally managed by Kinghouse Management on Airbnb.`
+    `${villa.editorialDescription.lead} Managed by Kinghouse on Airbnb.`
+  const description = rawDescription.slice(0, 155)
   const image = villa.seoMeta?.ogImage ?? villa.heroImage
   const canonicalUrl = `${SITE_CONFIG.baseUrl}/locations/${villa.areaSlug}/villas/${villa.slug}`
 
   return {
-    title,
+    title: {
+      absolute: rawTitle,
+    },
     description,
     keywords: villa.seoMeta
       ? [villa.seoMeta.focusKeyword, villa.area, "airbnb", "Kinghouse Management", "King House", "short stay villa"]
       : undefined,
     alternates: { canonical: canonicalUrl },
     openGraph: {
-      title,
+      title: rawTitle,
       description,
       url: canonicalUrl,
       type: "website",
@@ -58,7 +61,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: rawTitle,
       description,
       images: [image],
     },

@@ -11,7 +11,9 @@ import { LeadAuditForm } from "@/components/owner/lead-audit-form"
 import { SITE_CONFIG } from "@/lib/constants"
 
 export const metadata = {
-  title: "Airbnb Property Management & Co-Hosting Jabodetabek | Kinghouse Management",
+  title: {
+    absolute: "Airbnb Property Management Jakarta | 15–20% Co-Hosting",
+  },
   description:
     "Partner with Kinghouse Management for 15%–20% transparent co-hosting. Algorithmic dynamic pricing, Kinghouse Cleaning hotel standards, and +48% EBITDA lift.",
   keywords: [

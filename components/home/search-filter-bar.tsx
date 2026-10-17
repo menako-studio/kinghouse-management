@@ -40,6 +40,8 @@ export function SearchFilterBar() {
               {t("destinationLabel")}
             </span>
             <select
+              id="search-destination-select"
+              aria-label="Filter by destination in Greater Jakarta"
               value={destination}
               onChange={(e) => setDestination(e.target.value)}
               className="w-full bg-transparent text-xs sm:text-sm font-normal text-[#717171] focus:outline-none focus:text-[#222222] cursor-pointer"
@@ -92,6 +94,8 @@ export function SearchFilterBar() {
               {t("guestsLabel")}
             </span>
             <select
+              id="search-guests-select"
+              aria-label="Filter by number of guests"
               value={guests}
               onChange={(e) => setGuests(e.target.value)}
               className="w-full bg-transparent text-xs sm:text-sm font-normal text-[#717171] focus:outline-none focus:text-[#222222] cursor-pointer"

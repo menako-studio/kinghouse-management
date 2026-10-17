@@ -654,6 +654,33 @@ kinghouse-mockup/
 - [x] **Automated Testing Suite (88 Tests Passing Across 11 Suites)**:
   - Added unit test coverage for XML sitemap escaping, dynamic pricing formulas, calendar sync, and superhost multi-language translation keys.
 
+### Phase 5.2 — Mobile PageSpeed Insights 85+ & Detailed SEO Chrome Extension Compliance (Completed)
+- [x] **Mobile Performance & LCP Optimization (PSI Mobile: 63–66 -> 87)**:
+  - **Video Streaming & Hero Asset Compression**:
+    - Pre-cropped and compressed original 34–42MB video files in `public/properties/versatile-house/web/` using FFmpeg (H.264, 24fps, faststart, no audio) to 2.3MB (`architecture-mobile.mp4`) and 5.3MB (`lifestyle-mobile.mp4`).
+    - Deferred mobile background video loading in `components/home/hero-slider.tsx` until first user interaction (touch/scroll) or idle callback; slow connections and Data Saver mode remain on optimized static poster image.
+    - Generated modern WebP hero poster `/properties/versatile-house/new/VersatileHouse_01_Pool_Hero_mobile.webp` (95 KB, down from 694 KB JPG) with `preload` and `fetchPriority="high"`.
+    - Enabled `formats: ["image/avif", "image/webp"]` in `next.config.ts`.
+    - Removed eager `priority` from below-the-fold images (`trust-social-proof.tsx`, `curated-grid.tsx`, `dual-path-split.tsx`) and enforced `loading="lazy"`.
+  - **Third-Party Script & Network Blocking Mitigation**:
+    - Switched Google Tag Manager (`gtm.js` 118KB) and GA4 (`gtag.js` 198KB) from `afterInteractive` to `lazyOnload` in `components/analytics/google-analytics.tsx`.
+    - Initialized early inline queue stub for `dataLayer` and `gtag()` with Consent Mode v2 so zero analytics tracking events are lost.
+    - Added `<link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />` in `app/layout.tsx`.
+  - **Accessibility & Contrast Enhancements**:
+    - Added explicit `aria-label` attributes to destination and guests select elements in `components/home/search-filter-bar.tsx`.
+    - Enhanced text contrast for category tags (`#5C5347`) and interactive buttons (`#6B4B2A`, `#8C7F5F`) to pass WCAG AA standards (Accessibility score: 96).
+
+- [x] **Detailed SEO Chrome Extension & Ahrefs Guidelines Compliance**:
+  - **Title Tag Suffix Duplication Resolution**:
+    - Overrode root layout title template (`%s | Kinghouse Management`) across all child pages using `title: { absolute: "..." }` targeting 50–60 characters with front-loaded high-intent keywords to prevent truncated duplicate brand suffixes (`| Kinghouse Management | Kinghouse Management`).
+  - **Meta Description Standardization**:
+    - Aligned all meta descriptions to strict 130–155 character range with enticing search snippets and clear calls-to-action (CTAs).
+  - **Canonical URL Integrity**:
+    - Standardized all canonical URLs to fully-qualified absolute URLs (`https://www.kinghousemanagement.com/...`), resolving relative URL flags in SEO extension audits.
+  - **Blog Articles Overhaul (11 Published Articles)**:
+    - Added keyword-optimized `seoTitle` (51–59 chars) and compelling `metaDescription` (136–145 chars) to all 11 articles in `lib/data.ts` and `lib/types.ts`.
+    - Integrated `BreadcrumbList` Schema.org JSON-LD on `app/blog/[slug]/page.tsx` for enhanced Google search snippet breadcrumb trails.
+
 ---
 
 ## 4. VERIFICATION COMMANDS

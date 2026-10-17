@@ -3,7 +3,9 @@ import Script from "next/script"
 import { SITE_CONFIG } from "@/lib/constants"
 
 export const metadata: Metadata = {
-  title: "Garden Wedding & Private Event Venues Jakarta Selatan | Kinghouse Management",
+  title: {
+    absolute: "Garden Wedding & Private Event Venues Jakarta | Kinghouse",
+  },
   description:
     "Versatile House Jagakarsa features a 500m² lush garden, private pool, and bridal suites for weddings, retreats, and birthdays. Zero vendor corkage fees.",
   keywords: [

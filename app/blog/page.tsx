@@ -7,7 +7,9 @@ import { SITE_CONFIG } from "@/lib/constants"
 export const revalidate = 120
 
 export const metadata: Metadata = {
-  title: "Blog & Hospitality Insights | Kinghouse",
+  title: {
+    absolute: "Hospitality Insights & Airbnb SEO Blog | Kinghouse",
+  },
   description:
     "Panduan strategi Airbnb, SEO listing, optimasi okupansi, dan analisis pasar sewa properti jangka pendek di Jabodetabek bersama Kinghouse.",
   keywords: [
@@ -20,12 +22,12 @@ export const metadata: Metadata = {
     "short stay asset management",
     "jakarta property rental insights",
   ],
-  alternates: { canonical: "/blog" },
+  alternates: { canonical: `${SITE_CONFIG.baseUrl}/blog` },
   openGraph: {
-    title: "Blog & Hospitality Insights | Kinghouse",
+    title: "Hospitality Insights & Airbnb SEO Blog | Kinghouse",
     description:
       "Panduan strategi Airbnb, SEO listing, optimasi okupansi, dan analisis pasar sewa properti jangka pendek di Jabodetabek bersama Kinghouse.",
-    url: "/blog",
+    url: `${SITE_CONFIG.baseUrl}/blog`,
     type: "website",
   },
 }

@@ -24,6 +24,8 @@ export function mapRowToBlogPost(row: any): BlogPost & { status: string; seoScor
     readTime: typeof row.reading_time === "number" ? row.reading_time : 4,
     tags: Array.isArray(row.tags) ? row.tags : [],
     seoKeywords: Array.isArray(row.tags) ? row.tags : [],
+    seoTitle: row.seo_title || undefined,
+    metaDescription: row.meta_description || undefined,
     featured: Boolean(row.seo_score && row.seo_score >= 90),
     status: row.status || "Published",
     seoScore: typeof row.seo_score === "number" ? row.seo_score : 85,

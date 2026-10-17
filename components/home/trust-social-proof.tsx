@@ -87,7 +87,7 @@ export function TrustSocialProof() {
                   width={725}
                   height={507}
                   className="w-full h-auto rounded-xl object-contain shadow-xs"
-                  priority
+                  loading="lazy"
                 />
               </div>
 

@@ -1,18 +1,21 @@
-import { Metadata } from "next"
+import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
 import { Newspaper, Download, Mail, ExternalLink, ArrowRight, Award, Sparkles } from "lucide-react"
+import { SITE_CONFIG } from "@/lib/constants"
 
 export const metadata: Metadata = {
-  title: "Press & Media Center | Kinghouse Management",
+  title: {
+    absolute: "Press Room & Media Center | Kinghouse Management",
+  },
   description:
     "Official news, press releases, media mentions, and downloadable brand assets from Kinghouse Villa & Short-Stay Asset Management in Greater Jakarta.",
-  alternates: { canonical: "/press" },
+  alternates: { canonical: `${SITE_CONFIG.baseUrl}/press` },
   openGraph: {
-    title: "Press & Media Center | Kinghouse Management",
+    title: "Press Room & Media Center | Kinghouse Management",
     description:
       "Official news, press releases, media mentions, and downloadable brand assets from Kinghouse Management.",
-    url: "/press",
+    url: `${SITE_CONFIG.baseUrl}/press`,
     type: "website",
   },
 }

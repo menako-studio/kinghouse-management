@@ -3,9 +3,11 @@ import { SITE_CONFIG } from "@/lib/constants"
 import Script from "next/script"
 
 export const metadata: Metadata = {
-  title: "Property Management Inquiry & Fast-Track Yield Audit | Kinghouse Management",
+  title: {
+    absolute: "Free Villa Revenue Audit & Onboarding | Kinghouse",
+  },
   description:
-    "Partner with Kinghouse Management. Professional co-hosting and short-stay management for luxury villas and apartments in Greater Jakarta with 18–28% annual net yield.",
+    "Request a free property revenue audit for your villa or apartment in Greater Jakarta. Discover how Kinghouse achieves 18–28% net yields for owners.",
   keywords: [
     "jasa kelola airbnb jakarta",
     "manajemen villa jakarta selatan",

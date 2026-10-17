@@ -18,7 +18,7 @@ export function CuratedGrid() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[#EBEBEB] gap-6">
           <div className="space-y-3 max-w-2xl">
             <div className="flex items-center space-x-2">
-              <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#A69C8E]">
+              <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#5C5347]">
                 {t("collection2026")}
               </span>
             </div>
@@ -43,8 +43,8 @@ export function CuratedGrid() {
 
         {/* 3-Column Symmetrical Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-          {featuredVillas.map((villa, idx) => (
-            <VillaCard key={villa.id} villa={villa} priority={idx === 0} />
+          {featuredVillas.map((villa) => (
+            <VillaCard key={villa.id} villa={villa} />
           ))}
         </div>
       </div>

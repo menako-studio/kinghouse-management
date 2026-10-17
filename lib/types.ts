@@ -157,6 +157,8 @@ export interface BlogPost {
   heroImage: string
   tags: string[]
   seoKeywords: string[]
+  seoTitle?: string
+  metaDescription?: string
   readTime: number
   featured: boolean
 }

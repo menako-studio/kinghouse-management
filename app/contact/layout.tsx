@@ -3,7 +3,9 @@ import Script from "next/script"
 import { SITE_CONFIG } from "@/lib/constants"
 
 export const metadata: Metadata = {
-  title: "Contact Concierge & Property Management Desk | Kinghouse Management",
+  title: {
+    absolute: "Contact Us & 24/7 Concierge | Kinghouse Management",
+  },
   description:
     "Connect with Kinghouse 24/7 concierge for villa bookings or property management inquiries. WhatsApp and office desk support in Tangerang Selatan.",
   keywords: [

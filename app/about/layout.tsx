@@ -1,17 +1,20 @@
 import { Metadata } from "next"
+import { SITE_CONFIG } from "@/lib/constants"
 
 export const metadata: Metadata = {
-  title: "About Us | Kinghouse Management — PT Kreasi Usman Gosse",
+  title: {
+    absolute: "About Us | Kinghouse Property Management Jakarta",
+  },
   description:
-    "Discover Kinghouse Management (PT Kreasi Usman Gosse): Rooted in Kinghouse Cleaning (2020) empowering local communities, now delivering institutional-grade co-hosting and short-stay property management in Greater Jakarta.",
+    "Discover Kinghouse Management (PT Kreasi Usman Gosse): institutional-grade Airbnb co-hosting and luxury property management across Greater Jakarta.",
   alternates: {
-    canonical: "/about",
+    canonical: `${SITE_CONFIG.baseUrl}/about`,
   },
   openGraph: {
-    title: "About Us | Kinghouse Management — PT Kreasi Usman Gosse",
+    title: "About Us | Kinghouse Property Management Jakarta",
     description:
-      "Discover Kinghouse Management (PT Kreasi Usman Gosse): Rooted in Kinghouse Cleaning (2020) empowering local communities, now delivering institutional-grade co-hosting and short-stay property management in Greater Jakarta.",
-    url: "/about",
+      "Discover Kinghouse Management (PT Kreasi Usman Gosse): institutional-grade Airbnb co-hosting and luxury property management across Greater Jakarta.",
+    url: `${SITE_CONFIG.baseUrl}/about`,
     type: "website",
   },
 }

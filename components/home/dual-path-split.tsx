@@ -18,7 +18,7 @@ export function DualPathSplit() {
             {/* Background Lifestyle Image */}
             <div className="absolute inset-0 z-0 overflow-hidden">
               <Image
-                src="/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg"
+                src="/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.webp"
                 alt="Versatile house garden and private pool"
                 fill
                 className="object-cover brightness-[0.45] transition-transform duration-700 ease-out group-hover:scale-105"
@@ -29,7 +29,7 @@ export function DualPathSplit() {
             {/* Top Label */}
             <div className="relative z-10 flex items-center space-x-2">
               <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white backdrop-blur-md border border-white/15">
-                <Compass className="mr-1.5 h-3 w-3 text-[#A69C8E]" />
+                <Compass className="mr-1.5 h-3 w-3 text-[#E8DFC8]" />
                 {t("forDiscerningTravelers")}
               </span>
             </div>
@@ -72,8 +72,8 @@ export function DualPathSplit() {
 
             {/* Top Label */}
             <div className="relative z-10 flex items-center space-x-2">
-              <span className="inline-flex items-center rounded-full bg-[#A69C8E]/30 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-[#EAE8E4] backdrop-blur-md border border-[#A69C8E]/40">
-                <TrendingUp className="mr-1.5 h-3 w-3 text-[#A69C8E]" />
+              <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-[#EAE8E4] backdrop-blur-md border border-white/15">
+                <TrendingUp className="mr-1.5 h-3 w-3 text-[#DFC58E]" />
                 {t("forOwnersInvestors")}
               </span>
             </div>
@@ -91,7 +91,7 @@ export function DualPathSplit() {
                 <Button
                   size="lg"
                   asChild
-                  className="bg-[#A69C8E] text-white hover:bg-[#8F8577] border-none font-semibold text-xs uppercase tracking-widest px-8 shadow-lg"
+                  className="bg-[#8C7F5F] text-white hover:bg-[#786C4F] border-none font-semibold text-xs uppercase tracking-widest px-8 shadow-lg"
                 >
                   <Link href="/owner-services">
                     {t("maximizeRoi")} <ArrowRight className="ml-2 h-4 w-4" />

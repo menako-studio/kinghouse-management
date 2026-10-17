@@ -117,7 +117,7 @@ export function VillaCard({ villa, priority = false }: VillaCardProps) {
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
-              className="inline-flex items-center space-x-1 text-xs font-semibold px-3 py-1.5 rounded-full bg-[#FAF6EE] text-[#8C7F5F] border border-[#E8DFC8] hover:bg-[#8C7F5F] hover:text-white transition-all cursor-pointer shadow-2xs active:scale-95"
+              className="inline-flex items-center space-x-1 text-xs font-semibold px-3 py-1.5 rounded-full bg-[#FAF6EE] text-[#6B4B2A] border border-[#E8DFC8] hover:bg-[#6B4B2A] hover:text-white transition-all cursor-pointer shadow-2xs active:scale-95"
             >
               <Sparkles className="h-3 w-3" />
               <span>Book Options</span>

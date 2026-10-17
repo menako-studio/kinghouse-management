@@ -27,16 +27,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: "Article Not Found | Kinghouse" }
   }
 
+  const pageTitle = post.seoTitle || (post.title.length > 48 ? `${post.title.slice(0, 48).trim()}... | Kinghouse` : `${post.title} | Kinghouse`)
+  const metaDesc = (post.metaDescription || post.excerpt).slice(0, 155)
+  const canonicalUrl = `${SITE_CONFIG.baseUrl}/blog/${post.slug}`
+
   return {
-    title: `${post.title} | Kinghouse Blog`,
-    description: post.excerpt,
+    title: {
+      absolute: pageTitle,
+    },
+    description: metaDesc,
     keywords: post.seoKeywords,
-    alternates: { canonical: `/blog/${post.slug}` },
+    alternates: { canonical: canonicalUrl },
     authors: [{ name: post.author.name }],
     openGraph: {
-      title: post.title,
-      description: post.excerpt,
-      url: `/blog/${post.slug}`,
+      title: pageTitle,
+      description: metaDesc,
+      url: canonicalUrl,
       type: "article",
       publishedTime: post.publishedAt,
       authors: [post.author.name],
@@ -44,8 +50,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
-      description: post.excerpt,
+      title: pageTitle,
+      description: metaDesc,
       images: [post.heroImage],
     },
   }
@@ -222,12 +228,42 @@ export default async function BlogPostPage({ params }: PageProps) {
   const categoryLabel = CATEGORY_LABELS[post.category] ?? post.category
   const categoryColor = CATEGORY_COLORS[post.category] ?? "bg-gray-50 text-gray-700 border-gray-200"
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_CONFIG.baseUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: `${SITE_CONFIG.baseUrl}/blog`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: `${SITE_CONFIG.baseUrl}/blog/${post.slug}`,
+      },
+    ],
+  }
+
   return (
     <main className="min-h-screen bg-white">
       <script
         id="article-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {/* Hero Image */}
