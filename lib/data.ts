@@ -1226,6 +1226,286 @@ Koleksi properti seperti [Versatile House Jagakarsa](/locations/jagakarsa/villas
     readTime: 5,
     featured: false,
   },
+  {
+    id: "blog-12",
+    title: "Venue Garden Wedding & Intimate Celebration di Jakarta Selatan",
+    slug: "venue-garden-wedding-intimate-jakarta-selatan",
+    excerpt:
+      "Mencari venue pernikahan outdoor yang asri namun tetap privat di Jakarta? Garden wedding di villa private pool Jakarta Selatan menghadirkan nuansa taman tropis, kapasitas intimate, dan biaya yang jauh lebih efisien dibanding gedung konvensional.",
+    content: `Tren pernikahan di Jakarta bergeser. Semakin banyak pasangan memilih **intimate garden wedding** — perayaan hangat untuk 30–150 tamu di ruang terbuka hijau — ketimbang resepsi gedung berskala besar. Alasannya sederhana: suasananya personal, fotonya natural, dan biayanya lebih terkendali.
+
+Masalahnya, venue taman yang benar-benar privat di Jakarta Selatan tidak banyak. Sebagian besar "garden venue" sebenarnya adalah halaman restoran atau hotel yang dipakai bergantian. Di sinilah villa dengan taman luas dan kolam renang pribadi menjadi pilihan yang berbeda.
+
+![Upacara pernikahan di taman tepi kolam renang villa Jagakarsa](/properties/versatile-house/events/wedding-ceremony-lawn-pool.jpg)
+
+## Kenapa Garden Wedding di Villa, Bukan Gedung?
+
+- **Eksklusif sepenuhnya.** Seluruh properti hanya untuk Anda dan tamu — tidak berbagi area dengan acara lain.
+- **Dekorasi lebih hemat.** Taman hijau, kolam renang, dan pepohonan sudah menjadi latar alami, sehingga anggaran dekorasi bisa ditekan drastis.
+- **Foto & video lebih hidup.** Cahaya matahari sore (golden hour) di taman menghasilkan dokumentasi yang sulit ditiru studio.
+- **Fleksibel untuk rangkaian acara.** Akad, resepsi, hingga after-party bisa berlangsung di satu lokasi tanpa perpindahan.
+
+> Untuk 50 tamu, intimate garden wedding di villa umumnya 30–45% lebih efisien dibanding paket gedung dengan katering internal.
+
+## Berapa Kapasitas yang Ideal?
+
+Format intimate paling nyaman untuk **30–150 tamu**. Pada rentang ini, tamu masih bisa bergerak leluasa di taman, antrean katering tetap pendek, dan suasana terasa personal. Villa seperti [Versatile House di Jagakarsa](/locations/jagakarsa/villas/versatile-house-jagakarsa) dengan taman luas dan kolam renang menjadi contoh properti yang pas untuk skala ini.
+
+## Rangkaian Acara yang Bisa Digelar
+
+### 1. Akad & Pemberkatan
+
+Area taman atau tepi kolam menjadi altar natural. Cukup tambahkan rangkaian bunga dan backdrop sederhana.
+
+### 2. Resepsi & Standing Party
+
+Gunakan format standing atau semi-seated dengan katering prasmanan. Lampu taman di malam hari menciptakan suasana hangat yang intim.
+
+### 3. After-Party Privat
+
+Karena properti sepenuhnya milik Anda malam itu, perayaan bisa berlanjut tanpa batasan waktu gedung yang kaku.
+
+## Tips Memilih Venue Garden Wedding
+
+- **Cek privasi dan akses.** Pastikan venue tidak tembus pandang dari luar dan punya akses mobil yang memadai.
+- **Pastikan ada area teduh.** Cuaca Jakarta bisa terik; gazebo atau tenda cadangan itu penting.
+- **Tanyakan kebijakan vendor.** Venue terbaik membebaskan Anda memilih katering, dekorasi, dan WO sendiri.
+- **Pesan jauh hari.** Akhir pekan musim kemarau (Mei–September) cepat penuh.
+
+Kinghouse mengelola paket [garden wedding di Jagakarsa](/events/garden-wedding-jagakarsa) beserta rangkaian [acara privat lainnya](/events) — mulai dari penyiapan venue, koordinasi vendor, hingga akomodasi menginap untuk keluarga inti.
+
+> Ingin mengecek tanggal tersedia atau survei lokasi? [Hubungi tim kami](/contact) untuk konsultasi tanpa biaya.
+
+Garden wedding bukan sekadar tren — ini cara merayakan momen penting dengan hangat, personal, dan bermakna. Dan di Jakarta Selatan, villa dengan taman asri adalah salah satu kanvas terbaik untuk memulainya.`,
+    category: "guest-experience",
+    publishedAt: "2026-10-07",
+    author: AUTHOR_KINGHOUSE,
+    heroImage: "/properties/versatile-house/events/wedding-ceremony-lawn-pool.jpg",
+    tags: ["garden wedding jakarta", "venue pernikahan", "intimate wedding", "jakarta selatan", "jagakarsa"],
+    seoKeywords: [
+      "venue garden wedding jakarta",
+      "tempat wedding jakarta selatan",
+      "intimate wedding venue jakarta",
+      "venue acara mewah jakarta",
+      "sewa villa wedding jagakarsa",
+    ],
+    seoTitle: "Venue Garden Wedding Jakarta Selatan 2026 | Kinghouse",
+    metaDescription: "Panduan memilih venue garden wedding & intimate celebration di Jakarta Selatan: kapasitas, rangkaian acara, dan tips hemat di villa private pool. Cek di sini!",
+    readTime: 7,
+    featured: true,
+  },
+  {
+    id: "blog-13",
+    title: "Villa Kolam Renang Pribadi di Jakarta Selatan: Panduan Sewa & Harga 2026",
+    slug: "villa-private-pool-jakarta-selatan-panduan-harga",
+    excerpt:
+      "Sewa villa private pool di Jakarta Selatan kini jadi pilihan staycation favorit tanpa harus ke Puncak atau Bandung. Simak kisaran harga, fasilitas, dan cara memilih villa kolam renang pribadi yang tepat untuk keluarga.",
+    content: `Akhir pekan di Jakarta tidak selalu berarti terjebak macet menuju Puncak. **Villa private pool di Jakarta Selatan** menawarkan pengalaman staycation lengkap — kolam renang pribadi, taman hijau, dan privasi penuh — hanya 30–60 menit dari pusat kota.
+
+Artikel ini merangkum kisaran harga, fasilitas standar, dan cara memilih villa kolam renang pribadi yang sesuai kebutuhan Anda.
+
+![Eksterior villa dengan kolam renang pribadi dan taman tropis di Jagakarsa](/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp)
+
+## Kenapa Memilih Villa Private Pool di Jakarta Selatan?
+
+- **Tanpa perjalanan jauh.** Tidak perlu menyetir 3 jam ke luar kota — area Jagakarsa dan sekitarnya mudah dijangkau.
+- **Privasi penuh.** Kolam dan taman hanya untuk rombongan Anda, berbeda dari kolam hotel yang ramai.
+- **Cocok untuk banyak acara.** Dari staycation keluarga, arisan, hingga perayaan kecil.
+- **Ruang lega untuk anak & lansia.** Jauh lebih nyaman dibanding kamar hotel yang terbatas.
+
+## Kisaran Harga Sewa Villa Private Pool (2026)
+
+Harga sangat dipengaruhi lokasi, jumlah kamar, luas taman, dan hari (weekday vs weekend):
+
+- **Villa 2–3 kamar:** mulai sekitar Rp 1,5–2,5 juta per malam.
+- **Villa 4–5 kamar dengan taman luas:** sekitar Rp 2,5–4 juta per malam.
+- **Musim liburan & akhir pekan panjang:** umumnya naik 20–35%.
+
+> Tip hemat: menginap di hari kerja (Senin–Kamis) bisa menurunkan biaya hingga 25% dengan fasilitas yang sama persis.
+
+## Fasilitas yang Sebaiknya Ada
+
+### Wajib
+
+- Kolam renang pribadi yang terawat dan bersih
+- Dapur lengkap untuk memasak atau catering
+- WiFi cepat dan parkir memadai
+- Kamar ber-AC dengan kasur berkualitas hotel
+
+### Nilai Tambah
+
+- Taman luas untuk anak bermain atau BBQ
+- Area bersantai outdoor (gazebo/teras)
+- Layanan kebersihan dan tim yang responsif
+
+## Cara Memilih Villa yang Tepat
+
+- **Sesuaikan kapasitas.** Jangan memilih villa terlalu kecil — hitung total rombongan termasuk anak.
+- **Baca ulasan tamu sebelumnya.** Kebersihan kolam dan responsivitas pengelola adalah dua hal paling sering dikeluhkan jika asal pilih.
+- **Konfirmasi aturan rumah.** Jam check-in, kebijakan tamu tambahan, dan acara perlu jelas di awal.
+- **Pilih pengelola profesional.** Villa yang dikelola tim berpengalaman cenderung lebih konsisten.
+
+Sebagai gambaran, [Versatile House di Jagakarsa](/locations/jagakarsa/villas/versatile-house-jagakarsa) adalah villa 5 kamar dengan kolam renang pribadi dan taman tropis yang luas — contoh properti yang pas untuk keluarga besar maupun acara kecil. Anda bisa menelusuri pilihan lain di [koleksi villa Kinghouse](/villas) atau mengeksplor [area Jagakarsa](/locations/jagakarsa) secara lengkap.
+
+> Butuh rekomendasi villa sesuai tanggal dan jumlah tamu? [Chat tim kami](/contact) untuk bantuan memilih.
+
+Dengan perencanaan yang tepat, staycation di villa private pool Jakarta Selatan bisa memberi pengalaman setara liburan ke luar kota — tanpa lelah di jalan.`,
+    category: "jabodetabek-guide",
+    publishedAt: "2026-10-14",
+    author: AUTHOR_KINGHOUSE,
+    heroImage: "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
+    tags: ["villa private pool jakarta", "sewa villa jagakarsa", "staycation jakarta selatan", "villa kolam renang", "harga sewa villa"],
+    seoKeywords: [
+      "villa private pool jakarta selatan",
+      "sewa villa jagakarsa",
+      "villa kolam renang pribadi jakarta",
+      "harga sewa villa jakarta selatan",
+      "villa staycation keluarga jakarta",
+    ],
+    seoTitle: "Villa Private Pool Jakarta Selatan: Harga & Panduan | Kinghouse",
+    metaDescription: "Panduan sewa villa private pool Jakarta Selatan 2026: kisaran harga, fasilitas wajib, dan tips memilih villa kolam renang pribadi untuk keluarga. Baca di sini!",
+    readTime: 7,
+    featured: true,
+  },
+  {
+    id: "blog-14",
+    title: "Tempat Ulang Tahun & Family Gathering di Jagakarsa yang Asri dan Privat",
+    slug: "tempat-ulang-tahun-family-gathering-jagakarsa",
+    excerpt:
+      "Merayakan ulang tahun, arisan keluarga, atau gathering kantor tak harus di restoran yang sempit. Villa bertaman di Jagakarsa menyediakan ruang privat, kolam renang, dan suasana hijau untuk acara yang berkesan.",
+    content: `Mencari **tempat ulang tahun atau family gathering** yang lega, privat, dan tidak membosankan di Jakarta? Restoran sering terlalu ramai dan dibatasi waktu, sementara gedung terasa kaku. Villa bertaman di Jagakarsa menawarkan jalan tengah: ruang terbuka hijau dengan kolam renang, privasi penuh, dan fleksibilitas acara.
+
+![Suasana pesta taman malam hari dengan jamuan di villa Jagakarsa](/properties/versatile-house/events/evening-garden-party-banquet.jpg)
+
+## Kenapa Villa Taman Cocok untuk Acara Keluarga?
+
+- **Ruang luas untuk segala usia.** Anak bisa bermain di taman dan kolam, sementara lansia bersantai nyaman di teras.
+- **Privat sepenuhnya.** Tidak berbagi ruang dengan pengunjung lain seperti di kafe atau taman publik.
+- **Fleksibel waktunya.** Acara bisa berlangsung dari siang hingga malam tanpa dikejar jam tutup.
+- **Hemat & praktis.** Bisa masak sendiri, memesan katering, atau BBQ di tempat.
+
+## Jenis Acara yang Bisa Digelar
+
+### Ulang Tahun Anak & Dewasa
+
+Taman luas memberi ruang untuk dekorasi tema, permainan, hingga sesi foto. Kolam renang menjadi daya tarik tambahan untuk tamu cilik. Lihat contoh paket [perayaan ulang tahun di Jagakarsa](/events/birthday-celebration-jagakarsa).
+
+### Arisan & Reuni Keluarga
+
+Format santai dengan area duduk di taman dan dapur lengkap untuk menyiapkan hidangan bersama.
+
+### Gathering & Offsite Kantor
+
+Villa bertaman ideal untuk team building skala kecil–menengah. Kombinasikan sesi diskusi di ruang keluarga dengan aktivitas santai di luar. Pelajari opsi [corporate retreat di Jagakarsa](/events/corporate-retreat-jagakarsa).
+
+> Satu lokasi untuk semua: makan, main, berenang, dan bersantai — tanpa perlu berpindah tempat.
+
+## Checklist Memilih Tempat Gathering
+
+- **Kapasitas.** Pastikan villa cukup untuk seluruh tamu plus ruang gerak.
+- **Fasilitas pendukung.** Dapur, toilet memadai, parkir, dan area teduh.
+- **Akses & lokasi.** Jagakarsa relatif mudah dijangkau dari berbagai titik Jakarta Selatan dan Depok.
+- **Dukungan tim pengelola.** Penataan area dan kebersihan sebaiknya ditangani tim profesional.
+
+Properti seperti [Versatile House](/locations/jagakarsa/villas/versatile-house-jagakarsa) di Jagakarsa menyediakan kombinasi taman luas, kolam renang, dan ruang keluarga yang lapang — cocok untuk beragam acara keluarga maupun kantor. Jelajahi seluruh [paket acara Kinghouse](/events) untuk inspirasi lebih lanjut.
+
+> Ingin menyesuaikan acara dengan kebutuhan Anda? [Hubungi kami](/contact) untuk konsultasi dan ketersediaan tanggal.
+
+Acara yang berkesan dimulai dari tempat yang tepat. Dengan suasana asri dan privat, Jagakarsa menjadi salah satu pilihan terbaik untuk merayakan momen bersama orang terdekat.`,
+    category: "guest-experience",
+    publishedAt: "2026-10-18",
+    author: AUTHOR_KINGHOUSE,
+    heroImage: "/properties/versatile-house/events/evening-garden-party-banquet.jpg",
+    tags: ["tempat ulang tahun jakarta", "family gathering jakarta", "gathering jagakarsa", "villa acara jakarta selatan", "arisan keluarga"],
+    seoKeywords: [
+      "tempat ulang tahun jakarta selatan",
+      "villa family gathering jakarta",
+      "tempat gathering jagakarsa",
+      "sewa villa acara jakarta",
+      "venue arisan keluarga jakarta",
+    ],
+    seoTitle: "Tempat Ulang Tahun & Family Gathering Jagakarsa | Kinghouse",
+    metaDescription: "Cari tempat ulang tahun & family gathering privat di Jagakarsa? Villa bertaman dengan kolam renang untuk arisan, reuni, dan gathering kantor. Simak panduannya!",
+    readTime: 6,
+    featured: false,
+  },
+  {
+    id: "blog-15",
+    title: "Airbnb & Villa Property Management in Jakarta: An Owner's Guide",
+    slug: "airbnb-villa-property-management-jakarta-owner-guide",
+    excerpt:
+      "Owning a villa or apartment in Greater Jakarta but struggling with low occupancy and the daily grind of hosting? Here is how professional Airbnb and villa property management turns an idle asset into reliable monthly income.",
+    content: `If you own a villa or apartment in Greater Jakarta, you already hold a valuable short-stay asset. The hard part is running it well — pricing it correctly, keeping it booked, and delivering a five-star guest experience, every single day.
+
+This guide explains what **professional Airbnb and villa property management** in Jakarta actually covers, and how to decide whether to self-manage or hand it to a specialist.
+
+![Private pool villa managed by Kinghouse in Greater Jakarta](/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg)
+
+## What Does Property Management Actually Involve?
+
+Running a short-stay property is far more than listing it online. A complete operation includes:
+
+- **Listing optimization & SEO** across Airbnb, Agoda, and Booking.com
+- **Dynamic pricing** that adjusts to demand, weekends, and holidays
+- **24/7 guest communication** and booking handling
+- **Housekeeping & maintenance** coordination between stays
+- **Financial reporting** so you see net yield clearly
+
+Each of these moves the needle on revenue — and each takes time and expertise to do consistently.
+
+## Self-Manage vs. Professional Management
+
+### Self-Managing Works If…
+
+You have the time to respond to guests within minutes, you enjoy hosting, and you own a single property nearby.
+
+### Professional Management Makes Sense If…
+
+- You own the property as an **investment**, not a hobby
+- Your occupancy is stuck below 60%
+- You live far from the property or travel often
+- You want consistent, hotel-grade standards without the daily workload
+
+> The goal of good management is simple: higher net yield for the owner, with less stress.
+
+## How Kinghouse Approaches It
+
+Kinghouse manages curated villas and apartments across South Jakarta, Tangerang, West Jakarta, and Cikarang. The approach combines editorial photography, algorithmic dynamic pricing, and round-the-clock guest operations — treating each property as an institutional asset rather than a casual listing.
+
+Owners receive transparent performance reporting and a single point of accountability. You can read more on our [owner services page](/owner-services) or explore the [properties we currently manage](/villas).
+
+## Questions to Ask Any Manager
+
+- How is pricing set, and how often is it adjusted?
+- What is the typical occupancy uplift for comparable properties?
+- How are guest issues handled at 2 AM?
+- What reporting will I receive, and how often?
+- What is the fee structure, and what exactly does it cover?
+
+> A good manager welcomes these questions — and answers them with data, not promises.
+
+## Getting Started
+
+The best first step is a straightforward asset review: current performance, realistic revenue potential, and the specific actions that would improve it. If you own a villa or apartment in Greater Jakarta and want that assessment, [submit a management inquiry](/management-inquiry) and our team will follow up.
+
+A well-managed property should earn more while demanding less of your time. With the right partner, that is an entirely realistic outcome.`,
+    category: "owner-tips",
+    publishedAt: "2026-10-20",
+    author: AUTHOR_KINGHOUSE,
+    heroImage: "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
+    tags: ["airbnb property management jakarta", "villa management", "holiday home management", "airbnb co-host", "owner guide"],
+    seoKeywords: [
+      "airbnb property management jakarta",
+      "villa management jakarta",
+      "holiday home property management indonesia",
+      "airbnb co-host jakarta",
+      "short stay asset management jakarta",
+    ],
+    seoTitle: "Airbnb & Villa Property Management in Jakarta | Kinghouse",
+    metaDescription: "An owner's guide to Airbnb & villa property management in Greater Jakarta: what it covers, self-manage vs. pro, and how to boost occupancy and net yield.",
+    readTime: 7,
+    featured: false,
+  },
 ]
 
 // ─── EVENTS & WEDDINGS ────────────────────────────────────────────────────────

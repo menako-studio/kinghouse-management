@@ -173,7 +173,7 @@ const comprehensiveSchema = {
         "PT Kreasi Usman Gosse",
       ],
       url: SITE_CONFIG.baseUrl,
-      logo: `${SITE_CONFIG.baseUrl}/favicon.ico`,
+      logo: `${SITE_CONFIG.baseUrl}/brand/logo-primary-full-color.png`,
       description:
         "Institutional short-stay property management company under PT Kreasi Usman Gosse. We optimize luxury villas and apartments through editorial photography, algorithmic dynamic pricing, and 5-star operations.",
       contactPoint: {
@@ -203,8 +203,7 @@ const comprehensiveSchema = {
       "@id": `${SITE_CONFIG.baseUrl}/#localbusiness`,
       name: "Kinghouse Management — PT Kreasi Usman Gosse",
       legalName: "PT Kreasi Usman Gosse",
-      image:
-        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=85",
+      image: `${SITE_CONFIG.baseUrl}/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg`,
       telephone: "+6282123933218",
       email: "info@kinghousemanagement.com",
       hasMap: "https://maps.google.com/?q=18+Office+Park+Building+Jl.+TB+Simatupang+Kav.+18+Jakarta+Selatan+12520",
