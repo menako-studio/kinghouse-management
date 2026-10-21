@@ -1,0 +1,22 @@
+# Dependabot configuration
+# Keeps npm dependencies current so security patches land early, and groups
+# updates weekly to avoid pull-request noise. Security updates are delivered
+# automatically regardless of this schedule.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+    groups:
+      production-dependencies:
+        dependency-type: "production"
+      development-dependencies:
+        dependency-type: "development"
+    commit-message:
+      prefix: "chore(deps)"
+      prefix-development: "chore(dev-deps)"
