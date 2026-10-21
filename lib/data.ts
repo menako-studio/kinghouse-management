@@ -1506,6 +1506,84 @@ A well-managed property should earn more while demanding less of your time. With
     readTime: 7,
     featured: false,
   },
+  {
+    id: "blog-16",
+    title: "Punya Villa atau Properti Menganggur? Ubah Jadi Penghasilan Bersama Kinghouse",
+    slug: "titip-villa-properti-disewakan-partner-kinghouse",
+    excerpt:
+      "Villa, rumah, atau apartemen yang jarang dipakai sebenarnya aset yang bisa menghasilkan tiap bulan. Pelajari cara menitipkan properti Anda untuk dikelola dan disewakan secara profesional tanpa repot — mulai dari foto, harga, hingga melayani tamu.",
+    content: `Banyak pemilik properti di Jakarta punya aset yang sebenarnya bernilai tinggi namun jarang terpakai: villa yang hanya dipakai saat liburan, rumah kedua, atau apartemen yang dibeli untuk investasi tapi dibiarkan kosong. Padahal, dengan pengelolaan yang tepat, properti itu bisa menghasilkan pendapatan rutin setiap bulan.
+
+Artikel ini menjelaskan cara **menitipkan villa atau properti Anda untuk disewakan** secara profesional — dan kenapa model kemitraan ("co-host") sering kali lebih menguntungkan dibanding mengelola sendiri.
+
+![Ruang keluarga villa yang dikelola Kinghouse di Jakarta Selatan](/properties/versatile-house/VersatileHouse_LivingRoom_Lounge.jpg)
+
+## Properti yang Menganggur = Biaya, Bukan Aset
+
+Properti kosong tetap menimbulkan biaya: pajak, perawatan, listrik dasar, dan keamanan. Tanpa pemasukan, aset berharga justru menjadi beban. Menyewakannya secara harian atau mingguan lewat Airbnb dan platform lain mengubah persamaan itu — dari biaya menjadi arus kas.
+
+> Properti yang terkelola baik bisa menutup biaya kepemilikan dan menghasilkan surplus — tanpa Anda harus turun tangan setiap hari.
+
+## Jenis Properti yang Bisa Dititipkan
+
+- **Villa & rumah dengan taman atau kolam** — tinggi permintaan untuk staycation dan acara.
+- **Apartemen & unit serviced** — diminati tamu bisnis dan ekspatriat.
+- **Rumah kedua yang jarang dipakai** — ideal untuk disewakan saat Anda tidak menggunakannya.
+- **Space atau lahan untuk acara** — taman, rooftop, atau ruang serbaguna untuk event.
+
+Jika Anda punya salah satunya di Jakarta Selatan, Tangerang, Jakarta Barat, atau Cikarang, properti itu kemungkinan besar punya potensi sewa yang belum tergarap.
+
+## Kelola Sendiri vs. Kemitraan Profesional
+
+### Mengelola Sendiri
+
+Memungkinkan, tetapi menuntut waktu: membalas chat tamu kapan saja, mengatur jadwal kebersihan, menetapkan harga yang tepat, menangani keluhan, dan menjaga standar foto serta listing. Bagi kebanyakan pemilik, ini pekerjaan penuh waktu.
+
+### Kemitraan dengan Kinghouse
+
+Anda tetap pemilik penuh; kami yang menjalankan operasionalnya:
+
+- **Foto editorial & optimasi listing** di Airbnb, Agoda, dan Booking.com
+- **Dynamic pricing** yang menyesuaikan harga dengan permintaan, akhir pekan, dan musim
+- **Layanan tamu 24/7**, penanganan booking, hingga check-in/check-out
+- **Kebersihan & perawatan** terkoordinasi antar tamu
+- **Laporan transparan** sehingga Anda melihat pendapatan bersih dengan jelas
+
+> Tujuannya sederhana: hasil lebih tinggi untuk pemilik, dengan usaha jauh lebih sedikit.
+
+## Bagaimana Memulainya?
+
+Langkah pertama adalah **penilaian aset gratis**: kami meninjau properti Anda, memperkirakan potensi pendapatannya secara realistis, dan menjelaskan langkah konkret untuk memaksimalkannya. Tidak ada komitmen di tahap ini.
+
+Anda bisa mempelajari cara kerja kemitraan di halaman [layanan untuk pemilik properti](/owner-services), melihat contoh [properti yang kami kelola](/villas), lalu [ajukan konsultasi pengelolaan](/management-inquiry) ketika siap.
+
+## Pertanyaan yang Sering Ditanyakan Pemilik
+
+- **Apakah saya kehilangan kendali atas properti?** Tidak. Anda tetap pemilik penuh dan menentukan aturan utama.
+- **Bagaimana skema bagi hasilnya?** Transparan dan disepakati di awal, tanpa biaya tersembunyi.
+- **Bagaimana jika saya ingin memakai properti sendiri?** Jadwal pemakaian pribadi tetap bisa diblok kapan saja.
+- **Bagaimana kondisi properti dijaga?** Perawatan dan kebersihan rutin terkoordinasi, dengan pelaporan kondisi.
+
+> Pertanyaan yang baik adalah tanda pemilik yang cermat — dan kami menjawabnya dengan data, bukan janji.
+
+Properti terbaik bukan yang paling mewah, melainkan yang paling optimal dikelola. Jika Anda punya villa, apartemen, atau space yang menganggur di Jabodetabek, mari ubah menjadi aset produktif. [Hubungi tim kami](/contact) untuk memulai penilaian tanpa biaya.`,
+    category: "owner-tips",
+    publishedAt: "2026-10-21",
+    author: AUTHOR_KINGHOUSE,
+    heroImage: "/properties/versatile-house/VersatileHouse_LivingRoom_Lounge.jpg",
+    tags: ["jasa kelola villa", "titip villa disewakan", "mitra pengelola properti", "co-host airbnb jakarta", "sewakan properti"],
+    seoKeywords: [
+      "jasa kelola villa airbnb jakarta",
+      "titip villa untuk disewakan",
+      "cara menyewakan villa di airbnb",
+      "mitra pengelola properti jabodetabek",
+      "jasa sewakan apartemen harian",
+    ],
+    seoTitle: "Titip Villa & Properti untuk Disewakan | Kinghouse",
+    metaDescription: "Punya villa, apartemen, atau space menganggur di Jabodetabek? Pelajari cara menitipkannya untuk dikelola & disewakan profesional bersama Kinghouse. Konsultasi gratis!",
+    readTime: 6,
+    featured: true,
+  },
 ]
 
 // ─── EVENTS & WEDDINGS ────────────────────────────────────────────────────────
