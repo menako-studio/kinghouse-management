@@ -86,6 +86,7 @@ export default function DynamicPricingPage() {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- loads pricing when the selected property or strategy changes
     fetchPricing(selectedProperty, strategy)
   }, [selectedProperty, strategy])
 

@@ -1,7 +1,8 @@
 "use client"
 
-import { useState, useMemo, useEffect } from "react"
+import { useState, useMemo } from "react"
 import { createPortal } from "react-dom"
+import { useMounted } from "@/lib/hooks/use-mounted"
 import {
   ChevronLeft,
   ChevronRight,
@@ -59,13 +60,9 @@ const CHANNEL_STYLES: Record<
 }
 
 export function BookingsGanttChart({ reservations }: BookingsGanttChartProps) {
-  const [mounted, setMounted] = useState(false)
+  const mounted = useMounted()
   const [viewDate, setViewDate] = useState(() => new Date(2026, 7, 1)) // August 2026
   const [selectedRes, setSelectedRes] = useState<Reservation | null>(null)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
 
   const year = viewDate.getFullYear()
   const month = viewDate.getMonth()

@@ -1,7 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { createPortal } from "react-dom"
+import { useMounted } from "@/lib/hooks/use-mounted"
 import Image from "next/image"
 import Link from "next/link"
 import {
@@ -25,13 +26,9 @@ import { ChannelBadge } from "@/components/dashboard/channel-badge"
 import { formatCurrency } from "@/lib/utils"
 
 export default function DashboardPropertiesPage() {
-  const [mounted, setMounted] = useState(false)
+  const mounted = useMounted()
   const [copiedSlug, setCopiedSlug] = useState<string | null>(null)
   const [selectedGuideVilla, setSelectedGuideVilla] = useState<string | null>(null)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
 
   const handleCopyIcal = (slug: string) => {
     const origin = typeof window !== "undefined" ? window.location.origin : "https://www.kinghousemanagement.com"
