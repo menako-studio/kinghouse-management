@@ -1,5 +1,5 @@
 import { BlogPost } from "@/lib/types"
-import { BLOG_POSTS } from "@/lib/data"
+import { BLOG_POSTS } from "@/lib/blog/posts"
 import { getSupabaseServerClient } from "@/lib/supabase/server"
 
 // In-memory runtime store initialized with verified seed articles
