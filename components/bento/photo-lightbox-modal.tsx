@@ -24,10 +24,15 @@ export function PhotoLightboxModal({
   propertyName,
 }: PhotoLightboxModalProps) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex)
+  const [lastInitialIndex, setLastInitialIndex] = useState(initialIndex)
 
-  useEffect(() => {
+  // Reset to the requested photo when the modal is reopened at a new index.
+  // Adjusting state during render (React's recommended pattern) avoids a
+  // set-state-in-effect round-trip.
+  if (initialIndex !== lastInitialIndex) {
+    setLastInitialIndex(initialIndex)
     setCurrentIndex(initialIndex)
-  }, [initialIndex])
+  }
 
   const nextPhoto = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % images.length)

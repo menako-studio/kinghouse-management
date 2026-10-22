@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { createPortal } from "react-dom"
+import { useMounted } from "@/lib/hooks/use-mounted"
 import {
   CalendarDays,
   CheckCircle2,
@@ -30,9 +31,15 @@ import { formatCurrency } from "@/lib/utils"
 import { useNotifications } from "@/components/dashboard/notification-context"
 import { BookingsGanttChart } from "@/components/dashboard/bookings-gantt-chart"
 
+// Generates a short, human-readable reservation id for manually added bookings.
+// Kept at module scope so the random call is not treated as impure render logic.
+function generateReservationId() {
+  return `RES-${Math.floor(8925 + Math.random() * 1000)}`
+}
+
 export default function DashboardBookingsPage() {
   const { addAlert, showToast } = useNotifications()
-  const [mounted, setMounted] = useState(false)
+  const mounted = useMounted()
   const [viewMode, setViewMode] = useState<"gantt" | "table">("gantt")
   const [reservations, setReservations] = useState<Reservation[]>([])
   const [searchQuery, setSearchQuery] = useState("")
@@ -47,7 +54,6 @@ export default function DashboardBookingsPage() {
   const [syncVillaSlug, setSyncVillaSlug] = useState(CURATED_VILLAS[0].slug)
 
   useEffect(() => {
-    setMounted(true)
     const loadReservations = async () => {
       try {
         let res = await fetch("/api/erp/reservations")
@@ -98,7 +104,7 @@ export default function DashboardBookingsPage() {
     const selectedVilla = CURATED_VILLAS.find((v) => v.id === formPropertyId) || CURATED_VILLAS[0]
 
     const newRes: Reservation = {
-      id: `RES-${Math.floor(8925 + Math.random() * 1000)}`,
+      id: generateReservationId(),
       propertyId: selectedVilla.id,
       propertySlug: selectedVilla.slug,
       propertyName: selectedVilla.name,
