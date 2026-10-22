@@ -9,6 +9,29 @@ export const GA_MEASUREMENT_ID =
 export const GTM_ID =
   process.env.NEXT_PUBLIC_GTM_ID || "GTM-PH9N4N7H"
 
+/**
+ * Designated GA4 Key Events (conversions) — single source of truth.
+ *
+ * These events already fire from the tracking functions in this file. GA4 only
+ * counts them as conversions once each is flagged as a Key Event in the GA4
+ * Admin UI: Admin → Data display → Events → toggle "Mark as key event".
+ * Keep this list in sync with what is marked in GA4.
+ *
+ *   whatsapp_click         — WhatsApp concierge / inquiry
+ *   booking_inquiry        — booking intent on a property
+ *   owner_lead_submit      — property-owner partnership lead
+ *   generate_lead          — GA4 standard lead event (fired alongside the above)
+ *   airbnb_outbound_click  — outbound click to Airbnb listing
+ *   agoda_outbound_click   — outbound click to Agoda listing
+ */
+export const KEY_EVENTS = [
+  "whatsapp_click",
+  "booking_inquiry",
+  "owner_lead_submit",
+  "generate_lead",
+  "airbnb_outbound_click",
+  "agoda_outbound_click",
+] as const
 
 declare global {
   interface Window {
