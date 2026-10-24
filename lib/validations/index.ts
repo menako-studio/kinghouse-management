@@ -64,7 +64,94 @@ export const SeoUpdateSchema = z.object({
     .or(z.literal("")),
 })
 
+// ------------------------------------------------------------------
+// Lead funnel (Owner / Stay / Event) — public form submissions
+// ------------------------------------------------------------------
+
+const isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Format tanggal harus YYYY-MM-DD")
+const timeOfDay = z.string().regex(/^\d{2}:\d{2}$/, "Format jam harus HH:MM")
+
+const LeadContactFields = {
+  name: z.string().trim().min(2, "Nama minimal 2 karakter").max(80, "Nama maksimal 80 karakter"),
+  whatsapp: z
+    .string()
+    .trim()
+    .regex(/^\+?[0-9][0-9\s-]{7,19}$/, "Nomor WhatsApp tidak valid"),
+  // Honeypot: real visitors never see or fill this field.
+  website: z.string().max(0, "Spam terdeteksi").optional(),
+}
+
+export const LeadSourceSchema = z
+  .object({
+    utmSource: z.string().max(100).optional(),
+    utmMedium: z.string().max(100).optional(),
+    utmCampaign: z.string().max(150).optional(),
+    referrer: z.string().max(300).optional(),
+    landingPage: z.string().max(300).optional(),
+  })
+  .optional()
+
+export const OwnerLeadSchema = z.object({
+  target: z.literal("OWNER"),
+  ...LeadContactFields,
+  email: z.string().trim().email("Format email tidak valid").optional().or(z.literal("")),
+  service: z.enum(["hk-on-demand", "co-hosting", "full-management", "undecided"]),
+  propertyType: z.enum(["rumah", "apartemen", "villa"]),
+  location: z.string().trim().min(2, "Lokasi wajib diisi").max(120),
+  units: z.number().int().min(1, "Jumlah kamar/unit minimal 1").max(500),
+  propertyStatus: z.enum(["ota-live", "not-listed", "new-build"]),
+  source: LeadSourceSchema,
+})
+
+export const EventLeadSchema = z
+  .object({
+    target: z.literal("EVENT"),
+    ...LeadContactFields,
+    eventType: z.enum(["wedding", "gathering", "shooting"]),
+    eventDate: isoDate,
+    backupDate: isoDate.optional().or(z.literal("")),
+    startTime: timeOfDay,
+    endTime: timeOfDay,
+    guests: z.number().int().min(1, "Jumlah tamu/kru minimal 1").max(1000),
+    property: z.string().trim().min(2).max(120),
+    specialNeeds: z.array(z.enum(["music", "decoration", "catering", "overnight"])).max(4).default([]),
+    // Type-specific questions
+    weddingSession: z.enum(["akad", "resepsi", "keduanya"]).optional(),
+    ownVendor: z.boolean().optional(),
+    earlyDecoration: z.boolean().optional(),
+    shootPurpose: z.enum(["komersial", "pribadi"]).optional(),
+    heavyEquipment: z.boolean().optional(),
+    notes: z.string().trim().max(500).optional(),
+    source: LeadSourceSchema,
+  })
+  .refine((d) => d.endTime > d.startTime, {
+    message: "Jam selesai harus setelah jam mulai",
+    path: ["endTime"],
+  })
+
+export const StayLeadSchema = z
+  .object({
+    target: z.literal("STAY"),
+    ...LeadContactFields,
+    need: z.enum(["notify", "inquiry"]),
+    property: z.string().trim().min(2).max(120),
+    checkIn: isoDate,
+    checkOut: isoDate,
+    guests: z.number().int().min(1).max(50),
+    source: LeadSourceSchema,
+  })
+  .refine((d) => d.checkOut > d.checkIn, {
+    message: "Tanggal check-out harus setelah tanggal check-in",
+    path: ["checkOut"],
+  })
+
+export const LeadSchema = z.union([OwnerLeadSchema, EventLeadSchema, StayLeadSchema])
+
 export type LoginInput = z.infer<typeof LoginSchema>
 export type ReservationInput = z.infer<typeof ReservationSchema>
 export type ExpenseInput = z.infer<typeof ExpenseSchema>
 export type SeoUpdateInput = z.infer<typeof SeoUpdateSchema>
+export type OwnerLeadInput = z.infer<typeof OwnerLeadSchema>
+export type EventLeadInput = z.infer<typeof EventLeadSchema>
+export type StayLeadInput = z.infer<typeof StayLeadSchema>
+export type LeadInput = z.infer<typeof LeadSchema>

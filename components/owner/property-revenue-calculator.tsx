@@ -12,6 +12,7 @@ import { useLocalization } from "@/lib/context/localization-context"
 import { SUBMARKET_BENCHMARKS } from "@/lib/pricing/engine"
 import { trackWhatsAppClick } from "@/lib/analytics"
 import { Button } from "@/components/ui/button"
+import { whatsappBase } from "@/lib/funnel/whatsapp"
 
 interface SubmarketOption {
   key: string
@@ -206,7 +207,7 @@ Mohon informasi jadwal audit fisik & onboarding properti saya. Terima kasih!`
 
 Please provide information on scheduling a complimentary physical audit and onboarding timeline. Thank you!`
 
-    return `https://wa.me/6282123933218?text=${encodeURIComponent(message)}`
+    return `${whatsappBase("OWNER")}?text=${encodeURIComponent(message)}`
   }, [isId, currentSubmarket, bedrooms, calculations, feeTier, formatPrice])
 
   const handlePrintAudit = () => {

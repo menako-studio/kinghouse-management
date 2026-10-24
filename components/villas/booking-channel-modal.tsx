@@ -22,6 +22,7 @@ import {
   trackAirbnbClick,
   trackEvent,
 } from "@/lib/analytics"
+import { whatsappBase } from "@/lib/funnel/whatsapp"
 
 interface BookingChannelModalProps {
 
@@ -94,7 +95,7 @@ export function BookingChannelModal({ villa, isOpen, onClose }: BookingChannelMo
     }
 
     const message = `Hello Kinghouse! I would like to book "${villa.name}" (${villa.area}).\n\nRate: ${formatPrice(villa.price.idr)}/night\nUpselling Add-on:${transferNote ? transferNote : " None (Stay Only)"}\n\nPlease share available dates and direct booking perks!`
-    return `https://wa.me/6282123933218?text=${encodeURIComponent(message)}`
+    return `${whatsappBase("STAY")}?text=${encodeURIComponent(message)}`
   }
 
   return (
@@ -333,7 +334,7 @@ export function BookingChannelModal({ villa, isOpen, onClose }: BookingChannelMo
                   </a>
                 ) : (
                   <a
-                    href={`https://wa.me/6282123933218?text=${encodeURIComponent(`Hello Kinghouse! I am inquiring about OTA booking for ${villa.name}.`)}`}
+                    href={`${whatsappBase("STAY")}?text=${encodeURIComponent(`Hello Kinghouse! I am inquiring about OTA booking for ${villa.name}.`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => trackWhatsAppClick({ source: "booking_modal", propertyName: villa.name, context: "ota_inquiry" })}

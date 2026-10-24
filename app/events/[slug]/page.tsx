@@ -6,6 +6,7 @@ import { CheckCircle2, ArrowLeft, ArrowRight, Users, MessageSquare, Globe } from
 import { VILLA_EVENTS, CURATED_VILLAS } from "@/lib/data"
 import { SITE_CONFIG } from "@/lib/constants"
 import { formatCurrency } from "@/lib/utils"
+import { whatsappBase } from "@/lib/funnel/whatsapp"
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -215,7 +216,7 @@ export default async function EventDetailPage({ params }: PageProps) {
                 </p>
                 <div className="pt-2">
                   <a
-                    href={`https://wa.me/6282123933218?text=${encodeURIComponent(`Hello Kinghouse Concierge! We are an international couple interested in hosting our wedding ceremony at ${event.propertyName}. Could you please share the international lookbook and availability?`)}`}
+                    href={`${whatsappBase("EVENT")}?text=${encodeURIComponent(`Hello Kinghouse Concierge! We are an international couple interested in hosting our wedding ceremony at ${event.propertyName}. Could you please share the international lookbook and availability?`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-[#222225] text-white hover:bg-[#333333] text-xs font-semibold transition-colors"
@@ -269,7 +270,7 @@ export default async function EventDetailPage({ params }: PageProps) {
                     ))}
                   </div>
                   <a
-                    href={`https://wa.me/6282123933218?text=${whatsappText}`}
+                    href={`${whatsappBase("EVENT")}?text=${whatsappText}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`flex items-center justify-center space-x-2 w-full py-3 rounded-xl text-sm font-semibold transition-colors ${

@@ -3,6 +3,7 @@ import { BookOpen, Rss } from "lucide-react"
 import { getBlogPosts } from "@/lib/blog/service"
 import { BlogIndexClient } from "@/components/blog/blog-index-client"
 import { SITE_CONFIG } from "@/lib/constants"
+import { whatsappBase } from "@/lib/funnel/whatsapp"
 
 export const revalidate = 120
 
@@ -128,7 +129,7 @@ export default async function BlogPage() {
             Consult with Kinghouse asset managers regarding your Airbnb listing. Zero commitment, complimentary audit.
           </p>
           <a
-            href="https://wa.me/6282123933218?text=Hello%20Kinghouse!%20I%20would%20like%20a%20consultation%20regarding%20my%20Airbnb%20property%20management."
+            href={`${whatsappBase("OWNER")}?text=Hello%20Kinghouse!%20I%20would%20like%20a%20consultation%20regarding%20my%20Airbnb%20property%20management.`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center space-x-2 bg-white text-[#222222] px-8 py-3 rounded-full text-sm font-semibold hover:bg-[#F5F4F0] transition-colors"

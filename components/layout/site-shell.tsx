@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { FloatingWhatsApp } from "@/components/ui/floating-whatsapp"
+import { LeadSourceCapture } from "@/components/funnel/lead-source-capture"
 
 interface SiteShellProps {
   children: React.ReactNode
@@ -27,6 +28,7 @@ export function SiteShell({ children }: SiteShellProps) {
 
   return (
     <>
+      <LeadSourceCapture />
       <Header />
       {children}
       <Footer />

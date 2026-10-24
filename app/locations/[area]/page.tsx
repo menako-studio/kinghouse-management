@@ -5,6 +5,7 @@ import { MapPin, Sparkles, ArrowRight, ShieldCheck, ChevronRight, CheckCircle2 }
 import { MANAGED_AREAS, SITE_CONFIG } from "@/lib/constants"
 import { CURATED_VILLAS } from "@/lib/data"
 import { VillaCard } from "@/components/villas/villa-card"
+import { whatsappBase } from "@/lib/funnel/whatsapp"
 
 interface PageProps {
   params: Promise<{
@@ -303,7 +304,7 @@ export default async function AreaLandingPage({ params }: PageProps) {
                 </div>
 
                 <a
-                  href={`https://wa.me/6282123933218?text=Hello%20Kinghouse!%20I%20own%20a%20property%20in%20${areaData.name}%20and%20would%20like%20a%20management%20consultation.`}
+                  href={`${whatsappBase("OWNER")}?text=Hello%20Kinghouse!%20I%20own%20a%20property%20in%20${areaData.name}%20and%20would%20like%20a%20management%20consultation.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center space-x-2 w-full bg-[#222222] text-white py-3 rounded-xl text-xs font-semibold hover:bg-[#333333] transition-colors"

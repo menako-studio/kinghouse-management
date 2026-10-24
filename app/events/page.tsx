@@ -30,6 +30,10 @@ import { VILLA_EVENTS, VERSATILE_HOUSE_EVENT_PRICELIST, CURATED_VILLAS } from "@
 import { VillaEvent } from "@/lib/types"
 import { trackBrochureDownload, trackWhatsAppClick } from "@/lib/analytics"
 import { useLocalization } from "@/lib/context/localization-context"
+import { EventTypeCards } from "@/components/events/event-type-cards"
+import { EventLeadForm } from "@/components/events/event-lead-form"
+import { whatsappBase } from "@/lib/funnel/whatsapp"
+import type { EventTypeId } from "@/lib/funnel/config"
 
 type SortOption = "recommended" | "price-asc" | "price-desc" | "capacity"
 
@@ -206,7 +210,7 @@ function NakulaEventCard({ event }: { event: VillaEvent }) {
           </div>
 
           <a
-            href={`https://wa.me/6282123933218?text=${whatsappMessage}`}
+            href={`${whatsappBase("EVENT")}?text=${whatsappMessage}`}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => {
@@ -216,6 +220,7 @@ function NakulaEventCard({ event }: { event: VillaEvent }) {
               })
               trackWhatsAppClick({
                 source: "event_page",
+                funnel: "event",
                 propertyName: event.propertyName,
                 context: event.title,
                 value: startingPriceIdr,
@@ -287,6 +292,9 @@ export default function EventsPage() {
   const [gridSearchQuery, setGridSearchQuery] = useState<string>("")
   const [sortBy, setSortBy] = useState<SortOption>("recommended")
   const [showMobileFilters, setShowMobileFilters] = useState<boolean>(false)
+
+  // Funnel B2: event type picked on the cards drives the qualification form
+  const [funnelEventType, setFunnelEventType] = useState<EventTypeId | null>(null)
 
   // Gallery showcase state
   const [activeGalleryFilter, setActiveGalleryFilter] = useState<string>("all")
@@ -405,6 +413,9 @@ export default function EventsPage() {
           </p>
         </div>
       </section>
+
+      {/* Funnel B2: pick the event type (Wedding / Gathering / Shooting) */}
+      <EventTypeCards selected={funnelEventType} onSelect={setFunnelEventType} />
 
       {/* 3. Main Events Catalog with LEFT SIDEBAR FILTER & 2-COLUMN GRID */}
       <section className="mx-auto max-w-7xl px-6 lg:px-12 py-12">
@@ -758,7 +769,7 @@ export default function EventsPage() {
             </div>
 
             <a
-              href={`https://wa.me/6282123933218?text=${encodeURIComponent("Hello Kinghouse Concierge! I am interested in viewing more wedding & event venue photos and checking date availability.")}`}
+              href={`${whatsappBase("EVENT")}?text=${encodeURIComponent("Hello Kinghouse Concierge! I am interested in viewing more wedding & event venue photos and checking date availability.")}`}
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 rounded-full bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-colors shadow-sm cursor-pointer shrink-0"
@@ -826,7 +837,7 @@ export default function EventsPage() {
                   Kinghouse Curated Residences &bull; Jagakarsa, South Jakarta
                 </span>
                 <a
-                  href={`https://wa.me/6282123933218?text=${encodeURIComponent(`Hello Kinghouse! I saw the "${lightboxPhoto.title}" setup in your events gallery and would like to inquire about date availability and package rates.`)}`}
+                  href={`${whatsappBase("EVENT")}?text=${encodeURIComponent(`Hello Kinghouse! I saw the "${lightboxPhoto.title}" setup in your events gallery and would like to inquire about date availability and package rates.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-xl bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-xs font-semibold uppercase tracking-wider transition-colors shadow-sm"
@@ -948,7 +959,7 @@ export default function EventsPage() {
                       </td>
                       <td className="px-5 py-4 text-right">
                         <a
-                          href={`https://wa.me/6282123933218?text=${message}`}
+                          href={`${whatsappBase("EVENT")}?text=${message}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center space-x-1 px-3 py-1.5 rounded-md bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-[11px] font-semibold transition-colors"
@@ -970,6 +981,9 @@ export default function EventsPage() {
           </div>
         </div>
       </section>
+
+      {/* Funnel B2: event qualification form + venue rules */}
+      <EventLeadForm eventType={funnelEventType ?? "wedding"} onEventTypeChange={setFunnelEventType} />
 
       {/* 5. INTERNATIONAL & EXPAT WEDDING CONCIERGE (Foreigner-Friendly Direct Desk) */}
       <section className="mx-auto max-w-7xl px-6 lg:px-12 pt-8 pb-16">
@@ -1061,7 +1075,7 @@ export default function EventsPage() {
 
             <div className="flex flex-wrap items-center gap-3">
               <a
-                href="https://wa.me/6282123933218?text=Hello%20Kinghouse%20Concierge!%20We%20are%20an%20international%20couple%20inquiring%20about%20hosting%20a%20private%20destination%20wedding%20at%20Versatile%20House%20Jagakarsa.%20Could%20you%20please%20share%20the%20international%20wedding%20lookbook,%20available%20dates,%20and%20rates%20in%20USD/IDR%3F"
+                href={`${whatsappBase("EVENT")}?text=Hello%20Kinghouse%20Concierge!%20We%20are%20an%20international%20couple%20inquiring%20about%20hosting%20a%20private%20destination%20wedding%20at%20Versatile%20House%20Jagakarsa.%20Could%20you%20please%20share%20the%20international%20wedding%20lookbook,%20available%20dates,%20and%20rates%20in%20USD/IDR%3F`}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => {
@@ -1078,7 +1092,7 @@ export default function EventsPage() {
               </a>
 
               <a
-                href="https://wa.me/6282123933218?text=Hello%20Kinghouse!%20Please%20send%20me%20the%20Official%20Wedding%20Lookbook%202026%20and%20Floorplan%20Deck%20for%20Versatile%20House%20Jagakarsa."
+                href={`${whatsappBase("EVENT")}?text=Hello%20Kinghouse!%20Please%20send%20me%20the%20Official%20Wedding%20Lookbook%202026%20and%20Floorplan%20Deck%20for%20Versatile%20House%20Jagakarsa.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => {
@@ -1153,7 +1167,7 @@ export default function EventsPage() {
                 One-time Cleaning Fee: {formatPrice(versatileHouse.price.cleaningFeeIdr)}
               </span>
               <a
-                href={`https://wa.me/6282123933218?text=${encodeURIComponent("Hello Kinghouse! I would like to inquire about room stay configurations at Versatile House Jagakarsa.")}`}
+                href={`${whatsappBase("EVENT")}?text=${encodeURIComponent("Hello Kinghouse! I would like to inquire about room stay configurations at Versatile House Jagakarsa.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center space-x-1 text-[#8C7F5F] hover:text-[#222225] font-semibold"

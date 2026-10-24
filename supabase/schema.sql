@@ -75,6 +75,42 @@ CREATE TABLE IF NOT EXISTS public.blog_posts (
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
+-- 4. LEADS TABLE (Owner / Stay / Event funnel pipeline)
+-- Contains personal data (name, WhatsApp): RLS is enabled with NO anon/authenticated
+-- policies, so only the server (SUPABASE_SERVICE_ROLE_KEY) can read or write it.
+CREATE TABLE IF NOT EXISTS public.leads (
+    id TEXT PRIMARY KEY,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    target TEXT NOT NULL CHECK (target IN ('OWNER', 'STAY', 'EVENT')),
+    need TEXT NOT NULL,
+    name TEXT NOT NULL,
+    whatsapp TEXT NOT NULL,
+    email TEXT,
+    event_date DATE,
+    check_out DATE,
+    guests_or_units INTEGER,
+    property TEXT,
+    status TEXT NOT NULL DEFAULT 'Baru'
+        CHECK (status IN ('Baru', 'Dikualifikasi', 'Penawaran terkirim', 'Tanggal ditahan', 'Booking / Kontrak', 'Batal')),
+    priority BOOLEAN NOT NULL DEFAULT FALSE,
+    route_to TEXT NOT NULL,
+    pic TEXT,
+    first_response_due_at TIMESTAMPTZ,
+    first_response_at TIMESTAMPTZ,
+    last_contact_at TIMESTAMPTZ,
+    utm_source TEXT,
+    utm_medium TEXT,
+    utm_campaign TEXT,
+    referrer TEXT,
+    landing_page TEXT,
+    details JSONB NOT NULL DEFAULT '{}'::JSONB,
+    notes TEXT,
+    lost_reason TEXT
+);
+
+CREATE INDEX IF NOT EXISTS idx_leads_created_at ON public.leads (created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_leads_target_status ON public.leads (target, status);
+
 -- Grant schema and table permissions
 GRANT USAGE ON SCHEMA public TO anon, authenticated, service_role;
 GRANT ALL ON ALL TABLES IN SCHEMA public TO anon, authenticated, service_role;
@@ -84,6 +120,8 @@ GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO anon, authenticated, service_role
 ALTER TABLE public.reservations ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.expenses ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.blog_posts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.leads ENABLE ROW LEVEL SECURITY;
+REVOKE ALL ON public.leads FROM anon, authenticated;
 
 -- Allow public read access (anon / service_role)
 CREATE POLICY "Public Read Reservations" ON public.reservations FOR SELECT USING (true);
