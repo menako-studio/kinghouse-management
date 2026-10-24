@@ -100,7 +100,7 @@ export function Header() {
           : "border-b border-[#F0ECE1] bg-white"
       }`}
     >
-      <div className="mx-auto flex h-20 lg:h-22 xl:h-24 max-w-[1440px] items-center px-6 lg:px-10 xl:px-14 gap-x-8 xl:gap-x-12">
+      <div className="mx-auto flex h-20 lg:h-22 xl:h-24 max-w-[1440px] items-center px-6 lg:px-8 2xl:px-14 gap-x-6 2xl:gap-x-12">
         {/* Left: Official Brandmark Logo (Secondary Horizontal - Enlarged for clear legibility) */}
         <Link
           href="/"
@@ -117,12 +117,12 @@ export function Header() {
             height={64}
             quality={100}
             priority
-            className="h-10 sm:h-11 md:h-13 lg:h-14 xl:h-16 w-auto object-contain transition-opacity duration-200 group-hover:opacity-85"
+            className="h-10 sm:h-11 md:h-13 lg:h-12 2xl:h-16 w-auto object-contain transition-opacity duration-200 group-hover:opacity-85"
           />
         </Link>
 <div className="hidden lg:block flex-1" />
         {/* Center: Desktop Navigation Bar (Nakula-inspired — left-aligned after logo, not centered) */}
-        <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+        <nav className="hidden lg:flex items-center space-x-4 xl:space-x-5 2xl:space-x-8">
 
           {/* OUR PROPERTIES dropdown toggle */}
           <div className="relative">
@@ -134,7 +134,7 @@ export function Header() {
                 setLanguageDropdownOpen(false)
               }}
               onMouseEnter={() => setPropertiesMenuOpen(true)}
-              className={`flex items-center space-x-1 text-xs font-medium uppercase tracking-[0.16em] whitespace-nowrap transition-colors py-2 cursor-pointer ${
+              className={`flex items-center space-x-1 text-xs font-medium uppercase tracking-[0.1em] 2xl:tracking-[0.16em] whitespace-nowrap transition-colors py-2 cursor-pointer ${
                 propertiesMenuOpen || pathname.startsWith("/villas") || pathname.startsWith("/locations")
                   ? "text-[#8C7F5F] font-semibold"
                   : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
@@ -151,7 +151,7 @@ export function Header() {
 
           <Link
             href="/villas"
-            className={`text-xs font-medium uppercase tracking-[0.16em] whitespace-nowrap transition-colors py-2 ${
+            className={`text-xs font-medium uppercase tracking-[0.1em] 2xl:tracking-[0.16em] whitespace-nowrap transition-colors py-2 ${
               pathname === "/offers" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
             }`}
           >
@@ -160,7 +160,7 @@ export function Header() {
 
           <Link
             href="/events"
-            className={`text-xs font-medium uppercase tracking-[0.16em] whitespace-nowrap transition-colors py-2 ${
+            className={`text-xs font-medium uppercase tracking-[0.1em] 2xl:tracking-[0.16em] whitespace-nowrap transition-colors py-2 ${
               pathname === "/events" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
             }`}
           >
@@ -170,7 +170,7 @@ export function Header() {
           {/* OWNER SERVICES */}
           <Link
             href="/owner-services"
-            className={`text-xs font-medium uppercase tracking-[0.16em] whitespace-nowrap transition-colors py-2 ${
+            className={`text-xs font-medium uppercase tracking-[0.1em] 2xl:tracking-[0.16em] whitespace-nowrap transition-colors py-2 ${
               pathname === "/owner-services" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
             }`}
           >
@@ -180,7 +180,7 @@ export function Header() {
           {/* ENQUIRE underlined (Exact Nakula styling) */}
           <Link
             href="/contact"
-            className="text-xs font-semibold uppercase tracking-[0.16em] whitespace-nowrap text-[#8C7F5F] underline underline-offset-6 decoration-1 hover:text-[#776B4E] transition-colors py-2"
+            className="text-xs font-semibold uppercase tracking-[0.1em] 2xl:tracking-[0.16em] whitespace-nowrap text-[#8C7F5F] underline underline-offset-6 decoration-1 hover:text-[#776B4E] transition-colors py-2"
           >
             {t("enquire")}
           </Link>
@@ -190,7 +190,7 @@ export function Header() {
         <div className="hidden lg:block flex-1" />
 
         {/* Right: Currency, Language & Pill Button (Exact Nakula.com layout: $ RP v, Globe EN v, SIGN IN) */}
-        <div className="hidden md:flex items-center space-x-4 shrink-0">
+        <div className="hidden md:flex items-center space-x-1 2xl:space-x-4 shrink-0">
           {/* Currency Dropdown (matching Nakula '$ RP v' aesthetic) */}
           <div className="relative" ref={currencyRef}>
             <button
@@ -302,7 +302,7 @@ export function Header() {
           {/* SIGN IN Pill Button (Exact Nakula button aesthetic & placement) */}
           <Link
             href="/login"
-            className="inline-flex items-center justify-center rounded-full border border-[#231F1A] bg-transparent px-5 py-2 text-xs font-medium uppercase tracking-[0.16em] text-[#231F1A] hover:bg-[#231F1A] hover:text-[#FAF7F1] transition-all duration-200"
+            className="hidden xl:inline-flex items-center justify-center rounded-full border border-[#231F1A] bg-transparent px-4 2xl:px-5 py-2 text-xs whitespace-nowrap font-medium uppercase tracking-[0.16em] text-[#231F1A] hover:bg-[#231F1A] hover:text-[#FAF7F1] transition-all duration-200"
           >
             {t("signIn") || "SIGN IN"}
           </Link>
