@@ -73,7 +73,7 @@ export function PerformanceMetrics() {
                       <span className="text-[10px] uppercase tracking-wider text-[#717171] font-medium block">
                         Occupancy Rate
                       </span>
-                      <div className="flex items-baseline space-x-1.5">
+                      <div className="flex flex-wrap items-baseline gap-x-1.5">
                         <span className="text-xs text-[#999999] line-through">
                           {cs.beforeMetrics.occupancyRate}%
                         </span>
@@ -91,7 +91,7 @@ export function PerformanceMetrics() {
                       <span className="text-[10px] uppercase tracking-wider text-[#717171] font-medium block">
                         Monthly Revenue
                       </span>
-                      <div className="flex items-baseline space-x-1.5">
+                      <div className="flex flex-wrap items-baseline gap-x-1.5">
                         <span className="text-xs text-[#999999] line-through">
                           {formatPrice(cs.beforeMetrics.monthlyRevenueIdr)}
                         </span>
