@@ -1,4 +1,6 @@
-import OwnerServicesPage, { metadata } from "@/app/owner-services/page"
+import { permanentRedirect } from "next/navigation"
 
-export { metadata }
-export default OwnerServicesPage
+// Legacy URL: one canonical page for owner services (avoids duplicate content).
+export default function ServicesPage() {
+  permanentRedirect("/owner-services")
+}

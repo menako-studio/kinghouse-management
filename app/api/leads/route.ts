@@ -60,16 +60,13 @@ export async function POST(request: NextRequest) {
     // the pre-filled WhatsApp button on /thanks, so keep a server-side trace.
     console.warn(`[lead] ${record.id} not persisted — configure the leads table or LEAD_WEBHOOK_URL.`)
   }
-  if (!notified.telegram && !notified.webhook) {
-    console.warn(`[lead] ${record.id} — no team notification sent (set TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID or LEAD_WEBHOOK_URL).`)
-  }
 
   return NextResponse.json(
     {
       success: true,
       leadId: record.id,
       stored: savedToDb || notified.webhook,
-      notified: notified.telegram || notified.webhook,
+      notified: notified.webhook,
     },
     { status: 201 }
   )

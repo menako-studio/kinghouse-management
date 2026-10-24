@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 import Script from "next/script"
-import { SITE_CONFIG } from "@/lib/constants"
+import { SITE_CONFIG, DEFAULT_OG_IMAGES } from "@/lib/constants"
 
 export const metadata: Metadata = {
   title: {
@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     canonical: `${SITE_CONFIG.baseUrl}/contact`,
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Contact Concierge & Property Advisory | Kinghouse Management",
     description:
       "Connect with Kinghouse hospitality advisors for villa bookings, private event venue hire, or property revenue audits.",

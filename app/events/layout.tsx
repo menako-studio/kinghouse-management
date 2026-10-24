@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 import Script from "next/script"
-import { SITE_CONFIG } from "@/lib/constants"
+import { SITE_CONFIG, DEFAULT_OG_IMAGES } from "@/lib/constants"
 
 export const metadata: Metadata = {
   title: {
@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     canonical: `${SITE_CONFIG.baseUrl}/events`,
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Garden Wedding & Private Event Venues | Kinghouse Management",
     description:
       "Exclusive private garden wedding venues and intimate celebration spaces in South Jakarta with zero vendor corkage fees.",

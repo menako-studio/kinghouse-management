@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
 import { Newspaper, Download, Mail, ExternalLink, ArrowRight, Award, Sparkles } from "lucide-react"
-import { SITE_CONFIG } from "@/lib/constants"
+import { SITE_CONFIG, DEFAULT_OG_IMAGES } from "@/lib/constants"
 
 export const metadata: Metadata = {
   title: {
@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     "Official news, press releases, media mentions, and downloadable brand assets from Kinghouse Villa & Short-Stay Asset Management in Greater Jakarta.",
   alternates: { canonical: `${SITE_CONFIG.baseUrl}/press` },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Press Room & Media Center | Kinghouse Management",
     description:
       "Official news, press releases, media mentions, and downloadable brand assets from Kinghouse Management.",
@@ -136,7 +137,7 @@ export default function PressPage() {
                     {item.quote}
                   </p>
                 </div>
-                <p className="text-[11px] text-[#777777] uppercase tracking-wider font-medium mt-4">
+                <p className="text-xs text-[#777777] uppercase tracking-wider font-medium mt-4">
                   {item.author}
                 </p>
               </div>

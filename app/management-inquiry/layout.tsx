@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { SITE_CONFIG } from "@/lib/constants"
+import { SITE_CONFIG, DEFAULT_OG_IMAGES } from "@/lib/constants"
 import Script from "next/script"
 
 export const metadata: Metadata = {
@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     canonical: `${SITE_CONFIG.baseUrl}/management-inquiry`,
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Property Management Inquiry & Fast-Track Yield Audit | Kinghouse Management",
     description:
       "Submit your property for an institutional yield audit. We maximize Airbnb occupancy, handle 5-star operations, and deliver superior owner returns.",

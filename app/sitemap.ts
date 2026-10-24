@@ -67,12 +67,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/stay`,
-      lastModified: currentDate,
-      changeFrequency: "weekly",
-      priority: 0.7,
-    },
-    {
       url: `${baseUrl}/management-inquiry`,
       lastModified: currentDate,
       changeFrequency: "weekly",
@@ -137,7 +131,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }))
 
   // 5. Dynamic Blog Articles (/blog/[slug])
-  // Note: /stay/[slug] compendiums are private guest stay guides disallowed in robots.txt (/stay/*)
+  // Note: /stay and /stay/[slug] are private guest guides (noindex) and /thanks is a conversion page (noindex) — not listed
   // and are intentionally omitted from public sitemap indexing.
   let blogRoutes: MetadataRoute.Sitemap = []
   try {

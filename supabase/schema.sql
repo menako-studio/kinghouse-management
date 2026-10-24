@@ -112,34 +112,26 @@ CREATE INDEX IF NOT EXISTS idx_leads_created_at ON public.leads (created_at DESC
 CREATE INDEX IF NOT EXISTS idx_leads_target_status ON public.leads (target, status);
 
 -- Grant schema and table permissions
+-- The website talks to Supabase only from the server, with SUPABASE_SERVICE_ROLE_KEY
+-- (service_role bypasses RLS). The public anon key gets no access to guest data,
+-- finances or leads, and can only read published blog posts.
 GRANT USAGE ON SCHEMA public TO anon, authenticated, service_role;
-GRANT ALL ON ALL TABLES IN SCHEMA public TO anon, authenticated, service_role;
-GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO anon, authenticated, service_role;
+GRANT ALL ON ALL TABLES IN SCHEMA public TO service_role;
+GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO service_role;
+REVOKE ALL ON public.reservations, public.expenses, public.leads FROM anon, authenticated;
+REVOKE ALL ON public.blog_posts FROM anon, authenticated;
+GRANT SELECT ON public.blog_posts TO anon, authenticated;
 
 -- Enable Row Level Security (RLS)
 ALTER TABLE public.reservations ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.expenses ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.blog_posts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.leads ENABLE ROW LEVEL SECURITY;
-REVOKE ALL ON public.leads FROM anon, authenticated;
 
--- Allow public read access (anon / service_role)
-CREATE POLICY "Public Read Reservations" ON public.reservations FOR SELECT USING (true);
-CREATE POLICY "Public Read Expenses" ON public.expenses FOR SELECT USING (true);
-CREATE POLICY "Public Read Blog Posts" ON public.blog_posts FOR SELECT USING (true);
-
--- Allow authenticated / service_role inserts and updates
-CREATE POLICY "Allow All Insert Reservations" ON public.reservations FOR INSERT WITH CHECK (true);
-CREATE POLICY "Allow All Update Reservations" ON public.reservations FOR UPDATE USING (true);
-CREATE POLICY "Allow All Delete Reservations" ON public.reservations FOR DELETE USING (true);
-
-CREATE POLICY "Allow All Insert Expenses" ON public.expenses FOR INSERT WITH CHECK (true);
-CREATE POLICY "Allow All Update Expenses" ON public.expenses FOR UPDATE USING (true);
-CREATE POLICY "Allow All Delete Expenses" ON public.expenses FOR DELETE USING (true);
-
-CREATE POLICY "Allow All Insert Blog Posts" ON public.blog_posts FOR INSERT WITH CHECK (true);
-CREATE POLICY "Allow All Update Blog Posts" ON public.blog_posts FOR UPDATE USING (true);
-CREATE POLICY "Allow All Delete Blog Posts" ON public.blog_posts FOR DELETE USING (true);
+-- Public can read published articles only. No anon policies on reservations,
+-- expenses or leads: with RLS on and no policy, anon/authenticated see nothing.
+DROP POLICY IF EXISTS "Public Read Published Blog Posts" ON public.blog_posts;
+CREATE POLICY "Public Read Published Blog Posts" ON public.blog_posts FOR SELECT USING (status = 'Published');
 
 -- ==============================================================================
 -- INITIAL SEED DATA (JABODETABEK PROPERTIES)

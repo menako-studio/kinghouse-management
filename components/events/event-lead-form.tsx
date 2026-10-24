@@ -11,30 +11,24 @@ import {
   EVENT_TYPES,
   EVENT_VENUES,
   EVENT_VENUE_RULES,
-  OFFICE_HOURS,
-  RESPONSE_TARGETS,
+  EVENT_VENUE_UNDECIDED,
   type EventTypeId,
 } from "@/lib/funnel/config"
 import { buildWhatsAppUrl, eventWhatsAppMessage } from "@/lib/funnel/whatsapp"
-import { submitLead } from "@/lib/funnel/client"
+import { submitLead, type LeadErrorKey } from "@/lib/funnel/client"
 import { trackWhatsAppClick } from "@/lib/analytics"
+import { useLocalization } from "@/lib/context/localization-context"
 import type { EventLeadInput } from "@/lib/validations"
 
 type SpecialNeed = EventLeadInput["specialNeeds"][number]
+type FormErrorKey = LeadErrorKey | "f.ef.endBeforeStart"
 
 interface EventLeadFormProps {
   eventType: EventTypeId
   onEventTypeChange: (id: EventTypeId) => void
 }
 
-function YesNo({ name, value, onChange }: { name: string; value: boolean | undefined; onChange: (v: boolean) => void }) {
-  return (
-    <div className="flex gap-2">
-      <ChoiceChip type="radio" name={name} label="Ya" checked={value === true} onChange={() => onChange(true)} />
-      <ChoiceChip type="radio" name={name} label="Tidak" checked={value === false} onChange={() => onChange(false)} />
-    </div>
-  )
-}
+const inputClass = "h-12 text-base"
 
 /**
  * Funnel B2 step 3 — one event form that asks everything the quote depends on
@@ -42,6 +36,7 @@ function YesNo({ name, value, onChange }: { name: string; value: boolean | undef
  */
 export function EventLeadForm({ eventType, onEventTypeChange }: EventLeadFormProps) {
   const router = useRouter()
+  const { t, language } = useLocalization()
   const [form, setForm] = useState({
     name: "",
     whatsapp: "",
@@ -61,7 +56,7 @@ export function EventLeadForm({ eventType, onEventTypeChange }: EventLeadFormPro
     website: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [errorKey, setErrorKey] = useState<FormErrorKey | null>(null)
 
   const update = <K extends keyof typeof form>(key: K, value: (typeof form)[K]) =>
     setForm((prev) => ({ ...prev, [key]: value }))
@@ -72,35 +67,49 @@ export function EventLeadForm({ eventType, onEventTypeChange }: EventLeadFormPro
       form.specialNeeds.includes(need) ? form.specialNeeds.filter((n) => n !== need) : [...form.specialNeeds, need]
     )
 
+  const yesNo = (name: string, value: boolean | undefined, onChange: (v: boolean) => void) => (
+    <div className="flex gap-2">
+      <ChoiceChip type="radio" name={name} label={t("f.yes")} checked={value === true} onChange={() => onChange(true)} />
+      <ChoiceChip type="radio" name={name} label={t("f.no")} checked={value === false} onChange={() => onChange(false)} />
+    </div>
+  )
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setError(null)
+    if (form.endTime <= form.startTime) {
+      setErrorKey("f.ef.endBeforeStart")
+      return
+    }
+    setErrorKey(null)
     setIsSubmitting(true)
 
-    const result = await submitLead({
-      target: "EVENT",
-      name: form.name,
-      whatsapp: form.whatsapp,
-      eventType,
-      eventDate: form.eventDate,
-      backupDate: form.backupDate,
-      startTime: form.startTime,
-      endTime: form.endTime,
-      guests: Number(form.guests) || 1,
-      property: form.property,
-      specialNeeds: form.specialNeeds,
-      // Only send the questions that belong to the chosen event type.
-      weddingSession: eventType === "wedding" ? form.weddingSession : undefined,
-      ownVendor: eventType !== "shooting" ? form.ownVendor : undefined,
-      earlyDecoration: eventType === "wedding" ? form.earlyDecoration : undefined,
-      shootPurpose: eventType === "shooting" ? form.shootPurpose : undefined,
-      heavyEquipment: eventType === "shooting" ? form.heavyEquipment : undefined,
-      notes: form.notes,
-      website: form.website,
-    })
+    const result = await submitLead(
+      {
+        target: "EVENT",
+        name: form.name,
+        whatsapp: form.whatsapp,
+        eventType,
+        eventDate: form.eventDate,
+        backupDate: form.backupDate,
+        startTime: form.startTime,
+        endTime: form.endTime,
+        guests: Number(form.guests) || 1,
+        property: form.property,
+        specialNeeds: form.specialNeeds,
+        // Only send the questions that belong to the chosen event type.
+        weddingSession: eventType === "wedding" ? form.weddingSession : undefined,
+        ownVendor: eventType !== "shooting" ? form.ownVendor : undefined,
+        earlyDecoration: eventType === "wedding" ? form.earlyDecoration : undefined,
+        shootPurpose: eventType === "shooting" ? form.shootPurpose : undefined,
+        heavyEquipment: eventType === "shooting" ? form.heavyEquipment : undefined,
+        notes: form.notes,
+        website: form.website,
+      },
+      { language }
+    )
 
     if (!result.ok) {
-      setError(result.error || "Gagal mengirim, silakan coba lagi.")
+      setErrorKey(result.errorKey ?? "f.errorGeneric")
       setIsSubmitting(false)
       return
     }
@@ -109,75 +118,76 @@ export function EventLeadForm({ eventType, onEventTypeChange }: EventLeadFormPro
 
   const whatsappUrl = buildWhatsAppUrl(
     "EVENT",
-    eventWhatsAppMessage({
-      eventType,
-      propertyName: form.property === EVENT_VENUES[0] ? form.property : undefined,
-      date: form.eventDate || undefined,
-      guests: Number(form.guests) || undefined,
-    })
+    eventWhatsAppMessage(
+      {
+        eventType,
+        propertyName: form.property === EVENT_VENUE_UNDECIDED ? undefined : form.property,
+        date: form.eventDate || undefined,
+        guests: Number(form.guests) || undefined,
+      },
+      { t, language }
+    )
   )
-  const visibleRules = EVENT_VENUE_RULES.filter((r) => r.value)
 
   return (
     <section id="event-form" className="scroll-mt-24 mx-auto max-w-7xl px-6 pb-16 pt-4 lg:px-12">
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         {/* Venue rules — written once here so they are not asked again in chat */}
-        <aside className="space-y-5 rounded-3xl border border-[#E8E4DC] bg-[#FAF8F5] p-6 sm:p-8 lg:order-2">
+        <aside className="space-y-5 self-start rounded-3xl border border-[#E8E4DC] bg-[#FAF8F5] p-6 sm:p-8 lg:order-2">
           <div className="flex items-center gap-2 text-[#8C7F5F]">
-            <Info className="h-4 w-4" />
-            <h3 className="text-[11px] font-bold uppercase tracking-widest">Aturan venue</h3>
+            <Info className="h-5 w-5" />
+            <h3 className="text-sm font-bold uppercase tracking-wider">{t("f.rules.title")}</h3>
           </div>
           <dl className="space-y-3">
-            {visibleRules.map((rule) => (
-              <div key={rule.label} className="border-b border-[#E8E4DC] pb-3 last:border-0 last:pb-0">
-                <dt className="text-[11px] font-semibold uppercase tracking-wider text-[#6B6862]">{rule.label}</dt>
-                <dd className="mt-0.5 text-sm text-[#222225]">{rule.value}</dd>
+            {EVENT_VENUE_RULES.map((rule) => (
+              <div key={rule.labelKey} className="border-b border-[#E8E4DC] pb-3 last:border-0 last:pb-0">
+                <dt className="text-sm font-semibold text-[#5C5347]">{t(rule.labelKey)}</dt>
+                <dd className="mt-0.5 text-base text-[#222225]">{t(rule.valueKey)}</dd>
               </div>
             ))}
           </dl>
-          <a href="#pricelist" className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#8C7F5F] hover:underline">
-            Lihat pricelist paket <ArrowRight className="h-3.5 w-3.5" />
+          <a href="#pricelist" className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#8C7F5F] hover:underline">
+            {t("f.rules.priceList")} <ArrowRight className="h-4 w-4" />
           </a>
         </aside>
 
         <div className="rounded-3xl border border-[#E8E4DC] bg-white p-6 shadow-xs sm:p-10 lg:col-span-2">
           <div className="mb-6 space-y-1">
-            <span className="text-[11px] font-bold uppercase tracking-widest text-[#8C7F5F]">Cek tanggal & harga</span>
-            <h2 className="font-serif text-3xl text-[#222225]">Detail acara Anda</h2>
-            <p className="text-xs text-[#6B6862]">
-              Tim event membalas dalam {RESPONSE_TARGETS.EVENT.label} kerja dengan ketersediaan dan pricelist.
-            </p>
+            <span className="text-sm font-bold uppercase tracking-[0.15em] text-[#8C7F5F]">{t("f.ef.eyebrow")}</span>
+            <h2 className="font-serif text-3xl text-[#222225]">{t("f.ef.title")}</h2>
+            <p className="text-base text-[#5C5347]">{t("f.ef.subtitle")}</p>
           </div>
 
           <form onSubmit={handleSubmit} className="relative space-y-5">
             <HoneypotField value={form.website} onChange={(v) => update("website", v)} />
 
-            <Field label="Jenis acara" htmlFor="event-type" required>
-              <div id="event-type" role="radiogroup" className="flex flex-wrap gap-2">
-                {EVENT_TYPES.map((t) => (
+            <Field label={t("f.ef.type")} required>
+              <div className="flex flex-wrap gap-2">
+                {EVENT_TYPES.map((type) => (
                   <ChoiceChip
-                    key={t.id}
+                    key={type.id}
                     type="radio"
                     name="eventType"
-                    label={t.name}
-                    checked={eventType === t.id}
-                    onChange={() => onEventTypeChange(t.id)}
+                    label={t(`f.evt.${type.id}.name`)}
+                    checked={eventType === type.id}
+                    onChange={() => onEventTypeChange(type.id)}
                   />
                 ))}
               </div>
             </Field>
 
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-              <Field label="Nama" htmlFor="event-name" required>
-                <Input id="event-name" required minLength={2} autoComplete="name" value={form.name} onChange={(e) => update("name", e.target.value)} />
+              <Field label={t("f.field.name")} htmlFor="event-name" required>
+                <Input id="event-name" required minLength={2} autoComplete="name" className={inputClass} value={form.name} onChange={(e) => update("name", e.target.value)} />
               </Field>
-              <Field label="Nomor WhatsApp" htmlFor="event-wa" required>
+              <Field label={t("f.field.whatsapp")} htmlFor="event-wa" required>
                 <Input
                   id="event-wa"
                   type="tel"
                   required
                   autoComplete="tel"
-                  placeholder="0812-3456-7890"
+                  className={inputClass}
+                  placeholder={t("f.field.whatsappPlaceholder")}
                   value={form.whatsapp}
                   onChange={(e) => update("whatsapp", e.target.value)}
                 />
@@ -185,22 +195,22 @@ export function EventLeadForm({ eventType, onEventTypeChange }: EventLeadFormPro
             </div>
 
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-              <Field label="Tanggal acara" htmlFor="event-date" required>
-                <Input id="event-date" type="date" required value={form.eventDate} onChange={(e) => update("eventDate", e.target.value)} />
+              <Field label={t("f.ef.date")} htmlFor="event-date" required>
+                <Input id="event-date" type="date" required className={inputClass} value={form.eventDate} onChange={(e) => update("eventDate", e.target.value)} />
               </Field>
-              <Field label="Tanggal cadangan" htmlFor="event-backup" hint="Opsional, agar kami bisa menawarkan alternatif">
-                <Input id="event-backup" type="date" value={form.backupDate} onChange={(e) => update("backupDate", e.target.value)} />
+              <Field label={t("f.ef.backupDate")} htmlFor="event-backup" hint={t("f.ef.backupHint")}>
+                <Input id="event-backup" type="date" className={inputClass} value={form.backupDate} onChange={(e) => update("backupDate", e.target.value)} />
               </Field>
             </div>
 
-            <div className="grid grid-cols-2 gap-5 sm:grid-cols-4">
-              <Field label="Jam mulai" htmlFor="event-start" required>
-                <Input id="event-start" type="time" required value={form.startTime} onChange={(e) => update("startTime", e.target.value)} />
+            <div className="grid grid-cols-2 gap-5 lg:grid-cols-4">
+              <Field label={t("f.ef.start")} htmlFor="event-start" required>
+                <Input id="event-start" type="time" required className={inputClass} value={form.startTime} onChange={(e) => update("startTime", e.target.value)} />
               </Field>
-              <Field label="Jam selesai" htmlFor="event-end" required>
-                <Input id="event-end" type="time" required value={form.endTime} onChange={(e) => update("endTime", e.target.value)} />
+              <Field label={t("f.ef.end")} htmlFor="event-end" required>
+                <Input id="event-end" type="time" required className={inputClass} value={form.endTime} onChange={(e) => update("endTime", e.target.value)} />
               </Field>
-              <Field label={eventType === "shooting" ? "Jumlah kru" : "Jumlah tamu"} htmlFor="event-guests" required>
+              <Field label={t(eventType === "shooting" ? "f.ef.crew" : "f.ef.guests")} htmlFor="event-guests" required>
                 <Input
                   id="event-guests"
                   type="number"
@@ -208,15 +218,16 @@ export function EventLeadForm({ eventType, onEventTypeChange }: EventLeadFormPro
                   required
                   min={1}
                   max={1000}
+                  className={inputClass}
                   value={form.guests}
                   onChange={(e) => update("guests", e.target.value)}
                 />
               </Field>
-              <Field label="Properti" htmlFor="event-property" required>
+              <Field label={t("f.ef.venue")} htmlFor="event-property" required>
                 <select id="event-property" value={form.property} onChange={(e) => update("property", e.target.value)} className={selectClassName}>
                   {EVENT_VENUES.map((v) => (
                     <option key={v} value={v}>
-                      {v}
+                      {v === EVENT_VENUE_UNDECIDED ? t("f.ef.venueUndecided") : v}
                     </option>
                   ))}
                 </select>
@@ -225,69 +236,69 @@ export function EventLeadForm({ eventType, onEventTypeChange }: EventLeadFormPro
 
             {/* Type-specific questions */}
             {eventType === "wedding" && (
-              <div className="grid grid-cols-1 gap-5 rounded-2xl bg-[#FAF8F5] p-5 sm:grid-cols-3">
-                <Field label="Sesi" htmlFor="event-session">
-                  <div id="event-session" className="flex flex-wrap gap-2">
-                    {(["akad", "resepsi", "keduanya"] as const).map((s) => (
+              <div className="grid grid-cols-1 gap-5 rounded-2xl bg-[#FAF8F5] p-5 md:grid-cols-3">
+                <Field label={t("f.ef.session")}>
+                  <div className="flex flex-wrap gap-2">
+                    {(["akad", "resepsi", "keduanya"] as const).map((session) => (
                       <ChoiceChip
-                        key={s}
+                        key={session}
                         type="radio"
                         name="weddingSession"
-                        label={s.charAt(0).toUpperCase() + s.slice(1)}
-                        checked={form.weddingSession === s}
-                        onChange={() => update("weddingSession", s)}
+                        label={t(`f.ef.session.${session}`)}
+                        checked={form.weddingSession === session}
+                        onChange={() => update("weddingSession", session)}
                       />
                     ))}
                   </div>
                 </Field>
-                <Field label="Dekorasi sejak pagi?" htmlFor="event-early">
-                  <YesNo name="earlyDecoration" value={form.earlyDecoration} onChange={(v) => update("earlyDecoration", v)} />
+                <Field label={t("f.ef.earlyDecoration")}>
+                  {yesNo("earlyDecoration", form.earlyDecoration, (v) => update("earlyDecoration", v))}
                 </Field>
-                <Field label="Bawa vendor sendiri?" htmlFor="event-vendor">
-                  <YesNo name="ownVendor" value={form.ownVendor} onChange={(v) => update("ownVendor", v)} />
+                <Field label={t("f.ef.ownVendor")}>
+                  {yesNo("ownVendor", form.ownVendor, (v) => update("ownVendor", v))}
                 </Field>
               </div>
             )}
 
             {eventType === "gathering" && (
               <div className="rounded-2xl bg-[#FAF8F5] p-5">
-                <Field label="Bawa catering sendiri?" htmlFor="event-catering">
-                  <YesNo name="ownVendor" value={form.ownVendor} onChange={(v) => update("ownVendor", v)} />
+                <Field label={t("f.ef.ownCatering")}>
+                  {yesNo("ownVendor", form.ownVendor, (v) => update("ownVendor", v))}
                 </Field>
               </div>
             )}
 
             {eventType === "shooting" && (
               <div className="grid grid-cols-1 gap-5 rounded-2xl bg-[#FAF8F5] p-5 sm:grid-cols-2">
-                <Field label="Tujuan shooting" htmlFor="event-purpose">
-                  <div id="event-purpose" className="flex gap-2">
-                    {(["komersial", "pribadi"] as const).map((p) => (
+                <Field label={t("f.ef.purpose")}>
+                  <div className="flex flex-wrap gap-2">
+                    {(["komersial", "pribadi"] as const).map((purpose) => (
                       <ChoiceChip
-                        key={p}
+                        key={purpose}
                         type="radio"
                         name="shootPurpose"
-                        label={p.charAt(0).toUpperCase() + p.slice(1)}
-                        checked={form.shootPurpose === p}
-                        onChange={() => update("shootPurpose", p)}
+                        label={t(`f.ef.purpose.${purpose}`)}
+                        checked={form.shootPurpose === purpose}
+                        onChange={() => update("shootPurpose", purpose)}
                       />
                     ))}
                   </div>
                 </Field>
-                <Field label="Membawa peralatan besar?" htmlFor="event-equipment" hint="mis. crane, lighting besar, genset">
-                  <YesNo name="heavyEquipment" value={form.heavyEquipment} onChange={(v) => update("heavyEquipment", v)} />
+                <Field label={t("f.ef.equipment")} hint={t("f.ef.equipmentHint")}>
+                  {yesNo("heavyEquipment", form.heavyEquipment, (v) => update("heavyEquipment", v))}
                 </Field>
               </div>
             )}
 
-            <Field label="Kebutuhan khusus" htmlFor="event-needs">
-              <div id="event-needs" className="flex flex-wrap gap-2">
-                {EVENT_SPECIAL_NEEDS.map((n) => (
-                  <ChoiceChip key={n.id} label={n.label} checked={form.specialNeeds.includes(n.id)} onChange={() => toggleNeed(n.id)} />
+            <Field label={t("f.ef.needs")}>
+              <div className="flex flex-wrap gap-2">
+                {EVENT_SPECIAL_NEEDS.map((need) => (
+                  <ChoiceChip key={need} label={t(`f.ef.need.${need}`)} checked={form.specialNeeds.includes(need)} onChange={() => toggleNeed(need)} />
                 ))}
               </div>
             </Field>
 
-            <Field label="Catatan" htmlFor="event-notes" hint="Opsional">
+            <Field label={t("f.ef.notes")} htmlFor="event-notes" hint={t("f.optional")}>
               <textarea
                 id="event-notes"
                 maxLength={500}
@@ -297,36 +308,36 @@ export function EventLeadForm({ eventType, onEventTypeChange }: EventLeadFormPro
               />
             </Field>
 
-            <FormError message={error} />
+            <FormError message={errorKey ? t(errorKey) : null} />
 
             <Button
               type="submit"
               size="lg"
               disabled={isSubmitting}
-              className="h-14 w-full bg-[#8C7F5F] text-xs font-semibold uppercase tracking-widest text-white shadow-md hover:bg-[#776B4E]"
+              className="h-14 w-full bg-[#8C7F5F] text-base font-semibold text-white shadow-md hover:bg-[#776B4E]"
             >
               {isSubmitting ? (
-                "Mengirim..."
+                t("f.sending")
               ) : (
                 <span className="flex items-center justify-center gap-2">
-                  Cek Ketersediaan & Minta Pricelist <ArrowRight className="h-4 w-4" />
+                  {t("f.ef.submit")} <ArrowRight className="h-4 w-4" />
                 </span>
               )}
             </Button>
           </form>
 
-          <div className="mt-6 flex flex-col gap-3 border-t border-[#E8E4DC] pt-5 text-[11px] text-[#6B6862] sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-6 flex flex-col gap-3 border-t border-[#E8E4DC] pt-5 text-sm text-[#5C5347] sm:flex-row sm:items-center sm:justify-between">
             <p className="flex items-center gap-1.5">
-              <Clock className="h-3.5 w-3.5 text-[#8C7F5F]" /> Jam kantor {OFFICE_HOURS.label}
+              <Clock className="h-4 w-4 text-[#8C7F5F]" /> {t("f.officeHours")}
             </p>
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackWhatsAppClick({ source: "event_page", funnel: "event", context: eventType })}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-[#25D366]/40 bg-[#F0FDF4] px-5 py-2.5 text-xs font-semibold text-[#15803D] hover:bg-[#DCFCE7]"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-[#25D366]/40 bg-[#F0FDF4] px-5 py-3 text-sm font-semibold text-[#15803D] hover:bg-[#DCFCE7]"
             >
-              <MessageCircle className="h-4 w-4" /> Lebih suka chat? WhatsApp tim event
+              <MessageCircle className="h-4 w-4" /> {t("f.ef.whatsapp")}
             </a>
           </div>
         </div>

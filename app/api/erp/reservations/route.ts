@@ -40,6 +40,12 @@ function mapRowToReservation(row: any): Reservation {
 }
 
 export async function GET(request: NextRequest) {
+  // Guest contact details and owner finances: admin session only.
+  const admin = await verifyAdminRequest(request)
+  if (!admin) {
+    return NextResponse.json({ error: "Akses ditolak: Diperlukan sesi admin Kinghouse." }, { status: 401 })
+  }
+
   const { searchParams } = new URL(request.url)
   const propertyId = searchParams.get("propertyId")
   const channel = searchParams.get("channel")

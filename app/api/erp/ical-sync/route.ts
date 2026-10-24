@@ -8,7 +8,8 @@ export async function POST(request: NextRequest) {
   try {
     const admin = await verifyAdminRequest(request)
     const isCronAuthorized =
-      request.headers.get("authorization") === `Bearer ${process.env.CRON_SECRET || "kinghouse-cron-secret-2026"}`
+      Boolean(process.env.CRON_SECRET) &&
+      request.headers.get("authorization") === `Bearer ${process.env.CRON_SECRET}`
 
     if (!admin && !isCronAuthorized) {
       return NextResponse.json({ error: "Akses ditolak: Diperlukan sesi admin Kinghouse atau CRON_SECRET." }, { status: 401 })
@@ -66,8 +67,19 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   const action = searchParams.get("action")
 
-  // Allow GET /api/erp/ical-sync?action=sync-all for Vercel Cron
+  // Allow GET /api/erp/ical-sync?action=sync-all for Vercel Cron. Vercel sends
+  // `Authorization: Bearer $CRON_SECRET` when CRON_SECRET is set; once it is set,
+  // only the cron (or an admin session) may trigger a sync.
   if (action === "sync-all") {
+    const cronSecret = process.env.CRON_SECRET
+    if (cronSecret) {
+      const isCron = request.headers.get("authorization") === `Bearer ${cronSecret}`
+      if (!isCron && !(await verifyAdminRequest(request))) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+      }
+    } else {
+      console.warn("[ical-sync] CRON_SECRET is not set: sync-all is publicly triggerable.")
+    }
     const batchResult = await syncAllConfiguredProperties()
     return NextResponse.json({
       success: true,

@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from "react"
 import { trackCurrencyChange, trackLanguageChange } from "@/lib/analytics"
+import { FUNNEL_TRANSLATIONS, interpolate, type TranslateVars } from "@/lib/i18n/funnel"
 
 
 
@@ -85,6 +86,10 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     guestFavorite: "Guest Favorite",
     exploreProperties: "Explore Properties",
     ownerServices: "Owner Services",
+    navOwnerServices: "Owner Services",
+    partnerBadgeManagedHost: "Managed Host 2026",
+    partnerBadgeVerifiedBusiness: "Verified Business",
+    partnerBadgeComingSoon: "Coming Soon",
     forPropertyOwners: "For Property Owners",
     directConcierge: "Direct Concierge & Desk",
 
@@ -127,7 +132,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     maximizeRoi: "Maximize Your Villa's ROI",
 
     // Trust & Proof
-    globalDistributionHeader: "Global Distribution & Verified Hospitality Accreditations",
+    globalDistributionHeader: "Verified Partners",
     verifiedVillaOwner: "Verified Villa Owner",
     verifiedGuestReview: "Verified Guest",
     verifiedMetricHighlight: "Verified Metric",
@@ -230,6 +235,10 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     guestFavorite: "Favorit Tamu",
     exploreProperties: "Jelajahi Properti",
     ownerServices: "Layanan Pemilik Properti",
+    navOwnerServices: "Pemilik Properti",
+    partnerBadgeManagedHost: "Host Terkelola 2026",
+    partnerBadgeVerifiedBusiness: "Bisnis Terverifikasi",
+    partnerBadgeComingSoon: "Segera Hadir",
     forPropertyOwners: "Untuk Pemilik Properti",
     directConcierge: "Layanan Concierge Langsung",
 
@@ -272,7 +281,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     maximizeRoi: "Maksimalkan ROI Villa Anda",
 
     // Trust & Proof
-    globalDistributionHeader: "Distribusi Global & Akreditasi Hospitaliti Terverifikasi",
+    globalDistributionHeader: "Mitra Terverifikasi",
     verifiedVillaOwner: "Pemilik Villa Terverifikasi",
     verifiedGuestReview: "Tamu Terverifikasi",
     verifiedMetricHighlight: "Metrik Terverifikasi",
@@ -375,6 +384,10 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     guestFavorite: "ゲストに人気",
     exploreProperties: "物件を探す",
     ownerServices: "オーナー向けサービス",
+    navOwnerServices: "オーナー向け",
+    partnerBadgeManagedHost: "管理ホスト 2026",
+    partnerBadgeVerifiedBusiness: "認証済みビジネス",
+    partnerBadgeComingSoon: "近日公開",
     forPropertyOwners: "不動産オーナー様へ",
     directConcierge: "専任コンシェルジュデスク",
 
@@ -417,7 +430,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     maximizeRoi: "収益を最大化する",
 
     // Trust & Proof
-    globalDistributionHeader: "世界規模の販売網＆認証済みホスピタリティ実績",
+    globalDistributionHeader: "認証パートナー",
     verifiedVillaOwner: "認定ヴィラオーナー様",
     verifiedGuestReview: "認定ゲスト",
     verifiedMetricHighlight: "実績データ",
@@ -520,6 +533,10 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     guestFavorite: "房客最爱",
     exploreProperties: "探索所有房源",
     ownerServices: "业主托管服务",
+    navOwnerServices: "业主服务",
+    partnerBadgeManagedHost: "托管房东 2026",
+    partnerBadgeVerifiedBusiness: "认证商家",
+    partnerBadgeComingSoon: "即将上线",
     forPropertyOwners: "业主合作专区",
     directConcierge: "专属礼宾及客服",
 
@@ -562,7 +579,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     maximizeRoi: "提升别墅投资回报率",
 
     // Trust & Proof
-    globalDistributionHeader: "全球多渠道分销与认证级奢华款待背书",
+    globalDistributionHeader: "认证合作平台",
     verifiedVillaOwner: "认证别墅业主",
     verifiedGuestReview: "真实入住房客",
     verifiedMetricHighlight: "验证经营指标",
@@ -665,6 +682,10 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     guestFavorite: "房客最愛",
     exploreProperties: "探索所有房源",
     ownerServices: "業主託管服務",
+    navOwnerServices: "業主服務",
+    partnerBadgeManagedHost: "代管房東 2026",
+    partnerBadgeVerifiedBusiness: "認證商家",
+    partnerBadgeComingSoon: "即將上線",
     forPropertyOwners: "業主合作專區",
     directConcierge: "專屬禮賓及客服",
 
@@ -707,7 +728,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     maximizeRoi: "提升別墅投資回報率",
 
     // Trust & Proof
-    globalDistributionHeader: "全球多通路分銷與認證級奢華款待背書",
+    globalDistributionHeader: "認證合作平台",
     verifiedVillaOwner: "認證別墅業主",
     verifiedGuestReview: "真實入住房客",
     verifiedMetricHighlight: "驗證經營指標",
@@ -810,6 +831,10 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     guestFavorite: "Coup de cœur",
     exploreProperties: "Explorer les Villas",
     ownerServices: "Services Propriétaires",
+    navOwnerServices: "Propriétaires",
+    partnerBadgeManagedHost: "Hôte géré 2026",
+    partnerBadgeVerifiedBusiness: "Entreprise vérifiée",
+    partnerBadgeComingSoon: "Bientôt disponible",
     forPropertyOwners: "Espace Propriétaires",
     directConcierge: "Service Conciergerie Dédié",
 
@@ -852,7 +877,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     maximizeRoi: "Maximiser la rentabilité",
 
     // Trust & Proof
-    globalDistributionHeader: "Distribution globale & Accréditations hôtelières vérifiées",
+    globalDistributionHeader: "Partenaires vérifiés",
     verifiedVillaOwner: "Propriétaire vérifié",
     verifiedGuestReview: "Voyageur vérifié",
     verifiedMetricHighlight: "Indicateur vérifié",
@@ -955,6 +980,10 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     guestFavorite: "Favorito de huéspedes",
     exploreProperties: "Explorar Propiedades",
     ownerServices: "Servicios para Propietarios",
+    navOwnerServices: "Propietarios",
+    partnerBadgeManagedHost: "Anfitrión gestionado 2026",
+    partnerBadgeVerifiedBusiness: "Empresa verificada",
+    partnerBadgeComingSoon: "Próximamente",
     forPropertyOwners: "Para Propietarios",
     directConcierge: "Conserjería Directa",
 
@@ -997,7 +1026,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     maximizeRoi: "Maximizar el ROI de su villa",
 
     // Trust & Proof
-    globalDistributionHeader: "Distribución global y acreditaciones de hospitalidad verificadas",
+    globalDistributionHeader: "Socios verificados",
     verifiedVillaOwner: "Propietario verificado",
     verifiedGuestReview: "Huésped verificado",
     verifiedMetricHighlight: "Métrica verificada",
@@ -1100,6 +1129,10 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     guestFavorite: "Gäste-Favorit",
     exploreProperties: "Unterkünfte erkunden",
     ownerServices: "Eigentümer-Services",
+    navOwnerServices: "Eigentümer",
+    partnerBadgeManagedHost: "Verwalteter Gastgeber 2026",
+    partnerBadgeVerifiedBusiness: "Verifiziertes Unternehmen",
+    partnerBadgeComingSoon: "Demnächst",
     forPropertyOwners: "Für Immobilieneigentümer",
     directConcierge: "Direkter Concierge-Service",
 
@@ -1142,7 +1175,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     maximizeRoi: "Villa-Rendite maximieren",
 
     // Trust & Proof
-    globalDistributionHeader: "Weltweiter Vertrieb & Zertifizierte Hospitality-Standards",
+    globalDistributionHeader: "Verifizierte Partner",
     verifiedVillaOwner: "Verifizierter Villen-Eigentümer",
     verifiedGuestReview: "Verifizierter Gast",
     verifiedMetricHighlight: "Geprüfte Kennzahl",
@@ -1245,6 +1278,10 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     guestFavorite: "Выбор гостей",
     exploreProperties: "Смотреть объекты",
     ownerServices: "Услуги для владельцев",
+    navOwnerServices: "Владельцам",
+    partnerBadgeManagedHost: "Управляемый хост 2026",
+    partnerBadgeVerifiedBusiness: "Проверенный бизнес",
+    partnerBadgeComingSoon: "Скоро",
     forPropertyOwners: "Для владельцев",
     directConcierge: "Прямой консьерж-сервис",
 
@@ -1287,7 +1324,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     maximizeRoi: "Увеличить доход от виллы",
 
     // Trust & Proof
-    globalDistributionHeader: "Международная дистрибуция и подтвержденные стандарты сервиса",
+    globalDistributionHeader: "Проверенные партнёры",
     verifiedVillaOwner: "Подтвержденный владелец",
     verifiedGuestReview: "Реальный гость",
     verifiedMetricHighlight: "Подтвержденный показатель",
@@ -1365,7 +1402,7 @@ interface LocalizationContextType {
   setLanguage: (language: LanguageCode) => void
   currentLanguageConfig: LanguageConfig
   formatPrice: (amountInIdr: number, customCurrency?: CurrencyCode) => string
-  t: (key: string) => string
+  t: (key: string, vars?: TranslateVars) => string
 }
 
 const LocalizationContext = createContext<LocalizationContextType | null>(null)
@@ -1443,13 +1480,16 @@ export function LocalizationProvider({ children }: { children: React.ReactNode }
     return `${activeConfig.symbol} ${Math.round(converted).toLocaleString()}`
   }
 
-  const t = (key: string): string => {
-    const langDict = TRANSLATIONS[language]
-    if (langDict && langDict[key]) {
-      return langDict[key]
-    }
-    // Fallback to English
-    return TRANSLATIONS.EN[key] ?? key
+  const t = (key: string, vars?: TranslateVars): string => {
+    const funnelDict = FUNNEL_TRANSLATIONS[language] as Record<string, string>
+    const text =
+      TRANSLATIONS[language]?.[key] ||
+      funnelDict?.[key] ||
+      // Fallback to English
+      TRANSLATIONS.EN[key] ||
+      (FUNNEL_TRANSLATIONS.EN as Record<string, string>)[key] ||
+      key
+    return interpolate(text, vars)
   }
 
   return (

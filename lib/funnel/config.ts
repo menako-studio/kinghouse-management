@@ -3,6 +3,7 @@
 // service & event options, WhatsApp lines, response targets and venue rules.
 
 import { SITE_CONFIG } from "@/lib/constants"
+import type { FunnelKey } from "@/lib/i18n/funnel"
 
 export type LeadTarget = "OWNER" | "STAY" | "EVENT"
 
@@ -33,16 +34,14 @@ export const WHATSAPP_LINES: Record<LeadTarget, string> = {
 /* ------------------------------------------------------------------ */
 
 /** First-reply target per funnel (business hours). */
-export const RESPONSE_TARGETS: Record<LeadTarget, { minutes: number; label: string }> = {
-  STAY: { minutes: 15, label: "15 menit" },
-  EVENT: { minutes: 30, label: "30 menit" },
-  OWNER: { minutes: 60, label: "1 jam" },
+export const RESPONSE_TARGETS: Record<LeadTarget, { minutes: number; labelKey: FunnelKey }> = {
+  STAY: { minutes: 15, labelKey: "f.reply.stay" },
+  EVENT: { minutes: 30, labelKey: "f.reply.event" },
+  OWNER: { minutes: 60, labelKey: "f.reply.owner" },
 }
 
 export const OFFICE_HOURS = {
-  label: "Senin–Jumat, 08.00–18.00 WIB",
-  conciergeNote: "Concierge 24/7 khusus tamu yang sedang menginap.",
-  /** Office window in WIB (UTC+7, no DST); weekdays only. */
+  /** Office window in WIB (UTC+7, no DST); weekdays only. Shown via the f.officeHours key. */
   openHour: 8,
   closeHour: 18,
 } as const
@@ -94,7 +93,9 @@ export function formatWib(date: Date): string {
 
 /* ------------------------------------------------------------------ */
 /* Funnel A — Owner services                                           */
+/* Visitor-facing copy lives in lib/i18n/funnel (keys referenced here). */
 /* ------------------------------------------------------------------ */
+
 
 export type OwnerServiceId = "hk-on-demand" | "co-hosting" | "full-management"
 export type OwnerServiceChoice = OwnerServiceId | "undecided"
@@ -104,73 +105,28 @@ export type LeadRoute = "owner_relations" | "cleaning" | "reservations" | "event
 
 export interface OwnerService {
   id: OwnerServiceId
-  name: string
-  audience: string
-  features: string[]
-  cta: string
+  /** i18n key prefix: `${key}.name`, `.audience`, `.f1`…, `.cta` */
+  key: "f.svc.hk" | "f.svc.co" | "f.svc.full"
+  featureCount: number
   route: LeadRoute
 }
 
 export const OWNER_SERVICES: OwnerService[] = [
-  {
-    id: "hk-on-demand",
-    name: "HK on Demand",
-    audience: "Untuk pemilik yang sudah mengelola sendiri, tapi butuh kebersihan sesuai panggilan.",
-    features: [
-      "Turnover antar tamu & deep clean",
-      "Pesan lewat form atau WhatsApp, jadwal fleksibel",
-      "Balasan maksimal 1 jam kerja",
-    ],
-    cta: "Pesan Housekeeping",
-    route: "cleaning",
-  },
-  {
-    id: "co-hosting",
-    name: "Co-Hosting",
-    audience: "Untuk pemilik yang ingin tetap memegang properti, tapi butuh operasional tamu.",
-    features: [
-      "Pembuatan & optimasi listing",
-      "Pesan tamu 24/7 dan screening",
-      "Harga dinamis harian",
-      "Laporan performa bulanan",
-    ],
-    cta: "Konsultasi Co-Hosting",
-    route: "owner_relations",
-  },
-  {
-    id: "full-management",
-    name: "Full Management",
-    audience: "Untuk pemilik yang ingin properti dikelola penuh, tanpa repot.",
-    features: [
-      "Semua layanan Co-Hosting + housekeeping",
-      "Perawatan & koordinasi perbaikan",
-      "Dashboard laba-rugi pemilik",
-      "Fee 15%–20% dari pendapatan",
-    ],
-    cta: "Ajukan Full Management",
-    route: "owner_relations",
-  },
+  { id: "hk-on-demand", key: "f.svc.hk", featureCount: 3, route: "cleaning" },
+  { id: "co-hosting", key: "f.svc.co", featureCount: 4, route: "owner_relations" },
+  { id: "full-management", key: "f.svc.full", featureCount: 4, route: "owner_relations" },
 ]
 
-export const OWNER_SERVICE_CHOICES: { id: OwnerServiceChoice; label: string }[] = [
-  ...OWNER_SERVICES.map((s) => ({ id: s.id, label: s.name })),
-  { id: "undecided", label: "Belum tahu, butuh saran" },
+export const OWNER_SERVICE_CHOICES: { id: OwnerServiceChoice; labelKey: FunnelKey }[] = [
+  ...OWNER_SERVICES.map((s) => ({ id: s.id, labelKey: `${s.key}.name` as FunnelKey })),
+  { id: "undecided", labelKey: "f.svc.undecided" },
 ]
 
-export const OWNER_PROPERTY_TYPES = [
-  { id: "rumah", label: "Rumah" },
-  { id: "apartemen", label: "Apartemen" },
-  { id: "villa", label: "Villa" },
-] as const
+export const OWNER_PROPERTY_TYPES = ["rumah", "apartemen", "villa"] as const
+export const OWNER_PROPERTY_STATUSES = ["ota-live", "not-listed", "new-build"] as const
 
-export const OWNER_PROPERTY_STATUSES = [
-  { id: "ota-live", label: "Sudah tayang di Airbnb/OTA" },
-  { id: "not-listed", label: "Belum tayang" },
-  { id: "new-build", label: "Baru dibangun / renovasi" },
-] as const
-
-export function getOwnerServiceLabel(id: OwnerServiceChoice): string {
-  return OWNER_SERVICE_CHOICES.find((s) => s.id === id)?.label ?? id
+export function ownerServiceLabelKey(id: OwnerServiceChoice): FunnelKey {
+  return OWNER_SERVICE_CHOICES.find((s) => s.id === id)?.labelKey ?? "f.svc.undecided"
 }
 
 /** HK on Demand goes to the cleaning team; everything else to owner relations. */
@@ -186,65 +142,34 @@ export type EventTypeId = "wedding" | "gathering" | "shooting"
 
 export interface EventTypeOption {
   id: EventTypeId
-  name: string
-  shortName: string
-  description: string
-  highlights: string[]
+  highlightCount: number
   image: string
 }
 
 export const EVENT_TYPES: EventTypeOption[] = [
-  {
-    id: "wedding",
-    name: "Wedding",
-    shortName: "wedding",
-    description: "Akad, pemberkatan, atau resepsi intim di taman & tepi kolam.",
-    highlights: ["Taman 500 m² & kolam", "Hingga 50 tamu", "Vendor bebas, 0% corkage", "Bridal suite"],
-    image: "/properties/versatile-house/events/wedding-ceremony-lawn-pool.jpg",
-  },
-  {
-    id: "gathering",
-    name: "Gathering & Ulang Tahun",
-    shortName: "gathering",
-    description: "Arisan, ulang tahun, reuni, atau acara kantor dengan paket per jam.",
-    highlights: ["Paket Half Day / Full Day", "Kolam & area BBQ", "Catering bebas"],
-    image: "/properties/versatile-house/events/evening-garden-party-banquet.jpg",
-  },
-  {
-    id: "shooting",
-    name: "Shooting Foto & Video",
-    shortName: "shooting",
-    description: "Lokasi konten, iklan, pre-wedding, atau film dengan banyak sudut.",
-    highlights: ["Taman, ruang tengah, zen courtyard", "Cahaya alami", "Durasi fleksibel"],
-    image: "/properties/versatile-house/new/VersatileHouse_09_Zen_Courtyard.jpg",
-  },
+  { id: "wedding", highlightCount: 4, image: "/properties/versatile-house/events/wedding-ceremony-lawn-pool.jpg" },
+  { id: "gathering", highlightCount: 3, image: "/properties/versatile-house/events/evening-garden-party-banquet.jpg" },
+  { id: "shooting", highlightCount: 3, image: "/properties/versatile-house/new/VersatileHouse_09_Zen_Courtyard.jpg" },
 ]
 
-export function getEventTypeLabel(id: EventTypeId): string {
-  return EVENT_TYPES.find((e) => e.id === id)?.name ?? id
+export function eventTypeLabelKey(id: EventTypeId): FunnelKey {
+  return `f.evt.${id}.name` as FunnelKey
 }
 
 /** Venues that can be requested on the event form. */
-export const EVENT_VENUES = ["Versatile House Jagakarsa", "Belum tahu, butuh rekomendasi"] as const
+export const EVENT_VENUE_UNDECIDED = "undecided"
+export const EVENT_VENUES = ["Versatile House Jagakarsa", EVENT_VENUE_UNDECIDED] as const
 
-export const EVENT_SPECIAL_NEEDS = [
-  { id: "music", label: "Musik / sound system" },
-  { id: "decoration", label: "Dekorasi" },
-  { id: "catering", label: "Catering" },
-  { id: "overnight", label: "Menginap setelah acara" },
-] as const
+export const EVENT_SPECIAL_NEEDS = ["music", "decoration", "catering", "overnight"] as const
 
 /**
  * Venue rules shown once on /events so they are not asked again in chat.
- * A rule with `value: null` is hidden until the team confirms it — never
- * publish a guessed deposit or music limit.
+ * Only confirmed rules are listed. To publish music limits, deposit, early
+ * decoration or date-hold rules, add their keys to every lib/i18n/funnel
+ * dictionary and list them here — never publish a guessed value.
  */
-export const EVENT_VENUE_RULES: { label: string; value: string | null }[] = [
-  { label: "Kapasitas maksimum", value: "50 tamu (acara) • 12 tamu menginap" },
-  { label: "Jam tenang", value: "22.00–06.00 WIB" },
-  { label: "Vendor & catering", value: "Bebas bawa vendor sendiri, 0% corkage" },
-  { label: "Batas musik", value: null },
-  { label: "Deposit", value: null },
-  { label: "Dekorasi sejak pagi", value: null },
-  { label: "Penahanan tanggal", value: null },
+export const EVENT_VENUE_RULES: { labelKey: FunnelKey; valueKey: FunnelKey }[] = [
+  { labelKey: "f.rules.capacity", valueKey: "f.rules.capacityValue" },
+  { labelKey: "f.rules.quietHours", valueKey: "f.rules.quietHoursValue" },
+  { labelKey: "f.rules.vendors", valueKey: "f.rules.vendorsValue" },
 ]

@@ -16,6 +16,15 @@ Semua konfigurasi funnel ada di `lib/funnel/config.ts`.
 Tombol WhatsApp melayang menyesuaikan halaman: halaman pemilik → pesan owner, `/events` → pesan event,
 halaman properti → pesan menginap, halaman lain → pesan menu 1/2/3.
 
+## Bahasa (i18n)
+
+Semua teks funnel ada di `lib/i18n/funnel/<bahasa>.ts` untuk 9 bahasa situs (EN default, ID, JA,
+ZH-CN, ZH-TW, FR, ES, DE, RU) dan dipanggil lewat `t("f....")` dari `useLocalization()`.
+TypeScript menolak build jika satu bahasa kehilangan kunci, dan test `tests/funnel-i18n.test.ts`
+memastikan placeholder `{...}` sama di semua bahasa. Bahasa pengunjung disimpan di lead
+(`details.language`), sehingga balasan pertama admin (`reply_whatsapp_url`) memakai bahasa tersebut.
+Notifikasi internal tim tetap berbahasa Indonesia.
+
 ## Environment variables
 
 | Variabel | Wajib | Fungsi |
@@ -24,8 +33,7 @@ halaman properti → pesan menginap, halaman lain → pesan menu 1/2/3.
 | `SUPABASE_SERVICE_ROLE_KEY` + tabel `leads` | Salah satu dari dua tujuan lead | Simpan lead ke Supabase. Jalankan bagian `4. LEADS TABLE` di `supabase/schema.sql`. Tabel ini RLS tanpa policy publik, jadi **wajib service role key** (anon key tidak bisa menulis). |
 | `LEAD_WEBHOOK_URL` | Salah satu dari dua tujuan lead | Kirim lead ke Google Sheet / Make / Zapier / CRM, sekaligus notifikasi grup tim. |
 | `LEAD_WEBHOOK_SECRET` | Opsional | Dikirim sebagai header `X-Kinghouse-Secret`. |
-| `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | Disarankan | Notifikasi instan setiap lead baru ke grup Telegram tim + ringkasan harian. |
-| `CRON_SECRET` | Wajib untuk ringkasan harian | Rahasia acak; Vercel Cron mengirimnya otomatis sebagai `Authorization: Bearer …`. |
+| `CRON_SECRET` | Disarankan | String acak. Vercel Cron mengirimnya otomatis; setelah diisi, sinkronisasi iCal (`/api/erp/ical-sync?action=sync-all`) hanya bisa dipicu cron atau admin. |
 
 Jika keduanya belum diatur, form tetap berjalan (pengunjung tetap diarahkan ke `/thanks` dan WhatsApp),
 tetapi lead hanya tercatat di log server (`[lead] … not persisted`).
@@ -57,22 +65,10 @@ function doPost(e) {
 
 - **Batas balasan** dihitung dalam jam kantor (Senin–Jumat 08.00–18.00 WIB): Stay 15 menit, Event 30 menit,
   Owner 1 jam. Lead Jumat 17.50 untuk Owner jatuh tempo Senin 08.50. Hari libur nasional belum dikecualikan.
-- **Notifikasi lead baru** (Telegram dan/atau webhook) berisi ringkasan, batas balasan, tim tujuan, sumber UTM,
-  dan tombol **"Balas via WhatsApp"** yang membuka chat ke nomor lead dengan *Balasan admin pertama* dari
-  Panduan Respons, sudah terisi data form (yang tersisa hanya isian bertanda `[...]`, mis. harga atau jadwal).
-- **Ringkasan harian** (`/api/cron/lead-digest`, Senin–Jumat ±08.05 WIB) ke grup Telegram yang sama:
-  lead *Baru* yang lewat batas balasan, *Penawaran terkirim* > 1 hari (jadwal follow-up), dan
-  *Tanggal ditahan* > 24 jam, plus jumlah lead 24 jam terakhir per target. Membaca tabel `leads`, jadi butuh
-  `SUPABASE_SERVICE_ROLE_KEY`. Agar akurat, tim mengisi `first_response_at`, `last_contact_at` dan `status`.
-
-### Setup Telegram (±5 menit)
-
-1. Di Telegram, chat **@BotFather** → `/newbot` → beri nama (mis. *Kinghouse Leads*) → salin token → `TELEGRAM_BOT_TOKEN`.
-2. Buat grup tim, tambahkan bot tersebut ke grup, lalu kirim pesan apa saja di grup.
-3. Buka `https://api.telegram.org/bot<TOKEN>/getUpdates` di browser, cari `"chat":{"id":-100…}` → `TELEGRAM_CHAT_ID`
-   (angka negatif, termasuk tanda minus).
-4. Isi `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, dan `CRON_SECRET` (string acak panjang) di Vercel → Redeploy.
-   `CRON_SECRET` yang sama juga mengamankan cron sinkronisasi iCal yang sudah ada.
+- **Notifikasi lead baru** lewat `LEAD_WEBHOOK_URL` (Google Sheet + email dari Apps Script). Payload berisi
+  `notification` (teks ringkasan) dan `reply_whatsapp_url`: link chat ke nomor lead dengan *Balasan admin
+  pertama* dari Panduan Respons, sudah terisi data form. Di Apps Script, tambahkan link itu ke isi email.
+- **Daftar harian PIC**: simpan query "lead lewat batas" di Supabase SQL Editor (lihat panduan setup tabel).
 
 ## Cek ketersediaan (Funnel B1)
 
@@ -94,6 +90,13 @@ Event baru (sudah terkirim ke `dataLayer` dan `gtag`):
 
 UTM (`utm_source`, `utm_medium`, `utm_campaign`) + referrer + landing page dicatat otomatis di awal sesi
 dan ikut tersimpan di setiap lead. Pasang UTM di link bio Instagram, Google Business, dan iklan.
+
+## Keamanan database (wajib, sekali jalan)
+
+Skema lama memberi anon key publik akses baca **dan** tulis/hapus ke `reservations`, `expenses`, dan
+`blog_posts` (data tamu & keuangan). Setelah `SUPABASE_SERVICE_ROLE_KEY` terpasang di Vercel dan
+di-redeploy, jalankan `supabase/migrations/20261024_restrict_public_access.sql` di SQL Editor.
+Setelah itu publik hanya bisa membaca artikel blog berstatus *Published*.
 
 ## Yang masih perlu diputuskan tim
 

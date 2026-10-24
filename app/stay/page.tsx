@@ -5,12 +5,14 @@ import { Sparkles, MapPin, ArrowRight, ShieldCheck, QrCode } from "lucide-react"
 import { GUEST_COMPENDIUMS } from "@/lib/guest-guide/data"
 
 export const metadata: Metadata = {
-  title: "Digital Guest Compendium & Concierge | Kinghouse",
+  title: "Digital Guest Guide & Concierge",
   description:
     "Panduan digital tamu, petunjuk check-in, password WiFi instan, dan layanan concierge 24/7 untuk villa & apartemen kelolaan Kinghouse.",
   alternates: {
     canonical: "/stay",
   },
+  // Guest-only pages (check-in steps, WiFi details): keep them out of search results.
+  robots: { index: false, follow: false },
 }
 
 export default function GuestDirectoryPage() {
@@ -62,7 +64,7 @@ export default function GuestDirectoryPage() {
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent" />
-                  <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1 text-[11px] font-medium text-stone-300">
+                  <div className="absolute bottom-2.5 left-2.5 flex items-center gap-1 text-xs font-medium text-stone-300">
                     <MapPin className="h-3 w-3 text-[#CBBEA0]" />
                     <span>{prop.area}</span>
                   </div>

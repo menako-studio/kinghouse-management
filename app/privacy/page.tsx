@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import Link from "next/link"
 import { Shield, Lock, ArrowRight } from "lucide-react"
-import { SITE_CONFIG } from "@/lib/constants"
+import { SITE_CONFIG, DEFAULT_OG_IMAGES } from "@/lib/constants"
 
 export const metadata: Metadata = {
   title: {
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     "Learn how Kinghouse Management collects, utilizes, and protects guest, property owner, and visitor personal data under Indonesian UU PDP.",
   alternates: { canonical: `${SITE_CONFIG.baseUrl}/privacy` },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Privacy Policy | Kinghouse Management Indonesia",
     description:
       "Learn how Kinghouse Management collects, utilizes, and protects guest and property owner personal data.",
