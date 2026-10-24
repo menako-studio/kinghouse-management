@@ -103,3 +103,19 @@ describe("Distribution Feed & Export Engine", () => {
   })
 })
 
+
+describe("Villa slug & alias resolution", () => {
+  it("resolves every villa to itself by slug, id and Airbnb room id", async () => {
+    const { findVillaBySlug, PROPERTY_ALIASES } = await import("@/lib/erp/villa-reservations")
+    const { CURATED_VILLAS } = await import("@/lib/data")
+    for (const villa of CURATED_VILLAS) {
+      expect(findVillaBySlug(villa.slug)?.id).toBe(villa.id)
+      expect(findVillaBySlug(villa.id)?.id).toBe(villa.id)
+      for (const alias of PROPERTY_ALIASES[villa.id] ?? []) {
+        expect(findVillaBySlug(alias)?.id, alias).toBe(villa.id)
+      }
+      const roomId = villa.airbnbUrl.match(/rooms\/(\d+)/)?.[1]
+      if (roomId) expect(PROPERTY_ALIASES[villa.id]).toContain(roomId)
+    }
+  })
+})
