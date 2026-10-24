@@ -75,7 +75,7 @@ export function OnboardingTimeline() {
                     <span className="font-serif text-4xl text-[#A69C8E] font-normal">
                       {item.step}
                     </span>
-                    <span className="rounded-full bg-[#FAFAFA] border border-[#EBEBEB] px-3 py-1 text-[11px] font-semibold text-[#222222]">
+                    <span className="rounded-full bg-[#FAFAFA] border border-[#EBEBEB] px-3 py-1 text-xs font-semibold text-[#222222]">
                       {item.duration}
                     </span>
                   </div>
@@ -92,12 +92,12 @@ export function OnboardingTimeline() {
 
                   {/* Deliverables List */}
                   <div className="space-y-2 pt-2 border-t border-[#EBEBEB]">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#222222] block">
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#222222] block">
                       Key Deliverables:
                     </span>
                     <ul className="space-y-1.5">
                       {item.deliverables.map((deliv, dIdx) => (
-                        <li key={dIdx} className="flex items-start space-x-2 text-[11px] text-[#555555]">
+                        <li key={dIdx} className="flex items-start space-x-2 text-xs text-[#555555]">
                           <CheckCircle2 className="h-3.5 w-3.5 text-[#A69C8E] shrink-0 mt-0.5" />
                           <span>{deliv}</span>
                         </li>

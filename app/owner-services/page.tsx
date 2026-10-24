@@ -96,7 +96,7 @@ export default function OwnerServicesPage() {
           <div className="relative z-10 mx-auto max-w-7xl px-6 py-20 lg:px-12 lg:py-28">
             <div className="max-w-3xl space-y-6">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center rounded-full bg-[#A69C8E]/25 px-3.5 py-1 text-[11px] font-semibold uppercase tracking-widest text-[#EAE8E4] backdrop-blur-md border border-[#A69C8E]/40">
+                <span className="inline-flex items-center rounded-full bg-[#A69C8E]/25 px-3.5 py-1 text-xs font-semibold uppercase tracking-widest text-[#EAE8E4] backdrop-blur-md border border-[#A69C8E]/40">
                   <TrendingUp className="mr-1.5 h-3.5 w-3.5 text-[#DFC58E]" />
                   Institutional Villa Asset Management
                 </span>
@@ -106,7 +106,7 @@ export default function OwnerServicesPage() {
                   href="https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center rounded-full bg-[#DFC58E]/20 hover:bg-[#DFC58E]/30 px-3.5 py-1 text-[11px] font-semibold uppercase tracking-widest text-[#DFC58E] backdrop-blur-md border border-[#DFC58E]/50 transition-all hover:scale-105"
+                  className="inline-flex items-center rounded-full bg-[#DFC58E]/20 hover:bg-[#DFC58E]/30 px-3.5 py-1 text-xs font-semibold uppercase tracking-widest text-[#DFC58E] backdrop-blur-md border border-[#DFC58E]/50 transition-all hover:scale-105"
                   title="Lihat Profil Resmi Superhost Kinghouse Management di Airbnb"
                 >
                   <Sparkles className="mr-1.5 h-3.5 w-3.5 text-[#DFC58E]" />
@@ -127,11 +127,11 @@ export default function OwnerServicesPage() {
               <div className="grid grid-cols-3 gap-6 pt-4 border-t border-white/15 max-w-xl text-white">
                 <div>
                   <span className="font-serif text-2xl sm:text-3xl text-white font-normal block">91%</span>
-                  <span className="text-[11px] text-[#A0A0A0] uppercase tracking-wider">Avg Occupancy</span>
+                  <span className="text-xs text-[#A0A0A0] uppercase tracking-wider">Avg Occupancy</span>
                 </div>
                 <div>
                   <span className="font-serif text-2xl sm:text-3xl text-[#DFC58E] font-normal block">+48%</span>
-                  <span className="text-[11px] text-[#A0A0A0] uppercase tracking-wider">EBITDA Lift</span>
+                  <span className="text-xs text-[#A0A0A0] uppercase tracking-wider">EBITDA Lift</span>
                 </div>
                 <div>
                   <a
@@ -143,7 +143,7 @@ export default function OwnerServicesPage() {
                     <span className="font-serif text-2xl sm:text-3xl text-white font-normal group-hover:text-[#DFC58E] transition-colors flex items-center">
                       Superhost <span className="text-xs ml-1 opacity-70">↗</span>
                     </span>
-                    <span className="text-[11px] text-[#DFC58E] uppercase tracking-wider group-hover:underline">
+                    <span className="text-xs text-[#DFC58E] uppercase tracking-wider group-hover:underline">
                       Verified by Airbnb
                     </span>
                   </a>

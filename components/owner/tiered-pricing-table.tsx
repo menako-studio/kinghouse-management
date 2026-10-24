@@ -51,7 +51,7 @@ export function TieredPricingTable() {
                 {/* Popular Badge */}
                 {tier.badge && (
                   <div className="absolute -top-3.5 right-8">
-                    <Badge variant="default" className="text-[11px] font-semibold uppercase tracking-wider py-1 px-4">
+                    <Badge variant="default" className="text-xs font-semibold uppercase tracking-wider py-1 px-4">
                       {tier.badge}
                     </Badge>
                   </div>
@@ -85,7 +85,7 @@ export function TieredPricingTable() {
 
                   {/* Feature Checklist */}
                   <div className="space-y-3.5">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#222222]">
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#222222]">
                       Included Capabilities:
                     </span>
                     <ul className="space-y-3">
@@ -119,7 +119,7 @@ export function TieredPricingTable() {
 
                 {/* Card CTA */}
                 <div className="mt-10 pt-6 border-t border-[#EBEBEB] space-y-3">
-                  <p className="text-[11px] text-[#717171] italic">
+                  <p className="text-xs text-[#717171] italic">
                     Ideal for: {tier.idealFor}
                   </p>
                   <Button
@@ -169,7 +169,7 @@ export function TieredPricingTable() {
               onChange={(e) => setEstimatedMonthlyRevenue(Number(e.target.value))}
               className="w-full accent-[#222222] cursor-pointer"
             />
-            <div className="flex justify-between text-[11px] text-[#717171]">
+            <div className="flex justify-between text-xs text-[#717171]">
               <span>{formatPrice(50000000)} / mo</span>
               <span>{formatPrice(250000000)} / mo</span>
               <span>{formatPrice(500000000)} / mo</span>

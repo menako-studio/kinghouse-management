@@ -30,7 +30,7 @@ export default function NotFound() {
         {/* Floating Architectural Badge */}
         <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full sana-glass border border-[#E8E4DC] text-[#8C7F5F] mb-8 shadow-xs">
           <Compass className="w-3.5 h-3.5 text-[#8C7F5F] animate-sana-float" />
-          <span className="text-[11px] font-semibold uppercase tracking-[0.25em]">
+          <span className="text-xs font-semibold uppercase tracking-[0.25em]">
             {isId ? "404 • LOKASI BELUM TERPETAKAN" : "404 • SANCTUARY UNCHARTED"}
           </span>
         </div>
@@ -100,7 +100,7 @@ export default function NotFound() {
 
         {/* Quick Location Shortcuts (Nakula/Sana Labs Inspired Bento Cards) */}
         <div className="max-w-3xl mx-auto pt-8 border-t border-[#E8E4DC]/80">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#8C7F5F] mb-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#8C7F5F] mb-6">
             {isId ? "DESTINASI UNGGULAN JABODETABEK" : "CURATED JABODETABEK ENCLAVES"}
           </p>
 
@@ -117,7 +117,7 @@ export default function NotFound() {
                   </span>
                   <ArrowUpRight className="w-3.5 h-3.5 text-[#CBBEA0] group-hover:text-[#8C7F5F] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </div>
-                <div className="flex items-center gap-1 text-[11px] text-[#5C5347]">
+                <div className="flex items-center gap-1 text-xs text-[#5C5347]">
                   <MapPin className="w-3 h-3 text-[#8C7F5F]" />
                   <span>{area.region}</span>
                 </div>

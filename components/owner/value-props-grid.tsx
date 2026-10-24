@@ -73,7 +73,7 @@ export function ValuePropsGrid() {
                   <p className="text-xs leading-relaxed text-[#717171]">{prop.description}</p>
                 </div>
 
-                <div className="mt-8 pt-4 border-t border-[#EBEBEB] text-[11px] font-semibold text-[#222222] flex items-center justify-between">
+                <div className="mt-8 pt-4 border-t border-[#EBEBEB] text-xs font-semibold text-[#222222] flex items-center justify-between">
                   <span>Standard Metric:</span>
                   <span className="text-[#A69C8E]">Top 1% Performance</span>
                 </div>

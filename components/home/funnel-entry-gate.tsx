@@ -1,72 +1,75 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, BedDouble, Building2, PartyPopper } from "lucide-react"
+import { useLocalization } from "@/lib/context/localization-context"
 
 const GUEST_PATHS = [
   {
     href: "/villas",
     icon: BedDouble,
-    title: "Menginap",
-    description: "Villa & apartemen di Jabodetabek. Cek tanggal dan harga total, lalu booking.",
-    cta: "Cari Tempat Menginap",
+    titleKey: "f.gate.stayTitle",
+    textKey: "f.gate.stayText",
+    ctaKey: "f.gate.stayCta",
     image: "/properties/versatile-house/new/VersatileHouse_03_Master_Bedroom.jpg",
   },
   {
     href: "/events#jenis-acara",
     icon: PartyPopper,
-    title: "Acara & Event",
-    description: "Wedding, gathering & ulang tahun, atau shooting foto/video.",
-    cta: "Lihat Venue & Paket",
+    titleKey: "f.gate.eventTitle",
+    textKey: "f.gate.eventText",
+    ctaKey: "f.gate.eventCta",
     image: "/properties/versatile-house/events/wedding-ceremony-lawn-pool.jpg",
   },
-]
+] as const
 
 /**
  * Funnel entry: the homepage asks one question first — owner or guest — and
  * routes each answer to its own qualification form and WhatsApp line.
  */
 export function FunnelEntryGate() {
+  const { t } = useLocalization()
+
   return (
     <section id="mulai" aria-labelledby="funnel-gate-heading" className="bg-[#FAF7F1] py-14 lg:py-20">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="mb-10 max-w-2xl">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8C7F5F]">Mulai di sini</span>
+          <span className="text-sm font-semibold uppercase tracking-[0.15em] text-[#8C7F5F]">{t("f.gate.eyebrow")}</span>
           <h2 id="funnel-gate-heading" className="mt-1 font-serif text-3xl text-[#222222] sm:text-4xl">
-            Apa yang Anda butuhkan hari ini?
+            {t("f.gate.title")}
           </h2>
         </div>
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
           {/* Target 1 — Owner / Host */}
-          <div className="relative flex min-h-[340px] flex-col justify-end overflow-hidden rounded-2xl bg-[#231F1A] p-8 text-white lg:col-span-2">
+          <div className="relative flex min-h-[360px] flex-col justify-end overflow-hidden rounded-2xl bg-[#231F1A] p-8 text-white lg:col-span-2">
             <Image
               src="/properties/skyline-luxury/SkylineLuxury_OrangeCounty_KamarUtama.webp"
-              alt="Unit apartemen yang dikelola Kinghouse"
+              alt={t("f.gate.ownerImageAlt")}
               fill
               sizes="(max-width: 1024px) 100vw, 40vw"
               className="object-cover brightness-[0.35]"
             />
             <div className="relative z-10 space-y-4">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider">
-                <Building2 className="h-3.5 w-3.5 text-[#DFC58E]" />
-                Saya pemilik properti
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-sm font-semibold">
+                <Building2 className="h-4 w-4 text-[#DFC58E]" />
+                {t("f.gate.ownerBadge")}
               </span>
-              <h3 className="font-serif text-2xl sm:text-3xl">Housekeeping, Co-Hosting, atau Full Management</h3>
-              <p className="text-sm font-light text-white/80">
-                Pilih layanan yang sesuai, isi data properti, dan tim owner relations menghubungi Anda dalam 1 jam kerja.
-              </p>
+              <h3 className="font-serif text-2xl sm:text-3xl">{t("f.gate.ownerTitle")}</h3>
+              <p className="text-base text-white/85">{t("f.gate.ownerText")}</p>
               <Link
                 href="/owner-services#layanan"
-                className="inline-flex items-center gap-2 rounded-full bg-[#DFC58E] px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#19191B] transition-colors hover:bg-[#C9A96E]"
+                className="inline-flex items-center gap-2 rounded-full bg-[#DFC58E] px-6 py-3 text-sm font-bold text-[#19191B] transition-colors hover:bg-[#C9A96E]"
               >
-                Kelola Properti Saya <ArrowRight className="h-4 w-4" />
+                {t("f.gate.ownerCta")} <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
 
           {/* Target 2 — Guest: stay or event */}
           <div className="space-y-3 lg:col-span-3">
-            <p className="text-[11px] font-bold uppercase tracking-wider text-[#5C5347]">Saya mencari tempat</p>
+            <p className="text-sm font-bold uppercase tracking-wider text-[#5C5347]">{t("f.gate.guestLabel")}</p>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               {GUEST_PATHS.map((path) => (
                 <Link
@@ -77,7 +80,7 @@ export function FunnelEntryGate() {
                   <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#F3EFE6]">
                     <Image
                       src={path.image}
-                      alt={path.title}
+                      alt={t(path.titleKey)}
                       fill
                       sizes="(max-width: 640px) 100vw, 30vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -85,13 +88,13 @@ export function FunnelEntryGate() {
                   </div>
                   <div className="flex flex-1 flex-col gap-2 p-6">
                     <div className="flex items-center gap-2 text-[#8C7F5F]">
-                      <path.icon className="h-4 w-4" />
-                      <h3 className="font-serif text-xl text-[#222222]">{path.title}</h3>
+                      <path.icon className="h-5 w-5" />
+                      <h3 className="font-serif text-2xl text-[#222222]">{t(path.titleKey)}</h3>
                     </div>
-                    <p className="flex-1 text-xs leading-relaxed text-[#6B6862]">{path.description}</p>
-                    <span className="inline-flex items-center gap-1.5 pt-2 text-xs font-semibold uppercase tracking-wider text-[#8C7F5F]">
-                      {path.cta}
-                      <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                    <p className="flex-1 text-base leading-relaxed text-[#5C5347]">{t(path.textKey)}</p>
+                    <span className="inline-flex items-center gap-1.5 pt-2 text-sm font-semibold text-[#8C7F5F]">
+                      {t(path.ctaKey)}
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>
                   </div>
                 </Link>

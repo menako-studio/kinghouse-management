@@ -282,12 +282,12 @@ export default async function VillaDetailPage({ params }: PageProps) {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                   <div className="absolute top-3 left-3">
-                    <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#DFC58E] text-[#19191B] shadow-sm">
+                    <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#DFC58E] text-[#19191B] shadow-sm">
                       Wedding &amp; Event Venue
                     </span>
                   </div>
                   <div className="absolute bottom-3 left-4 right-4 text-white">
-                    <span className="text-[11px] text-[#DFC58E] uppercase tracking-wider font-semibold block">
+                    <span className="text-xs text-[#DFC58E] uppercase tracking-wider font-semibold block">
                       500m² Tropical Garden &bull; Up to 50 Guests Seated
                     </span>
                     <h3 className="font-serif text-xl sm:text-2xl font-normal drop-shadow-sm">
@@ -301,7 +301,7 @@ export default async function VillaDetailPage({ params }: PageProps) {
                     Planning a private garden wedding, Akad Nikah, or twilight banquet? Versatile House Jagakarsa offers 100% vendor freedom with <strong>0% vendor corkage fees</strong>, overnight accommodation for 15 family members, and weather backup spaces.
                   </p>
                   
-                  <div className="flex flex-wrap items-center gap-2 pt-1 text-[11px] text-white/70">
+                  <div className="flex flex-wrap items-center gap-2 pt-1 text-xs text-white/70">
                     <span className="px-2.5 py-1 rounded-full bg-white/10 border border-white/10">0% Corkage Fee</span>
                     <span className="px-2.5 py-1 rounded-full bg-white/10 border border-white/10">Foreigner-Friendly Desk</span>
                     <span className="px-2.5 py-1 rounded-full bg-white/10 border border-white/10">Bridal Master Suite</span>
@@ -363,7 +363,7 @@ export default async function VillaDetailPage({ params }: PageProps) {
                       key={idx}
                       className="flex items-start gap-2.5 rounded-xl border border-[#EBEBEB] bg-white p-3.5 text-xs text-[#444444] shadow-xs"
                     >
-                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#222222] text-[10px] font-bold text-white mt-0.5">
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#222222] text-xs font-bold text-white mt-0.5">
                         {idx + 1}
                       </span>
                       <span className="leading-relaxed">{rule}</span>

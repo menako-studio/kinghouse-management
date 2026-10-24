@@ -274,7 +274,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-12">
           <div className="mx-auto max-w-4xl">
             <span
-              className={`inline-block text-[11px] font-semibold px-3 py-1 rounded-full border mb-4 ${categoryColor}`}
+              className={`inline-block text-xs font-semibold px-3 py-1 rounded-full border mb-4 ${categoryColor}`}
             >
               {categoryLabel}
             </span>
@@ -391,7 +391,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                         <span
-                          className={`absolute top-3 left-3 text-[10px] font-semibold px-2.5 py-1 rounded-full border ${relCategoryColor}`}
+                          className={`absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-full border ${relCategoryColor}`}
                         >
                           {relCategoryLabel}
                         </span>

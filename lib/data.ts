@@ -656,12 +656,14 @@ export const CASE_STUDIES: CaseStudy[] = [
 
 // ─── TRUST PARTNERS ───────────────────────────────────────────────────────────
 
+// `live: false` partners are not shown on the site; flip to true once the channel is active.
+// Badge copy is translated via the `badgeKey` entries in localization-context.
 export const TRUST_PARTNERS = [
-  { name: "Airbnb", badge: "Managed Host 2026", logoText: "Airbnb" },
-  { name: "Booking.com", badge: "Coming Soon", logoText: "Booking.com" },
-  { name: "Agoda", badge: "Coming Soon", logoText: "Agoda" },
-  { name: "Google", badge: "Google Verified Business", logoText: "Google" },
-  { name: "WhatsApp Business", badge: "Verified Business", logoText: "WhatsApp" },
+  { name: "Airbnb", badgeKey: "partnerBadgeManagedHost", logoText: "Airbnb", live: true },
+  { name: "Booking.com", badgeKey: "partnerBadgeComingSoon", logoText: "Booking.com", live: false },
+  { name: "Agoda", badgeKey: "partnerBadgeComingSoon", logoText: "Agoda", live: false },
+  { name: "Google", badgeKey: "partnerBadgeVerifiedBusiness", logoText: "Google", live: true },
+  { name: "WhatsApp Business", badgeKey: "partnerBadgeVerifiedBusiness", logoText: "WhatsApp", live: true },
 ]
 
 // ─── BLOG POSTS ───────────────────────────────────────────────────────────────

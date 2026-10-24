@@ -348,7 +348,7 @@ export default function AboutPage() {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 text-white">
-                  <span className="text-[11px] uppercase tracking-wider text-[#DFC58E] font-semibold">
+                  <span className="text-xs uppercase tracking-wider text-[#DFC58E] font-semibold">
                     {content.photoTag}
                   </span>
                   <p className="font-serif text-xl font-normal">
@@ -493,7 +493,7 @@ export default function AboutPage() {
                     <span className="text-xs font-semibold text-[#231F1A] block">
                       {service.name}
                     </span>
-                    <span className="text-[11px] text-[#5C5347] block font-light">
+                    <span className="text-xs text-[#5C5347] block font-light">
                       {service.desc}
                     </span>
                   </div>

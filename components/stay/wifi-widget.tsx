@@ -52,7 +52,7 @@ export function WifiWidget({ wifi }: WifiWidgetProps) {
         {/* SSID */}
         <div className="flex items-center justify-between rounded-xl border border-stone-800/80 bg-stone-900/60 p-3.5 transition-colors hover:border-stone-700">
           <div className="min-w-0 pr-2">
-            <div className="text-[11px] font-medium uppercase tracking-wider text-stone-400">
+            <div className="text-xs font-medium uppercase tracking-wider text-stone-400">
               Network (SSID)
             </div>
             <div className="truncate text-sm font-semibold text-stone-100 font-mono">
@@ -75,7 +75,7 @@ export function WifiWidget({ wifi }: WifiWidgetProps) {
         {/* Password */}
         <div className="flex items-center justify-between rounded-xl border border-amber-500/30 bg-amber-500/5 p-3.5 transition-colors hover:border-amber-500/50">
           <div className="min-w-0 pr-2">
-            <div className="text-[11px] font-medium uppercase tracking-wider text-amber-400/90">
+            <div className="text-xs font-medium uppercase tracking-wider text-amber-400/90">
               Password
             </div>
             <div className="truncate text-sm font-bold text-amber-200 font-mono">
