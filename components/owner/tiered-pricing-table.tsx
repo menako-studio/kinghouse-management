@@ -128,7 +128,7 @@ export function TieredPricingTable() {
                     variant={isPopular ? "default" : "outline"}
                     className="w-full text-xs uppercase tracking-widest font-semibold h-12"
                   >
-                    <a href="#audit">
+                    <a href="#owner-form">
                       Apply for {tier.name} <ArrowRight className="ml-2 h-4 w-4" />
                     </a>
                   </Button>

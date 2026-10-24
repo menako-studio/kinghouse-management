@@ -1,16 +1,36 @@
 "use client"
 
 import { useState } from "react"
-import { ArrowUpRight, MessageSquare, ShieldCheck, Sparkles } from "lucide-react"
+import { ArrowUpRight, BellRing, CalendarCheck, CalendarX, MessageSquare, ShieldCheck, Sparkles } from "lucide-react"
 import { Villa } from "@/lib/types"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { useLocalization } from "@/lib/context/localization-context"
 import { BookingChannelModal } from "./booking-channel-modal"
 import {
   trackAirbnbClick,
+  trackCheckAvailability,
   trackWhatsAppClick,
   trackEvent,
 } from "@/lib/analytics"
+import { addDays, nightsBetween, type DateRange } from "@/lib/funnel/availability"
+import { buildWhatsAppUrl, formatDateId, stayWhatsAppMessage } from "@/lib/funnel/whatsapp"
+import { submitLead } from "@/lib/funnel/client"
+import { HoneypotField } from "@/components/funnel/form-fields"
+
+type AvailabilityState =
+  | { status: "idle" }
+  | { status: "checking" }
+  | { status: "available" }
+  | { status: "unavailable"; alternatives: DateRange[] }
+  | { status: "error" }
+
+/** Local (WIB on visitors' devices) YYYY-MM-DD, `offsetDays` from today. */
+function localIsoDate(offsetDays: number): string {
+  const d = new Date()
+  const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`
+  return addDays(today, offsetDays)
+}
 
 interface BookingSidebarProps {
 
@@ -19,22 +39,81 @@ interface BookingSidebarProps {
 
 export function BookingSidebar({ villa }: BookingSidebarProps) {
   const { formatPrice, currency, t } = useLocalization()
-  const [checkIn, setCheckIn] = useState("2026-09-10")
-  const [checkOut, setCheckOut] = useState("2026-09-15")
+  const [checkIn, setCheckIn] = useState(() => localIsoDate(14))
+  const [checkOut, setCheckOut] = useState(() => localIsoDate(16))
   const [guestCount, setGuestCount] = useState("2")
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [availability, setAvailability] = useState<AvailabilityState>({ status: "idle" })
+  const [notify, setNotify] = useState({ name: "", whatsapp: "", website: "" })
+  const [notifyState, setNotifyState] = useState<"idle" | "sending" | "sent" | "error">("idle")
 
-  // Calculate nights & fees (IDR primary)
-  const nights = 5
+  // Calculate nights & fees (IDR primary) from the selected dates
+  const nights = Math.max(0, nightsBetween(checkIn, checkOut))
+  const hasValidDates = nights >= 1
   const baseTotal = villa.price.idr * nights
   const cleaningFee = villa.price.cleaningFeeIdr
   const serviceFee = Math.round(baseTotal * (villa.price.serviceFeePercent / 100))
   const estimatedTotal = baseTotal + cleaningFee + serviceFee
 
-  const whatsappMessage = encodeURIComponent(
-    `Hello Kinghouse! I am interested in booking ${villa.name} in ${villa.area} for ${nights} nights (${checkIn} to ${checkOut}) for ${guestCount} guests. Please share availability and details.`
+  const whatsappUrl = buildWhatsAppUrl(
+    "STAY",
+    stayWhatsAppMessage({
+      propertyName: villa.name,
+      checkIn: hasValidDates ? checkIn : undefined,
+      checkOut: hasValidDates ? checkOut : undefined,
+      guests: Number(guestCount),
+    })
   )
-  const whatsappUrl = `https://wa.me/6282123933218?text=${whatsappMessage}`
+
+  const changeDates = (nextIn: string, nextOut: string) => {
+    setCheckIn(nextIn)
+    setCheckOut(nextOut)
+    setAvailability({ status: "idle" })
+    setNotifyState("idle")
+  }
+
+  const checkAvailability = async () => {
+    if (!hasValidDates) return
+    setAvailability({ status: "checking" })
+    let next: AvailabilityState
+    try {
+      const params = new URLSearchParams({ villa: villa.slug, checkIn, checkOut })
+      const res = await fetch(`/api/availability?${params.toString()}`)
+      if (!res.ok) throw new Error(String(res.status))
+      const data = (await res.json()) as { available: boolean; alternatives: DateRange[] }
+      next = data.available ? { status: "available" } : { status: "unavailable", alternatives: data.alternatives }
+    } catch {
+      next = { status: "error" }
+    }
+    setAvailability(next)
+    trackCheckAvailability({
+      propertyName: villa.name,
+      checkIn,
+      checkOut,
+      guests: Number(guestCount),
+      available: next.status === "available" ? true : next.status === "unavailable" ? false : null,
+    })
+  }
+
+  const submitNotify = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setNotifyState("sending")
+    const result = await submitLead(
+      {
+        target: "STAY",
+        need: "notify",
+        name: notify.name,
+        whatsapp: notify.whatsapp,
+        property: villa.name,
+        checkIn,
+        checkOut,
+        guests: Number(guestCount),
+        website: notify.website,
+      },
+      { propertySlug: villa.slug }
+    )
+    setNotifyState(result.ok ? "sent" : "error")
+  }
 
   return (
     <div className="sticky top-28 rounded-2xl border border-[#E8E4DC] bg-white p-6 sm:p-8 shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
@@ -75,7 +154,7 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
             <input
               type="date"
               value={checkIn}
-              onChange={(e) => setCheckIn(e.target.value)}
+              onChange={(e) => changeDates(e.target.value, checkOut)}
               className="w-full bg-transparent text-xs text-[#222222] font-medium focus:outline-none cursor-pointer pt-0.5"
             />
           </div>
@@ -86,7 +165,8 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
             <input
               type="date"
               value={checkOut}
-              onChange={(e) => setCheckOut(e.target.value)}
+              min={checkIn ? addDays(checkIn, 1) : undefined}
+              onChange={(e) => changeDates(checkIn, e.target.value)}
               className="w-full bg-transparent text-xs text-[#222222] font-medium focus:outline-none cursor-pointer pt-0.5"
             />
           </div>
@@ -109,6 +189,104 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
           </select>
         </div>
       </div>
+
+        {/* Funnel B1: availability check before booking, no chat needed */}
+        <div className="mb-4 space-y-3">
+          {!hasValidDates ? (
+            <p className="rounded-lg bg-amber-50 px-3 py-2 text-[11px] text-amber-800">
+              Tanggal check-out harus setelah check-in.
+            </p>
+          ) : (
+            <button
+              type="button"
+              onClick={checkAvailability}
+              disabled={availability.status === "checking"}
+              className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-[#2D2118] bg-white py-3 text-xs font-semibold uppercase tracking-widest text-[#2D2118] transition-colors hover:bg-[#FAF8F5] disabled:opacity-60"
+            >
+              <CalendarCheck className="h-4 w-4" />
+              {availability.status === "checking" ? "Mengecek..." : "Cek Ketersediaan"}
+            </button>
+          )}
+
+          {availability.status === "available" && (
+            <div role="status" className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-xs text-emerald-800">
+              <strong>Tersedia</strong> {formatDateId(checkIn)}–{formatDateId(checkOut)} ({nights} malam). Estimasi total{" "}
+              <strong>{formatPrice(estimatedTotal)}</strong>. Lanjutkan booking di bawah.
+            </div>
+          )}
+
+          {availability.status === "error" && (
+            <div role="status" className="rounded-xl border border-[#E8E4DC] bg-[#FAF8F5] p-3 text-xs text-[#5C5347]">
+              Kalender belum bisa dicek otomatis. Tanyakan langsung via WhatsApp di bawah, kami balas maks. 15 menit kerja.
+            </div>
+          )}
+
+          {availability.status === "unavailable" && (
+            <div role="status" className="space-y-3 rounded-xl border border-red-200 bg-red-50 p-3 text-xs text-red-800">
+              <p className="flex items-center gap-1.5 font-semibold">
+                <CalendarX className="h-4 w-4" /> Tanggal ini sudah terisi.
+              </p>
+              {availability.alternatives.length > 0 && (
+                <div className="space-y-1.5">
+                  <p className="text-[#5C5347]">Tanggal terdekat yang tersedia:</p>
+                  <div className="flex flex-wrap gap-2">
+                    {availability.alternatives.map((alt) => (
+                      <button
+                        key={alt.checkIn}
+                        type="button"
+                        onClick={() => changeDates(alt.checkIn, alt.checkOut)}
+                        className="cursor-pointer rounded-full border border-[#8C7F5F] bg-white px-3 py-1.5 text-[11px] font-semibold text-[#5C5347] hover:bg-[#FAF8F5]"
+                      >
+                        {formatDateId(alt.checkIn)} – {formatDateId(alt.checkOut)}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {notifyState === "sent" ? (
+                <p className="rounded-lg bg-white p-2.5 text-[#5C5347]">
+                  Terima kasih! Kami kabari via WhatsApp jika tanggal ini kosong.
+                </p>
+              ) : (
+                <form onSubmit={submitNotify} className="relative space-y-2 rounded-lg bg-white p-2.5 text-[#222222]">
+                  <HoneypotField value={notify.website} onChange={(v) => setNotify((n) => ({ ...n, website: v }))} />
+                  <p className="flex items-center gap-1.5 text-[11px] font-semibold text-[#5C5347]">
+                    <BellRing className="h-3.5 w-3.5" /> Beri tahu saya jika tanggal ini kosong
+                  </p>
+                  <Input
+                    required
+                    minLength={2}
+                    placeholder="Nama"
+                    aria-label="Nama"
+                    value={notify.name}
+                    onChange={(e) => setNotify((n) => ({ ...n, name: e.target.value }))}
+                    className="h-9 text-xs"
+                  />
+                  <Input
+                    required
+                    type="tel"
+                    placeholder="Nomor WhatsApp"
+                    aria-label="Nomor WhatsApp"
+                    value={notify.whatsapp}
+                    onChange={(e) => setNotify((n) => ({ ...n, whatsapp: e.target.value }))}
+                    className="h-9 text-xs"
+                  />
+                  {notifyState === "error" && (
+                    <p className="text-[11px] text-red-700">Gagal mengirim. Periksa nomor WhatsApp lalu coba lagi.</p>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={notifyState === "sending"}
+                    className="w-full cursor-pointer rounded-lg bg-[#2D2118] py-2 text-[11px] font-semibold uppercase tracking-wider text-white disabled:opacity-60"
+                  >
+                    {notifyState === "sending" ? "Mengirim..." : "Beri Tahu Saya"}
+                  </button>
+                </form>
+              )}
+            </div>
+          )}
+        </div>
 
         {/* Primary & Secondary Conversion CTAs */}
         <div className="space-y-2.5">
@@ -176,6 +354,7 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
                 onClick={() => {
                   trackWhatsAppClick({
                     source: "villa_detail",
+                    funnel: "stay",
                     propertyName: villa.name,
                     value: estimatedTotal,
                   })
@@ -194,6 +373,25 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
           Best Price Guarantee &bull; Verified Airbnb Superhost &bull; 24/7 Concierge
         </p>
 
+        {/* Help channel — WhatsApp is a fallback, not the booking path */}
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() =>
+            trackWhatsAppClick({
+              source: "villa_detail",
+              funnel: "stay",
+              propertyName: villa.name,
+              context: "help_link",
+              value: hasValidDates ? estimatedTotal : undefined,
+            })
+          }
+          className="mt-2 flex items-center justify-center gap-1.5 text-[11px] font-semibold text-[#15803D] hover:underline"
+        >
+          <MessageSquare className="h-3 w-3" /> Butuh bantuan? Tanya via WhatsApp
+        </a>
+
         {/* Multi-Channel Modal */}
         <BookingChannelModal
           villa={villa}
@@ -205,7 +403,7 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
       <div className="mt-6 pt-6 border-t border-[#F0ECE1] space-y-2.5 text-xs text-[#717171]">
         <div className="flex justify-between">
           <span className="underline decoration-dotted">
-            {formatPrice(villa.price.idr)} x {nights} nights
+            {formatPrice(villa.price.idr)} x {nights} {nights === 1 ? "night" : "nights"}
           </span>
           <span className="text-[#222222] font-medium">{formatPrice(baseTotal)}</span>
         </div>

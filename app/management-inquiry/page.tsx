@@ -1,65 +1,19 @@
 "use client"
 
-import { useState } from "react"
 import Image from "next/image"
 import {
   Building2,
-  CheckCircle2,
   TrendingUp,
   ShieldCheck,
   CalendarCheck,
   MessageCircle,
-  ArrowRight,
   Sparkles,
 } from "lucide-react"
-import { trackWhatsAppClick, trackOwnerLead } from "@/lib/analytics"
+import { trackWhatsAppClick } from "@/lib/analytics"
+import { buildWhatsAppUrl, ownerWhatsAppMessage } from "@/lib/funnel/whatsapp"
+import { OwnerLeadForm } from "@/components/owner/owner-lead-form"
 
 export default function ManagementInquiryPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    propertyType: "Standalone Villa",
-    location: "Jagakarsa (Jakarta Selatan)",
-    bedrooms: "3-4 Bedrooms",
-    condition: "Fully Furnished",
-    notes: "",
-  })
-
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Prepare WhatsApp Message
-    const message = encodeURIComponent(
-      `Hello Kinghouse Management! I would like to submit a property management inquiry:\n\n` +
-      `👤 Name: ${formData.name}\n` +
-      `📞 WhatsApp: ${formData.phone}\n` +
-      `✉️ Email: ${formData.email}\n` +
-      `🏡 Property Type: ${formData.propertyType}\n` +
-      `📍 Location: ${formData.location}\n` +
-      `🛏️ Bedrooms: ${formData.bedrooms}\n` +
-      `🛋️ Condition: ${formData.condition}\n` +
-      (formData.notes ? `📝 Notes: ${formData.notes}` : "")
-    )
-
-    trackWhatsAppClick({
-      source: "management_inquiry",
-      context: "owner_lead",
-    })
-
-    trackOwnerLead({
-      propertyType: formData.propertyType,
-      area: formData.location,
-      bedrooms: formData.bedrooms,
-      ownerName: formData.name,
-      serviceTier: "15% Full Service",
-    })
-
-    setSubmitted(true)
-    window.open(`https://wa.me/6282123933218?text=${message}`, "_blank")
-  }
-
   return (
     <main className="min-h-screen bg-[#FAF7F1]">
       {/* 1. Hero Section */}
@@ -133,10 +87,10 @@ export default function ManagementInquiryPage() {
                 Send property photos and location to our WhatsApp for a 24-hour yield estimate.
               </p>
               <a
-                href="https://wa.me/6282123933218?text=Hello%20Kinghouse!%20I%20would%20like%20a%20property%20management%20audit%20for%20my%20property."
+                href={buildWhatsAppUrl("OWNER", ownerWhatsAppMessage({ service: "undecided" }))}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => trackWhatsAppClick({ source: "management_inquiry", context: "fast_track" })}
+                onClick={() => trackWhatsAppClick({ source: "management_inquiry", funnel: "owner", context: "fast_track" })}
                 className="w-full inline-flex items-center justify-center space-x-2 rounded-full bg-[#25D366] text-white py-3 px-5 text-xs font-semibold uppercase tracking-wider hover:opacity-90 transition-all shadow-md"
               >
                 <MessageCircle className="h-4 w-4 fill-white" />
@@ -199,188 +153,8 @@ export default function ManagementInquiryPage() {
         </div>
       </section>
 
-      {/* 3. Interactive Management Inquiry Form */}
-      <section className="py-16 lg:py-24">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <div className="rounded-3xl border border-[#E8E4DC] bg-white p-8 sm:p-12 shadow-sm">
-            <div className="text-center max-w-lg mx-auto mb-10">
-              <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#8C7F5F]">
-                Property Onboarding
-              </span>
-              <h2 className="font-serif text-2xl sm:text-3xl text-[#222222] uppercase tracking-wider font-normal mt-1">
-                Submit Your Property Details
-              </h2>
-              <p className="text-xs sm:text-sm text-[#777777] font-light mt-2">
-                Fill in the form below and our head of acquisitions will contact you within 24 hours with a comprehensive yield projection.
-              </p>
-            </div>
-
-            {submitted ? (
-              <div className="rounded-2xl bg-[#FAF8F3] border border-[#8C7F5F]/40 p-8 text-center space-y-4">
-                <CheckCircle2 className="h-12 w-12 text-[#8C7F5F] mx-auto" />
-                <h3 className="font-serif text-2xl text-[#222222] font-normal">
-                  Thank you, {formData.name}!
-                </h3>
-                <p className="text-sm text-[#666666] font-light max-w-md mx-auto leading-relaxed">
-                  Your inquiry has been submitted. Our WhatsApp concierge has opened with your inquiry pre-filled. We look forward to partnering with you!
-                </p>
-                <div className="pt-4">
-                  <button
-                    type="button"
-                    onClick={() => setSubmitted(false)}
-                    className="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider text-[#8C7F5F] hover:underline"
-                  >
-                    <span>Submit another property</span>
-                    <ArrowRight className="h-3 w-3" />
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {/* Name */}
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-[#555555] mb-2">
-                      Your Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="e.g. Hendra Wijaya"
-                      className="w-full rounded-xl border border-[#E8E4DC] bg-[#FAF8F5] px-4 py-3 text-sm text-[#222222] focus:border-[#8C7F5F] focus:outline-none"
-                    />
-                  </div>
-
-                  {/* Phone / WhatsApp */}
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-[#555555] mb-2">
-                      WhatsApp Number *
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="e.g. +62 812 3456 7890"
-                      className="w-full rounded-xl border border-[#E8E4DC] bg-[#FAF8F5] px-4 py-3 text-sm text-[#222222] focus:border-[#8C7F5F] focus:outline-none"
-                    />
-                  </div>
-                </div>
-
-                {/* Email */}
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#555555] mb-2">
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="e.g. hendra@example.com"
-                    className="w-full rounded-xl border border-[#E8E4DC] bg-[#FAF8F5] px-4 py-3 text-sm text-[#222222] focus:border-[#8C7F5F] focus:outline-none"
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                  {/* Property Type */}
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-[#555555] mb-2">
-                      Property Type
-                    </label>
-                    <select
-                      value={formData.propertyType}
-                      onChange={(e) => setFormData({ ...formData, propertyType: e.target.value })}
-                      className="w-full rounded-xl border border-[#E8E4DC] bg-[#FAF8F5] px-4 py-3 text-sm text-[#222222] focus:border-[#8C7F5F] focus:outline-none"
-                    >
-                      <option value="Standalone Villa">Standalone Villa</option>
-                      <option value="Private Townhouse">Private Townhouse</option>
-                      <option value="Luxury Apartment">Luxury Apartment</option>
-                      <option value="Event Venue Estate">Event Venue Estate</option>
-                    </select>
-                  </div>
-
-                  {/* Location */}
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-[#555555] mb-2">
-                      Location Area
-                    </label>
-                    <select
-                      value={formData.location}
-                      onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                      className="w-full rounded-xl border border-[#E8E4DC] bg-[#FAF8F5] px-4 py-3 text-sm text-[#222222] focus:border-[#8C7F5F] focus:outline-none"
-                    >
-                      <option value="Jagakarsa (Jakarta Selatan)">Jagakarsa (Jakarta Selatan)</option>
-                      <option value="Tangerang (Banten)">Tangerang (Banten)</option>
-                      <option value="Palmerah (Jakarta Barat)">Palmerah (Jakarta Barat)</option>
-                      <option value="Cikarang (Bekasi)">Cikarang (Bekasi)</option>
-                      <option value="Other Greater Jakarta">Other Greater Jakarta</option>
-                    </select>
-                  </div>
-
-                  {/* Bedrooms */}
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-[#555555] mb-2">
-                      Bedrooms
-                    </label>
-                    <select
-                      value={formData.bedrooms}
-                      onChange={(e) => setFormData({ ...formData, bedrooms: e.target.value })}
-                      className="w-full rounded-xl border border-[#E8E4DC] bg-[#FAF8F5] px-4 py-3 text-sm text-[#222222] focus:border-[#8C7F5F] focus:outline-none"
-                    >
-                      <option value="Studio / 1 Bedroom">Studio / 1 Bedroom</option>
-                      <option value="2 Bedrooms">2 Bedrooms</option>
-                      <option value="3-4 Bedrooms">3-4 Bedrooms</option>
-                      <option value="5+ Bedrooms">5+ Bedrooms</option>
-                    </select>
-                  </div>
-                </div>
-
-                {/* Condition */}
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#555555] mb-2">
-                    Current Property Condition
-                  </label>
-                  <select
-                    value={formData.condition}
-                    onChange={(e) => setFormData({ ...formData, condition: e.target.value })}
-                    className="w-full rounded-xl border border-[#E8E4DC] bg-[#FAF8F5] px-4 py-3 text-sm text-[#222222] focus:border-[#8C7F5F] focus:outline-none"
-                  >
-                    <option value="Fully Furnished (Ready to Host)">Fully Furnished (Ready to Host)</option>
-                    <option value="Semi-Furnished (Needs minor styling)">Semi-Furnished (Needs minor styling)</option>
-                    <option value="Unfurnished (Requires complete setup)">Unfurnished (Requires complete setup)</option>
-                    <option value="Currently on Airbnb (Seeking Better Yields)">Currently on Airbnb (Seeking Better Yields)</option>
-                  </select>
-                </div>
-
-                {/* Notes */}
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#555555] mb-2">
-                    Additional Notes or Special Features (Optional)
-                  </label>
-                  <textarea
-                    rows={3}
-                    value={formData.notes}
-                    onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                    placeholder="e.g. Private swimming pool, large garden suitable for gatherings, smart TV setup..."
-                    className="w-full rounded-xl border border-[#E8E4DC] bg-[#FAF8F5] px-4 py-3 text-sm text-[#222222] focus:border-[#8C7F5F] focus:outline-none"
-                  />
-                </div>
-
-                {/* Submit Button */}
-                <button
-                  type="submit"
-                  className="w-full rounded-full bg-[#8C7F5F] py-4 text-xs font-semibold uppercase tracking-[0.15em] text-white hover:bg-[#776B4E] transition-all shadow-md"
-                >
-                  Submit Inquiry &amp; Fast-Track WhatsApp Audit
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
-      </section>
+      {/* 3. Owner qualification form — same form, tags and /thanks flow as /owner-services */}
+      <OwnerLeadForm source="management_inquiry" />
     </main>
   )
 }

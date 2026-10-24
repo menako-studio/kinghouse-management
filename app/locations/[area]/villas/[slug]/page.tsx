@@ -12,6 +12,7 @@ import { LocationProximityMap } from "@/components/villas/location-proximity-map
 import { SchemaMarkup } from "@/components/villas/schema-markup"
 import { PropertyViewTracker } from "@/components/villas/property-view-tracker"
 import { Badge } from "@/components/ui/badge"
+import { whatsappBase } from "@/lib/funnel/whatsapp"
 
 interface PageProps {
   params: Promise<{
@@ -321,7 +322,7 @@ export default async function VillaDetailPage({ params }: PageProps) {
                       <ArrowUpRight className="h-3.5 w-3.5" />
                     </Link>
                     <a
-                      href="https://wa.me/6282123933218?text=Halo%20Kinghouse!%20Saya%20tertarik%20untuk%20menanyakan%20event%20/%20wedding%20di%20Versatile%20House%20Jagakarsa."
+                      href={`${whatsappBase("EVENT")}?text=Halo%20Kinghouse!%20Saya%20tertarik%20untuk%20menanyakan%20event%20/%20wedding%20di%20Versatile%20House%20Jagakarsa.`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center p-2.5 rounded-xl bg-[#25D366] text-white hover:bg-[#20ba59] transition-colors"

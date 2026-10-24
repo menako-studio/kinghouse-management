@@ -1,24 +1,25 @@
 "use client"
 
 import { useState } from "react"
+import { usePathname } from "next/navigation"
 import { MessageCircle, X } from "lucide-react"
 import { trackWhatsAppClick } from "@/lib/analytics"
 import { useLocalization } from "@/lib/context/localization-context"
+import { buildWhatsAppUrl, resolvePageWhatsApp } from "@/lib/funnel/whatsapp"
 
 export function FloatingWhatsApp() {
   const { t } = useLocalization()
+  const pathname = usePathname()
   const [isTooltipDismissed, setIsTooltipDismissed] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
 
-  const phoneNumber = "6282123933218"
-  const defaultMessage = encodeURIComponent(
-    "Hello Kinghouse Hospitality! I would like to inquire about villa booking and property management services."
-  )
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${defaultMessage}`
+  const { target, funnel, message } = resolvePageWhatsApp(pathname || "/")
+  const whatsappUrl = buildWhatsAppUrl(target, message)
 
   const handleClick = () => {
     trackWhatsAppClick({
       source: "floating",
+      funnel,
       context: "sticky_concierge",
     })
   }

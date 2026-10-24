@@ -23,6 +23,13 @@ export const GTM_ID =
  *   generate_lead          — GA4 standard lead event (fired alongside the above)
  *   airbnb_outbound_click  — outbound click to Airbnb listing
  *   agoda_outbound_click   — outbound click to Agoda listing
+ *   submit_owner_form      — Funnel A: owner qualification form sent
+ *   submit_event_form      — Funnel B2: event qualification form sent
+ *
+ * Funnel engagement events (not conversions): `check_availability` and
+ * `submit_stay_form` (Funnel B1 "notify me"). WhatsApp clicks keep the
+ * `whatsapp_click` name so existing GA4 history and Key Event setup stay
+ * intact; the `funnel` parameter (owner / stay / event / general) splits them.
  */
 export const KEY_EVENTS = [
   "whatsapp_click",
@@ -31,7 +38,11 @@ export const KEY_EVENTS = [
   "generate_lead",
   "airbnb_outbound_click",
   "agoda_outbound_click",
+  "submit_owner_form",
+  "submit_event_form",
 ] as const
+
+export type FunnelName = "owner" | "stay" | "event" | "general"
 
 declare global {
   interface Window {
@@ -96,7 +107,8 @@ export function trackPageView(url: string, title?: string) {
  * Track WhatsApp Concierge / Inquiries
  */
 export function trackWhatsAppClick(options: {
-  source: "header" | "footer" | "floating" | "villa_detail" | "booking_modal" | "owner_page" | "event_page" | "contact_page" | "guest_compendium" | "management_inquiry" | "revenue_calculator"
+  source: "header" | "footer" | "floating" | "villa_detail" | "booking_modal" | "owner_page" | "event_page" | "contact_page" | "guest_compendium" | "management_inquiry" | "revenue_calculator" | "thank_you_page"
+  funnel?: FunnelName
   propertyName?: string
   context?: string
   value?: number
@@ -105,6 +117,7 @@ export function trackWhatsAppClick(options: {
     event_category: "Conversion",
     event_label: options.propertyName || options.context || options.source,
     click_source: options.source,
+    funnel: options.funnel,
     property_name: options.propertyName,
     context: options.context,
     currency: "IDR",
@@ -202,6 +215,64 @@ export function trackOwnerLead(options: {
     lead_type: "owner_management_inquiry",
     property_type: options.propertyType,
     property_area: options.area,
+  })
+}
+
+const LEAD_FORM_EVENTS = {
+  OWNER: "submit_owner_form",
+  EVENT: "submit_event_form",
+  STAY: "submit_stay_form",
+} as const
+
+/**
+ * Track a funnel qualification form submission (Owner / Event / Stay notify).
+ * Fires the funnel-specific event plus GA4's standard `generate_lead`; owner
+ * leads also keep firing `owner_lead_submit` for continuity with older reports.
+ */
+export function trackLeadFormSubmit(options: {
+  target: "OWNER" | "EVENT" | "STAY"
+  need: string
+  leadId: string
+  propertyName?: string
+}) {
+  const params = {
+    event_category: "Lead Generation",
+    lead_target: options.target,
+    lead_need: options.need,
+    lead_id: options.leadId,
+    property_name: options.propertyName,
+  }
+
+  trackEvent(LEAD_FORM_EVENTS[options.target], params)
+
+  if (options.target === "OWNER") {
+    trackEvent("owner_lead_submit", { ...params, event_label: options.need, service_tier: options.need })
+  }
+
+  trackEvent("generate_lead", {
+    ...params,
+    lead_type: `${options.target.toLowerCase()}_${options.need}`,
+  })
+}
+
+/**
+ * Track a stay availability check on a property page (Funnel B1)
+ */
+export function trackCheckAvailability(options: {
+  propertyName: string
+  checkIn: string
+  checkOut: string
+  guests: number
+  available: boolean | null
+}) {
+  trackEvent("check_availability", {
+    event_category: "Ecommerce",
+    event_label: options.propertyName,
+    property_name: options.propertyName,
+    check_in_date: options.checkIn,
+    check_out_date: options.checkOut,
+    guest_count: options.guests,
+    availability_result: options.available === null ? "unknown" : options.available ? "available" : "unavailable",
   })
 }
 
