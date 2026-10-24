@@ -21,7 +21,7 @@ import { HoneypotField } from "@/components/funnel/form-fields"
 type AvailabilityState =
   | { status: "idle" }
   | { status: "checking" }
-  | { status: "available" }
+  | { status: "available"; verified: boolean }
   | { status: "unavailable"; alternatives: DateRange[] }
   | { status: "error" }
 
@@ -80,8 +80,10 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
       const params = new URLSearchParams({ villa: villa.slug, checkIn, checkOut })
       const res = await fetch(`/api/availability?${params.toString()}`)
       if (!res.ok) throw new Error(String(res.status))
-      const data = (await res.json()) as { available: boolean; alternatives: DateRange[] }
-      next = data.available ? { status: "available" } : { status: "unavailable", alternatives: data.alternatives }
+      const data = (await res.json()) as { available: boolean; verified: boolean; alternatives: DateRange[] }
+      next = data.available
+        ? { status: "available", verified: data.verified }
+        : { status: "unavailable", alternatives: data.alternatives }
     } catch {
       next = { status: "error" }
     }
@@ -92,6 +94,7 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
       checkOut,
       guests: Number(guestCount),
       available: next.status === "available" ? true : next.status === "unavailable" ? false : null,
+      verified: next.status === "available" ? next.verified : undefined,
     })
   }
 
@@ -208,10 +211,19 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
             </button>
           )}
 
-          {availability.status === "available" && (
+          {availability.status === "available" && availability.verified && (
             <div role="status" className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-xs text-emerald-800">
               <strong>Tersedia</strong> {formatDateId(checkIn)}–{formatDateId(checkOut)} ({nights} malam). Estimasi total{" "}
               <strong>{formatPrice(estimatedTotal)}</strong>. Lanjutkan booking di bawah.
+            </div>
+          )}
+
+          {/* No live OTA calendar for this check: don't promise the dates */}
+          {availability.status === "available" && !availability.verified && (
+            <div role="status" className="rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs text-amber-900">
+              <strong>Kemungkinan tersedia</strong> {formatDateId(checkIn)}–{formatDateId(checkOut)} ({nights} malam), estimasi
+              total <strong>{formatPrice(estimatedTotal)}</strong>. Kalender Airbnb/OTA belum bisa dicek otomatis untuk
+              properti ini, jadi konfirmasi akhir lewat WhatsApp di bawah (balasan maks. 15 menit kerja).
             </div>
           )}
 

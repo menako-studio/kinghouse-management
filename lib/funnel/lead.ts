@@ -8,6 +8,7 @@ import {
   OWNER_PROPERTY_STATUSES,
   OWNER_PROPERTY_TYPES,
   RESPONSE_TARGETS,
+  addBusinessMinutes,
   getEventTypeLabel,
   getOwnerServiceLabel,
   routeOwnerService,
@@ -124,7 +125,7 @@ function stayDetails(lead: StayLeadInput) {
 }
 
 export function buildLeadRecord(lead: LeadInput, now: Date = new Date()): LeadRecord {
-  const due = new Date(now.getTime() + RESPONSE_TARGETS[lead.target].minutes * 60 * 1000)
+  const due = addBusinessMinutes(now, RESPONSE_TARGETS[lead.target].minutes)
 
   const base = {
     id: generateLeadId(lead.target, now),
@@ -267,4 +268,68 @@ export function buildLeadWhatsAppUrl(lead: LeadInput, leadId?: string): string {
     .trim()
 
   return buildWhatsAppUrl(lead.target, message)
+}
+
+/** "0812-3456-7890" / "+62 812…" / "812…" → "62812…" for wa.me links. */
+export function normalizeWhatsAppNumber(raw: string): string {
+  const digits = raw.replace(/[^0-9]/g, "")
+  if (digits.startsWith("62")) return digits
+  if (digits.startsWith("0")) return `62${digits.slice(1)}`
+  if (digits.startsWith("8")) return `62${digits}`
+  return digits
+}
+
+const OWNER_SERVICE_PITCH: Record<OwnerLeadInput["service"], string> = {
+  "hk-on-demand": "layanan HK on Demand cocok untuk turnover antar tamu dan deep clean sesuai jadwal Kakak",
+  "co-hosting": "layanan Co-Hosting cocok jika Kakak ingin tetap memegang properti",
+  "full-management": "layanan Full Management cocok jika Kakak ingin properti dikelola penuh tanpa repot",
+  undecided: "kami bantu pilihkan layanan yang paling sesuai",
+}
+
+/**
+ * The first admin reply from the response guide, pre-filled with what the
+ * form already told us. Brackets mark what the admin still fills in.
+ */
+export function firstReplyMessage(lead: LeadInput): string {
+  const firstName = lead.name.trim().split(/\s+/)[0]
+
+  if (lead.target === "OWNER") {
+    return (
+      `Halo Kak ${firstName}, terima kasih sudah menghubungi Kinghouse 🙏 ` +
+      `Untuk ${labelOf(OWNER_PROPERTY_TYPES, lead.propertyType).toLowerCase()} Kakak di ${lead.location}, ` +
+      `${OWNER_SERVICE_PITCH[lead.service]}. ` +
+      "Boleh kami jadwalkan survei atau panggilan 15 menit untuk menjelaskan skema dan estimasi biaya? " +
+      "Pilihan waktu: [hari/jam 1] atau [hari/jam 2]."
+    )
+  }
+
+  if (lead.target === "EVENT") {
+    const vendorKnown = lead.ownVendor !== undefined || lead.eventType === "shooting"
+    return (
+      `Halo Kak ${firstName}, terima kasih sudah menghubungi Kinghouse 😊 ` +
+      `Kami cek tanggal ${formatDateId(lead.eventDate)} (${lead.startTime}–${lead.endTime}, ${lead.guests} ` +
+      `${lead.eventType === "shooting" ? "kru" : "tamu"}) untuk ${getEventTypeLabel(lead.eventType).toLowerCase()} dulu ya. ` +
+      "Pricelist dan aturan venue kami lampirkan." +
+      (vendorKnown ? "" : " Untuk estimasi final, apakah ada vendor atau dekorasi sendiri?") +
+      " 🙏"
+    )
+  }
+
+  const dates = `${formatDateId(lead.checkIn)}–${formatDateId(lead.checkOut)}`
+  if (lead.need === "notify") {
+    return (
+      `Halo Kak ${firstName}, terima kasih 😊 Kami catat permintaan untuk ${lead.property} tanggal ${dates} ` +
+      `(${lead.guests} tamu) dan akan kabari begitu tanggalnya kosong. ` +
+      "Sementara itu, tanggal terdekat yang tersedia: [tanggal]. Mau kami tahan untuk Kakak?"
+    )
+  }
+  return (
+    `Halo Kak ${firstName}, terima kasih 😊 ${lead.property} tanggal ${dates} [tersedia]. ` +
+    `Total untuk ${lead.guests} tamu: [harga]. Mau kami bantu booking sekarang? Link pembayaran: [link].`
+  )
+}
+
+/** wa.me link to the lead's own number with the first reply ready to send. */
+export function buildFirstReplyUrl(lead: LeadInput): string {
+  return `https://wa.me/${normalizeWhatsAppNumber(lead.whatsapp)}?text=${encodeURIComponent(firstReplyMessage(lead))}`
 }

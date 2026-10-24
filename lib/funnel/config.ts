@@ -42,7 +42,55 @@ export const RESPONSE_TARGETS: Record<LeadTarget, { minutes: number; label: stri
 export const OFFICE_HOURS = {
   label: "Senin–Jumat, 08.00–18.00 WIB",
   conciergeNote: "Concierge 24/7 khusus tamu yang sedang menginap.",
+  /** Office window in WIB (UTC+7, no DST); weekdays only. */
+  openHour: 8,
+  closeHour: 18,
 } as const
+
+const WIB_OFFSET_MS = 7 * 60 * 60 * 1000
+const HOUR_MS = 60 * 60 * 1000
+const DAY_MS = 24 * HOUR_MS
+
+/**
+ * Adds working minutes counted only inside office hours (Mon–Fri 08–18 WIB),
+ * so a lead sent Friday 17:50 with a 1-hour target is due Monday 08:50 WIB.
+ * Public holidays are not excluded.
+ */
+export function addBusinessMinutes(start: Date, minutes: number): Date {
+  // Work on "WIB wall clock" milliseconds so UTC getters read WIB values.
+  let t = start.getTime() + WIB_OFFSET_MS
+  let remaining = minutes * 60 * 1000
+
+  for (let guard = 0; guard < 60; guard++) {
+    const d = new Date(t)
+    const dayStart = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate())
+    const open = dayStart + OFFICE_HOURS.openHour * HOUR_MS
+    const close = dayStart + OFFICE_HOURS.closeHour * HOUR_MS
+    const weekday = d.getUTCDay()
+
+    if (weekday === 0 || weekday === 6 || t >= close) {
+      t = dayStart + DAY_MS + OFFICE_HOURS.openHour * HOUR_MS
+      continue
+    }
+    if (t < open) t = open
+    if (remaining <= close - t) return new Date(t + remaining - WIB_OFFSET_MS)
+    remaining -= close - t
+    t = dayStart + DAY_MS + OFFICE_HOURS.openHour * HOUR_MS
+  }
+  return new Date(t - WIB_OFFSET_MS)
+}
+
+/** "Sen, 26 Okt 09.00 WIB" */
+export function formatWib(date: Date): string {
+  return `${date.toLocaleString("id-ID", {
+    timeZone: "Asia/Jakarta",
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+  })} WIB`
+}
 
 /* ------------------------------------------------------------------ */
 /* Funnel A — Owner services                                           */

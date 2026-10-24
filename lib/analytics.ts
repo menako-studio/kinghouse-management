@@ -264,6 +264,8 @@ export function trackCheckAvailability(options: {
   checkOut: string
   guests: number
   available: boolean | null
+  /** False when the answer did not come from a live OTA calendar */
+  verified?: boolean
 }) {
   trackEvent("check_availability", {
     event_category: "Ecommerce",
@@ -273,6 +275,7 @@ export function trackCheckAvailability(options: {
     check_out_date: options.checkOut,
     guest_count: options.guests,
     availability_result: options.available === null ? "unknown" : options.available ? "available" : "unavailable",
+    availability_verified: options.verified,
   })
 }
 

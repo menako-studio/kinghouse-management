@@ -96,7 +96,7 @@ describe("Lead validation", () => {
 })
 
 describe("Lead records", () => {
-  it("tags target, need, routing, priority and the first-reply deadline", () => {
+  it("tags target, need, routing, priority and the first-reply deadline in office hours", () => {
     const now = new Date("2026-10-24T03:00:00.000Z")
     const record = buildLeadRecord(OwnerLeadSchema.parse(ownerLead), now)
     expect(record.id).toMatch(/^KH-OWN-20261024-[A-Z0-9]{4}$/)
@@ -107,7 +107,8 @@ describe("Lead records", () => {
       route_to: "owner_relations",
       priority: true,
       guests_or_units: 4,
-      first_response_due_at: "2026-10-24T04:00:00.000Z",
+      // Saturday 10:00 WIB → office reopens Monday 08:00 WIB → +1 working hour
+      first_response_due_at: "2026-10-26T02:00:00.000Z",
     })
   })
 

@@ -3,6 +3,10 @@
     {
       "path": "/api/erp/ical-sync?action=sync-all",
       "schedule": "0 2 * * *"
+    },
+    {
+      "path": "/api/cron/lead-digest",
+      "schedule": "5 1 * * 1-5"
     }
   ]
 }
