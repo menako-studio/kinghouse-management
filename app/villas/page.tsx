@@ -76,14 +76,14 @@ function NakulaVillaCard({ villa }: { villa: Villa }) {
 
           {/* Bottom Left: Start From IDR Price Overlay */}
           <div className="absolute bottom-3.5 left-4 text-white">
-            <span className="text-[10px] uppercase font-medium tracking-wider text-white/80 block">
+            <span className="text-xs uppercase font-medium tracking-wider text-white/80 block">
               {t("startFrom")}
             </span>
             <div className="flex items-baseline space-x-1.5">
               <span className="font-semibold text-base sm:text-lg tracking-tight text-white">
                 {formatPrice(villa.price.idr)}
               </span>
-              <span className="text-[11px] text-white/80 font-light"> {t("perNight")}</span>
+              <span className="text-xs text-white/80 font-light"> {t("perNight")}</span>
             </div>
           </div>
 
@@ -96,7 +96,7 @@ function NakulaVillaCard({ villa }: { villa: Villa }) {
         {/* Card Body Information */}
         <div className="space-y-2.5">
           {/* Location & Reviews Row */}
-          <div className="flex items-center space-x-2 text-xs text-[#6B6862]">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-[#6B6862]">
             <span className="font-medium text-[#222225]">{villa.location}</span>
             <span>&bull;</span>
             <div className="flex items-center space-x-1">
@@ -148,7 +148,7 @@ function NakulaVillaCard({ villa }: { villa: Villa }) {
             {pillTags.map((tag) => (
               <span
                 key={tag}
-                className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-[#FAF8F5] text-[#6B6862] border border-[#E8E4DC]"
+                className="px-2.5 py-1 rounded-full text-xs font-medium bg-[#FAF8F5] text-[#6B6862] border border-[#E8E4DC]"
               >
                 {tag}
               </span>
@@ -332,7 +332,7 @@ function VillasCatalogContent() {
       {/* 2. Breadcrumbs & Subtitle Introduction */}
       <section className="border-b border-[#E8E4DC] bg-[#FAF8F5] py-6 text-center">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 space-y-2.5">
-          <nav className="text-[11px] uppercase tracking-widest text-[#6B6862] flex items-center justify-center space-x-2">
+          <nav className="text-xs uppercase tracking-widest text-[#6B6862] flex items-center justify-center space-x-2">
             <Link href="/" className="hover:text-[#222225] transition-colors">
               HOME
             </Link>
@@ -365,7 +365,7 @@ function VillasCatalogContent() {
               <span>{showMobileFilters ? "Hide Filter Options" : "Show Filter Options"}</span>
             </div>
             {isFilterActive && (
-              <span className="bg-[#8C7F5F] text-white px-2 py-0.5 rounded-full text-[10px]">
+              <span className="bg-[#8C7F5F] text-white px-2 py-0.5 rounded-full text-xs">
                 Active Filters
               </span>
             )}
@@ -388,7 +388,7 @@ function VillasCatalogContent() {
 
             {/* 1. Property Type Checkboxes */}
             <div className="space-y-3">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6862] block">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#6B6862] block">
                 {t("propertyTypeHeader")}
               </span>
               <div className="space-y-2.5">
@@ -419,7 +419,7 @@ function VillasCatalogContent() {
 
             {/* 2. Availability Date Selector */}
             <div className="space-y-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6862] block">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#6B6862] block">
                 {t("availabilityHeader")}
               </span>
               <div className="relative">
@@ -434,7 +434,7 @@ function VillasCatalogContent() {
 
             {/* 3. Destination Dropdown */}
             <div className="space-y-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6862] block">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#6B6862] block">
                 {t("destinationHeader")}
               </span>
               <div className="relative">
@@ -456,7 +456,7 @@ function VillasCatalogContent() {
 
             {/* 4. No of Rooms Dropdown */}
             <div className="space-y-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6862] block">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#6B6862] block">
                 {t("bedrooms")}
               </span>
               <div className="relative">
@@ -477,7 +477,7 @@ function VillasCatalogContent() {
             {/* Divider */}
             <div className="flex items-center my-4">
               <div className="flex-1 border-t border-[#E8E4DC]" />
-              <span className="px-3 text-[10px] font-bold uppercase tracking-wider text-[#6B6862]">
+              <span className="px-3 text-xs font-bold uppercase tracking-wider text-[#6B6862]">
                 OR
               </span>
               <div className="flex-1 border-t border-[#E8E4DC]" />
@@ -485,7 +485,7 @@ function VillasCatalogContent() {
 
             {/* 5. Have a Villa in Mind Search */}
             <div className="space-y-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6862] block">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#6B6862] block">
                 {t("haveVillaInMind")}
               </span>
               <div className="relative">
@@ -527,7 +527,7 @@ function VillasCatalogContent() {
                 {t("findStayHeader")}
               </h2>
 
-              <div className="flex items-center space-x-3 text-xs shrink-0">
+              <div className="flex flex-wrap items-center gap-3 text-xs">
                 {/* Search Property Name input */}
                 <div className="relative">
                   <input
@@ -535,7 +535,7 @@ function VillasCatalogContent() {
                     placeholder={t("propertyNamePlaceholder")}
                     value={gridSearchQuery}
                     onChange={(e) => setGridSearchQuery(e.target.value)}
-                    className="w-36 sm:w-44 pl-3 pr-7 py-1.5 text-[11px] font-medium uppercase tracking-wider border border-[#E8E4DC] rounded-full bg-[#FAF8F5] text-[#222225] placeholder-[#6B6862] focus:outline-none focus:border-[#8C7F5F]"
+                    className="w-36 sm:w-44 pl-3 pr-7 py-1.5 text-xs font-medium uppercase tracking-wider border border-[#E8E4DC] rounded-full bg-[#FAF8F5] text-[#222225] placeholder-[#6B6862] focus:outline-none focus:border-[#8C7F5F]"
                   />
                   <Search className="absolute right-2.5 top-1/2 -translate-y-1/2 h-3 w-3 text-[#6B6862]" />
                 </div>
@@ -545,7 +545,7 @@ function VillasCatalogContent() {
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value as SortOption)}
-                    className="appearance-none pl-3 pr-7 py-1.5 text-[11px] font-semibold uppercase tracking-wider border border-[#E8E4DC] rounded-full bg-[#FAF8F5] text-[#222225] focus:outline-none focus:border-[#8C7F5F] cursor-pointer"
+                    className="appearance-none pl-3 pr-7 py-1.5 text-xs font-semibold uppercase tracking-wider border border-[#E8E4DC] rounded-full bg-[#FAF8F5] text-[#222225] focus:outline-none focus:border-[#8C7F5F] cursor-pointer"
                   >
                     <option value="recommended">{t("sortByHeader")}</option>
                     <option value="price-asc">{t("sortPriceLowHigh")}</option>
@@ -596,7 +596,7 @@ function VillasCatalogContent() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Left: About Column */}
             <div className="space-y-4">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-[#8C7F5F]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#8C7F5F]">
                 ABOUT
               </span>
               <h3 className="font-serif text-2xl sm:text-3xl text-[#222225] font-normal uppercase tracking-wide">
@@ -707,7 +707,7 @@ function VillasCatalogContent() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
                 <div className="absolute bottom-3 inset-x-3 text-left text-white">
-                  <p className="text-[10px] uppercase font-bold tracking-wider text-[#DFC58E]">
+                  <p className="text-xs uppercase font-bold tracking-wider text-[#DFC58E]">
                     {prop.type}
                   </p>
                   <p className="text-xs font-semibold line-clamp-1">{prop.title}</p>

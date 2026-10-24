@@ -28,7 +28,7 @@ export function DualPathSplit() {
 
             {/* Top Label */}
             <div className="relative z-10 flex items-center space-x-2">
-              <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white backdrop-blur-md border border-white/15">
+              <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-md border border-white/15">
                 <Compass className="mr-1.5 h-3 w-3 text-[#E8DFC8]" />
                 {t("forDiscerningTravelers")}
               </span>
@@ -72,7 +72,7 @@ export function DualPathSplit() {
 
             {/* Top Label */}
             <div className="relative z-10 flex items-center space-x-2">
-              <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-[#EAE8E4] backdrop-blur-md border border-white/15">
+              <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#EAE8E4] backdrop-blur-md border border-white/15">
                 <TrendingUp className="mr-1.5 h-3 w-3 text-[#DFC58E]" />
                 {t("forOwnersInvestors")}
               </span>

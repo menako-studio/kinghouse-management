@@ -328,7 +328,7 @@ Setiap klaster di Jabodetabek memiliki profil tamu dan kekuatan pasar yang unik:
 
 3. **Cikarang & Bekasi (Orange County, Meikarta, Jababeka)**
    - **Target Tamu:** Eksekutif industri manufaktur (Jepang, Korea) dan transit project manager.
-   - **Tipe Properti Unggulan:** Apartemen premium dengan fasilitas gym, kolam renang, dan akses mall seperti [Skyline Luxury Cikarang](/locations/cikarang/villas/skyline-luxury-orange-county).
+   - **Tipe Properti Unggulan:** Apartemen premium dengan fasilitas gym, kolam renang, dan akses mall seperti [Skyline Luxury Cikarang](/locations/cikarang/villas/skyline-luxury-orange-county-cikarang).
    - **Estimasi Yield:** 18% – 24% per tahun.
 
 ## 4 Pilar Sukses Memaksimalkan Pendapatan Airbnb
@@ -442,7 +442,7 @@ Ekspatriat dan profesional bisnis mengharapkan fasilitas penunjang produktivitas
 - Koneksi internet WiFi Dedicated berkecepatan minimal 50–100 Mbps.
 - Meja kerja ergonomis, Smart TV dengan Netflix & YouTube Premium.
 - Mesin pembuat kopi (Nespresso/drip coffee) dan peralatan memasak modern.
-- Unit seperti [Skyline Luxury Orange County](/locations/cikarang/villas/skyline-luxury-orange-county) menjadi benchmark favorit karena menyajikan panorama skyline kota dan interior kontemporer.
+- Unit seperti [Skyline Luxury Orange County](/locations/cikarang/villas/skyline-luxury-orange-county-cikarang) menjadi benchmark favorit karena menyajikan panorama skyline kota dan interior kontemporer.
 
 ### 2. Multi-Channel Distribution (Airbnb, Agoda, Booking.com & Direct B2B)
 Jangan hanya terpaku pada satu platform. Hubungkan kalender reservasi dengan sinkronisasi iCal otomatis untuk mencegah *double booking* dan raih visibilitas global di berbagai OTA terkemuka.

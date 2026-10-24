@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { EventLeadSchema, OwnerLeadSchema, StayLeadSchema } from "@/lib/validations"
 import { buildLeadRecord, summarizeLead, type LeadRecord } from "@/lib/funnel/lead"
+import { notifyTeamOfLead } from "@/lib/funnel/notify"
 import { getSupabaseServerClient } from "@/lib/supabase/server"
 import { checkRateLimit } from "@/lib/security/rate-limiter"
 
@@ -9,44 +10,6 @@ const SCHEMAS = {
   EVENT: EventLeadSchema,
   STAY: StayLeadSchema,
 } as const
-
-const WEBHOOK_TIMEOUT_MS = 4000
-
-/**
- * Forwards the lead to an external pipeline (Google Apps Script → Sheet, Make,
- * Zapier, a CRM) that also notifies the team group. Configure LEAD_WEBHOOK_URL;
- * LEAD_WEBHOOK_SECRET is sent as a header so the receiver can reject forgeries.
- */
-async function forwardToWebhook(record: LeadRecord, summary: { label: string; value: string }[]): Promise<boolean> {
-  const url = process.env.LEAD_WEBHOOK_URL
-  if (!url) return false
-
-  const controller = new AbortController()
-  const timeoutId = setTimeout(() => controller.abort(), WEBHOOK_TIMEOUT_MS)
-  try {
-    const res = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        ...(process.env.LEAD_WEBHOOK_SECRET ? { "X-Kinghouse-Secret": process.env.LEAD_WEBHOOK_SECRET } : {}),
-      },
-      body: JSON.stringify({
-        lead: record,
-        summary,
-        notification: `[${record.target}${record.priority ? " • PRIORITAS" : ""}] ${record.id} — ${summary
-          .map((r) => `${r.label}: ${r.value}`)
-          .join(" | ")}`,
-      }),
-      signal: controller.signal,
-    })
-    return res.ok
-  } catch (err) {
-    console.warn("Lead webhook delivery failed:", err)
-    return false
-  } finally {
-    clearTimeout(timeoutId)
-  }
-}
 
 async function saveToSupabase(record: LeadRecord): Promise<boolean> {
   const supabase = getSupabaseServerClient()
@@ -90,16 +53,21 @@ export async function POST(request: NextRequest) {
   const record = buildLeadRecord(lead)
   const summary = summarizeLead(lead)
 
-  const [savedToDb, forwarded] = await Promise.all([saveToSupabase(record), forwardToWebhook(record, summary)])
+  const [savedToDb, notified] = await Promise.all([saveToSupabase(record), notifyTeamOfLead(record, summary, lead)])
 
-  if (!savedToDb && !forwarded) {
+  if (!savedToDb && !notified.webhook) {
     // Nothing configured or both sinks down: the visitor still reaches us through
     // the pre-filled WhatsApp button on /thanks, so keep a server-side trace.
     console.warn(`[lead] ${record.id} not persisted — configure the leads table or LEAD_WEBHOOK_URL.`)
   }
 
   return NextResponse.json(
-    { success: true, leadId: record.id, stored: savedToDb || forwarded },
+    {
+      success: true,
+      leadId: record.id,
+      stored: savedToDb || notified.webhook,
+      notified: notified.webhook,
+    },
     { status: 201 }
   )
 }

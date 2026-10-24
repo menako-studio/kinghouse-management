@@ -72,13 +72,13 @@ export function LocationProximityMap({ location, area, nearbySpots }: LocationPr
                 </div>
                 <div>
                   <h4 className="text-xs font-semibold text-[#222222]">{spot.name}</h4>
-                  <p className="text-[11px] text-[#717171] capitalize">{spot.category}</p>
+                  <p className="text-xs text-[#717171] capitalize">{spot.category}</p>
                 </div>
               </div>
 
               <div className="text-right">
                 <span className="text-xs font-semibold text-[#222222]">{spot.distance}</span>
-                <span className="block text-[10px] text-[#A69C8E]">{spot.travelTime}</span>
+                <span className="block text-xs text-[#A69C8E]">{spot.travelTime}</span>
               </div>
             </div>
           )

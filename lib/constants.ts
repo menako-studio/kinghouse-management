@@ -51,6 +51,19 @@ export const SITE_CONFIG = {
 } as const
 
 
+/**
+ * Default social preview image. Next.js replaces (not merges) a parent's
+ * `openGraph`, so every page that sets its own `openGraph` spreads this in.
+ */
+export const DEFAULT_OG_IMAGES = [
+  {
+    url: `${SITE_CONFIG.baseUrl}/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg`,
+    width: 1200,
+    height: 630,
+    alt: "Kinghouse Management — Curated Short-Stay Hospitality in Greater Jakarta",
+  },
+]
+
 // Managed areas in Jabodetabek
 export const MANAGED_AREAS = [
   {

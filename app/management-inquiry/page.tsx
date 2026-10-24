@@ -12,8 +12,11 @@ import {
 import { trackWhatsAppClick } from "@/lib/analytics"
 import { buildWhatsAppUrl, ownerWhatsAppMessage } from "@/lib/funnel/whatsapp"
 import { OwnerLeadForm } from "@/components/owner/owner-lead-form"
+import { useLocalization } from "@/lib/context/localization-context"
 
 export default function ManagementInquiryPage() {
+  const { t, language } = useLocalization()
+
   return (
     <main className="min-h-screen bg-[#FAF7F1]">
       {/* 1. Hero Section */}
@@ -59,11 +62,11 @@ export default function ManagementInquiryPage() {
               <div className="mt-8 grid grid-cols-3 gap-4 border-t border-white/20 pt-6">
                 <div>
                   <p className="font-serif text-2xl sm:text-3xl text-white">85%+</p>
-                  <p className="text-[11px] uppercase tracking-wider text-[#DFC58E]">Avg. Occupancy</p>
+                  <p className="text-xs uppercase tracking-wider text-[#DFC58E]">Avg. Occupancy</p>
                 </div>
                 <div>
                   <p className="font-serif text-2xl sm:text-3xl text-white">2.4x</p>
-                  <p className="text-[11px] uppercase tracking-wider text-[#DFC58E]">Yield vs Long-Term</p>
+                  <p className="text-xs uppercase tracking-wider text-[#DFC58E]">Yield vs Long-Term</p>
                 </div>
                 <div>
                   <a
@@ -73,7 +76,7 @@ export default function ManagementInquiryPage() {
                     className="group"
                   >
                     <p className="font-serif text-2xl sm:text-3xl text-white group-hover:text-[#DFC58E] transition-colors">Superhost ↗</p>
-                    <p className="text-[11px] uppercase tracking-wider text-[#DFC58E]">Verified Airbnb Host</p>
+                    <p className="text-xs uppercase tracking-wider text-[#DFC58E]">Verified Airbnb Host</p>
                   </a>
                 </div>
               </div>
@@ -87,7 +90,7 @@ export default function ManagementInquiryPage() {
                 Send property photos and location to our WhatsApp for a 24-hour yield estimate.
               </p>
               <a
-                href={buildWhatsAppUrl("OWNER", ownerWhatsAppMessage({ service: "undecided" }))}
+                href={buildWhatsAppUrl("OWNER", ownerWhatsAppMessage({ service: "undecided" }, { t, language }))}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick({ source: "management_inquiry", funnel: "owner", context: "fast_track" })}

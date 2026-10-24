@@ -36,7 +36,7 @@ export function SearchFilterBar() {
             <MapPin className="h-4 w-4 text-[#222222]" />
           </div>
           <div className="flex flex-col w-full">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#222222]">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#222222]">
               {t("destinationLabel")}
             </span>
             <select
@@ -61,7 +61,7 @@ export function SearchFilterBar() {
             <Calendar className="h-4 w-4 text-[#222222]" />
           </div>
           <div className="flex flex-col w-full">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#222222]">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#222222]">
               {t("datesLabel")}
             </span>
             <div className="flex items-center space-x-2 text-xs sm:text-sm text-[#717171]">
@@ -90,7 +90,7 @@ export function SearchFilterBar() {
             <Users className="h-4 w-4 text-[#222222]" />
           </div>
           <div className="flex flex-col w-full">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#222222]">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#222222]">
               {t("guestsLabel")}
             </span>
             <select

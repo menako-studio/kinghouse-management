@@ -79,6 +79,8 @@ const LeadContactFields = {
     .regex(/^\+?[0-9][0-9\s-]{7,19}$/, "Nomor WhatsApp tidak valid"),
   // Honeypot: real visitors never see or fill this field.
   website: z.string().max(0, "Spam terdeteksi").optional(),
+  // Site language the visitor used, so the team replies in it.
+  language: z.enum(["EN", "ID", "JA", "ZH-CN", "ZH-TW", "FR", "ES", "DE", "RU"]).optional(),
 }
 
 export const LeadSourceSchema = z

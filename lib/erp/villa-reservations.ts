@@ -19,18 +19,19 @@ export const PROPERTY_ALIASES: Record<string, string[]> = {
     "villa-2",
     "1325106294978348497",
   ],
-  "villa-3": [
+  // Keys must match the ids in lib/data.ts: Skyline is villa-4, Palmerah is villa-3.
+  "villa-4": [
     "skyline-luxury-orange-county-cikarang",
     "skyline-luxury-at-orange-county",
     "cikarang-luxury",
-    "villa-3",
+    "villa-4",
     "1691723711820833674",
   ],
-  "villa-4": [
+  "villa-3": [
     "bright-airy-apartment-palmerah",
     "bright-airy-apartment",
     "palmerah-apt",
-    "villa-4",
+    "villa-3",
     "1444158185166882045",
   ],
 }

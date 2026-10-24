@@ -178,14 +178,14 @@ function NakulaEventCard({ event }: { event: VillaEvent }) {
 
         {/* Bottom Left: Start From IDR Price Overlay */}
         <div className="absolute bottom-3.5 left-4 text-white">
-          <span className="text-[10px] uppercase font-medium tracking-wider text-white/80 block">
+          <span className="text-xs uppercase font-medium tracking-wider text-white/80 block">
             Start From
           </span>
           <div className="flex items-baseline space-x-1.5">
             <span className="font-semibold text-base sm:text-lg tracking-tight text-white">
               {formatPrice(startingPriceIdr)}
             </span>
-            <span className="text-[11px] text-white/80 font-light">/ Event</span>
+            <span className="text-xs text-white/80 font-light">/ Event</span>
           </div>
         </div>
 
@@ -198,7 +198,7 @@ function NakulaEventCard({ event }: { event: VillaEvent }) {
       {/* Card Body Information */}
       <div className="space-y-3">
         {/* Meta Row: Location & Reviews + DOWNLOAD BROCHURE button matching events.png */}
-        <div className="flex items-center justify-between gap-2">
+        <div className="flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center space-x-2 text-xs text-[#6B6862]">
             <span className="font-medium text-[#222225]">Jagakarsa, Jakarta Selatan</span>
             <span>&bull;</span>
@@ -226,7 +226,7 @@ function NakulaEventCard({ event }: { event: VillaEvent }) {
                 value: startingPriceIdr,
               })
             }}
-            className="inline-flex items-center space-x-1 px-3 py-1 bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-[10px] font-bold uppercase tracking-wider rounded-md transition-colors shadow-2xs shrink-0 cursor-pointer"
+            className="inline-flex items-center space-x-1 px-3 py-1 bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-xs font-bold uppercase tracking-wider rounded-md transition-colors shadow-2xs shrink-0 cursor-pointer"
           >
             <Download className="h-2.5 w-2.5" />
             <span>DOWNLOAD BROCHURE</span>
@@ -268,12 +268,12 @@ function NakulaEventCard({ event }: { event: VillaEvent }) {
           {event.highlights.slice(0, 4).map((h) => (
             <span
               key={h}
-              className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-[#FAF8F5] text-[#6B6862] border border-[#E8E4DC]"
+              className="px-2.5 py-1 rounded-full text-xs font-medium bg-[#FAF8F5] text-[#6B6862] border border-[#E8E4DC]"
             >
               {h}
             </span>
           ))}
-          <span className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-[#FAF8F5] text-[#6B6862] border border-[#E8E4DC]">
+          <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-[#FAF8F5] text-[#6B6862] border border-[#E8E4DC]">
             0% Vendor Corkage
           </span>
         </div>
@@ -401,7 +401,7 @@ export default function EventsPage() {
       {/* 2. Breadcrumbs & Subtitle Introduction */}
       <section className="border-b border-[#E8E4DC] bg-[#FAF8F5] py-6 text-center">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 space-y-2.5">
-          <nav className="text-[11px] uppercase tracking-widest text-[#6B6862] flex items-center justify-center space-x-2">
+          <nav className="text-xs uppercase tracking-widest text-[#6B6862] flex items-center justify-center space-x-2">
             <Link href="/" className="hover:text-[#222225] transition-colors">
               HOME
             </Link>
@@ -431,7 +431,7 @@ export default function EventsPage() {
               <span>{showMobileFilters ? "Hide Filter Options" : "Show Filter Options"}</span>
             </div>
             {isFilterActive && (
-              <span className="bg-[#8C7F5F] text-white px-2 py-0.5 rounded-full text-[10px]">
+              <span className="bg-[#8C7F5F] text-white px-2 py-0.5 rounded-full text-xs">
                 Active Filters
               </span>
             )}
@@ -454,7 +454,7 @@ export default function EventsPage() {
 
             {/* 1. Property / Event Type Checkboxes */}
             <div className="space-y-3">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6862] block">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#6B6862] block">
                 PROPERTY / EVENT TYPE
               </span>
               <div className="space-y-2.5">
@@ -487,7 +487,7 @@ export default function EventsPage() {
 
             {/* 2. Availability Date Selector */}
             <div className="space-y-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6862] block">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#6B6862] block">
                 AVAILABILITY
               </span>
               <div className="relative">
@@ -502,7 +502,7 @@ export default function EventsPage() {
 
             {/* 3. Destination Dropdown */}
             <div className="space-y-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6862] block">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#6B6862] block">
                 DESTINATION
               </span>
               <div className="relative">
@@ -523,7 +523,7 @@ export default function EventsPage() {
 
             {/* 4. Event Capacity (Pax) Dropdown */}
             <div className="space-y-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6862] block">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#6B6862] block">
                 EVENT CAPACITY (PAX)
               </span>
               <div className="relative">
@@ -545,7 +545,7 @@ export default function EventsPage() {
             {/* Divider */}
             <div className="flex items-center my-4">
               <div className="flex-1 border-t border-[#E8E4DC]" />
-              <span className="px-3 text-[10px] font-bold uppercase tracking-wider text-[#6B6862]">
+              <span className="px-3 text-xs font-bold uppercase tracking-wider text-[#6B6862]">
                 OR
               </span>
               <div className="flex-1 border-t border-[#E8E4DC]" />
@@ -553,7 +553,7 @@ export default function EventsPage() {
 
             {/* 5. Have a Venue in Mind Search */}
             <div className="space-y-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6862] block">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#6B6862] block">
                 HAVE A VENUE IN MIND?
               </span>
               <div className="relative">
@@ -595,7 +595,7 @@ export default function EventsPage() {
                 FIND YOUR VENUE
               </h2>
 
-              <div className="flex items-center space-x-3 text-xs shrink-0">
+              <div className="flex flex-wrap items-center gap-3 text-xs">
                 {/* Search Venue Name input */}
                 <div className="relative">
                   <input
@@ -603,7 +603,7 @@ export default function EventsPage() {
                     placeholder="PROPERTY NAME"
                     value={gridSearchQuery}
                     onChange={(e) => setGridSearchQuery(e.target.value)}
-                    className="w-36 sm:w-44 pl-3 pr-7 py-1.5 text-[11px] font-medium uppercase tracking-wider border border-[#E8E4DC] rounded-full bg-[#FAF8F5] text-[#222225] placeholder-[#6B6862] focus:outline-none focus:border-[#8C7F5F]"
+                    className="w-36 sm:w-44 pl-3 pr-7 py-1.5 text-xs font-medium uppercase tracking-wider border border-[#E8E4DC] rounded-full bg-[#FAF8F5] text-[#222225] placeholder-[#6B6862] focus:outline-none focus:border-[#8C7F5F]"
                   />
                   <Search className="absolute right-2.5 top-1/2 -translate-y-1/2 h-3 w-3 text-[#6B6862]" />
                 </div>
@@ -613,7 +613,7 @@ export default function EventsPage() {
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value as SortOption)}
-                    className="appearance-none pl-3 pr-7 py-1.5 text-[11px] font-semibold uppercase tracking-wider border border-[#E8E4DC] rounded-full bg-[#FAF8F5] text-[#222225] focus:outline-none focus:border-[#8C7F5F] cursor-pointer"
+                    className="appearance-none pl-3 pr-7 py-1.5 text-xs font-semibold uppercase tracking-wider border border-[#E8E4DC] rounded-full bg-[#FAF8F5] text-[#222225] focus:outline-none focus:border-[#8C7F5F] cursor-pointer"
                   >
                     <option value="recommended">SORT BY</option>
                     <option value="price-asc">PRICE: LOW TO HIGH</option>
@@ -717,7 +717,7 @@ export default function EventsPage() {
 
                   {/* Top Badge: Category */}
                   <div className="absolute top-3 left-3">
-                    <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-white/90 text-[#222225] backdrop-blur-md shadow-xs">
+                    <span className="px-2.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-white/90 text-[#222225] backdrop-blur-md shadow-xs">
                       {photo.categoryLabel}
                     </span>
                   </div>
@@ -729,7 +729,7 @@ export default function EventsPage() {
 
                   {/* Bottom Image Info */}
                   <div className="absolute bottom-3 left-3 right-3 text-white">
-                    <span className="text-[10px] text-white/80 font-medium uppercase tracking-wider block">
+                    <span className="text-xs text-white/80 font-medium uppercase tracking-wider block">
                       {photo.area} &bull; {photo.capacity}
                     </span>
                     <h3 className="font-serif text-base font-normal leading-snug line-clamp-1 drop-shadow-sm">
@@ -743,7 +743,7 @@ export default function EventsPage() {
                   <p className="text-xs text-[#6B6862] leading-relaxed line-clamp-2">
                     {photo.caption}
                   </p>
-                  <div className="flex items-center justify-between pt-1 text-[11px] font-semibold text-[#8C7F5F]">
+                  <div className="flex items-center justify-between pt-1 text-xs font-semibold text-[#8C7F5F]">
                     <span>View Setup Details</span>
                     <ChevronRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                   </div>
@@ -816,7 +816,7 @@ export default function EventsPage() {
             <div className="p-6 space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#F0ECE1] pb-3">
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#8C7F5F]">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#8C7F5F]">
                     {lightboxPhoto.categoryLabel} &bull; {lightboxPhoto.area}
                   </span>
                   <h3 className="font-serif text-xl sm:text-2xl text-[#222225] font-normal">
@@ -855,7 +855,7 @@ export default function EventsPage() {
       <section id="pricelist" className="mx-auto max-w-7xl px-6 lg:px-12 pt-16 pb-12 border-t border-[#E8E4DC]">
         <div className="rounded-3xl border border-[#E8E4DC] bg-[#FAF8F5] p-6 sm:p-10 shadow-xs">
           <div className="max-w-3xl mb-8">
-            <span className="text-[11px] uppercase tracking-widest font-bold text-[#8C7F5F]">
+            <span className="text-xs uppercase tracking-widest font-bold text-[#8C7F5F]">
               OFFICIAL PRICE MATRIX 2026
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl text-[#222225] mt-1 font-normal">
@@ -927,7 +927,7 @@ export default function EventsPage() {
           {/* Pricing Table Matrix */}
           <div className="overflow-x-auto rounded-2xl border border-[#E8E4DC] bg-white">
             <table className="w-full text-left text-xs">
-              <thead className="bg-[#FAF8F5] text-[#222225] font-serif uppercase tracking-wider text-[11px] border-b border-[#E8E4DC]">
+              <thead className="bg-[#FAF8F5] text-[#222225] font-serif uppercase tracking-wider text-xs border-b border-[#E8E4DC]">
                 <tr>
                   <th className="px-5 py-4 font-semibold">{t("packageTierHeader")}</th>
                   <th className="px-5 py-4 font-semibold">{t("capacityHeader")}</th>
@@ -946,7 +946,7 @@ export default function EventsPage() {
                     <tr key={tier.name} className="hover:bg-[#FAF8F5] transition-colors">
                       <td className="px-5 py-4 font-semibold text-[#222225]">{tier.name}</td>
                       <td className="px-5 py-4 text-[#6B6862]">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#FAF8F5] text-[#8C7F5F] border border-[#E8E4DC]">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#FAF8F5] text-[#8C7F5F] border border-[#E8E4DC]">
                           {tier.pax} Pax
                         </span>
                       </td>
@@ -962,7 +962,7 @@ export default function EventsPage() {
                           href={`${whatsappBase("EVENT")}?text=${message}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center space-x-1 px-3 py-1.5 rounded-md bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-[11px] font-semibold transition-colors"
+                          className="inline-flex items-center space-x-1 px-3 py-1.5 rounded-md bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-xs font-semibold transition-colors"
                         >
                           <MessageCircle className="h-3 w-3 text-white" />
                           <span>{t("reserveButton")}</span>
@@ -975,7 +975,7 @@ export default function EventsPage() {
             </table>
           </div>
 
-          <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between text-[11px] text-[#6B6862] gap-2">
+          <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-[#6B6862] gap-2">
             <span>* Zero vendor corkage fee. Outside catering, florist, & photographer welcome.</span>
             <span>Official commercial invoice & tax receipts provided for corporate bookings.</span>
           </div>
@@ -994,7 +994,7 @@ export default function EventsPage() {
           <div className="relative z-10 max-w-3xl mb-10 space-y-3">
             <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-[#DFC58E]/30 text-xs font-semibold text-[#DFC58E]">
               <Globe className="h-3.5 w-3.5" />
-              <span className="uppercase tracking-widest text-[10px]">International &amp; Destination Wedding Desk</span>
+              <span className="uppercase tracking-widest text-xs">International &amp; Destination Wedding Desk</span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal leading-tight">
               Planning an Expat or Destination Villa Wedding in Jakarta?
@@ -1116,7 +1116,7 @@ export default function EventsPage() {
         <section className="mx-auto max-w-7xl px-6 lg:px-12 pb-20">
           <div className="rounded-3xl border border-[#E8E4DC] bg-[#FAF8F5] p-6 sm:p-10 shadow-xs">
             <div className="max-w-3xl mb-8">
-              <span className="text-[11px] uppercase tracking-widest font-bold text-[#8C7F5F]">
+              <span className="text-xs uppercase tracking-widest font-bold text-[#8C7F5F]">
                 {t("overnightStayHeader")}
               </span>
               <h2 className="font-serif text-3xl text-[#222225] mt-1 font-normal">
@@ -1129,7 +1129,7 @@ export default function EventsPage() {
 
             <div className="overflow-x-auto rounded-2xl border border-[#E8E4DC] bg-white">
               <table className="w-full text-left text-xs">
-                <thead className="bg-[#FAF8F5] text-[#222225] font-serif uppercase tracking-wider text-[11px] border-b border-[#E8E4DC]">
+                <thead className="bg-[#FAF8F5] text-[#222225] font-serif uppercase tracking-wider text-xs border-b border-[#E8E4DC]">
                   <tr>
                     <th className="px-5 py-4 font-semibold">Room Configuration</th>
                     <th className="px-5 py-4 font-semibold">Maximum Guests</th>

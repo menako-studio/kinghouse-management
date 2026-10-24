@@ -8,6 +8,7 @@ import {
   stayWhatsAppMessage,
 } from "@/lib/funnel/whatsapp"
 import { WHATSAPP_LINES, routeOwnerService } from "@/lib/funnel/config"
+import { createTranslator } from "@/lib/i18n/funnel"
 import { buildLeadRecord, buildLeadWhatsAppUrl, isPriorityLead, summarizeLead } from "@/lib/funnel/lead"
 import { parseLeadSource } from "@/lib/funnel/lead-source"
 import { findNearestAvailableRanges, isRangeAvailable, nightsBetween } from "@/lib/funnel/availability"
@@ -50,15 +51,25 @@ describe("Funnel WhatsApp messages", () => {
     expect(WHATSAPP_LINES.STAY).toMatch(/^62\d{8,}$/)
   })
 
-  it("fills the owner, stay and event templates from the plan", () => {
+  it("fills the owner, stay and event templates in English by default", () => {
     expect(ownerWhatsAppMessage({ service: "co-hosting", propertyType: "villa", location: "Jagakarsa", units: 4 })).toBe(
-      "Halo Kinghouse, saya pemilik properti dan tertarik dengan layanan Co-Hosting. Properti saya: villa di Jagakarsa, 4 kamar/unit. Boleh dijelaskan paket dan biayanya?"
+      "Hello Kinghouse, I own a property and I am interested in Co-Hosting. My property: villa in Jagakarsa, 4 bedrooms/units. Could you share the packages and fees?"
     )
     expect(stayWhatsAppMessage({ propertyName: "Sky House", checkIn: "2026-11-01", checkOut: "2026-11-03", guests: 2 })).toBe(
-      "Halo Kinghouse, saya tertarik menginap di Sky House tanggal 1 Nov 2026–3 Nov 2026 untuk 2 tamu. Apakah tersedia?"
+      "Hello Kinghouse, I would like to stay at Sky House from 1 Nov 2026 to 3 Nov 2026 for 2 guests. Is it available?"
     )
     expect(eventWhatsAppMessage({ eventType: "shooting", propertyName: "Versatile House", date: "2026-12-12", guests: 8 })).toBe(
-      "Halo Kinghouse, saya mau tanya event shooting foto & video di Versatile House tanggal 12 Des 2026, sekitar 8 orang. Apakah tersedia dan berapa biayanya?"
+      "Hello Kinghouse, I would like to ask about a photo & video shoot event at Versatile House on 12 Dec 2026 for about 8 people. Is it available, and what is the price?"
+    )
+  })
+
+  it("uses the plan's Indonesian wording for Indonesian visitors", () => {
+    const id = { t: createTranslator("ID"), language: "ID" as const }
+    expect(ownerWhatsAppMessage({ service: "co-hosting", propertyType: "villa", location: "Jagakarsa", units: 4 }, id)).toBe(
+      "Halo Kinghouse, saya pemilik properti dan tertarik dengan Co-Hosting. Properti saya: villa di Jagakarsa, 4 kamar/unit. Boleh dijelaskan paket dan biayanya?"
+    )
+    expect(stayWhatsAppMessage({ propertyName: "Sky House", checkIn: "2026-11-01", checkOut: "2026-11-03", guests: 2 }, id)).toBe(
+      "Halo Kinghouse, saya tertarik menginap di Sky House tanggal 1 Nov 2026–3 Nov 2026 untuk 2 tamu. Apakah tersedia?"
     )
   })
 
@@ -96,7 +107,7 @@ describe("Lead validation", () => {
 })
 
 describe("Lead records", () => {
-  it("tags target, need, routing, priority and the first-reply deadline", () => {
+  it("tags target, need, routing, priority and the first-reply deadline in office hours", () => {
     const now = new Date("2026-10-24T03:00:00.000Z")
     const record = buildLeadRecord(OwnerLeadSchema.parse(ownerLead), now)
     expect(record.id).toMatch(/^KH-OWN-20261024-[A-Z0-9]{4}$/)
@@ -107,7 +118,8 @@ describe("Lead records", () => {
       route_to: "owner_relations",
       priority: true,
       guests_or_units: 4,
-      first_response_due_at: "2026-10-24T04:00:00.000Z",
+      // Saturday 10:00 WIB → office reopens Monday 08:00 WIB → +1 working hour
+      first_response_due_at: "2026-10-26T02:00:00.000Z",
     })
   })
 
@@ -118,17 +130,24 @@ describe("Lead records", () => {
     expect(buildLeadRecord(lead).route_to).toBe("cleaning")
   })
 
-  it("summarizes only the questions that were answered and builds a WhatsApp follow-up", () => {
+  it("summarizes only the questions that were answered (team copy in Indonesian)", () => {
     const lead = EventLeadSchema.parse(eventLead)
     const labels = summarizeLead(lead).map((r) => r.label)
     expect(labels).toContain("Sesi")
     expect(labels).toContain("Vendor sendiri")
     expect(labels).not.toContain("Tanggal cadangan")
     expect(labels).not.toContain("Tujuan shooting")
+  })
 
-    const url = decodeURIComponent(buildLeadWhatsAppUrl(lead, "KH-EVT-20261024-ABCD"))
-    expect(url).toContain("event wedding di Versatile House Jagakarsa tanggal 12 Des 2026")
-    expect(url).toContain("Ref: KH-EVT-20261024-ABCD")
+  it("builds the visitor's WhatsApp follow-up in the language they used", () => {
+    const en = decodeURIComponent(buildLeadWhatsAppUrl(EventLeadSchema.parse(eventLead), "KH-EVT-20261024-ABCD"))
+    expect(en).toContain("a wedding event at Versatile House Jagakarsa on 12 Dec 2026")
+    expect(en).toContain("• Ceremony: Akad / ceremony")
+    expect(en).toContain("Ref: KH-EVT-20261024-ABCD")
+
+    const ja = decodeURIComponent(buildLeadWhatsAppUrl(EventLeadSchema.parse({ ...eventLead, language: "JA" }), "KH-1"))
+    expect(ja).toContain("ウェディング")
+    expect(ja).toContain("受付番号：KH-1")
   })
 })
 

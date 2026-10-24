@@ -214,7 +214,7 @@ export function HeroSlider() {
         {/* Top Eyebrow Tag */}
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-wrap items-center gap-2">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-3.5 py-1 sm:px-4 sm:py-1.5 text-[10px] sm:text-[11px] font-medium tracking-[0.18em] sm:tracking-[0.22em] uppercase text-[#E8DFC8] backdrop-blur-md shadow-2xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-3.5 py-1 sm:px-4 sm:py-1.5 text-xs sm:text-xs font-medium tracking-[0.18em] sm:tracking-[0.22em] uppercase text-[#E8DFC8] backdrop-blur-md shadow-2xl">
               <Sparkles className="h-3 w-3 text-[#B8934C]" />
               <span>{t("curatedResidencesJabodetabek")}</span>
             </div>
@@ -224,17 +224,17 @@ export function HeroSlider() {
               href="https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full border border-[#DFC58E]/50 bg-black/50 hover:bg-black/75 px-3 py-1 sm:px-3.5 sm:py-1.5 text-[10px] sm:text-[11px] font-semibold text-[#DFC58E] backdrop-blur-md shadow-xl transition-all hover:scale-105 cursor-pointer"
+              className="inline-flex items-center gap-1.5 rounded-full border border-[#DFC58E]/50 bg-black/50 hover:bg-black/75 px-3 py-1 sm:px-3.5 sm:py-1.5 text-xs sm:text-xs font-semibold text-[#DFC58E] backdrop-blur-md shadow-xl transition-all hover:scale-105 cursor-pointer"
               title="Official Airbnb Superhost Profile — Kinghouse Management"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span>Official Airbnb Superhost</span>
-              <span className="text-[10px] text-white/80 font-normal">★ 4.5 &bull; 10 Reviews ↗</span>
+              <span className="text-xs text-white/80 font-normal">★ 4.5 &bull; 10 Reviews ↗</span>
             </a>
           </div>
 
           {/* Quick Scene Pill Badge (Desktop View) */}
-          <div className="hidden sm:flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3.5 py-1 text-[11px] text-white/90 backdrop-blur-md">
+          <div className="hidden sm:flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3.5 py-1 text-xs text-white/90 backdrop-blur-md">
             <span className="h-1.5 w-1.5 rounded-full bg-[#B8934C] animate-pulse" />
             <span className="font-light tracking-wide">{currentScene.title}</span>
           </div>
@@ -333,7 +333,7 @@ export function HeroSlider() {
           </div>
 
           {/* Center: Scroll Down Indicator */}
-          <div className="hidden lg:flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-white/70">
+          <div className="hidden lg:flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/70">
             <span>{t("scrollToDiscover")}</span>
             <ChevronDown className="h-3.5 w-3.5 text-[#DFC58E] animate-bounce" />
           </div>
@@ -348,7 +348,7 @@ export function HeroSlider() {
                 <span>Versatile House With Garden</span>
                 <ArrowUpRight className="h-3.5 w-3.5 opacity-70 group-hover:opacity-100 transition-opacity" />
               </Link>
-              <span className="text-[10px] sm:text-[11px] text-white/70 uppercase tracking-wider font-light">
+              <span className="text-xs sm:text-xs text-white/70 uppercase tracking-wider font-light">
                 Jagakarsa, Jakarta Selatan &bull; 12 Guests &bull; 5BR Private Pool
               </span>
             </div>

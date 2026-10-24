@@ -38,11 +38,11 @@ export function VillaCard({ villa, priority = false }: VillaCardProps) {
           {/* Top Badges */}
           <div className="absolute top-3.5 inset-x-3.5 flex items-center justify-between pointer-events-none">
             {villa.guestFavorite ? (
-              <Badge variant="superhost" className="text-[11px] font-medium tracking-tight bg-[#8C7F5F] text-white">
+              <Badge variant="superhost" className="text-xs font-medium tracking-tight bg-[#8C7F5F] text-white">
                 {t("guestFavorite")}
               </Badge>
             ) : (
-              <Badge variant="secondary" className="text-[11px] font-medium">
+              <Badge variant="secondary" className="text-xs font-medium">
                 {villa.architecturalStyle}
               </Badge>
             )}
@@ -54,7 +54,7 @@ export function VillaCard({ villa, priority = false }: VillaCardProps) {
                   <span>{villa.rating.toFixed(2)}</span>
                 </>
               ) : (
-                <span className="text-[10px] text-[#8C7F5F]">New</span>
+                <span className="text-xs text-[#8C7F5F]">New</span>
               )}
             </div>
           </div>
@@ -62,7 +62,7 @@ export function VillaCard({ villa, priority = false }: VillaCardProps) {
           {/* Bottom Location Overlay */}
           <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between rounded-lg bg-black/50 p-2.5 backdrop-blur-sm text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <span className="font-light truncate">{villa.location}</span>
-            <span className="shrink-0 flex items-center text-[10px] font-medium uppercase tracking-wider">
+            <span className="shrink-0 flex items-center text-xs font-medium uppercase tracking-wider">
               {t("details")} <ArrowUpRight className="ml-0.5 h-3 w-3" />
             </span>
           </div>
@@ -108,7 +108,7 @@ export function VillaCard({ villa, priority = false }: VillaCardProps) {
               </span>
               <span className="text-xs text-[#717171]"> {t("perNight")}</span>
               {currency !== "IDR" && (
-                <span className="block text-[10px] text-[#8C7F5F]">
+                <span className="block text-xs text-[#8C7F5F]">
                   ≈ {formatPrice(villa.price.idr, "IDR")} / malam
                 </span>
               )}

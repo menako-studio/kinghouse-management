@@ -52,14 +52,14 @@ export default function ContactPage() {
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
           <div className="max-w-3xl space-y-4">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center rounded-full bg-white/10 px-3.5 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#DFC58E] backdrop-blur-md border border-white/15">
+              <span className="inline-flex items-center rounded-full bg-white/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-[#DFC58E] backdrop-blur-md border border-white/15">
                 Direct Communication Desk
               </span>
               <a
                 href="https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center rounded-full bg-[#DFC58E]/20 hover:bg-[#DFC58E]/30 px-3.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-[#DFC58E] backdrop-blur-md border border-[#DFC58E]/50 transition-all hover:scale-105"
+                className="inline-flex items-center rounded-full bg-[#DFC58E]/20 hover:bg-[#DFC58E]/30 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-[#DFC58E] backdrop-blur-md border border-[#DFC58E]/50 transition-all hover:scale-105"
               >
                 <Sparkles className="mr-1.5 h-3.5 w-3.5 text-[#DFC58E]" />
                 <span>Official Airbnb Superhost &bull; 4.5★ ↗</span>
@@ -99,12 +99,12 @@ export default function ContactPage() {
                 className="group block rounded-2xl border border-[#E8E4DC] bg-white overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer"
                 title="Buka profil asli Superhost Kinghouse Management di Airbnb"
               >
-                <div className="bg-[#FAF8F5] px-3.5 py-2 border-b border-[#E8E4DC] flex items-center justify-between text-[11px]">
+                <div className="bg-[#FAF8F5] px-3.5 py-2 border-b border-[#E8E4DC] flex items-center justify-between text-xs">
                   <div className="flex items-center space-x-1.5">
                     <span className="h-2 w-2 rounded-full bg-[#FF385C]" />
                     <span className="font-semibold text-[#222222]">Profil Resmi Airbnb Superhost</span>
                   </div>
-                  <span className="text-[10px] text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                  <span className="text-xs text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
                     Terverifikasi
                   </span>
                 </div>
@@ -191,7 +191,7 @@ export default function ContactPage() {
                     >
                       18 Office Park Building 21th Floor Unit C. Jl. TB Simatupang Kav. 18, Jakarta Selatan, 12520
                     </a>
-                    <span className="inline-flex items-center space-x-1 text-[11px] text-[#8C7F5F] mt-1 font-semibold">
+                    <span className="inline-flex items-center space-x-1 text-xs text-[#8C7F5F] mt-1 font-semibold">
                       <a
                         href="https://maps.google.com/?q=18+Office+Park+Building+Jl.+TB+Simatupang+Kav.+18+Jakarta+Selatan+12520"
                         target="_blank"
@@ -232,7 +232,7 @@ export default function ContactPage() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-1.5">
-                        <label className="text-[11px] font-bold uppercase tracking-wider text-[#222222]">
+                        <label className="text-xs font-bold uppercase tracking-wider text-[#222222]">
                           Full Name *
                         </label>
                         <Input
@@ -245,7 +245,7 @@ export default function ContactPage() {
                       </div>
 
                       <div className="space-y-1.5">
-                        <label className="text-[11px] font-bold uppercase tracking-wider text-[#222222]">
+                        <label className="text-xs font-bold uppercase tracking-wider text-[#222222]">
                           Email Address *
                         </label>
                         <Input
@@ -260,7 +260,7 @@ export default function ContactPage() {
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-[11px] font-bold uppercase tracking-wider text-[#222222]">
+                      <label className="text-xs font-bold uppercase tracking-wider text-[#222222]">
                         Inquiry Nature
                       </label>
                       <select
@@ -276,7 +276,7 @@ export default function ContactPage() {
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-[11px] font-bold uppercase tracking-wider text-[#222222]">
+                      <label className="text-xs font-bold uppercase tracking-wider text-[#222222]">
                         Message Details *
                       </label>
                       <textarea

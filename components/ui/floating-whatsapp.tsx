@@ -8,12 +8,12 @@ import { useLocalization } from "@/lib/context/localization-context"
 import { buildWhatsAppUrl, resolvePageWhatsApp } from "@/lib/funnel/whatsapp"
 
 export function FloatingWhatsApp() {
-  const { t } = useLocalization()
+  const { t, language } = useLocalization()
   const pathname = usePathname()
   const [isTooltipDismissed, setIsTooltipDismissed] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
 
-  const { target, funnel, message } = resolvePageWhatsApp(pathname || "/")
+  const { target, funnel, message } = resolvePageWhatsApp(pathname || "/", { t, language })
   const whatsappUrl = buildWhatsAppUrl(target, message)
 
   const handleClick = () => {
@@ -61,12 +61,12 @@ export function FloatingWhatsApp() {
         >
           <div className="flex flex-col text-left">
             <div className="flex items-center space-x-1.5">
-              <span className="text-[11px] font-semibold tracking-wider text-[#222222] uppercase">
+              <span className="text-xs font-semibold tracking-wider text-[#222222] uppercase">
                 {t("conciergeOnline")}
               </span>
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
             </div>
-            <p className="text-[10px] text-[#666666] font-light">
+            <p className="text-xs text-[#666666] font-light">
               {t("conciergeResponseTime")}
             </p>
           </div>

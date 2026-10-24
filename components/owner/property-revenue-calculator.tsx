@@ -221,7 +221,7 @@ Please provide information on scheduling a complimentary physical audit and onbo
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center space-x-2 rounded-full bg-[#231F1A]/5 px-3.5 py-1 text-xs font-semibold text-[#6B4B2A] border border-[#6B4B2A]/20">
             <Sparkles className="h-3.5 w-3.5 text-[#B8934C]" />
-            <span className="uppercase tracking-widest text-[11px]">
+            <span className="uppercase tracking-widest text-xs">
               {isId ? "Simulator Pendapatan Standar AirDNA" : "AirDNA-Grade Revenue Simulator"}
             </span>
           </div>
@@ -366,7 +366,7 @@ Please provide information on scheduling a complimentary physical audit and onbo
                   }`}
                 >
                   <span className="block text-xs font-bold">15% Standard</span>
-                  <span className={`block text-[10px] ${feeTier === "standard" ? "text-white/70" : "text-[#5C5347]"}`}>
+                  <span className={`block text-xs ${feeTier === "standard" ? "text-white/70" : "text-[#5C5347]"}`}>
                     {isId ? "Full-Service Airbnb Host" : "Full-Service Co-Hosting"}
                   </span>
                 </button>
@@ -380,7 +380,7 @@ Please provide information on scheduling a complimentary physical audit and onbo
                   }`}
                 >
                   <span className="block text-xs font-bold text-[#CBBEA0]">20% Premium</span>
-                  <span className={`block text-[10px] ${feeTier === "premium" ? "text-white/70" : "text-[#5C5347]"}`}>
+                  <span className={`block text-xs ${feeTier === "premium" ? "text-white/70" : "text-[#5C5347]"}`}>
                     {isId ? "Multi-Channel + Direct SEO" : "Multi-Channel + Direct SEO"}
                   </span>
                 </button>
@@ -398,7 +398,7 @@ Please provide information on scheduling a complimentary physical audit and onbo
               <div className="relative z-10 space-y-8">
                 {/* Header Badge */}
                 <div className="flex flex-wrap items-center justify-between gap-3">
-                  <span className="inline-flex items-center rounded-full bg-[#B8934C]/20 px-3 py-1 text-[11px] font-semibold text-[#EFE2CE] border border-[#B8934C]/30">
+                  <span className="inline-flex items-center rounded-full bg-[#B8934C]/20 px-3 py-1 text-xs font-semibold text-[#EFE2CE] border border-[#B8934C]/30">
                     <TrendingUp className="mr-1.5 h-3.5 w-3.5 text-[#B8934C]" />
                     {isId ? "Proyeksi Kenaikan Laba Bersih Owner" : "Projected Net Owner Yield Lift"}
                   </span>
@@ -467,37 +467,37 @@ Please provide information on scheduling a complimentary physical audit and onbo
                 {/* Annual Financial Table */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-white/10">
                   <div className="space-y-1">
-                    <span className="text-[10px] uppercase tracking-wider text-white/50 block">
+                    <span className="text-xs uppercase tracking-wider text-white/50 block">
                       {isId ? "Omset Kotor Tahunan" : "Annual Gross Booking"}
                     </span>
                     <span className="text-sm sm:text-base font-semibold text-white block">
                       {formatPrice(calculations.kinghouseGrossAnnual)}
                     </span>
-                    <span className="text-[10px] text-white/40 line-through">
+                    <span className="text-xs text-white/40 line-through">
                       {formatPrice(calculations.selfGrossAnnual)} ({isId ? "Mandiri" : "Self"})
                     </span>
                   </div>
 
                   <div className="space-y-1">
-                    <span className="text-[10px] uppercase tracking-wider text-white/50 block">
+                    <span className="text-xs uppercase tracking-wider text-white/50 block">
                       {isId ? `Fee Kinghouse (${calculations.commissionPercent}%)` : `Kinghouse Fee (${calculations.commissionPercent}%)`}
                     </span>
                     <span className="text-sm sm:text-base font-semibold text-[#CBBEA0] block">
                       {formatPrice(calculations.kinghouseManagementFeeAnnual)}
                     </span>
-                    <span className="text-[10px] text-white/50">
+                    <span className="text-xs text-white/50">
                       {isId ? "Tanpa Biaya Tersembunyi" : "Zero Hidden Markups"}
                     </span>
                   </div>
 
                   <div className="space-y-1 col-span-2 sm:col-span-1">
-                    <span className="text-[10px] uppercase tracking-wider text-[#4ADE80] font-semibold block">
+                    <span className="text-xs uppercase tracking-wider text-[#4ADE80] font-semibold block">
                       {isId ? "Total Surplus Bersih / Thn" : "Net Annual Surplus"}
                     </span>
                     <span className="text-sm sm:text-base font-bold text-[#4ADE80] block">
                       +{formatPrice(calculations.netAnnualLift)}
                     </span>
-                    <span className="text-[10px] text-[#4ADE80]/80">
+                    <span className="text-xs text-[#4ADE80]/80">
                       {isId ? "Surplus di atas kelola sendiri" : "Surplus above self-management"}
                     </span>
                   </div>
@@ -506,30 +506,30 @@ Please provide information on scheduling a complimentary physical audit and onbo
                 {/* Dynamic Pricing Engine Explainer Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs text-white/80">
                   <div className="p-3 rounded-xl bg-white/5 border border-white/10 space-y-1">
-                    <span className="text-[10px] font-bold text-[#CBBEA0] block">
+                    <span className="text-xs font-bold text-[#CBBEA0] block">
                       ✦ {isId ? "Lonjakan Akhir Pekan" : "Weekend Surge"}
                     </span>
-                    <p className="text-[11px] text-white/70 leading-snug">
+                    <p className="text-xs text-white/70 leading-snug">
                       {isId
                         ? "Naik otomatis +25% s/d +35% saat Jumat-Minggu tanpa sepi peminat."
                         : "Automated +25% to +35% weekend rate surge capitalizing on high leisure demand."}
                     </p>
                   </div>
                   <div className="p-3 rounded-xl bg-white/5 border border-white/10 space-y-1">
-                    <span className="text-[10px] font-bold text-[#CBBEA0] block">
+                    <span className="text-xs font-bold text-[#CBBEA0] block">
                       ✦ {isId ? "Libur Nasional" : "National Holidays"}
                     </span>
-                    <p className="text-[11px] text-white/70 leading-snug">
+                    <p className="text-xs text-white/70 leading-snug">
                       {isId
                         ? "Lonjakan rate +40% di long weekend & peak holiday resmi Indonesia."
                         : "Up to +40% rate surge during Indonesian long weekends & peak holiday seasons."}
                     </p>
                   </div>
                   <div className="p-3 rounded-xl bg-white/5 border border-white/10 space-y-1">
-                    <span className="text-[10px] font-bold text-[#CBBEA0] block">
+                    <span className="text-xs font-bold text-[#CBBEA0] block">
                       ✦ {isId ? "0% Fee OTA Direct" : "0% Platform Fee Direct"}
                     </span>
-                    <p className="text-[11px] text-white/70 leading-snug">
+                    <p className="text-xs text-white/70 leading-snug">
                       {isId
                         ? "Direct booking lewat SEO Google Kinghouse menghemat potongan komisi platform."
                         : "Direct bookings via Kinghouse Google SEO eliminate 15% platform service cuts."}

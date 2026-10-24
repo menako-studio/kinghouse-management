@@ -4,26 +4,25 @@
 // names and phone numbers do not end up in analytics page paths).
 
 import type { EventLeadInput, LeadInput, OwnerLeadInput, StayLeadInput } from "@/lib/validations"
+import type { LanguageCode } from "@/lib/context/localization-context"
 import { trackLeadFormSubmit } from "@/lib/analytics"
 import { getLeadSource } from "./lead-source"
-import { buildLeadWhatsAppUrl, generateLeadId, getLeadNeed, summarizeLead } from "./lead"
-import type { LeadTarget } from "./config"
+import { generateLeadId, getLeadNeed } from "./lead"
 
 const THANKS_KEY = "kh_last_lead"
 
+/** What /thanks needs to render the summary and WhatsApp link in the visitor's language. */
 export interface ThanksPayload {
   leadId: string
-  target: LeadTarget
-  name: string
-  summary: { label: string; value: string }[]
-  whatsappUrl: string
+  lead: LeadInput
   propertySlug?: string
 }
 
 export interface SubmitLeadResult {
   ok: boolean
   leadId: string
-  error?: string
+  /** i18n key of the message to show when ok is false */
+  errorKey?: LeadErrorKey
 }
 
 export type LeadDraft =
@@ -31,8 +30,13 @@ export type LeadDraft =
   | Omit<EventLeadInput, "source">
   | Omit<StayLeadInput, "source">
 
-export async function submitLead(draft: LeadDraft, opts: { propertySlug?: string } = {}): Promise<SubmitLeadResult> {
-  const lead = { ...draft, source: getLeadSource() } as LeadInput
+export type LeadErrorKey = "f.errorInvalid" | "f.errorRateLimited" | "f.errorGeneric"
+
+export async function submitLead(
+  draft: LeadDraft,
+  opts: { language: LanguageCode; propertySlug?: string }
+): Promise<SubmitLeadResult> {
+  const lead = { ...draft, language: opts.language, source: getLeadSource() } as LeadInput
 
   let leadId: string | undefined
   try {
@@ -41,10 +45,9 @@ export async function submitLead(draft: LeadDraft, opts: { propertySlug?: string
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(lead),
     })
-    const data = (await res.json().catch(() => ({}))) as { leadId?: string; error?: string }
-    if (res.status === 400 || res.status === 429) {
-      return { ok: false, leadId: "", error: data.error || "Data belum valid, mohon periksa kembali." }
-    }
+    const data = (await res.json().catch(() => ({}))) as { leadId?: string }
+    if (res.status === 429) return { ok: false, leadId: "", errorKey: "f.errorRateLimited" }
+    if (res.status === 400) return { ok: false, leadId: "", errorKey: "f.errorInvalid" }
     leadId = data.leadId
   } catch {
     // Network failure — the WhatsApp button on /thanks still carries the full summary.
@@ -59,12 +62,13 @@ export async function submitLead(draft: LeadDraft, opts: { propertySlug?: string
     propertyName: "property" in lead ? lead.property : undefined,
   })
 
+  // Keep tracking fields out of the stored copy.
+  const leadForThanks: Partial<LeadInput> = { ...lead }
+  delete leadForThanks.source
+  delete leadForThanks.website
   const payload: ThanksPayload = {
     leadId: finalId,
-    target: lead.target,
-    name: lead.name,
-    summary: summarizeLead(lead),
-    whatsappUrl: buildLeadWhatsAppUrl(lead, finalId),
+    lead: leadForThanks as LeadInput,
     propertySlug: opts.propertySlug,
   }
   try {

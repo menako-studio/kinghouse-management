@@ -32,13 +32,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!compendium) {
     return {
-      title: "Digital Guest Guide | Kinghouse Hospitality",
+      title: "Digital Guest Guide",
+      robots: { index: false, follow: false },
     }
   }
 
   return {
-    title: `Panduan Tamu & Layanan • ${compendium.propertyName} | Kinghouse`,
+    title: `Guest Guide • ${compendium.propertyName}`,
     description: `Buku panduan digital, password WiFi, petunjuk check-in, dan pemesanan layanan tambahan untuk ${compendium.propertyName}.`,
+    alternates: { canonical: `/stay/${slug}` },
+    // Guest-only page with WiFi details: never index.
+    robots: { index: false, follow: false },
   }
 }
 

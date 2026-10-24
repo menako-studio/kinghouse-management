@@ -160,7 +160,7 @@ export function UpsellMenu({
                   </div>
 
                   {service.popular && (
-                    <span className="rounded-full bg-amber-500/15 px-2 py-0.5 text-[10px] font-bold text-amber-300 uppercase tracking-wider border border-amber-500/20">
+                    <span className="rounded-full bg-amber-500/15 px-2 py-0.5 text-xs font-bold text-amber-300 uppercase tracking-wider border border-amber-500/20">
                       Popular
                     </span>
                   )}

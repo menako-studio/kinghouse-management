@@ -115,7 +115,7 @@ export default async function EventDetailPage({ params }: PageProps) {
         <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-12">
           <div className="mx-auto max-w-7xl">
             <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-3 py-1 mb-4">
-              <span className="text-[10px] text-white font-medium uppercase tracking-wider">
+              <span className="text-xs text-white font-medium uppercase tracking-wider">
                 {CATEGORY_LABELS[event.category] ?? event.category}
               </span>
             </div>
@@ -243,7 +243,7 @@ export default async function EventDetailPage({ params }: PageProps) {
                   className={`rounded-2xl border p-6 ${i === 1 ? "border-[#222222] bg-[#FAFAFA]" : "border-[#EBEBEB] bg-white"}`}
                 >
                   {i === 1 && (
-                    <div className="inline-block text-[10px] font-bold uppercase tracking-widest bg-[#222222] text-white px-3 py-1 rounded-full mb-3">
+                    <div className="inline-block text-xs font-bold uppercase tracking-widest bg-[#222222] text-white px-3 py-1 rounded-full mb-3">
                       Most Popular
                     </div>
                   )}
@@ -260,12 +260,12 @@ export default async function EventDetailPage({ params }: PageProps) {
                       </p>
                     )}
                   </div>
-                  <p className="text-[10px] text-[#A69C8E] mb-4">{pkg.priceNote}</p>
+                  <p className="text-xs text-[#A69C8E] mb-4">{pkg.priceNote}</p>
                   <div className="space-y-1.5 mb-5 border-t border-[#EBEBEB] pt-4">
                     {pkg.includes.map((item) => (
                       <div key={item} className="flex items-start space-x-2">
                         <CheckCircle2 className="h-3 w-3 text-[#A69C8E] mt-0.5 flex-shrink-0" />
-                        <span className="text-[11px] text-[#717171] leading-relaxed">{item}</span>
+                        <span className="text-xs text-[#717171] leading-relaxed">{item}</span>
                       </div>
                     ))}
                   </div>
@@ -284,7 +284,7 @@ export default async function EventDetailPage({ params }: PageProps) {
                   </a>
                 </div>
               ))}
-              <p className="text-[10px] text-[#A69C8E] text-center">
+              <p className="text-xs text-[#A69C8E] text-center">
                 * Prices exclude catering, floral decor, and photography. Custom packages available.
               </p>
             </div>

@@ -70,7 +70,7 @@ export function PerformanceMetrics() {
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                     {/* Occupancy Lift */}
                     <div className="p-4 rounded-xl bg-white border border-[#EBEBEB] space-y-1">
-                      <span className="text-[10px] uppercase tracking-wider text-[#717171] font-medium block">
+                      <span className="text-xs uppercase tracking-wider text-[#717171] font-medium block">
                         Occupancy Rate
                       </span>
                       <div className="flex flex-wrap items-baseline gap-x-1.5">
@@ -81,14 +81,14 @@ export function PerformanceMetrics() {
                           {cs.afterMetrics.occupancyRate}%
                         </span>
                       </div>
-                      <span className="text-[10px] font-semibold text-[#25D366] block">
+                      <span className="text-xs font-semibold text-[#25D366] block">
                         +{occLift}% Net Lift
                       </span>
                     </div>
 
                     {/* Monthly RevPAR */}
                     <div className="p-4 rounded-xl bg-white border border-[#EBEBEB] space-y-1">
-                      <span className="text-[10px] uppercase tracking-wider text-[#717171] font-medium block">
+                      <span className="text-xs uppercase tracking-wider text-[#717171] font-medium block">
                         Monthly Revenue
                       </span>
                       <div className="flex flex-wrap items-baseline gap-x-1.5">
@@ -99,14 +99,14 @@ export function PerformanceMetrics() {
                           {formatPrice(cs.afterMetrics.monthlyRevenueIdr)}
                         </span>
                       </div>
-                      <span className="text-[10px] font-semibold text-[#25D366] block">
+                      <span className="text-xs font-semibold text-[#25D366] block">
                         +{revLift}% Lift
                       </span>
                     </div>
 
                     {/* Superhost Rating & EBITDA */}
                     <div className="p-4 rounded-xl bg-[#F5F4F0] border border-[#E4E0D8] space-y-1 col-span-2 sm:col-span-1">
-                      <span className="text-[10px] uppercase tracking-wider text-[#222222] font-semibold block">
+                      <span className="text-xs uppercase tracking-wider text-[#222222] font-semibold block">
                         EBITDA Margin
                       </span>
                       <div className="flex items-baseline space-x-1">
@@ -114,7 +114,7 @@ export function PerformanceMetrics() {
                           {cs.afterMetrics.ebitdaMargin}%
                         </span>
                       </div>
-                      <span className="text-[10px] text-[#A69C8E] font-medium block">
+                      <span className="text-xs text-[#A69C8E] font-medium block">
                         ★ {cs.afterMetrics.guestRating} Rating
                       </span>
                     </div>

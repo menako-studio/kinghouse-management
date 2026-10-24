@@ -26,13 +26,15 @@ export function SiteShell({ children }: SiteShellProps) {
     return <>{children}</>
   }
 
+  // `contents` keeps the layout box-free while the class scopes the larger
+  // public-site type scale (see .site-public in globals.css).
   return (
-    <>
+    <div className="site-public contents">
       <LeadSourceCapture />
       <Header />
       {children}
       <Footer />
       <FloatingWhatsApp />
-    </>
+    </div>
   )
 }

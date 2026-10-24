@@ -16,6 +16,15 @@ Semua konfigurasi funnel ada di `lib/funnel/config.ts`.
 Tombol WhatsApp melayang menyesuaikan halaman: halaman pemilik → pesan owner, `/events` → pesan event,
 halaman properti → pesan menginap, halaman lain → pesan menu 1/2/3.
 
+## Bahasa (i18n)
+
+Semua teks funnel ada di `lib/i18n/funnel/<bahasa>.ts` untuk 9 bahasa situs (EN default, ID, JA,
+ZH-CN, ZH-TW, FR, ES, DE, RU) dan dipanggil lewat `t("f....")` dari `useLocalization()`.
+TypeScript menolak build jika satu bahasa kehilangan kunci, dan test `tests/funnel-i18n.test.ts`
+memastikan placeholder `{...}` sama di semua bahasa. Bahasa pengunjung disimpan di lead
+(`details.language`), sehingga balasan pertama admin (`reply_whatsapp_url`) memakai bahasa tersebut.
+Notifikasi internal tim tetap berbahasa Indonesia.
+
 ## Environment variables
 
 | Variabel | Wajib | Fungsi |
@@ -24,6 +33,7 @@ halaman properti → pesan menginap, halaman lain → pesan menu 1/2/3.
 | `SUPABASE_SERVICE_ROLE_KEY` + tabel `leads` | Salah satu dari dua tujuan lead | Simpan lead ke Supabase. Jalankan bagian `4. LEADS TABLE` di `supabase/schema.sql`. Tabel ini RLS tanpa policy publik, jadi **wajib service role key** (anon key tidak bisa menulis). |
 | `LEAD_WEBHOOK_URL` | Salah satu dari dua tujuan lead | Kirim lead ke Google Sheet / Make / Zapier / CRM, sekaligus notifikasi grup tim. |
 | `LEAD_WEBHOOK_SECRET` | Opsional | Dikirim sebagai header `X-Kinghouse-Secret`. |
+| `CRON_SECRET` | Disarankan | String acak. Vercel Cron mengirimnya otomatis; setelah diisi, sinkronisasi iCal (`/api/erp/ical-sync?action=sync-all`) hanya bisa dipicu cron atau admin. |
 
 Jika keduanya belum diatur, form tetap berjalan (pengunjung tetap diarahkan ke `/thanks` dan WhatsApp),
 tetapi lead hanya tercatat di log server (`[lead] … not persisted`).
@@ -51,21 +61,46 @@ function doPost(e) {
    `LEAD_WEBHOOK_URL=https://script.google.com/macros/s/…/exec?secret=ganti-dengan-rahasia`.
    Apps Script tidak bisa membaca header, karena itu rahasia dikirim lewat query string.
 
+## Notifikasi tim & batas waktu balasan
+
+- **Batas balasan** dihitung dalam jam kantor (Senin–Jumat 08.00–18.00 WIB): Stay 15 menit, Event 30 menit,
+  Owner 1 jam. Lead Jumat 17.50 untuk Owner jatuh tempo Senin 08.50. Hari libur nasional belum dikecualikan.
+- **Notifikasi lead baru** lewat `LEAD_WEBHOOK_URL` (Google Sheet + email dari Apps Script). Payload berisi
+  `notification` (teks ringkasan) dan `reply_whatsapp_url`: link chat ke nomor lead dengan *Balasan admin
+  pertama* dari Panduan Respons, sudah terisi data form. Di Apps Script, tambahkan link itu ke isi email.
+- **Daftar harian PIC**: simpan query "lead lewat batas" di Supabase SQL Editor (lihat panduan setup tabel).
+
+## Cek ketersediaan (Funnel B1)
+
+"Cek Ketersediaan" menggabungkan reservasi yang sudah tersinkron di ERP/Supabase dengan **kalender iCal
+Airbnb/Agoda yang dibaca langsung saat itu** (cache 5 menit), sehingga booking yang masuk setelah cron
+harian tetap terdeteksi. Jika kalender OTA tidak bisa dibaca, atau properti belum punya URL iCal
+(saat ini Bright & Airy Apartment Palmerah), website menampilkan "Kemungkinan tersedia" dan meminta
+konfirmasi via WhatsApp alih-alih menjanjikan tanggal. Tambahkan `airbnbIcalUrl` di `lib/data.ts` agar
+properti tersebut juga terverifikasi.
+
 ## GA4
 
 Event baru (sudah terkirim ke `dataLayer` dan `gtag`):
 
 - `submit_owner_form`, `submit_event_form` → tandai sebagai **Key event** di GA4 Admin.
-- `submit_stay_form` (Beri tahu saya), `check_availability` (dengan `availability_result`).
+- `submit_stay_form` (Beri tahu saya), `check_availability` (dengan `availability_result` dan `availability_verified`).
 - `whatsapp_click` tetap memakai nama lama (riwayat & Key event tidak putus) dengan parameter baru `funnel` = `owner | stay | event | general`.
 - `/thanks` adalah halaman konversi (noindex). Data pribadi tidak masuk URL: ringkasan dikirim lewat `sessionStorage`.
 
 UTM (`utm_source`, `utm_medium`, `utm_campaign`) + referrer + landing page dicatat otomatis di awal sesi
 dan ikut tersimpan di setiap lead. Pasang UTM di link bio Instagram, Google Business, dan iklan.
 
+## Keamanan database (wajib, sekali jalan)
+
+Skema lama memberi anon key publik akses baca **dan** tulis/hapus ke `reservations`, `expenses`, dan
+`blog_posts` (data tamu & keuangan). Setelah `SUPABASE_SERVICE_ROLE_KEY` terpasang di Vercel dan
+di-redeploy, jalankan `supabase/migrations/20261024_restrict_public_access.sql` di SQL Editor.
+Setelah itu publik hanya bisa membaca artikel blog berstatus *Published*.
+
 ## Yang masih perlu diputuskan tim
 
-- Satu atau tiga nomor WhatsApp (isi env `NEXT_PUBLIC_WA_*`).
+- Satu atau tiga nomor WhatsApp (isi env `NEXT_PUBLIC_WA_*`; nilainya ditanam saat build, jadi wajib Redeploy setelah diubah).
 - HK on Demand: tetap di situs ini (sekarang di-route ke `cleaning`) atau dialihkan ke Kinghouse Cleaning.
 - Fee final Full Management (kartu sekarang menulis "15%–20%").
 - Aturan venue yang belum tampil karena belum dikonfirmasi: batas musik, deposit, dekorasi sejak pagi,

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { findVillaBySlug, getVillaReservations } from "@/lib/erp/villa-reservations"
 import { findNearestAvailableRanges, isRangeAvailable, nightsBetween } from "@/lib/funnel/availability"
+import { getLiveBookedRanges } from "@/lib/ical/live-calendar"
 import { checkRateLimit } from "@/lib/security/rate-limiter"
 
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/
@@ -9,6 +10,12 @@ const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/
  * Public stay availability check for a property page.
  * GET /api/availability?villa=<slug>&checkIn=YYYY-MM-DD&checkOut=YYYY-MM-DD
  * Returns only free/busy information — never guest details.
+ *
+ * Booked dates = reservations already synced into the ERP (Supabase / store)
+ * + the villa's OTA iCal feeds read live (cached 5 min), so a booking made
+ * after the daily sync cron is still caught. `verified` is false when the
+ * villa has no OTA feed or a feed did not answer — the page then asks the
+ * guest to confirm via WhatsApp instead of promising the dates.
  */
 export async function GET(request: NextRequest) {
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown"
@@ -33,7 +40,8 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Properti tidak ditemukan." }, { status: 404 })
   }
 
-  const booked = (await getVillaReservations(villa)).map((r) => ({ checkIn: r.checkIn, checkOut: r.checkOut }))
+  const [reservations, live] = await Promise.all([getVillaReservations(villa), getLiveBookedRanges(villa)])
+  const booked = [...reservations.map((r) => ({ checkIn: r.checkIn, checkOut: r.checkOut })), ...live.ranges]
   const requested = { checkIn, checkOut }
   const available = isRangeAvailable(booked, requested)
   const today = new Date().toISOString().slice(0, 10)
@@ -44,6 +52,7 @@ export async function GET(request: NextRequest) {
       checkIn,
       checkOut,
       available,
+      verified: live.complete,
       alternatives: available ? [] : findNearestAvailableRanges(booked, requested, { today }),
     },
     { headers: { "Cache-Control": "no-store" } }

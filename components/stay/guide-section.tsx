@@ -123,7 +123,7 @@ export function GuideSection({
             <ul className="space-y-2">
               {access.accessInstructions.map((inst, i) => (
                 <li key={i} className="flex items-start gap-2 text-xs text-stone-300">
-                  <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-amber-500/20 text-[10px] font-bold text-amber-300 mt-0.5">
+                  <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-amber-500/20 text-xs font-bold text-amber-300 mt-0.5">
                     {i + 1}
                   </span>
                   <span>{inst}</span>
@@ -196,7 +196,7 @@ export function GuideSection({
               <ShieldAlert className="h-4 w-4 text-amber-400" />
               Peraturan & Ketentuan Menginap (House Rules)
             </h4>
-            <span className="text-[11px] font-semibold text-amber-400/90 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">
+            <span className="text-xs font-semibold text-amber-400/90 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">
               Kinghouse Hospitality Standard
             </span>
           </div>
@@ -229,7 +229,7 @@ export function GuideSection({
                   }`}
                 >
                   <span
-                    className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold mt-0.5 ${
+                    className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs font-bold mt-0.5 ${
                       isWarning
                         ? "bg-amber-500/20 text-amber-300 border border-amber-500/40"
                         : isCheckout
@@ -257,10 +257,10 @@ export function GuideSection({
             >
               <div>
                 <div className="flex items-start justify-between gap-2 mb-1">
-                  <span className="rounded-md bg-stone-800 px-2 py-0.5 text-[10px] font-semibold text-amber-400">
+                  <span className="rounded-md bg-stone-800 px-2 py-0.5 text-xs font-semibold text-amber-400">
                     {place.category}
                   </span>
-                  <span className="text-[11px] text-stone-400 font-medium">
+                  <span className="text-xs text-stone-400 font-medium">
                     {place.distance}
                   </span>
                 </div>

@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import Link from "next/link"
 import { FileText, Shield, ArrowRight } from "lucide-react"
-import { SITE_CONFIG } from "@/lib/constants"
+import { SITE_CONFIG, DEFAULT_OG_IMAGES } from "@/lib/constants"
 
 export const metadata: Metadata = {
   title: {
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     "Official Terms and Conditions governing guest reservations, property asset management, and concierge services provided by Kinghouse Management.",
   alternates: { canonical: `${SITE_CONFIG.baseUrl}/terms` },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Terms & Conditions | Kinghouse Management",
     description:
       "Official Terms and Conditions governing guest reservations, property asset management, and concierge services provided by Kinghouse Management.",

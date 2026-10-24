@@ -2,7 +2,7 @@ import { Metadata } from "next"
 import { BookOpen, Rss } from "lucide-react"
 import { getBlogPosts } from "@/lib/blog/service"
 import { BlogIndexClient } from "@/components/blog/blog-index-client"
-import { SITE_CONFIG } from "@/lib/constants"
+import { SITE_CONFIG, DEFAULT_OG_IMAGES } from "@/lib/constants"
 import { whatsappBase } from "@/lib/funnel/whatsapp"
 
 export const revalidate = 120
@@ -25,6 +25,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${SITE_CONFIG.baseUrl}/blog` },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Hospitality Insights & Airbnb SEO Blog | Kinghouse",
     description:
       "Panduan strategi Airbnb, SEO listing, optimasi okupansi, dan analisis pasar sewa properti jangka pendek di Jabodetabek bersama Kinghouse.",

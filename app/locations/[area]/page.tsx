@@ -2,7 +2,7 @@ import { notFound } from "next/navigation"
 import { Metadata } from "next"
 import Link from "next/link"
 import { MapPin, Sparkles, ArrowRight, ShieldCheck, ChevronRight, CheckCircle2 } from "lucide-react"
-import { MANAGED_AREAS, SITE_CONFIG } from "@/lib/constants"
+import { MANAGED_AREAS, SITE_CONFIG, DEFAULT_OG_IMAGES } from "@/lib/constants"
 import { CURATED_VILLAS } from "@/lib/data"
 import { VillaCard } from "@/components/villas/villa-card"
 import { whatsappBase } from "@/lib/funnel/whatsapp"
@@ -48,6 +48,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     ],
     alternates: { canonical: canonicalUrl },
     openGraph: {
+      images: DEFAULT_OG_IMAGES,
       title: pageTitle,
       description: pageDescription,
       url: canonicalUrl,

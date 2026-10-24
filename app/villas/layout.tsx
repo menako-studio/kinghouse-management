@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 import Script from "next/script"
-import { SITE_CONFIG } from "@/lib/constants"
+import { SITE_CONFIG, DEFAULT_OG_IMAGES } from "@/lib/constants"
 import { CURATED_VILLAS } from "@/lib/data"
 
 export const metadata: Metadata = {
@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     canonical: `${SITE_CONFIG.baseUrl}/villas`,
   },
   openGraph: {
+    images: DEFAULT_OG_IMAGES,
     title: "Curated Luxury Villas & Short-Stay Apartments | Kinghouse Management",
     description:
       "Browse curated standalone villas with private pool in Jagakarsa, transit apartments in Tangerang & Palmerah, and executive suites in Cikarang.",

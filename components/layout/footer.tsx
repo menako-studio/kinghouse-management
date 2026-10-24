@@ -97,7 +97,7 @@ export function Footer() {
                     >
                       <Briefcase className="h-3 w-3" />
                       <span>Careers (Glints)</span>
-                      <span className="text-[10px]">↗</span>
+                      <span className="text-xs">↗</span>
                     </a>
                   </li>
                   <li>
@@ -108,7 +108,7 @@ export function Footer() {
                       className="hover:text-white font-medium text-[#DFC58E] transition-colors inline-flex items-center space-x-1"
                     >
                       <span>Kinghouse Cleaning</span>
-                      <span className="text-[10px]">↗</span>
+                      <span className="text-xs">↗</span>
                     </a>
                   </li>
                 </ul>
@@ -130,7 +130,7 @@ export function Footer() {
                 <div className="flex items-start space-x-2.5">
                   <Phone className="h-3.5 w-3.5 text-[#DFC58E] shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-[10px] uppercase tracking-wider text-[#DFC58E] font-semibold block">
+                    <span className="text-xs uppercase tracking-wider text-[#DFC58E] font-semibold block">
                       Hotline & WhatsApp Desk
                     </span>
                     <a
@@ -148,7 +148,7 @@ export function Footer() {
                 <div className="flex items-start space-x-2.5 pt-2 border-t border-white/10">
                   <Mail className="h-3.5 w-3.5 text-[#DFC58E] shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-[10px] uppercase tracking-wider text-[#DFC58E] font-semibold block">
+                    <span className="text-xs uppercase tracking-wider text-[#DFC58E] font-semibold block">
                       Direct Email Inquiries
                     </span>
                     <a
@@ -204,7 +204,7 @@ export function Footer() {
                   >
                     <MapPin className="h-3.5 w-3.5 text-[#DFC58E]" />
                     <span className="font-medium group-hover:text-[#DFC58E] transition-colors">Google Maps &amp; Direction</span>
-                    <span className="text-[10px] opacity-70">↗</span>
+                    <span className="text-xs opacity-70">↗</span>
                   </a>
                 </div>
               </div>
@@ -234,7 +234,7 @@ export function Footer() {
                     className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-[#DFC58E] text-[#1E1C1A] hover:bg-[#F3DCB0] hover:scale-105 transition-all text-xs font-bold shadow-xs cursor-pointer"
                   >
                     <span>★ Airbnb Superhost</span>
-                    <span className="text-[10px] font-normal opacity-75">↗</span>
+                    <span className="text-xs font-normal opacity-75">↗</span>
                   </a>
 
                   <a
@@ -267,7 +267,7 @@ export function Footer() {
                     <span className="font-medium text-white block group-hover:text-[#DFC58E] transition-colors">
                       Kinghouse Cleaning
                     </span>
-                    <span className="text-[11px] text-[#F0EBE0]/80 font-light block">
+                    <span className="text-xs text-[#F0EBE0]/80 font-light block">
                       Housekeeping, Villa Turnover & Deep Cleaning
                     </span>
                   </div>
@@ -279,7 +279,7 @@ export function Footer() {
           </div>
 
           {/* 3. Bottom Bar (Clean Editorial Legal Footer) */}
-          <div className="mt-14 pt-8 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#E0DACB]">
+          <div className="mt-14 pt-8 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#E0DACB]">
             <div>
               <p>&copy; {currentYear} Kinghouse Management &bull; PT Kreasi Usman Gosse. All rights reserved.</p>
             </div>

@@ -26,20 +26,20 @@ export function TrustSocialProof() {
       <div className="mx-auto max-w-7xl px-6 lg:px-12 space-y-16">
         {/* Partner Badges & Trust Banner */}
         <div className="flex flex-col items-center text-center space-y-6">
-          <span className="text-[11px] uppercase tracking-[0.25em] font-semibold text-[#717171]">
+          <span className="text-xs uppercase tracking-[0.25em] font-semibold text-[#717171]">
             {t("globalDistributionHeader")}
           </span>
 
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14 pt-2">
-            {TRUST_PARTNERS.map((partner, index) => (
+            {TRUST_PARTNERS.filter((partner) => partner.live).map((partner) => (
               <div
-                key={index}
+                key={partner.name}
                 className="flex items-center space-x-2 text-[#222222] font-medium text-sm tracking-tight opacity-75 hover:opacity-100 transition-opacity"
               >
                 <div className="h-2 w-2 rounded-full bg-[#A69C8E]" />
                 <span className="font-serif text-lg font-normal tracking-normal">{partner.name}</span>
-                <span className="text-[10px] text-[#717171] uppercase px-2 py-0.5 rounded-full border border-[#EBEBEB] bg-white">
-                  {partner.badge}
+                <span className="text-xs text-[#5C5347] uppercase px-2 py-0.5 rounded-full border border-[#EBEBEB] bg-white">
+                  {t(partner.badgeKey)}
                 </span>
               </div>
             ))}
@@ -52,7 +52,7 @@ export function TrustSocialProof() {
           
           <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
             <div className="space-y-4 max-w-xl">
-              <div className="inline-flex items-center space-x-2 rounded-full bg-[#DFC58E]/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-[#DFC58E] border border-[#DFC58E]/30">
+              <div className="inline-flex items-center space-x-2 rounded-full bg-[#DFC58E]/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#DFC58E] border border-[#DFC58E]/30">
                 <Sparkles className="h-3 w-3" />
                 <span>{t("superhostBadge")}</span>
               </div>
@@ -115,7 +115,7 @@ export function TrustSocialProof() {
               <div className="flex items-center space-x-2">
                 <Badge
                   variant={current.type === "owner" ? "accent" : "secondary"}
-                  className="text-[11px] uppercase tracking-wider font-semibold"
+                  className="text-xs uppercase tracking-wider font-semibold"
                 >
                   {current.type === "owner" ? t("verifiedVillaOwner") : t("verifiedGuestReview")}
                 </Badge>

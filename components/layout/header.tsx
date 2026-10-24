@@ -13,6 +13,7 @@ import {
   X,
   Sparkles,
   Check,
+  UserRound,
 } from "lucide-react"
 import {
   useLocalization,
@@ -100,7 +101,7 @@ export function Header() {
           : "border-b border-[#F0ECE1] bg-white"
       }`}
     >
-      <div className="mx-auto flex h-20 lg:h-22 xl:h-24 max-w-[1440px] items-center px-6 lg:px-8 2xl:px-14 gap-x-6 2xl:gap-x-12">
+      <div className="mx-auto flex h-20 xl:h-24 max-w-[1440px] items-center px-6 lg:px-8 2xl:px-14 gap-x-6 2xl:gap-x-10">
         {/* Left: Official Brandmark Logo (Secondary Horizontal - Enlarged for clear legibility) */}
         <Link
           href="/"
@@ -117,12 +118,12 @@ export function Header() {
             height={64}
             quality={100}
             priority
-            className="h-10 sm:h-11 md:h-13 lg:h-12 2xl:h-16 w-auto object-contain transition-opacity duration-200 group-hover:opacity-85"
+            className="h-14 xl:h-16 2xl:h-[72px] w-auto object-contain transition-opacity duration-200 group-hover:opacity-85"
           />
         </Link>
-<div className="hidden lg:block flex-1" />
+<div className="hidden xl:block flex-1" />
         {/* Center: Desktop Navigation Bar (Nakula-inspired — left-aligned after logo, not centered) */}
-        <nav className="hidden lg:flex items-center space-x-4 xl:space-x-5 2xl:space-x-8">
+        <nav className="hidden xl:flex items-center space-x-5 2xl:space-x-8">
 
           {/* OUR PROPERTIES dropdown toggle */}
           <div className="relative">
@@ -134,7 +135,7 @@ export function Header() {
                 setLanguageDropdownOpen(false)
               }}
               onMouseEnter={() => setPropertiesMenuOpen(true)}
-              className={`flex items-center space-x-1 text-xs font-medium uppercase tracking-[0.1em] 2xl:tracking-[0.16em] whitespace-nowrap transition-colors py-2 cursor-pointer ${
+              className={`flex items-center space-x-1 text-xs font-medium uppercase tracking-[0.08em] 2xl:tracking-[0.14em] whitespace-nowrap transition-colors py-2 cursor-pointer ${
                 propertiesMenuOpen || pathname.startsWith("/villas") || pathname.startsWith("/locations")
                   ? "text-[#8C7F5F] font-semibold"
                   : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
@@ -151,7 +152,7 @@ export function Header() {
 
           <Link
             href="/villas"
-            className={`text-xs font-medium uppercase tracking-[0.1em] 2xl:tracking-[0.16em] whitespace-nowrap transition-colors py-2 ${
+            className={`text-xs font-medium uppercase tracking-[0.08em] 2xl:tracking-[0.14em] whitespace-nowrap transition-colors py-2 ${
               pathname === "/offers" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
             }`}
           >
@@ -160,7 +161,7 @@ export function Header() {
 
           <Link
             href="/events"
-            className={`text-xs font-medium uppercase tracking-[0.1em] 2xl:tracking-[0.16em] whitespace-nowrap transition-colors py-2 ${
+            className={`text-xs font-medium uppercase tracking-[0.08em] 2xl:tracking-[0.14em] whitespace-nowrap transition-colors py-2 ${
               pathname === "/events" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
             }`}
           >
@@ -170,27 +171,27 @@ export function Header() {
           {/* OWNER SERVICES */}
           <Link
             href="/owner-services"
-            className={`text-xs font-medium uppercase tracking-[0.1em] 2xl:tracking-[0.16em] whitespace-nowrap transition-colors py-2 ${
+            className={`text-xs font-medium uppercase tracking-[0.08em] 2xl:tracking-[0.14em] whitespace-nowrap transition-colors py-2 ${
               pathname === "/owner-services" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
             }`}
           >
-            {t("ownerServices")}
+            {t("navOwnerServices")}
           </Link>
 
           {/* ENQUIRE underlined (Exact Nakula styling) */}
           <Link
             href="/contact"
-            className="text-xs font-semibold uppercase tracking-[0.1em] 2xl:tracking-[0.16em] whitespace-nowrap text-[#8C7F5F] underline underline-offset-6 decoration-1 hover:text-[#776B4E] transition-colors py-2"
+            className="text-xs font-semibold uppercase tracking-[0.08em] 2xl:tracking-[0.14em] whitespace-nowrap text-[#8C7F5F] underline underline-offset-6 decoration-1 hover:text-[#776B4E] transition-colors py-2"
           >
             {t("enquire")}
           </Link>
         </nav>
 
         {/* Flex spacer — pushes right controls to far right (Nakula layout) */}
-        <div className="hidden lg:block flex-1" />
+        <div className="hidden xl:block flex-1" />
 
         {/* Right: Currency, Language & Pill Button (Exact Nakula.com layout: $ RP v, Globe EN v, SIGN IN) */}
-        <div className="hidden md:flex items-center space-x-1 2xl:space-x-4 shrink-0">
+        <div className="ml-auto xl:ml-0 hidden md:flex items-center space-x-1 2xl:space-x-3 shrink-0">
           {/* Currency Dropdown (matching Nakula '$ RP v' aesthetic) */}
           <div className="relative" ref={currencyRef}>
             <button
@@ -213,7 +214,7 @@ export function Header() {
 
             {currencyDropdownOpen && (
               <div className="absolute right-0 mt-2 w-48 rounded-lg bg-white py-1.5 shadow-2xl border border-[#E8E4DC] ring-1 ring-black/5 z-50">
-                <div className="px-3 py-1 text-[10px] uppercase font-semibold text-[#8C7F5F] tracking-wider border-b border-[#F0ECE1]">
+                <div className="px-3 py-1 text-xs uppercase font-semibold text-[#8C7F5F] tracking-wider border-b border-[#F0ECE1]">
                   Select Currency
                 </div>
                 <div className="max-h-64 overflow-y-auto py-1">
@@ -267,7 +268,7 @@ export function Header() {
 
             {languageDropdownOpen && (
               <div className="absolute right-0 mt-2 w-52 rounded-lg bg-white py-1.5 shadow-2xl border border-[#E8E4DC] ring-1 ring-black/5 z-50">
-                <div className="px-3 py-1 text-[10px] uppercase font-semibold text-[#8C7F5F] tracking-wider border-b border-[#F0ECE1]">
+                <div className="px-3 py-1 text-xs uppercase font-semibold text-[#8C7F5F] tracking-wider border-b border-[#F0ECE1]">
                   Select Language
                 </div>
                 <div className="max-h-72 overflow-y-auto py-1">
@@ -286,7 +287,7 @@ export function Header() {
                       }`}
                     >
                       <div className="flex items-center space-x-2.5">
-                        <span className="w-9 font-mono text-[11px] font-semibold text-[#8C7F5F]">
+                        <span className="w-9 font-mono text-xs font-semibold text-[#8C7F5F]">
                           {lang.code}
                         </span>
                         <span>{lang.nativeName}</span>
@@ -300,11 +301,14 @@ export function Header() {
           </div>
 
           {/* SIGN IN Pill Button (Exact Nakula button aesthetic & placement) */}
+          {/* Admin-only sign-in: a compact icon so long translations never crowd the bar */}
           <Link
             href="/login"
-            className="hidden xl:inline-flex items-center justify-center rounded-full border border-[#231F1A] bg-transparent px-4 2xl:px-5 py-2 text-xs whitespace-nowrap font-medium uppercase tracking-[0.16em] text-[#231F1A] hover:bg-[#231F1A] hover:text-[#FAF7F1] transition-all duration-200"
+            aria-label={t("signIn")}
+            title={t("signIn")}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#231F1A]/70 text-[#231F1A] hover:bg-[#231F1A] hover:text-[#FAF7F1] transition-all duration-200"
           >
-            {t("signIn") || "SIGN IN"}
+            <UserRound className="h-4 w-4" />
           </Link>
         </div>
 
@@ -312,7 +316,7 @@ export function Header() {
         <button
           type="button"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden flex h-10 w-10 items-center justify-center text-[#222222] focus:outline-none rounded-md hover:bg-[#F5F2EB]"
+          className="xl:hidden ml-auto md:ml-0 flex h-11 w-11 items-center justify-center text-[#222222] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8C7F5F] rounded-md hover:bg-[#F5F2EB]"
           aria-label="Toggle navigation menu"
         >
           {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -435,7 +439,7 @@ export function Header() {
 
       {/* Mobile Drawer Navigation */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-20 bottom-0 bg-white z-50 overflow-y-auto px-6 py-8 flex flex-col justify-between border-t border-[#E8E4DC]">
+        <div className="xl:hidden fixed inset-x-0 top-20 bottom-0 bg-white z-50 overflow-y-auto px-6 py-8 flex flex-col justify-between border-t border-[#E8E4DC]">
           <div className="space-y-6">
             {/* Quick Currency & Language Selectors */}
             <div className="flex items-center justify-between pb-4 border-b border-[#F0ECE1]">
