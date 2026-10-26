@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: "Event Not Found | Kinghouse Management" }
   }
 
-  const pageTitle = `${event.title} | Kinghouse Events`
+  const pageTitle = event.seoTitle ?? `${event.title} | Kinghouse`
   const canonicalUrl = `${SITE_CONFIG.baseUrl}/events/${event.slug}`
 
   return {
@@ -61,19 +61,21 @@ export default async function EventDetailPage({ params }: PageProps) {
 
   const property = CURATED_VILLAS.find((v) => v.id === event.propertyId)
 
+  // Venue packages have no fixed date, so they are a Service (schema.org Event requires startDate)
   const eventSchema = {
     "@context": "https://schema.org",
-    "@type": "Event",
+    "@type": "Service",
+    serviceType: "Event venue rental",
     name: event.title,
     description: event.description,
-    image: event.heroImage,
+    image: event.heroImage.startsWith("http") ? event.heroImage : `${SITE_CONFIG.baseUrl}${event.heroImage}`,
     url: `${SITE_CONFIG.baseUrl}/events/${event.slug}`,
-    organizer: {
+    provider: {
       "@type": "Organization",
       name: "Kinghouse Management",
       url: SITE_CONFIG.baseUrl,
     },
-    location: {
+    areaServed: {
       "@type": "Place",
       name: event.propertyName,
       address: {
@@ -83,7 +85,6 @@ export default async function EventDetailPage({ params }: PageProps) {
         addressCountry: "ID",
       },
     },
-    maximumAttendeeCapacity: event.maxCapacity,
     offers: event.packages.map((pkg) => ({
       "@type": "Offer",
       name: pkg.name,

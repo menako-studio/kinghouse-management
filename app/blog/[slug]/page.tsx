@@ -45,6 +45,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: metaDesc,
       url: canonicalUrl,
       type: "article",
+      locale: post.language === "en" ? "en_US" : "id_ID",
       publishedTime: post.publishedAt,
       authors: [post.author.name],
       images: [{ url: post.heroImage, width: 1600, height: 900, alt: post.title }],
@@ -208,12 +209,12 @@ export default async function BlogPostPage({ params }: PageProps) {
     publisher: {
       "@type": "Organization",
       name: "Kinghouse Management",
-      logo: { "@type": "ImageObject", url: `${SITE_CONFIG.baseUrl}/favicon.ico` },
+      logo: { "@type": "ImageObject", url: `${SITE_CONFIG.baseUrl}/brand/logo-primary-full-color.png` },
     },
     keywords: post.seoKeywords.join(", "),
     wordCount: post.content.split(" ").length,
     timeRequired: `PT${post.readTime}M`,
-    inLanguage: "id-ID",
+    inLanguage: post.language === "en" ? "en-US" : "id-ID",
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${SITE_CONFIG.baseUrl}/blog/${post.slug}`,
@@ -255,7 +256,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   return (
-    <main className="min-h-screen bg-white">
+    <main lang={post.language ?? "id"} className="min-h-screen bg-white">
       <script
         id="article-schema"
         type="application/ld+json"

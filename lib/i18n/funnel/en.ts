@@ -289,6 +289,10 @@ export const en = {
   "f.hk.q3": "Can you also look after my guests?",
   "f.hk.a3": "Yes. Co-Hosting and Full Management add guest messaging, pricing and operations on top of cleaning.",
   "f.hk.otherServices": "See Co-Hosting & Full Management",
+  "f.footer.explore": "Explore",
+  "f.footer.cleaning": "Airbnb & Villa Cleaning",
+  "f.footer.villas": "Villas & Apartments",
+  "f.footer.events": "Events & Venues",
 } as const
 
 export type FunnelKey = keyof typeof en

@@ -698,7 +698,7 @@ Dengan perencanaan yang tepat, staycation di villa private pool Jakarta Selatan 
       "harga sewa villa jakarta selatan",
       "villa staycation keluarga jakarta",
     ],
-    seoTitle: "Villa Private Pool Jakarta Selatan: Harga & Panduan | Kinghouse",
+    seoTitle: "Villa Private Pool Jakarta Selatan: Harga & Panduan 2026",
     metaDescription: "Panduan sewa villa private pool Jakarta Selatan 2026: kisaran harga, fasilitas wajib, dan tips memilih villa kolam renang pribadi untuk keluarga. Baca di sini!",
     readTime: 7,
     featured: true,
@@ -769,6 +769,7 @@ Acara yang berkesan dimulai dari tempat yang tepat. Dengan suasana asri dan priv
     id: "blog-15",
     title: "Airbnb & Villa Property Management in Jakarta: An Owner's Guide",
     slug: "airbnb-villa-property-management-jakarta-owner-guide",
+    language: "en",
     excerpt:
       "Owning a villa or apartment in Greater Jakarta but struggling with low occupancy and the daily grind of hosting? Here is how professional Airbnb and villa property management turns an idle asset into reliable monthly income.",
     content: `If you own a villa or apartment in Greater Jakarta, you already hold a valuable short-stay asset. The hard part is running it well — pricing it correctly, keeping it booked, and delivering a five-star guest experience, every single day.

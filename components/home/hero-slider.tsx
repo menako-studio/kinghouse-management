@@ -342,7 +342,7 @@ export function HeroSlider() {
           <div className="flex items-center justify-between w-full md:w-auto gap-4">
             <div className="flex flex-col text-left md:text-right">
               <Link
-                href="/villas/versatile-house-jagakarsa"
+                href="/locations/jagakarsa/villas/versatile-house-jagakarsa"
                 className="group flex items-center gap-1.5 font-serif text-sm text-white hover:text-[#DFC58E] transition-colors"
               >
                 <span>Versatile House With Garden</span>

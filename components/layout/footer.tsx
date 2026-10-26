@@ -10,6 +10,7 @@ import {
   Briefcase,
 } from "lucide-react"
 import { useLocalization } from "@/lib/context/localization-context"
+import { MANAGED_AREAS } from "@/lib/constants"
 import {
   trackWhatsAppClick,
   trackEmailClick,
@@ -115,8 +116,30 @@ export function Footer() {
               </div>
             </div>
 
-            {/* Column 2: DIRECT CONCIERGE & INQUIRIES (Streamlined & Non-Redundant) */}
-            <div className="lg:col-span-5 space-y-5">
+            {/* Column 2: EXPLORE — crawlable links to every key landing page */}
+            <nav aria-label={t("f.footer.explore")} className="lg:col-span-2 space-y-3 pt-2">
+              <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-white">
+                {t("f.footer.explore")}
+              </h4>
+              <ul className="space-y-2 text-xs font-light text-[#F0EBE0]">
+                {[
+                  { href: "/villas", label: t("f.footer.villas") },
+                  { href: "/events", label: t("f.footer.events") },
+                  { href: "/owner-services", label: t("navOwnerServices") },
+                  { href: "/airbnb-cleaning-jakarta", label: t("f.footer.cleaning") },
+                  ...MANAGED_AREAS.map((a) => ({ href: `/locations/${a.slug}`, label: a.name })),
+                ].map((l) => (
+                  <li key={l.href}>
+                    <Link href={l.href} className="hover:text-white transition-colors">
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            {/* Column 3: DIRECT CONCIERGE & INQUIRIES (Streamlined & Non-Redundant) */}
+            <div className="lg:col-span-4 space-y-5">
               <div>
                 <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-white mb-2">
                   Direct Concierge & Reservations
@@ -181,7 +204,7 @@ export function Footer() {
             </div>
 
             {/* Column 3: OFFICE, HOURS, CONNECT WITH US & ECOSYSTEM */}
-            <div className="lg:col-span-4 space-y-6">
+            <div className="lg:col-span-3 space-y-6">
               {/* OFFICE / CORPORATE HEADQUARTERS */}
               <div className="space-y-2">
                 <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-white">

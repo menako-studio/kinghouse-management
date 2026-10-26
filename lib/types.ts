@@ -161,6 +161,8 @@ export interface BlogPost {
   metaDescription?: string
   readTime: number
   featured: boolean
+  /** Article language; defaults to Indonesian. */
+  language?: "id" | "en"
 }
 
 
@@ -182,6 +184,8 @@ export interface VillaEvent {
   propertySlug: string
   propertyName: string
   title: string
+  /** Keyword-focused <title>; falls back to `title`. */
+  seoTitle?: string
   slug: string
   category: "wedding" | "corporate" | "birthday" | "intimate-gathering" | "wellness"
   tagline: string
