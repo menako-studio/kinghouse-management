@@ -19,14 +19,21 @@ function normalizeNumber(raw: string | undefined): string {
 }
 
 /**
- * One WhatsApp line per target. All three fall back to the main hotline, so the
- * site works today with a single number; set the env vars once the team splits
- * the lines (or keep one number and rely on WhatsApp Business labels).
+ * Two WhatsApp lines (owner decision, Oct 2026):
+ *  - OWNER: Kinghouse products — HK on Demand, Co-Hosting, Full Management
+ *  - GUEST: stays and event bookings at our properties (STAY + EVENT)
+ * Both fall back to the main hotline until the numbers are set.
+ * NEXT_PUBLIC_* values are fixed at build time: redeploy after changing them.
  */
+const OWNER_LINE = normalizeNumber(process.env.NEXT_PUBLIC_WA_OWNER)
+const GUEST_LINE = normalizeNumber(
+  process.env.NEXT_PUBLIC_WA_GUEST || process.env.NEXT_PUBLIC_WA_STAY || process.env.NEXT_PUBLIC_WA_EVENT
+)
+
 export const WHATSAPP_LINES: Record<LeadTarget, string> = {
-  OWNER: normalizeNumber(process.env.NEXT_PUBLIC_WA_OWNER),
-  STAY: normalizeNumber(process.env.NEXT_PUBLIC_WA_STAY),
-  EVENT: normalizeNumber(process.env.NEXT_PUBLIC_WA_EVENT),
+  OWNER: OWNER_LINE,
+  STAY: GUEST_LINE,
+  EVENT: GUEST_LINE,
 }
 
 /* ------------------------------------------------------------------ */
@@ -128,6 +135,13 @@ export const OWNER_PROPERTY_STATUSES = ["ota-live", "not-listed", "new-build"] a
 export function ownerServiceLabelKey(id: OwnerServiceChoice): FunnelKey {
   return OWNER_SERVICE_CHOICES.find((s) => s.id === id)?.labelKey ?? "f.svc.undecided"
 }
+
+/** HK on Demand landing page FAQ (also rendered as FAQPage structured data). */
+export const HK_FAQ = [
+  ["f.hk.q1", "f.hk.a1"],
+  ["f.hk.q2", "f.hk.a2"],
+  ["f.hk.q3", "f.hk.a3"],
+] as const satisfies readonly (readonly [FunnelKey, FunnelKey])[]
 
 /** HK on Demand goes to the cleaning team; everything else to owner relations. */
 export function routeOwnerService(id: OwnerServiceChoice): LeadRoute {

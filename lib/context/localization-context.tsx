@@ -128,7 +128,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     forOwnersInvestors: "For Villa Owners & Investors (B2B)",
     ownerHeadline: "Turnkey Operations,",
     ownerSubheadline: "Maximized Asset Yield.",
-    ownerDescription: "Dynamic revenue algorithms, transparent 15%–20% fee structures, 5-star hotel maintenance, and live owner P&L dashboards.",
+    ownerDescription: "Dynamic revenue algorithms, transparent fees from 15%, 5-star hotel maintenance, and live owner P&L dashboards.",
     maximizeRoi: "Maximize Your Villa's ROI",
 
     // Trust & Proof
@@ -277,7 +277,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     forOwnersInvestors: "Untuk Pemilik Villa & Investor (B2B)",
     ownerHeadline: "Operasional Otomatis,",
     ownerSubheadline: "Imbal Hasil Aset Maksimal.",
-    ownerDescription: "Algoritma tarif dinamis, bagi hasil transparan 15%–20%, perawatan standar hotel bintang 5, dan dashboard laporan laba rugi langsung.",
+    ownerDescription: "Algoritma tarif dinamis, fee transparan mulai 15%, perawatan standar hotel bintang 5, dan dashboard laporan laba rugi langsung.",
     maximizeRoi: "Maksimalkan ROI Villa Anda",
 
     // Trust & Proof
@@ -426,7 +426,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     forOwnersInvestors: "オーナー様・投資家様向け（B2B）",
     ownerHeadline: "手間いらずのフル運営、",
     ownerSubheadline: "最大化される資産利回り。",
-    ownerDescription: "ダイナミック価格設定、透明な15%〜20%の手数料体系、5つ星ホテル基準の維持管理、オンライン収支レポート。",
+    ownerDescription: "ダイナミック価格設定、15%からの透明な手数料体系、5つ星ホテル基準の維持管理、オンライン収支レポート。",
     maximizeRoi: "収益を最大化する",
 
     // Trust & Proof
@@ -575,7 +575,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     forOwnersInvestors: "房产所有者与投资人专区（B2B）",
     ownerHeadline: "一站式全托管，",
     ownerSubheadline: "资产回报最大化。",
-    ownerDescription: "智能动态收益定价、透明的 15%–20% 佣金模式、五星级酒店运维标准与实时财务收支看板。",
+    ownerDescription: "智能动态收益定价、15% 起的透明佣金模式、五星级酒店运维标准与实时财务收支看板。",
     maximizeRoi: "提升别墅投资回报率",
 
     // Trust & Proof
@@ -724,7 +724,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     forOwnersInvestors: "房產所有者與投資人專區（B2B）",
     ownerHeadline: "一站式全託管，",
     ownerSubheadline: "資產回報最大化。",
-    ownerDescription: "智能動態收益定價、透明的 15%–20% 佣金模式、五星級酒店運維標準與即時財務收支看板。",
+    ownerDescription: "智能動態收益定價、15% 起的透明佣金模式、五星級酒店運維標準與即時財務收支看板。",
     maximizeRoi: "提升別墅投資回報率",
 
     // Trust & Proof
@@ -873,7 +873,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     forOwnersInvestors: "Pour propriétaires & investisseurs (B2B)",
     ownerHeadline: "Gestion clé en main,",
     ownerSubheadline: "Rendement locatif maximisé.",
-    ownerDescription: "Algorithmes de tarification dynamique, commissions transparentes de 15% à 20%, entretien 5 étoiles et tableau de bord financier en temps réel.",
+    ownerDescription: "Algorithmes de tarification dynamique, commissions transparentes dès 15 %, entretien 5 étoiles et tableau de bord financier en temps réel.",
     maximizeRoi: "Maximiser la rentabilité",
 
     // Trust & Proof
@@ -1022,7 +1022,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     forOwnersInvestors: "Para propietarios e inversores (B2B)",
     ownerHeadline: "Operaciones llave en mano,",
     ownerSubheadline: "Máximo rendimiento del activo.",
-    ownerDescription: "Tarifas dinámicas por algoritmo, comisiones transparentes del 15% al 20%, mantenimiento de 5 estrellas y panel financiero en tiempo real.",
+    ownerDescription: "Tarifas dinámicas por algoritmo, comisiones transparentes desde el 15 %, mantenimiento de 5 estrellas y panel financiero en tiempo real.",
     maximizeRoi: "Maximizar el ROI de su villa",
 
     // Trust & Proof
@@ -1171,7 +1171,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     forOwnersInvestors: "Für Eigentümer & Investoren (B2B)",
     ownerHeadline: "Schlüsselfertiger Betrieb,",
     ownerSubheadline: "Maximierte Vermögensrendite.",
-    ownerDescription: "Dynamische Preisalgorithmen, transparente 15%–20% Gebührenmodelle, 5-Sterne-Instandhaltung und Live-Eigentümer-Dashboard.",
+    ownerDescription: "Dynamische Preisalgorithmen, transparente Gebühren ab 15 %, 5-Sterne-Instandhaltung und Live-Eigentümer-Dashboard.",
     maximizeRoi: "Villa-Rendite maximieren",
 
     // Trust & Proof
@@ -1320,7 +1320,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     forOwnersInvestors: "Для владельцев и инвесторов (B2B)",
     ownerHeadline: "Управление под ключ,",
     ownerSubheadline: "Максимизация доходности.",
-    ownerDescription: "Динамическое ценообразование, прозрачные комиссии 15%–20%, обслуживание стандарта 5 звезд и онлайн-отчетность.",
+    ownerDescription: "Динамическое ценообразование, прозрачные комиссии от 15%, обслуживание стандарта 5 звезд и онлайн-отчетность.",
     maximizeRoi: "Увеличить доход от виллы",
 
     // Trust & Proof

@@ -52,7 +52,7 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       {
         question: "How does Kinghouse calculate owner revenue and management fees?",
         answer:
-          "We offer two transparent models: 15% Standard (full OTA management, dynamic pricing, guest communications, calendar sync) and 20% Premium (adds full end-to-end linen laundry, amenities replenishment, and dedicated on-site butler operations). Owners receive transparent monthly statements with zero hidden markups.",
+          "Full Management costs 23% of rental revenue for apartments and 15–18% for villas and homes with 6 or more bedrooms; the final rate is agreed per property. Co-Hosting and HK on Demand are quoted per property. Owners receive transparent monthly statements with zero hidden markups.",
       },
       {
         question: "When and how are monthly owner payouts disbursed?",

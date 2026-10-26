@@ -9,6 +9,7 @@ import {
   MessageSquare,
 } from "lucide-react"
 import { useLocalization } from "@/lib/context/localization-context"
+import { MANAGEMENT_FEES } from "@/lib/constants"
 import { SUBMARKET_BENCHMARKS } from "@/lib/pricing/engine"
 import { trackWhatsAppClick } from "@/lib/analytics"
 import { Button } from "@/components/ui/button"
@@ -91,7 +92,7 @@ const SUBMARKET_OPTIONS: SubmarketOption[] = [
 ]
 
 export function PropertyRevenueCalculator() {
-  const { formatPrice, language } = useLocalization()
+  const { formatPrice, language, t } = useLocalization()
   const isId = language === "ID"
 
   // Input states
@@ -102,7 +103,9 @@ export function PropertyRevenueCalculator() {
 
   const [bedrooms, setBedrooms] = useState<number>(currentSubmarket.defaultBedrooms)
   const [customAdrIdr, setCustomAdrIdr] = useState<number>(currentSubmarket.benchmarkAdrIdr)
-  const [feeTier, setFeeTier] = useState<"standard" | "premium">("standard")
+  // Full Management fee follows the property type (apartment vs villa / 6+ bedrooms).
+  const kindOf = (s: { propertyTypeEn: string }) => (/villa/i.test(s.propertyTypeEn) ? "villa" : "apartment")
+  const [propertyKind, setPropertyKind] = useState<"apartment" | "villa">(kindOf(currentSubmarket))
   const [hasPool, setHasPool] = useState<boolean>(selectedSubmarketKey === "versatile-house-jagakarsa")
   const [hasNetflix, setHasNetflix] = useState<boolean>(true)
   const [hasSmartLock, setHasSmartLock] = useState<boolean>(true)
@@ -111,6 +114,8 @@ export function PropertyRevenueCalculator() {
   // Sync default values when changing submarket
   const handleSubmarketChange = (key: string) => {
     setSelectedSubmarketKey(key)
+    const next = SUBMARKET_OPTIONS.find((s) => s.key === key)
+    if (next) setPropertyKind(kindOf(next))
     const found = SUBMARKET_OPTIONS.find((s) => s.key === key)
     if (found) {
       setBedrooms(found.defaultBedrooms)
@@ -145,8 +150,10 @@ export function PropertyRevenueCalculator() {
     const kinghouseNightsBooked = Math.round(365 * kinghouseOccupancyRate)
     const kinghouseGrossAnnual = Math.round(kinghouseNightsBooked * kinghouseWeightedAdr)
     
-    // Management commission (Standard: 15%, Premium: 20%)
-    const commissionPercent = feeTier === "premium" ? 20 : 15
+    // Management fee by property type. Villas use the top of their range so
+    // the projection never looks better than the agreed rate can deliver.
+    const commissionPercent =
+      propertyKind === "villa" ? MANAGEMENT_FEES.villaMaxPercent : MANAGEMENT_FEES.apartmentPercent
     const kinghouseManagementFeeAnnual = Math.round((kinghouseGrossAnnual * commissionPercent) / 100)
     // Cleaning fee is paid 100% by guests on Airbnb/Direct, so it is not deducted from owner
     const kinghouseNetAnnual = Math.round(kinghouseGrossAnnual - kinghouseManagementFeeAnnual)
@@ -179,7 +186,7 @@ export function PropertyRevenueCalculator() {
   }, [
     customAdrIdr,
     currentSubmarket,
-    feeTier,
+    propertyKind,
     hasPool,
     hasNetflix,
     hasSmartLock,
@@ -195,7 +202,7 @@ export function PropertyRevenueCalculator() {
 - Tipe/Kamar: ${bedrooms} Bedroom (${propertyType})
 - Estimasi ADR: ${formatPrice(calculations.baseAdr)} / malam
 - Hasil Proyeksi Net Kinghouse: ${formatPrice(calculations.kinghouseNetMonthly)} / bulan (Surplus +${formatPrice(calculations.netMonthlyLift)}/bln)
-- Model: ${feeTier === "premium" ? "20% Multi-Channel Premium" : "15% Full Service"}
+- Fee: ${calculations.commissionPercent}% (estimasi, final disepakati per properti)
 
 Mohon informasi jadwal audit fisik & onboarding properti saya. Terima kasih!`
       : `Hello Kinghouse Management, I would like to discuss my property revenue simulation audit:
@@ -203,12 +210,12 @@ Mohon informasi jadwal audit fisik & onboarding properti saya. Terima kasih!`
 - Type/Bedrooms: ${bedrooms} Bedroom (${propertyType})
 - Estimated ADR: ${formatPrice(calculations.baseAdr)} / night
 - Projected Net Monthly Payout: ${formatPrice(calculations.kinghouseNetMonthly)} / month (Surplus +${formatPrice(calculations.netMonthlyLift)}/mo)
-- Model: ${feeTier === "premium" ? "20% Multi-Channel Premium" : "15% Full Service"}
+- Fee: ${calculations.commissionPercent}% (estimate, final rate agreed per property)
 
 Please provide information on scheduling a complimentary physical audit and onboarding timeline. Thank you!`
 
     return `${whatsappBase("OWNER")}?text=${encodeURIComponent(message)}`
-  }, [isId, currentSubmarket, bedrooms, calculations, feeTier, formatPrice])
+  }, [isId, currentSubmarket, bedrooms, calculations, formatPrice])
 
   const handlePrintAudit = () => {
     window.print()
@@ -350,41 +357,39 @@ Please provide information on scheduling a complimentary physical audit and onbo
               </div>
             </div>
 
-            {/* Management Fee Tier */}
+            {/* Management fee by property type */}
             <div className="space-y-2 pt-2 border-t border-[#E8E4DC]">
-              <label className="text-xs font-semibold uppercase tracking-wider text-[#231F1A] block">
-                {isId ? "Pilihan Skema Co-Hosting Kinghouse" : "Kinghouse Co-Hosting Service Tier"}
-              </label>
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#231F1A] block">{t("f.fee.calcType")}</span>
               <div className="grid grid-cols-2 gap-3">
-                <button
-                  type="button"
-                  onClick={() => setFeeTier("standard")}
-                  className={`p-3 rounded-xl text-left border transition-all ${
-                    feeTier === "standard"
-                      ? "bg-[#231F1A] text-white border-[#231F1A] shadow-sm"
-                      : "bg-[#FAF7F1] text-[#231F1A] border-[#CBBEA0]/40 hover:border-[#B8934C]"
-                  }`}
-                >
-                  <span className="block text-xs font-bold">15% Standard</span>
-                  <span className={`block text-xs ${feeTier === "standard" ? "text-white/70" : "text-[#5C5347]"}`}>
-                    {isId ? "Full-Service Airbnb Host" : "Full-Service Co-Hosting"}
-                  </span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setFeeTier("premium")}
-                  className={`p-3 rounded-xl text-left border transition-all ${
-                    feeTier === "premium"
-                      ? "bg-[#231F1A] text-white border-[#231F1A] shadow-sm"
-                      : "bg-[#FAF7F1] text-[#231F1A] border-[#CBBEA0]/40 hover:border-[#B8934C]"
-                  }`}
-                >
-                  <span className="block text-xs font-bold text-[#CBBEA0]">20% Premium</span>
-                  <span className={`block text-xs ${feeTier === "premium" ? "text-white/70" : "text-[#5C5347]"}`}>
-                    {isId ? "Multi-Channel + Direct SEO" : "Multi-Channel + Direct SEO"}
-                  </span>
-                </button>
+                {(["apartment", "villa"] as const).map((kind) => {
+                  const active = propertyKind === kind
+                  return (
+                    <button
+                      key={kind}
+                      type="button"
+                      aria-pressed={active}
+                      onClick={() => setPropertyKind(kind)}
+                      className={`p-3 rounded-xl text-left border transition-all ${
+                        active
+                          ? "bg-[#231F1A] text-white border-[#231F1A] shadow-sm"
+                          : "bg-[#FAF7F1] text-[#231F1A] border-[#CBBEA0]/40 hover:border-[#B8934C]"
+                      }`}
+                    >
+                      <span className="block text-sm font-bold">
+                        {kind === "apartment"
+                          ? `${MANAGEMENT_FEES.apartmentPercent}%`
+                          : `${MANAGEMENT_FEES.villaMinPercent}–${MANAGEMENT_FEES.villaMaxPercent}%`}
+                      </span>
+                      <span className={`block text-xs ${active ? "text-white/75" : "text-[#5C5347]"}`}>
+                        {kind === "apartment"
+                          ? t("f.fee.calcApartment")
+                          : t("f.fee.calcVilla", { beds: MANAGEMENT_FEES.villaMinBedrooms })}
+                      </span>
+                    </button>
+                  )
+                })}
               </div>
+              <p className="text-xs text-[#5C5347]">{t("f.fee.calcAssumption", { pct: calculations.commissionPercent })}</p>
             </div>
           </div>
 

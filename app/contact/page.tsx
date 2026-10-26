@@ -268,7 +268,7 @@ export default function ContactPage() {
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                         className="flex h-11 w-full rounded-lg border border-[#EBEBEB] bg-white px-3.5 py-2 text-xs sm:text-sm text-[#222222] focus:border-[#222222] focus:outline-none cursor-pointer"
                       >
-                        <option value="Owner Asset Management">Owner Asset Management (15% vs 20% Models)</option>
+                        <option value="Owner Asset Management">Owner Asset Management (HK on Demand, Co-Hosting, Full Management)</option>
                         <option value="Guest Reservation Inquiry">Guest Reservation / Airbnb Inquiry</option>
                         <option value="Architectural Partnership">Architectural & Media Partnership</option>
                         <option value="General Question">General Question</option>

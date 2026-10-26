@@ -52,6 +52,18 @@ export const SITE_CONFIG = {
 
 
 /**
+ * Full Management fee, by property type (owner decision, Oct 2026). Final rate
+ * is agreed per property. Single source for every public mention of the fee.
+ */
+export const MANAGEMENT_FEES = {
+  apartmentPercent: 23,
+  villaMinPercent: 15,
+  villaMaxPercent: 18,
+  /** Villas and homes from this many bedrooms use the villa rate. */
+  villaMinBedrooms: 6,
+} as const
+
+/**
  * Default social preview image. Next.js replaces (not merges) a parent's
  * `openGraph`, so every page that sets its own `openGraph` spreads this in.
  */
