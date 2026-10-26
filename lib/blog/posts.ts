@@ -493,7 +493,7 @@ Berikut adalah perbandingan objektif antara model **Self-Managed (Kelola Sendiri
 
 ## Mengapa Manajemen Profesional Menghasilkan Net Profit Lebih Tinggi?
 
-Banyak pemilik khawatir dengan potongan komisi manajemen (15%–20%). Namun secara finansial, **80% dari pendapatan Rp 40 juta jauh lebih besar daripada 100% dari pendapatan Rp 15 juta**.
+Banyak pemilik khawatir dengan potongan komisi manajemen (Full Management: 15%–18% untuk villa, 23% untuk apartemen). Namun secara finansial, **sekitar 80% dari pendapatan Rp 40 juta jauh lebih besar daripada 100% dari pendapatan Rp 15 juta**.
 
 1. **Lonjakan Okupansi & ADR:** Melalui SEO listing dan dynamic pricing, Kinghouse mampu melipatgandakan tingkat hunian properti.
 2. **Review Positif Berkelanjutan:** Tamu yang puas dengan kebersihan hotel-grade dan concierge 24 jam akan memberikan review bintang 5 yang mendongkrak peringkat Superhost.

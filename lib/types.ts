@@ -102,8 +102,8 @@ export interface ManagementTier {
   id: string
   name: string
   subtitle: string
-  feePercentage: number
-  feeNote: string
+  /** "by-property": MANAGEMENT_FEES (apartment vs villa); "on-request": quoted per property */
+  feeKind: "by-property" | "on-request"
   badge?: string
   description: string
   popular?: boolean

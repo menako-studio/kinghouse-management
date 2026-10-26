@@ -7,16 +7,18 @@ import { MANAGEMENT_TIERS } from "@/lib/data"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { useLocalization } from "@/lib/context/localization-context"
+import { MANAGEMENT_FEES } from "@/lib/constants"
+
+const { apartmentPercent, villaMinPercent, villaMaxPercent, villaMinBedrooms } = MANAGEMENT_FEES
 
 export function TieredPricingTable() {
   const { formatPrice, t } = useLocalization()
   const [estimatedMonthlyRevenue, setEstimatedMonthlyRevenue] = useState(250000000)
 
-  const optionAFee = Math.round(estimatedMonthlyRevenue * 0.15)
-  const optionANet = estimatedMonthlyRevenue - optionAFee
-
-  const optionBFee = Math.round(estimatedMonthlyRevenue * 0.20)
-  const optionBNet = estimatedMonthlyRevenue - optionBFee
+  const feeAt = (pct: number) => Math.round((estimatedMonthlyRevenue * pct) / 100)
+  const apartmentFee = feeAt(apartmentPercent)
+  const villaFeeMin = feeAt(villaMinPercent)
+  const villaFeeMax = feeAt(villaMaxPercent)
 
   return (
     <section id="pricing" className="section-macro-spacing bg-[#FAFAFA] border-y border-[#EBEBEB]">
@@ -69,14 +71,29 @@ export function TieredPricingTable() {
                       </p>
                     </div>
 
-                    <div className="flex items-baseline space-x-2 pt-2">
-                      <span className="font-serif text-5xl sm:text-6xl font-normal text-[#222222]">
-                        {tier.feePercentage}%
-                      </span>
-                      <span className="text-xs text-[#717171] font-medium max-w-[180px]">
-                        {tier.feeNote}
-                      </span>
-                    </div>
+                    {tier.feeKind === "by-property" ? (
+                      <div className="space-y-2 pt-2">
+                        <span className="text-xs font-semibold uppercase tracking-wider text-[#5C5347]">
+                          {t("f.fee.title")} · {t("f.fee.ofRevenue")}
+                        </span>
+                        <div className="flex items-baseline justify-between gap-4 border-b border-[#EBEBEB] pb-2">
+                          <span className="text-sm text-[#222222]">{t("f.fee.apartment")}</span>
+                          <span className="font-serif text-4xl text-[#222222]">{apartmentPercent}%</span>
+                        </div>
+                        <div className="flex items-baseline justify-between gap-4">
+                          <span className="text-sm text-[#222222]">{t("f.fee.villa", { beds: villaMinBedrooms })}</span>
+                          <span className="font-serif text-4xl text-[#222222] whitespace-nowrap">
+                            {villaMinPercent}–{villaMaxPercent}%
+                          </span>
+                        </div>
+                        <p className="text-xs text-[#5C5347]">{t("f.fee.note")}</p>
+                      </div>
+                    ) : (
+                      <div className="space-y-1 pt-2">
+                        <span className="font-serif text-3xl sm:text-4xl text-[#222222]">{t("f.fee.onRequest")}</span>
+                        <p className="text-xs text-[#5C5347]">{t("f.fee.onRequestNote")}</p>
+                      </div>
+                    )}
 
                     <p className="text-xs text-[#555555] leading-relaxed">
                       {tier.description}
@@ -177,22 +194,33 @@ export function TieredPricingTable() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-[#EBEBEB]">
-            <div className="p-4 rounded-xl bg-[#FAFAFA] border border-[#EBEBEB]">
-              <span className="text-xs font-semibold text-[#717171] block">Option A (15% Exclusive Marketing)</span>
-              <div className="flex justify-between items-baseline mt-1">
-                <span className="text-xs text-[#717171]">Management Fee: {formatPrice(optionAFee)}</span>
-                <span className="text-sm font-semibold text-[#222222]">Net Owner: {formatPrice(optionANet)}</span>
+            <div className="p-4 rounded-xl bg-[#FAFAFA] border border-[#EBEBEB] space-y-1">
+              <span className="text-sm font-semibold text-[#222222] block">
+                {t("f.fee.apartment")} · {apartmentPercent}%
+              </span>
+              <div className="flex flex-wrap justify-between gap-x-4 gap-y-1 text-sm">
+                <span className="text-[#5C5347]">{t("f.fee.feeLabel")}: {formatPrice(apartmentFee)}</span>
+                <span className="font-semibold text-[#222222]">
+                  {t("f.fee.netLabel")}: {formatPrice(estimatedMonthlyRevenue - apartmentFee)}
+                </span>
               </div>
             </div>
 
-            <div className="p-4 rounded-xl bg-[#F5F4F0] border border-[#E4E0D8]">
-              <span className="text-xs font-semibold text-[#222222] block">Option B (20% Full Turnkey Management)</span>
-              <div className="flex justify-between items-baseline mt-1">
-                <span className="text-xs text-[#717171]">Management Fee: {formatPrice(optionBFee)}</span>
-                <span className="text-sm font-semibold text-[#222222]">Net Owner: {formatPrice(optionBNet)}</span>
+            <div className="p-4 rounded-xl bg-[#F5F4F0] border border-[#E4E0D8] space-y-1">
+              <span className="text-sm font-semibold text-[#222222] block">
+                {t("f.fee.villa", { beds: villaMinBedrooms })} · {villaMinPercent}–{villaMaxPercent}%
+              </span>
+              <div className="flex flex-wrap justify-between gap-x-4 gap-y-1 text-sm">
+                <span className="text-[#5C5347]">
+                  {t("f.fee.feeLabel")}: {formatPrice(villaFeeMin)} – {formatPrice(villaFeeMax)}
+                </span>
+                <span className="font-semibold text-[#222222]">
+                  {t("f.fee.netLabel")}: {formatPrice(estimatedMonthlyRevenue - villaFeeMax)} – {formatPrice(estimatedMonthlyRevenue - villaFeeMin)}
+                </span>
               </div>
             </div>
           </div>
+          <p className="text-xs text-[#5C5347]">{t("f.fee.note")}</p>
         </div>
       </div>
     </section>

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     absolute: "FAQ: Booking, Check-In & Villa Co-Hosting | Kinghouse",
   },
   description:
-    "Comprehensive answers for guests and property owners on booking policies, check-in, event hosting, 15%–20% management fees, and monthly payouts.",
+    "Comprehensive answers for guests and property owners on booking policies, check-in, event hosting, management fees, and monthly payouts.",
   keywords: [
     "kinghouse faq",
     "villa rental faq jakarta",
@@ -63,7 +63,7 @@ const faqSchema = {
       name: "How does Kinghouse calculate owner revenue and management fees?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "We offer two transparent models: 15% Standard (full OTA management, dynamic pricing, guest communications, calendar sync) and 20% Premium (adds full linen laundry, amenities replenishment, and dedicated on-site butler operations).",
+        text: "Full Management costs 23% of rental revenue for apartments and 15–18% for villas and homes with 6 or more bedrooms; the final rate is agreed per property. Co-Hosting and HK on Demand are quoted per property. Owners receive transparent monthly statements with zero hidden markups.",
       },
     },
     {

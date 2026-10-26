@@ -115,7 +115,7 @@ export default function TermsPage() {
               </p>
               <ul className="list-disc pl-5 text-sm space-y-2">
                 <li>
-                  <strong>Management Commission:</strong> Kinghouse deducts an agreed management commission (15% Standard or 20% Premium) from gross booking revenue, as defined in the bespoke Asset Management Schedule.
+                  <strong>Management Commission:</strong> Kinghouse deducts an agreed management commission (for Full Management: 23% for apartments, 15–18% for villas and homes with 6+ bedrooms) from gross booking revenue, as defined in the bespoke Asset Management Schedule.
                 </li>
                 <li>
                   <strong>Monthly Statements & Disbursements:</strong> Revenue statements and disbursements are issued on or before the 5th of every calendar month following audited ledger reconciliation.

@@ -29,7 +29,8 @@ Notifikasi internal tim tetap berbahasa Indonesia.
 
 | Variabel | Wajib | Fungsi |
 |---|---|---|
-| `NEXT_PUBLIC_WA_OWNER`, `NEXT_PUBLIC_WA_STAY`, `NEXT_PUBLIC_WA_EVENT` | Tidak | Nomor WhatsApp per jalur (format `62812…`). Kosong = hotline utama. |
+| `NEXT_PUBLIC_WA_OWNER` | Disarankan | Nomor WhatsApp produk Kinghouse (HK on Demand, Co-Hosting, Full Management), format `62812…`. |
+| `NEXT_PUBLIC_WA_GUEST` | Disarankan | Nomor WhatsApp tamu: menginap & sewa event di properti Kinghouse. Kosong = hotline utama. Nilai `NEXT_PUBLIC_*` ditanam saat build: wajib Redeploy setelah diubah. |
 | `SUPABASE_SERVICE_ROLE_KEY` + tabel `leads` | Salah satu dari dua tujuan lead | Simpan lead ke Supabase. Jalankan bagian `4. LEADS TABLE` di `supabase/schema.sql`. Tabel ini RLS tanpa policy publik, jadi **wajib service role key** (anon key tidak bisa menulis). |
 | `LEAD_WEBHOOK_URL` | Salah satu dari dua tujuan lead | Kirim lead ke Google Sheet / Make / Zapier / CRM, sekaligus notifikasi grup tim. |
 | `LEAD_WEBHOOK_SECRET` | Opsional | Dikirim sebagai header `X-Kinghouse-Secret`. |
@@ -98,13 +99,19 @@ Skema lama memberi anon key publik akses baca **dan** tulis/hapus ke `reservatio
 di-redeploy, jalankan `supabase/migrations/20261024_restrict_public_access.sql` di SQL Editor.
 Setelah itu publik hanya bisa membaca artikel blog berstatus *Published*.
 
+## Keputusan owner (Okt 2026) yang sudah diterapkan
+
+- **WhatsApp 2 nomor**: produk Kinghouse (`NEXT_PUBLIC_WA_OWNER`) dan tamu menginap/event (`NEXT_PUBLIC_WA_GUEST`).
+- **HK on Demand tetap di website ini** dengan halaman SEO sendiri `/airbnb-cleaning-jakarta`
+  (schema Service + FAQ). Saran: pasang link dari kinghousecleaning.id ke halaman ini.
+- **Fee Full Management**: apartemen 23%, villa & rumah 6+ kamar 15–18% (nego per properti).
+  Satu sumber: `MANAGEMENT_FEES` di `lib/constants.ts`. Co-Hosting tampil "Fee sesuai penawaran".
+- **Aturan acara** dikirim via OTA/WhatsApp setelah booking; web menampilkan catatan itu.
+
 ## Yang masih perlu diputuskan tim
 
-- Satu atau tiga nomor WhatsApp (isi env `NEXT_PUBLIC_WA_*`; nilainya ditanam saat build, jadi wajib Redeploy setelah diubah).
-- HK on Demand: tetap di situs ini (sekarang di-route ke `cleaning`) atau dialihkan ke Kinghouse Cleaning.
-- Fee final Full Management (kartu sekarang menulis "15%–20%").
-- Aturan venue yang belum tampil karena belum dikonfirmasi: batas musik, deposit, dekorasi sejak pagi,
-  penahanan tanggal. Isi `value` di `EVENT_VENUE_RULES` dan aturan otomatis muncul di `/events`.
+- (Opsional) Jika suatu saat batas musik, deposit, dekorasi pagi, atau penahanan tanggal ingin tampil
+  di web, tambahkan kuncinya ke kamus `lib/i18n/funnel` dan ke `EVENT_VENUE_RULES`.
 - PIC per target (kolom `pic` di Sheet/tabel).
 
 Di luar kode (sesuai dokumen): auto-reply menu WhatsApp Business, label Owner/Stay/Event, quick reply

@@ -1,9 +1,22 @@
 "use client"
 
-import { CheckCircle2, Home, KeyRound, Sparkles } from "lucide-react"
+import Link from "next/link"
+import { ArrowRight, CheckCircle2, Home, KeyRound, Sparkles } from "lucide-react"
 import { OWNER_SERVICES, type OwnerServiceId } from "@/lib/funnel/config"
 import { useLocalization } from "@/lib/context/localization-context"
+import { MANAGEMENT_FEES } from "@/lib/constants"
 import { useOwnerService } from "./owner-service-context"
+
+const FEE_VARS = {
+  apt: MANAGEMENT_FEES.apartmentPercent,
+  min: MANAGEMENT_FEES.villaMinPercent,
+  max: MANAGEMENT_FEES.villaMaxPercent,
+}
+
+/** Services with their own landing page. */
+const SERVICE_PAGES: Partial<Record<OwnerServiceId, string>> = {
+  "hk-on-demand": "/airbnb-cleaning-jakarta",
+}
 
 const SERVICE_ICONS: Record<OwnerServiceId, typeof Home> = {
   "hk-on-demand": Sparkles,
@@ -34,7 +47,7 @@ export function OwnerServiceCards() {
           {OWNER_SERVICES.map((s) => {
             const Icon = SERVICE_ICONS[s.id]
             const isSelected = service === s.id
-            const features = Array.from({ length: s.featureCount }, (_, i) => t(`${s.key}.f${i + 1}`))
+            const features = Array.from({ length: s.featureCount }, (_, i) => t(`${s.key}.f${i + 1}`, FEE_VARS))
             return (
               <article
                 key={s.id}
@@ -55,6 +68,14 @@ export function OwnerServiceCards() {
                     </li>
                   ))}
                 </ul>
+                {SERVICE_PAGES[s.id] && (
+                  <Link
+                    href={SERVICE_PAGES[s.id]!}
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#8C7F5F] hover:underline"
+                  >
+                    {t("f.svc.learnMore")} <ArrowRight className="h-4 w-4" />
+                  </Link>
+                )}
                 <button
                   type="button"
                   onClick={() => choose(s.id)}

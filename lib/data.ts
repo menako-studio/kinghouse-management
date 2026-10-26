@@ -554,8 +554,7 @@ export const MANAGEMENT_TIERS: ManagementTier[] = [
     id: "exclusive-marketing",
     name: "Exclusive Marketing",
     subtitle: "High-yield Airbnb distribution & revenue optimization for self-operating owners",
-    feePercentage: 15,
-    feeNote: "of gross rental revenue (performance-based)",
+    feeKind: "on-request",
     description:
       "Designed for property owners who handle their own cleaning and operations, but want Kinghouse's Airbnb SEO expertise, dynamic pricing, and professional listing management to maximize bookings.",
     idealFor: "Owners with existing cleaning support who want maximum Airbnb revenue without full management.",
@@ -577,8 +576,7 @@ export const MANAGEMENT_TIERS: ManagementTier[] = [
     id: "full-management",
     name: "Full Asset Management",
     subtitle: "Completely hands-off, 360° turnkey operations for maximum ROI",
-    feePercentage: 20,
-    feeNote: "of gross rental revenue (zero-effort, fully managed)",
+    feeKind: "by-property",
     badge: "Most Popular",
     description:
       "Our complete management model — we handle everything from Airbnb listing to guest checkout, cleaning coordination, maintenance, and monthly financial reporting. You receive passive income without lifting a finger.",

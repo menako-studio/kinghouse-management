@@ -10,14 +10,14 @@ import { OnboardingTimeline } from "@/components/owner/onboarding-timeline"
 import { OwnerServiceProvider } from "@/components/owner/owner-service-context"
 import { OwnerServiceCards } from "@/components/owner/owner-service-cards"
 import { OwnerLeadForm } from "@/components/owner/owner-lead-form"
-import { SITE_CONFIG } from "@/lib/constants"
+import { SITE_CONFIG, MANAGEMENT_FEES } from "@/lib/constants"
 
 export const metadata = {
   title: {
-    absolute: "Airbnb Property Management Jakarta | 15–20% Co-Hosting",
+    absolute: "Airbnb Property Management Jakarta | Kinghouse",
   },
   description:
-    "Partner with Kinghouse Management for 15%–20% transparent co-hosting. Algorithmic dynamic pricing, Kinghouse Cleaning hotel standards, and +48% EBITDA lift.",
+    "Airbnb & villa management in Jakarta: HK on Demand cleaning, Co-Hosting or Full Management from 15% (villas) or 23% (apartments). Dynamic pricing, 24/7 guest care.",
   keywords: [
     "airbnb property management jakarta",
     "jasa kelola airbnb jakarta",
@@ -48,22 +48,22 @@ const ownerServicesSchema = {
   offers: [
     {
       "@type": "Offer",
-      name: "15% Standard Full-Service Management",
+      name: "Full Management — Apartments",
       priceCurrency: "IDR",
       priceSpecification: {
         "@type": "UnitPriceSpecification",
         priceType: "https://schema.org/Commission",
-        unitText: "15% of Accommodation Revenue",
+        unitText: `${MANAGEMENT_FEES.apartmentPercent}% of rental revenue`,
       },
     },
     {
       "@type": "Offer",
-      name: "20% Multi-Channel Premium Management",
+      name: `Full Management — Villas & homes with ${MANAGEMENT_FEES.villaMinBedrooms}+ bedrooms`,
       priceCurrency: "IDR",
       priceSpecification: {
         "@type": "UnitPriceSpecification",
         priceType: "https://schema.org/Commission",
-        unitText: "20% of Accommodation Revenue",
+        unitText: `${MANAGEMENT_FEES.villaMinPercent}–${MANAGEMENT_FEES.villaMaxPercent}% of rental revenue (agreed per property)`,
       },
     },
   ],

@@ -50,7 +50,7 @@ export default function AboutPage() {
           "Kinghouse Management adalah penyedia layanan pengelolaan properti dan co-hosting profesional khusus untuk villa, apartemen, dan rumah liburan (Airbnb & sewa harian). Kami membantu pemilik properti memaksimalkan pendapatan sewa secara pasif melalui manajemen menyeluruh—mulai dari optimasi listing, strategi harga harian, komunikasi tamu 24/7, hingga operasional kebersihan dan perawatan unit.",
         visionDesc:
           "Bagi banyak pemilik, mengelola sewa harian seringkali menguras waktu dan tenaga: merespons chat di larut malam, memastikan unit bersih tepat waktu sebelum tamu baru tiba, hingga mengatasi komplain. Percayakan pengelolaan properti Anda pada Kinghouse Management untuk menghadirkan pengalaman menginap berkualitas tinggi bagi para tamu tanpa menyita waktu berharga Anda.",
-        btnFeeSplit: "Pelajari Skema Bagi Hasil (15% vs 20%)",
+        btnFeeSplit: "Lihat Layanan & Fee Pengelolaan",
         btnViewPortfolio: "Lihat Portofolio Unit",
         photoTag: "Superhost Hospitality",
         photoTitle: "Versatile House With Garden, Jagakarsa",
@@ -162,7 +162,7 @@ export default function AboutPage() {
           "Kinghouse Management is a professional property management and co-hosting service provider specializing in luxury villas, boutique apartments, and vacation homes (Airbnb & short-stay rentals). We help property owners maximize rental revenue passively through end-to-end management—from listing optimization and dynamic pricing algorithms to 24/7 guest communications, 5-star cleaning, and proactive maintenance.",
         visionDesc:
           "For many owners, managing short-term rentals is demanding and time-consuming: responding to late-night guest inquiries, ensuring turnover cleaning finishes before the next check-in, and handling on-site maintenance. Entrust your property to Kinghouse Management to deliver exceptional guest experiences while safeguarding your valuable time.",
-        btnFeeSplit: "Explore Revenue Split (15% vs 20%)",
+        btnFeeSplit: "See Services & Management Fees",
         btnViewPortfolio: "View Unit Portfolio",
         photoTag: "Superhost Hospitality",
         photoTitle: "Versatile House With Garden, Jagakarsa",

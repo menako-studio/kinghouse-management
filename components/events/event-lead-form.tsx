@@ -146,6 +146,7 @@ export function EventLeadForm({ eventType, onEventTypeChange }: EventLeadFormPro
               </div>
             ))}
           </dl>
+          <p className="text-sm text-[#5C5347]">{t("f.rules.fullRules")}</p>
           <a href="#pricelist" className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#8C7F5F] hover:underline">
             {t("f.rules.priceList")} <ArrowRight className="h-4 w-4" />
           </a>

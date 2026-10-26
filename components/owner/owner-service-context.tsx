@@ -14,8 +14,14 @@ const OwnerServiceContext = createContext<OwnerServiceState | null>(null)
  * Shares the service picked on a card with the owner form further down the
  * page, so the owner never has to choose it twice.
  */
-export function OwnerServiceProvider({ children }: { children: React.ReactNode }) {
-  const [service, setService] = useState<OwnerServiceChoice>("undecided")
+export function OwnerServiceProvider({
+  children,
+  initialService = "undecided",
+}: {
+  children: React.ReactNode
+  initialService?: OwnerServiceChoice
+}) {
+  const [service, setService] = useState<OwnerServiceChoice>(initialService)
   return <OwnerServiceContext.Provider value={{ service, setService }}>{children}</OwnerServiceContext.Provider>
 }
 
