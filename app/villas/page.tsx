@@ -1,7 +1,6 @@
 "use client"
 
-import { useState, useMemo, Suspense } from "react"
-import { useSearchParams } from "next/navigation"
+import { useState, useMemo, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import {
@@ -180,18 +179,23 @@ function NakulaVillaCard({ villa }: { villa: Villa }) {
 
 function VillasCatalogContent() {
   const { t } = useLocalization()
-  const searchParams = useSearchParams()
-  const initialArea = searchParams.get("area") || "all"
 
   // Filter State
   const [propertyTypes, setPropertyTypes] = useState<string[]>([])
-  const [selectedArea, setSelectedArea] = useState<string>(initialArea)
+  const [selectedArea, setSelectedArea] = useState<string>("all")
   const [selectedRooms, setSelectedRooms] = useState<string>("all")
   const [availabilityDate, setAvailabilityDate] = useState<string>("")
   const [searchQuery, setSearchQuery] = useState<string>("")
   const [gridSearchQuery, setGridSearchQuery] = useState<string>("")
   const [sortBy, setSortBy] = useState<SortOption>("recommended")
   const [showMobileFilters, setShowMobileFilters] = useState<boolean>(false)
+
+  // Read ?area= after hydration so the catalog stays statically rendered (crawlable)
+  useEffect(() => {
+    const area = new URLSearchParams(window.location.search).get("area")
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time sync from the URL
+    if (area) setSelectedArea(area)
+  }, [])
 
   // Accordion state for FAQ
   const [openFaq, setOpenFaq] = useState<number | null>(0)
@@ -759,15 +763,5 @@ function VillasCatalogContent() {
 }
 
 export default function VillasCatalogPage() {
-  return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen flex items-center justify-center font-serif text-[#8C7F5F]">
-          Loading Kinghouse Portfolio...
-        </div>
-      }
-    >
-      <VillasCatalogContent />
-    </Suspense>
-  )
+  return <VillasCatalogContent />
 }

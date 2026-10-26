@@ -276,4 +276,8 @@ export const id: FunnelDictionary = {
   "f.hk.q3": "Bisa sekalian urus tamu?",
   "f.hk.a3": "Bisa. Co-Hosting dan Full Management menambahkan komunikasi tamu, harga, dan operasional di luar kebersihan.",
   "f.hk.otherServices": "Lihat Co-Hosting & Full Management",
+  "f.footer.explore": "Jelajahi",
+  "f.footer.cleaning": "Jasa Cleaning Airbnb & Villa",
+  "f.footer.villas": "Villa & Apartemen",
+  "f.footer.events": "Acara & Venue",
 }

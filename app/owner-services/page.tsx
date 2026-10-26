@@ -17,7 +17,7 @@ export const metadata = {
     absolute: "Airbnb Property Management Jakarta | Kinghouse",
   },
   description:
-    "Airbnb & villa management in Jakarta: HK on Demand cleaning, Co-Hosting or Full Management from 15% (villas) or 23% (apartments). Dynamic pricing, 24/7 guest care.",
+    "Airbnb & villa management in Jakarta: HK on Demand cleaning, Co-Hosting or Full Management from 15% (villas) or 23% (apartments), with 24/7 guest care.",
   keywords: [
     "airbnb property management jakarta",
     "jasa kelola airbnb jakarta",

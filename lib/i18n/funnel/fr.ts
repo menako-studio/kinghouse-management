@@ -276,4 +276,8 @@ export const fr: FunnelDictionary = {
   "f.hk.q3": "Pouvez-vous aussi gérer mes voyageurs ?",
   "f.hk.a3": "Oui. Le Co-Hosting et le Full Management ajoutent la messagerie voyageurs, les prix et l’exploitation au ménage.",
   "f.hk.otherServices": "Voir Co-Hosting et Full Management",
+  "f.footer.explore": "Explorer",
+  "f.footer.cleaning": "Ménage Airbnb & villas",
+  "f.footer.villas": "Villas & appartements",
+  "f.footer.events": "Événements & lieux",
 }

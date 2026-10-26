@@ -276,4 +276,8 @@ export const ja: FunnelDictionary = {
   "f.hk.q3": "ゲスト対応もお願いできますか？",
   "f.hk.a3": "はい。Co-HostingとFull Managementでは、清掃に加えてゲスト対応・料金設定・運営を行います。",
   "f.hk.otherServices": "Co-HostingとFull Managementを見る",
+  "f.footer.explore": "サイトマップ",
+  "f.footer.cleaning": "Airbnb・ヴィラ清掃",
+  "f.footer.villas": "ヴィラ・アパートメント",
+  "f.footer.events": "イベント・会場",
 }

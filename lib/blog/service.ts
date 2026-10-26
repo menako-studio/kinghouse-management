@@ -25,6 +25,7 @@ export function mapRowToBlogPost(row: any): BlogPost & { status: string; seoScor
     tags: Array.isArray(row.tags) ? row.tags : [],
     seoKeywords: Array.isArray(row.tags) ? row.tags : [],
     seoTitle: row.seo_title || undefined,
+    language: row.language === "en" ? "en" : "id",
     metaDescription: row.meta_description || undefined,
     featured: Boolean(row.seo_score && row.seo_score >= 90),
     status: row.status || "Published",

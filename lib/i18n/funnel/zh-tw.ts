@@ -276,4 +276,8 @@ export const zhTW: FunnelDictionary = {
   "f.hk.q3": "可以一併代管房客嗎？",
   "f.hk.a3": "可以。Co-Hosting 與 Full Management 在清潔之外還包含房客溝通、定價與營運。",
   "f.hk.otherServices": "查看 Co-Hosting 與 Full Management",
+  "f.footer.explore": "探索",
+  "f.footer.cleaning": "Airbnb 與別墅清潔",
+  "f.footer.villas": "別墅與公寓",
+  "f.footer.events": "活動與場地",
 }

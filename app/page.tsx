@@ -9,7 +9,7 @@ import { SITE_CONFIG } from "@/lib/constants"
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Curated Luxury Villas & Airbnb Management Jakarta | Kinghouse",
+    absolute: "Luxury Villas & Airbnb Management Jakarta | Kinghouse",
   },
   description:
     "Curated luxury villas and short-stay apartments in Greater Jakarta (Jagakarsa, Tangerang, Cikarang). Hotel-standard hygiene & high-yield Airbnb co-hosting.",

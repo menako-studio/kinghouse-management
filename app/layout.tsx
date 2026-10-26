@@ -89,11 +89,6 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: SITE_CONFIG.baseUrl,
-    languages: {
-      "en": SITE_CONFIG.baseUrl,
-      "id": `${SITE_CONFIG.baseUrl}?lang=id`,
-      "x-default": SITE_CONFIG.baseUrl,
-    },
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,

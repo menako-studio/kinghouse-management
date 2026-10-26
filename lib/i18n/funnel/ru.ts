@@ -276,4 +276,8 @@ export const ru: FunnelDictionary = {
   "f.hk.q3": "Можете ли вы работать и с гостями?",
   "f.hk.a3": "Да. Со-хостинг и полное управление добавляют к уборке переписку с гостями, цены и операционную работу.",
   "f.hk.otherServices": "Смотреть Co-Hosting и Full Management",
+  "f.footer.explore": "Обзор",
+  "f.footer.cleaning": "Уборка Airbnb и вилл",
+  "f.footer.villas": "Виллы и апартаменты",
+  "f.footer.events": "Мероприятия и площадки",
 }
