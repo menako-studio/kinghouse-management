@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
+import Link from "@/components/ui/localized-link"
 import { ArrowRight, CheckCircle2, MapPin, MessageCircle } from "lucide-react"
 import { useLocalization } from "@/lib/context/localization-context"
 import { buildWhatsAppUrl, ownerWhatsAppMessage } from "@/lib/funnel/whatsapp"

@@ -1,8 +1,10 @@
 "use client"
 
 import React, { createContext, useContext, useState, useEffect } from "react"
+import { usePathname, useRouter } from "next/navigation"
 import { trackCurrencyChange, trackLanguageChange } from "@/lib/analytics"
 import { FUNNEL_TRANSLATIONS, interpolate, type TranslateVars } from "@/lib/i18n/funnel"
+import { hasIdVersion, localeFromPath, localizePath, type SiteLocale } from "@/lib/i18n/site"
 
 
 
@@ -1403,13 +1405,24 @@ interface LocalizationContextType {
   currentLanguageConfig: LanguageConfig
   formatPrice: (amountInIdr: number, customCurrency?: CurrencyCode) => string
   t: (key: string, vars?: TranslateVars) => string
+  /** Translate English-authored page copy (see lib/i18n/content). */
+  tc: (text: string, vars?: TranslateVars) => string
+  /** Locale of the current URL: "id" under /id/…, otherwise "en". */
+  routeLocale: SiteLocale
+  /** Internal link in the current URL locale (/villas → /id/villas on Indonesian pages). */
+  localizeHref: (href: string) => string
 }
 
 const LocalizationContext = createContext<LocalizationContextType | null>(null)
 
 export function LocalizationProvider({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname()
+  const router = useRouter()
+  const routeLocale = localeFromPath(pathname)
   const [currency, setCurrencyState] = useState<CurrencyCode>("IDR")
-  const [language, setLanguageState] = useState<LanguageCode>("EN")
+  const [preferredLanguage, setLanguageState] = useState<LanguageCode>("EN")
+  // /id/… pages always render Indonesian (also on the server, so Google indexes it)
+  const language: LanguageCode = routeLocale === "id" ? "ID" : preferredLanguage
 
   useEffect(() => {
     try {
@@ -1427,6 +1440,23 @@ export function LocalizationProvider({ children }: { children: React.ReactNode }
     }
   }, [])
 
+  // Keep the URL and the chosen language in step: visiting /id/… makes Indonesian the
+  // preference; a saved Indonesian preference moves English pages to their /id version.
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- sync preference from the URL
+    if (routeLocale === "id") setLanguageState("ID")
+  }, [routeLocale, pathname])
+
+  useEffect(() => {
+    if (routeLocale === "en" && preferredLanguage === "ID" && hasIdVersion(pathname)) {
+      router.replace(localizePath(pathname + window.location.search + window.location.hash, "id"))
+    }
+  }, [routeLocale, pathname, preferredLanguage, router])
+
+  useEffect(() => {
+    document.documentElement.lang = language.toLowerCase()
+  }, [language])
+
   const setCurrency = (c: CurrencyCode) => {
     setCurrencyState(c)
     trackCurrencyChange(c)
@@ -1441,6 +1471,10 @@ export function LocalizationProvider({ children }: { children: React.ReactNode }
     try {
       localStorage.setItem("kinghouse_language", l)
     } catch {}
+    if (routeLocale === "id" && l !== "ID") {
+      router.push(localizePath(pathname + window.location.search, "en"))
+    }
+    // Switching to Indonesian on an English page is handled by the sync effect above.
   }
 
 
@@ -1503,6 +1537,10 @@ export function LocalizationProvider({ children }: { children: React.ReactNode }
         currentLanguageConfig,
         formatPrice,
         t,
+        // English source copy; /id pages swap in the Indonesian dictionary (see ContentDictionaryProvider)
+        tc: (text: string, vars?: TranslateVars) => interpolate(text, vars),
+        routeLocale,
+        localizeHref: (href: string) => localizePath(href, routeLocale),
       }}
     >
       {children}
@@ -1510,10 +1548,28 @@ export function LocalizationProvider({ children }: { children: React.ReactNode }
   )
 }
 
+/** Indonesian page-copy dictionary, provided only under /id so English pages never ship it. */
+const ContentDictionaryContext = createContext<Record<string, string> | null>(null)
+
+export function ContentDictionaryProvider({
+  dictionary,
+  children,
+}: {
+  dictionary: Record<string, string>
+  children: React.ReactNode
+}) {
+  return <ContentDictionaryContext.Provider value={dictionary}>{children}</ContentDictionaryContext.Provider>
+}
+
 export function useLocalization() {
   const context = useContext(LocalizationContext)
+  const dictionary = useContext(ContentDictionaryContext)
   if (!context) {
     throw new Error("useLocalization must be used within a LocalizationProvider")
   }
-  return context
+  if (!dictionary || context.language !== "ID") return context
+  return {
+    ...context,
+    tc: (text: string, vars?: TranslateVars) => interpolate(dictionary[text] ?? text, vars),
+  }
 }

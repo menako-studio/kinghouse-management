@@ -1,13 +1,13 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
+import Link from "@/components/ui/localized-link"
 import { ArrowRight, Compass, TrendingUp, Sparkles, Building2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useLocalization } from "@/lib/context/localization-context"
 
 export function DualPathSplit() {
-  const { t } = useLocalization()
+  const { t, tc } = useLocalization()
 
   return (
     <section className="section-macro-spacing bg-white">
@@ -19,7 +19,7 @@ export function DualPathSplit() {
             <div className="absolute inset-0 z-0 overflow-hidden">
               <Image
                 src="/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.webp"
-                alt="Versatile house garden and private pool"
+                alt={tc("Versatile house garden and private pool")}
                 fill
                 className="object-cover brightness-[0.45] transition-transform duration-700 ease-out group-hover:scale-105"
               />
@@ -63,7 +63,7 @@ export function DualPathSplit() {
             <div className="absolute inset-0 z-0 overflow-hidden">
               <Image
                 src="/properties/skyline-luxury/SkylineLuxury_OrangeCounty_KamarUtama.webp"
-                alt="Skyline luxury skyline view and layout"
+                alt={tc("Skyline luxury skyline view and layout")}
                 fill
                 className="object-cover brightness-[0.40] transition-transform duration-700 ease-out group-hover:scale-105"
               />

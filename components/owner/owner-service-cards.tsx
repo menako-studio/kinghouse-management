@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import Link from "@/components/ui/localized-link"
 import { ArrowRight, CheckCircle2, Home, KeyRound, Sparkles } from "lucide-react"
 import { OWNER_SERVICES, type OwnerServiceId } from "@/lib/funnel/config"
 import { useLocalization } from "@/lib/context/localization-context"

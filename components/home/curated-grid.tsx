@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import Link from "@/components/ui/localized-link"
 import { ArrowRight, Sparkles } from "lucide-react"
 import { CURATED_VILLAS } from "@/lib/data"
 import { VillaCard } from "@/components/villas/villa-card"

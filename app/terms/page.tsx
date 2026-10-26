@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import Link from "next/link"
+import Link from "@/components/ui/localized-link"
 import { FileText, Shield, ArrowRight } from "lucide-react"
 import { SITE_CONFIG, DEFAULT_OG_IMAGES } from "@/lib/constants"
 

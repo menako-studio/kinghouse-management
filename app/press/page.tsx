@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import Link from "next/link"
+import Link from "@/components/ui/localized-link"
 import Image from "next/image"
 import { Newspaper, Download, Mail, ExternalLink, ArrowRight, Award, Sparkles } from "lucide-react"
 import { SITE_CONFIG, DEFAULT_OG_IMAGES } from "@/lib/constants"

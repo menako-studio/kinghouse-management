@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react"
 import Image from "next/image"
-import Link from "next/link"
+import Link from "@/components/ui/localized-link"
 import {
   Search,
   Calendar,
@@ -33,7 +33,7 @@ type SortOption = "recommended" | "price-asc" | "price-desc" | "rating"
 
 // Nakula Editorial Card matching properties.png
 function NakulaVillaCard({ villa }: { villa: Villa }) {
-  const { formatPrice, t } = useLocalization()
+  const { formatPrice, t, tc } = useLocalization()
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   // Specs & pills computation
@@ -96,14 +96,14 @@ function NakulaVillaCard({ villa }: { villa: Villa }) {
         <div className="space-y-2.5">
           {/* Location & Reviews Row */}
           <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-[#6B6862]">
-            <span className="font-medium text-[#222225]">{villa.location}</span>
+            <span className="font-medium text-[#222225]">{tc(villa.location)}</span>
             <span>&bull;</span>
             <div className="flex items-center space-x-1">
               <Star className="h-3.5 w-3.5 fill-[#B8934C] text-[#B8934C]" />
               <span className="font-semibold text-[#222225]">
                 {villa.rating > 0 ? villa.rating.toFixed(1) : "5.0"}
               </span>
-              <span className="text-[#6B6862]">({villa.reviewsCount || 10} Reviews)</span>
+              <span className="text-[#6B6862]">({tc("{count} Reviews", { count: villa.reviewsCount || 10 })})</span>
             </div>
           </div>
 
@@ -118,15 +118,15 @@ function NakulaVillaCard({ villa }: { villa: Villa }) {
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-[#6B6862] pt-0.5">
             <span className="flex items-center space-x-1.5">
               <Users className="h-3.5 w-3.5 text-[#8C7F5F]" />
-              <span>{villa.capacity.guests} Guests</span>
+              <span>{villa.capacity.guests} {tc("Guests")}</span>
             </span>
             <span className="flex items-center space-x-1.5">
               <Bed className="h-3.5 w-3.5 text-[#8C7F5F]" />
-              <span>{villa.capacity.bedrooms} Bedroom{villa.capacity.bedrooms > 1 ? "s" : ""}</span>
+              <span>{villa.capacity.bedrooms} {tc(villa.capacity.bedrooms > 1 ? "Bedrooms" : "Bedroom")}</span>
             </span>
             <span className="flex items-center space-x-1.5">
               <Bath className="h-3.5 w-3.5 text-[#8C7F5F]" />
-              <span>{villa.capacity.bathrooms} Bathroom{villa.capacity.bathrooms > 1 ? "s" : ""}</span>
+              <span>{villa.capacity.bathrooms} {tc(villa.capacity.bathrooms > 1 ? "Bathrooms" : "Bathroom")}</span>
             </span>
             <span className="flex items-center space-x-1.5">
               <Maximize2 className="h-3.5 w-3.5 text-[#8C7F5F]" />
@@ -138,7 +138,7 @@ function NakulaVillaCard({ villa }: { villa: Villa }) {
           {isEventCapable && (
             <div className="flex items-center space-x-1.5 text-xs font-semibold text-[#8C7F5F]">
               <Sparkles className="h-3.5 w-3.5" />
-              <span>Suitable for Event</span>
+              <span>{tc("Suitable for Event")}</span>
             </div>
           )}
 
@@ -149,7 +149,7 @@ function NakulaVillaCard({ villa }: { villa: Villa }) {
                 key={tag}
                 className="px-2.5 py-1 rounded-full text-xs font-medium bg-[#FAF8F5] text-[#6B6862] border border-[#E8E4DC]"
               >
-                {tag}
+                {tc(tag)}
               </span>
             ))}
           </div>
@@ -161,7 +161,7 @@ function NakulaVillaCard({ villa }: { villa: Villa }) {
               onClick={() => setIsModalOpen(true)}
               className="text-xs text-[#8C7F5F] hover:text-[#222225] font-semibold flex items-center space-x-1 cursor-pointer transition-colors"
             >
-              <span>View Multi-Channel Booking Options</span>
+              <span>{tc("View Multi-Channel Booking Options")}</span>
               <ChevronRight className="h-3.5 w-3.5" />
             </button>
           </div>
@@ -178,7 +178,7 @@ function NakulaVillaCard({ villa }: { villa: Villa }) {
 }
 
 function VillasCatalogContent() {
-  const { t } = useLocalization()
+  const { t, tc } = useLocalization()
 
   // Filter State
   const [propertyTypes, setPropertyTypes] = useState<string[]>([])
@@ -315,7 +315,7 @@ function VillasCatalogContent() {
       <section className="relative h-[48vh] sm:h-[58vh] flex items-center justify-center text-center overflow-hidden">
         <Image
           src="/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg"
-          alt="Large private villas with over 5 bedrooms"
+          alt={tc("Large private villas with over 5 bedrooms")}
           fill
           className="object-cover"
           priority
@@ -324,9 +324,9 @@ function VillasCatalogContent() {
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 space-y-3">
           <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-white font-normal uppercase tracking-wide leading-tight">
-            LARGE PRIVATE VILLAS
+            {tc("LARGE PRIVATE VILLAS")}
             <br />
-            WITH OVER 5 BEDROOMS
+            {tc("WITH OVER 5 BEDROOMS")}
             <br />
             <span className="text-[#DFC58E] tracking-widest text-2xl sm:text-4xl">KINGHOUSE</span>
           </h1>
@@ -338,19 +338,19 @@ function VillasCatalogContent() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12 space-y-2.5">
           <nav className="text-xs uppercase tracking-widest text-[#6B6862] flex items-center justify-center space-x-2">
             <Link href="/" className="hover:text-[#222225] transition-colors">
-              HOME
+              {tc("HOME")}
             </Link>
             <span>/</span>
             <Link href="/villas" className="text-[#8C7F5F] font-semibold">
-              PROPERTIES
+              {tc("PROPERTIES")}
             </Link>
             <span>/</span>
-            <span>PROPERTY TYPE</span>
+            <span>{tc("PROPERTY TYPE")}</span>
             <span>/</span>
-            <span>STANDALONE VILLAS 5BR PLUS</span>
+            <span>{tc("STANDALONE VILLAS 5BR PLUS")}</span>
           </nav>
           <p className="text-xs sm:text-sm text-[#6B6862] max-w-3xl mx-auto font-light leading-relaxed">
-            Expansive private estates designed for large groups, multi-family travel, and celebrations that require scale, dedicated staff, and room for everyone across Jabodetabek.
+            {tc("Expansive private estates designed for large groups, multi-family travel, and celebrations that require scale, dedicated staff, and room for everyone across Jabodetabek.")}
           </p>
         </div>
       </section>
@@ -366,11 +366,11 @@ function VillasCatalogContent() {
           >
             <div className="flex items-center space-x-2">
               <SlidersHorizontal className="h-4 w-4 text-[#8C7F5F]" />
-              <span>{showMobileFilters ? "Hide Filter Options" : "Show Filter Options"}</span>
+              <span>{tc(showMobileFilters ? "Hide Filter Options" : "Show Filter Options")}</span>
             </div>
             {isFilterActive && (
               <span className="bg-[#8C7F5F] text-white px-2 py-0.5 rounded-full text-xs">
-                Active Filters
+                {tc("Active Filters")}
               </span>
             )}
           </button>
@@ -470,9 +470,9 @@ function VillasCatalogContent() {
                   className="w-full appearance-none px-3 py-2 pr-8 text-xs border border-[#E8E4DC] rounded-md bg-[#FAF8F5] text-[#222225] focus:outline-none focus:border-[#8C7F5F] cursor-pointer"
                 >
                   <option value="all">{t("allLocations")}</option>
-                  <option value="1">1 Bedroom</option>
-                  <option value="2-4">2 - 4 Bedrooms</option>
-                  <option value="5+">5+ Bedrooms</option>
+                  <option value="1">{tc("1 Bedroom")}</option>
+                  <option value="2-4">{tc("2 - 4 Bedrooms")}</option>
+                  <option value="5+">{tc("5+ Bedrooms")}</option>
                 </select>
                 <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#6B6862] pointer-events-none" />
               </div>
@@ -587,7 +587,7 @@ function VillasCatalogContent() {
                 onClick={handleClear}
                 className="inline-flex items-center px-8 py-3 bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-xs font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm cursor-pointer"
               >
-                VIEW ALL PROPERTIES
+                {tc("VIEW ALL PROPERTIES")}
               </button>
             </div>
           </div>
@@ -601,20 +601,20 @@ function VillasCatalogContent() {
             {/* Left: About Column */}
             <div className="space-y-4">
               <span className="text-xs font-bold uppercase tracking-widest text-[#8C7F5F]">
-                ABOUT
+                {tc("ABOUT")}
               </span>
               <h3 className="font-serif text-2xl sm:text-3xl text-[#222225] font-normal uppercase tracking-wide">
-                MORE THAN 5 BEDROOMS
+                {tc("MORE THAN 5 BEDROOMS")}
               </h3>
               <p className="text-xs sm:text-sm text-[#6B6862] leading-relaxed font-light">
-                When the group is large, the estate needs to match. Kinghouse&apos;s large residences in Jabodetabek (with up to 6 bedrooms and 500m² private grounds) are selected specifically for their ability to accommodate extended families, multi-generational groups, and private celebrations without sacrificing the intimacy of a private home.
+                {tc("When the group is large, the estate needs to match. Kinghouse's large residences in Jabodetabek (with up to 6 bedrooms and 500m² private grounds) are selected specifically for their ability to accommodate extended families, multi-generational groups, and private celebrations without sacrificing the intimacy of a private home.")}
               </p>
               <div className="pt-2">
                 <Link
                   href="/about"
                   className="text-xs uppercase font-bold tracking-widest text-[#222225] border-b border-[#222225] pb-0.5 hover:text-[#8C7F5F] hover:border-[#8C7F5F] transition-colors"
                 >
-                  READ MORE
+                  {tc("READ MORE")}
                 </Link>
               </div>
             </div>
@@ -622,44 +622,44 @@ function VillasCatalogContent() {
             {/* Right: Summary for You Table */}
             <div className="space-y-4">
               <h3 className="font-serif text-2xl sm:text-3xl text-[#222225] font-normal uppercase tracking-wide">
-                SUMMARY FOR YOU
+                {tc("SUMMARY FOR YOU")}
               </h3>
               <div className="rounded-xl border border-[#E8E4DC] bg-white overflow-hidden text-xs">
                 <div className="divide-y divide-[#E8E4DC]">
                   <div className="grid grid-cols-3 p-3.5 bg-[#FAF8F5]">
-                    <span className="font-medium text-[#6B6862]">Accommodation</span>
+                    <span className="font-medium text-[#6B6862]">{tc("Accommodation")}</span>
                     <span className="col-span-2 font-semibold text-[#222225]">
-                      5+ Bedroom Standalone Villas & Urban Suites
+                      {tc("5+ Bedroom Standalone Villas & Urban Suites")}
                     </span>
                   </div>
                   <div className="grid grid-cols-3 p-3.5">
-                    <span className="font-medium text-[#6B6862]">Popular Areas</span>
+                    <span className="font-medium text-[#6B6862]">{tc("Popular Areas")}</span>
                     <span className="col-span-2 text-[#222225]">
-                      Jagakarsa (South Jakarta), Tangerang, Palmerah, Cikarang
+                      {tc("Jagakarsa (South Jakarta), Tangerang, Palmerah, Cikarang")}
                     </span>
                   </div>
                   <div className="grid grid-cols-3 p-3.5 bg-[#FAF8F5]">
-                    <span className="font-medium text-[#6B6862]">Ideal For</span>
+                    <span className="font-medium text-[#6B6862]">{tc("Ideal For")}</span>
                     <span className="col-span-2 text-[#222225]">
-                      Large Families, Weddings, Corporate Offsites & Retreats
+                      {tc("Large Families, Weddings, Corporate Offsites & Retreats")}
                     </span>
                   </div>
                   <div className="grid grid-cols-3 p-3.5">
-                    <span className="font-medium text-[#6B6862]">Price Range</span>
+                    <span className="font-medium text-[#6B6862]">{tc("Price Range")}</span>
                     <span className="col-span-2 font-semibold text-[#8C7F5F]">
-                      Start from IDR 390,000 to IDR 3,500,000 / night
+                      {tc("Start from IDR 390,000 to IDR 3,500,000 / night")}
                     </span>
                   </div>
                   <div className="grid grid-cols-3 p-3.5 bg-[#FAF8F5]">
-                    <span className="font-medium text-[#6B6862]">Facilities</span>
+                    <span className="font-medium text-[#6B6862]">{tc("Facilities")}</span>
                     <span className="col-span-2 text-[#222225]">
-                      Private Pool, Garden, Full Kitchen, Fast WiFi, Event Support
+                      {tc("Private Pool, Garden, Full Kitchen, Fast WiFi, Event Support")}
                     </span>
                   </div>
                   <div className="grid grid-cols-3 p-3.5">
-                    <span className="font-medium text-[#6B6862]">Best Experience</span>
+                    <span className="font-medium text-[#6B6862]">{tc("Best Experience")}</span>
                     <span className="col-span-2 text-[#222225]">
-                      Bespoke Hospitality & Total Privacy in Greater Jakarta
+                      {tc("Bespoke Hospitality & Total Privacy in Greater Jakarta")}
                     </span>
                   </div>
                 </div>
@@ -673,7 +673,7 @@ function VillasCatalogContent() {
       <section className="py-16 text-center border-t border-[#E8E4DC]">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 space-y-8">
           <h3 className="font-serif text-2xl sm:text-3xl text-[#222225] uppercase tracking-wider font-normal">
-            PROPERTY TYPE
+            {tc("PROPERTY TYPE")}
           </h3>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -712,7 +712,7 @@ function VillasCatalogContent() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
                 <div className="absolute bottom-3 inset-x-3 text-left text-white">
                   <p className="text-xs uppercase font-bold tracking-wider text-[#DFC58E]">
-                    {prop.type}
+                    {tc(prop.type)}
                   </p>
                   <p className="text-xs font-semibold line-clamp-1">{prop.title}</p>
                 </div>
@@ -727,7 +727,7 @@ function VillasCatalogContent() {
         <div className="mx-auto max-w-4xl px-6 lg:px-12 space-y-8">
           <div className="text-center space-y-2">
             <h3 className="font-serif text-2xl sm:text-3xl text-[#222225] uppercase tracking-wide font-normal">
-              WHY STAY IN STANDALONE VILLAS 5BR PLUS?
+              {tc("WHY STAY IN STANDALONE VILLAS 5BR PLUS?")}
             </h3>
             <div className="w-12 h-0.5 bg-[#8C7F5F] mx-auto" />
           </div>
@@ -736,20 +736,20 @@ function VillasCatalogContent() {
             {faqs.map((faq, idx) => {
               const isOpen = openFaq === idx
               return (
-                <div key={faq.q} className="py-4">
+                <div key={tc(faq.q)} className="py-4">
                   <button
                     type="button"
                     onClick={() => setOpenFaq(isOpen ? null : idx)}
                     className="w-full flex items-center justify-between text-left text-xs sm:text-sm font-medium text-[#222225] hover:text-[#8C7F5F] transition-colors py-1 cursor-pointer"
                   >
-                    <span>{faq.q}</span>
+                    <span>{tc(faq.q)}</span>
                     <span className="ml-4 shrink-0 text-[#8C7F5F]">
                       {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
                     </span>
                   </button>
                   {isOpen && (
                     <div className="pt-3 pr-8 text-xs text-[#6B6862] leading-relaxed font-light animate-sana-fade-in">
-                      {faq.a}
+                      {tc(faq.a)}
                     </div>
                   )}
                 </div>

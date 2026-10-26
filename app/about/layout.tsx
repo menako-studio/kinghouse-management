@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import { localeAlternates } from "@/lib/i18n/site"
 import { SITE_CONFIG, DEFAULT_OG_IMAGES } from "@/lib/constants"
 
 export const metadata: Metadata = {
@@ -7,9 +8,7 @@ export const metadata: Metadata = {
   },
   description:
     "Discover Kinghouse Management (PT Kreasi Usman Gosse): institutional-grade Airbnb co-hosting and luxury property management across Greater Jakarta.",
-  alternates: {
-    canonical: `${SITE_CONFIG.baseUrl}/about`,
-  },
+  alternates: localeAlternates("/about", "en"),
   openGraph: {
     images: DEFAULT_OG_IMAGES,
     title: "About Us | Kinghouse Property Management Jakarta",

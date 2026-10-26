@@ -6,7 +6,7 @@ import { CASE_STUDIES } from "@/lib/data"
 import { useLocalization } from "@/lib/context/localization-context"
 
 export function PerformanceMetrics() {
-  const { formatPrice } = useLocalization()
+  const { formatPrice, tc } = useLocalization()
 
   return (
     <section id="case-studies" className="section-macro-spacing bg-white">
@@ -14,13 +14,13 @@ export function PerformanceMetrics() {
         {/* Section Header */}
         <div className="max-w-3xl space-y-4">
           <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#A69C8E]">
-            Empirical Results
+            {tc("Empirical Results")}
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#222222]">
-            Before vs. After Kinghouse Management
+            {tc("Before vs. After Kinghouse Management")}
           </h2>
           <p className="text-sm sm:text-base text-[#717171] leading-relaxed">
-            Real performance audits from flagship properties under Kinghouse asset management. Verified metrics independently audited from live Airbnb and OTA reporting.
+            {tc("Real performance audits from flagship properties under Kinghouse asset management. Verified metrics independently audited from live Airbnb and OTA reporting.")}
           </p>
         </div>
 
@@ -48,10 +48,10 @@ export function PerformanceMetrics() {
                     className="object-cover"
                   />
                   <div className="absolute top-3 left-3 rounded-full bg-black/60 backdrop-blur-md px-3 py-1 text-xs text-white">
-                    {cs.location}
+                    {tc(cs.location)}
                   </div>
                   <div className="absolute bottom-3 right-3 rounded-lg bg-white/95 px-3 py-1 text-xs font-semibold text-[#222222] shadow-sm">
-                    {cs.period}
+                    {tc(cs.period)}
                   </div>
                 </div>
 
@@ -62,7 +62,7 @@ export function PerformanceMetrics() {
                       {cs.propertyName}
                     </h3>
                     <p className="text-xs text-[#717171] leading-relaxed">
-                      {cs.summary}
+                      {tc(cs.summary)}
                     </p>
                   </div>
 
@@ -71,7 +71,7 @@ export function PerformanceMetrics() {
                     {/* Occupancy Lift */}
                     <div className="p-4 rounded-xl bg-white border border-[#EBEBEB] space-y-1">
                       <span className="text-xs uppercase tracking-wider text-[#717171] font-medium block">
-                        Occupancy Rate
+                        {tc("Occupancy Rate")}
                       </span>
                       <div className="flex flex-wrap items-baseline gap-x-1.5">
                         <span className="text-xs text-[#999999] line-through">
@@ -82,14 +82,14 @@ export function PerformanceMetrics() {
                         </span>
                       </div>
                       <span className="text-xs font-semibold text-[#25D366] block">
-                        +{occLift}% Net Lift
+                        +{occLift}% {tc("Net Lift")}
                       </span>
                     </div>
 
                     {/* Monthly RevPAR */}
                     <div className="p-4 rounded-xl bg-white border border-[#EBEBEB] space-y-1">
                       <span className="text-xs uppercase tracking-wider text-[#717171] font-medium block">
-                        Monthly Revenue
+                        {tc("Monthly Revenue")}
                       </span>
                       <div className="flex flex-wrap items-baseline gap-x-1.5">
                         <span className="text-xs text-[#999999] line-through">
@@ -100,14 +100,14 @@ export function PerformanceMetrics() {
                         </span>
                       </div>
                       <span className="text-xs font-semibold text-[#25D366] block">
-                        +{revLift}% Lift
+                        +{revLift}% {tc("Lift")}
                       </span>
                     </div>
 
                     {/* Superhost Rating & EBITDA */}
                     <div className="p-4 rounded-xl bg-[#F5F4F0] border border-[#E4E0D8] space-y-1 col-span-2 sm:col-span-1">
                       <span className="text-xs uppercase tracking-wider text-[#222222] font-semibold block">
-                        EBITDA Margin
+                        {tc("EBITDA Margin")}
                       </span>
                       <div className="flex items-baseline space-x-1">
                         <span className="text-lg font-bold text-[#222222]">
@@ -115,16 +115,16 @@ export function PerformanceMetrics() {
                         </span>
                       </div>
                       <span className="text-xs text-[#A69C8E] font-medium block">
-                        ★ {cs.afterMetrics.guestRating} Rating
+                        ★ {cs.afterMetrics.guestRating} {tc("Rating")}
                       </span>
                     </div>
                   </div>
 
                   {/* Owner Pull Quote */}
                   <blockquote className="border-l-2 border-[#A69C8E] pl-4 text-xs italic text-[#555555]">
-                    &ldquo;{cs.quote.text}&rdquo;
+                    &ldquo;{tc(cs.quote.text)}&rdquo;
                     <span className="block mt-1 font-semibold not-italic text-[#222222]">
-                      — {cs.quote.author}
+                      — {tc(cs.quote.author)}
                     </span>
                   </blockquote>
                 </div>

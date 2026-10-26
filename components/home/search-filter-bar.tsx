@@ -7,7 +7,7 @@ import { useLocalization } from "@/lib/context/localization-context"
 
 export function SearchFilterBar() {
   const router = useRouter()
-  const { t } = useLocalization()
+  const { t, tc } = useLocalization()
   const [destination, setDestination] = useState("")
   const [checkIn, setCheckIn] = useState("")
   const [checkOut, setCheckOut] = useState("")
@@ -41,16 +41,16 @@ export function SearchFilterBar() {
             </span>
             <select
               id="search-destination-select"
-              aria-label="Filter by destination in Greater Jakarta"
+              aria-label={tc("Filter by destination in Greater Jakarta")}
               value={destination}
               onChange={(e) => setDestination(e.target.value)}
               className="w-full bg-transparent text-xs sm:text-sm font-normal text-[#717171] focus:outline-none focus:text-[#222222] cursor-pointer"
             >
               <option value="">{t("allGreaterJakarta")}</option>
-              <option value="jagakarsa">Jagakarsa (South Jakarta)</option>
-              <option value="tangerang">Tangerang (Banten)</option>
-              <option value="palmerah">Palmerah (West Jakarta)</option>
-              <option value="cikarang">Cikarang (East Jakarta Corridor)</option>
+              <option value="jagakarsa">{tc("Jagakarsa (South Jakarta)")}</option>
+              <option value="tangerang">{tc("Tangerang (Banten)")}</option>
+              <option value="palmerah">{tc("Palmerah (West Jakarta)")}</option>
+              <option value="cikarang">{tc("Cikarang (East Jakarta Corridor)")}</option>
             </select>
           </div>
         </div>
@@ -70,7 +70,7 @@ export function SearchFilterBar() {
                 value={checkIn}
                 onChange={(e) => setCheckIn(e.target.value)}
                 className="bg-transparent text-xs text-[#717171] focus:outline-none focus:text-[#222222] cursor-pointer"
-                aria-label="Check-in Date"
+                aria-label={tc("Check-in Date")}
               />
               <span className="text-[#A69C8E]">&rarr;</span>
               <input
@@ -78,7 +78,7 @@ export function SearchFilterBar() {
                 value={checkOut}
                 onChange={(e) => setCheckOut(e.target.value)}
                 className="bg-transparent text-xs text-[#717171] focus:outline-none focus:text-[#222222] cursor-pointer"
-                aria-label="Check-out Date"
+                aria-label={tc("Check-out Date")}
               />
             </div>
           </div>
@@ -95,16 +95,16 @@ export function SearchFilterBar() {
             </span>
             <select
               id="search-guests-select"
-              aria-label="Filter by number of guests"
+              aria-label={tc("Filter by number of guests")}
               value={guests}
               onChange={(e) => setGuests(e.target.value)}
               className="w-full bg-transparent text-xs sm:text-sm font-normal text-[#717171] focus:outline-none focus:text-[#222222] cursor-pointer"
             >
-              <option value="1">1 Guest</option>
-              <option value="2">2 Guests</option>
-              <option value="4">4 Guests</option>
-              <option value="6">6 Guests</option>
-              <option value="8">8+ Guests</option>
+              <option value="1">{tc("1 Guest")}</option>
+              <option value="2">{tc("2 Guests")}</option>
+              <option value="4">{tc("4 Guests")}</option>
+              <option value="6">{tc("6 Guests")}</option>
+              <option value="8">{tc("8+ Guests")}</option>
             </select>
           </div>
         </div>
@@ -114,7 +114,7 @@ export function SearchFilterBar() {
           <button
             type="submit"
             className="flex h-12 w-full md:w-12 items-center justify-center rounded-xl md:rounded-full bg-[#222222] text-white hover:bg-black transition-all hover:scale-105 active:scale-95 shadow-md"
-            aria-label="Search available villas"
+            aria-label={tc("Search available villas")}
           >
             <Search className="h-4 w-4" />
             <span className="ml-2 text-xs font-semibold uppercase tracking-wider md:hidden">

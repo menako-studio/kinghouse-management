@@ -2,6 +2,7 @@ import { MetadataRoute } from "next"
 import { MANAGED_AREAS } from "@/lib/constants"
 import { CURATED_VILLAS, VILLA_EVENTS } from "@/lib/data"
 import { getBlogPosts } from "@/lib/blog/service"
+import { hasIdVersion, localizePath } from "@/lib/i18n/site"
 
 // Revalidate sitemap every hour to pick up new blog posts & property pages
 export const revalidate = 3600
@@ -157,11 +158,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error("[Sitemap] Failed to fetch dynamic blog posts:", error)
   }
 
-  return [
-    ...staticRoutes,
-    ...areaRoutes,
-    ...villaRoutes,
-    ...eventRoutes,
-    ...blogRoutes,
-  ]
+  // 6. Indonesian versions (/id/…) with reciprocal hreflang on both entries
+  const localized = [...staticRoutes, ...areaRoutes, ...villaRoutes, ...eventRoutes].flatMap((entry) => {
+    const path = entry.url.slice(baseUrl.length) || "/"
+    if (!hasIdVersion(path)) return [entry]
+    const languages = { en: entry.url, id: `${baseUrl}${localizePath(path, "id")}` }
+    return [
+      { ...entry, alternates: { languages } },
+      { ...entry, url: languages.id, alternates: { languages } },
+    ]
+  })
+
+  return [...localized, ...blogRoutes]
 }

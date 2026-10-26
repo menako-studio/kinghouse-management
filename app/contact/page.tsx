@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
+import Link from "@/components/ui/localized-link"
 import Image from "next/image"
 import { Mail, Phone, MapPin, MessageSquare, ArrowUpRight, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -12,8 +12,10 @@ import {
   trackEmailClick,
   trackPhoneCall,
 } from "@/lib/analytics"
+import { useLocalization } from "@/lib/context/localization-context"
 
 export default function ContactPage() {
+  const { tc } = useLocalization()
   const [submitted, setSubmitted] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
@@ -41,7 +43,7 @@ export default function ContactPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/properties/versatile-house/new/VersatileHouse_02_Living_Hall.jpg"
-            alt="Versatile House Flagship Living Hall"
+            alt={tc("Versatile House Flagship Living Hall")}
             fill
             priority
             className="object-cover brightness-[0.32]"
@@ -53,7 +55,7 @@ export default function ContactPage() {
           <div className="max-w-3xl space-y-4">
             <div className="flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center rounded-full bg-white/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-[#DFC58E] backdrop-blur-md border border-white/15">
-                Direct Communication Desk
+                {tc("Direct Communication Desk")}
               </span>
               <a
                 href="https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace"
@@ -62,15 +64,15 @@ export default function ContactPage() {
                 className="inline-flex items-center rounded-full bg-[#DFC58E]/20 hover:bg-[#DFC58E]/30 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-[#DFC58E] backdrop-blur-md border border-[#DFC58E]/50 transition-all hover:scale-105"
               >
                 <Sparkles className="mr-1.5 h-3.5 w-3.5 text-[#DFC58E]" />
-                <span>Official Airbnb Superhost &bull; 4.5★ ↗</span>
+                <span>{tc("Official Airbnb Superhost • 4.5★ ↗")}</span>
               </a>
             </div>
 
             <h1 className="font-serif text-4xl sm:text-6xl text-white font-normal leading-[1.1]">
-              Get in Touch with Kinghouse
+              {tc("Get in Touch with Kinghouse")}
             </h1>
             <p className="text-base sm:text-lg text-[#E0DACB] font-light leading-relaxed">
-              Baik Anda merencanakan liburan privat, menggelar intimate wedding di villa, atau mencari manajemen properti bagi hasil transparan di Jabodetabek, tim hospitality kami siap melayani Anda 24/7.
+              {tc("Whether you are planning a private getaway, hosting an intimate villa wedding, or looking for transparent revenue-share property management in Greater Jakarta, our hospitality team is here for you 24/7.")}
             </p>
           </div>
         </div>
@@ -84,10 +86,10 @@ export default function ContactPage() {
             <div className="lg:col-span-5 space-y-8">
               <div className="space-y-3">
                 <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#A69C8E]">
-                  Direct Channels
+                  {tc("Direct Channels")}
                 </span>
                 <h2 className="font-serif text-3xl text-[#222222]">
-                  Concierge &amp; Asset Management Desk
+                  {tc("Concierge & Asset Management Desk")}
                 </h2>
               </div>
 
@@ -97,28 +99,28 @@ export default function ContactPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group block rounded-2xl border border-[#E8E4DC] bg-white overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer"
-                title="Buka profil asli Superhost Kinghouse Management di Airbnb"
+                title={tc("Official Airbnb Superhost Profile")}
               >
                 <div className="bg-[#FAF8F5] px-3.5 py-2 border-b border-[#E8E4DC] flex items-center justify-between text-xs">
                   <div className="flex items-center space-x-1.5">
                     <span className="h-2 w-2 rounded-full bg-[#FF385C]" />
-                    <span className="font-semibold text-[#222222]">Profil Resmi Airbnb Superhost</span>
+                    <span className="font-semibold text-[#222222]">{tc("Official Airbnb Superhost Profile")}</span>
                   </div>
                   <span className="text-xs text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                    Terverifikasi
+                    {tc("Verified")}
                   </span>
                 </div>
                 <div className="p-3 bg-white flex items-center justify-center">
                   <Image
                     src="/brand/airbnb-superhost-profile-card.png"
-                    alt="Profil Resmi Airbnb Superhost Kinghouse Management"
+                    alt={tc("Official Airbnb Superhost Profile")}
                     width={725}
                     height={507}
                     className="w-full h-auto rounded-xl object-contain shadow-xs transition-transform duration-300 group-hover:scale-[1.01]"
                   />
                 </div>
                 <div className="bg-[#FAF8F5] px-4 py-2.5 border-t border-[#E8E4DC] flex items-center justify-between text-xs text-[#8C7F5F] font-semibold group-hover:bg-[#F2ECE1] transition-colors">
-                  <span>Lihat Profil Asli di airbnb.com</span>
+                  <span>{tc("View the original profile on airbnb.com")}</span>
                   <ArrowUpRight className="h-3.5 w-3.5" />
                 </div>
               </a>
@@ -130,8 +132,8 @@ export default function ContactPage() {
                     <MessageSquare className="h-5 w-5 text-[#25D366]" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-[#222222]">Instant WhatsApp Concierge</h3>
-                    <p className="text-xs text-[#717171]">Average reply time: under 15 minutes</p>
+                    <h3 className="text-sm font-semibold text-[#222222]">{tc("Instant WhatsApp Concierge")}</h3>
+                    <p className="text-xs text-[#717171]">{tc("Average reply time: under 15 minutes")}</p>
                   </div>
                 </div>
                 <Button asChild className="w-full text-xs uppercase tracking-wider font-semibold">
@@ -141,7 +143,7 @@ export default function ContactPage() {
                     rel="noopener noreferrer"
                     onClick={() => trackWhatsAppClick({ source: "contact_page", context: "instant_concierge" })}
                   >
-                    Open WhatsApp Chat <ArrowUpRight className="ml-1.5 h-3.5 w-3.5" />
+                    {tc("Open WhatsApp Chat")} <ArrowUpRight className="ml-1.5 h-3.5 w-3.5" />
                   </a>
                 </Button>
               </div>
@@ -151,7 +153,7 @@ export default function ContactPage() {
                 <div className="flex items-start space-x-3">
                   <Mail className="h-5 w-5 text-[#A69C8E] shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-xs text-[#717171] block">Direct Inquiries</span>
+                    <span className="text-xs text-[#717171] block">{tc("Direct Inquiries")}</span>
                     <a
                       href="mailto:info@kinghousemanagement.com"
                       onClick={() => trackEmailClick({ source: "contact_page", email: "info@kinghousemanagement.com" })}
@@ -165,7 +167,7 @@ export default function ContactPage() {
                 <div className="flex items-start space-x-3">
                   <Phone className="h-5 w-5 text-[#A69C8E] shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-xs text-[#717171] block">WhatsApp Desk</span>
+                    <span className="text-xs text-[#717171] block">{tc("WhatsApp Desk")}</span>
                     <a
                       href="https://wa.me/6282123933218"
                       target="_blank"
@@ -182,7 +184,7 @@ export default function ContactPage() {
                 <div className="flex items-start space-x-3">
                   <MapPin className="h-5 w-5 text-[#A69C8E] shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-xs text-[#717171] block">Headquarters &bull; PT Kreasi Usman Gosse</span>
+                    <span className="text-xs text-[#717171] block">{tc("Headquarters • PT Kreasi Usman Gosse")}</span>
                     <a
                       href="https://maps.google.com/?q=18+Office+Park+Building+Jl.+TB+Simatupang+Kav.+18+Jakarta+Selatan+12520"
                       target="_blank"
@@ -198,7 +200,7 @@ export default function ContactPage() {
                         rel="noopener noreferrer"
                         className="hover:underline inline-flex items-center space-x-1"
                       >
-                        <span>Open in Google Maps</span>
+                        <span>{tc("Open in Google Maps")}</span>
                         <ArrowUpRight className="h-3 w-3" />
                       </a>
                     </span>
@@ -215,30 +217,30 @@ export default function ContactPage() {
                     <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#222222] text-white">
                       <CheckCircle2 className="h-7 w-7 text-[#A69C8E]" />
                     </div>
-                    <h3 className="font-serif text-2xl text-[#222222]">Message Dispatched</h3>
+                    <h3 className="font-serif text-2xl text-[#222222]">{tc("Message Dispatched")}</h3>
                     <p className="text-xs text-[#717171] max-w-sm mx-auto">
-                      Thank you for contacting Kinghouse. Our hospitality concierge or senior asset manager will follow up shortly.
+                      {tc("Thank you for contacting Kinghouse. Our hospitality concierge or senior asset manager will follow up shortly.")}
                     </p>
                     <Button variant="outline" size="sm" onClick={() => setSubmitted(false)}>
-                      Send Another Message
+                      {tc("Send Another Message")}
                     </Button>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="space-y-1">
-                      <h3 className="font-serif text-2xl text-[#222222]">Send a Direct Inquiry</h3>
-                      <p className="text-xs text-[#717171]">We respond to all requests within 24 hours.</p>
+                      <h3 className="font-serif text-2xl text-[#222222]">{tc("Send a Direct Inquiry")}</h3>
+                      <p className="text-xs text-[#717171]">{tc("We respond to all requests within 24 hours.")}</p>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-1.5">
                         <label className="text-xs font-bold uppercase tracking-wider text-[#222222]">
-                          Full Name *
+                          {tc("Full Name *")}
                         </label>
                         <Input
                           required
                           placeholder="Marcus Aurelius"
-                          value={formData.name}
+                          value={tc(formData.name)}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           className="bg-white"
                         />
@@ -246,7 +248,7 @@ export default function ContactPage() {
 
                       <div className="space-y-1.5">
                         <label className="text-xs font-bold uppercase tracking-wider text-[#222222]">
-                          Email Address *
+                          {tc("Email Address *")}
                         </label>
                         <Input
                           type="email"
@@ -261,28 +263,28 @@ export default function ContactPage() {
 
                     <div className="space-y-1.5">
                       <label className="text-xs font-bold uppercase tracking-wider text-[#222222]">
-                        Inquiry Nature
+                        {tc("Inquiry Nature")}
                       </label>
                       <select
                         value={formData.subject}
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                         className="flex h-11 w-full rounded-lg border border-[#EBEBEB] bg-white px-3.5 py-2 text-xs sm:text-sm text-[#222222] focus:border-[#222222] focus:outline-none cursor-pointer"
                       >
-                        <option value="Owner Asset Management">Owner Asset Management (HK on Demand, Co-Hosting, Full Management)</option>
-                        <option value="Guest Reservation Inquiry">Guest Reservation / Airbnb Inquiry</option>
-                        <option value="Architectural Partnership">Architectural & Media Partnership</option>
-                        <option value="General Question">General Question</option>
+                        <option value="Owner Asset Management">{tc("Owner Asset Management (HK on Demand, Co-Hosting, Full Management)")}</option>
+                        <option value="Guest Reservation Inquiry">{tc("Guest Reservation / Airbnb Inquiry")}</option>
+                        <option value="Architectural Partnership">{tc("Architectural & Media Partnership")}</option>
+                        <option value="General Question">{tc("General Question")}</option>
                       </select>
                     </div>
 
                     <div className="space-y-1.5">
                       <label className="text-xs font-bold uppercase tracking-wider text-[#222222]">
-                        Message Details *
+                        {tc("Message Details *")}
                       </label>
                       <textarea
                         required
                         rows={4}
-                        placeholder="Tell us about your property, dates, or specific requirements..."
+                        placeholder={tc("Tell us about your property, dates, or specific requirements...")}
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         className="w-full rounded-lg border border-[#EBEBEB] bg-white p-3.5 text-xs sm:text-sm text-[#222222] focus:border-[#222222] focus:outline-none"
@@ -290,7 +292,7 @@ export default function ContactPage() {
                     </div>
 
                     <Button type="submit" size="lg" className="w-full text-xs uppercase tracking-widest font-semibold h-12">
-                      Submit Inquiry
+                      {tc("Submit Inquiry")}
                     </Button>
                   </form>
                 )}

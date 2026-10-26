@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import { Metadata } from "next"
 import Image from "next/image"
-import Link from "next/link"
+import Link from "@/components/ui/localized-link"
 import { Clock, Calendar, ArrowLeft, Tag, ArrowRight } from "lucide-react"
 import { getBlogPostBySlug, getBlogPosts } from "@/lib/blog/service"
 import { SITE_CONFIG } from "@/lib/constants"

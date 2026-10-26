@@ -3,6 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
+import { stripLocale } from "@/lib/i18n/site"
 import { useState, useEffect, useRef } from "react"
 import {
   ChevronDown,
@@ -24,7 +25,7 @@ import {
 } from "@/lib/context/localization-context"
 
 export function Header() {
-  const pathname = usePathname()
+  const pathname = stripLocale(usePathname())
   const {
     currency,
     setCurrency,
@@ -33,6 +34,7 @@ export function Header() {
     setLanguage,
     currentLanguageConfig,
     t,
+    localizeHref,
   } = useLocalization()
 
   const [isScrolled, setIsScrolled] = useState(false)
@@ -104,7 +106,7 @@ export function Header() {
       <div className="mx-auto flex h-20 xl:h-24 max-w-[1440px] items-center px-6 lg:px-8 2xl:px-14 gap-x-6 2xl:gap-x-10">
         {/* Left: Official Brandmark Logo (Secondary Horizontal - Enlarged for clear legibility) */}
         <Link
-          href="/"
+          href={localizeHref("/")}
           className="group flex items-center shrink-0 py-1"
           onClick={() => {
             setPropertiesMenuOpen(false)
@@ -151,7 +153,7 @@ export function Header() {
           </div>
 
           <Link
-            href="/villas"
+            href={localizeHref("/villas")}
             className={`text-xs font-medium uppercase tracking-[0.08em] 2xl:tracking-[0.14em] whitespace-nowrap transition-colors py-2 ${
               pathname === "/offers" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
             }`}
@@ -160,7 +162,7 @@ export function Header() {
           </Link>
 
           <Link
-            href="/events"
+            href={localizeHref("/events")}
             className={`text-xs font-medium uppercase tracking-[0.08em] 2xl:tracking-[0.14em] whitespace-nowrap transition-colors py-2 ${
               pathname === "/events" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
             }`}
@@ -170,7 +172,7 @@ export function Header() {
 
           {/* OWNER SERVICES */}
           <Link
-            href="/owner-services"
+            href={localizeHref("/owner-services")}
             className={`text-xs font-medium uppercase tracking-[0.08em] 2xl:tracking-[0.14em] whitespace-nowrap transition-colors py-2 ${
               pathname === "/owner-services" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
             }`}
@@ -180,7 +182,7 @@ export function Header() {
 
           {/* ENQUIRE underlined (Exact Nakula styling) */}
           <Link
-            href="/contact"
+            href={localizeHref("/contact")}
             className="text-xs font-semibold uppercase tracking-[0.08em] 2xl:tracking-[0.14em] whitespace-nowrap text-[#8C7F5F] underline underline-offset-6 decoration-1 hover:text-[#776B4E] transition-colors py-2"
           >
             {t("enquire")}
@@ -303,7 +305,7 @@ export function Header() {
           {/* SIGN IN Pill Button (Exact Nakula button aesthetic & placement) */}
           {/* Admin-only sign-in: a compact icon so long translations never crowd the bar */}
           <Link
-            href="/login"
+            href={localizeHref("/login")}
             aria-label={t("signIn")}
             title={t("signIn")}
             className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#231F1A]/70 text-[#231F1A] hover:bg-[#231F1A] hover:text-[#FAF7F1] transition-all duration-200"
@@ -339,7 +341,7 @@ export function Header() {
                 <ul className="space-y-3 text-sm">
                   <li>
                     <Link
-                      href="/villas?bedrooms=4"
+                      href={localizeHref("/villas?bedrooms=4")}
                       className="group flex items-center justify-between text-white/90 hover:text-white transition-colors"
                       onClick={() => setPropertiesMenuOpen(false)}
                     >
@@ -349,7 +351,7 @@ export function Header() {
                   </li>
                   <li>
                     <Link
-                      href="/villas?bedrooms=5"
+                      href={localizeHref("/villas?bedrooms=5")}
                       className="group flex items-center justify-between text-white/90 hover:text-white transition-colors"
                       onClick={() => setPropertiesMenuOpen(false)}
                     >
@@ -359,7 +361,7 @@ export function Header() {
                   </li>
                   <li>
                     <Link
-                      href="/villas"
+                      href={localizeHref("/villas")}
                       className="group flex items-center justify-between text-white/90 hover:text-white transition-colors"
                       onClick={() => setPropertiesMenuOpen(false)}
                     >
@@ -369,7 +371,7 @@ export function Header() {
                   </li>
                   <li>
                     <Link
-                      href="/events"
+                      href={localizeHref("/events")}
                       className="group flex items-center justify-between text-white/90 hover:text-white transition-colors"
                       onClick={() => setPropertiesMenuOpen(false)}
                     >
@@ -387,7 +389,7 @@ export function Header() {
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-3 text-sm">
                   <Link
-                    href="/locations/jagakarsa"
+                    href={localizeHref("/locations/jagakarsa")}
                     className="group flex items-center justify-between text-white/90 hover:text-white transition-colors"
                     onClick={() => setPropertiesMenuOpen(false)}
                   >
@@ -396,7 +398,7 @@ export function Header() {
                   </Link>
 
                   <Link
-                    href="/locations/tangerang"
+                    href={localizeHref("/locations/tangerang")}
                     className="group flex items-center justify-between text-white/90 hover:text-white transition-colors"
                     onClick={() => setPropertiesMenuOpen(false)}
                   >
@@ -405,7 +407,7 @@ export function Header() {
                   </Link>
 
                   <Link
-                    href="/locations/palmerah"
+                    href={localizeHref("/locations/palmerah")}
                     className="group flex items-center justify-between text-white/90 hover:text-white transition-colors"
                     onClick={() => setPropertiesMenuOpen(false)}
                   >
@@ -414,7 +416,7 @@ export function Header() {
                   </Link>
 
                   <Link
-                    href="/locations/cikarang"
+                    href={localizeHref("/locations/cikarang")}
                     className="group flex items-center justify-between text-white/90 hover:text-white transition-colors"
                     onClick={() => setPropertiesMenuOpen(false)}
                   >
@@ -423,7 +425,7 @@ export function Header() {
                   </Link>
 
                   <Link
-                    href="/villas"
+                    href={localizeHref("/villas")}
                     className="group flex items-center justify-between text-[#DFC58E] font-medium hover:text-white transition-colors sm:col-span-2 pt-2 border-t border-white/10"
                     onClick={() => setPropertiesMenuOpen(false)}
                   >
@@ -479,28 +481,28 @@ export function Header() {
             {/* Mobile Nav Links */}
             <nav className="flex flex-col space-y-3">
               <Link
-                href="/villas"
+                href={localizeHref("/villas")}
                 className="font-serif text-xl text-[#222222] hover:text-[#8C7F5F] py-1 border-b border-[#F5F3EF]"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t("ourProperties")}
               </Link>
               <Link
-                href="/events"
+                href={localizeHref("/events")}
                 className="font-serif text-xl text-[#222222] hover:text-[#8C7F5F] py-1 border-b border-[#F5F3EF]"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t("events")}
               </Link>
               <Link
-                href="/owner-services"
+                href={localizeHref("/owner-services")}
                 className="font-serif text-xl text-[#222222] hover:text-[#8C7F5F] py-1 border-b border-[#F5F3EF]"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t("ownerServices")}
               </Link>
               <Link
-                href="/contact"
+                href={localizeHref("/contact")}
                 className="font-serif text-xl text-[#8C7F5F] py-1 border-b border-[#F5F3EF]"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -511,14 +513,14 @@ export function Header() {
             {/* Mobile CTAs */}
             <div className="pt-4 space-y-2.5">
               <Link
-                href="/villas"
+                href={localizeHref("/villas")}
                 className="w-full flex items-center justify-center rounded-lg bg-[#8C7F5F] py-3 text-xs font-semibold uppercase tracking-wider text-white"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t("exploreProperties")}
               </Link>
               <Link
-                href="/contact"
+                href={localizeHref("/contact")}
                 className="w-full flex items-center justify-center rounded-lg border border-[#8C7F5F] py-3 text-xs font-semibold uppercase tracking-wider text-[#8C7F5F] hover:bg-[#FAF8F3] transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >

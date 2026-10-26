@@ -1,5 +1,6 @@
 import { Metadata } from "next"
-import Script from "next/script"
+import { EventsVenueSchema } from "@/components/pages/events-schema"
+import { localeAlternates } from "@/lib/i18n/site"
 import { SITE_CONFIG, DEFAULT_OG_IMAGES } from "@/lib/constants"
 
 export const metadata: Metadata = {
@@ -15,9 +16,7 @@ export const metadata: Metadata = {
     "venue corporate retreat jakarta",
     "sewa villa event jakarta",
   ],
-  alternates: {
-    canonical: `${SITE_CONFIG.baseUrl}/events`,
-  },
+  alternates: localeAlternates("/events", "en"),
   openGraph: {
     images: DEFAULT_OG_IMAGES,
     title: "Garden Wedding & Private Event Venues | Kinghouse Management",
@@ -29,21 +28,6 @@ export const metadata: Metadata = {
   },
 }
 
-const eventVenueSchema = {
-  "@context": "https://schema.org",
-  "@type": "EventVenue",
-  name: "Versatile House With Garden — Event & Wedding Venue",
-  description: "Bespoke 500m² private lawn, ceremony pool, crystal chandelier dining hall, and bridal suites for up to 150 guests.",
-  url: `${SITE_CONFIG.baseUrl}/events`,
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Jagakarsa",
-    addressRegion: "Jakarta Selatan",
-    addressCountry: "ID",
-  },
-  maximumAttendeeCapacity: 150,
-}
-
 export default function EventsLayout({
   children,
 }: {
@@ -51,13 +35,8 @@ export default function EventsLayout({
 }) {
   return (
     <>
-      <Script
-        id="events-venue-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventVenueSchema) }}
-      />
+      <EventsVenueSchema locale="en" />
       {children}
     </>
   )
 }
-

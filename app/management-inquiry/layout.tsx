@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { localeAlternates } from "@/lib/i18n/site"
 import { SITE_CONFIG, DEFAULT_OG_IMAGES } from "@/lib/constants"
 import Script from "next/script"
 
@@ -17,9 +18,7 @@ export const metadata: Metadata = {
     "audit potensi pendapatan airbnb",
     "kinghouse management inquiry",
   ],
-  alternates: {
-    canonical: `${SITE_CONFIG.baseUrl}/management-inquiry`,
-  },
+  alternates: localeAlternates("/management-inquiry", "en"),
   openGraph: {
     images: DEFAULT_OG_IMAGES,
     title: "Property Management Inquiry & Fast-Track Yield Audit | Kinghouse Management",

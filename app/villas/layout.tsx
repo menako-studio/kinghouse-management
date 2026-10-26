@@ -1,7 +1,7 @@
 import { Metadata } from "next"
-import Script from "next/script"
 import { SITE_CONFIG, DEFAULT_OG_IMAGES } from "@/lib/constants"
-import { CURATED_VILLAS } from "@/lib/data"
+import { VillasSchema } from "@/components/pages/villas-schema"
+import { localeAlternates } from "@/lib/i18n/site"
 
 export const metadata: Metadata = {
   title: {
@@ -17,9 +17,7 @@ export const metadata: Metadata = {
     "apartemen harian tangerang",
     "apartemen cikarang orange county",
   ],
-  alternates: {
-    canonical: `${SITE_CONFIG.baseUrl}/villas`,
-  },
+  alternates: localeAlternates("/villas", "en"),
   openGraph: {
     images: DEFAULT_OG_IMAGES,
     title: "Curated Luxury Villas & Short-Stay Apartments | Kinghouse Management",
@@ -31,21 +29,6 @@ export const metadata: Metadata = {
   },
 }
 
-const villasItemListSchema = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  name: "Kinghouse Curated Short-Stay Residences",
-  description: "Curated collection of hotel-standard luxury villas and executive apartments in Greater Jakarta.",
-  numberOfItems: CURATED_VILLAS.length,
-  itemListElement: CURATED_VILLAS.map((villa, idx) => ({
-    "@type": "ListItem",
-    position: idx + 1,
-    url: `${SITE_CONFIG.baseUrl}/locations/${villa.areaSlug}/villas/${villa.slug}`,
-    name: villa.name,
-    description: villa.tagline,
-  })),
-}
-
 export default function VillasLayout({
   children,
 }: {
@@ -53,13 +36,8 @@ export default function VillasLayout({
 }) {
   return (
     <>
-      <Script
-        id="villas-itemlist-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(villasItemListSchema) }}
-      />
+      <VillasSchema locale="en" />
       {children}
     </>
   )
 }
-

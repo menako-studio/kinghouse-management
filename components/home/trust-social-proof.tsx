@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { useLocalization } from "@/lib/context/localization-context"
 
 export function TrustSocialProof() {
-  const { t } = useLocalization()
+  const { t, tc } = useLocalization()
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
 
   const nextTestimonial = () => {
@@ -78,12 +78,12 @@ export function TrustSocialProof() {
               target="_blank"
               rel="noopener noreferrer"
               className="group relative block w-full md:w-[320px] lg:w-[340px] shrink-0 overflow-hidden rounded-2xl bg-white shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_20px_40px_rgba(0,0,0,0.35)] border border-white/20 cursor-pointer"
-              title="Airbnb Superhost — Kinghouse Management"
+              title={tc("Airbnb Superhost — Kinghouse Management")}
             >
               <div className="p-3 bg-white flex items-center justify-center">
                 <Image
                   src="/brand/airbnb-superhost-profile-card.png"
-                  alt="Airbnb Superhost — Kinghouse Management"
+                  alt={tc("Airbnb Superhost — Kinghouse Management")}
                   width={725}
                   height={507}
                   className="w-full h-auto rounded-xl object-contain shadow-xs"
@@ -135,14 +135,14 @@ export function TrustSocialProof() {
 
             {/* Quote Body */}
             <blockquote className="font-serif text-xl sm:text-2xl lg:text-3xl font-normal leading-relaxed text-[#222222] tracking-tight">
-              &ldquo;{current.quote}&rdquo;
+              &ldquo;{tc(current.quote)}&rdquo;
             </blockquote>
 
             {/* Metric Highlight (if owner) */}
             {current.metricLift && (
               <div className="inline-flex items-center space-x-2 text-xs font-semibold text-[#222222] bg-[#FAFAFA] border border-[#EBEBEB] rounded-lg px-3 py-1.5 self-start">
                 <CheckCircle className="h-3.5 w-3.5 text-[#A69C8E]" />
-                <span>{t("verifiedMetricHighlight")}: {current.metricLift}</span>
+                <span>{t("verifiedMetricHighlight")}: {tc(current.metricLift)}</span>
               </div>
             )}
 
@@ -159,7 +159,7 @@ export function TrustSocialProof() {
                 </div>
                 <div>
                   <h4 className="text-sm font-semibold text-[#222222]">{current.author}</h4>
-                  <p className="text-xs text-[#717171]">{current.roleOrLocation}</p>
+                  <p className="text-xs text-[#717171]">{tc(current.roleOrLocation)}</p>
                 </div>
               </div>
 
@@ -168,14 +168,14 @@ export function TrustSocialProof() {
                 <button
                   onClick={prevTestimonial}
                   className="flex h-10 w-10 items-center justify-center rounded-full border border-[#EBEBEB] text-[#222222] hover:bg-[#FAFAFA] transition-colors"
-                  aria-label="Previous review"
+                  aria-label={tc("Previous review")}
                 >
                   <ChevronLeft className="h-4 w-4" />
                 </button>
                 <button
                   onClick={nextTestimonial}
                   className="flex h-10 w-10 items-center justify-center rounded-full border border-[#EBEBEB] text-[#222222] hover:bg-[#FAFAFA] transition-colors"
-                  aria-label="Next review"
+                  aria-label={tc("Next review")}
                 >
                   <ChevronRight className="h-4 w-4" />
                 </button>

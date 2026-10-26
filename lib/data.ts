@@ -480,7 +480,7 @@ export const CURATED_VILLAS: Villa[] = [
       "No pets allowed.",
       "No parties or unauthorized external guests.",
       "Keep kitchen clean & dispose garbage in shaft room.",
-      "Quiet hours: Harap menjaga ketenangan setelah pukul 22:00 WIB.",
+      "Quiet hours: Please keep noise down after 10:00 PM (WIB).",
       "Check-in: 3:00 PM • Check-out: 12:00 PM.",
     ],
     featured: false,
