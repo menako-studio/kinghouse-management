@@ -5,7 +5,7 @@ import { CuratedGrid } from "@/components/home/curated-grid"
 import { TrustSocialProof } from "@/components/home/trust-social-proof"
 import { DualPathSplit } from "@/components/home/dual-path-split"
 import { FunnelEntryGate } from "@/components/home/funnel-entry-gate"
-import { SITE_CONFIG } from "@/lib/constants"
+import { localeAlternates } from "@/lib/i18n/site"
 
 export const metadata: Metadata = {
   title: {
@@ -13,9 +13,7 @@ export const metadata: Metadata = {
   },
   description:
     "Curated luxury villas and short-stay apartments in Greater Jakarta (Jagakarsa, Tangerang, Cikarang). Hotel-standard hygiene & high-yield Airbnb co-hosting.",
-  alternates: {
-    canonical: SITE_CONFIG.baseUrl,
-  },
+  alternates: localeAlternates("/", "en"),
 }
 
 export default function HomePage() {

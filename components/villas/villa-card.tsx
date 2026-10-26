@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import Link from "next/link"
+import Link from "@/components/ui/localized-link"
 import { Star, ArrowUpRight, Bed, Bath, Users, Sparkles } from "lucide-react"
 import { Villa } from "@/lib/types"
 import { Badge } from "@/components/ui/badge"
@@ -15,7 +15,7 @@ interface VillaCardProps {
 }
 
 export function VillaCard({ villa, priority = false }: VillaCardProps) {
-  const { formatPrice, currency, t } = useLocalization()
+  const { formatPrice, currency, t, tc } = useLocalization()
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
@@ -43,7 +43,7 @@ export function VillaCard({ villa, priority = false }: VillaCardProps) {
               </Badge>
             ) : (
               <Badge variant="secondary" className="text-xs font-medium">
-                {villa.architecturalStyle}
+                {tc(villa.architecturalStyle)}
               </Badge>
             )}
 
@@ -54,14 +54,14 @@ export function VillaCard({ villa, priority = false }: VillaCardProps) {
                   <span>{villa.rating.toFixed(2)}</span>
                 </>
               ) : (
-                <span className="text-xs text-[#8C7F5F]">New</span>
+                <span className="text-xs text-[#8C7F5F]">{tc("New")}</span>
               )}
             </div>
           </div>
 
           {/* Bottom Location Overlay */}
           <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between rounded-lg bg-black/50 p-2.5 backdrop-blur-sm text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <span className="font-light truncate">{villa.location}</span>
+            <span className="font-light truncate">{tc(villa.location)}</span>
             <span className="shrink-0 flex items-center text-xs font-medium uppercase tracking-wider">
               {t("details")} <ArrowUpRight className="ml-0.5 h-3 w-3" />
             </span>
@@ -78,7 +78,7 @@ export function VillaCard({ villa, priority = false }: VillaCardProps) {
               >
                 {villa.name}
               </Link>
-              <p className="text-xs text-[#717171] line-clamp-1">{villa.tagline}</p>
+              <p className="text-xs text-[#717171] line-clamp-1">{tc(villa.tagline)}</p>
             </div>
           </div>
 
@@ -120,7 +120,7 @@ export function VillaCard({ villa, priority = false }: VillaCardProps) {
               className="inline-flex items-center space-x-1 text-xs font-semibold px-3 py-1.5 rounded-full bg-[#FAF6EE] text-[#6B4B2A] border border-[#E8DFC8] hover:bg-[#6B4B2A] hover:text-white transition-all cursor-pointer shadow-2xs active:scale-95"
             >
               <Sparkles className="h-3 w-3" />
-              <span>Book Options</span>
+              <span>{tc("Book Options")}</span>
               <ArrowUpRight className="h-3 w-3 ml-0.5" />
             </button>
           </div>

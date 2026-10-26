@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react"
 import Image from "next/image"
-import Link from "next/link"
+import Link from "@/components/ui/localized-link"
 import {
   Users,
   ArrowUpRight,
@@ -145,7 +145,7 @@ const versatileHouse = CURATED_VILLAS.find((v) => v.id === "villa-1")
 
 // Nakula Event Card matching events.png
 function NakulaEventCard({ event }: { event: VillaEvent }) {
-  const { formatPrice } = useLocalization()
+  const { formatPrice, tc } = useLocalization()
   const lowestPackage = event.packages[0]
   const startingPriceIdr = lowestPackage ? lowestPackage.priceIdr : 2800000
 
@@ -167,7 +167,7 @@ function NakulaEventCard({ event }: { event: VillaEvent }) {
       >
         <Image
           src={event.heroImage}
-          alt={event.title}
+          alt={tc(event.title)}
           fill
           className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
@@ -179,13 +179,13 @@ function NakulaEventCard({ event }: { event: VillaEvent }) {
         {/* Bottom Left: Start From IDR Price Overlay */}
         <div className="absolute bottom-3.5 left-4 text-white">
           <span className="text-xs uppercase font-medium tracking-wider text-white/80 block">
-            Start From
+            {tc("Start From")}
           </span>
           <div className="flex items-baseline space-x-1.5">
             <span className="font-semibold text-base sm:text-lg tracking-tight text-white">
               {formatPrice(startingPriceIdr)}
             </span>
-            <span className="text-xs text-white/80 font-light">/ Event</span>
+            <span className="text-xs text-white/80 font-light">{tc("/ Event")}</span>
           </div>
         </div>
 
@@ -205,7 +205,7 @@ function NakulaEventCard({ event }: { event: VillaEvent }) {
             <div className="flex items-center space-x-1">
               <Star className="h-3.5 w-3.5 fill-[#B8934C] text-[#B8934C]" />
               <span className="font-semibold text-[#222225]">5.0</span>
-              <span className="text-[#6B6862]">(10 Reviews)</span>
+              <span className="text-[#6B6862]">({tc("{count} Reviews", { count: 10 })})</span>
             </div>
           </div>
 
@@ -229,7 +229,7 @@ function NakulaEventCard({ event }: { event: VillaEvent }) {
             className="inline-flex items-center space-x-1 px-3 py-1 bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-xs font-bold uppercase tracking-wider rounded-md transition-colors shadow-2xs shrink-0 cursor-pointer"
           >
             <Download className="h-2.5 w-2.5" />
-            <span>DOWNLOAD BROCHURE</span>
+            <span>{tc("DOWNLOAD BROCHURE")}</span>
           </a>
         </div>
 
@@ -237,7 +237,7 @@ function NakulaEventCard({ event }: { event: VillaEvent }) {
         {/* Venue / Event Title */}
         <Link href={`/events/${event.slug}`}>
           <h2 className="font-serif text-xl sm:text-2xl text-[#222225] font-normal leading-snug group-hover:text-[#8C7F5F] transition-colors line-clamp-1">
-            {event.title}
+            {tc(event.title)}
           </h2>
         </Link>
 
@@ -245,22 +245,22 @@ function NakulaEventCard({ event }: { event: VillaEvent }) {
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-[#6B6862] pt-0.5">
           <span className="flex items-center space-x-1.5">
             <Users className="h-3.5 w-3.5 text-[#8C7F5F]" />
-            <span>{seatingPax} Seating</span>
+            <span>{seatingPax} {tc("Seating")}</span>
           </span>
           <span className="flex items-center space-x-1.5">
             <Users className="h-3.5 w-3.5 text-[#8C7F5F]" />
-            <span>{standingPax} Standing</span>
+            <span>{standingPax} {tc("Standing")}</span>
           </span>
           <span className="flex items-center space-x-1.5">
             <Maximize2 className="h-3.5 w-3.5 text-[#8C7F5F]" />
-            <span>{areaSqm} m² Garden</span>
+            <span>{areaSqm} {tc("m² Garden")}</span>
           </span>
         </div>
 
         {/* Suitable for Event / Features Flag */}
         <div className="flex items-center space-x-1.5 text-xs font-semibold text-[#8C7F5F]">
           <Sparkles className="h-3.5 w-3.5" />
-          <span>Suitable for Private Event & Ceremonies</span>
+          <span>{tc("Suitable for Private Event & Ceremonies")}</span>
         </div>
 
         {/* Event Feature Tag Pills */}
@@ -270,11 +270,11 @@ function NakulaEventCard({ event }: { event: VillaEvent }) {
               key={h}
               className="px-2.5 py-1 rounded-full text-xs font-medium bg-[#FAF8F5] text-[#6B6862] border border-[#E8E4DC]"
             >
-              {h}
+              {tc(h)}
             </span>
           ))}
           <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-[#FAF8F5] text-[#6B6862] border border-[#E8E4DC]">
-            0% Vendor Corkage
+            {tc("0% Vendor Corkage")}
           </span>
         </div>
       </div>
@@ -283,7 +283,7 @@ function NakulaEventCard({ event }: { event: VillaEvent }) {
 }
 
 export default function EventsPage() {
-  const { formatPrice, t } = useLocalization()
+  const { formatPrice, t, tc } = useLocalization()
   const [eventTypes, setEventTypes] = useState<string[]>([])
   const [selectedDestination, setSelectedDestination] = useState<string>("all")
   const [selectedPax, setSelectedPax] = useState<string>("all")
@@ -380,7 +380,7 @@ export default function EventsPage() {
       <section className="relative h-[52vh] sm:h-[62vh] flex items-center justify-center text-center overflow-hidden">
         <Image
           src="/properties/versatile-house/events/wedding-ceremony-lawn-pool.jpg"
-          alt="A Guide to Your Dream Wedding & Events at Kinghouse"
+          alt={tc("A Guide to Your Dream Wedding & Events at Kinghouse")}
           fill
           className="object-cover object-center"
           priority
@@ -389,9 +389,9 @@ export default function EventsPage() {
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 space-y-3">
           <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-white font-normal uppercase tracking-wide leading-tight">
-            A GUIDE TO YOUR DREAM
+            {tc("A GUIDE TO YOUR DREAM")}
             <br />
-            WEDDING & PRIVATE EVENTS
+            {tc("WEDDING & PRIVATE EVENTS")}
             <br />
             <span className="text-[#DFC58E] tracking-widest text-2xl sm:text-4xl">KINGHOUSE</span>
           </h1>
@@ -403,13 +403,13 @@ export default function EventsPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12 space-y-2.5">
           <nav className="text-xs uppercase tracking-widest text-[#6B6862] flex items-center justify-center space-x-2">
             <Link href="/" className="hover:text-[#222225] transition-colors">
-              HOME
+              {tc("HOME")}
             </Link>
             <span>/</span>
-            <span className="text-[#8C7F5F] font-semibold">EVENTS & VENUES</span>
+            <span className="text-[#8C7F5F] font-semibold">{tc("EVENTS & VENUES")}</span>
           </nav>
           <p className="text-xs sm:text-sm text-[#6B6862] max-w-3xl mx-auto font-light leading-relaxed">
-            At Kinghouse, we&apos;ve curated a collection of private villa venues across Greater Jakarta &mdash; each one a beautiful, intimate setting where your celebration can unfold with total privacy, zero vendor markup, and dedicated staff.
+            {tc("At Kinghouse, we've curated a collection of private villa venues across Greater Jakarta — each one a beautiful, intimate setting where your celebration can unfold with total privacy, zero vendor markup, and dedicated staff.")}
           </p>
         </div>
       </section>
@@ -428,11 +428,11 @@ export default function EventsPage() {
           >
             <div className="flex items-center space-x-2">
               <SlidersHorizontal className="h-4 w-4 text-[#8C7F5F]" />
-              <span>{showMobileFilters ? "Hide Filter Options" : "Show Filter Options"}</span>
+              <span>{tc(showMobileFilters ? "Hide Filter Options" : "Show Filter Options")}</span>
             </div>
             {isFilterActive && (
               <span className="bg-[#8C7F5F] text-white px-2 py-0.5 rounded-full text-xs">
-                Active Filters
+                {tc("Active Filters")}
               </span>
             )}
           </button>
@@ -448,14 +448,14 @@ export default function EventsPage() {
             {/* Sidebar Title */}
             <div className="pb-3 border-b border-[#222225]">
               <h2 className="text-sm font-bold uppercase tracking-widest text-[#222225]">
-                FILTERS
+                {tc("FILTERS")}
               </h2>
             </div>
 
             {/* 1. Property / Event Type Checkboxes */}
             <div className="space-y-3">
               <span className="text-xs font-bold uppercase tracking-wider text-[#6B6862] block">
-                PROPERTY / EVENT TYPE
+                {tc("PROPERTY / EVENT TYPE")}
               </span>
               <div className="space-y-2.5">
                 {[
@@ -478,7 +478,7 @@ export default function EventsPage() {
                         onChange={() => toggleEventType(item.id)}
                         className="h-4 w-4 rounded border-[#D5CFC3] text-[#8C7F5F] focus:ring-0 focus:ring-offset-0 accent-[#8C7F5F]"
                       />
-                      <span>{item.label}</span>
+                      <span>{tc(item.label)}</span>
                     </label>
                   )
                 })}
@@ -488,7 +488,7 @@ export default function EventsPage() {
             {/* 2. Availability Date Selector */}
             <div className="space-y-2">
               <span className="text-xs font-bold uppercase tracking-wider text-[#6B6862] block">
-                AVAILABILITY
+                {tc("AVAILABILITY")}
               </span>
               <div className="relative">
                 <input
@@ -503,7 +503,7 @@ export default function EventsPage() {
             {/* 3. Destination Dropdown */}
             <div className="space-y-2">
               <span className="text-xs font-bold uppercase tracking-wider text-[#6B6862] block">
-                DESTINATION
+                {tc("DESTINATION")}
               </span>
               <div className="relative">
                 <select
@@ -511,7 +511,7 @@ export default function EventsPage() {
                   onChange={(e) => setSelectedDestination(e.target.value)}
                   className="w-full appearance-none px-3 py-2 pr-8 text-xs border border-[#E8E4DC] rounded-md bg-[#FAF8F5] text-[#222225] focus:outline-none focus:border-[#8C7F5F] cursor-pointer"
                 >
-                  <option value="all">All Destinations</option>
+                  <option value="all">{tc("All Destinations")}</option>
                   <option value="jagakarsa">Jagakarsa, Jakarta Selatan</option>
                   <option value="tangerang">Pinang, Tangerang</option>
                   <option value="palmerah">Palmerah, Jakarta Barat</option>
@@ -524,7 +524,7 @@ export default function EventsPage() {
             {/* 4. Event Capacity (Pax) Dropdown */}
             <div className="space-y-2">
               <span className="text-xs font-bold uppercase tracking-wider text-[#6B6862] block">
-                EVENT CAPACITY (PAX)
+                {tc("EVENT CAPACITY (PAX)")}
               </span>
               <div className="relative">
                 <select
@@ -532,11 +532,11 @@ export default function EventsPage() {
                   onChange={(e) => setSelectedPax(e.target.value)}
                   className="w-full appearance-none px-3 py-2 pr-8 text-xs border border-[#E8E4DC] rounded-md bg-[#FAF8F5] text-[#222225] focus:outline-none focus:border-[#8C7F5F] cursor-pointer"
                 >
-                  <option value="all">Any Capacity</option>
-                  <option value="20">Up to 20 Pax</option>
-                  <option value="30">Up to 30 Pax</option>
-                  <option value="40">Up to 40 Pax</option>
-                  <option value="50">Up to 50+ Pax</option>
+                  <option value="all">{tc("Any Capacity")}</option>
+                  <option value="20">{tc("Up to 20 Pax")}</option>
+                  <option value="30">{tc("Up to 30 Pax")}</option>
+                  <option value="40">{tc("Up to 40 Pax")}</option>
+                  <option value="50">{tc("Up to 50+ Pax")}</option>
                 </select>
                 <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#6B6862] pointer-events-none" />
               </div>
@@ -554,12 +554,12 @@ export default function EventsPage() {
             {/* 5. Have a Venue in Mind Search */}
             <div className="space-y-2">
               <span className="text-xs font-bold uppercase tracking-wider text-[#6B6862] block">
-                HAVE A VENUE IN MIND?
+                {tc("HAVE A VENUE IN MIND?")}
               </span>
               <div className="relative">
                 <input
                   type="text"
-                  placeholder="Search..."
+                  placeholder={tc("Search...")}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full pl-3 pr-8 py-2 text-xs border border-[#E8E4DC] rounded-md bg-[#FAF8F5] text-[#222225] placeholder-[#A59877] focus:outline-none focus:border-[#8C7F5F]"
@@ -575,14 +575,14 @@ export default function EventsPage() {
                 onClick={() => setShowMobileFilters(false)}
                 className="w-full py-2.5 px-3 bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-xs font-semibold uppercase tracking-widest rounded-md transition-colors text-center cursor-pointer shadow-xs"
               >
-                APPLY
+                {tc("APPLY")}
               </button>
               <button
                 type="button"
                 onClick={handleClear}
                 className="w-full py-2.5 px-3 bg-white hover:bg-[#FAF8F5] border border-[#D5CFC3] text-[#222225] text-xs font-semibold uppercase tracking-widest rounded-md transition-colors text-center cursor-pointer"
               >
-                CLEAR
+                {tc("CLEAR")}
               </button>
             </div>
           </aside>
@@ -592,7 +592,7 @@ export default function EventsPage() {
             {/* Top Bar above grid matching events.png */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E8E4DC]">
               <h2 className="font-serif text-2xl sm:text-3xl text-[#222225] uppercase tracking-wide">
-                FIND YOUR VENUE
+                {tc("FIND YOUR VENUE")}
               </h2>
 
               <div className="flex flex-wrap items-center gap-3 text-xs">
@@ -600,7 +600,7 @@ export default function EventsPage() {
                 <div className="relative">
                   <input
                     type="text"
-                    placeholder="PROPERTY NAME"
+                    placeholder={tc("PROPERTY NAME")}
                     value={gridSearchQuery}
                     onChange={(e) => setGridSearchQuery(e.target.value)}
                     className="w-36 sm:w-44 pl-3 pr-7 py-1.5 text-xs font-medium uppercase tracking-wider border border-[#E8E4DC] rounded-full bg-[#FAF8F5] text-[#222225] placeholder-[#6B6862] focus:outline-none focus:border-[#8C7F5F]"
@@ -615,10 +615,10 @@ export default function EventsPage() {
                     onChange={(e) => setSortBy(e.target.value as SortOption)}
                     className="appearance-none pl-3 pr-7 py-1.5 text-xs font-semibold uppercase tracking-wider border border-[#E8E4DC] rounded-full bg-[#FAF8F5] text-[#222225] focus:outline-none focus:border-[#8C7F5F] cursor-pointer"
                   >
-                    <option value="recommended">SORT BY</option>
-                    <option value="price-asc">PRICE: LOW TO HIGH</option>
-                    <option value="price-desc">PRICE: HIGH TO LOW</option>
-                    <option value="capacity">CAPACITY: HIGH TO LOW</option>
+                    <option value="recommended">{tc("SORT BY")}</option>
+                    <option value="price-asc">{tc("PRICE: LOW TO HIGH")}</option>
+                    <option value="price-desc">{tc("PRICE: HIGH TO LOW")}</option>
+                    <option value="capacity">{tc("CAPACITY: HIGH TO LOW")}</option>
                   </select>
                   <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 h-3 w-3 text-[#6B6862] pointer-events-none" />
                 </div>
@@ -634,15 +634,15 @@ export default function EventsPage() {
               </div>
             ) : (
               <div className="rounded-2xl border border-[#E8E4DC] bg-[#FAF8F5] py-16 px-6 text-center space-y-4">
-                <p className="font-serif text-2xl text-[#222225]">No Events Found</p>
+                <p className="font-serif text-2xl text-[#222225]">{tc("No Events Found")}</p>
                 <p className="text-xs text-[#6B6862] max-w-sm mx-auto">
-                  Try clearing your filters or changing your event category to explore our packages.
+                  {tc("Try clearing your filters or changing your event category to explore our packages.")}
                 </p>
                 <button
                   onClick={handleClear}
                   className="px-5 py-2 bg-[#8C7F5F] text-white text-xs font-semibold uppercase tracking-wider rounded-md hover:bg-[#776B4E] transition-colors cursor-pointer"
                 >
-                  Clear All Filters
+                  {tc("Clear All Filters")}
                 </button>
               </div>
             )}
@@ -658,13 +658,13 @@ export default function EventsPage() {
             <div className="max-w-2xl space-y-2">
               <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-[#8C7F5F]">
                 <Camera className="h-3.5 w-3.5" />
-                <span>REAL OCCASIONS & VENUE INSPIRATION</span>
+                <span>{tc("REAL OCCASIONS & VENUE INSPIRATION")}</span>
               </div>
               <h2 className="font-serif text-3xl sm:text-4xl text-[#222225] font-normal leading-tight">
-                Moments of Celebration at Kinghouse
+                {tc("Moments of Celebration at Kinghouse")}
               </h2>
               <p className="text-xs sm:text-sm text-[#6B6862] leading-relaxed">
-                Explore real wedding setups, open-air lawn ceremonies, intimate banquets, and bridal sanctuaries across our 500m² private enclave in Jagakarsa.
+                {tc("Explore real wedding setups, open-air lawn ceremonies, intimate banquets, and bridal sanctuaries across our 500m² private enclave in Jagakarsa.")}
               </p>
             </div>
 
@@ -688,7 +688,7 @@ export default function EventsPage() {
                         : "bg-white text-[#6B6862] hover:text-[#222225] hover:bg-[#F3EFE6] border border-[#E8E4DC]"
                     }`}
                   >
-                    {tab.label}
+                    {tc(tab.label)}
                   </button>
                 )
               })}
@@ -707,7 +707,7 @@ export default function EventsPage() {
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#F0ECE1]">
                   <Image
                     src={photo.image}
-                    alt={photo.title}
+                    alt={tc(photo.title)}
                     fill
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-108"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -718,7 +718,7 @@ export default function EventsPage() {
                   {/* Top Badge: Category */}
                   <div className="absolute top-3 left-3">
                     <span className="px-2.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-white/90 text-[#222225] backdrop-blur-md shadow-xs">
-                      {photo.categoryLabel}
+                      {tc(photo.categoryLabel)}
                     </span>
                   </div>
 
@@ -730,10 +730,10 @@ export default function EventsPage() {
                   {/* Bottom Image Info */}
                   <div className="absolute bottom-3 left-3 right-3 text-white">
                     <span className="text-xs text-white/80 font-medium uppercase tracking-wider block">
-                      {photo.area} &bull; {photo.capacity}
+                      {tc(photo.area)} &bull; {tc(photo.capacity)}
                     </span>
                     <h3 className="font-serif text-base font-normal leading-snug line-clamp-1 drop-shadow-sm">
-                      {photo.title}
+                      {tc(photo.title)}
                     </h3>
                   </div>
                 </div>
@@ -741,10 +741,10 @@ export default function EventsPage() {
                 {/* Card Description */}
                 <div className="p-4 space-y-2">
                   <p className="text-xs text-[#6B6862] leading-relaxed line-clamp-2">
-                    {photo.caption}
+                    {tc(photo.caption)}
                   </p>
                   <div className="flex items-center justify-between pt-1 text-xs font-semibold text-[#8C7F5F]">
-                    <span>View Setup Details</span>
+                    <span>{tc("View Setup Details")}</span>
                     <ChevronRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
@@ -760,10 +760,10 @@ export default function EventsPage() {
               </div>
               <div className="space-y-1">
                 <h4 className="font-serif text-lg text-[#222225]">
-                  0% Vendor Corkage & Total Flexibility
+                  {tc("0% Vendor Corkage & Total Flexibility")}
                 </h4>
                 <p className="text-xs text-[#6B6862]">
-                  Bring your preferred catering, florist, wedding planner, and MUA with zero surcharge or corkage fees.
+                  {tc("Bring your preferred catering, florist, wedding planner, and MUA with zero surcharge or corkage fees.")}
                 </p>
               </div>
             </div>
@@ -774,7 +774,7 @@ export default function EventsPage() {
               rel="noopener noreferrer"
               className="px-6 py-3 rounded-full bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-colors shadow-sm cursor-pointer shrink-0"
             >
-              Request Venue Tour
+              {tc("Request Venue Tour")}
             </a>
           </div>
         </div>
@@ -805,7 +805,7 @@ export default function EventsPage() {
             <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full bg-[#111]">
               <Image
                 src={lightboxPhoto.image}
-                alt={lightboxPhoto.title}
+                alt={tc(lightboxPhoto.title)}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 800px"
@@ -817,24 +817,24 @@ export default function EventsPage() {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#F0ECE1] pb-3">
                 <div>
                   <span className="text-xs font-bold uppercase tracking-wider text-[#8C7F5F]">
-                    {lightboxPhoto.categoryLabel} &bull; {lightboxPhoto.area}
+                    {tc(lightboxPhoto.categoryLabel)} &bull; {tc(lightboxPhoto.area)}
                   </span>
                   <h3 className="font-serif text-xl sm:text-2xl text-[#222225] font-normal">
-                    {lightboxPhoto.title}
+                    {tc(lightboxPhoto.title)}
                   </h3>
                 </div>
                 <span className="inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-[#FAF8F5] text-[#8C7F5F] border border-[#E8E4DC] self-start sm:self-auto">
-                  {lightboxPhoto.capacity}
+                  {tc(lightboxPhoto.capacity)}
                 </span>
               </div>
 
               <p className="text-xs sm:text-sm text-[#6B6862] leading-relaxed">
-                {lightboxPhoto.caption}
+                {tc(lightboxPhoto.caption)}
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
                 <span className="text-xs text-[#888888]">
-                  Kinghouse Curated Residences &bull; Jagakarsa, South Jakarta
+                  {tc("Kinghouse Curated Residences • Jagakarsa, South Jakarta")}
                 </span>
                 <a
                   href={`${whatsappBase("EVENT")}?text=${encodeURIComponent(`Hello Kinghouse! I saw the "${lightboxPhoto.title}" setup in your events gallery and would like to inquire about date availability and package rates.`)}`}
@@ -843,7 +843,7 @@ export default function EventsPage() {
                   className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-xl bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-xs font-semibold uppercase tracking-wider transition-colors shadow-sm"
                 >
                   <MessageCircle className="h-4 w-4" />
-                  <span>Inquire This Setup on WhatsApp</span>
+                  <span>{tc("Inquire This Setup on WhatsApp")}</span>
                 </a>
               </div>
             </div>
@@ -856,13 +856,13 @@ export default function EventsPage() {
         <div className="rounded-3xl border border-[#E8E4DC] bg-[#FAF8F5] p-6 sm:p-10 shadow-xs">
           <div className="max-w-3xl mb-8">
             <span className="text-xs uppercase tracking-widest font-bold text-[#8C7F5F]">
-              OFFICIAL PRICE MATRIX 2026
+              {tc("OFFICIAL PRICE MATRIX 2026")}
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl text-[#222225] mt-1 font-normal">
-              Versatile House Event Package Price List
+              {tc("Versatile House Event Package Price List")}
             </h2>
             <p className="text-xs sm:text-sm text-[#6B6862] mt-2 leading-relaxed">
-              Transparent rate card for private events at Jagakarsa residence. Choose your session duration and guest capacity.
+              {tc("Transparent rate card for private events at Jagakarsa residence. Choose your session duration and guest capacity.")}
             </p>
           </div>
 
@@ -880,7 +880,7 @@ export default function EventsPage() {
                       : "bg-white text-[#6B6862] hover:bg-[#F3EFE6] hover:text-[#222225] border border-[#E8E4DC]"
                   }`}
                 >
-                  {tab.categoryLabel} ({tab.durationText})
+                  {tc(tab.categoryLabel)} ({tc(tab.durationText)})
                 </button>
               )
             })}
@@ -890,7 +890,7 @@ export default function EventsPage() {
           {currentPricelistTier && (
             <div className="py-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
               <p className="text-xs sm:text-sm text-[#222225] max-w-xl">
-                {currentPricelistTier.description}
+                {tc(currentPricelistTier.description)}
                 {currentPricelistTier.overnightStayMax && (
                   <strong className="block text-[#8C7F5F] mt-1">
                     * Includes overnight stay for up to {currentPricelistTier.overnightStayMax} guests in 5–6 bedrooms.
@@ -934,7 +934,7 @@ export default function EventsPage() {
                   <th className="px-5 py-4 font-semibold">{t("durationHeader")}</th>
                   <th className="px-5 py-4 font-semibold">{t("weekdayRateHeader")}</th>
                   <th className="px-5 py-4 font-semibold">{t("weekendRateHeader")}</th>
-                  <th className="px-5 py-4 font-semibold text-right">Inquiry</th>
+                  <th className="px-5 py-4 font-semibold text-right">{tc("Inquiry")}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#E8E4DC]">
@@ -944,13 +944,13 @@ export default function EventsPage() {
                   )
                   return (
                     <tr key={tier.name} className="hover:bg-[#FAF8F5] transition-colors">
-                      <td className="px-5 py-4 font-semibold text-[#222225]">{tier.name}</td>
+                      <td className="px-5 py-4 font-semibold text-[#222225]">{tc(tier.name)}</td>
                       <td className="px-5 py-4 text-[#6B6862]">
                         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#FAF8F5] text-[#8C7F5F] border border-[#E8E4DC]">
                           {tier.pax} Pax
                         </span>
                       </td>
-                      <td className="px-5 py-4 text-[#6B6862]">{tier.duration}</td>
+                      <td className="px-5 py-4 text-[#6B6862]">{tc(tier.duration)}</td>
                       <td className={`px-5 py-4 font-semibold ${activeRateType === "weekday" ? "text-[#222225] text-sm" : "text-[#6B6862]"}`}>
                         {formatPrice(tier.weekdayPriceIdr)}
                       </td>
@@ -976,8 +976,8 @@ export default function EventsPage() {
           </div>
 
           <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-[#6B6862] gap-2">
-            <span>* Zero vendor corkage fee. Outside catering, florist, & photographer welcome.</span>
-            <span>Official commercial invoice & tax receipts provided for corporate bookings.</span>
+            <span>{tc("* Zero vendor corkage fee. Outside catering, florist, & photographer welcome.")}</span>
+            <span>{tc("Official commercial invoice & tax receipts provided for corporate bookings.")}</span>
           </div>
         </div>
       </section>
@@ -994,13 +994,13 @@ export default function EventsPage() {
           <div className="relative z-10 max-w-3xl mb-10 space-y-3">
             <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-[#DFC58E]/30 text-xs font-semibold text-[#DFC58E]">
               <Globe className="h-3.5 w-3.5" />
-              <span className="uppercase tracking-widest text-xs">International &amp; Destination Wedding Desk</span>
+              <span className="uppercase tracking-widest text-xs">{tc("International & Destination Wedding Desk")}</span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal leading-tight">
-              Planning an Expat or Destination Villa Wedding in Jakarta?
+              {tc("Planning an Expat or Destination Villa Wedding in Jakarta?")}
             </h2>
             <p className="text-white/80 text-sm sm:text-base leading-relaxed font-light">
-              Versatile House Jagakarsa provides the seclusion and botanical luxury of a Bali private villa without the logistical hurdles of island travel. We welcome international couples, multicultural families, and expat celebrations with 100% vendor freedom and dedicated bilingual concierge support.
+              {tc("Versatile House Jagakarsa provides the seclusion and botanical luxury of a Bali private villa without the logistical hurdles of island travel. We welcome international couples, multicultural families, and expat celebrations with 100% vendor freedom and dedicated bilingual concierge support.")}
             </p>
           </div>
 
@@ -1009,60 +1009,60 @@ export default function EventsPage() {
             <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2">
               <div className="flex items-center space-x-2.5 text-[#DFC58E]">
                 <UtensilsCrossed className="h-5 w-5" />
-                <h4 className="font-semibold text-sm text-white">0% Vendor Corkage</h4>
+                <h4 className="font-semibold text-sm text-white">{tc("0% Vendor Corkage")}</h4>
               </div>
               <p className="text-xs text-white/70 leading-relaxed font-light">
-                Bring your preferred international wedding planner, private chef, local or western caterer, wine collection, and photographer with zero corkage fees or vendor penalties.
+                {tc("Bring your preferred international wedding planner, private chef, local or western caterer, wine collection, and photographer with zero corkage fees or vendor penalties.")}
               </p>
             </div>
 
             <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2">
               <div className="flex items-center space-x-2.5 text-[#DFC58E]">
                 <Plane className="h-5 w-5" />
-                <h4 className="font-semibold text-sm text-white">Airport &amp; Hotel Proximity</h4>
+                <h4 className="font-semibold text-sm text-white">{tc("Airport & Hotel Proximity")}</h4>
               </div>
               <p className="text-xs text-white/70 leading-relaxed font-light">
-                Convenient 35–45 min direct highway connection from Soekarno-Hatta (CGK) via Desari toll. 4-star and 5-star partner hotels on TB Simatupang are just 10 mins away for overflow guests.
+                {tc("Convenient 35–45 min direct highway connection from Soekarno-Hatta (CGK) via Desari toll. 4-star and 5-star partner hotels on TB Simatupang are just 10 mins away for overflow guests.")}
               </p>
             </div>
 
             <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2">
               <div className="flex items-center space-x-2.5 text-[#DFC58E]">
                 <CloudSun className="h-5 w-5" />
-                <h4 className="font-semibold text-sm text-white">100% Weather Backup Plan</h4>
+                <h4 className="font-semibold text-sm text-white">{tc("100% Weather Backup Plan")}</h4>
               </div>
               <p className="text-xs text-white/70 leading-relaxed font-light">
-                Sudden tropical rain? Seamlessly transition from the 500m² lawn to our Grand Living Hall with 5-meter ceilings and sheltered garden terrace, comfortably seating up to 50 guests.
+                {tc("Sudden tropical rain? Seamlessly transition from the 500m² lawn to our Grand Living Hall with 5-meter ceilings and sheltered garden terrace, comfortably seating up to 50 guests.")}
               </p>
             </div>
 
             <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2">
               <div className="flex items-center space-x-2.5 text-[#DFC58E]">
                 <ShieldCheck className="h-5 w-5" />
-                <h4 className="font-semibold text-sm text-white">Any Ceremony Style Welcomed</h4>
+                <h4 className="font-semibold text-sm text-white">{tc("Any Ceremony Style Welcomed")}</h4>
               </div>
               <p className="text-xs text-white/70 leading-relaxed font-light">
-                From intimate Christian or secular vow exchanges to traditional Akad Nikah, tea ceremonies, or vow renewals, our private residence offers complete peace and sacred privacy.
+                {tc("From intimate Christian or secular vow exchanges to traditional Akad Nikah, tea ceremonies, or vow renewals, our private residence offers complete peace and sacred privacy.")}
               </p>
             </div>
 
             <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2">
               <div className="flex items-center space-x-2.5 text-[#DFC58E]">
                 <Users className="h-5 w-5" />
-                <h4 className="font-semibold text-sm text-white">15 Pax Family Accommodation</h4>
+                <h4 className="font-semibold text-sm text-white">{tc("15 Pax Family Accommodation")}</h4>
               </div>
               <p className="text-xs text-white/70 leading-relaxed font-light">
-                The full 5-bedroom residence is exclusively yours. Close family members can stay together overnight with private pool access, hotel-grade linens, and daily housekeeping.
+                {tc("The full 5-bedroom residence is exclusively yours. Close family members can stay together overnight with private pool access, hotel-grade linens, and daily housekeeping.")}
               </p>
             </div>
 
             <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2">
               <div className="flex items-center space-x-2.5 text-[#DFC58E]">
                 <Globe className="h-5 w-5" />
-                <h4 className="font-semibold text-sm text-white">Multi-Currency &amp; Virtual Tours</h4>
+                <h4 className="font-semibold text-sm text-white">{tc("Multi-Currency & Virtual Tours")}</h4>
               </div>
               <p className="text-xs text-white/70 leading-relaxed font-light">
-                Transparent quotes and contracts in USD, EUR, AUD, SGD, or IDR. We offer live WhatsApp or FaceTime video walkthroughs for overseas couples before signing.
+                {tc("Transparent quotes and contracts in USD, EUR, AUD, SGD, or IDR. We offer live WhatsApp or FaceTime video walkthroughs for overseas couples before signing.")}
               </p>
             </div>
           </div>
@@ -1070,7 +1070,7 @@ export default function EventsPage() {
           {/* Action CTAs */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-6 border-t border-white/10 relative z-10">
             <div className="text-xs text-white/60">
-              English-speaking concierge &bull; Average inquiry response under 15 minutes &bull; Live FaceTime walkthroughs available
+              {tc("English-speaking concierge • Average inquiry response under 15 minutes • Live FaceTime walkthroughs available")}
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
@@ -1088,7 +1088,7 @@ export default function EventsPage() {
                 className="inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-2xl bg-[#DFC58E] hover:bg-[#C9A96E] text-[#19191B] text-xs font-bold uppercase tracking-wider transition-all shadow-md hover:scale-[1.02] cursor-pointer"
               >
                 <MessageCircle className="h-4 w-4" />
-                <span>Chat with International Concierge</span>
+                <span>{tc("Chat with International Concierge")}</span>
               </a>
 
               <a
@@ -1104,7 +1104,7 @@ export default function EventsPage() {
                 className="inline-flex items-center justify-center space-x-2 px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs font-semibold tracking-wider transition-all cursor-pointer"
               >
                 <Download className="h-3.5 w-3.5" />
-                <span>Download Wedding Deck (PDF)</span>
+                <span>{tc("Download Wedding Deck (PDF)")}</span>
               </a>
             </div>
           </div>
@@ -1131,19 +1131,19 @@ export default function EventsPage() {
               <table className="w-full text-left text-xs">
                 <thead className="bg-[#FAF8F5] text-[#222225] font-serif uppercase tracking-wider text-xs border-b border-[#E8E4DC]">
                   <tr>
-                    <th className="px-5 py-4 font-semibold">Room Configuration</th>
-                    <th className="px-5 py-4 font-semibold">Maximum Guests</th>
-                    <th className="px-5 py-4 font-semibold">Weekday Price</th>
-                    <th className="px-5 py-4 font-semibold">Weekend Price</th>
-                    <th className="px-5 py-4 font-semibold">Peak Season Price</th>
-                    <th className="px-5 py-4 font-semibold">Extra Guest</th>
+                    <th className="px-5 py-4 font-semibold">{tc("Room Configuration")}</th>
+                    <th className="px-5 py-4 font-semibold">{tc("Maximum Guests")}</th>
+                    <th className="px-5 py-4 font-semibold">{tc("Weekday Price")}</th>
+                    <th className="px-5 py-4 font-semibold">{tc("Weekend Price")}</th>
+                    <th className="px-5 py-4 font-semibold">{tc("Peak Season Price")}</th>
+                    <th className="px-5 py-4 font-semibold">{tc("Extra Guest")}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#E8E4DC]">
                   {versatileHouse.stayConfigurations.map((stay) => (
                     <tr key={stay.bedrooms} className="hover:bg-[#FAF8F5] transition-colors">
-                      <td className="px-5 py-4 font-semibold text-[#222225]">{stay.bedrooms} Bedroom</td>
-                      <td className="px-5 py-4 text-[#6B6862]">Max {stay.maxGuests} Guests</td>
+                      <td className="px-5 py-4 font-semibold text-[#222225]">{stay.bedrooms} {tc("Bedroom")}</td>
+                      <td className="px-5 py-4 text-[#6B6862]">{tc("Max {count} Guests", { count: stay.maxGuests })}</td>
                       <td className="px-5 py-4 font-semibold text-[#222225]">
                         {formatPrice(stay.weekdayPriceIdr)}
                       </td>
@@ -1154,7 +1154,7 @@ export default function EventsPage() {
                         {formatPrice(stay.peakSeasonPriceIdr)}
                       </td>
                       <td className="px-5 py-4 text-[#8C7F5F]">
-                        {formatPrice(stay.extraGuestPriceIdr)}/pax
+                        {formatPrice(stay.extraGuestPriceIdr)}{tc("/pax")}
                       </td>
                     </tr>
                   ))}
@@ -1164,7 +1164,7 @@ export default function EventsPage() {
 
             <div className="mt-4 flex items-center justify-between text-xs text-[#6B6862] border-t border-[#E8E4DC] pt-3">
               <span className="font-semibold text-[#222225]">
-                One-time Cleaning Fee: {formatPrice(versatileHouse.price.cleaningFeeIdr)}
+                {tc("One-time Cleaning Fee:")} {formatPrice(versatileHouse.price.cleaningFeeIdr)}
               </span>
               <a
                 href={`${whatsappBase("EVENT")}?text=${encodeURIComponent("Hello Kinghouse! I would like to inquire about room stay configurations at Versatile House Jagakarsa.")}`}
@@ -1172,7 +1172,7 @@ export default function EventsPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center space-x-1 text-[#8C7F5F] hover:text-[#222225] font-semibold"
               >
-                <span>Inquire Custom Stay via WhatsApp</span>
+                <span>{tc("Inquire Custom Stay via WhatsApp")}</span>
                 <ChevronRight className="h-3.5 w-3.5" />
               </a>
             </div>

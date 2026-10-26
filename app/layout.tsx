@@ -110,7 +110,7 @@ export const metadata: Metadata = {
       "Institutional short-stay villa & Airbnb asset management across South Jakarta, Tangerang, and Cikarang. Superior owner EBITDA, algorithmic dynamic pricing, and 24/7 guest concierge.",
     type: "website",
     locale: "en_US",
-    alternateLocale: ["id_ID", "ja_JP", "zh_CN", "fr_FR", "es_ES", "de_DE", "ru_RU"],
+    alternateLocale: ["id_ID"],
     siteName: "Kinghouse Management",
     url: SITE_CONFIG.baseUrl,
     images: [

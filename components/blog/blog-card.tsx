@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
+import Link from "@/components/ui/localized-link"
 import { Clock, Calendar, ArrowRight, Tag } from "lucide-react"
 import { BlogPost } from "@/lib/types"
 

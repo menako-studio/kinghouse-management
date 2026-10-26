@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
+import Link from "@/components/ui/localized-link"
 import {
   ArrowRight,
   Sparkles,
@@ -36,7 +36,7 @@ export default function AboutPage() {
 
   const content = isId
     ? {
-        heroBadge: "PT Kreasi Usman Gosse • Established 2020",
+        heroBadge: "PT Kreasi Usman Gosse • Berdiri Sejak 2020",
         heroTitleStart: "Dari Komitmen Kebersihan Berdaya Sosial,",
         heroTitleHighlight: "Menuju Pengelolaan Properti Menyeluruh.",
         heroDesc:
@@ -52,7 +52,7 @@ export default function AboutPage() {
           "Bagi banyak pemilik, mengelola sewa harian seringkali menguras waktu dan tenaga: merespons chat di larut malam, memastikan unit bersih tepat waktu sebelum tamu baru tiba, hingga mengatasi komplain. Percayakan pengelolaan properti Anda pada Kinghouse Management untuk menghadirkan pengalaman menginap berkualitas tinggi bagi para tamu tanpa menyita waktu berharga Anda.",
         btnFeeSplit: "Lihat Layanan & Fee Pengelolaan",
         btnViewPortfolio: "Lihat Portofolio Unit",
-        photoTag: "Superhost Hospitality",
+        photoTag: "Hospitality Standar Superhost",
         photoTitle: "Versatile House With Garden, Jagakarsa",
         photoReviews: "4.90 ★ Superhost • 68+ Ulasan Tamu Terverifikasi",
 
@@ -81,7 +81,7 @@ export default function AboutPage() {
 
         heritageEyebrow: "Sejarah Awal • Social Enterprise Berkelanjutan",
         heritageTitle: "Kinghouse Cleaning:",
-        heritageQuote: "Cleaning is More Than Hygiene, It’s an Opportunity to Start Over.",
+        heritageQuote: "Membersihkan Bukan Sekadar Kebersihan, Melainkan Kesempatan untuk Memulai Kembali.",
         heritageBio1:
           "Didirikan pada tahun 2020, Kinghouse Cleaning adalah perusahaan jasa kebersihan profesional berbasis di Jakarta yang lahir dengan misi sosial untuk memberdayakan komunitas lokal. Sebagai wirausaha sosial (social enterprise), Kinghouse Cleaning berfokus memberikan keterampilan kerja, pelatihan teknis berstandar tinggi, serta dukungan kewirausahaan kepada para karyawannya—sebagian besar merupakan single mothers dan perempuan kepala rumah tangga—sehingga mereka dapat meningkatkan taraf dan kualitas hidup keluarga mereka secara mandiri dan bermartabat.",
         heritageBio2:
@@ -102,35 +102,35 @@ export default function AboutPage() {
         servicesTitle: "Layanan Kebersihan & Operasional",
         servicesSubtitle: "11 Layanan Khusus Berstandar Hospitality",
         cleaningServices: [
-          { name: "Commercial Cleaning", desc: "Kantor komersial, ritel, & ruang publik" },
-          { name: "Residential Cleaning", desc: "Perumahan, hunian tapak, & private residence" },
-          { name: "Rental Cleaning (Airbnb)", desc: "Turnover kilat standar hotel 5-bintang" },
-          { name: "Move Out / In Cleaning", desc: "Deep cleaning transisi penyewa baru" },
-          { name: "Common Area Cleaning", desc: "Area lobi, koridor, & fasilitas bersama" },
-          { name: "Construction Cleaning", desc: "Pembersihan sisa renovasi & serah terima" },
-          { name: "Event Cleaning", desc: "Pembersihan sebelum & sesudah pesta / wedding" },
-          { name: "Day Porter Services", desc: "Staf kebersihan on-site harian berdedikasi" },
-          { name: "Floor & Carpet Care", desc: "Treatment marmer, vinil, & cuci karpet" },
-          { name: "Window Washing Services", desc: "Pembersihan kaca luar & dalam bebas noda" },
-          { name: "Disinfecting Services", desc: "Sterilisasi uap & disinfektan bersertifikasi" },
+          { name: "Kebersihan Komersial", desc: "Kantor komersial, ritel, & ruang publik" },
+          { name: "Kebersihan Hunian", desc: "Perumahan, hunian tapak, & private residence" },
+          { name: "Kebersihan Properti Sewa (Airbnb)", desc: "Turnover kilat standar hotel 5-bintang" },
+          { name: "Kebersihan Pindahan", desc: "Deep cleaning transisi penyewa baru" },
+          { name: "Kebersihan Area Bersama", desc: "Area lobi, koridor, & fasilitas bersama" },
+          { name: "Kebersihan Pasca-Renovasi", desc: "Pembersihan sisa renovasi & serah terima" },
+          { name: "Kebersihan Acara", desc: "Pembersihan sebelum & sesudah pesta / wedding" },
+          { name: "Petugas Kebersihan Harian", desc: "Staf kebersihan on-site harian berdedikasi" },
+          { name: "Perawatan Lantai & Karpet", desc: "Treatment marmer, vinil, & cuci karpet" },
+          { name: "Pembersihan Kaca", desc: "Pembersihan kaca luar & dalam bebas noda" },
+          { name: "Disinfeksi", desc: "Sterilisasi uap & disinfektan bersertifikasi" },
         ] as ServiceItem[],
 
         industriesTitle: "Sektor Industri yang Dilayani",
         industriesSubtitle: "13 Portofolio Klien & Fasilitas Komersial",
         industriesServed: [
-          "Short-term rentals (Airbnb)",
-          "Hospitality & Boutique Resorts",
-          "Real-Estate & Developer",
-          "Retail & Showrooms",
-          "Restaurant & Cafe",
-          "Office Buildings",
-          "Production Offices & Studios",
-          "Record Studios & Editing Suites",
-          "Warehouse Facilities",
-          "Distribution Centers",
-          "Medical & Clinic Facilities",
-          "Religious Facilities",
-          "Municipalities & Gov Buildings",
+          "Properti sewa harian (Airbnb)",
+          "Hotel & resort butik",
+          "Real estate & developer",
+          "Ritel & showroom",
+          "Restoran & kafe",
+          "Gedung perkantoran",
+          "Kantor & studio produksi",
+          "Studio rekaman & editing",
+          "Gudang",
+          "Pusat distribusi",
+          "Fasilitas medis & klinik",
+          "Rumah ibadah",
+          "Gedung pemerintahan",
         ],
 
         corpEyebrow: "Badan Hukum & Entitas Perusahaan",

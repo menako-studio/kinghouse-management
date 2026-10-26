@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
-import Script from "next/script"
+import { FaqSchema } from "@/components/pages/faq-schema"
+import { localeAlternates } from "@/lib/i18n/site"
 import { SITE_CONFIG, DEFAULT_OG_IMAGES } from "@/lib/constants"
 
 export const metadata: Metadata = {
@@ -15,9 +16,7 @@ export const metadata: Metadata = {
     "co-hosting fee structure jabodetabek",
     "check-in policy kinghouse",
   ],
-  alternates: {
-    canonical: `${SITE_CONFIG.baseUrl}/faq`,
-  },
+  alternates: localeAlternates("/faq", "en"),
   openGraph: {
     images: DEFAULT_OG_IMAGES,
     title: "Frequently Asked Questions | Kinghouse Management",
@@ -30,61 +29,10 @@ export const metadata: Metadata = {
   },
 }
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "How do check-in and check-out work at Kinghouse properties?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Standard check-in is at 14:00 (2:00 PM) and check-out is at 12:00 PM (noon). All Kinghouse properties feature smart keypad self check-in or a dedicated butler meet-and-greet.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Can I host private events or garden weddings?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes! Selected estates such as Versatile House in Jagakarsa are fully licensed and equipped for private garden weddings, birthdays, and corporate retreats up to 150 guests with zero vendor corkage fees.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What is the cancellation policy for guest bookings?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Direct bookings through Kinghouse qualify for a full 100% refund if cancelled at least 14 days before check-in, and a 50% refund if cancelled up to 7 days before check-in.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How does Kinghouse calculate owner revenue and management fees?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Full Management costs 23% of rental revenue for apartments and 15–18% for villas and homes with 6 or more bedrooms; the final rate is agreed per property. Co-Hosting and HK on Demand are quoted per property. Owners receive transparent monthly statements with zero hidden markups.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "When and how are monthly owner payouts disbursed?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Statements and payouts are disbursed automatically on the 5th business day of each calendar month via Indonesian bank transfer (BCA, Mandiri, BNI, BRI) or international wire.",
-      },
-    },
-  ],
-}
-
 export default function FaqLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Script
-        id="faq-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      <FaqSchema locale="en" />
       {children}
     </>
   )

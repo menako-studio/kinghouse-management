@@ -4,6 +4,7 @@ import { useState } from "react"
 import Image from "next/image"
 import { Grid, Sparkles } from "lucide-react"
 import { PhotoLightboxModal } from "./photo-lightbox-modal"
+import { useLocalization } from "@/lib/context/localization-context"
 
 interface BentoGalleryProps {
   images: {
@@ -15,6 +16,7 @@ interface BentoGalleryProps {
 }
 
 export function BentoGallery({ images, propertyName }: BentoGalleryProps) {
+  const { tc } = useLocalization()
   const [isLightboxOpen, setIsLightboxOpen] = useState(false)
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(0)
 
@@ -39,14 +41,14 @@ export function BentoGallery({ images, propertyName }: BentoGalleryProps) {
           >
             <Image
               src={primaryImage.url}
-              alt={primaryImage.caption || propertyName}
+              alt={primaryImage.caption ? tc(primaryImage.caption) : propertyName}
               fill
               priority
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
             <div className="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/10" />
-            <span className="sr-only">View primary photo</span>
+            <span className="sr-only">{tc("View primary photo")}</span>
           </div>
 
           {/* Secondary 2x2 Grid (Right 2 columns on desktop) */}
@@ -61,13 +63,13 @@ export function BentoGallery({ images, propertyName }: BentoGalleryProps) {
                 >
                   <Image
                     src={image.url}
-                    alt={image.caption || `${propertyName} photo ${photoIdx + 1}`}
+                    alt={image.caption ? tc(image.caption) : `${propertyName} ${photoIdx + 1}`}
                     fill
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                     sizes="(max-width: 768px) 50vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/10" />
-                  <span className="sr-only">View photo {photoIdx + 1}</span>
+                  <span className="sr-only">{tc("View photo {n}", { n: photoIdx + 1 })}</span>
                 </div>
               )
             })}
@@ -80,7 +82,7 @@ export function BentoGallery({ images, propertyName }: BentoGalleryProps) {
           className="absolute bottom-4 right-4 z-10 flex items-center space-x-2 rounded-lg border border-[#222222] bg-white/95 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[#222222] shadow-md backdrop-blur-sm transition-all hover:bg-white hover:scale-105 active:scale-95"
         >
           <Grid className="h-3.5 w-3.5" />
-          <span>Show all {images.length} photos</span>
+          <span>{tc("Show all {count} photos", { count: images.length })}</span>
         </button>
       </div>
 

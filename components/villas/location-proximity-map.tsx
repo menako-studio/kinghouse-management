@@ -1,5 +1,8 @@
+"use client"
+
 import { MapPin, Navigation, Coffee, Compass, Plane, Utensils, Waves } from "lucide-react"
 import { NearbySpot } from "@/lib/types"
+import { useLocalization } from "@/lib/context/localization-context"
 
 interface LocationProximityMapProps {
   location: string
@@ -16,14 +19,15 @@ const SPOT_ICONS: Record<string, React.ElementType> = {
 }
 
 export function LocationProximityMap({ location, area, nearbySpots }: LocationProximityMapProps) {
+  const { tc } = useLocalization()
   return (
     <div className="py-8 border-t border-[#EBEBEB] space-y-6">
       <div>
         <h3 className="font-serif text-2xl text-[#222222] mb-2">
-          Location & Proximity
+          {tc("Location & Proximity")}
         </h3>
         <p className="text-sm text-[#717171]">
-          Situated in {location}. Exact address provided immediately upon confirmed Airbnb booking for guest privacy.
+          {tc("Situated in {location}. Exact address provided immediately upon confirmed Airbnb booking for guest privacy.", { location: tc(location) })}
         </p>
       </div>
 
@@ -48,10 +52,10 @@ export function LocationProximityMap({ location, area, nearbySpots }: LocationPr
             </div>
           </div>
           <span className="mt-3 font-serif text-base font-medium text-[#222222]">
-            {area} Sanctuary Zone
+            {tc("{area} Sanctuary Zone", { area })}
           </span>
           <span className="text-xs text-[#717171] uppercase tracking-wider">
-            Protected Privacy Radius
+            {tc("Protected Privacy Radius")}
           </span>
         </div>
       </div>
@@ -71,14 +75,14 @@ export function LocationProximityMap({ location, area, nearbySpots }: LocationPr
                   <SpotIcon className="h-4 w-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-semibold text-[#222222]">{spot.name}</h4>
-                  <p className="text-xs text-[#717171] capitalize">{spot.category}</p>
+                  <h4 className="text-xs font-semibold text-[#222222]">{tc(spot.name)}</h4>
+                  <p className="text-xs text-[#717171] capitalize">{tc(spot.category)}</p>
                 </div>
               </div>
 
               <div className="text-right">
                 <span className="text-xs font-semibold text-[#222222]">{spot.distance}</span>
-                <span className="block text-xs text-[#A69C8E]">{spot.travelTime}</span>
+                <span className="block text-xs text-[#A69C8E]">{tc(spot.travelTime)}</span>
               </div>
             </div>
           )

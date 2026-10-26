@@ -39,7 +39,7 @@ interface BookingSidebarProps {
 }
 
 export function BookingSidebar({ villa }: BookingSidebarProps) {
-  const { formatPrice, currency, t, language } = useLocalization()
+  const { formatPrice, currency, t, language, tc } = useLocalization()
   const [checkIn, setCheckIn] = useState(() => localIsoDate(14))
   const [checkOut, setCheckOut] = useState(() => localIsoDate(16))
   const [guestCount, setGuestCount] = useState("2")
@@ -137,7 +137,7 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
           </div>
           {currency !== "IDR" && (
             <span className="text-xs text-[#8C7F5F] block">
-              ≈ {formatPrice(villa.price.idr, "IDR")} / malam
+              ≈ {formatPrice(villa.price.idr, "IDR")} {t("perNight")}
             </span>
           )}
         </div>
@@ -145,7 +145,7 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
         <div className="text-right">
           <div className="flex items-center space-x-1 text-xs font-semibold text-[#222222]">
             <span>★ {villa.rating.toFixed(2)}</span>
-            <span className="text-[#717171] font-normal">({villa.reviewsCount} reviews)</span>
+            <span className="text-[#717171] font-normal">({tc("{count} reviews", { count: villa.reviewsCount })})</span>
           </div>
           <span className="text-xs uppercase tracking-wider text-[#8C7F5F] font-semibold block">
             Airbnb Superhost
@@ -158,7 +158,7 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
         <div className="grid grid-cols-2 divide-x divide-[#E8E4DC] bg-[#FAF8F5]">
           <div className="p-3">
             <label className="block text-xs font-bold uppercase tracking-wider text-[#222222]">
-              Check-in
+              {tc("Check-in")}
             </label>
             <input
               type="date"
@@ -169,7 +169,7 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
           </div>
           <div className="p-3">
             <label className="block text-xs font-bold uppercase tracking-wider text-[#222222]">
-              Check-out
+              {tc("Check-out")}
             </label>
             <input
               type="date"
@@ -183,7 +183,7 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
 
         <div className="p-3 bg-white">
           <label className="block text-xs font-bold uppercase tracking-wider text-[#222222]">
-            Guests
+            {tc("Guests")}
           </label>
           <select
             value={guestCount}
@@ -320,7 +320,7 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
             className="w-full h-13 bg-[#2D2118] text-white hover:bg-[#3D2E22] font-semibold text-xs uppercase tracking-widest shadow-md transition-all active:scale-[0.99] cursor-pointer"
           >
             <Sparkles className="h-4 w-4 text-[#D8B486] mr-2" />
-            <span>Book Direct with Perks</span>
+            <span>{tc("Book Direct with Perks")}</span>
             <ArrowUpRight className="h-4 w-4 ml-1 text-[#D8B486]" />
           </Button>
 
@@ -384,7 +384,7 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
 
 
         <p className="mt-3 text-center text-xs text-[#717171]">
-          Best Price Guarantee &bull; Verified Airbnb Superhost &bull; 24/7 Concierge
+          {tc("Best Price Guarantee • Verified Airbnb Superhost • 24/7 Concierge")}
         </p>
 
         {/* Help channel — WhatsApp is a fallback, not the booking path */}
@@ -422,16 +422,16 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
           <span className="text-[#222222] font-medium">{formatPrice(baseTotal)}</span>
         </div>
         <div className="flex justify-between">
-          <span className="underline decoration-dotted">Cleaning & Linen Preparation</span>
+          <span className="underline decoration-dotted">{tc("Cleaning & Linen Preparation")}</span>
           <span className="text-[#222222] font-medium">{formatPrice(cleaningFee)}</span>
         </div>
         <div className="flex justify-between">
-          <span className="underline decoration-dotted">Airbnb Service Fee (est.)</span>
+          <span className="underline decoration-dotted">{tc("Airbnb Service Fee (est.)")}</span>
           <span className="text-[#222222] font-medium">{formatPrice(serviceFee)}</span>
         </div>
 
         <div className="flex justify-between pt-3 border-t border-[#F0ECE1] text-sm font-semibold text-[#222222]">
-          <span>Estimated Total ({currency})</span>
+          <span>{tc("Estimated Total")} ({currency})</span>
           <span className="text-[#8C7F5F] font-bold">{formatPrice(estimatedTotal)}</span>
         </div>
       </div>
@@ -440,11 +440,11 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
       <div className="mt-6 pt-6 border-t border-[#F0ECE1] space-y-2 text-xs text-[#717171]">
         <div className="flex items-center space-x-2">
           <ShieldCheck className="h-4 w-4 text-[#8C7F5F]" />
-          <span>Best Price Guarantee & Verified Airbnb Superhost</span>
+          <span>{tc("Best Price Guarantee & Verified Airbnb Superhost")}</span>
         </div>
         <div className="flex items-center space-x-2">
           <Sparkles className="h-4 w-4 text-[#B8934C]" />
-          <span>Kinghouse dedicated on-site butler & daily housekeeping</span>
+          <span>{tc("Kinghouse dedicated on-site butler & daily housekeeping")}</span>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
+import Link from "@/components/ui/localized-link"
 import { Check, X, ArrowRight, Sparkles, Calculator } from "lucide-react"
 import { MANAGEMENT_TIERS } from "@/lib/data"
 import { Button } from "@/components/ui/button"
@@ -12,7 +12,7 @@ import { MANAGEMENT_FEES } from "@/lib/constants"
 const { apartmentPercent, villaMinPercent, villaMaxPercent, villaMinBedrooms } = MANAGEMENT_FEES
 
 export function TieredPricingTable() {
-  const { formatPrice, t } = useLocalization()
+  const { formatPrice, t, tc } = useLocalization()
   const [estimatedMonthlyRevenue, setEstimatedMonthlyRevenue] = useState(250000000)
 
   const feeAt = (pct: number) => Math.round((estimatedMonthlyRevenue * pct) / 100)
@@ -26,13 +26,13 @@ export function TieredPricingTable() {
         {/* Section Header */}
         <div className="max-w-3xl space-y-4 text-center mx-auto">
           <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#A69C8E]">
-            Transparent Fee Architecture
+            {tc("Transparent Fee Architecture")}
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#222222]">
-            Zero Fixed Costs. Pure Performance.
+            {tc("Zero Fixed Costs. Pure Performance.")}
           </h2>
           <p className="text-sm sm:text-base text-[#717171] leading-relaxed">
-            We only earn when you earn. Choose between hands-on operations or completely passive turnkey villa asset management.
+            {tc("We only earn when you earn. Choose between hands-on operations or completely passive turnkey villa asset management.")}
           </p>
         </div>
 
@@ -54,7 +54,7 @@ export function TieredPricingTable() {
                 {tier.badge && (
                   <div className="absolute -top-3.5 right-8">
                     <Badge variant="default" className="text-xs font-semibold uppercase tracking-wider py-1 px-4">
-                      {tier.badge}
+                      {tc(tier.badge)}
                     </Badge>
                   </div>
                 )}
@@ -67,7 +67,7 @@ export function TieredPricingTable() {
                         {tier.name}
                       </h3>
                       <p className="text-xs text-[#717171] leading-relaxed">
-                        {tier.subtitle}
+                        {tc(tier.subtitle)}
                       </p>
                     </div>
 
@@ -96,14 +96,14 @@ export function TieredPricingTable() {
                     )}
 
                     <p className="text-xs text-[#555555] leading-relaxed">
-                      {tier.description}
+                      {tc(tier.description)}
                     </p>
                   </div>
 
                   {/* Feature Checklist */}
                   <div className="space-y-3.5">
                     <span className="text-xs font-bold uppercase tracking-wider text-[#222222]">
-                      Included Capabilities:
+                      {tc("Included Capabilities:")}
                     </span>
                     <ul className="space-y-3">
                       {tier.features.map((feature, fIdx) => (
@@ -126,7 +126,7 @@ export function TieredPricingTable() {
                                 : "text-[#999999] line-through opacity-60"
                             }`}
                           >
-                            {feature.title}
+                            {tc(feature.title)}
                           </span>
                         </li>
                       ))}
@@ -137,7 +137,7 @@ export function TieredPricingTable() {
                 {/* Card CTA */}
                 <div className="mt-10 pt-6 border-t border-[#EBEBEB] space-y-3">
                   <p className="text-xs text-[#717171] italic">
-                    Ideal for: {tier.idealFor}
+                    {tc("Ideal for:")} {tc(tier.idealFor)}
                   </p>
                   <Button
                     size="lg"
@@ -146,7 +146,7 @@ export function TieredPricingTable() {
                     className="w-full text-xs uppercase tracking-widest font-semibold h-12"
                   >
                     <a href="#owner-form">
-                      Apply for {tier.name} <ArrowRight className="ml-2 h-4 w-4" />
+                      {tc("Apply for")} {tier.name} <ArrowRight className="ml-2 h-4 w-4" />
                     </a>
                   </Button>
                 </div>
@@ -163,13 +163,13 @@ export function TieredPricingTable() {
                 <Calculator className="h-5 w-5" />
               </div>
               <div>
-                <h4 className="font-serif text-xl text-[#222222]">Interactive Fee & Net Yield Calculator</h4>
-                <p className="text-xs text-[#717171]">Estimate your net owner payout based on gross monthly revenue</p>
+                <h4 className="font-serif text-xl text-[#222222]">{tc("Interactive Fee & Net Yield Calculator")}</h4>
+                <p className="text-xs text-[#717171]">{tc("Estimate your net owner payout based on gross monthly revenue")}</p>
               </div>
             </div>
 
             <div className="text-right">
-              <span className="text-xs text-[#717171] block">Estimated Gross Revenue</span>
+              <span className="text-xs text-[#717171] block">{tc("Estimated Gross Revenue")}</span>
               <span className="font-serif text-2xl text-[#222222]">
                 {formatPrice(estimatedMonthlyRevenue)} / mo
               </span>

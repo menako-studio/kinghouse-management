@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
+import Link from "@/components/ui/localized-link"
 import { ArrowRight, BedDouble, Building2, PartyPopper } from "lucide-react"
 import { useLocalization } from "@/lib/context/localization-context"
 

@@ -1,4 +1,7 @@
+"use client"
+
 import { BarChart3, Globe, Sparkles, FileText } from "lucide-react"
+import { useLocalization } from "@/lib/context/localization-context"
 
 const VALUE_PROPS = [
   {
@@ -32,19 +35,20 @@ const VALUE_PROPS = [
 ]
 
 export function ValuePropsGrid() {
+  const { tc } = useLocalization()
   return (
     <section className="section-macro-spacing bg-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         {/* Section Header */}
         <div className="max-w-3xl mb-16 space-y-4">
           <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#A69C8E]">
-            The Kinghouse Advantage
+            {tc("The Kinghouse Advantage")}
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#222222]">
-            Institutional Rigor. Bespoke Hospitality.
+            {tc("Institutional Rigor. Bespoke Hospitality.")}
           </h2>
           <p className="text-sm sm:text-base text-[#717171] leading-relaxed">
-            We treat your villa not merely as a rental, but as a high-performing real estate asset engineered for maximum capital appreciation and net yield.
+            {tc("We treat your villa not merely as a rental, but as a high-performing real estate asset engineered for maximum capital appreciation and net yield.")}
           </p>
         </div>
 
@@ -64,18 +68,18 @@ export function ValuePropsGrid() {
                   </div>
 
                   <div className="space-y-2">
-                    <h3 className="text-lg font-semibold text-[#222222]">{prop.title}</h3>
+                    <h3 className="text-lg font-semibold text-[#222222]">{tc(prop.title)}</h3>
                     <p className="text-xs font-medium uppercase tracking-wider text-[#A69C8E]">
-                      {prop.subtitle}
+                      {tc(prop.subtitle)}
                     </p>
                   </div>
 
-                  <p className="text-xs leading-relaxed text-[#717171]">{prop.description}</p>
+                  <p className="text-xs leading-relaxed text-[#717171]">{tc(prop.description)}</p>
                 </div>
 
                 <div className="mt-8 pt-4 border-t border-[#EBEBEB] text-xs font-semibold text-[#222222] flex items-center justify-between">
-                  <span>Standard Metric:</span>
-                  <span className="text-[#A69C8E]">Top 1% Performance</span>
+                  <span>{tc("Standard Metric:")}</span>
+                  <span className="text-[#A69C8E]">{tc("Top 1% Performance")}</span>
                 </div>
               </div>
             )

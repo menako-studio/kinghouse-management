@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import Link from "@/components/ui/localized-link"
 import { ArrowRight, CheckCircle2, Clock, MessageCircle } from "lucide-react"
 import { useMounted } from "@/lib/hooks/use-mounted"
 import { readThanksPayload, type ThanksPayload } from "@/lib/funnel/client"

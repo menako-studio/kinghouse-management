@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import { localeAlternates } from "@/lib/i18n/site"
 import Script from "next/script"
 import { SITE_CONFIG, DEFAULT_OG_IMAGES } from "@/lib/constants"
 
@@ -15,9 +16,7 @@ export const metadata: Metadata = {
     "whatsapp villa booking jabodetabek",
     "konsultasi kelola airbnb jakarta",
   ],
-  alternates: {
-    canonical: `${SITE_CONFIG.baseUrl}/contact`,
-  },
+  alternates: localeAlternates("/contact", "en"),
   openGraph: {
     images: DEFAULT_OG_IMAGES,
     title: "Contact Concierge & Property Advisory | Kinghouse Management",

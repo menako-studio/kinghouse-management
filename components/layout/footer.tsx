@@ -18,7 +18,7 @@ import {
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
-  const { t } = useLocalization()
+  const { t, localizeHref } = useLocalization()
 
 
   return (
@@ -32,7 +32,7 @@ export function Footer() {
             {/* Column 1: Monogram & ABOUT US */}
             <div className="lg:col-span-3 space-y-6">
               {/* Stylized Official Brand Logo */}
-              <Link href="/" className="inline-flex items-center group py-1">
+              <Link href={localizeHref("/")} className="inline-flex items-center group py-1">
                 <Image
                   src="/brand/logo-secondary-bone.svg"
                   alt="Kinghouse Management"
@@ -50,42 +50,42 @@ export function Footer() {
                 </h4>
                 <ul className="space-y-2 text-xs font-light text-[#F0EBE0]">
                   <li>
-                    <Link href="/about" className="hover:text-white transition-colors">
+                    <Link href={localizeHref("/about")} className="hover:text-white transition-colors">
                       About Us
                     </Link>
                   </li>
                   <li>
-                    <Link href="/blog" className="hover:text-white transition-colors">
+                    <Link href={localizeHref("/blog")} className="hover:text-white transition-colors">
                       Blog
                     </Link>
                   </li>
                   <li>
-                    <Link href="/press" className="hover:text-white transition-colors">
+                    <Link href={localizeHref("/press")} className="hover:text-white transition-colors">
                       Press
                     </Link>
                   </li>
                   <li>
-                    <Link href="/contact" className="hover:text-white transition-colors">
+                    <Link href={localizeHref("/contact")} className="hover:text-white transition-colors">
                       Contact Us
                     </Link>
                   </li>
                   <li>
-                    <Link href="/faq" className="hover:text-white transition-colors">
+                    <Link href={localizeHref("/faq")} className="hover:text-white transition-colors">
                       FAQ
                     </Link>
                   </li>
                   <li>
-                    <Link href="/terms" className="hover:text-white transition-colors">
+                    <Link href={localizeHref("/terms")} className="hover:text-white transition-colors">
                       T&C
                     </Link>
                   </li>
                   <li>
-                    <Link href="/privacy" className="hover:text-white transition-colors">
+                    <Link href={localizeHref("/privacy")} className="hover:text-white transition-colors">
                       Privacy Policy
                     </Link>
                   </li>
                   <li>
-                    <Link href="/management-inquiry" className="hover:text-white font-medium text-white transition-colors">
+                    <Link href={localizeHref("/management-inquiry")} className="hover:text-white font-medium text-white transition-colors">
                       Management Enquiry
                     </Link>
                   </li>
@@ -130,7 +130,7 @@ export function Footer() {
                   ...MANAGED_AREAS.map((a) => ({ href: `/locations/${a.slug}`, label: a.name })),
                 ].map((l) => (
                   <li key={l.href}>
-                    <Link href={l.href} className="hover:text-white transition-colors">
+                    <Link href={localizeHref(l.href)} className="hover:text-white transition-colors">
                       {l.label}
                     </Link>
                   </li>
@@ -187,14 +187,14 @@ export function Footer() {
 
               <div className="flex flex-wrap gap-2.5 pt-1">
                 <Link
-                  href="/contact"
+                  href={localizeHref("/contact")}
                   className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-medium text-white transition-colors"
                 >
                   <span>Guest Assistance</span>
                   <ArrowRight className="h-3 w-3 opacity-70" />
                 </Link>
                 <Link
-                  href="/management-inquiry"
+                  href={localizeHref("/management-inquiry")}
                   className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-white text-[#8C7F5F] hover:bg-[#FAF8F5] text-xs font-semibold transition-colors"
                 >
                   <span>Property Owner Inquiry</span>
@@ -308,7 +308,7 @@ export function Footer() {
             </div>
 
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-              <Link href="/stay" className="hover:text-white transition-colors">
+              <Link href={localizeHref("/stay")} className="hover:text-white transition-colors">
                 Guest Guide
               </Link>
               <span>&bull;</span>
@@ -339,15 +339,15 @@ export function Footer() {
                 Google Business
               </a>
               <span>&bull;</span>
-              <Link href="/terms" className="hover:text-white transition-colors">
+              <Link href={localizeHref("/terms")} className="hover:text-white transition-colors">
                 Terms & Conditions
               </Link>
               <span>&bull;</span>
-              <Link href="/privacy" className="hover:text-white transition-colors">
+              <Link href={localizeHref("/privacy")} className="hover:text-white transition-colors">
                 Privacy Policy
               </Link>
               <span>&bull;</span>
-              <Link href="/login" className="hover:text-white transition-colors opacity-70 hover:opacity-100">
+              <Link href={localizeHref("/login")} className="hover:text-white transition-colors opacity-70 hover:opacity-100">
                 Admin Portal
               </Link>
             </div>

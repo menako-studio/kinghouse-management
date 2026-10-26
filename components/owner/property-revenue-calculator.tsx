@@ -427,7 +427,7 @@ Please provide information on scheduling a complimentary physical audit and onbo
                   </div>
                   <div className="inline-flex items-center text-xs font-semibold text-[#4ADE80] bg-[#4ADE80]/10 px-3 py-1 rounded-full border border-[#4ADE80]/20">
                     {isId
-                      ? `+${formatPrice(calculations.netMonthlyLift)}/bulan lebih tinggi (+${calculations.percentageLift}% Net Lift)`
+                      ? `+${formatPrice(calculations.netMonthlyLift)}/bulan lebih tinggi (+${calculations.percentageLift}% kenaikan bersih)`
                       : `+${formatPrice(calculations.netMonthlyLift)}/month higher (+${calculations.percentageLift}% Net Lift)`}
                   </div>
                 </div>

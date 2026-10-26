@@ -15,7 +15,7 @@ import { OwnerLeadForm } from "@/components/owner/owner-lead-form"
 import { useLocalization } from "@/lib/context/localization-context"
 
 export default function ManagementInquiryPage() {
-  const { t, language } = useLocalization()
+  const { t, language, tc } = useLocalization()
 
   return (
     <main className="min-h-screen bg-[#FAF7F1]">
@@ -24,7 +24,7 @@ export default function ManagementInquiryPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg"
-            alt="Versatile House Flagship Villa"
+            alt={tc("Versatile House Flagship Villa")}
             fill
             className="object-cover opacity-25"
             priority
@@ -38,7 +38,7 @@ export default function ManagementInquiryPage() {
               <div className="flex flex-wrap items-center gap-2 mb-4">
                 <div className="inline-flex items-center space-x-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-[#DFC58E]">
                   <Building2 className="h-3.5 w-3.5" />
-                  <span>Villa &amp; Property Asset Management</span>
+                  <span>{tc("Villa & Property Asset Management")}</span>
                 </div>
                 <a
                   href="https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace"
@@ -47,26 +47,26 @@ export default function ManagementInquiryPage() {
                   className="inline-flex items-center space-x-1.5 rounded-full bg-[#DFC58E]/20 hover:bg-[#DFC58E]/30 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#DFC58E] border border-[#DFC58E]/50 transition-all"
                 >
                   <Sparkles className="h-3.5 w-3.5" />
-                  <span>Official Airbnb Superhost ↗</span>
+                  <span>{tc("Official Airbnb Superhost ↗")}</span>
                 </a>
               </div>
               <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl uppercase tracking-[0.1em] font-normal leading-tight">
-                Unlock Maximum Yield <br />
-                <span className="text-[#DFC58E]">From Your Property</span>
+                {tc("Unlock Maximum Yield")} <br />
+                <span className="text-[#DFC58E]">{tc("From Your Property")}</span>
               </h1>
               <p className="mt-4 text-sm sm:text-base text-[#E0DACB] font-light leading-relaxed">
-                Transform your luxury home or apartment in Jabodetabek into a high-yielding, 5-star short-stay destination. Zero operational hassle, full transparency, and automated monthly owner payouts.
+                {tc("Transform your luxury home or apartment in Jabodetabek into a high-yielding, 5-star short-stay destination. Zero operational hassle, full transparency, and automated monthly owner payouts.")}
               </p>
 
               {/* Stats pill bar */}
               <div className="mt-8 grid grid-cols-3 gap-4 border-t border-white/20 pt-6">
                 <div>
                   <p className="font-serif text-2xl sm:text-3xl text-white">85%+</p>
-                  <p className="text-xs uppercase tracking-wider text-[#DFC58E]">Avg. Occupancy</p>
+                  <p className="text-xs uppercase tracking-wider text-[#DFC58E]">{tc("Avg. Occupancy")}</p>
                 </div>
                 <div>
                   <p className="font-serif text-2xl sm:text-3xl text-white">2.4x</p>
-                  <p className="text-xs uppercase tracking-wider text-[#DFC58E]">Yield vs Long-Term</p>
+                  <p className="text-xs uppercase tracking-wider text-[#DFC58E]">{tc("Yield vs Long-Term")}</p>
                 </div>
                 <div>
                   <a
@@ -75,8 +75,8 @@ export default function ManagementInquiryPage() {
                     rel="noopener noreferrer"
                     className="group"
                   >
-                    <p className="font-serif text-2xl sm:text-3xl text-white group-hover:text-[#DFC58E] transition-colors">Superhost ↗</p>
-                    <p className="text-xs uppercase tracking-wider text-[#DFC58E]">Verified Airbnb Host</p>
+                    <p className="font-serif text-2xl sm:text-3xl text-white group-hover:text-[#DFC58E] transition-colors">{tc("Superhost ↗")}</p>
+                    <p className="text-xs uppercase tracking-wider text-[#DFC58E]">{tc("Verified Airbnb Host")}</p>
                   </a>
                 </div>
               </div>
@@ -85,9 +85,9 @@ export default function ManagementInquiryPage() {
             {/* Quick WhatsApp fast-track badge */}
             <div className="w-full lg:w-auto shrink-0 bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center max-w-sm">
               <Sparkles className="h-6 w-6 text-[#DFC58E] mx-auto mb-2" />
-              <h3 className="font-serif text-lg text-white font-normal">Need an Instant Feasibility Audit?</h3>
+              <h3 className="font-serif text-lg text-white font-normal">{tc("Need an Instant Feasibility Audit?")}</h3>
               <p className="text-xs text-[#E0DACB] font-light mt-1 mb-4">
-                Send property photos and location to our WhatsApp for a 24-hour yield estimate.
+                {tc("Send property photos and location to our WhatsApp for a 24-hour yield estimate.")}
               </p>
               <a
                 href={buildWhatsAppUrl("OWNER", ownerWhatsAppMessage({ service: "undecided" }, { t, language }))}
@@ -97,7 +97,7 @@ export default function ManagementInquiryPage() {
                 className="w-full inline-flex items-center justify-center space-x-2 rounded-full bg-[#25D366] text-white py-3 px-5 text-xs font-semibold uppercase tracking-wider hover:opacity-90 transition-all shadow-md"
               >
                 <MessageCircle className="h-4 w-4 fill-white" />
-                <span>Fast-Track WhatsApp Audit</span>
+                <span>{tc("Fast-Track WhatsApp Audit")}</span>
               </a>
             </div>
           </div>
@@ -109,10 +109,10 @@ export default function ManagementInquiryPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#8C7F5F]">
-              End-to-End Asset Care
+              {tc("End-to-End Asset Care")}
             </span>
             <h2 className="font-serif text-2xl sm:text-4xl text-[#222222] uppercase tracking-wider font-normal mt-1">
-              Why Owners Choose Kinghouse
+              {tc("Why Owners Choose Kinghouse")}
             </h2>
           </div>
 
@@ -122,10 +122,10 @@ export default function ManagementInquiryPage() {
                 <TrendingUp className="h-6 w-6" />
               </div>
               <h3 className="font-serif text-xl text-[#222222] font-normal mb-2">
-                Dynamic Revenue Maximization
+                {tc("Dynamic Revenue Maximization")}
               </h3>
               <p className="text-xs sm:text-sm text-[#666666] font-light leading-relaxed">
-                Algorithmic pricing synced to regional concert schedules, business conventions, and seasonal holidays across Greater Jakarta to maximize ADR and eliminate empty nights.
+                {tc("Algorithmic pricing synced to regional concert schedules, business conventions, and seasonal holidays across Greater Jakarta to maximize ADR and eliminate empty nights.")}
               </p>
             </div>
 
@@ -134,10 +134,10 @@ export default function ManagementInquiryPage() {
                 <ShieldCheck className="h-6 w-6" />
               </div>
               <h3 className="font-serif text-xl text-[#222222] font-normal mb-2">
-                Vetted Guests &amp; Asset Protection
+                {tc("Vetted Guests & Asset Protection")}
               </h3>
               <p className="text-xs sm:text-sm text-[#666666] font-light leading-relaxed">
-                Rigorous multi-layer guest screening, security deposits, strict quiet-hour enforcement, and up to $3M AirCover safety protection to keep your estate pristine.
+                {tc("Rigorous multi-layer guest screening, security deposits, strict quiet-hour enforcement, and up to $3M AirCover safety protection to keep your estate pristine.")}
               </p>
             </div>
 
@@ -146,10 +146,10 @@ export default function ManagementInquiryPage() {
                 <CalendarCheck className="h-6 w-6" />
               </div>
               <h3 className="font-serif text-xl text-[#222222] font-normal mb-2">
-                Hotel-Grade Linen &amp; Operations
+                {tc("Hotel-Grade Linen & Operations")}
               </h3>
               <p className="text-xs sm:text-sm text-[#666666] font-light leading-relaxed">
-                300+ thread count commercial linens, 48-point turnover inspections, preventive plumbing/AC maintenance, and dedicated on-site hospitality butlers.
+                {tc("300+ thread count commercial linens, 48-point turnover inspections, preventive plumbing/AC maintenance, and dedicated on-site hospitality butlers.")}
               </p>
             </div>
           </div>

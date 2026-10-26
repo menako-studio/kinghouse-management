@@ -1,4 +1,7 @@
+"use client"
+
 import { ClipboardCheck, Camera, Rocket, CheckCircle2 } from "lucide-react"
+import { useLocalization } from "@/lib/context/localization-context"
 
 const ONBOARDING_STEPS = [
   {
@@ -43,19 +46,20 @@ const ONBOARDING_STEPS = [
 ]
 
 export function OnboardingTimeline() {
+  const { tc } = useLocalization()
   return (
     <section id="onboarding" className="section-macro-spacing bg-[#FAFAFA] border-y border-[#EBEBEB]">
       <div className="mx-auto max-w-7xl px-6 lg:px-12 space-y-16">
         {/* Header */}
         <div className="max-w-3xl space-y-4">
           <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#A69C8E]">
-            Rapid 14-Day Deployment
+            {tc("Rapid 14-Day Deployment")}
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#222222]">
-            The 3-Step Onboarding Process
+            {tc("The 3-Step Onboarding Process")}
           </h2>
           <p className="text-sm sm:text-base text-[#717171] leading-relaxed">
-            From initial asset evaluation to generating high-yielding bookings in less than two weeks.
+            {tc("From initial asset evaluation to generating high-yielding bookings in less than two weeks.")}
           </p>
         </div>
 
@@ -76,30 +80,30 @@ export function OnboardingTimeline() {
                       {item.step}
                     </span>
                     <span className="rounded-full bg-[#FAFAFA] border border-[#EBEBEB] px-3 py-1 text-xs font-semibold text-[#222222]">
-                      {item.duration}
+                      {tc(item.duration)}
                     </span>
                   </div>
 
                   <div className="space-y-2">
                     <div className="flex items-center space-x-2">
                       <Icon className="h-5 w-5 text-[#222222]" />
-                      <h3 className="text-base font-semibold text-[#222222]">{item.title}</h3>
+                      <h3 className="text-base font-semibold text-[#222222]">{tc(item.title)}</h3>
                     </div>
                     <p className="text-xs text-[#717171] leading-relaxed">
-                      {item.description}
+                      {tc(item.description)}
                     </p>
                   </div>
 
                   {/* Deliverables List */}
                   <div className="space-y-2 pt-2 border-t border-[#EBEBEB]">
                     <span className="text-xs font-bold uppercase tracking-wider text-[#222222] block">
-                      Key Deliverables:
+                      {tc("Key Deliverables:")}
                     </span>
                     <ul className="space-y-1.5">
                       {item.deliverables.map((deliv, dIdx) => (
                         <li key={dIdx} className="flex items-start space-x-2 text-xs text-[#555555]">
                           <CheckCircle2 className="h-3.5 w-3.5 text-[#A69C8E] shrink-0 mt-0.5" />
-                          <span>{deliv}</span>
+                          <span>{tc(deliv)}</span>
                         </li>
                       ))}
                     </ul>

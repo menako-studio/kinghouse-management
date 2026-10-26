@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import Link from "next/link"
+import Link from "@/components/ui/localized-link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import {
@@ -61,7 +61,7 @@ function isConstrainedNetwork(): boolean {
 }
 
 export function HeroSlider() {
-  const { t } = useLocalization()
+  const { t, tc } = useLocalization()
   const [scene, setScene] = useState<SceneMode>("lifestyle")
   const [isPlaying, setIsPlaying] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
@@ -170,7 +170,7 @@ export function HeroSlider() {
       >
         <Image
           src={POSTER_IMAGE}
-          alt="Versatile House Jagakarsa — private pool villa managed by Kinghouse Management"
+          alt={tc("Versatile House Jagakarsa — private pool villa managed by Kinghouse Management")}
           fill
           preload
           fetchPriority="high"
@@ -225,18 +225,18 @@ export function HeroSlider() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 rounded-full border border-[#DFC58E]/50 bg-black/50 hover:bg-black/75 px-3 py-1 sm:px-3.5 sm:py-1.5 text-xs sm:text-xs font-semibold text-[#DFC58E] backdrop-blur-md shadow-xl transition-all hover:scale-105 cursor-pointer"
-              title="Official Airbnb Superhost Profile — Kinghouse Management"
+              title={tc("Official Airbnb Superhost Profile — Kinghouse Management")}
             >
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Official Airbnb Superhost</span>
-              <span className="text-xs text-white/80 font-normal">★ 4.5 &bull; 10 Reviews ↗</span>
+              <span>{tc("Official Airbnb Superhost")}</span>
+              <span className="text-xs text-white/80 font-normal">★ 4.5 &bull; {tc("10 Reviews")} ↗</span>
             </a>
           </div>
 
           {/* Quick Scene Pill Badge (Desktop View) */}
           <div className="hidden sm:flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3.5 py-1 text-xs text-white/90 backdrop-blur-md">
             <span className="h-1.5 w-1.5 rounded-full bg-[#B8934C] animate-pulse" />
-            <span className="font-light tracking-wide">{currentScene.title}</span>
+            <span className="font-light tracking-wide">{tc(currentScene.title)}</span>
           </div>
         </div>
 
@@ -294,8 +294,8 @@ export function HeroSlider() {
             <button
               onClick={togglePlayPause}
               className="flex items-center justify-center h-9 w-9 sm:h-10 sm:w-10 rounded-full border border-white/25 bg-black/40 hover:bg-white/20 text-white backdrop-blur-md transition-all duration-200"
-              aria-label={isPlaying ? "Pause background video" : "Play background video"}
-              title={isPlaying ? "Pause video" : "Play video"}
+              aria-label={tc(isPlaying ? "Pause background video" : "Play background video")}
+              title={tc(isPlaying ? "Pause video" : "Play video")}
             >
               {isPlaying ? (
                 <Pause className="h-4 w-4 text-white" />
@@ -349,7 +349,7 @@ export function HeroSlider() {
                 <ArrowUpRight className="h-3.5 w-3.5 opacity-70 group-hover:opacity-100 transition-opacity" />
               </Link>
               <span className="text-xs sm:text-xs text-white/70 uppercase tracking-wider font-light">
-                Jagakarsa, Jakarta Selatan &bull; 12 Guests &bull; 5BR Private Pool
+                Jagakarsa, Jakarta Selatan &bull; {tc("12 Guests")} &bull; {tc("5BR Private Pool")}
               </span>
             </div>
           </div>
