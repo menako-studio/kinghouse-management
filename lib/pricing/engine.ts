@@ -250,14 +250,14 @@ export async function generateDynamicPricing(
 
     const notes: string[] = []
     if (holidayInfo.isHoliday) notes.push(`Libur: ${holidayInfo.holidayName}`)
-    else if (holidayInfo.isLongWeekend) notes.push("Long Weekend Surge")
+    else if (holidayInfo.isLongWeekend) notes.push("Long weekend")
 
     if (dayOfWeek === 5 || dayOfWeek === 6) {
-      if (submarket.propertyCategory !== "business-apartment") notes.push("Weekend Surge")
+      if (submarket.propertyCategory !== "business-apartment") notes.push("Akhir pekan")
     }
-    if (i <= 2 && !isBooked) notes.push("Last-Minute Discount")
-    if (i > 45) notes.push("Far-Out Advance Rate")
-    if (manualOverride) notes.push(`Override Admin: Rp ${manualOverride.overridePriceIdr.toLocaleString("id-ID")}`)
+    if (i <= 2 && !isBooked) notes.push("Diskon mendadak")
+    if (i > 45) notes.push("Pesan jauh hari")
+    if (manualOverride) notes.push(`Harga manual: Rp ${manualOverride.overridePriceIdr.toLocaleString("id-ID")}`)
 
     const multipliers: MultiplierBreakdown = {
       dayOfWeekFactor: Number(dowFactor.toFixed(2)),
