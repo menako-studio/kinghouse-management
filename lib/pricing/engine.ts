@@ -3,11 +3,12 @@ import { getReservationsStore } from "@/lib/erp/store"
 import { getIndonesianHolidays, isDateHoliday } from "./holidays"
 import { getPriceOverride, getPropertyRuleOverrides } from "./store"
 import { SUBMARKET_BENCHMARKS } from "./benchmarks"
+import { computeYieldOutlook } from "./yield"
+import { getAirbnbEarnings } from "@/lib/earnings/airbnb-monthly"
 import {
   PricingStrategy,
   PricingRuleConfig,
   DailyPriceRecommendation,
-  SubmarketBenchmark,
   DynamicPricingResponse,
   MarketDemandLevel,
   MultiplierBreakdown,
@@ -155,19 +156,21 @@ export function calculateLeadTimeMultiplier(
 }
 
 /**
- * Generates 60-day AirDNA-grade dynamic pricing recommendations
+ * Generates 60-day dynamic pricing recommendations and the revenue outlook
+ * anchored to Airbnb payouts. `asOf` is the first day of the horizon.
  */
 export async function generateDynamicPricing(
   propertySlug: string,
   strategy: PricingStrategy = "balanced",
-  horizonDays: number = 60
+  horizonDays: number = 60,
+  asOf: Date = new Date()
 ): Promise<DynamicPricingResponse> {
   const villa = CURATED_VILLAS.find((v) => v.slug === propertySlug || v.id === propertySlug) || CURATED_VILLAS[0]
   const submarket = SUBMARKET_BENCHMARKS[villa.slug] || SUBMARKET_BENCHMARKS["versatile-house-jagakarsa"]
   const rules = getPricingRules(villa.slug, strategy)
 
   // Fetch actual Indonesian public holidays
-  const currentYear = new Date().getFullYear()
+  const currentYear = asOf.getFullYear()
   const holidays = await getIndonesianHolidays(currentYear)
 
   // Fetch actual reservations from store
@@ -192,7 +195,7 @@ export async function generateDynamicPricing(
   const pacingFactor = totalBookedNights > 20 ? 1.15 : totalBookedNights > 10 ? 1.08 : 1.0
 
   const recommendations: DailyPriceRecommendation[] = []
-  const today = new Date()
+  const today = new Date(asOf)
   today.setHours(0, 0, 0, 0)
 
   let bookedCount = 0
@@ -292,22 +295,15 @@ export async function generateDynamicPricing(
     recommendations.reduce((acc, r) => acc + r.demandScore, 0) / recommendations.length
   )
 
+  // Sum of all recommended rates vs base rate, as if every night sold: kept for
+  // the CSV/API, but the dashboard shows yieldOutlook, which starts from Airbnb payouts.
   const potentialRevenueLiftIdr = Math.max(0, totalProjectedRev - baselineRev)
-  const dynamicKinghouseOccupancy = Number(((bookedCount / horizonDays) * 100).toFixed(1))
-  const dynamicRevParLift = baselineRev > 0
-    ? Number((((totalProjectedRev - baselineRev) / baselineRev) * 100).toFixed(1))
-    : submarket.revParOpportunityPercent
-
-  const dynamicSubmarket: SubmarketBenchmark = {
-    ...submarket,
-    kinghouseOccupancyPercent: dynamicKinghouseOccupancy,
-    revParOpportunityPercent: dynamicRevParLift,
-  }
+  const yieldOutlook = computeYieldOutlook(recommendations, getAirbnbEarnings(villa.slug), today)
 
   return {
     propertySlug: villa.slug,
     propertyName: villa.name,
-    submarket: dynamicSubmarket,
+    submarket,
     strategy,
     rules,
     marketDemandScore: overallScore,
@@ -317,11 +313,12 @@ export async function generateDynamicPricing(
     bookedDays: bookedCount,
     projectedRevenueIdr: totalProjectedRev,
     potentialRevenueLiftIdr,
+    yieldOutlook,
     recommendations,
     provenance: {
       calendarSource: `Airbnb Host iCal Feed (${propertyReservations.length} live bookings)`,
       holidaysSource: `Live Nager.Date ID API (${holidays.length} holidays)`,
-      occupancySource: "Real-Time Computed (Booked Nights / Horizon Days)",
+      occupancySource: "Malam terpesan dari kalender iCal Airbnb / jumlah hari horizon",
       isRealData: true,
       syncedEventsCount: propertyReservations.length,
       lastSyncTimestamp: new Date().toISOString(),
