@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import { HeroSlider } from "@/components/home/hero-slider"
 import { SearchFilterBar } from "@/components/home/search-filter-bar"
 import { CuratedGrid } from "@/components/home/curated-grid"
+import { CURATED_VILLAS } from "@/lib/data"
+import { toVillaCardData } from "@/lib/types"
 import { TrustSocialProof } from "@/components/home/trust-social-proof"
 import { DualPathSplit } from "@/components/home/dual-path-split"
 import { FunnelEntryGate } from "@/components/home/funnel-entry-gate"
@@ -29,7 +31,7 @@ export default function HomePage() {
       <FunnelEntryGate />
 
       {/* 4. Curated Collections: 3-Column Architectural Symmetrical Grid */}
-      <CuratedGrid />
+      <CuratedGrid villas={CURATED_VILLAS.slice(0, 3).map(toVillaCardData)} />
 
       {/* 5. Trust & Social Proof: Partner Logos & Verified Reviews Carousel */}
       <TrustSocialProof />

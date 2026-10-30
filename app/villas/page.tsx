@@ -318,7 +318,8 @@ function VillasCatalogContent() {
           alt={tc("Large private villas with over 5 bedrooms")}
           fill
           className="object-cover"
-          priority
+          loading="eager"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/35" />
 

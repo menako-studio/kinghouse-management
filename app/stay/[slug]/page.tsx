@@ -102,7 +102,8 @@ export default async function GuestStayPage({ params }: PageProps) {
           src={compendium.heroImage}
           alt={compendium.propertyName}
           fill
-          priority
+          loading="eager"
+          fetchPriority="high"
           className="object-cover brightness-75"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/60 to-transparent" />

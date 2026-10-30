@@ -10,7 +10,7 @@ import {
 } from "lucide-react"
 import { useLocalization } from "@/lib/context/localization-context"
 import { MANAGEMENT_FEES } from "@/lib/constants"
-import { SUBMARKET_BENCHMARKS } from "@/lib/pricing/engine"
+import { SUBMARKET_BENCHMARKS } from "@/lib/pricing/benchmarks"
 import { trackWhatsAppClick } from "@/lib/analytics"
 import { Button } from "@/components/ui/button"
 import { whatsappBase } from "@/lib/funnel/whatsapp"

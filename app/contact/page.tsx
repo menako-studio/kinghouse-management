@@ -45,7 +45,8 @@ export default function ContactPage() {
             src="/properties/versatile-house/new/VersatileHouse_02_Living_Hall.jpg"
             alt={tc("Versatile House Flagship Living Hall")}
             fill
-            priority
+            loading="eager"
+            fetchPriority="high"
             className="object-cover brightness-[0.32]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1E1B18] via-[#1E1B18]/70 to-black/60" />

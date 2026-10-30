@@ -383,7 +383,8 @@ export default function EventsPage() {
           alt={tc("A Guide to Your Dream Wedding & Events at Kinghouse")}
           fill
           className="object-cover object-center"
-          priority
+          loading="eager"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/35" />
 

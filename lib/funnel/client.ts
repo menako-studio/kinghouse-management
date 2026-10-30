@@ -7,7 +7,7 @@ import type { EventLeadInput, LeadInput, OwnerLeadInput, StayLeadInput } from "@
 import type { LanguageCode } from "@/lib/context/localization-context"
 import { trackLeadFormSubmit } from "@/lib/analytics"
 import { getLeadSource } from "./lead-source"
-import { generateLeadId, getLeadNeed } from "./lead"
+import { generateLeadId, getLeadNeed } from "./lead-id"
 
 const THANKS_KEY = "kh_last_lead"
 

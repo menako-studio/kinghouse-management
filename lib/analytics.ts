@@ -6,8 +6,10 @@
 
 export const GA_MEASUREMENT_ID =
   process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-TWXVH3RCP4"
-export const GTM_ID =
-  process.env.NEXT_PUBLIC_GTM_ID || "GTM-PH9N4N7H"
+// GTM loads only when NEXT_PUBLIC_GTM_ID is set. Container GTM-PH9N4N7H has no
+// tags yet, so loading it by default cost mobile speed for nothing; events still
+// reach window.dataLayer, so setting the variable re-enables it with no code change.
+export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || ""
 
 /**
  * Designated GA4 Key Events (conversions) — single source of truth.

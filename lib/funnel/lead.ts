@@ -22,6 +22,9 @@ import {
   stayWhatsAppMessage,
   type MessageLocale,
 } from "./whatsapp"
+import { generateLeadId, getLeadNeed } from "./lead-id"
+
+export { generateLeadId, getLeadNeed }
 
 /** The Kinghouse team works in Indonesian: internal records and notifications use it. */
 export const TEAM_LOCALE: MessageLocale = { t: createTranslator("ID"), language: "ID" }
@@ -69,25 +72,12 @@ export interface LeadRecord {
   notes: string | null
 }
 
-const TARGET_PREFIX: Record<LeadTarget, string> = { OWNER: "OWN", STAY: "STY", EVENT: "EVT" }
-
-export function generateLeadId(target: LeadTarget, now: Date = new Date()): string {
-  const ymd = now.toISOString().slice(0, 10).replace(/-/g, "")
-  const rand = Math.random().toString(36).slice(2, 6).toUpperCase()
-  return `KH-${TARGET_PREFIX[target]}-${ymd}-${rand}`
-}
 
 /** Venue shown to people: the "undecided" token becomes readable text. */
 function venueName(property: string, { t }: MessageLocale): string {
   return property === EVENT_VENUE_UNDECIDED ? t("f.ef.venueUndecided") : property
 }
 
-/** Need tag: the owner service or the event type. */
-export function getLeadNeed(lead: LeadInput): string {
-  if (lead.target === "OWNER") return lead.service
-  if (lead.target === "EVENT") return lead.eventType
-  return lead.need
-}
 
 /**
  * High-value owner leads (several units, or a property already earning on an

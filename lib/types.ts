@@ -80,6 +80,31 @@ export interface Villa {
   seoMeta?: SeoMeta
 }
 
+/** The villa fields a card and its booking modal show — keeps client payloads small. */
+export type VillaCardData = Pick<
+  Villa,
+  | "id"
+  | "name"
+  | "tagline"
+  | "slug"
+  | "area"
+  | "areaSlug"
+  | "location"
+  | "airbnbUrl"
+  | "agodaUrl"
+  | "architecturalStyle"
+  | "capacity"
+  | "guestFavorite"
+  | "heroImage"
+  | "price"
+  | "rating"
+>
+
+export function toVillaCardData(villa: Villa): VillaCardData {
+  const { id, name, tagline, slug, area, areaSlug, location, airbnbUrl, agodaUrl, architecturalStyle, capacity, guestFavorite, heroImage, price, rating } = villa
+  return { id, name, tagline, slug, area, areaSlug, location, airbnbUrl, agodaUrl, architecturalStyle, capacity, guestFavorite, heroImage, price, rating }
+}
+
 export interface PartnerLogo {
   name: string
   logoText: string

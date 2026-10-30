@@ -30,7 +30,8 @@ export function HousekeepingContent() {
           src="/properties/versatile-house/new/VersatileHouse_03_Master_Bedroom.jpg"
           alt={t("f.hk.title")}
           fill
-          priority
+          loading="eager"
+          fetchPriority="high"
           sizes="100vw"
           className="object-cover brightness-[0.35]"
         />

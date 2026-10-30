@@ -2,14 +2,14 @@
 
 import Link from "@/components/ui/localized-link"
 import { ArrowRight, Sparkles } from "lucide-react"
-import { CURATED_VILLAS } from "@/lib/data"
+import type { VillaCardData } from "@/lib/types"
 import { VillaCard } from "@/components/villas/villa-card"
 import { Button } from "@/components/ui/button"
 import { useLocalization } from "@/lib/context/localization-context"
 
-export function CuratedGrid() {
+/** `villas` arrive pre-trimmed from the server page (see toVillaCardData). */
+export function CuratedGrid({ villas: featuredVillas }: { villas: VillaCardData[] }) {
   const { t } = useLocalization()
-  const featuredVillas = CURATED_VILLAS.slice(0, 3)
 
   return (
     <section className="section-macro-spacing bg-white">

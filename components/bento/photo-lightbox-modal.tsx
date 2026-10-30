@@ -112,7 +112,7 @@ export function PhotoLightboxModal({
             alt={current.caption || `${propertyName} photo ${currentIndex + 1}`}
             fill
             className="object-contain"
-            priority
+            loading="eager"
           />
         </div>
       </div>

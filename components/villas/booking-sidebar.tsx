@@ -15,7 +15,7 @@ import {
 } from "@/lib/analytics"
 import { addDays, nightsBetween, type DateRange } from "@/lib/funnel/availability"
 import { buildWhatsAppUrl, stayWhatsAppMessage } from "@/lib/funnel/whatsapp"
-import { formatDateFor } from "@/lib/i18n/funnel"
+import { formatDateFor } from "@/lib/i18n/funnel/core"
 import { submitLead } from "@/lib/funnel/client"
 import { HoneypotField } from "@/components/funnel/form-fields"
 
