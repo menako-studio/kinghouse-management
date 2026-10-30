@@ -1,7 +1,6 @@
-"use client"
-
 import { BarChart3, Globe, Sparkles, FileText } from "lucide-react"
-import { useLocalization } from "@/lib/context/localization-context"
+import { contentTranslator } from "@/lib/i18n/content"
+import type { SiteLocale } from "@/lib/i18n/site"
 
 const VALUE_PROPS = [
   {
@@ -34,8 +33,8 @@ const VALUE_PROPS = [
   },
 ]
 
-export function ValuePropsGrid() {
-  const { tc } = useLocalization()
+export function ValuePropsGrid({ locale }: { locale: SiteLocale }) {
+  const tc = contentTranslator(locale)
   return (
     <section className="section-macro-spacing bg-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">

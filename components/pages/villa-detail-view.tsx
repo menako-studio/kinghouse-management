@@ -356,7 +356,7 @@ export function VillaDetailView({ slug, locale }: { slug: string; locale: SiteLo
             )}
 
             {/* 2-Column Amenities Grid */}
-            <AmenitiesGrid amenities={villa.amenities} />
+            <AmenitiesGrid amenities={villa.amenities} locale={locale} />
 
             {/* House Rules & Stay Policies */}
             {villa.houseRules && villa.houseRules.length > 0 && (
@@ -398,6 +398,7 @@ export function VillaDetailView({ slug, locale }: { slug: string; locale: SiteLo
               location={villa.location}
               area={villa.area}
               nearbySpots={villa.nearbySpots}
+              locale={locale}
             />
           </div>
 

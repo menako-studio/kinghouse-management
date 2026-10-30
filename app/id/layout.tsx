@@ -1,7 +1,6 @@
-import { ContentDictionaryProvider } from "@/lib/context/localization-context"
-import { ID_CONTENT } from "@/lib/i18n/content/id"
+import { IdContentProvider } from "@/components/i18n/id-content-provider"
 
-/** Indonesian pages: hand the page-copy dictionary to client components (English pages never load it). */
+/** Indonesian pages: client components get the page-copy dictionary (English pages never load it). */
 export default function IdLayout({ children }: { children: React.ReactNode }) {
-  return <ContentDictionaryProvider dictionary={ID_CONTENT}>{children}</ContentDictionaryProvider>
+  return <IdContentProvider>{children}</IdContentProvider>
 }
