@@ -1,8 +1,7 @@
-"use client"
-
 import { MapPin, Navigation, Coffee, Compass, Plane, Utensils, Waves } from "lucide-react"
 import { NearbySpot } from "@/lib/types"
-import { useLocalization } from "@/lib/context/localization-context"
+import { contentTranslator } from "@/lib/i18n/content"
+import type { SiteLocale } from "@/lib/i18n/site"
 
 interface LocationProximityMapProps {
   location: string
@@ -18,8 +17,8 @@ const SPOT_ICONS: Record<string, React.ElementType> = {
   landmark: Compass,
 }
 
-export function LocationProximityMap({ location, area, nearbySpots }: LocationProximityMapProps) {
-  const { tc } = useLocalization()
+export function LocationProximityMap({ location, area, nearbySpots, locale }: LocationProximityMapProps & { locale: SiteLocale }) {
+  const tc = contentTranslator(locale)
   return (
     <div className="py-8 border-t border-[#EBEBEB] space-y-6">
       <div>

@@ -1,4 +1,4 @@
-import AboutPage from "@/app/about/page"
+import { AboutView } from "@/components/pages/about-view"
 import { idPageMetadata } from "@/lib/i18n/site"
 
 export const metadata = idPageMetadata({
@@ -9,4 +9,6 @@ export const metadata = idPageMetadata({
   keywords: ["tentang kinghouse management", "pengelola villa jakarta", "perusahaan manajemen airbnb"],
 })
 
-export default AboutPage
+export default function IdAboutPage() {
+  return <AboutView locale="id" />
+}

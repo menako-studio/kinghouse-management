@@ -168,7 +168,7 @@ export function OwnerServicesView({ locale }: { locale: SiteLocale }) {
         <OwnerServiceCards />
 
         {/* 3. The Kinghouse Advantage (4-Column Value Props Grid) */}
-        <ValuePropsGrid />
+        <ValuePropsGrid locale={locale} />
 
         {/* 4. AirDNA-Grade Interactive Revenue Simulator */}
         <PropertyRevenueCalculator />
@@ -180,7 +180,7 @@ export function OwnerServicesView({ locale }: { locale: SiteLocale }) {
         <PerformanceMetrics />
 
         {/* 7. 3-Step Rapid Onboarding Timeline */}
-        <OnboardingTimeline />
+        <OnboardingTimeline locale={locale} />
 
         {/* 8. Owner qualification form (pre-filled with the service chosen above) */}
         <OwnerLeadForm />

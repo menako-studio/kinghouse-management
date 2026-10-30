@@ -1,5 +1,3 @@
-"use client"
-
 import { 
   Wifi, 
   Waves, 
@@ -22,7 +20,8 @@ import {
   CheckCircle2
 } from "lucide-react"
 import { VillaAmenity } from "@/lib/types"
-import { useLocalization } from "@/lib/context/localization-context"
+import { contentTranslator } from "@/lib/i18n/content"
+import type { SiteLocale } from "@/lib/i18n/site"
 
 interface AmenitiesGridProps {
   amenities: VillaAmenity[]
@@ -49,8 +48,8 @@ const ICON_MAP: Record<string, React.ElementType> = {
   Leaf,
 }
 
-export function AmenitiesGrid({ amenities }: AmenitiesGridProps) {
-  const { tc } = useLocalization()
+export function AmenitiesGrid({ amenities, locale }: AmenitiesGridProps & { locale: SiteLocale }) {
+  const tc = contentTranslator(locale)
   return (
     <div className="py-8 border-t border-[#EBEBEB]">
       <h3 className="font-serif text-2xl text-[#222222] mb-6">

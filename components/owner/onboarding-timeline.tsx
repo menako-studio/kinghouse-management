@@ -1,7 +1,6 @@
-"use client"
-
 import { ClipboardCheck, Camera, Rocket, CheckCircle2 } from "lucide-react"
-import { useLocalization } from "@/lib/context/localization-context"
+import { contentTranslator } from "@/lib/i18n/content"
+import type { SiteLocale } from "@/lib/i18n/site"
 
 const ONBOARDING_STEPS = [
   {
@@ -45,8 +44,8 @@ const ONBOARDING_STEPS = [
   },
 ]
 
-export function OnboardingTimeline() {
-  const { tc } = useLocalization()
+export function OnboardingTimeline({ locale }: { locale: SiteLocale }) {
+  const tc = contentTranslator(locale)
   return (
     <section id="onboarding" className="section-macro-spacing bg-[#FAFAFA] border-y border-[#EBEBEB]">
       <div className="mx-auto max-w-7xl px-6 lg:px-12 space-y-16">
