@@ -6,7 +6,6 @@ import { createPortal } from "react-dom"
 import {
   Coins,
   TrendingUp,
-  Sparkles,
   Download,
   RefreshCw,
   SlidersHorizontal,
@@ -15,7 +14,6 @@ import {
   ArrowDownRight,
   CalendarDays,
   Tag,
-  ShieldCheck,
   Building,
 } from "lucide-react"
 import { CURATED_VILLAS } from "@/lib/data"
@@ -27,6 +25,16 @@ import {
 } from "@/lib/pricing/types"
 import { downloadPricingCsv } from "@/lib/pricing/export"
 import { formatCurrency } from "@/lib/utils"
+import { YieldSummary } from "@/components/dashboard/pricing/yield-summary"
+import { AirbnbEarningsChart } from "@/components/dashboard/pricing/airbnb-earnings-chart"
+
+const STRATEGY_HINTS: Record<PricingStrategy, string> = {
+  conservative: "Harga lebih hati-hati: prioritas villa tetap terisi, diskon mendadak lebih besar.",
+  balanced: "Rekomendasi standar: naik di akhir pekan & libur, wajar di hari biasa.",
+  aggressive: "Harga lebih berani saat ramai: untung per malam lebih besar, risiko kosong lebih tinggi.",
+}
+
+const DEMAND_LABELS_ID = { Low: "Sepi", Moderate: "Normal", High: "Ramai", "Peak Surge": "Sangat ramai" } as const
 
 export default function DynamicPricingPage() {
   const { showToast } = useNotifications()
@@ -263,7 +271,7 @@ export default function DynamicPricingPage() {
               <span>Sinkronisasi Kalender Aktif</span>
             </span>
             <span className="text-[#717171] flex items-center space-x-1">
-              <span>Kalender OTA:</span>
+              <span>Kalender Airbnb:</span>
               <strong className="text-[#222225] font-medium">{pricingData.provenance.calendarSource}</strong>
             </span>
             <span className="text-[#717171]">&bull;</span>
@@ -325,9 +333,9 @@ export default function DynamicPricingPage() {
             <TrendingUp className="h-5 w-5" />
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-[#222225]">Mode Strategi Penetapan Tarif</h3>
+            <h3 className="text-sm font-semibold text-[#222225]">Gaya Penetapan Harga</h3>
             <p className="text-xs text-[#717171] font-light">
-              Pilih profil agresivitas harga sesuai target okupansi dan margin keuntungan
+              {STRATEGY_HINTS[strategy]}
             </p>
           </div>
         </div>
@@ -335,9 +343,9 @@ export default function DynamicPricingPage() {
         <div className="inline-flex rounded-2xl p-1 bg-[#FAF8F5] border border-[#E8E4DC]">
           {(
             [
-              { id: "conservative", label: "Konservatif", desc: "Fokus Okupansi Maksimal" },
-              { id: "balanced", label: "Seimbang (AirDNA)", desc: "Optimasi Yield & ADR" },
-              { id: "aggressive", label: "Agresif", desc: "Fokus Margin & Peak Surge" },
+              { id: "conservative", label: "Konservatif", desc: STRATEGY_HINTS.conservative },
+              { id: "balanced", label: "Seimbang", desc: STRATEGY_HINTS.balanced },
+              { id: "aggressive", label: "Agresif", desc: STRATEGY_HINTS.aggressive },
             ] as const
           ).map((item) => {
             const active = strategy === item.id
@@ -360,120 +368,69 @@ export default function DynamicPricingPage() {
         </div>
       </div>
 
-      {/* Market Intelligence Scorecards */}
+      {/* 60-day outlook anchored to Airbnb payouts */}
       {pricingData && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {/* Card 1: Market Demand Score */}
-          <div className="p-5 rounded-3xl bg-white border border-[#E8E4DC] shadow-xs flex flex-col justify-between">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-[#717171] uppercase tracking-wider">
-                Skor Permintaan Pasar
-              </span>
-              <span
-                className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider ${
-                  pricingData.marketDemandScore >= 75
-                    ? "bg-amber-100 text-amber-800"
-                    : pricingData.marketDemandScore >= 60
-                    ? "bg-emerald-100 text-emerald-800"
-                    : "bg-blue-100 text-blue-800"
-                }`}
-              >
-                {pricingData.overallDemandLevel}
+        <YieldSummary outlook={pricingData.yieldOutlook} propertyName={pricingData.propertyName} />
+      )}
+
+      {pricingData?.yieldOutlook.airbnb && <AirbnbEarningsChart data={pricingData.yieldOutlook.airbnb} />}
+
+      {/* Market context: model figures, kept secondary and labelled as such */}
+      {pricingData && (
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-4" aria-label="Konteks pasar">
+          <div className="p-5 rounded-3xl bg-white border border-[#E8E4DC] shadow-xs space-y-3">
+            <div className="flex items-start justify-between gap-2">
+              <span className="text-sm font-semibold text-[#222225]">Indeks keramaian 60 hari</span>
+              <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full border bg-[#FAF8F5] text-[#8C7F5F] border-[#E8E4DC]">
+                Estimasi sistem
               </span>
             </div>
-            <div className="my-4 flex items-baseline space-x-3">
-              <span className="text-4xl font-bold text-[#222225] tracking-tight">
-                {pricingData.marketDemandScore}
-              </span>
-              <span className="text-xs text-[#717171]">/ 100 Indeks Permintaan</span>
+            <div className="flex items-baseline gap-2">
+              <span className="text-3xl font-bold text-[#222225]">{pricingData.marketDemandScore}</span>
+              <span className="text-xs text-[#717171]">/ 100 · {DEMAND_LABELS_ID[pricingData.overallDemandLevel]}</span>
             </div>
-            {/* Progress bar */}
             <div className="w-full bg-[#FAF8F5] h-2 rounded-full overflow-hidden border border-[#E8E4DC]">
               <div
                 className="h-full bg-gradient-to-r from-[#8C7F5F] via-[#B8934C] to-amber-500 rounded-full transition-all duration-500"
                 style={{ width: `${pricingData.marketDemandScore}%` }}
               />
             </div>
-            <p className="text-[11px] text-[#717171] mt-2 font-light line-clamp-1">
-              {pricingData.submarket.marketPaceDescription}
+            <p className="text-xs text-[#5C5347] leading-relaxed">
+              Seberapa banyak akhir pekan, libur nasional, dan musim liburan di 60 hari ke depan. 50 = hari biasa; makin tinggi,
+              makin banyak hari yang layak dinaikkan harganya. Pola kawasan: {pricingData.submarket.marketPaceDescription}.
             </p>
           </div>
 
-          {/* Card 2: Submarket ADR Benchmark */}
-          <div className="p-5 rounded-3xl bg-white border border-[#E8E4DC] shadow-xs flex flex-col justify-between">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-[#717171] uppercase tracking-wider">
-                Benchmark ADR Kawasan
+          <div className="p-5 rounded-3xl bg-white border border-[#E8E4DC] shadow-xs space-y-3">
+            <div className="flex items-start justify-between gap-2">
+              <span className="text-sm font-semibold text-[#222225] flex items-center gap-2">
+                <Building className="h-4 w-4 text-[#8C7F5F]" />
+                Acuan tarif kawasan
               </span>
-              <Building className="h-4 w-4 text-[#8C7F5F]" />
+              <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full border bg-[#FAF8F5] text-[#8C7F5F] border-[#E8E4DC]">
+                Riset internal
+              </span>
             </div>
-            <div className="my-3">
-              <div className="text-2xl font-bold text-[#222225] tracking-tight">
-                {formatCurrency(pricingData.submarket.avgCompetitorAdrIdr, "IDR")}
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <div className="text-xs text-[#717171]">Rata-rata kompetitor</div>
+                <div className="text-xl font-bold text-[#222225]">
+                  {formatCurrency(pricingData.submarket.avgCompetitorAdrIdr, "IDR")}
+                </div>
               </div>
-              <p className="text-[11px] text-[#717171] mt-0.5">
-                Rata-rata kompetitor sewa harian ({pricingData.submarket.activeCompetitorsCount} listing radius)
-              </p>
-            </div>
-            <div className="pt-2 border-t border-[#FAF8F5] flex items-center justify-between text-xs">
-              <span className="text-[#717171]">Tarif Dasar Properti:</span>
-              <span className="font-semibold text-[#222225]">
-                {formatCurrency(pricingData.rules.basePriceIdr, "IDR")}
-              </span>
-            </div>
-          </div>
-
-          {/* Card 3: Portfolio Occupancy vs Market */}
-          <div className="p-5 rounded-3xl bg-white border border-[#E8E4DC] shadow-xs flex flex-col justify-between">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-[#717171] uppercase tracking-wider">
-                Okupansi Portofolio vs Pasar
-              </span>
-              <ShieldCheck className="h-4 w-4 text-emerald-600" />
-            </div>
-            <div className="my-3 flex items-baseline space-x-2">
-              <span className="text-3xl font-bold text-emerald-600 tracking-tight">
-                {pricingData.submarket.kinghouseOccupancyPercent}%
-              </span>
-              <span className="text-xs text-[#717171]">
-                (vs Pasar {pricingData.submarket.marketOccupancyPercent}%)
-              </span>
-            </div>
-            <div className="pt-2 border-t border-[#FAF8F5] flex items-center justify-between text-xs">
-              <span className="text-[#717171]">Status 60 Hari:</span>
-              <span className="font-semibold text-[#222225]">
-                {pricingData.bookedDays} Terpesan / {pricingData.availableDays} Tersedia
-              </span>
-            </div>
-          </div>
-
-          {/* Card 4: RevPAR Lift Opportunity */}
-          <div className="p-5 rounded-3xl bg-[#231F1A] border border-[#352F27] text-white shadow-md flex flex-col justify-between">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-[#CBBEA0] uppercase tracking-wider flex items-center space-x-1">
-                <Sparkles className="h-3 w-3 text-[#B8934C]" />
-                <span>Peluang Yield Lift</span>
-              </span>
-              <span className="text-[10px] bg-[#B8934C]/30 text-[#DFC58E] px-2 py-0.5 rounded-full font-mono font-bold">
-                +{pricingData.submarket.revParOpportunityPercent}%
-              </span>
-            </div>
-            <div className="my-3">
-              <div className="text-2xl font-bold text-white tracking-tight">
-                +{formatCurrency(pricingData.potentialRevenueLiftIdr, "IDR")}
+              <div>
+                <div className="text-xs text-[#717171]">Tarif dasar Anda</div>
+                <div className="text-xl font-bold text-[#222225]">
+                  {formatCurrency(pricingData.rules.basePriceIdr, "IDR")}
+                </div>
               </div>
-              <p className="text-[11px] text-white/70 mt-0.5">
-                Estimasi penambahan omset 60 hari dibanding tarif flat statis
-              </p>
             </div>
-            <div className="pt-2 border-t border-white/10 flex items-center justify-between text-xs text-white/80">
-              <span>Proyeksi Omset:</span>
-              <span className="font-semibold text-[#DFC58E]">
-                {formatCurrency(pricingData.projectedRevenueIdr, "IDR")}
-              </span>
-            </div>
+            <p className="text-xs text-[#5C5347] leading-relaxed">
+              Perkiraan tim dari {pricingData.submarket.activeCompetitorsCount} listing sejenis di {pricingData.submarket.submarketName},
+              per malam. Bukan data Airbnb; pakai sebagai gambaran posisi harga.
+            </p>
           </div>
-        </div>
+        </section>
       )}
 
       {/* Dynamic Calendar Header & Month Navigation */}
@@ -482,10 +439,10 @@ export default function DynamicPricingPage() {
           <div>
             <h2 className="text-xl font-semibold text-[#222225] flex items-center space-x-2">
               <CalendarDays className="h-5 w-5 text-[#B8934C]" />
-              <span>Kalender Rekomendasi Tarif Harian (60 Hari)</span>
+              <span>Kalender Harga per Malam (60 Hari)</span>
             </h2>
             <p className="text-xs text-[#717171] mt-0.5 font-light">
-              Klik tanggal mana saja untuk melihat rincian pengali atau menetapkan Custom Price Override manual.
+              Klik tanggal untuk melihat alasan harganya, atau pasang harga manual untuk tanggal itu.
             </p>
           </div>
 
@@ -515,23 +472,23 @@ export default function DynamicPricingPage() {
           <span className="font-semibold text-[#222225] text-[11px] uppercase tracking-wider">Keterangan:</span>
           <span className="flex items-center space-x-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
-            <span>Terpesan (iCal Airbnb)</span>
+            <span>Sudah dipesan</span>
           </span>
           <span className="flex items-center space-x-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-amber-500" />
-            <span>Weekend Surge</span>
+            <span>Akhir pekan (harga naik)</span>
           </span>
           <span className="flex items-center space-x-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-purple-500" />
-            <span>Libur Nasional / Cuti</span>
+            <span>Libur nasional</span>
           </span>
           <span className="flex items-center space-x-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-blue-500" />
-            <span>Last-Minute Discount</span>
+            <span>Diskon mendadak (H-2)</span>
           </span>
           <span className="flex items-center space-x-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-[#B8934C]" />
-            <span>Custom Override</span>
+            <span>Harga manual</span>
           </span>
         </div>
 
@@ -552,8 +509,8 @@ export default function DynamicPricingPage() {
           {loading ? (
             <div className="py-24 text-center">
               <RefreshCw className="h-8 w-8 animate-spin text-[#B8934C] mx-auto mb-3" />
-              <p className="text-sm font-semibold text-[#222225]">Mengolah Data Kalender & Permintaan Pasar...</p>
-              <p className="text-xs text-[#717171] mt-1">Mengambil feed reservasi riil dan kalender libur nasional.</p>
+              <p className="text-sm font-semibold text-[#222225]">Menyiapkan kalender harga...</p>
+              <p className="text-xs text-[#717171] mt-1">Mengambil kalender Airbnb dan daftar libur nasional.</p>
             </div>
           ) : (
             <div className="grid grid-cols-7 gap-2">
@@ -598,7 +555,7 @@ export default function DynamicPricingPage() {
                       {/* Small badge */}
                       {rec.isBooked ? (
                         <span className="text-[9px] font-semibold bg-emerald-600 text-white px-1.5 py-0.5 rounded-full">
-                          Booked
+                          Terisi
                         </span>
                       ) : isOverridden ? (
                         <span className="text-[9px] font-bold bg-[#B8934C] text-white px-1.5 py-0.5 rounded-full flex items-center space-x-0.5">
@@ -610,7 +567,7 @@ export default function DynamicPricingPage() {
                         </span>
                       ) : rec.multipliers.dayOfWeekFactor > 1.15 ? (
                         <span className="text-[9px] font-semibold bg-amber-600 text-white px-1.5 py-0.5 rounded-full">
-                          Surge
+                          Ramai
                         </span>
                       ) : null}
                     </div>
@@ -680,7 +637,7 @@ export default function DynamicPricingPage() {
                     )}
                   </div>
                   <h3 className="text-lg font-semibold text-[#222225] mt-1">
-                    Detail Kalkulasi & Override Tarif
+                    Rincian Harga Tanggal Ini
                   </h3>
                 </div>
                 <button
@@ -698,7 +655,7 @@ export default function DynamicPricingPage() {
                 <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] flex items-center justify-between">
                   <div>
                     <span className="text-[10px] uppercase font-bold text-[#717171] tracking-wider">
-                      Tarif Rekomendasi Pintar
+                      Harga yang disarankan
                     </span>
                     <div className="text-2xl font-bold text-[#222225] mt-0.5">
                       {formatCurrency(selectedDateRec.recommendedPriceIdr, "IDR")}
@@ -718,42 +675,42 @@ export default function DynamicPricingPage() {
                 <div>
                   <h4 className="text-xs font-bold uppercase tracking-wider text-[#222225] mb-2 flex items-center space-x-1.5">
                     <TrendingUp className="h-3.5 w-3.5 text-[#B8934C]" />
-                    <span>Faktor Pengali AirDNA-Grade</span>
+                    <span>Kenapa harganya segini?</span>
                   </h4>
                   <div className="rounded-2xl border border-[#E8E4DC] divide-y divide-[#E8E4DC] text-xs">
                     <div className="p-2.5 flex items-center justify-between bg-[#FAF8F5]/50">
-                      <span className="text-[#717171]">Faktor Hari ({selectedDateRec.dayOfWeek}):</span>
+                      <span className="text-[#717171]">Hari ({selectedDateRec.dayOfWeek}):</span>
                       <span className="font-semibold text-[#222225]">
                         {selectedDateRec.multipliers.dayOfWeekFactor}x
                       </span>
                     </div>
                     <div className="p-2.5 flex items-center justify-between">
-                      <span className="text-[#717171]">Faktor Musiman:</span>
+                      <span className="text-[#717171]">Musim liburan:</span>
                       <span className="font-semibold text-[#222225]">
                         {selectedDateRec.multipliers.seasonalityFactor}x
                       </span>
                     </div>
                     <div className="p-2.5 flex items-center justify-between bg-[#FAF8F5]/50">
-                      <span className="text-[#717171]">Faktor Libur Nasional & Long Weekend:</span>
+                      <span className="text-[#717171]">Libur nasional / long weekend:</span>
                       <span className="font-semibold text-[#222225]">
                         {selectedDateRec.multipliers.holidayFactor}x
                         {selectedDateRec.holidayName && ` (${selectedDateRec.holidayName})`}
                       </span>
                     </div>
                     <div className="p-2.5 flex items-center justify-between">
-                      <span className="text-[#717171]">Faktor Lead Time (Urgensi Waktu):</span>
+                      <span className="text-[#717171]">Jarak ke tanggal menginap:</span>
                       <span className="font-semibold text-[#222225]">
                         {selectedDateRec.multipliers.leadTimeFactor}x
                       </span>
                     </div>
                     <div className="p-2.5 flex items-center justify-between bg-[#FAF8F5]/50">
-                      <span className="text-[#717171]">Faktor Okupansi & Velocity Riil:</span>
+                      <span className="text-[#717171]">Kecepatan booking saat ini:</span>
                       <span className="font-semibold text-[#222225]">
                         {selectedDateRec.multipliers.pacingFactor}x
                       </span>
                     </div>
                     <div className="p-2.5 flex items-center justify-between bg-[#FAF8F5]">
-                      <span className="font-semibold text-[#222225]">Hasil Perhitungan & Batas Clamped:</span>
+                      <span className="font-semibold text-[#222225]">Hasil (setelah batas harga min &amp; max):</span>
                       <span className="font-bold text-[#B8934C]">
                         {formatCurrency(selectedDateRec.multipliers.clampedRecommendedPriceIdr, "IDR")}
                       </span>
@@ -766,21 +723,21 @@ export default function DynamicPricingPage() {
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-wider text-amber-900 flex items-center space-x-1.5">
                       <Tag className="h-3.5 w-3.5 text-[#B8934C]" />
-                      <span>Custom Price Override (Manual)</span>
+                      <span>Atur Harga Manual</span>
                     </span>
                     {selectedDateRec.overridePriceIdr && (
                       <span className="text-[10px] font-bold bg-amber-200 text-amber-900 px-2 py-0.5 rounded-full">
-                        Aktif Terpasang
+                        Sedang dipakai
                       </span>
                     )}
                   </div>
                   <p className="text-[11px] text-[#717171]">
-                    Anda dapat mengesampingkan kalkulasi pintar algoritma dengan memasukkan tarif manual khusus untuk tanggal ini.
+                    Isi kalau ingin memakai harga sendiri untuk tanggal ini. Harga manual menggantikan saran sistem.
                   </p>
 
                   <div className="space-y-2">
                     <label className="text-xs font-semibold text-[#222225]">
-                      Nominal Tarif Khusus (IDR)
+                      Harga per malam (Rp)
                     </label>
                     <input
                       type="number"
@@ -793,7 +750,7 @@ export default function DynamicPricingPage() {
 
                   <div className="space-y-2">
                     <label className="text-xs font-semibold text-[#222225]">
-                      Alasan / Catatan Override (Opsional)
+                      Catatan (opsional)
                     </label>
                     <input
                       type="text"
@@ -815,7 +772,7 @@ export default function DynamicPricingPage() {
                     disabled={isSavingOverride}
                     className="px-4 py-2 rounded-xl border border-rose-200 text-xs font-semibold text-rose-600 hover:bg-rose-50 cursor-pointer disabled:opacity-50"
                   >
-                    Hapus Override (Reset)
+                    Kembalikan ke harga sistem
                   </button>
                 ) : (
                   <div />
@@ -835,7 +792,7 @@ export default function DynamicPricingPage() {
                     disabled={isSavingOverride}
                     className="px-5 py-2 rounded-xl bg-[#231F1A] text-white text-xs font-semibold hover:bg-[#19191B] cursor-pointer disabled:opacity-50"
                   >
-                    {isSavingOverride ? "Menyimpan..." : "Terapkan Override"}
+                    {isSavingOverride ? "Menyimpan..." : "Simpan Harga Manual"}
                   </button>
                 </div>
               </div>
@@ -854,10 +811,10 @@ export default function DynamicPricingPage() {
                 <div className="p-6 border-b border-[#E8E4DC] flex items-center justify-between bg-[#FAF8F5]">
                   <div>
                     <h3 className="text-lg font-semibold text-[#222225]">
-                      Pengaturan Batas Floor & Ceiling
+                      Batas Harga Aman
                     </h3>
                     <p className="text-xs text-[#717171] mt-0.5">
-                      Menjaga agar harga dinamis tidak melampaui batas aman operasional.
+                      Harga pintar tidak akan pernah keluar dari batas ini.
                     </p>
                   </div>
                   <button
@@ -874,7 +831,7 @@ export default function DynamicPricingPage() {
                   <div className="space-y-2">
                     <div className="flex justify-between">
                       <label className="text-xs font-semibold text-[#222225]">
-                        Floor Price (Tarif Minimum per Malam)
+                        Harga terendah per malam
                       </label>
                       <span className="text-xs font-mono font-bold text-[#8C7F5F]">
                         {formatCurrency(editableRules.minPriceIdr, "IDR")}
@@ -898,7 +855,7 @@ export default function DynamicPricingPage() {
                   <div className="space-y-2">
                     <div className="flex justify-between">
                       <label className="text-xs font-semibold text-[#222225]">
-                        Ceiling Price (Tarif Maksimum per Malam)
+                        Harga tertinggi per malam
                       </label>
                       <span className="text-xs font-mono font-bold text-[#8C7F5F]">
                         {formatCurrency(editableRules.maxPriceIdr, "IDR")}
@@ -914,7 +871,7 @@ export default function DynamicPricingPage() {
                       className="w-full px-3.5 py-2 rounded-xl border border-[#E8E4DC] text-sm font-mono text-[#222225] bg-white focus:border-[#B8934C] focus:outline-none"
                     />
                     <p className="text-[11px] text-[#717171]">
-                      Plafon harga tertinggi saat puncak peak season / libur nasional.
+                      Batas atas saat musim ramai atau libur nasional.
                     </p>
                   </div>
 
@@ -922,7 +879,7 @@ export default function DynamicPricingPage() {
                   <div className="space-y-2">
                     <div className="flex justify-between">
                       <label className="text-xs font-semibold text-[#222225]">
-                        Lonjakan Akhir Pekan (Weekend Surge)
+                        Kenaikan akhir pekan
                       </label>
                       <span className="text-xs font-mono font-bold text-[#B8934C]">
                         +{editableRules.weekendSurgePercent}%
@@ -947,7 +904,7 @@ export default function DynamicPricingPage() {
                   <div className="space-y-2">
                     <div className="flex justify-between">
                       <label className="text-xs font-semibold text-[#222225]">
-                        Diskon Last-Minute (H-2 Sebelum Check-in)
+                        Diskon mendadak (H-2 sebelum check-in)
                       </label>
                       <span className="text-xs font-mono font-bold text-blue-600">
                         -{editableRules.lastMinuteDiscountPercent}%
@@ -972,7 +929,7 @@ export default function DynamicPricingPage() {
                   <div className="space-y-2">
                     <div className="flex justify-between">
                       <label className="text-xs font-semibold text-[#222225]">
-                        Lonjakan Hari Libur Nasional & Long Weekend
+                        Kenaikan libur nasional &amp; long weekend
                       </label>
                       <span className="text-xs font-mono font-bold text-purple-600">
                         +{editableRules.holidaySurgePercent}%
@@ -1009,7 +966,7 @@ export default function DynamicPricingPage() {
                   onClick={handleSaveRules}
                   className="px-6 py-2.5 rounded-xl bg-[#231F1A] text-white text-xs font-semibold hover:bg-[#19191B] cursor-pointer"
                 >
-                  Simpan Batas Guardrail
+                  Simpan Batas Harga
                 </button>
               </div>
             </div>

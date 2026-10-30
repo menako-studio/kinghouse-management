@@ -63,6 +63,43 @@ export interface DataSourceProvenance {
   lastSyncTimestamp: string
 }
 
+export interface AirbnbMonthPoint {
+  month: string // YYYY-MM
+  label: string // "Agu"
+  paidIdr: number
+  upcomingIdr: number
+  totalIdr: number
+}
+
+/** Exact Airbnb payout figures the 60-day outlook is anchored to. */
+export interface AirbnbRunRate {
+  currency: "IDR" | "JPY"
+  fxRateIdr: number | null // set when the export is not in IDR
+  exportedAt: string
+  listings: string[]
+  months: AirbnbMonthPoint[] // whole export, converted to IDR
+  runRateMonths: string[] // labels of the months averaged, e.g. ["Agu", "Sep", "Okt"]
+  avgMonthlyIdr: number // average monthly total (paid + upcoming) of those months
+  baselineHorizonIdr: number // avgMonthlyIdr scaled to the horizon
+  lockedMonths: string[] // labels of future months whose confirmed bookings count
+  lockedUpcomingIdr: number // Airbnb "Upcoming" for months after the current one, inside the horizon
+  remainingToSellIdr: number // baseline still to be booked: max(0, baseline - locked)
+}
+
+export interface YieldOutlook {
+  horizonDays: number
+  bookedNights: number
+  openNights: number
+  /** Average dynamic price vs base price on the open nights (can be negative). */
+  priceUpliftPercent: number
+  /** Share of the price uplift assumed to turn into revenue (higher prices sell fewer nights). */
+  realizationFactor: number
+  airbnb: AirbnbRunRate | null // null when no Airbnb export exists for the property
+  yieldLiftIdr: number | null
+  yieldLiftPercent: number | null // yieldLiftIdr vs baselineHorizonIdr
+  projectedHorizonIdr: number | null // locked + remaining + lift
+}
+
 export interface DynamicPricingResponse {
   propertySlug: string
   propertyName: string
@@ -74,8 +111,12 @@ export interface DynamicPricingResponse {
   totalDays: number
   availableDays: number
   bookedDays: number
+  /** Sum of every recommended nightly rate in the horizon, as if all nights sold. Not a forecast. */
   projectedRevenueIdr: number
+  /** projectedRevenueIdr minus base price x horizon nights. Not a forecast; see yieldOutlook. */
   potentialRevenueLiftIdr: number
+  /** 60-day revenue outlook anchored to exact Airbnb payouts. */
+  yieldOutlook: YieldOutlook
   recommendations: DailyPriceRecommendation[]
   provenance: DataSourceProvenance
   lastUpdated: string

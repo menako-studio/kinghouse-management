@@ -100,12 +100,16 @@ kinghouse-mockup/
 │   │   ├── initial-data.ts           # Zero-dummy reservations and POS expenses store
 │   │   ├── store.ts                  # In-memory runtime persistence & iCal trigger
 │   │   └── types.ts                  # ERP domain models (Reservation, ExpenseRecord, OwnerStatement)
-│   ├── pricing/                      # AirDNA-grade dynamic revenue intelligence engine
-│   │   ├── engine.ts                 # Multi-factor pricing algorithm & submarket benchmarks
+│   ├── earnings/
+│   │   └── airbnb-monthly.ts         # Exact Airbnb monthly earnings exports (Paid / Upcoming)
+│   ├── pricing/                      # Dynamic pricing & revenue outlook engine
+│   │   ├── benchmarks.ts             # Submarket benchmarks (internal research)
+│   │   ├── engine.ts                 # Multi-factor nightly pricing algorithm
 │   │   ├── export.ts                 # 1-click CSV rate calendar exporter
 │   │   ├── holidays.ts               # Indonesian Public Holidays API & long weekend service
 │   │   ├── store.ts                  # In-memory custom price overrides & rules store
-│   │   └── types.ts                  # Dynamic pricing domain models & multiplier breakdown
+│   │   ├── types.ts                  # Dynamic pricing domain models & multiplier breakdown
+│   │   └── yield.ts                  # 60-day outlook anchored to Airbnb payouts
 │   ├── security/
 │   │   └── rate-limiter.ts           # Zero-cost in-memory sliding window rate limiter
 │   ├── validations/
@@ -116,6 +120,7 @@ kinghouse-mockup/
 │   ├── types.ts                      # Core domain models (Villa, BlogPost, VillaEvent, SeoMeta)
 │   └── utils.ts                      # VacationRental schema generator, currency formatters
 ├── tests/
+│   ├── airbnb-yield.test.ts          # Airbnb CSV figures, run-rate & yield outlook math
 │   ├── analytics-seo.test.ts         # Automated unit tests for GTM/GA4 & Schema.org
 │   ├── dynamic-pricing.test.ts       # Automated unit tests for AirDNA dynamic pricing engine
 │   ├── erp-calculations.test.ts      # Automated unit tests for financial math & statement generator
@@ -681,12 +686,28 @@ kinghouse-mockup/
     - Added keyword-optimized `seoTitle` (51–59 chars) and compelling `metaDescription` (136–145 chars) to all 11 articles in `lib/data.ts` and `lib/types.ts`.
     - Integrated `BreadcrumbList` Schema.org JSON-LD on `app/blog/[slug]/page.tsx` for enhanced Google search snippet breadcrumb trails.
 
+### Phase 5.3 — Mobile Performance: Shared JS Cuts & Server Components (Completed, PR #17 & #18)
+- [x] **Per-language dictionaries**: EN and ID UI/funnel strings stay bundled; the other seven languages load on demand (`lib/i18n/ui/load.ts`). Dictionary-free helpers in `lib/i18n/funnel/core.ts` and `lib/funnel/lead-id.ts`.
+- [x] **Smaller client payloads**: marketing data in `lib/marketing-data.ts`, benchmarks in `lib/pricing/benchmarks.ts`, trimmed `VillaCardData` for cards.
+- [x] **Hero images**: deprecated `priority` replaced by `fetchPriority="high"` + `loading="eager"`.
+- [x] **GTM opt-in**: loads only when `NEXT_PUBLIC_GTM_ID` is set (container GTM-PH9N4N7H has no tags yet).
+- [x] **Server components**: About page (`AboutView`), `OnboardingTimeline`, `ValuePropsGrid`, `AmenitiesGrid`, `LocationProximityMap`; `/id` pages load the Indonesian dictionary as a cached client chunk (`IdContentProvider`).
+- Lab result (Lighthouse mobile, local build): homepage 62 → 92; 20 of 23 public pages ≥ 90.
+
+### Phase 5.4 — Pricing Dashboard Anchored to Airbnb Earnings (Completed)
+- [x] **Bug fixed**: "Peluang Yield Lift" / "Proyeksi Omset" summed the recommended rate of all 60 nights as if every night sold (Versatile House showed Rp 152 jt for 60 days; Airbnb paid Rp 30–56 jt a month), and "Okupansi vs Pasar" compared forward bookings with a historical market rate while overwriting the benchmark.
+- [x] **Exact Airbnb data (`lib/earnings/airbnb-monthly.ts`)**: monthly Paid / Upcoming from the 30 Oct 2026 Earnings CSV exports for Versatile House (+ Villa Event), Skyline Luxury at Orange County and Sky House (JPY, converted at Rp 105/¥). Bright & Airy has no export yet.
+- [x] **Outlook (`lib/pricing/yield.ts`)**: run-rate (last 3 months) → locked upcoming → remaining × open-night price uplift × 50% → projection. Returned as `yieldOutlook` from `generateDynamicPricing()`, which now takes an `asOf` date.
+- [x] **Non-technical UI (`components/dashboard/pricing/`)**: source-badged summary cards, step-by-step "how it is calculated" panel, monthly Airbnb earnings chart, plain-Indonesian calendar/override/guardrail copy.
+- [x] 11 new tests in `tests/airbnb-yield.test.ts`.
+- Known gap: the dashboard sidebar does not collapse on phone widths (all dashboard pages).
+
 ---
 
 ## 4. VERIFICATION COMMANDS
 
 ```bash
-# Run automated Vitest test suite (88 tests across 11 suites)
+# Run automated Vitest test suite (159 tests across 19 suites)
 npm test
 
 # Run TypeScript strict type verification (0 errors)

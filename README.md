@@ -65,13 +65,20 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
   - **Live Dynamic Overview Dashboard (`/dashboard`)**: Computes real-time gross booking turnover, occupancy rate, total nights, and active reservations from active Airbnb iCal events and authentic guest review scores.
   - **Airbnb Payout CSV Importer (`/dashboard/analytics`)**: Integrated 1-click modal parser for official Airbnb Host Payout CSV files (*Earnings > Completed Payouts*), calculating net IDR revenues alongside manual reservation and expense ledgers.
   - **Persistent In-Memory Pipeline (`lib/erp/store.ts`)**: Auto-triggers inbound live Airbnb `.ics` calendar sync on first request/boot, immediately populating authentic reservations across all units.
-- **AirDNA-Grade Dynamic Pricing & Smart Rates Suite (`/dashboard/pricing`)**:
-  - **100% Actual Data Fetching (Zero Dummy Data)**: Connects real live Airbnb iCal reservation dates, live Indonesian public holidays API (`date.nager.at`), and Jabodetabek submarket benchmarks (Jagakarsa, Alam Sutera/Pinang, Palmerah, Cikarang Orange County).
+- **Dynamic Pricing & Smart Rates Suite (`/dashboard/pricing`)**:
+  - **60-Day Outlook Anchored to Airbnb Payouts (`lib/pricing/yield.ts`, `lib/earnings/airbnb-monthly.ts`)**: The summary starts from the exact Airbnb Earnings CSV figures (monthly *Paid* + *Upcoming*, Sky House converted from JPY at Rp 105/¥), not from "every night sells":
+    - *Run-rate* = average monthly total of the current month and the two before, scaled to 60 days.
+    - *Locked* = Airbnb *Upcoming* for later months inside the horizon.
+    - *Smart-pricing lift* = (run-rate − locked) × average dynamic-price uplift on open nights × 50% (higher prices also turn some guests away).
+    - *Projection* = locked + remaining + lift. Properties without an export show a notice instead of rupiah figures.
+    - To refresh: export *Earnings → Performance → Monthly earnings* from each Airbnb host account and update `lib/earnings/airbnb-monthly.ts`.
+  - **Plain-Language UI for Owners**: Cards badged *Data Airbnb* / *Kalender Airbnb* / *Estimasi sistem*, a "Bagaimana angka ini dihitung?" walkthrough with the property's own numbers, and a monthly Airbnb earnings chart. Demand index and competitor rate sit in a secondary, clearly labelled market-context row.
+  - **Actual Data Fetching (Zero Dummy Data)**: Connects real live Airbnb iCal reservation dates, live Indonesian public holidays API (`date.nager.at`), and Jabodetabek submarket benchmarks (Jagakarsa, Alam Sutera/Pinang, Palmerah, Cikarang Orange County).
   - **Hospitality Revenue Management Formula**: $P_d = \operatorname{Clamp}(P_{\text{base}} \times M_{\text{dow}} \times M_{\text{season}} \times M_{\text{holiday}} \times M_{\text{leadTime}} \times M_{\text{pacing}}, P_{\text{min}}, P_{\text{max}})$.
   - **Submarket-Aware Day-of-Week Curves**: Inverted weekday/weekend logic distinguishing staycation group villas (weekend surge +35%) from expat industrial apartments (Mon-Thu peak, weekend discount).
   - **Lead-Time Urgency Curve**: Automated last-minute fire-sale discount (-15% on H-2) preventing zero-occupancy nights, and early bird protection premium (>45 days).
   - **Occupancy Velocity Pacing**: Dynamically surges remaining unbooked dates (+15% to +25%) when month occupancy exceeds target velocity threshold (>60%).
-  - **Interactive 60-Day Pricing Heatmap Calendar**: Month switcher tabs, live status chips (*Terpesan*, *Weekend Surge*, *Libur Nasional*, *Last-Minute*, *Custom Override*), and price deviation tags.
+  - **Interactive 60-Day Pricing Heatmap Calendar**: Month switcher tabs, status chips in plain Indonesian (*Sudah dipesan*, *Akhir pekan*, *Libur nasional*, *Diskon mendadak*, *Harga manual*), and price deviation tags.
   - **Calculation Breakdown & Custom Rate Override Modal**: React Portal modal inspecting day-by-day multiplier factors with 1-click admin price override and reset capabilities.
   - **Guardrail Drawer**: Configurable Floor & Ceiling price limits, weekend surge %, and last-minute discount sliders.
   - **1-Click CSV Exporter (`lib/pricing/export.ts`)**: Instant `.csv` generation for OTA multi-calendar rate imports.
@@ -82,7 +89,7 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
   - **Portal Modal Architecture**: Full-viewport frosted glass backdrops (`createPortal`) eliminating CSS transform clipping, with fixed headers and sticky save footers.
   - **Overview (`/dashboard`)**: Multi-channel OTA status, occupancy KPIs, and quick shortcuts.
   - **Properties (`/dashboard/properties`)**: Portfolio inventory, 1-click iCal URL copy, and step-by-step Airbnb sync guide.
-  - **Dynamic Pricing (`/dashboard/pricing`)**: AirDNA-grade smart rate calendar heatmap, submarket ADR benchmark, yield lift forecast, and custom date override controls.
+  - **Dynamic Pricing (`/dashboard/pricing`)**: Smart rate calendar heatmap, 60-day outlook anchored to Airbnb payouts, monthly Airbnb earnings chart, and custom date override controls.
   - **SEO Manager (`/dashboard/seo`)**: Interactive per-property Meta Title & Description editor, real-time Google SERP preview, and SEO health checklist.
   - **Bookings Hub (`/dashboard/bookings`)**: Multi-channel reservation table, visual Gantt timeline switcher, Inbound iCal sync modal, manual WhatsApp booking modal, and 1-click CSV export.
   - **Revenue & POS Analytics (`/dashboard/analytics`)**: Financial yield intelligence (ADR, RevPAR, Occupancy rate), POS expense ledger with deletion flow, and printable Owner Statement generator.
@@ -156,6 +163,7 @@ The project includes an automated test suite powered by **Vitest** covering ERP 
 
 ### Test Coverage Highlights:
 - `tests/property-revenue-calculator.test.ts`: Validates AirDNA-grade submarket benchmarks, occupancy velocity formulas, 15% vs 20% commission net payouts, and annual surplus math.
+- `tests/airbnb-yield.test.ts`: Locks the Airbnb CSV figures and checks the run-rate, locked bookings, JPY conversion, yield lift and projection math.
 - `tests/dynamic-pricing.test.ts`: Validates dynamic pricing formula, DOW multipliers for staycation vs business submarkets, official Indonesian public holiday detection, urgency curve discounts, floor/ceiling clamps, admin overrides, and CSV exports.
 - `tests/erp-calculations.test.ts`: Validates 15% vs 20% commission splits, cleaning fee exemptions, net owner payouts, ADR, and RevPAR math.
 - `tests/ical-sync-engine.test.ts`: Validates 2-way iCal synchronization and RFC 5545 parsing.
