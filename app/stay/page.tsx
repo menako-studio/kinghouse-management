@@ -29,7 +29,7 @@ export default function GuestDirectoryPage() {
               alt="Kinghouse Management"
               width={160}
               height={46}
-              priority
+              loading="eager"
               className="h-8 sm:h-9 w-auto object-contain"
             />
           </Link>
@@ -47,7 +47,7 @@ export default function GuestDirectoryPage() {
 
         {/* Properties Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          {properties.map((prop) => (
+          {properties.map((prop, index) => (
             <Link
               key={prop.propertySlug}
               href={`/stay/${prop.propertySlug}`}
@@ -60,7 +60,8 @@ export default function GuestDirectoryPage() {
                     alt={prop.propertyName}
                     fill
                     sizes="(max-width: 640px) 100vw, 400px"
-                    priority
+                    loading={index < 2 ? "eager" : undefined}
+                    fetchPriority={index === 0 ? "high" : undefined}
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent" />

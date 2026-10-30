@@ -14,7 +14,7 @@ import {
   ExternalLink,
   MessageCircle,
 } from "lucide-react"
-import { Villa } from "@/lib/types"
+import type { VillaCardData } from "@/lib/types"
 import { useLocalization } from "@/lib/context/localization-context"
 import {
   trackBookingInquiry,
@@ -26,7 +26,7 @@ import { whatsappBase } from "@/lib/funnel/whatsapp"
 
 interface BookingChannelModalProps {
 
-  villa: Villa
+  villa: VillaCardData
   isOpen: boolean
   onClose: () => void
 }

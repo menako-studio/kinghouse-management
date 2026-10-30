@@ -119,7 +119,7 @@ export function Header() {
             width={240}
             height={64}
             quality={100}
-            priority
+            loading="eager"
             className="h-14 xl:h-16 2xl:h-[72px] w-auto object-contain transition-opacity duration-200 group-hover:opacity-85"
           />
         </Link>

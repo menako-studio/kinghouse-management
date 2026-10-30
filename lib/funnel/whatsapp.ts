@@ -4,7 +4,7 @@
 // in the visitor's language (lib/i18n/funnel).
 
 import type { LanguageCode } from "@/lib/context/localization-context"
-import { createTranslator, formatDateFor, type Translate } from "@/lib/i18n/funnel"
+import { formatDateFor, translatorFor, type Translate } from "@/lib/i18n/funnel/core"
 import {
   WHATSAPP_LINES,
   eventTypeLabelKey,
@@ -28,7 +28,7 @@ export interface MessageLocale {
   language: LanguageCode
 }
 
-const DEFAULT_LOCALE: MessageLocale = { t: createTranslator("EN"), language: "EN" }
+const DEFAULT_LOCALE: MessageLocale = { t: translatorFor(), language: "EN" }
 
 export function ownerWhatsAppMessage(
   opts: { service: OwnerServiceChoice; propertyType?: string; location?: string; units?: number },

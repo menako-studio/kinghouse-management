@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "@/components/ui/localized-link"
 import { Check, X, ArrowRight, Sparkles, Calculator } from "lucide-react"
-import { MANAGEMENT_TIERS } from "@/lib/data"
+import { MANAGEMENT_TIERS } from "@/lib/marketing-data"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { useLocalization } from "@/lib/context/localization-context"

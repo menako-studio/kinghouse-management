@@ -27,7 +27,8 @@ export default function ManagementInquiryPage() {
             alt={tc("Versatile House Flagship Villa")}
             fill
             className="object-cover opacity-25"
-            priority
+            loading="eager"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#231F1A] via-[#231F1A]/80 to-black/60" />
         </div>

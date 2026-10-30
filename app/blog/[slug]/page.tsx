@@ -270,7 +270,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
       {/* Hero Image */}
       <div className="relative h-[45vh] sm:h-[55vh] w-full">
-        <Image src={post.heroImage} alt={post.title} fill className="object-cover" priority />
+        <Image src={post.heroImage} alt={post.title} fill className="object-cover" loading="eager" fetchPriority="high" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-12">
           <div className="mx-auto max-w-4xl">

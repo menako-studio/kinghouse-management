@@ -115,7 +115,7 @@ export function EventDetailView({ slug, locale }: { slug: string; locale: SiteLo
 
       {/* Hero */}
       <div className="relative h-[50vh] sm:h-[65vh]">
-        <Image src={event.heroImage} alt={tx(event.title)} fill className="object-cover" priority />
+        <Image src={event.heroImage} alt={tx(event.title)} fill className="object-cover" loading="eager" fetchPriority="high" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-12">
           <div className="mx-auto max-w-7xl">

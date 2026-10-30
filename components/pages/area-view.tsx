@@ -4,6 +4,7 @@ import Link from "@/components/ui/localized-link"
 import { MapPin, Sparkles, ArrowRight, ShieldCheck, ChevronRight, CheckCircle2 } from "lucide-react"
 import { MANAGED_AREAS, SITE_CONFIG, DEFAULT_OG_IMAGES } from "@/lib/constants"
 import { CURATED_VILLAS } from "@/lib/data"
+import { toVillaCardData } from "@/lib/types"
 import { VillaCard } from "@/components/villas/villa-card"
 import { whatsappBase } from "@/lib/funnel/whatsapp"
 import { contentTranslator } from "@/lib/i18n/content"
@@ -227,8 +228,8 @@ export function AreaView({ area, locale }: { area: string; locale: SiteLocale })
 
           {villasInArea.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {villasInArea.map((villa) => (
-                <VillaCard key={villa.id} villa={villa} priority />
+              {villasInArea.map((villa, index) => (
+                <VillaCard key={villa.id} villa={toVillaCardData(villa)} priority={index === 0} />
               ))}
             </div>
           ) : (
