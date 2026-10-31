@@ -8,6 +8,7 @@ import {
   deleteExpenseFromStore,
 } from "@/lib/erp/store"
 import { verifyAdminRequest } from "@/lib/auth-server"
+import { CURATED_VILLAS } from "@/lib/data"
 
 // Map snake_case database row to TypeScript domain model
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -106,9 +107,12 @@ export async function POST(request: NextRequest) {
     const data = parseResult.data
 
     const newExpense: ExpenseRecord = {
-      id: `EXP-${Math.floor(100 + Math.random() * 900)}`,
+      // Time-based id: the old 3-digit random id collided after a few hundred records
+      id: `EXP-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`,
       propertyId: data.propertyId,
-      propertySlug: data.propertyName.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+      propertySlug:
+        CURATED_VILLAS.find((v) => v.id === data.propertyId || v.slug === data.propertyId)?.slug ??
+        data.propertyName.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
       propertyName: data.propertyName,
       category: data.category,
       description: data.description,
