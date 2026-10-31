@@ -24,6 +24,7 @@ import { generateOwnerStatement, calculateADR, calculateRevPAR } from "@/lib/erp
 import { exportExpensesToCsv, downloadCsvFile, printOwnerStatement } from "@/lib/erp/export"
 import { formatCurrency } from "@/lib/utils"
 import { useNotifications } from "@/components/dashboard/notification-context"
+import { OwnerMonthlyReport } from "@/components/dashboard/analytics/owner-monthly-report"
 
 export default function DashboardAnalyticsPage() {
   const { addAlert, showToast } = useNotifications()
@@ -39,22 +40,22 @@ export default function DashboardAnalyticsPage() {
   const [importStats, setImportStats] = useState<{ rows: number; totalIdr: number } | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
+  // Load actual expenses (also called after the monthly report saves costs)
+  const reloadExpenses = async () => {
+    try {
+      const res = await fetch("/api/erp/expenses")
+      const data = await res.json()
+      if (data.success && Array.isArray(data.expenses)) {
+        setExpenses(data.expenses)
+      }
+    } catch (err) {
+      console.warn("Failed to load expenses from API:", err)
+    }
+  }
+
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true)
-
-    // Load actual expenses
-    const loadExpenses = async () => {
-      try {
-        const res = await fetch("/api/erp/expenses")
-        const data = await res.json()
-        if (data.success && Array.isArray(data.expenses)) {
-          setExpenses(data.expenses)
-        }
-      } catch (err) {
-        console.warn("Failed to load expenses from API:", err)
-      }
-    }
 
     // Load actual reservations
     const loadReservations = async () => {
@@ -69,7 +70,7 @@ export default function DashboardAnalyticsPage() {
       }
     }
 
-    loadExpenses()
+    reloadExpenses()
     loadReservations()
   }, [])
 
@@ -315,6 +316,17 @@ export default function DashboardAnalyticsPage() {
           <span className="font-medium">{feedbackMsg}</span>
         </div>
       )}
+
+      {/* Monthly owner statement from exact Airbnb payouts */}
+      <OwnerMonthlyReport expenses={expenses} onSaved={reloadExpenses} />
+
+      <div className="pt-4 border-t border-[#E8E4DC]">
+        <h2 className="text-lg font-semibold text-[#222225]">Ringkasan dari kalender & buku pengeluaran</h2>
+        <p className="text-xs text-[#717171] mt-1">
+          Pendapatan di bawah ini perkiraan dari kalender Airbnb (malam terisi × tarif dasar), bukan angka pembayaran Airbnb.
+          Untuk angka persis, pakai Laporan Bulanan Pemilik di atas.
+        </p>
+      </div>
 
       {/* Property Filter Bar */}
       <div className="flex items-center space-x-2 overflow-x-auto pb-2">
@@ -648,7 +660,8 @@ export default function DashboardAnalyticsPage() {
                       <option value="Linen & Laundry">Linen & Laundry Cuci Sprei</option>
                       <option value="Guest Amenities">Guest Amenities & Galon</option>
                       <option value="Maintenance & Repairs">Maintenance & Service AC</option>
-                      <option value="Staff & Operations">Staff Operasional</option>
+                      <option value="Staff & Housekeeping">Staff & Housekeeping</option>
+                      <option value="Fixed Cost">Fixed Cost Bulanan (Internet, IPL, Gaji)</option>
                     </select>
                   </div>
 
