@@ -63,6 +63,7 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
 - **Pure Dynamic Actual Data Architecture & 100% Real Live Metrics**:
   - **Zero Dummy Data**: Initialized reservation and expense state strictly as empty arrays (`INITIAL_RESERVATIONS = []`, `INITIAL_EXPENSES = []`), removing all artificial mock names or placeholder PLN transactions.
   - **Live Dynamic Overview Dashboard (`/dashboard`)**: Computes real-time gross booking turnover, occupancy rate, total nights, and active reservations from active Airbnb iCal events and authentic guest review scores.
+  - **Monthly Owner Report (`/dashboard/analytics`, `lib/earnings/owner-report.ts`)**: Pick a property and month to get the statement sent to owners: Airbnb's exact payout (paid + upcoming, with Airbnb's paid breakdown of gross minus host service fee where copied), the Kinghouse fee as a % of the Airbnb payout (23% apartments/rooms, 18% Versatile House), operating costs and fixed costs of the month, and the net to the owner. Costs are entered from templates (internet, PLN, PDAM, IPL, staff, PBB; AC service, pool, laundry, amenities, housekeeping, repairs) and saved as ERP expenses; fixed costs can be copied from the previous month.
   - **Airbnb Payout CSV Importer (`/dashboard/analytics`)**: Integrated 1-click modal parser for official Airbnb Host Payout CSV files (*Earnings > Completed Payouts*), calculating net IDR revenues alongside manual reservation and expense ledgers.
   - **Persistent In-Memory Pipeline (`lib/erp/store.ts`)**: Auto-triggers inbound live Airbnb `.ics` calendar sync on first request/boot, immediately populating authentic reservations across all units.
 - **Dynamic Pricing & Smart Rates Suite (`/dashboard/pricing`)**:
@@ -163,6 +164,7 @@ The project includes an automated test suite powered by **Vitest** covering ERP 
 
 ### Test Coverage Highlights:
 - `tests/property-revenue-calculator.test.ts`: Validates AirDNA-grade submarket benchmarks, occupancy velocity formulas, 15% vs 20% commission net payouts, and annual surplus math.
+- `tests/owner-monthly-report.test.ts`: Checks the monthly owner statement against the October Airbnb figures, fee rates, cost split, JPY conversion and expense matching.
 - `tests/airbnb-yield.test.ts`: Locks the Airbnb CSV figures and checks the run-rate, locked bookings, JPY conversion, yield lift and projection math.
 - `tests/dynamic-pricing.test.ts`: Validates dynamic pricing formula, DOW multipliers for staycation vs business submarkets, official Indonesian public holiday detection, urgency curve discounts, floor/ceiling clamps, admin overrides, and CSV exports.
 - `tests/erp-calculations.test.ts`: Validates 15% vs 20% commission splits, cleaning fee exemptions, net owner payouts, ADR, and RevPAR math.

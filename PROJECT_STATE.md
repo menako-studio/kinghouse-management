@@ -101,7 +101,8 @@ kinghouse-mockup/
 │   │   ├── store.ts                  # In-memory runtime persistence & iCal trigger
 │   │   └── types.ts                  # ERP domain models (Reservation, ExpenseRecord, OwnerStatement)
 │   ├── earnings/
-│   │   └── airbnb-monthly.ts         # Exact Airbnb monthly earnings exports (Paid / Upcoming)
+│   │   ├── airbnb-monthly.ts         # Exact Airbnb monthly earnings exports (Paid / Upcoming / paid breakdown)
+│   │   └── owner-report.ts           # Monthly owner statement: payout − fee − operating − fixed costs
 │   ├── pricing/                      # Dynamic pricing & revenue outlook engine
 │   │   ├── benchmarks.ts             # Submarket benchmarks (internal research)
 │   │   ├── engine.ts                 # Multi-factor nightly pricing algorithm
@@ -121,6 +122,7 @@ kinghouse-mockup/
 │   └── utils.ts                      # VacationRental schema generator, currency formatters
 ├── tests/
 │   ├── airbnb-yield.test.ts          # Airbnb CSV figures, run-rate & yield outlook math
+│   ├── owner-monthly-report.test.ts  # Monthly owner statement math
 │   ├── analytics-seo.test.ts         # Automated unit tests for GTM/GA4 & Schema.org
 │   ├── dynamic-pricing.test.ts       # Automated unit tests for AirDNA dynamic pricing engine
 │   ├── erp-calculations.test.ts      # Automated unit tests for financial math & statement generator
@@ -702,12 +704,19 @@ kinghouse-mockup/
 - [x] 11 new tests in `tests/airbnb-yield.test.ts`.
 - Known gap: the dashboard sidebar does not collapse on phone widths (all dashboard pages).
 
+### Phase 5.5 — Monthly Owner Report from Airbnb Payouts (Completed)
+- [x] **Statement (`lib/earnings/owner-report.ts`, `components/dashboard/analytics/owner-monthly-report.tsx`)**: per property and month — Airbnb payout (paid + upcoming; October paid breakdown: gross − Airbnb host service fee), Kinghouse fee as % of the Airbnb payout (owner decision: 23% apartments/rooms, 18% Versatile House), operating costs, fixed costs, net to owner. Shown first on `/dashboard/analytics`; the older KPI cards are labelled as calendar estimates.
+- [x] **Cost entry**: template lines for fixed costs (new `Fixed Cost` expense category) and operating costs, extra items, and "copy last month's fixed costs". Amounts are entered by the team; nothing is pre-filled.
+- [x] **Fixes**: expense ids were 3-digit random (`EXP-100..999`) and collided; `propertySlug` came from the property name; the expense modal's "Staff & Operations" option was rejected by the API.
+- [x] 8 new tests in `tests/owner-monthly-report.test.ts`.
+- Open data: Airbnb paid breakdown is only copied for October 2026; Bright & Airy has no Airbnb export yet. Hardcoded figures still on the dashboard: blog "reads" and the "+0.2" rating change.
+
 ---
 
 ## 4. VERIFICATION COMMANDS
 
 ```bash
-# Run automated Vitest test suite (159 tests across 19 suites)
+# Run automated Vitest test suite (167 tests across 20 suites)
 npm test
 
 # Run TypeScript strict type verification (0 errors)
