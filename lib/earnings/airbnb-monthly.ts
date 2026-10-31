@@ -5,10 +5,19 @@
 
 export type AirbnbPayoutCurrency = "IDR" | "JPY"
 
+/** Airbnb's "Paid breakdown" for a month (Earnings → Performance), in the export currency. */
+export interface AirbnbPaidBreakdown {
+  gross: number // what guests paid for the stays
+  serviceFee: number // Airbnb host service fee, as a positive number
+  adjustments: number
+  taxesWithheld: number
+}
+
 export interface AirbnbMonthlyEarning {
   month: string // YYYY-MM
   paid: number // in the export currency
   upcoming: number // in the export currency
+  paidBreakdown?: AirbnbPaidBreakdown // only for months whose breakdown was copied from Airbnb
 }
 
 export interface AirbnbEarningsExport {
@@ -27,7 +36,13 @@ export interface AirbnbEarningsExport {
  */
 export const JPY_TO_IDR = 105
 
-const m = (month: string, paid: number, upcoming = 0): AirbnbMonthlyEarning => ({ month, paid, upcoming })
+const m = (month: string, paid: number, upcoming = 0, paidBreakdown?: AirbnbPaidBreakdown): AirbnbMonthlyEarning => ({
+  month,
+  paid,
+  upcoming,
+  ...(paidBreakdown ? { paidBreakdown } : {}),
+})
+const fee = (gross: number, serviceFee: number): AirbnbPaidBreakdown => ({ gross, serviceFee, adjustments: 0, taxesWithheld: 0 })
 
 export const AIRBNB_MONTHLY_EARNINGS: Record<string, AirbnbEarningsExport> = {
   "versatile-house-jagakarsa": {
@@ -45,7 +60,7 @@ export const AIRBNB_MONTHLY_EARNINGS: Record<string, AirbnbEarningsExport> = {
       m("2026-07", 32195597),
       m("2026-08", 56158426),
       m("2026-09", 30074031),
-      m("2026-10", 27914475, 7621794),
+      m("2026-10", 27914475, 7621794, fee(32785107, 4870632)),
       m("2026-11", 0, 14511973),
       m("2026-12", 0),
     ],
@@ -65,7 +80,7 @@ export const AIRBNB_MONTHLY_EARNINGS: Record<string, AirbnbEarningsExport> = {
       m("2026-07", 2355171),
       m("2026-08", 3891318),
       m("2026-09", 3347398),
-      m("2026-10", 2166587),
+      m("2026-10", 2166587, 0, fee(2616801, 450214)),
       m("2026-11", 0, 466459),
       m("2026-12", 0, 579521),
     ],
@@ -85,7 +100,7 @@ export const AIRBNB_MONTHLY_EARNINGS: Record<string, AirbnbEarningsExport> = {
       m("2026-07", 21256),
       m("2026-08", 62680),
       m("2026-09", 46885),
-      m("2026-10", 48864),
+      m("2026-10", 48864, 0, fee(50376, 1511)),
       m("2026-11", 0, 46699),
       m("2026-12", 0, 47268),
     ],

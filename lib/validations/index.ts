@@ -37,6 +37,7 @@ export const ExpenseSchema = z.object({
     "Maintenance & Repairs",
     "Staff & Housekeeping",
     "Marketing & OTAs",
+    "Fixed Cost",
   ]),
   description: z.string().min(3, "Deskripsi pengeluaran minimal 3 karakter"),
   amountIdr: z.number().positive("Jumlah pengeluaran harus lebih dari 0"),

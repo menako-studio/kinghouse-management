@@ -35,6 +35,7 @@ export type ExpenseCategory =
   | "Maintenance & Repairs"
   | "Staff & Housekeeping"
   | "Marketing & OTAs"
+  | "Fixed Cost" // recurring monthly bills: internet, PLN, IPL, staff salary, PBB
 
 export interface ExpenseRecord {
   id: string
