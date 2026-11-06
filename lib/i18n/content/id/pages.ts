@@ -57,6 +57,9 @@ export const pages: Record<string, string> = {
   "Open WhatsApp Chat": "Buka Chat WhatsApp",
   "Direct Inquiries": "Email",
   "WhatsApp Desk": "WhatsApp",
+  "Property Owner Desk (B2B)": "Desk Pemilik Properti (B2B)",
+  "Stay, Venue & Events": "Menginap, Venue & Event",
+  "Property Owners": "Pemilik Properti",
   "Open in Google Maps": "Buka di Google Maps",
   "Message Dispatched": "Pesan Terkirim",
   "Thank you for contacting Kinghouse. Our hospitality concierge or senior asset manager will follow up shortly.":

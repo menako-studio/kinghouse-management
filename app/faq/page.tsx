@@ -4,6 +4,8 @@ import { useState } from "react"
 import Link from "@/components/ui/localized-link"
 import { HelpCircle, ChevronDown, MessageCircle, ArrowRight } from "lucide-react"
 import { FAQ_CATEGORIES } from "@/lib/faq"
+import { trackWhatsAppClick } from "@/lib/analytics"
+import { WA_GUEST_NUMBER, WA_OWNER_NUMBER } from "@/lib/funnel/config"
 import { useLocalization } from "@/lib/context/localization-context"
 
 export default function FaqPage() {
@@ -110,13 +112,24 @@ export default function FaqPage() {
 
             <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0">
               <a
-                href="https://wa.me/6282123933218?text=Hello%20Kinghouse!%20I%20have%20a%20question%20regarding%20your%20services."
+                href={`https://wa.me/${WA_GUEST_NUMBER}?text=${encodeURIComponent("Hello Kinghouse! I have a question about a stay, venue or event.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick({ source: "contact_page", funnel: "stay", context: "faq_guest" })}
                 className="inline-flex items-center space-x-2 rounded-full bg-white text-[#8C7F5F] px-6 py-3 text-xs font-semibold uppercase tracking-wider hover:bg-[#FAF8F5] transition-all shadow-sm"
               >
                 <MessageCircle className="h-4 w-4 text-[#25D366]" />
-                <span>{tc("Chat on WhatsApp")}</span>
+                <span>{tc("Stay, Venue & Events")}</span>
+              </a>
+              <a
+                href={`https://wa.me/${WA_OWNER_NUMBER}?text=${encodeURIComponent("Hello Kinghouse! I own a property and have a question about your management services.")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick({ source: "contact_page", funnel: "owner", context: "faq_owner" })}
+                className="inline-flex items-center space-x-2 rounded-full border border-white/60 text-white px-6 py-3 text-xs font-semibold uppercase tracking-wider hover:bg-white/10 transition-all"
+              >
+                <MessageCircle className="h-4 w-4" />
+                <span>{tc("Property Owners")}</span>
               </a>
               <Link
                 href="/contact"

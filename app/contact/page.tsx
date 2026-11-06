@@ -10,8 +10,8 @@ import {
   trackEvent,
   trackWhatsAppClick,
   trackEmailClick,
-  trackPhoneCall,
 } from "@/lib/analytics"
+import { WA_GUEST_NUMBER, WA_OWNER_NUMBER } from "@/lib/funnel/config"
 import { useLocalization } from "@/lib/context/localization-context"
 
 export default function ContactPage() {
@@ -139,10 +139,10 @@ export default function ContactPage() {
                 </div>
                 <Button asChild className="w-full text-xs uppercase tracking-wider font-semibold">
                   <a
-                    href="https://wa.me/6282123933218?text=Hello%20Kinghouse%2C%20I%20would%20like%20to%20inquire%20about%20your%20services."
+                    href={`https://wa.me/${WA_GUEST_NUMBER}?text=${encodeURIComponent("Hello Kinghouse, I would like to inquire about a stay, venue or event.")}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={() => trackWhatsAppClick({ source: "contact_page", context: "instant_concierge" })}
+                    onClick={() => trackWhatsAppClick({ source: "contact_page", funnel: "stay", context: "instant_concierge" })}
                   >
                     {tc("Open WhatsApp Chat")} <ArrowUpRight className="ml-1.5 h-3.5 w-3.5" />
                   </a>
@@ -168,12 +168,12 @@ export default function ContactPage() {
                 <div className="flex items-start space-x-3">
                   <Phone className="h-5 w-5 text-[#A69C8E] shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-xs text-[#717171] block">{tc("WhatsApp Desk")}</span>
+                    <span className="text-xs text-[#717171] block">{tc("Property Owner Desk (B2B)")}</span>
                     <a
-                      href="https://wa.me/6282123933218"
+                      href={`https://wa.me/${WA_OWNER_NUMBER}?text=${encodeURIComponent("Hello Kinghouse, I own a property and would like to discuss housekeeping, co-hosting or full management.")}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      onClick={() => trackPhoneCall({ source: "contact_page", phoneNumber: "+62 821-2393-3218" })}
+                      onClick={() => trackWhatsAppClick({ source: "contact_page", funnel: "owner", context: "owner_desk" })}
                       className="font-medium hover:underline"
                     >
                       +62 821-2393-3218

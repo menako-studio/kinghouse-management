@@ -37,7 +37,10 @@ export const SITE_CONFIG = {
   contact: {
     email: "info@kinghousemanagement.com",
     phone: "+62 821-2393-3218",
+    // B2B line: property owners (HK on Demand, Co-Hosting, Full Management)
     whatsapp: "+62 821-2393-3218",
+    // B2C line: venue / event / stay / package inquiries (mirrored to the co-host admin)
+    whatsappGuest: "+62 852-8867-9300",
     whatsappMessage: "Hello Kinghouse Management, I am interested in your property management and villa booking services.",
     address: "18 Office Park Building 21th Floor Unit C. Jl. TB Simatupang Kav. 18, Jakarta Selatan, 12520",
     mapsUrl: "https://maps.google.com/?q=18+Office+Park+Building+Jl.+TB+Simatupang+Kav.+18+Jakarta+Selatan+12520",

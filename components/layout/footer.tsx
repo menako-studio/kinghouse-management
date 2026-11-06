@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
+import { WA_GUEST_NUMBER, WA_OWNER_NUMBER } from "@/lib/funnel/config"
 import {
   Mail,
   Phone,
@@ -157,13 +158,22 @@ export function Footer() {
                       Hotline & WhatsApp Desk
                     </span>
                     <a
-                      href="https://wa.me/6282123933218"
+                      href={`https://wa.me/${WA_GUEST_NUMBER}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      onClick={() => trackWhatsAppClick({ source: "footer", context: "streamlined_hotline" })}
-                      className="font-medium text-white hover:underline transition-colors text-sm"
+                      onClick={() => trackWhatsAppClick({ source: "footer", funnel: "stay", context: "guest_line" })}
+                      className="font-medium text-white hover:underline transition-colors text-sm block"
                     >
-                      +62 821 2393 3218
+                      +62 852 8867 9300 <span className="text-xs font-light text-[#F0EBE0]">· Stay, Venue &amp; Events</span>
+                    </a>
+                    <a
+                      href={`https://wa.me/${WA_OWNER_NUMBER}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => trackWhatsAppClick({ source: "footer", funnel: "owner", context: "owner_line" })}
+                      className="font-medium text-white hover:underline transition-colors text-sm block mt-1"
+                    >
+                      +62 821 2393 3218 <span className="text-xs font-light text-[#F0EBE0]">· Property Owners</span>
                     </a>
                   </div>
                 </div>

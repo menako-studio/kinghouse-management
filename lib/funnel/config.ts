@@ -22,13 +22,20 @@ function normalizeNumber(raw: string | undefined): string {
  * Two WhatsApp lines (owner decision, Oct 2026):
  *  - OWNER: Kinghouse products — HK on Demand, Co-Hosting, Full Management
  *  - GUEST: stays and event bookings at our properties (STAY + EVENT)
- * Both fall back to the main hotline until the numbers are set.
+ * OWNER falls back to the main hotline (082123933218); GUEST defaults to 6285288679300.
  * NEXT_PUBLIC_* values are fixed at build time: redeploy after changing them.
  */
 const OWNER_LINE = normalizeNumber(process.env.NEXT_PUBLIC_WA_OWNER)
 const GUEST_LINE = normalizeNumber(
-  process.env.NEXT_PUBLIC_WA_GUEST || process.env.NEXT_PUBLIC_WA_STAY || process.env.NEXT_PUBLIC_WA_EVENT
+  process.env.NEXT_PUBLIC_WA_GUEST ||
+    process.env.NEXT_PUBLIC_WA_STAY ||
+    process.env.NEXT_PUBLIC_WA_EVENT ||
+    SITE_CONFIG.contact.whatsappGuest
 )
+
+/** Digits-only numbers for pages outside the funnel config (contact, FAQ, 404, footer…). */
+export const WA_OWNER_NUMBER = OWNER_LINE
+export const WA_GUEST_NUMBER = GUEST_LINE
 
 export const WHATSAPP_LINES: Record<LeadTarget, string> = {
   OWNER: OWNER_LINE,
