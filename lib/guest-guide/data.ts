@@ -77,7 +77,7 @@ export const GUEST_COMPENDIUMS: Record<string, GuestCompendium> = {
     propertyName: "Versatile House With Beautiful Garden Beyond",
     area: "Jagakarsa, Jakarta Selatan",
     heroImage: "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
-    whatsappConciergePhone: "6282123933218",
+    whatsappConciergePhone: "6285288679300",
     wifi: {
       networkName: "VersatileHouse_Guest_5G",
       password: "KingHouseGarden2026",
@@ -171,7 +171,7 @@ export const GUEST_COMPENDIUMS: Record<string, GuestCompendium> = {
     propertyName: "Sky House • Hotel-Style Bed + IKEA 5min",
     area: "Pinang, Kota Tangerang (Alam Sutera)",
     heroImage: "/properties/sky-house/SkyHouse_IKEA_KamarUtama_Wide.jpeg",
-    whatsappConciergePhone: "6282123933218",
+    whatsappConciergePhone: "6285288679300",
     wifi: {
       networkName: "KINGSKYHOUSE22",
       password: "120210120069#",
@@ -250,7 +250,7 @@ export const GUEST_COMPENDIUMS: Record<string, GuestCompendium> = {
     propertyName: "Bright & Airy Apartment",
     area: "Palmerah, Jakarta Barat",
     heroImage: "/properties/bright-airy/BrightAiry_Apartment_Kamar_Wide.webp",
-    whatsappConciergePhone: "6282123933218",
+    whatsappConciergePhone: "6285288679300",
     wifi: {
       networkName: "BrightPalmerah_Fast",
       password: "PalmerahStay2026",
@@ -305,7 +305,7 @@ export const GUEST_COMPENDIUMS: Record<string, GuestCompendium> = {
     propertyName: "Skyline Luxury at Orange County",
     area: "Cikarang Selatan, Bekasi",
     heroImage: "/properties/skyline-luxury/SkylineLuxury_OrangeCounty_KamarUtama.webp",
-    whatsappConciergePhone: "6282123933218",
+    whatsappConciergePhone: "6285288679300",
     wifi: {
       networkName: "N0510",
       password: "Kinghouse",

@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
+import { useWhatsAppChooser } from "@/components/funnel/whatsapp-chooser"
 import {
   Mail,
   Phone,
@@ -19,6 +20,7 @@ import {
 export function Footer() {
   const currentYear = new Date().getFullYear()
   const { t, localizeHref } = useLocalization()
+  const { open: openChooser } = useWhatsAppChooser()
 
 
   return (
@@ -156,15 +158,14 @@ export function Footer() {
                     <span className="text-xs uppercase tracking-wider text-[#DFC58E] font-semibold block">
                       Hotline & WhatsApp Desk
                     </span>
-                    <a
-                      href="https://wa.me/6282123933218"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => trackWhatsAppClick({ source: "footer", context: "streamlined_hotline" })}
-                      className="font-medium text-white hover:underline transition-colors text-sm"
+                    <button
+                      type="button"
+                      onClick={() => openChooser({ source: "footer", context: "hotline" })}
+                      className="font-medium text-white hover:underline transition-colors text-sm text-left"
                     >
-                      +62 821 2393 3218
-                    </a>
+                      Chat on WhatsApp →
+                    </button>
+                    <span className="block text-xs font-light text-[#F0EBE0] mt-0.5">Stay, Venue &amp; Events · Property Owners</span>
                   </div>
                 </div>
 

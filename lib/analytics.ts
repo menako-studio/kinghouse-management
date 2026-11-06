@@ -6,10 +6,9 @@
 
 export const GA_MEASUREMENT_ID =
   process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-TWXVH3RCP4"
-// GTM loads only when NEXT_PUBLIC_GTM_ID is set. Container GTM-PH9N4N7H has no
-// tags yet, so loading it by default cost mobile speed for nothing; events still
-// reach window.dataLayer, so setting the variable re-enables it with no code change.
-export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || ""
+// GTM container is enabled by default so the dataLayer events (whatsapp_click etc.)
+// can be consumed in GTM. Override with NEXT_PUBLIC_GTM_ID (empty string disables it).
+export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? "GTM-PH9N4N7H"
 
 /**
  * Designated GA4 Key Events (conversions) — single source of truth.

@@ -11,7 +11,8 @@ import {
   ArrowUpRight
 } from "lucide-react"
 import { useLocalization } from "@/lib/context/localization-context"
-import { SITE_CONFIG, MANAGED_AREAS } from "@/lib/constants"
+import { WA_GUEST_NUMBER } from "@/lib/funnel/config"
+import { MANAGED_AREAS } from "@/lib/constants"
 
 export default function NotFound() {
   const { language } = useLocalization()
@@ -84,7 +85,7 @@ export default function NotFound() {
           </Link>
 
           <a
-            href={`https://wa.me/${SITE_CONFIG.contact.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
+            href={`https://wa.me/${WA_GUEST_NUMBER}?text=${encodeURIComponent(
               isId 
                 ? "Halo Kinghouse Concierge, saya mengalami kendala tautan halaman pada website dan butuh bantuan." 
                 : "Hello Kinghouse Concierge, I encountered an unmapped page on your website and require assistance."
