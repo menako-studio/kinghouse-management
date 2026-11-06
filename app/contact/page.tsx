@@ -11,11 +11,13 @@ import {
   trackWhatsAppClick,
   trackEmailClick,
 } from "@/lib/analytics"
-import { WA_GUEST_NUMBER, WA_OWNER_NUMBER } from "@/lib/funnel/config"
+import { WA_OWNER_NUMBER } from "@/lib/funnel/config"
+import { useWhatsAppChooser } from "@/components/funnel/whatsapp-chooser"
 import { useLocalization } from "@/lib/context/localization-context"
 
 export default function ContactPage() {
   const { tc } = useLocalization()
+  const { open: openChooser } = useWhatsAppChooser()
   const [submitted, setSubmitted] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
@@ -138,14 +140,12 @@ export default function ContactPage() {
                   </div>
                 </div>
                 <Button asChild className="w-full text-xs uppercase tracking-wider font-semibold">
-                  <a
-                    href={`https://wa.me/${WA_GUEST_NUMBER}?text=${encodeURIComponent("Hello Kinghouse, I would like to inquire about a stay, venue or event.")}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => trackWhatsAppClick({ source: "contact_page", funnel: "stay", context: "instant_concierge" })}
+                  <button
+                    type="button"
+                    onClick={() => openChooser({ source: "contact_page", context: "instant_concierge" })}
                   >
                     {tc("Open WhatsApp Chat")} <ArrowUpRight className="ml-1.5 h-3.5 w-3.5" />
-                  </a>
+                  </button>
                 </Button>
               </div>
 

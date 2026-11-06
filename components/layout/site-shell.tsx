@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { FloatingWhatsApp } from "@/components/ui/floating-whatsapp"
+import { WhatsAppChooserProvider } from "@/components/funnel/whatsapp-chooser"
 import { LeadSourceCapture } from "@/components/funnel/lead-source-capture"
 
 interface SiteShellProps {
@@ -29,6 +30,7 @@ export function SiteShell({ children }: SiteShellProps) {
   // `contents` keeps the layout box-free while the class scopes the larger
   // public-site type scale (see .site-public in globals.css).
   return (
+    <WhatsAppChooserProvider>
     <div className="site-public contents">
       <LeadSourceCapture />
       <Header />
@@ -36,5 +38,6 @@ export function SiteShell({ children }: SiteShellProps) {
       <Footer />
       <FloatingWhatsApp />
     </div>
+    </WhatsAppChooserProvider>
   )
 }

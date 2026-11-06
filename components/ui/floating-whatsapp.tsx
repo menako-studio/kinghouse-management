@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { MessageCircle, X } from "lucide-react"
 import { trackWhatsAppClick } from "@/lib/analytics"
 import { useLocalization } from "@/lib/context/localization-context"
+import { useWhatsAppChooser } from "@/components/funnel/whatsapp-chooser"
 import { buildWhatsAppUrl, resolvePageWhatsApp } from "@/lib/funnel/whatsapp"
 
 export function FloatingWhatsApp() {
@@ -12,11 +13,21 @@ export function FloatingWhatsApp() {
   const pathname = usePathname()
   const [isTooltipDismissed, setIsTooltipDismissed] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
+  const { open: openChooser } = useWhatsAppChooser()
 
   const { target, funnel, message } = resolvePageWhatsApp(pathname || "/", { t, language })
   const whatsappUrl = buildWhatsAppUrl(target, message)
 
-  const handleClick = () => {
+  // Pages that already imply a purpose (owner / stay / event) open WhatsApp directly;
+  // generic pages ask the visitor first.
+  const needsChooser = funnel === "general"
+
+  const handleClick = (e: React.MouseEvent) => {
+    if (needsChooser) {
+      e.preventDefault()
+      openChooser({ source: "floating", context: "sticky_concierge" })
+      return
+    }
     trackWhatsAppClick({
       source: "floating",
       funnel,
