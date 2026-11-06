@@ -3,9 +3,7 @@
 import { useState } from "react"
 import { usePathname } from "next/navigation"
 import { MessageCircle, X } from "lucide-react"
-import { trackWhatsAppClick } from "@/lib/analytics"
 import { useLocalization } from "@/lib/context/localization-context"
-import { useWhatsAppChooser } from "@/components/funnel/whatsapp-chooser"
 import { buildWhatsAppUrl, resolvePageWhatsApp } from "@/lib/funnel/whatsapp"
 
 export function FloatingWhatsApp() {
@@ -13,27 +11,9 @@ export function FloatingWhatsApp() {
   const pathname = usePathname()
   const [isTooltipDismissed, setIsTooltipDismissed] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
-  const { open: openChooser } = useWhatsAppChooser()
 
-  const { target, funnel, message } = resolvePageWhatsApp(pathname || "/", { t, language })
+  const { target, message } = resolvePageWhatsApp(pathname || "/", { t, language })
   const whatsappUrl = buildWhatsAppUrl(target, message)
-
-  // Pages that already imply a purpose (owner / stay / event) open WhatsApp directly;
-  // generic pages ask the visitor first.
-  const needsChooser = funnel === "general"
-
-  const handleClick = (e: React.MouseEvent) => {
-    if (needsChooser) {
-      e.preventDefault()
-      openChooser({ source: "floating", context: "sticky_concierge" })
-      return
-    }
-    trackWhatsAppClick({
-      source: "floating",
-      funnel,
-      context: "sticky_concierge",
-    })
-  }
 
   return (
     <div
@@ -46,7 +26,6 @@ export function FloatingWhatsApp() {
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={handleClick}
         aria-label="Direct WhatsApp Concierge"
         className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_8px_30px_rgba(37,211,102,0.35)] transition-all duration-300 hover:scale-108 hover:shadow-[0_12px_36px_rgba(37,211,102,0.5)] focus:outline-none focus:ring-4 focus:ring-[#25D366]/30 active:scale-95"
       >
