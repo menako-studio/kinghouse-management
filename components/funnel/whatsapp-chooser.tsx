@@ -4,6 +4,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 import { Building2, CalendarHeart, MessageCircle, X } from "lucide-react"
 import { trackEvent, trackWhatsAppClick } from "@/lib/analytics"
 import { useLocalization } from "@/lib/context/localization-context"
+import { WA_OWNER_NUMBER } from "@/lib/funnel/config"
 import { buildWhatsAppUrl, ownerWhatsAppMessage } from "@/lib/funnel/whatsapp"
 
 type ChooserSource = Parameters<typeof trackWhatsAppClick>[0]["source"]
@@ -11,7 +12,15 @@ type ChooserSource = Parameters<typeof trackWhatsAppClick>[0]["source"]
 interface OpenOptions {
   source: ChooserSource
   context?: string
+  /** Pre-filled message of the CTA that was clicked; used for the suggested line. */
+  message?: string
+  /** Which line the clicked CTA was originally meant for. */
+  suggested?: "stay" | "owner"
 }
+
+/** In-stay concierge pages talk to the property's own desk: no purpose to choose. */
+const DIRECT_PATHS = /^\/(id\/)?stay(\/|$)/
+const WA_HREF = /^https:\/\/wa\.me\/(\d+)/
 
 interface ChooserContextValue {
   open: (options: OpenOptions) => void
@@ -56,6 +65,30 @@ export function WhatsAppChooserProvider({ children }: { children: React.ReactNod
     return () => document.removeEventListener("keydown", onKey)
   }, [request, close])
 
+  // Global treatment: every wa.me link on the public site opens this chooser first.
+  // Capture phase + stopPropagation keeps the link's own tracking from double-counting
+  // (the final pick is tracked below). Modified clicks (new tab) are left alone.
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
+      const anchor = (e.target as Element | null)?.closest?.("a[href]") as HTMLAnchorElement | null
+      if (!anchor || anchor.closest("[data-wa-chooser]")) return
+      const match = anchor.href.match(WA_HREF)
+      if (!match || DIRECT_PATHS.test(window.location.pathname)) return
+      e.preventDefault()
+      e.stopPropagation()
+      const message = new URL(anchor.href).searchParams.get("text") || undefined
+      open({
+        source: "chooser",
+        context: window.location.pathname,
+        message,
+        suggested: match[1] === WA_OWNER_NUMBER ? "owner" : "stay",
+      })
+    }
+    document.addEventListener("click", onClick, true)
+    return () => document.removeEventListener("click", onClick, true)
+  }, [open])
+
   const choices = request
     ? [
         {
@@ -64,7 +97,7 @@ export function WhatsAppChooserProvider({ children }: { children: React.ReactNod
           icon: CalendarHeart,
           title: tc("Stay, Venue & Events"),
           text: tc("Check a villa, venue or package, book a stay or plan an event."),
-          message: t("f.wa.general"),
+          message: request?.suggested === "stay" && request.message ? request.message : t("f.wa.general"),
         },
         {
           funnel: "owner" as const,
@@ -72,7 +105,10 @@ export function WhatsAppChooserProvider({ children }: { children: React.ReactNod
           icon: Building2,
           title: tc("I'm a Property Owner"),
           text: tc("Housekeeping on demand, co-hosting or full management for my property."),
-          message: ownerWhatsAppMessage({ service: "undecided" }, { t, language }),
+          message:
+            request?.suggested === "owner" && request.message
+              ? request.message
+              : ownerWhatsAppMessage({ service: "undecided" }, { t, language }),
         },
       ]
     : []
@@ -86,6 +122,7 @@ export function WhatsAppChooserProvider({ children }: { children: React.ReactNod
           onClick={close}
         >
           <div
+            data-wa-chooser
             role="dialog"
             aria-modal="true"
             aria-labelledby="wa-chooser-title"
@@ -129,7 +166,14 @@ export function WhatsAppChooserProvider({ children }: { children: React.ReactNod
                     <choice.icon className="h-5 w-5" />
                   </span>
                   <span className="text-left">
-                    <span className="block text-sm font-semibold text-[#222222]">{choice.title}</span>
+                    <span className="block text-sm font-semibold text-[#222222]">
+                      {choice.title}
+                      {request.suggested === choice.funnel && (
+                        <span className="ml-2 rounded-full bg-[#F2ECE1] px-2 py-0.5 align-middle text-[10px] font-semibold uppercase tracking-wider text-[#8C7F5F]">
+                          {tc("Suggested")}
+                        </span>
+                      )}
+                    </span>
                     <span className="mt-0.5 block text-xs font-light leading-relaxed text-[#5C5347]">{choice.text}</span>
                   </span>
                 </a>

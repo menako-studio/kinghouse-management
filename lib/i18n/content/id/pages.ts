@@ -64,6 +64,7 @@ export const pages: Record<string, string> = {
   "I'm a Property Owner": "Saya Pemilik Properti",
   "Housekeeping on demand, co-hosting or full management for my property.": "Housekeeping on demand, co-hosting atau full management untuk properti saya.",
   "Close": "Tutup",
+  "Suggested": "Disarankan",
   "Chat with Kinghouse": "Chat dengan Kinghouse",
   "What can we help you with?": "Apa yang bisa kami bantu?",
   "Open in Google Maps": "Buka di Google Maps",

@@ -108,7 +108,7 @@ export function trackPageView(url: string, title?: string) {
  * Track WhatsApp Concierge / Inquiries
  */
 export function trackWhatsAppClick(options: {
-  source: "header" | "footer" | "floating" | "villa_detail" | "booking_modal" | "owner_page" | "event_page" | "contact_page" | "guest_compendium" | "management_inquiry" | "revenue_calculator" | "thank_you_page"
+  source: "header" | "footer" | "floating" | "villa_detail" | "booking_modal" | "owner_page" | "event_page" | "contact_page" | "guest_compendium" | "management_inquiry" | "revenue_calculator" | "thank_you_page" | "chooser"
   funnel?: FunnelName
   propertyName?: string
   context?: string
