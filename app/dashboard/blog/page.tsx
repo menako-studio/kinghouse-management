@@ -41,6 +41,7 @@ import { BLOG_POSTS, CURATED_VILLAS } from "@/lib/data"
 import { BlogPost } from "@/lib/types"
 
 import { useNotifications } from "@/components/dashboard/notification-context"
+import { Select } from "@/components/ui/select"
 
 export interface DashboardArticle {
   id: string
@@ -759,7 +760,7 @@ export default function DashboardBlogPage() {
           </div>
 
           {/* Category Dropdown */}
-          <select
+          <Select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
             className="px-3 py-1.5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] text-xs font-medium text-[#222225] focus:outline-none focus:border-[#B8934C] cursor-pointer"
@@ -770,7 +771,7 @@ export default function DashboardBlogPage() {
                 {cat}
               </option>
             ))}
-          </select>
+          </Select>
 
           <Link
             href="/blog"
@@ -1093,7 +1094,7 @@ export default function DashboardBlogPage() {
                           <label className="block font-semibold text-[#555] uppercase tracking-wider mb-1.5">
                             Kategori Artikel
                           </label>
-                          <select
+                          <Select
                             value={formCategory}
                             onChange={(e) => setFormCategory(e.target.value)}
                             className="w-full px-4 py-2.5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] font-medium text-[#222225] focus:outline-none focus:border-[#B8934C]"
@@ -1103,7 +1104,7 @@ export default function DashboardBlogPage() {
                                 {cat}
                               </option>
                             ))}
-                          </select>
+                          </Select>
                         </div>
                       </div>
                     </div>
@@ -1206,7 +1207,7 @@ export default function DashboardBlogPage() {
                         </button>
 
                         {/* INTERNAL LINK PRESET SELECTOR */}
-                        <select
+                        <Select
                           onChange={(e) => {
                             if (e.target.value) {
                               const villa = CURATED_VILLAS.find((v) => v.slug === e.target.value)
@@ -1222,7 +1223,7 @@ export default function DashboardBlogPage() {
                               {v.name} ({v.area})
                             </option>
                           ))}
-                        </select>
+                        </Select>
                       </div>
 
                       <textarea
@@ -1267,7 +1268,7 @@ export default function DashboardBlogPage() {
                         <label className="block font-semibold text-[#555] uppercase tracking-wider mb-1.5">
                           Status Publikasi
                         </label>
-                        <select
+                        <Select
                           value={formStatus}
                           onChange={(e) => setFormStatus(e.target.value as "Published" | "Draft" | "Archived")}
                           className="w-full px-4 py-2.5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] font-semibold text-[#222225] focus:outline-none focus:border-[#B8934C]"
@@ -1275,7 +1276,7 @@ export default function DashboardBlogPage() {
                           <option value="Published">Published (Tayang di Web & Terindeks)</option>
                           <option value="Draft">Draft (Disimpan Internal)</option>
                           <option value="Archived">Archived (Sampah / Soft Delete)</option>
-                        </select>
+                        </Select>
 
                       </div>
 

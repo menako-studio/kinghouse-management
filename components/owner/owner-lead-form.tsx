@@ -18,6 +18,7 @@ import { trackWhatsAppClick } from "@/lib/analytics"
 import { useLocalization } from "@/lib/context/localization-context"
 import type { OwnerLeadInput } from "@/lib/validations"
 import { useOwnerService } from "./owner-service-context"
+import { Select } from "@/components/ui/select"
 
 type PropertyType = OwnerLeadInput["propertyType"]
 type PropertyStatus = OwnerLeadInput["propertyStatus"]
@@ -128,7 +129,7 @@ export function OwnerLeadForm({ source = "owner_page" }: { source?: "owner_page"
                 />
               </Field>
               <Field label={t("f.owner.service")} htmlFor="owner-service" required>
-                <select
+                <Select
                   id="owner-service"
                   value={service}
                   onChange={(e) => setService(e.target.value as OwnerServiceChoice)}
@@ -139,13 +140,13 @@ export function OwnerLeadForm({ source = "owner_page" }: { source?: "owner_page"
                       {t(s.labelKey)}
                     </option>
                   ))}
-                </select>
+                </Select>
               </Field>
             </div>
 
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
               <Field label={t("f.owner.propertyType")} htmlFor="owner-type" required>
-                <select
+                <Select
                   id="owner-type"
                   value={form.propertyType}
                   onChange={(e) => update("propertyType", e.target.value as PropertyType)}
@@ -156,7 +157,7 @@ export function OwnerLeadForm({ source = "owner_page" }: { source?: "owner_page"
                       {t(`f.owner.type.${type}`)}
                     </option>
                   ))}
-                </select>
+                </Select>
               </Field>
               <Field label={t("f.owner.location")} htmlFor="owner-location" required>
                 <Input
@@ -185,7 +186,7 @@ export function OwnerLeadForm({ source = "owner_page" }: { source?: "owner_page"
             </div>
 
             <Field label={t("f.owner.status")} htmlFor="owner-status" required>
-              <select
+              <Select
                 id="owner-status"
                 value={form.propertyStatus}
                 onChange={(e) => update("propertyStatus", e.target.value as PropertyStatus)}
@@ -196,7 +197,7 @@ export function OwnerLeadForm({ source = "owner_page" }: { source?: "owner_page"
                     {t(`f.owner.status.${status}`)}
                   </option>
                 ))}
-              </select>
+              </Select>
             </Field>
 
             <FormError message={errorKey ? t(errorKey) : null} />

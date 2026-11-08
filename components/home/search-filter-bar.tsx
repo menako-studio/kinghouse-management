@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Search, MapPin, Calendar, Users } from "lucide-react"
 import { useLocalization } from "@/lib/context/localization-context"
+import { Select } from "@/components/ui/select"
 
 export function SearchFilterBar() {
   const router = useRouter()
@@ -39,7 +40,7 @@ export function SearchFilterBar() {
             <span className="text-xs font-bold uppercase tracking-wider text-[#222222]">
               {t("destinationLabel")}
             </span>
-            <select
+            <Select
               id="search-destination-select"
               aria-label={tc("Filter by destination in Greater Jakarta")}
               value={destination}
@@ -51,7 +52,7 @@ export function SearchFilterBar() {
               <option value="tangerang">{tc("Tangerang (Banten)")}</option>
               <option value="palmerah">{tc("Palmerah (West Jakarta)")}</option>
               <option value="cikarang">{tc("Cikarang (East Jakarta Corridor)")}</option>
-            </select>
+            </Select>
           </div>
         </div>
 
@@ -93,7 +94,7 @@ export function SearchFilterBar() {
             <span className="text-xs font-bold uppercase tracking-wider text-[#222222]">
               {t("guestsLabel")}
             </span>
-            <select
+            <Select
               id="search-guests-select"
               aria-label={tc("Filter by number of guests")}
               value={guests}
@@ -105,7 +106,7 @@ export function SearchFilterBar() {
               <option value="4">{tc("4 Guests")}</option>
               <option value="6">{tc("6 Guests")}</option>
               <option value="8">{tc("8+ Guests")}</option>
-            </select>
+            </Select>
           </div>
         </div>
 

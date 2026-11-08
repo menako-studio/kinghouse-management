@@ -19,6 +19,7 @@ import { submitLead, type LeadErrorKey } from "@/lib/funnel/client"
 import { trackWhatsAppClick } from "@/lib/analytics"
 import { useLocalization } from "@/lib/context/localization-context"
 import type { EventLeadInput } from "@/lib/validations"
+import { Select } from "@/components/ui/select"
 
 type SpecialNeed = EventLeadInput["specialNeeds"][number]
 type FormErrorKey = LeadErrorKey | "f.ef.endBeforeStart"
@@ -225,13 +226,13 @@ export function EventLeadForm({ eventType, onEventTypeChange }: EventLeadFormPro
                 />
               </Field>
               <Field label={t("f.ef.venue")} htmlFor="event-property" required>
-                <select id="event-property" value={form.property} onChange={(e) => update("property", e.target.value)} className={selectClassName}>
+                <Select id="event-property" value={form.property} onChange={(e) => update("property", e.target.value)} className={selectClassName}>
                   {EVENT_VENUES.map((v) => (
                     <option key={v} value={v}>
                       {v === EVENT_VENUE_UNDECIDED ? t("f.ef.venueUndecided") : v}
                     </option>
                   ))}
-                </select>
+                </Select>
               </Field>
             </div>
 

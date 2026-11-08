@@ -24,6 +24,7 @@ import { generateOwnerStatement, calculateADR, calculateRevPAR } from "@/lib/erp
 import { exportExpensesToCsv, downloadCsvFile, printOwnerStatement } from "@/lib/erp/export"
 import { formatCurrency } from "@/lib/utils"
 import { useNotifications } from "@/components/dashboard/notification-context"
+import { Select } from "@/components/ui/select"
 
 export default function DashboardAnalyticsPage() {
   const { addAlert, showToast } = useNotifications()
@@ -621,7 +622,7 @@ export default function DashboardAnalyticsPage() {
                   <label className="block font-semibold text-[#555] uppercase tracking-wider mb-1">
                     Pilih Properti Villa
                   </label>
-                  <select
+                  <Select
                     value={expPropertyId}
                     onChange={(e) => setExpPropertyId(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] font-semibold text-[#222225] focus:outline-none focus:border-[#B8934C]"
@@ -631,7 +632,7 @@ export default function DashboardAnalyticsPage() {
                         {villa.name} ({villa.area})
                       </option>
                     ))}
-                  </select>
+                  </Select>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -639,7 +640,7 @@ export default function DashboardAnalyticsPage() {
                     <label className="block font-semibold text-[#555] uppercase tracking-wider mb-1">
                       Kategori POS
                     </label>
-                    <select
+                    <Select
                       value={expCategory}
                       onChange={(e) => setExpCategory(e.target.value as ExpenseCategory)}
                       className="w-full px-4 py-2.5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] font-medium text-[#222225] focus:outline-none focus:border-[#B8934C]"
@@ -649,7 +650,7 @@ export default function DashboardAnalyticsPage() {
                       <option value="Guest Amenities">Guest Amenities & Galon</option>
                       <option value="Maintenance & Repairs">Maintenance & Service AC</option>
                       <option value="Staff & Operations">Staff Operasional</option>
-                    </select>
+                    </Select>
                   </div>
 
                   <div>

@@ -23,6 +23,7 @@ import {
   CurrencyCode,
   LanguageCode,
 } from "@/lib/context/localization-context"
+import { Select } from "@/components/ui/select"
 
 export function Header() {
   const pathname = stripLocale(usePathname())
@@ -447,7 +448,7 @@ export function Header() {
             <div className="flex items-center justify-between pb-4 border-b border-[#F0ECE1]">
               <div className="flex items-center space-x-2">
                 <span className="text-xs text-[#777777]">Currency:</span>
-                <select
+                <Select
                   value={currency}
                   onChange={(e) => setCurrency(e.target.value as CurrencyCode)}
                   aria-label="Select Currency"
@@ -458,12 +459,12 @@ export function Header() {
                       {curr.symbol} - {curr.label}
                     </option>
                   ))}
-                </select>
+                </Select>
               </div>
 
               <div className="flex items-center space-x-2">
                 <span className="text-xs text-[#777777]">Lang:</span>
-                <select
+                <Select
                   value={language}
                   onChange={(e) => setLanguage(e.target.value as LanguageCode)}
                   aria-label="Select Language"
@@ -474,7 +475,7 @@ export function Header() {
                       {lang.code} - {lang.nativeName}
                     </option>
                   ))}
-                </select>
+                </Select>
               </div>
             </div>
 

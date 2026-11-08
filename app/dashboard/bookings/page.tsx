@@ -30,6 +30,7 @@ import { exportReservationsToCsv, downloadCsvFile } from "@/lib/erp/export"
 import { formatCurrency } from "@/lib/utils"
 import { useNotifications } from "@/components/dashboard/notification-context"
 import { BookingsGanttChart } from "@/components/dashboard/bookings-gantt-chart"
+import { Select } from "@/components/ui/select"
 
 // Generates a short, human-readable reservation id for manually added bookings.
 // Kept at module scope so the random call is not treated as impure render logic.
@@ -544,7 +545,7 @@ export default function DashboardBookingsPage() {
                   <label className="block font-semibold text-[#555] uppercase tracking-wider mb-1">
                     Pilih Properti Tujuan
                   </label>
-                  <select
+                  <Select
                     value={syncVillaSlug}
                     onChange={(e) => setSyncVillaSlug(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] font-semibold text-[#222225] focus:outline-none focus:border-[#B8934C]"
@@ -554,7 +555,7 @@ export default function DashboardBookingsPage() {
                         {villa.name} ({villa.area})
                       </option>
                     ))}
-                  </select>
+                  </Select>
                 </div>
 
                 <div>
@@ -629,7 +630,7 @@ export default function DashboardBookingsPage() {
                   <label className="block font-semibold text-[#555] uppercase tracking-wider mb-1">
                     Pilih Properti Villa
                   </label>
-                  <select
+                  <Select
                     value={formPropertyId}
                     onChange={(e) => setFormPropertyId(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] font-semibold text-[#222225] focus:outline-none focus:border-[#B8934C]"
@@ -639,7 +640,7 @@ export default function DashboardBookingsPage() {
                         {villa.name} ({villa.area})
                       </option>
                     ))}
-                  </select>
+                  </Select>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -702,7 +703,7 @@ export default function DashboardBookingsPage() {
                     <label className="block font-semibold text-[#555] uppercase tracking-wider mb-1">
                       Channel Booking
                     </label>
-                    <select
+                    <Select
                       value={formChannel}
                       onChange={(e) => setFormChannel(e.target.value as ChannelType)}
                       className="w-full px-3 py-2.5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] font-medium text-[#222225] focus:outline-none focus:border-[#B8934C]"
@@ -712,7 +713,7 @@ export default function DashboardBookingsPage() {
                       <option value="Booking.com">Booking.com</option>
                       <option value="Agoda">Agoda</option>
                       <option value="Walk-in">Walk-in</option>
-                    </select>
+                    </Select>
                   </div>
                 </div>
 
@@ -750,14 +751,14 @@ export default function DashboardBookingsPage() {
                     <label className="block font-semibold text-[#555] uppercase tracking-wider mb-1">
                       Tier Fee Kinghouse
                     </label>
-                    <select
+                    <Select
                       value={formFeeTier}
                       onChange={(e) => setFormFeeTier(e.target.value as FeeTier)}
                       className="w-full px-3 py-2.5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] font-medium text-[#222225] focus:outline-none focus:border-[#B8934C]"
                     >
                       <option value="standard">15% Standard</option>
                       <option value="premium">20% Premium</option>
-                    </select>
+                    </Select>
                   </div>
                 </div>
 

@@ -27,6 +27,7 @@ import { Villa } from "@/lib/types"
 import { useLocalization } from "@/lib/context/localization-context"
 import { BookingChannelModal } from "@/components/villas/booking-channel-modal"
 import { trackSearchFilter, trackWhatsAppClick, trackEvent } from "@/lib/analytics"
+import { Select } from "@/components/ui/select"
 
 type SortOption = "recommended" | "price-asc" | "price-desc" | "rating"
 
@@ -443,7 +444,7 @@ function VillasCatalogContent() {
                 {t("destinationHeader")}
               </span>
               <div className="relative">
-                <select
+                <Select
                   value={selectedArea}
                   onChange={(e) => setSelectedArea(e.target.value)}
                   className="w-full appearance-none px-3 py-2 pr-8 text-xs border border-[#E8E4DC] rounded-md bg-[#FAF8F5] text-[#222225] focus:outline-none focus:border-[#8C7F5F] cursor-pointer"
@@ -454,8 +455,7 @@ function VillasCatalogContent() {
                       {area.name}
                     </option>
                   ))}
-                </select>
-                <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#6B6862] pointer-events-none" />
+                </Select>
               </div>
             </div>
 
@@ -465,7 +465,7 @@ function VillasCatalogContent() {
                 {t("bedrooms")}
               </span>
               <div className="relative">
-                <select
+                <Select
                   value={selectedRooms}
                   onChange={(e) => setSelectedRooms(e.target.value)}
                   className="w-full appearance-none px-3 py-2 pr-8 text-xs border border-[#E8E4DC] rounded-md bg-[#FAF8F5] text-[#222225] focus:outline-none focus:border-[#8C7F5F] cursor-pointer"
@@ -474,8 +474,7 @@ function VillasCatalogContent() {
                   <option value="1">{tc("1 Bedroom")}</option>
                   <option value="2-4">{tc("2 - 4 Bedrooms")}</option>
                   <option value="5+">{tc("5+ Bedrooms")}</option>
-                </select>
-                <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#6B6862] pointer-events-none" />
+                </Select>
               </div>
             </div>
 
@@ -547,7 +546,7 @@ function VillasCatalogContent() {
 
                 {/* Sort Dropdown */}
                 <div className="relative">
-                  <select
+                  <Select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value as SortOption)}
                     className="appearance-none pl-3 pr-7 py-1.5 text-xs font-semibold uppercase tracking-wider border border-[#E8E4DC] rounded-full bg-[#FAF8F5] text-[#222225] focus:outline-none focus:border-[#8C7F5F] cursor-pointer"
@@ -556,8 +555,7 @@ function VillasCatalogContent() {
                     <option value="price-asc">{t("sortPriceLowHigh")}</option>
                     <option value="price-desc">{t("sortPriceHighLow")}</option>
                     <option value="rating">{t("sortHighestRated")}</option>
-                  </select>
-                  <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 h-3 w-3 text-[#6B6862] pointer-events-none" />
+                  </Select>
                 </div>
               </div>
             </div>

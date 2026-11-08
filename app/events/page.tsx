@@ -34,6 +34,7 @@ import { EventTypeCards } from "@/components/events/event-type-cards"
 import { EventLeadForm } from "@/components/events/event-lead-form"
 import { whatsappBase } from "@/lib/funnel/whatsapp"
 import type { EventTypeId } from "@/lib/funnel/config"
+import { Select } from "@/components/ui/select"
 
 type SortOption = "recommended" | "price-asc" | "price-desc" | "capacity"
 
@@ -507,7 +508,7 @@ export default function EventsPage() {
                 {tc("DESTINATION")}
               </span>
               <div className="relative">
-                <select
+                <Select
                   value={selectedDestination}
                   onChange={(e) => setSelectedDestination(e.target.value)}
                   className="w-full appearance-none px-3 py-2 pr-8 text-xs border border-[#E8E4DC] rounded-md bg-[#FAF8F5] text-[#222225] focus:outline-none focus:border-[#8C7F5F] cursor-pointer"
@@ -517,8 +518,7 @@ export default function EventsPage() {
                   <option value="tangerang">Pinang, Tangerang</option>
                   <option value="palmerah">Palmerah, Jakarta Barat</option>
                   <option value="cikarang">Cikarang Selatan, Bekasi</option>
-                </select>
-                <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#6B6862] pointer-events-none" />
+                </Select>
               </div>
             </div>
 
@@ -528,7 +528,7 @@ export default function EventsPage() {
                 {tc("EVENT CAPACITY (PAX)")}
               </span>
               <div className="relative">
-                <select
+                <Select
                   value={selectedPax}
                   onChange={(e) => setSelectedPax(e.target.value)}
                   className="w-full appearance-none px-3 py-2 pr-8 text-xs border border-[#E8E4DC] rounded-md bg-[#FAF8F5] text-[#222225] focus:outline-none focus:border-[#8C7F5F] cursor-pointer"
@@ -538,8 +538,7 @@ export default function EventsPage() {
                   <option value="30">{tc("Up to 30 Pax")}</option>
                   <option value="40">{tc("Up to 40 Pax")}</option>
                   <option value="50">{tc("Up to 50+ Pax")}</option>
-                </select>
-                <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#6B6862] pointer-events-none" />
+                </Select>
               </div>
             </div>
 
@@ -611,7 +610,7 @@ export default function EventsPage() {
 
                 {/* Sort Dropdown */}
                 <div className="relative">
-                  <select
+                  <Select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value as SortOption)}
                     className="appearance-none pl-3 pr-7 py-1.5 text-xs font-semibold uppercase tracking-wider border border-[#E8E4DC] rounded-full bg-[#FAF8F5] text-[#222225] focus:outline-none focus:border-[#8C7F5F] cursor-pointer"
@@ -620,8 +619,7 @@ export default function EventsPage() {
                     <option value="price-asc">{tc("PRICE: LOW TO HIGH")}</option>
                     <option value="price-desc">{tc("PRICE: HIGH TO LOW")}</option>
                     <option value="capacity">{tc("CAPACITY: HIGH TO LOW")}</option>
-                  </select>
-                  <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 h-3 w-3 text-[#6B6862] pointer-events-none" />
+                  </Select>
                 </div>
               </div>
             </div>

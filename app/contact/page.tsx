@@ -14,6 +14,7 @@ import {
 import { WA_OWNER_NUMBER } from "@/lib/funnel/config"
 import { useWhatsAppChooser } from "@/components/funnel/whatsapp-chooser"
 import { useLocalization } from "@/lib/context/localization-context"
+import { Select } from "@/components/ui/select"
 
 export default function ContactPage() {
   const { tc } = useLocalization()
@@ -266,7 +267,7 @@ export default function ContactPage() {
                       <label className="text-xs font-bold uppercase tracking-wider text-[#222222]">
                         {tc("Inquiry Nature")}
                       </label>
-                      <select
+                      <Select
                         value={formData.subject}
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                         className="flex h-11 w-full rounded-lg border border-[#EBEBEB] bg-white px-3.5 py-2 text-xs sm:text-sm text-[#222222] focus:border-[#222222] focus:outline-none cursor-pointer"
@@ -275,7 +276,7 @@ export default function ContactPage() {
                         <option value="Guest Reservation Inquiry">{tc("Guest Reservation / Airbnb Inquiry")}</option>
                         <option value="Architectural Partnership">{tc("Architectural & Media Partnership")}</option>
                         <option value="General Question">{tc("General Question")}</option>
-                      </select>
+                      </Select>
                     </div>
 
                     <div className="space-y-1.5">

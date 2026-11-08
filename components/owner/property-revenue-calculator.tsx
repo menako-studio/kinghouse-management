@@ -14,6 +14,7 @@ import { SUBMARKET_BENCHMARKS } from "@/lib/pricing/benchmarks"
 import { trackWhatsAppClick } from "@/lib/analytics"
 import { Button } from "@/components/ui/button"
 import { whatsappBase } from "@/lib/funnel/whatsapp"
+import { Select } from "@/components/ui/select"
 
 interface SubmarketOption {
   key: string
@@ -265,7 +266,7 @@ Please provide information on scheduling a complimentary physical audit and onbo
               <label className="text-xs font-semibold uppercase tracking-wider text-[#231F1A] block">
                 {isId ? "Lokasi / Submarket Jabodetabek" : "Location / Greater Jakarta Submarket"}
               </label>
-              <select
+              <Select
                 value={selectedSubmarketKey}
                 onChange={(e) => handleSubmarketChange(e.target.value)}
                 className="w-full rounded-xl border border-[#CBBEA0]/40 bg-[#FAF7F1] px-3.5 py-2.5 text-xs sm:text-sm text-[#231F1A] focus:outline-hidden focus:ring-2 focus:ring-[#B8934C]/30"
@@ -275,7 +276,7 @@ Please provide information on scheduling a complimentary physical audit and onbo
                     {isId ? opt.labelId : opt.labelEn}
                   </option>
                 ))}
-              </select>
+              </Select>
             </div>
 
             {/* Bedrooms and Custom ADR */}
@@ -284,7 +285,7 @@ Please provide information on scheduling a complimentary physical audit and onbo
                 <label className="text-xs font-semibold uppercase tracking-wider text-[#231F1A] block">
                   {isId ? "Jumlah Kamar Tidur" : "Bedrooms"}
                 </label>
-                <select
+                <Select
                   value={bedrooms}
                   onChange={(e) => setBedrooms(Number(e.target.value))}
                   className="w-full rounded-xl border border-[#CBBEA0]/40 bg-[#FAF7F1] px-3.5 py-2.5 text-xs sm:text-sm text-[#231F1A] focus:outline-hidden focus:ring-2 focus:ring-[#B8934C]/30"
@@ -294,7 +295,7 @@ Please provide information on scheduling a complimentary physical audit and onbo
                   <option value={3}>{isId ? "3 Kamar Tidur" : "3 Bedrooms"}</option>
                   <option value={4}>{isId ? "4 Kamar Tidur" : "4 Bedrooms"}</option>
                   <option value={5}>{isId ? "5+ Kamar Tidur (Luxury Villa)" : "5+ Bedrooms (Luxury Villa)"}</option>
-                </select>
+                </Select>
               </div>
 
               <div className="space-y-2">

@@ -18,6 +18,7 @@ import { buildWhatsAppUrl, stayWhatsAppMessage } from "@/lib/funnel/whatsapp"
 import { formatDateFor } from "@/lib/i18n/funnel/core"
 import { submitLead } from "@/lib/funnel/client"
 import { HoneypotField } from "@/components/funnel/form-fields"
+import { Select } from "@/components/ui/select"
 
 type AvailabilityState =
   | { status: "idle" }
@@ -185,7 +186,7 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
           <label className="block text-xs font-bold uppercase tracking-wider text-[#222222]">
             {tc("Guests")}
           </label>
-          <select
+          <Select
             value={guestCount}
             onChange={(e) => setGuestCount(e.target.value)}
             className="w-full bg-transparent text-xs text-[#222222] font-medium focus:outline-none cursor-pointer pt-0.5"
@@ -195,7 +196,7 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
                 {n} {n === 1 ? t("guests") : t("guests")}
               </option>
             ))}
-          </select>
+          </Select>
         </div>
       </div>
 
