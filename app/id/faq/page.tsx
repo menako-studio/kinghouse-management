@@ -1,4 +1,4 @@
-import FaqPage from "@/app/faq/page"
+import FaqPage from "@/app/(site)/faq/page"
 import { FaqSchema } from "@/components/pages/faq-schema"
 import { idPageMetadata } from "@/lib/i18n/site"
 

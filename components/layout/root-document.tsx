@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Cormorant_Garamond, Inter } from "next/font/google"
 import Script from "next/script"
-import "./globals.css"
+import "@/app/globals.css"
 import { SiteShell } from "@/components/layout/site-shell"
 import { LocalizationProvider } from "@/lib/context/localization-context"
 import { GoogleAnalytics } from "@/components/analytics/google-analytics"
@@ -22,7 +22,8 @@ const inter = Inter({
   display: "swap",
 })
 
-export const metadata: Metadata = {
+/** Site-wide metadata shared by both root layouts (English and /id). */
+export const rootMetadata: Metadata = {
   title: {
     default: "Kinghouse Management | Luxury Villa & Airbnb Management",
     template: "%s | Kinghouse Management",
@@ -335,13 +336,14 @@ const comprehensiveSchema = {
   ],
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+/**
+ * The <html> document shared by both root layouts: app/(site)/layout.tsx renders
+ * it with lang="en" and app/id/layout.tsx with lang="id", so the server HTML of
+ * every page declares the right language for search engines and screen readers.
+ */
+export function RootDocument({ lang, children }: { lang: "en" | "id"; children: React.ReactNode }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${cormorant.variable} ${inter.variable} scroll-smooth`} suppressHydrationWarning>
+    <html lang={lang} data-scroll-behavior="smooth" className={`${cormorant.variable} ${inter.variable} scroll-smooth`} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
@@ -351,7 +353,7 @@ export default function RootLayout({
         <GoogleAnalytics />
         {/* Virtual Page View Route Tracker */}
         <PageViewTracker />
-        
+
         {/* Unified Schema.org Structured Data */}
         <Script
           id="structured-data-schema"
@@ -360,14 +362,9 @@ export default function RootLayout({
         />
 
         <LocalizationProvider>
-          <SiteShell>
-            {children}
-          </SiteShell>
+          <SiteShell>{children}</SiteShell>
         </LocalizationProvider>
       </body>
     </html>
   )
 }
-
-
-

@@ -1,4 +1,4 @@
-import EventsPage from "@/app/events/page"
+import EventsPage from "@/app/(site)/events/page"
 import { idPageMetadata } from "@/lib/i18n/site"
 
 export const metadata = idPageMetadata({

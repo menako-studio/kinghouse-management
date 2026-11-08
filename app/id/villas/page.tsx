@@ -1,4 +1,4 @@
-import VillasCatalogPage from "@/app/villas/page"
+import VillasCatalogPage from "@/app/(site)/villas/page"
 import { VillasSchema } from "@/components/pages/villas-schema"
 import { idPageMetadata } from "@/lib/i18n/site"
 

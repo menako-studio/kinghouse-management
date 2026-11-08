@@ -1,14 +1,20 @@
+import type { Metadata } from "next"
+import { RootDocument, rootMetadata } from "@/components/layout/root-document"
 import { IdContentProvider } from "@/components/i18n/id-content-provider"
 
+export const metadata: Metadata = {
+  ...rootMetadata,
+  openGraph: { ...rootMetadata.openGraph, locale: "id_ID", alternateLocale: ["en_US"] },
+}
+
 /**
- * Indonesian pages: client components get the page-copy dictionary (English pages never load it).
- * The root <html lang> is static ("en"), so the page body declares its own language for
- * search engines and screen readers; LocalizationProvider also updates <html lang> on the client.
+ * Root layout for Indonesian pages: <html lang="id"> in the server HTML, and
+ * client components get the page-copy dictionary (English pages never load it).
  */
-export default function IdLayout({ children }: { children: React.ReactNode }) {
+export default function IdRootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <div lang="id" className="contents">
+    <RootDocument lang="id">
       <IdContentProvider>{children}</IdContentProvider>
-    </div>
+    </RootDocument>
   )
 }

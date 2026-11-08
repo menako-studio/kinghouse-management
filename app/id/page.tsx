@@ -1,4 +1,4 @@
-import HomePage from "@/app/page"
+import HomePage from "@/app/(site)/page"
 import { idPageMetadata } from "@/lib/i18n/site"
 
 export const metadata = idPageMetadata({

@@ -1,4 +1,4 @@
-import ManagementInquiryPage from "@/app/management-inquiry/page"
+import ManagementInquiryPage from "@/app/(site)/management-inquiry/page"
 import { idPageMetadata } from "@/lib/i18n/site"
 
 export const metadata = idPageMetadata({
