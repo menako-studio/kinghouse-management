@@ -1,6 +1,6 @@
 interface ChannelBadgeProps {
   channel: "airbnb" | "booking" | "agoda" | "direct"
-  status: "connected" | "syncing" | "available" | "coming_soon"
+  status: "connected" | "syncing" | "available" | "coming_soon" | "error"
   syncTime?: string
 }
 
@@ -23,6 +23,7 @@ export function ChannelBadge({ channel, status, syncTime }: ChannelBadgeProps) {
     connected: { label: "Live Sync", badgeClass: "bg-emerald-100 text-emerald-800 border border-emerald-200" },
     syncing: { label: "Syncing...", badgeClass: "bg-blue-100 text-blue-800 animate-pulse border border-blue-200" },
     available: { label: "Engine v2.0", badgeClass: "bg-purple-50 text-purple-700 border border-purple-200" },
+    error: { label: "Gagal Sync", badgeClass: "bg-red-100 text-red-800 border border-red-200" },
     coming_soon: { label: "Coming Soon", badgeClass: "bg-gray-100 text-gray-600 border border-gray-200" },
   }
 
