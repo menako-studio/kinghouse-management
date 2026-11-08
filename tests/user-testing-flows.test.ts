@@ -91,7 +91,6 @@ describe("End-to-End User Testing Simulation: Discerning Guest Persona", () => {
 
     // 1. One-click WiFi retrieval
     expect(skyHouse.wifi.networkName).toBe("KINGSKYHOUSE22")
-    expect(skyHouse.wifi.password).toBe("120210120069#")
 
     // 2. Clear house rules for high-value asset protection
     expect(skyHouse.houseRules.some((r) => r.includes("NO SMOKING"))).toBe(true)

@@ -80,7 +80,6 @@ export const GUEST_COMPENDIUMS: Record<string, GuestCompendium> = {
     whatsappConciergePhone: "6285288679300",
     wifi: {
       networkName: "VersatileHouse_Guest_5G",
-      password: "KingHouseGarden2026",
       speed: "100 Mbps Fiber Biznet",
       notes: "Router utama berada di ruang keluarga dekat TV. Hubungkan ke frekuensi 5GHz untuk streaming lancar.",
     },
@@ -174,7 +173,6 @@ export const GUEST_COMPENDIUMS: Record<string, GuestCompendium> = {
     whatsappConciergePhone: "6285288679300",
     wifi: {
       networkName: "KINGSKYHOUSE22",
-      password: "120210120069#",
       speed: "50 Mbps Fiber",
       notes: "High-speed connection for remote work, streaming, and video calls.",
     },
@@ -253,7 +251,6 @@ export const GUEST_COMPENDIUMS: Record<string, GuestCompendium> = {
     whatsappConciergePhone: "6285288679300",
     wifi: {
       networkName: "BrightPalmerah_Fast",
-      password: "PalmerahStay2026",
       speed: "50 Mbps",
       notes: "Dedicated fiber router di dekat meja kerja.",
     },
@@ -308,7 +305,6 @@ export const GUEST_COMPENDIUMS: Record<string, GuestCompendium> = {
     whatsappConciergePhone: "6285288679300",
     wifi: {
       networkName: "N0510",
-      password: "Kinghouse",
       speed: "100 Mbps Dedicated Fiber",
       notes: "Kecepatan ultra-cepat ideal untuk corporate expat & business stay.",
     },
@@ -374,4 +370,21 @@ export const GUEST_COMPENDIUMS: Record<string, GuestCompendium> = {
       },
     ],
   },
+}
+
+
+/**
+ * Env var holding a property's WiFi password: GUEST_WIFI_PASSWORD_<SLUG>, with the
+ * slug upper-cased and dashes turned into underscores, e.g.
+ * GUEST_WIFI_PASSWORD_SKY_HOUSE_TANGERANG. Passwords are never stored in the repo.
+ */
+export function wifiPasswordEnvName(slug: string): string {
+  return `GUEST_WIFI_PASSWORD_${slug.toUpperCase().replace(/-/g, "_")}`
+}
+
+/** Server-side lookup that fills in the WiFi password from the environment. */
+export function getGuestCompendium(slug: string): GuestCompendium | undefined {
+  const base = GUEST_COMPENDIUMS[slug]
+  if (!base) return undefined
+  return { ...base, wifi: { ...base.wifi, password: process.env[wifiPasswordEnvName(slug)] || undefined } }
 }

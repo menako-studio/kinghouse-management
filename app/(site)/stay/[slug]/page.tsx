@@ -10,7 +10,7 @@ import {
   ChevronLeft,
   MessageCircle,
 } from "lucide-react"
-import { GUEST_COMPENDIUMS, UPSELL_SERVICES } from "@/lib/guest-guide/data"
+import { GUEST_COMPENDIUMS, getGuestCompendium, UPSELL_SERVICES } from "@/lib/guest-guide/data"
 import { WifiWidget } from "@/components/stay/wifi-widget"
 import { UpsellMenu } from "@/components/stay/upsell-menu"
 import { GuideSection } from "@/components/stay/guide-section"
@@ -28,7 +28,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const compendium = GUEST_COMPENDIUMS[slug]
+  const compendium = getGuestCompendium(slug)
 
   if (!compendium) {
     return {
@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function GuestStayPage({ params }: PageProps) {
   const { slug } = await params
-  const compendium = GUEST_COMPENDIUMS[slug]
+  const compendium = getGuestCompendium(slug)
 
   if (!compendium) {
     notFound()

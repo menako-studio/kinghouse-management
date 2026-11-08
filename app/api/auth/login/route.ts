@@ -1,10 +1,18 @@
 import { NextRequest, NextResponse } from "next/server"
-import { verifyAdminCredentials, setAdminSessionCookie } from "@/lib/auth"
+import { isAdminAuthConfigured, verifyAdminCredentials, setAdminSessionCookie } from "@/lib/auth"
 import { LoginSchema } from "@/lib/validations"
 import { checkRateLimit, resetRateLimit } from "@/lib/security/rate-limiter"
 
 export async function POST(request: NextRequest) {
   try {
+    if (!isAdminAuthConfigured()) {
+      console.error("[auth] ADMIN_PASSWORD (>=12 chars) and AUTH_SECRET (>=32 chars) must be set; admin login is disabled.")
+      return NextResponse.json(
+        { error: "Login admin belum dikonfigurasi di server." },
+        { status: 503 }
+      )
+    }
+
     // 1. Extract client IP or fallback for rate limiting
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "127.0.0.1"
     const rateLimit = checkRateLimit(`login:${ip}`, 5, 60 * 1000) // Max 5 attempts per 60s

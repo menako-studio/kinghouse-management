@@ -79,12 +79,13 @@ export function WifiWidget({ wifi }: WifiWidgetProps) {
               Password
             </div>
             <div className="truncate text-sm font-bold text-amber-200 font-mono">
-              {wifi.password}
+              {wifi.password ?? "Tanyakan ke host via WhatsApp"}
             </div>
           </div>
           <button
-            onClick={() => copyToClipboard(wifi.password, "pass")}
-            className="flex items-center gap-1.5 rounded-lg bg-amber-500/20 px-2.5 py-1.5 text-xs font-semibold text-amber-300 hover:bg-amber-500/30 transition-all active:scale-95 border border-amber-500/30"
+            disabled={!wifi.password}
+            onClick={() => wifi.password && copyToClipboard(wifi.password, "pass")}
+            className="flex items-center gap-1.5 rounded-lg bg-amber-500/20 px-2.5 py-1.5 disabled:opacity-40 disabled:cursor-not-allowed text-xs font-semibold text-amber-300 hover:bg-amber-500/30 transition-all active:scale-95 border border-amber-500/30"
           >
             {copied === "pass" ? (
               <>

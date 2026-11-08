@@ -45,7 +45,7 @@ tetapi lead hanya tercatat di log server (`[lead] … not persisted`).
 2. Extensions → Apps Script:
 
 ```js
-const SECRET = "ganti-dengan-rahasia" // sama dengan ?secret= di LEAD_WEBHOOK_URL
+const SECRET = "<isi-dengan-openssl-rand-base64-32>" // sama dengan ?secret= di LEAD_WEBHOOK_URL
 
 function doPost(e) {
   if (e.parameter.secret !== SECRET) return ContentService.createTextOutput("forbidden")
@@ -59,7 +59,7 @@ function doPost(e) {
 ```
 
 3. Deploy → Web app (Execute as: Me, Access: Anyone) → set
-   `LEAD_WEBHOOK_URL=https://script.google.com/macros/s/…/exec?secret=ganti-dengan-rahasia`.
+   `LEAD_WEBHOOK_URL=https://script.google.com/macros/s/…/exec?secret=<isi-dengan-openssl-rand-base64-32>`.
    Apps Script tidak bisa membaca header, karena itu rahasia dikirim lewat query string.
 
 ## Notifikasi tim & batas waktu balasan

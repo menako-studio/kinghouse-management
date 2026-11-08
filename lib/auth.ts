@@ -3,18 +3,41 @@ import { NextResponse } from "next/server"
 export const SESSION_COOKIE_NAME = "kinghouse_admin_session"
 export const SESSION_MAX_AGE = 60 * 60 * 24 * 7 // 7 days in seconds
 
-// Production-ready Admin credentials with environment variable support
-const ADMIN_CREDENTIALS = {
-  email: process.env.ADMIN_EMAIL || "info@kinghousemanagement.com",
-  password: process.env.ADMIN_PASSWORD || "KingHouse2026!Admin",
-  name: process.env.ADMIN_NAME || "KingHouse Principal Admin",
-  role: "admin" as const,
+/**
+ * Admin credentials and the session-signing key come ONLY from environment
+ * variables (Vercel → Settings → Environment Variables, or .env.local in
+ * development). There are no fallback values: when a variable is missing or too
+ * weak, login is refused and no session token can be signed or accepted, so a
+ * misconfigured deploy fails closed instead of running on a published default.
+ *
+ *   ADMIN_PASSWORD  ≥ 12 characters
+ *   AUTH_SECRET     ≥ 32 characters (generate: openssl rand -base64 48)
+ *   ADMIN_EMAIL     optional, defaults to the public info@ mailbox
+ *   ADMIN_NAME      optional display name
+ */
+const MIN_PASSWORD_LENGTH = 12
+const MIN_SECRET_LENGTH = 32
+
+function getAuthSecret(): string | null {
+  const secret = process.env.AUTH_SECRET || process.env.AUTH_SECRET_KEY
+  return secret && secret.length >= MIN_SECRET_LENGTH ? secret : null
 }
 
-const AUTH_SECRET =
-  process.env.AUTH_SECRET ||
-  process.env.AUTH_SECRET_KEY ||
-  "kinghouse-hospitality-production-secret-key-2026-secure-jwt-hmac-token"
+function getAdminCredentials() {
+  const password = process.env.ADMIN_PASSWORD
+  if (!password || password.length < MIN_PASSWORD_LENGTH) return null
+  return {
+    email: process.env.ADMIN_EMAIL || "info@kinghousemanagement.com",
+    password,
+    name: process.env.ADMIN_NAME || "Kinghouse Admin",
+    role: "admin" as const,
+  }
+}
+
+/** True when both ADMIN_PASSWORD and AUTH_SECRET are set and long enough. */
+export function isAdminAuthConfigured(): boolean {
+  return getAdminCredentials() !== null && getAuthSecret() !== null
+}
 
 export interface AdminUser {
   id: string
@@ -32,10 +55,12 @@ export interface SessionPayload {
 
 // Convert string to Uint8Array for Web Crypto
 function getCryptoKey(): Promise<CryptoKey> {
+  const secret = getAuthSecret()
+  if (!secret) return Promise.reject(new Error("AUTH_SECRET is not configured"))
   const enc = new TextEncoder()
   return crypto.subtle.importKey(
     "raw",
-    enc.encode(AUTH_SECRET),
+    enc.encode(secret),
     { name: "HMAC", hash: "SHA-256" },
     false,
     ["sign", "verify"]
@@ -59,12 +84,12 @@ function base64UrlDecode(str: string): string {
  * Constant time string comparison to prevent timing attacks
  */
 function constantTimeStringCompare(a: string, b: string): boolean {
-  if (a.length !== b.length) {
-    return false
-  }
-  let result = 0
-  for (let i = 0; i < a.length; i++) {
-    result |= a.charCodeAt(i) ^ b.charCodeAt(i)
+  // Walk the longer string and fold the length difference in, so neither the
+  // content nor the length of the expected value leaks through timing.
+  const length = Math.max(a.length, b.length)
+  let result = a.length ^ b.length
+  for (let i = 0; i < length; i++) {
+    result |= (a.charCodeAt(i) || 0) ^ (b.charCodeAt(i) || 0)
   }
   return result === 0
 }
@@ -151,18 +176,19 @@ export async function verifyAdminSessionToken(token: string): Promise<SessionPay
  * Verify email & password against configured Admin credentials using timing-safe comparison
  */
 export function verifyAdminCredentials(email: string, password: string): AdminUser | null {
-  const normalizedInputEmail = email.trim().toLowerCase()
-  const expectedEmail = ADMIN_CREDENTIALS.email.toLowerCase()
+  const credentials = getAdminCredentials()
+  // Not configured (or no signing key): nobody can log in.
+  if (!credentials || !getAuthSecret()) return null
 
-  const isEmailMatch = constantTimeStringCompare(normalizedInputEmail, expectedEmail)
-  const isPasswordMatch = constantTimeStringCompare(password, ADMIN_CREDENTIALS.password)
+  const isEmailMatch = constantTimeStringCompare(email.trim().toLowerCase(), credentials.email.toLowerCase())
+  const isPasswordMatch = constantTimeStringCompare(password, credentials.password)
 
   if (isEmailMatch && isPasswordMatch) {
     return {
       id: "admin-kinghouse-01",
-      email: ADMIN_CREDENTIALS.email,
-      name: ADMIN_CREDENTIALS.name,
-      role: ADMIN_CREDENTIALS.role,
+      email: credentials.email,
+      name: credentials.name,
+      role: credentials.role,
     }
   }
 

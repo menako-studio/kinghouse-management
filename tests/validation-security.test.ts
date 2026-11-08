@@ -7,7 +7,7 @@ describe("Security & Schema Validation", () => {
     it("validates correct login credentials", () => {
       const valid = LoginSchema.safeParse({
         email: "admin@kinghouse.id",
-        password: "KingHouse2026!Admin",
+        password: "a-long-enough-test-password",
       })
       expect(valid.success).toBe(true)
     })
@@ -104,15 +104,40 @@ describe("Security & Schema Validation", () => {
     it("authenticates valid credentials and rejects incorrect passwords or emails", async () => {
       const { verifyAdminCredentials } = await import("@/lib/auth")
       
-      const valid = verifyAdminCredentials("info@kinghousemanagement.com", "KingHouse2026!Admin")
+      const adminPassword = process.env.ADMIN_PASSWORD as string
+      const valid = verifyAdminCredentials("info@kinghousemanagement.com", adminPassword)
       expect(valid).not.toBeNull()
       expect(valid?.role).toBe("admin")
 
-      const invalidEmail = verifyAdminCredentials("hacker@malicious.com", "KingHouse2026!Admin")
+      const invalidEmail = verifyAdminCredentials("hacker@malicious.com", adminPassword)
       expect(invalidEmail).toBeNull()
 
       const invalidPass = verifyAdminCredentials("info@kinghousemanagement.com", "WrongPassword123")
       expect(invalidPass).toBeNull()
+    })
+
+    it("fails closed when secrets are missing or too weak (no built-in defaults)", async () => {
+      const { verifyAdminCredentials, signAdminSessionToken, verifyAdminSessionToken, isAdminAuthConfigured } = await import("@/lib/auth")
+      const saved = { password: process.env.ADMIN_PASSWORD, secret: process.env.AUTH_SECRET }
+      try {
+        const user = { id: "x", email: "info@kinghousemanagement.com", name: "A", role: "admin" as const }
+        const token = await signAdminSessionToken(user)
+
+        delete process.env.ADMIN_PASSWORD
+        expect(isAdminAuthConfigured()).toBe(false)
+        expect(verifyAdminCredentials("info@kinghousemanagement.com", "")).toBeNull()
+
+        process.env.ADMIN_PASSWORD = "short"
+        expect(verifyAdminCredentials("info@kinghousemanagement.com", "short")).toBeNull()
+
+        process.env.ADMIN_PASSWORD = saved.password
+        delete process.env.AUTH_SECRET
+        await expect(signAdminSessionToken(user)).rejects.toThrow()
+        expect(await verifyAdminSessionToken(token)).toBeNull()
+      } finally {
+        process.env.ADMIN_PASSWORD = saved.password
+        process.env.AUTH_SECRET = saved.secret
+      }
     })
   })
 })
