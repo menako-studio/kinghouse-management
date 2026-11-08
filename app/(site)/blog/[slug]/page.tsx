@@ -222,6 +222,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   const formattedDate = new Date(post.publishedAt).toLocaleDateString("en-US", {
+    timeZone: "Asia/Jakarta",
     year: "numeric",
     month: "long",
     day: "numeric",

@@ -5,6 +5,7 @@ import { createPortal } from "react-dom"
 import Link from "next/link"
 import Image from "next/image"
 import {
+  CalendarClock,
   Plus,
   Search,
   Eye,
@@ -34,6 +35,8 @@ import { BlogPost } from "@/lib/types"
 
 import { useNotifications } from "@/components/dashboard/notification-context"
 import { Select } from "@/components/ui/select"
+import { DatePicker, todayIso } from "@/components/ui/date-picker"
+import { DEFAULT_PUBLISH_TIME_WIB, formatPublishWib, isScheduled, isoToWib, wibToIso } from "@/lib/blog/schedule"
 
 export interface DashboardArticle {
   id: string
@@ -57,7 +60,19 @@ export interface DashboardArticle {
   readTime: number
 }
 
-const STORAGE_KEY = "kinghouse_cms_blog_articles_v4"
+const STORAGE_KEY = "kinghouse_cms_blog_articles_v5"
+
+/** Dashboard category labels → slugs used by the public blog filters. */
+const CATEGORY_SLUGS: Record<string, string> = {
+  "Owner Tips": "owner-tips",
+  "Revenue Management": "revenue-management",
+  "Airbnb SEO": "airbnb-seo",
+  "Guest Experience": "guest-experience",
+  "Jabodetabek Guide": "jabodetabek-guide",
+}
+
+/** Publish-time choices (WIB), every 30 minutes. */
+const PUBLISH_TIMES = Array.from({ length: 48 }, (_, i) => `${String(Math.floor(i / 2)).padStart(2, "0")}:${i % 2 ? "30" : "00"}`)
 
 const CATEGORY_OPTIONS = [
   "Owner Tips",
@@ -145,7 +160,7 @@ export default function DashboardBlogPage() {
   const [isHydrated, setIsHydrated] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
-  const [statusFilter, setStatusFilter] = useState<"all" | "Published" | "Draft" | "Archived">("all")
+  const [statusFilter, setStatusFilter] = useState<"all" | "Published" | "Scheduled" | "Draft" | "Archived">("all")
   const [categoryFilter, setCategoryFilter] = useState<string>("all")
 
   // Modal states
@@ -168,6 +183,9 @@ export default function DashboardBlogPage() {
   const [formKeywords, setFormKeywords] = useState("sewa villa jabodetabek, airbnb superhost, tips properti")
   const [formStatus, setFormStatus] = useState<"Published" | "Draft" | "Archived">("Published")
   const [formReadTime, setFormReadTime] = useState(5)
+  // Publish date & time in Jakarta time. A future value schedules the article.
+  const [formPublishDate, setFormPublishDate] = useState(todayIso())
+  const [formPublishTime, setFormPublishTime] = useState(DEFAULT_PUBLISH_TIME_WIB)
 
   // In-Content Image Inserter Modal Sub-State
   const [isImagePickerOpen, setIsImagePickerOpen] = useState(false)
@@ -211,7 +229,7 @@ export default function DashboardBlogPage() {
           },
           date: p.publishedAt || new Date().toISOString().split("T")[0],
           status: p.status || (idx === 4 ? "Draft" : "Published"),
-          views: idx === 0 ? "2,420" : idx === 1 ? "1,850" : idx === 2 ? "3,100" : idx === 3 ? "1,240" : "120",
+          views: "—",
           seoScore: p.seoScore || (p.featured ? 95 : 85),
           excerpt: p.excerpt || "",
           content: p.content || "",
@@ -379,6 +397,8 @@ export default function DashboardBlogPage() {
     setFormKeywords("sewa villa jagakarsa, airbnb superhost, tips properti, yield manajemen")
     setFormStatus("Published")
     setFormReadTime(4)
+    setFormPublishDate(todayIso())
+    setFormPublishTime(DEFAULT_PUBLISH_TIME_WIB)
     setActiveTab("form")
     setIsModalOpen(true)
   }
@@ -399,6 +419,9 @@ export default function DashboardBlogPage() {
     setFormKeywords(article.seoKeywords ? article.seoKeywords.join(", ") : "")
     setFormStatus(article.status)
     setFormReadTime(article.readTime || 5)
+    const publish = isoToWib(article.date)
+    setFormPublishDate(publish.date)
+    setFormPublishTime(publish.time)
     setActiveTab("form")
     setIsModalOpen(true)
   }
@@ -421,7 +444,7 @@ export default function DashboardBlogPage() {
     const payload = {
       title: formTitle,
       slug: finalSlug,
-      category: formCategory,
+      category: CATEGORY_SLUGS[formCategory] ?? formCategory,
       excerpt: formExcerpt || formContent.slice(0, 140) + "...",
       content: formContent,
       heroImage: formHeroImage,
@@ -432,19 +455,22 @@ export default function DashboardBlogPage() {
       seoScore: seoChecklist.score,
       readTime: formReadTime || 4,
       status: formStatus,
+      publishedAt: wibToIso(formPublishDate, formPublishTime),
     }
+    const scheduled = formStatus === "Published" && isScheduled({ publishedAt: payload.publishedAt, status: formStatus })
 
     if (modalMode === "create") {
       const newArticle: DashboardArticle = {
         id: `blog-${Date.now()}`,
         ...payload,
+        category: formCategory,
         author: {
           name: payload.authorName,
           role: payload.authorRole,
           avatar: "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
         },
-        date: new Date().toISOString().split("T")[0],
-        views: formStatus === "Published" ? "120" : "—",
+        date: payload.publishedAt,
+        views: "—",
       }
 
       setArticles([newArticle, ...articles])
@@ -462,12 +488,20 @@ export default function DashboardBlogPage() {
 
       addAlert({
         title: `Artikel Diterbitkan: "${newArticle.title.slice(0, 35)}..."`,
-        message: `SEO Score: ${newArticle.seoScore}/100. Langsung aktif di Google Index & Frontend /blog.`,
+        message: scheduled
+          ? `Terjadwal tayang ${formatPublishWib(payload.publishedAt)}. SEO Score: ${newArticle.seoScore}/100.`
+          : `SEO Score: ${newArticle.seoScore}/100. Langsung tayang di /blog.`,
         category: "blog",
         actionUrl: `/dashboard/blog`,
       })
 
-      showToast("Artikel Berhasil Dibuat!", `Status: ${newArticle.status}. SEO Score: ${newArticle.seoScore}/100.`, "success")
+      showToast(
+        scheduled ? "Artikel Dijadwalkan" : "Artikel Berhasil Dibuat!",
+        scheduled
+          ? `Tayang otomatis ${formatPublishWib(payload.publishedAt)}.`
+          : `Status: ${newArticle.status}. SEO Score: ${newArticle.seoScore}/100.`,
+        "success"
+      )
     } else if (modalMode === "edit" && editingArticleId) {
       setArticles(
         articles.map((art) => {
@@ -486,6 +520,7 @@ export default function DashboardBlogPage() {
               content: formContent,
               heroImage: formHeroImage,
               status: formStatus,
+              date: payload.publishedAt,
               seoKeywords: rawKeywords,
               seoScore: seoChecklist.score,
               readTime: formReadTime,
@@ -614,6 +649,10 @@ export default function DashboardBlogPage() {
       const matchesStatus =
         statusFilter === "all"
           ? art.status !== "Archived" // by default "all" excludes Trash
+          : statusFilter === "Scheduled"
+          ? art.status === "Published" && isScheduled({ status: art.status, publishedAt: art.date })
+          : statusFilter === "Published"
+          ? art.status === "Published" && !isScheduled({ status: art.status, publishedAt: art.date })
           : art.status === statusFilter
 
       const matchesCategory = categoryFilter === "all" || art.category === categoryFilter
@@ -623,9 +662,10 @@ export default function DashboardBlogPage() {
   }, [articles, searchQuery, statusFilter, categoryFilter])
 
   // KPIs
-  const publishedCount = articles.filter((a) => a.status === "Published").length
+  const publishedCount = articles.filter((a) => a.status === "Published" && !isScheduled({ status: a.status, publishedAt: a.date })).length
   const draftCount = articles.filter((a) => a.status === "Draft").length
   const archivedCount = articles.filter((a) => a.status === "Archived").length
+  const scheduledCount = articles.filter((a) => isScheduled({ status: a.status, publishedAt: a.date })).length
   const activeArticles = articles.filter((a) => a.status !== "Archived")
   const avgSeo =
     activeArticles.length > 0
@@ -677,7 +717,7 @@ export default function DashboardBlogPage() {
           </span>
           <p className="text-3xl font-bold text-[#222225] tracking-tight">{activeArticles.length}</p>
           <span className="inline-block text-[10px] font-semibold text-[#717171] bg-[#FAF8F5] px-2 py-0.5 rounded-full border border-[#E8E4DC]">
-            {publishedCount} Terbit &bull; {draftCount} Draft
+            {publishedCount} Terbit &bull; {scheduledCount} Terjadwal &bull; {draftCount} Draft
           </span>
         </div>
 
@@ -731,13 +771,14 @@ export default function DashboardBlogPage() {
             {[
               { key: "all", label: "Semua" },
               { key: "Published", label: "Published" },
+              { key: "Scheduled", label: `Terjadwal (${scheduledCount})` },
               { key: "Draft", label: "Draft" },
               { key: "Archived", label: `Sampah (${archivedCount})` },
             ].map((st) => (
               <button
                 key={st.key}
                 type="button"
-                onClick={() => setStatusFilter(st.key as "all" | "Published" | "Draft" | "Archived")}
+                onClick={() => setStatusFilter(st.key as "all" | "Published" | "Scheduled" | "Draft" | "Archived")}
                 className={`px-3 py-1 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                   statusFilter === st.key
                     ? "bg-[#222225] text-white shadow-xs"
@@ -835,12 +876,19 @@ export default function DashboardBlogPage() {
                           onClick={() => handleToggleStatus(article)}
                           title="Klik untuk mengubah status Publikasi"
                           className={`inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-[10px] font-bold border transition-all cursor-pointer ${
-                            article.status === "Published"
+                            article.status === "Published" && isScheduled({ status: article.status, publishedAt: article.date })
+                              ? "bg-[#EFE2CE] text-[#6B4B2A] border-[#CBBEA0] hover:bg-[#E8D8BF]"
+                              : article.status === "Published"
                               ? "bg-emerald-50 text-emerald-800 border-emerald-200 hover:bg-emerald-100"
                               : "bg-amber-50 text-amber-800 border-amber-200 hover:bg-amber-100"
                           }`}
                         >
-                          {article.status === "Published" ? (
+                          {article.status === "Published" && isScheduled({ status: article.status, publishedAt: article.date }) ? (
+                            <>
+                              <CalendarClock className="h-3 w-3 text-[#6B4B2A]" />
+                              <span>Terjadwal · {formatPublishWib(article.date)}</span>
+                            </>
+                          ) : article.status === "Published" ? (
                             <>
                               <CheckCircle className="h-3 w-3 text-emerald-600" />
                               <span>Published</span>
@@ -862,7 +910,7 @@ export default function DashboardBlogPage() {
                       </div>
                     </td>
 
-                    <td className="py-4 px-6 text-[#717171] font-mono">{article.date}</td>
+                    <td className="py-4 px-6 text-[#717171] whitespace-nowrap">{formatPublishWib(article.date)}</td>
 
                     <td className="py-4 px-6 font-semibold text-[#222225]">
                       {article.views} reads
@@ -1268,7 +1316,44 @@ export default function DashboardBlogPage() {
                           <option value="Draft">Draft (Disimpan Internal)</option>
                           <option value="Archived">Archived (Sampah / Soft Delete)</option>
                         </Select>
+                      </div>
 
+                      {/* Scheduled publishing */}
+                      <div className="sm:col-span-2 rounded-2xl border border-[#E8E4DC] bg-[#FAF8F5] p-4 space-y-3">
+                        <div className="flex flex-wrap items-center justify-between gap-2">
+                          <span className="font-semibold text-[#555] uppercase tracking-wider">Jadwal Tayang (WIB)</span>
+                          {formStatus === "Published" &&
+                            isScheduled({ status: formStatus, publishedAt: wibToIso(formPublishDate, formPublishTime) }) && (
+                              <span className="rounded-full bg-[#EFE2CE] px-3 py-1 text-[11px] font-semibold text-[#6B4B2A]">
+                                Terjadwal · {formatPublishWib(wibToIso(formPublishDate, formPublishTime))}
+                              </span>
+                            )}
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          <DatePicker
+                            value={formPublishDate}
+                            onValueChange={(v) => setFormPublishDate(v || todayIso())}
+                            required
+                            aria-label="Tanggal tayang"
+                            className="w-full px-4 py-2.5 rounded-2xl bg-white border border-[#E8E4DC] font-medium text-[#222225]"
+                          />
+                          <Select
+                            value={formPublishTime}
+                            onValueChange={setFormPublishTime}
+                            aria-label="Jam tayang"
+                            className="w-full px-4 py-2.5 rounded-2xl bg-white border border-[#E8E4DC] font-medium text-[#222225]"
+                          >
+                            {PUBLISH_TIMES.map((time) => (
+                              <option key={time} value={time}>
+                                {time} WIB
+                              </option>
+                            ))}
+                          </Select>
+                        </div>
+                        <p className="text-[11px] leading-relaxed text-[#717171]">
+                          Pilih tanggal ke depan untuk menjadwalkan: artikel tetap tersembunyi (tidak muncul di /blog,
+                          sitemap, dan URL-nya 404) lalu tayang otomatis pada waktu tersebut. Status harus Published.
+                        </p>
                       </div>
 
                       <div>

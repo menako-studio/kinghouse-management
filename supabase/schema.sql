@@ -131,7 +131,7 @@ ALTER TABLE public.leads ENABLE ROW LEVEL SECURITY;
 -- Public can read published articles only. No anon policies on reservations,
 -- expenses or leads: with RLS on and no policy, anon/authenticated see nothing.
 DROP POLICY IF EXISTS "Public Read Published Blog Posts" ON public.blog_posts;
-CREATE POLICY "Public Read Published Blog Posts" ON public.blog_posts FOR SELECT USING (status = 'Published');
+CREATE POLICY "Public Read Published Blog Posts" ON public.blog_posts FOR SELECT USING (status = 'Published' AND published_at <= NOW());
 
 -- ==============================================================================
 -- INITIAL SEED DATA (JABODETABEK PROPERTIES)

@@ -3,6 +3,14 @@ import { getBlogPosts, getBlogPostBySlug, saveBlogPost, deleteBlogPost, restoreB
 import { BlogPost } from "@/lib/types"
 import { verifyAdminRequest } from "@/lib/auth-server"
 
+/** Accepts `YYYY-MM-DD` or an ISO timestamp; a future value schedules the post. */
+function parsePublishedAt(value: unknown): string | undefined {
+  if (typeof value !== "string" || !value.trim()) return undefined
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value
+  const d = new Date(value)
+  return Number.isNaN(d.getTime()) ? undefined : d.toISOString()
+}
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
@@ -10,16 +18,18 @@ export async function GET(request: NextRequest) {
     const slug = searchParams.get("slug") || undefined
     const status = (searchParams.get("status") as "Published" | "Draft" | "Archived" | "all") || undefined
     const search = searchParams.get("search") || undefined
+    // Drafts and scheduled posts are only visible to a signed-in admin.
+    const visibility = (await verifyAdminRequest(request)) ? "admin" : "public"
 
     if (slug) {
-      const post = await getBlogPostBySlug(slug)
+      const post = await getBlogPostBySlug(slug, { visibility })
       if (!post) {
         return NextResponse.json({ success: false, error: "Artikel tidak ditemukan" }, { status: 404 })
       }
       return NextResponse.json({ success: true, post })
     }
 
-    const posts = await getBlogPosts({ category, status, search })
+    const posts = await getBlogPosts({ category, status, search, visibility })
 
     return NextResponse.json({
       success: true,
@@ -72,7 +82,7 @@ export async function POST(request: NextRequest) {
         avatar: "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
         role: authorRole || "Property Management Specialist",
       },
-      publishedAt: new Date().toISOString().split("T")[0],
+      publishedAt: parsePublishedAt(body.publishedAt) ?? new Date().toISOString(),
       readTime: typeof readTime === "number" ? readTime : Math.max(1, Math.ceil(content.split(/\s+/).length / 200)),
       tags: Array.isArray(tags) ? tags : [category || "tips"],
       seoKeywords: Array.isArray(seoKeywords) ? seoKeywords : [],
@@ -106,7 +116,7 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ error: "ID atau Slug artikel wajib disertakan untuk pembaruan." }, { status: 400 })
     }
 
-    const existing = await getBlogPostBySlug(slug || id)
+    const existing = await getBlogPostBySlug(slug || id, { visibility: "admin" })
     const targetId = id || existing?.id || `post-${Date.now()}`
     const targetSlug = slug || existing?.slug || title?.toLowerCase().trim().replace(/[^\w\s-]/g, "").replace(/[\s_-]+/g, "-")
 
@@ -123,7 +133,7 @@ export async function PUT(request: NextRequest) {
         avatar: existing?.author.avatar || "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
         role: authorRole || existing?.author.role || "Property Management Specialist",
       },
-      publishedAt: existing?.publishedAt || new Date().toISOString().split("T")[0],
+      publishedAt: parsePublishedAt(body.publishedAt) ?? existing?.publishedAt ?? new Date().toISOString(),
       readTime: typeof readTime === "number" ? readTime : existing?.readTime || 4,
       tags: Array.isArray(tags) ? tags : existing?.tags || [],
       seoKeywords: Array.isArray(seoKeywords) ? seoKeywords : existing?.seoKeywords || [],

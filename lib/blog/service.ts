@@ -1,9 +1,35 @@
 import { BlogPost } from "@/lib/types"
 import { BLOG_POSTS } from "@/lib/blog/posts"
+import { SCHEDULED_POSTS } from "@/lib/blog/scheduled"
+import { isLive } from "@/lib/blog/schedule"
 import { getSupabaseServerClient } from "@/lib/supabase/server"
 
-// In-memory runtime store initialized with verified seed articles
-let runtimeBlogPosts: (BlogPost & { status?: string })[] = BLOG_POSTS.map((post) => ({ ...post, status: "Published" }))
+// In-memory runtime store initialized with verified seed articles and the
+// editorial calendar (scheduled posts go live on their own publish time).
+let runtimeBlogPosts: (BlogPost & { status?: string })[] = [
+  ...SCHEDULED_POSTS.map((post) => ({ ...post, status: "Published" as const })),
+  ...BLOG_POSTS.map((post) => ({ ...post, status: "Published" as const })),
+]
+
+type StoredPost = BlogPost & { status?: string; seoScore?: number }
+
+/**
+ * Editorial-calendar posts live in code (lib/blog/scheduled.ts) so they ship with
+ * a deploy. When Supabase is the source, add any that are not in the database
+ * yet; a database row with the same slug (e.g. edited in the dashboard) wins.
+ */
+function withEditorialCalendar(posts: StoredPost[]): StoredPost[] {
+  const slugs = new Set(posts.map((p) => p.slug))
+  const missing = SCHEDULED_POSTS.filter((p) => !slugs.has(p.slug)).map((p) => ({ ...p, status: "Published" as const }))
+  return [...missing, ...posts].sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))
+}
+
+/** Public pages only ever see live posts: Published and past their publish time. */
+function applyVisibility<T extends StoredPost>(posts: T[], visibility: "public" | "admin"): T[] {
+  if (visibility === "admin") return posts
+  const now = new Date()
+  return posts.filter((p) => isLive(p, now))
+}
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function mapRowToBlogPost(row: any): BlogPost & { status: string; seoScore: number } {
@@ -20,7 +46,8 @@ export function mapRowToBlogPost(row: any): BlogPost & { status: string; seoScor
       avatar: row.author_avatar || "/properties/versatile-house/VersatileHouse_Exterior_PoolAndGarden.webp",
       role: "Property Management Specialist",
     },
-    publishedAt: typeof row.published_at === "string" ? row.published_at.split("T")[0] : row.published_at || row.created_at,
+    // Full timestamp: scheduled posts need the exact publish time, not just the date.
+    publishedAt: row.published_at || row.created_at,
     readTime: typeof row.reading_time === "number" ? row.reading_time : 4,
     tags: Array.isArray(row.tags) ? row.tags : [],
     seoKeywords: Array.isArray(row.tags) ? row.tags : [],
@@ -38,6 +65,11 @@ export interface BlogFilterOptions {
   status?: "Published" | "Draft" | "Archived" | "all"
   search?: string
   slug?: string
+  /**
+   * "public" (default): only live posts — Published and past their publish time.
+   * "admin": everything matching the filters, including drafts and scheduled posts.
+   */
+  visibility?: "public" | "admin"
 }
 
 /**
@@ -75,7 +107,14 @@ export async function getBlogPosts(options?: BlogFilterOptions): Promise<(BlogPo
       }
 
       if (!error && data && data.length > 0) {
-        let results = data.map(mapRowToBlogPost)
+        // Same filters again in JS: calendar posts merged in did not go through the query.
+        let results: StoredPost[] = withEditorialCalendar(data.map(mapRowToBlogPost)).filter((p) => {
+          const status = p.status || "Published"
+          if (options?.slug && p.slug !== options.slug) return false
+          if (options?.category && !["all", "All"].includes(options.category) && p.category.toLowerCase() !== options.category.toLowerCase()) return false
+          if (options?.status && options.status !== "all") return status === options.status
+          return options?.status === "all" || status !== "Archived"
+        })
         if (options?.search) {
           const q = options.search.toLowerCase()
           results = results.filter(
@@ -85,7 +124,7 @@ export async function getBlogPosts(options?: BlogFilterOptions): Promise<(BlogPo
               p.tags.some((t) => t.toLowerCase().includes(q))
           )
         }
-        return results
+        return applyVisibility(results, options?.visibility ?? "public")
       }
     } catch (err) {
       console.warn("Supabase blog fetch failed, using runtime fallback:", err)
@@ -121,13 +160,19 @@ export async function getBlogPosts(options?: BlogFilterOptions): Promise<(BlogPo
     )
   }
 
-  return filtered
+  return applyVisibility(filtered, options?.visibility ?? "public")
 }
 
 /**
  * Fetch a single blog post by slug
  */
-export async function getBlogPostBySlug(slug: string): Promise<(BlogPost & { status?: string; seoScore?: number }) | null> {
+export async function getBlogPostBySlug(
+  slug: string,
+  { visibility = "public" }: { visibility?: "public" | "admin" } = {}
+): Promise<(BlogPost & { status?: string; seoScore?: number }) | null> {
+  const visible = (post: StoredPost | null | undefined) =>
+    post && (visibility === "admin" || isLive(post)) ? post : null
+
   const supabase = getSupabaseServerClient()
 
   if (supabase) {
@@ -149,15 +194,15 @@ export async function getBlogPostBySlug(slug: string): Promise<(BlogPost & { sta
       }
 
       if (!error && data) {
-        return mapRowToBlogPost(data)
+        return visible(mapRowToBlogPost(data))
       }
     } catch (err) {
       console.warn("Supabase single blog fetch failed:", err)
     }
   }
 
-  const found = runtimeBlogPosts.find((p) => p.slug === slug)
-  return found || null
+  const found = runtimeBlogPosts.find((p) => p.slug === slug) ?? SCHEDULED_POSTS.find((p) => p.slug === slug)
+  return visible(found)
 }
 
 /**
@@ -176,7 +221,7 @@ export async function saveBlogPost(post: BlogPost, status: "Published" | "Draft"
     cover_image: post.heroImage,
     author_name: post.author.name,
     author_avatar: post.author.avatar,
-    published_at: post.publishedAt || new Date().toISOString().split("T")[0],
+    published_at: post.publishedAt || new Date().toISOString(),
     status,
     reading_time: `${post.readTime} min read`,
     tags: post.tags,

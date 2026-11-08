@@ -31,6 +31,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
   const categoryColor = CATEGORY_COLORS[post.category] ?? "bg-gray-50 text-gray-700 border-gray-200"
 
   const formattedDate = new Date(post.publishedAt).toLocaleDateString("en-US", {
+    timeZone: "Asia/Jakarta",
     year: "numeric",
     month: "long",
     day: "numeric",
