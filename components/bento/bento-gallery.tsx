@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { Grid, Sparkles } from "lucide-react"
+import { Grid } from "lucide-react"
 import { PhotoLightboxModal } from "./photo-lightbox-modal"
 import { useLocalization } from "@/lib/context/localization-context"
 

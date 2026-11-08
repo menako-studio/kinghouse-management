@@ -1,9 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import Link from "@/components/ui/localized-link"
 import Image from "next/image"
-import { Mail, Phone, MapPin, MessageSquare, ArrowUpRight, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react"
+import { Mail, Phone, MapPin, MessageSquare, ArrowUpRight, CheckCircle2, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -182,7 +181,6 @@ export default function ContactPage() {
                     </a>
                   </div>
                 </div>
-
 
                 <div className="flex items-start space-x-3">
                   <MapPin className="h-5 w-5 text-[#A69C8E] shrink-0 mt-0.5" />

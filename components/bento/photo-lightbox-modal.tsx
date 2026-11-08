@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react"
 import Image from "next/image"
-import { X, ChevronLeft, ChevronRight, Grid, Share2 } from "lucide-react"
+import { X, ChevronLeft, ChevronRight } from "lucide-react"
 
 interface PhotoLightboxModalProps {
   isOpen: boolean

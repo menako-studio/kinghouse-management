@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useMemo } from "react"
-import { BookOpen, Rss, Search, Sparkles } from "lucide-react"
+import { Search } from "lucide-react"
 import { BlogPost } from "@/lib/types"
 import { BlogCard } from "@/components/blog/blog-card"
 

@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Metadata } from "next"
-import { Sparkles, MapPin, ArrowRight, ShieldCheck, QrCode } from "lucide-react"
+import { Sparkles, MapPin, ArrowRight } from "lucide-react"
 import { GUEST_COMPENDIUMS } from "@/lib/guest-guide/data"
 
 export const metadata: Metadata = {

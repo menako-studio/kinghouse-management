@@ -16,10 +16,8 @@ import {
   Copy,
   Check,
   Calendar,
-  Layers,
   HelpCircle,
   X,
-  CheckCircle2,
 } from "lucide-react"
 import { CURATED_VILLAS } from "@/lib/data"
 import { ChannelBadge } from "@/components/dashboard/channel-badge"

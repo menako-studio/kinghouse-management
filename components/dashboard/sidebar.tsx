@@ -17,7 +17,6 @@ import {
   LogOut,
   ShieldCheck,
   Globe,
-  Sparkles,
   Coins,
 } from "lucide-react"
 import { AdminUser } from "@/lib/auth"

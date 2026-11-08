@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { TrendingUp, Award, Star, CheckCircle } from "lucide-react"
+
 import { CASE_STUDIES } from "@/lib/marketing-data"
 import { useLocalization } from "@/lib/context/localization-context"
 

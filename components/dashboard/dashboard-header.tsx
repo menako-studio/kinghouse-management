@@ -11,14 +11,10 @@ import {
   Bell,
   ExternalLink,
   ChevronDown,
-  Sparkles,
-  Key,
-  Clock,
   CheckCircle2,
   X,
   Lock,
   ChevronRight,
-  Activity,
 } from "lucide-react"
 import { AdminUser } from "@/lib/auth"
 import { useNotifications, AlertCategory } from "@/components/dashboard/notification-context"

@@ -5,8 +5,6 @@ import Image from "next/image"
 import Link from "@/components/ui/localized-link"
 import {
   Search,
-  Calendar,
-  ChevronDown,
   ArrowUpRight,
   Star,
   Users,
@@ -14,8 +12,6 @@ import {
   Bath,
   Maximize2,
   Sparkles,
-  Check,
-  RotateCcw,
   SlidersHorizontal,
   ChevronRight,
   Plus,
@@ -26,11 +22,10 @@ import { CURATED_VILLAS } from "@/lib/data"
 import { Villa } from "@/lib/types"
 import { useLocalization } from "@/lib/context/localization-context"
 import { BookingChannelModal } from "@/components/villas/booking-channel-modal"
-import { trackSearchFilter, trackWhatsAppClick, trackEvent } from "@/lib/analytics"
+import { trackSearchFilter } from "@/lib/analytics"
 import { Select } from "@/components/ui/select"
 
 type SortOption = "recommended" | "price-asc" | "price-desc" | "rating"
-
 
 // Nakula Editorial Card matching properties.png
 function NakulaVillaCard({ villa }: { villa: Villa }) {
@@ -226,7 +221,6 @@ function VillasCatalogContent() {
     setGridSearchQuery("")
     setSortBy("recommended")
   }
-
 
   // Check if any filter is active
   const isFilterActive = useMemo(() => {

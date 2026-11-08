@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { QrCode, X, Copy, Check, Share2, Printer } from "lucide-react"
+import { QrCode, X, Copy, Check, Printer } from "lucide-react"
 
 interface QrModalProps {
   propertySlug: string

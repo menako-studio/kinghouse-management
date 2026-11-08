@@ -4,7 +4,6 @@ import { checkRateLimit, resetRateLimit } from "@/lib/security/rate-limiter"
 import {
   signAdminSessionToken,
   verifyAdminSessionToken,
-  verifyAdminCredentials,
   SESSION_COOKIE_NAME,
   AdminUser,
 } from "@/lib/auth"
@@ -14,7 +13,6 @@ import {
   LoginSchema,
   ReservationSchema,
   ExpenseSchema,
-  SeoUpdateSchema,
 } from "@/lib/validations"
 
 describe("Penetration Testing & Security Fortification Audit", () => {

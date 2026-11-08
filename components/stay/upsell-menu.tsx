@@ -12,7 +12,6 @@ import {
   Minus,
   MessageCircle,
   ShoppingBag,
-  Check,
 } from "lucide-react"
 import { UpsellService } from "@/lib/guest-guide/types"
 import {

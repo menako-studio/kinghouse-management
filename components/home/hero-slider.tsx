@@ -3,11 +3,10 @@
 import { useState, useRef, useEffect } from "react"
 import Link from "@/components/ui/localized-link"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
+
 import {
   Play,
   Pause,
-  Sparkles,
   ArrowUpRight,
   ChevronDown,
   Compass,

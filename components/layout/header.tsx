@@ -8,7 +8,6 @@ import { useState, useEffect, useRef } from "react"
 import {
   ChevronDown,
   Globe,
-  DollarSign,
   ArrowRight,
   Menu,
   X,

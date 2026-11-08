@@ -6,25 +6,18 @@ import { useMounted } from "@/lib/hooks/use-mounted"
 import {
   CalendarDays,
   CheckCircle2,
-  Clock,
   Filter,
   Plus,
   Download,
   Search,
   RefreshCw,
   Sparkles,
-  ShieldCheck,
   X,
-  DollarSign,
-  User,
-  Phone,
-  Building2,
   Layers,
-  HelpCircle,
   Trash2,
 } from "lucide-react"
 import { CURATED_VILLAS } from "@/lib/data"
-import { Reservation, ChannelType, ReservationStatus, FeeTier } from "@/lib/erp/types"
+import { Reservation, ChannelType, FeeTier } from "@/lib/erp/types"
 import { calculateReservationPayout } from "@/lib/erp/calculations"
 import { exportReservationsToCsv, downloadCsvFile } from "@/lib/erp/export"
 import { formatCurrency } from "@/lib/utils"
@@ -382,7 +375,6 @@ export default function DashboardBookingsPage() {
           </button>
         </div>
       </div>
-
 
       {/* Filter & Search Bar */}
       <div className="flex flex-col sm:flex-row gap-4 justify-between items-stretch sm:items-center bg-white p-4 rounded-3xl border border-[#E8E4DC]">

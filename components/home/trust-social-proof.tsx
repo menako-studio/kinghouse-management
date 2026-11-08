@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { Star, ChevronLeft, ChevronRight, Quote, Award, CheckCircle, ArrowUpRight, ShieldCheck, Sparkles, Key } from "lucide-react"
+import { Star, ChevronLeft, ChevronRight, Quote, CheckCircle, ArrowUpRight, Sparkles } from "lucide-react"
 import { TESTIMONIALS, TRUST_PARTNERS } from "@/lib/marketing-data"
 import { Badge } from "@/components/ui/badge"
 import { useLocalization } from "@/lib/context/localization-context"

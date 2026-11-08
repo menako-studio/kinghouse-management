@@ -5,17 +5,12 @@ import { useRouter } from "next/navigation"
 import {
   Settings,
   ShieldCheck,
-  Key,
-  Bell,
   Lock,
-  User,
   LogOut,
   CheckCircle2,
   Copy,
   Check,
   Layers,
-  Sparkles,
-  Radio,
 } from "lucide-react"
 import { useNotifications } from "@/components/dashboard/notification-context"
 

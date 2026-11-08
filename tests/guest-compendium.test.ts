@@ -3,7 +3,7 @@ import {
   calculateUpsellOrder,
   generateUpsellWhatsAppUrl,
 } from "@/lib/guest-guide/calculations"
-import { GUEST_COMPENDIUMS, UPSELL_SERVICES } from "@/lib/guest-guide/data"
+import { GUEST_COMPENDIUMS } from "@/lib/guest-guide/data"
 
 describe("Digital Guest Compendium & Upsell Engine", () => {
   it("contains valid compendiums for all 4 managed Jabodetabek properties", () => {

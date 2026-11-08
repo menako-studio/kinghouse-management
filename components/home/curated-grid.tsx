@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "@/components/ui/localized-link"
-import { ArrowRight, Sparkles } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import type { VillaCardData } from "@/lib/types"
 import { VillaCard } from "@/components/villas/villa-card"
 import { Button } from "@/components/ui/button"

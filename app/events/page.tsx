@@ -10,7 +10,6 @@ import {
   MessageCircle,
   Sparkles,
   ChevronRight,
-  ChevronDown,
   Search,
   SlidersHorizontal,
   Maximize2,
@@ -23,8 +22,6 @@ import {
   Plane,
   CloudSun,
   UtensilsCrossed,
-  FileText,
-  CheckCircle2,
 } from "lucide-react"
 import { VILLA_EVENTS, VERSATILE_HOUSE_EVENT_PRICELIST, CURATED_VILLAS } from "@/lib/data"
 import { VillaEvent } from "@/lib/types"
@@ -233,7 +230,6 @@ function NakulaEventCard({ event }: { event: VillaEvent }) {
             <span>{tc("DOWNLOAD BROCHURE")}</span>
           </a>
         </div>
-
 
         {/* Venue / Event Title */}
         <Link href={`/events/${event.slug}`}>

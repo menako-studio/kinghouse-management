@@ -16,26 +16,18 @@ import {
   Trash2,
   X,
   Check,
-  Tag,
   ImageIcon,
-  ArrowRight,
-  Filter,
   RefreshCw,
   ExternalLink,
-  Layers,
-  FileText,
   Heading,
   Bold,
   Italic,
   List,
   Quote,
-  Link2,
   Undo,
   AlertCircle,
-  ShieldCheck,
   BarChart2,
   CheckCircle2,
-  Info,
 } from "lucide-react"
 import { BLOG_POSTS, CURATED_VILLAS } from "@/lib/data"
 import { BlogPost } from "@/lib/types"
@@ -253,7 +245,6 @@ export default function DashboardBlogPage() {
     setIsHydrated(true)
     fetchArticlesFromApi()
   }, [])
-
 
   // Sync to localStorage
   useEffect(() => {

@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest"
 import { CURATED_VILLAS } from "@/lib/data"
 import { SUPPORTED_CURRENCIES } from "@/lib/context/localization-context"
-import { GUEST_COMPENDIUMS, UPSELL_SERVICES } from "@/lib/guest-guide/data"
+import { GUEST_COMPENDIUMS } from "@/lib/guest-guide/data"
 import { calculateUpsellOrder, generateUpsellWhatsAppUrl } from "@/lib/guest-guide/calculations"
 import { SUBMARKET_BENCHMARKS } from "@/lib/pricing/engine"
 import { generatePricingCsv } from "@/lib/pricing/export"
