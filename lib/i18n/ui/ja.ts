@@ -1,9 +1,7 @@
 export const ja: Record<string, string> = {
-  home: "ホーム",
   ourProperties: "宿泊施設",
   monthlyOffers: "マンスリー特典",
   events: "イベント",
-  rewards: "リワード",
   enquire: "お問い合わせ",
   signIn: "ログイン",
   byPropertyType: "タイプ別",
@@ -13,19 +11,7 @@ export const ja: Record<string, string> = {
   resortApartment: "リゾート＆アパートメント",
   eventsAndWeddings: "イベント＆パーティー",
   allLocations: "すべてのエリア（ジャボデタベック）",
-  subscribeNewsletter: "ニュースレターに登録する",
-  newsletterHeadline: "最新ニュースとお得な限定プランをお届け",
-  emailPlaceholder: "メールアドレスを入力",
-  signUp: "登録する",
-  aboutUs: "キングハウスについて",
-  reservation: "ご予約",
-  guestAssistance: "ゲストサポート",
-  management: "マネジメント",
-  office: "所在地",
-  hours: "営業時間",
-  connectWithUs: "SNS",
   perNight: "/ 泊",
-  bookOnAirbnb: "Airbnbで予約",
   details: "詳細",
   guests: "ゲスト",
   bedrooms: "ベッドルーム",
@@ -37,12 +23,8 @@ export const ja: Record<string, string> = {
   partnerBadgeManagedHost: "管理ホスト 2026",
   partnerBadgeVerifiedBusiness: "認証済みビジネス",
   partnerBadgeComingSoon: "近日公開",
-  forPropertyOwners: "不動産オーナー様へ",
-  directConcierge: "専任コンシェルジュデスク",
 
   // Hero Section
-  curatedResidencesJabodetabek: "キングハウス厳選レジデンス • ジャカルタ首都圏",
-  extraordinaryHospitality: "最高峰のホスピタリティ＆資産管理",
   curatedVillasTitle: "選りすぐりのヴィラ、",
   managedToPerfection: "完璧なる運営管理。",
   heroDescription: "南ジャカルタ、タンゲラン、パルメラー、チカランの建築美あふれる邸宅で過ごす特別なひととき。不動産オーナー様へ高利回りをお届けします。",
@@ -67,16 +49,6 @@ export const ja: Record<string, string> = {
   startFrom: "料金",
 
   // Dual Path Split
-  forDiscerningTravelers: "ご旅行・ご滞在（B2C）",
-  travelerHeadline: "建築美が息づく隠れ家、",
-  travelerSubheadline: "快適なAirbnbステイ。",
-  travelerDescription: "専用コンシェルジュ、上質な朝食、スーパーホスト品質の保証付きプライベートプールヴィラをお楽しみください。",
-  bookYourEscape: "滞在を予約する",
-  forOwnersInvestors: "オーナー様・投資家様向け（B2B）",
-  ownerHeadline: "手間いらずのフル運営、",
-  ownerSubheadline: "最大化される資産利回り。",
-  ownerDescription: "ダイナミック価格設定、15%からの透明な手数料体系、5つ星ホテル基準の維持管理、オンライン収支レポート。",
-  maximizeRoi: "収益を最大化する",
 
   // Trust & Proof
   globalDistributionHeader: "認証パートナー",
@@ -104,14 +76,10 @@ export const ja: Record<string, string> = {
   sortPriceLowHigh: "料金：安い順",
   sortPriceHighLow: "料金：高い順",
   sortHighestRated: "高評価順",
-  downloadBrochure: "パンフレットをダウンロード",
   noVillasFoundMessage: "条件に一致する物件が見つかりませんでした。",
   resetFiltersButton: "条件をリセット",
-  cleaningFeeText: "清掃費（1回分）",
 
   // Events Page
-  privateEventsHeader: "プライベートイベント＆パーティー",
-  privateEventsSubtitle: "ガーデンウェディング、リトリート、法人オフサイト、撮影のための建築邸宅。",
   packageTierHeader: "パッケージプラン",
   capacityHeader: "定員",
   durationHeader: "利用時間",
@@ -121,24 +89,12 @@ export const ja: Record<string, string> = {
   overnightStayHeader: "ヴィラ宿泊オプション",
   roomConfigurationHeader: "部屋構成と宿泊料金（Versatile House）",
   roomConfigurationDesc: "ご親族や参加者のための宿泊スペース。Versatile Houseでは2〜6部屋の柔軟なアンロックが可能です。",
-  inquireWhatsApp: "WhatsAppでお問い合わせ",
 
   // Owner Services Page
-  passiveVillaIncome: "手放しのヴィラ収益。運営ストレスはゼロ。",
-  ownerServicesHeroDesc: "ジャカルタ首都圏の高級邸宅・ヴィラ・デザイナーズアパートメントを対象とした包括的な民泊・短期賃貸資産管理。",
-  requestAuditButton: "無料収益査定を申し込む",
-  compareModelsButton: "プラン比較",
-  transparentFeeHeader: "透明な手数料体系",
-  zeroFixedHeadline: "固定費ゼロ。完全成果報酬型。",
-  interactiveCalculatorTitle: "収益シミュレーター",
-  calculatorSubtitle: "月間総売上に基づくオーナー様の手取り受取額を試算",
-  estimatedGrossRevenueLabel: "想定月間総売上",
-  applyForModel: "申し込む",
 
   // Concierge & WA
   conciergeOnline: "コンシェルジュ対応中",
   conciergeResponseTime: "通常15分以内に返答いたします",
-  chatWhatsApp: "WhatsAppでチャットする",
 
   // Airbnb Superhost Section
   superhostBadge: "Airbnb公式スーパーホスト認定",

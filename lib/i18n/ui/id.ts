@@ -1,9 +1,7 @@
 export const id: Record<string, string> = {
-  home: "BERANDA",
   ourProperties: "PROPERTI KAMI",
   monthlyOffers: "PENAWARAN BULANAN",
   events: "ACARA",
-  rewards: "REWARDS",
   enquire: "KONSULTASI",
   signIn: "MASUK",
   byPropertyType: "BERDASARKAN TIPE PROPERTI",
@@ -13,19 +11,7 @@ export const id: Record<string, string> = {
   resortApartment: "Resor & Apartemen",
   eventsAndWeddings: "Acara & Pernikahan",
   allLocations: "Semua Lokasi Jabodetabek",
-  subscribeNewsletter: "Berlangganan Newsletter Kami",
-  newsletterHeadline: "DAPATKAN PENAWARAN EKSKLUSIF & BERITA TERBARU",
-  emailPlaceholder: "Masukkan alamat email Anda",
-  signUp: "DAFTAR",
-  aboutUs: "TENTANG KAMI",
-  reservation: "RESERVASI",
-  guestAssistance: "BANTUAN TAMU",
-  management: "MANAJEMEN",
-  office: "KANTOR",
-  hours: "JAM OPERASIONAL",
-  connectWithUs: "IKUTI KAMI",
   perNight: "/ malam",
-  bookOnAirbnb: "Pesan di Airbnb",
   details: "Detail",
   guests: "Tamu",
   bedrooms: "Kamar Tidur",
@@ -37,17 +23,13 @@ export const id: Record<string, string> = {
   partnerBadgeManagedHost: "Host Terkelola 2026",
   partnerBadgeVerifiedBusiness: "Bisnis Terverifikasi",
   partnerBadgeComingSoon: "Segera Hadir",
-  forPropertyOwners: "Untuk Pemilik Properti",
-  directConcierge: "Layanan Concierge Langsung",
 
   // Hero Section
-  curatedResidencesJabodetabek: "Hunian Terkurasi Kinghouse • Jabodetabek",
-  extraordinaryHospitality: "Hospitaliti Luar Biasa & Manajemen Aset",
   curatedVillasTitle: "Villa Terkurasi,",
   managedToPerfection: "Dikelola dengan Sempurna.",
-  heroDescription: "Nikmati hunian arsitektur terbaik di Jakarta Selatan, Tangerang, Palmerah, dan Cikarang — berpadu dengan manajemen aset kelas institusi yang memberikan imbal hasil unggul bagi pemilik properti.",
-  exploreVillasB2C: "Jelajahi Villa (Tamu)",
-  partnerWithUsB2B: "Bermitra dengan Kami (Pemilik)",
+  heroDescription: "Villa & apartemen privat di Jabodetabek — plus jasa kelola Airbnb tanpa repot untuk pemilik properti.",
+  exploreVillasB2C: "Cari Penginapan",
+  partnerWithUsB2B: "Saya Pemilik Properti",
   lifestyle: "Gaya Hidup",
   architecture: "Arsitektur",
   scrollToDiscover: "Gulir untuk Menjelajah",
@@ -67,16 +49,6 @@ export const id: Record<string, string> = {
   startFrom: "Mulai Dari",
 
   // Dual Path Split
-  forDiscerningTravelers: "Untuk Tamu & Liburan (B2C)",
-  travelerHeadline: "Retreat Arsitektural,",
-  travelerSubheadline: "Menginap Tanpa Repot via Airbnb.",
-  travelerDescription: "Temukan villa privat berkolam renang dengan layanan concierge khusus, sarapan lezat, dan jaminan Superhost terverifikasi.",
-  bookYourEscape: "Pesan Liburan Anda",
-  forOwnersInvestors: "Untuk Pemilik Villa & Investor (B2B)",
-  ownerHeadline: "Operasional Otomatis,",
-  ownerSubheadline: "Imbal Hasil Aset Maksimal.",
-  ownerDescription: "Algoritma tarif dinamis, fee transparan mulai 15%, perawatan standar hotel bintang 5, dan dashboard laporan laba rugi langsung.",
-  maximizeRoi: "Maksimalkan ROI Villa Anda",
 
   // Trust & Proof
   globalDistributionHeader: "Mitra Terverifikasi",
@@ -104,14 +76,10 @@ export const id: Record<string, string> = {
   sortPriceLowHigh: "HARGA: RENDAH KE TINGGI",
   sortPriceHighLow: "HARGA: TINGGI KE RENDAH",
   sortHighestRated: "RATING TERTINGGI",
-  downloadBrochure: "Unduh Brosur",
   noVillasFoundMessage: "Tidak ada properti yang cocok dengan filter aktif Anda.",
   resetFiltersButton: "Reset Semua Filter",
-  cleaningFeeText: "Biaya Kebersihan Sekali Bayar",
 
   // Events Page
-  privateEventsHeader: "Acara & Pernikahan Privat",
-  privateEventsSubtitle: "Pernikahan intim, gathering taman, retret korporat, dan produksi kreatif di kawasan arsitektur privat Jabodetabek.",
   packageTierHeader: "Paket Acara",
   capacityHeader: "Kapasitas",
   durationHeader: "Durasi",
@@ -121,24 +89,12 @@ export const id: Record<string, string> = {
   overnightStayHeader: "OPSI MENGINAP DI VILLA",
   roomConfigurationHeader: "Konfigurasi Kamar & Tarif Menginap (Versatile House)",
   roomConfigurationDesc: "Membutuhkan akomodasi ekstra untuk keluarga pengantin atau peserta retret? Versatile House mendukung pembukaan 2 hingga 6 kamar tidur fleksibel.",
-  inquireWhatsApp: "Tanya Opsi Menginap via WhatsApp",
 
   // Owner Services Page
-  passiveVillaIncome: "Penghasilan Villa Pasif. Tanpa Beban Operasional.",
-  ownerServicesHeroDesc: "Manajemen aset sewa jangka pendek menyeluruh untuk hunian mewah, villa, dan apartemen butik di Jabodetabek.",
-  requestAuditButton: "Minta Audit Pendapatan Gratis",
-  compareModelsButton: "Bandingkan Skema Biaya",
-  transparentFeeHeader: "Arsitektur Biaya Transparan",
-  zeroFixedHeadline: "Nol Biaya Tetap. Murni Kinerja.",
-  interactiveCalculatorTitle: "Kalkulator Interaktif Biaya & Hasil Bersih",
-  calculatorSubtitle: "Perkirakan pembayaran bersih pemilik berdasarkan estimasi pendapatan kotor bulanan",
-  estimatedGrossRevenueLabel: "Estimasi Pendapatan Kotor",
-  applyForModel: "Daftar untuk",
 
   // Concierge & WA
   conciergeOnline: "Concierge Online",
   conciergeResponseTime: "Biasanya membalas dalam 15 menit",
-  chatWhatsApp: "Chat via WhatsApp",
 
   // Airbnb Superhost Section
   superhostBadge: "Status Resmi Airbnb Superhost",

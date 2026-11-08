@@ -1,11 +1,9 @@
 // UI strings (EN). EN and ID ship with every page; the other languages are
 // loaded on demand by lib/i18n/ui/load.ts when a visitor picks them.
 export const en: Record<string, string> = {
-  home: "HOME",
   ourProperties: "OUR PROPERTIES",
   monthlyOffers: "MONTHLY OFFERS",
   events: "EVENTS",
-  rewards: "REWARDS",
   enquire: "ENQUIRE",
   signIn: "SIGN IN",
   byPropertyType: "BY PROPERTY TYPE",
@@ -15,19 +13,7 @@ export const en: Record<string, string> = {
   resortApartment: "Resort & Apartment",
   eventsAndWeddings: "Events & Gatherings",
   allLocations: "All Jabodetabek Locations",
-  subscribeNewsletter: "Subscribe to our Newsletter",
-  newsletterHeadline: "GET EXCLUSIVE DEALS & THE LATEST NEWS",
-  emailPlaceholder: "Enter your email address",
-  signUp: "SIGN UP",
-  aboutUs: "ABOUT US",
-  reservation: "RESERVATION",
-  guestAssistance: "GUEST ASSISTANCE",
-  management: "MANAGEMENT",
-  office: "OFFICE",
-  hours: "HOURS",
-  connectWithUs: "CONNECT WITH US",
   perNight: "/ night",
-  bookOnAirbnb: "Book on Airbnb",
   details: "Details",
   guests: "Guests",
   bedrooms: "Bedrooms",
@@ -39,17 +25,13 @@ export const en: Record<string, string> = {
   partnerBadgeManagedHost: "Managed Host 2026",
   partnerBadgeVerifiedBusiness: "Verified Business",
   partnerBadgeComingSoon: "Coming Soon",
-  forPropertyOwners: "For Property Owners",
-  directConcierge: "Direct Concierge & Desk",
 
   // Hero Section
-  curatedResidencesJabodetabek: "Kinghouse Curated Residences • Jabodetabek",
-  extraordinaryHospitality: "Extraordinary Hospitality & Asset Management",
   curatedVillasTitle: "Curated Villas,",
   managedToPerfection: "Managed to Perfection.",
-  heroDescription: "Immerse in architectural retreats across South Jakarta, Tangerang, Palmerah, and Cikarang — paired with institutional-grade asset management delivering superior yield for property owners.",
-  exploreVillasB2C: "Explore Villas (B2C)",
-  partnerWithUsB2B: "Partner With Us (B2B)",
+  heroDescription: "Private villas and apartments in Greater Jakarta — plus hands-off Airbnb management for property owners.",
+  exploreVillasB2C: "Find a Stay",
+  partnerWithUsB2B: "I Own a Property",
   lifestyle: "Lifestyle",
   architecture: "Architecture",
   scrollToDiscover: "Scroll to Discover",
@@ -69,16 +51,6 @@ export const en: Record<string, string> = {
   startFrom: "Start From",
 
   // Dual Path Split
-  forDiscerningTravelers: "For Discerning Travelers (B2C)",
-  travelerHeadline: "Architectural Retreats,",
-  travelerSubheadline: "Frictionless Airbnb Stays.",
-  travelerDescription: "Discover private pool sanctuaries with dedicated concierge, artisan breakfasts, and verified Superhost guarantees.",
-  bookYourEscape: "Book Your Escape",
-  forOwnersInvestors: "For Villa Owners & Investors (B2B)",
-  ownerHeadline: "Turnkey Operations,",
-  ownerSubheadline: "Maximized Asset Yield.",
-  ownerDescription: "Dynamic revenue algorithms, transparent fees from 15%, 5-star hotel maintenance, and live owner P&L dashboards.",
-  maximizeRoi: "Maximize Your Villa's ROI",
 
   // Trust & Proof
   globalDistributionHeader: "Verified Partners",
@@ -106,14 +78,10 @@ export const en: Record<string, string> = {
   sortPriceLowHigh: "PRICE: LOW TO HIGH",
   sortPriceHighLow: "PRICE: HIGH TO LOW",
   sortHighestRated: "HIGHEST RATED",
-  downloadBrochure: "Download Brochure",
   noVillasFoundMessage: "No properties match your filter criteria.",
   resetFiltersButton: "Reset All Filters",
-  cleaningFeeText: "One-time Cleaning Fee",
 
   // Events Page
-  privateEventsHeader: "Private Events & Gatherings",
-  privateEventsSubtitle: "Intimate weddings, garden gatherings, corporate retreats, and creative productions hosted in private architectural estates.",
   packageTierHeader: "Package Tier",
   capacityHeader: "Capacity",
   durationHeader: "Duration",
@@ -123,24 +91,12 @@ export const en: Record<string, string> = {
   overnightStayHeader: "VILLA OVERNIGHT STAY OPTION",
   roomConfigurationHeader: "Room Configuration & Stay Rates (Versatile House)",
   roomConfigurationDesc: "Need extra accommodation for bridal families or retreat participants? Versatile House supports flexible room unlocks from 2 to 6 bedrooms.",
-  inquireWhatsApp: "Inquire Custom Stay via WhatsApp",
 
   // Owner Services Page
-  passiveVillaIncome: "Passive Villa Income. Zero Operational Headache.",
-  ownerServicesHeroDesc: "Full-spectrum short-stay asset management for luxury homes, villas, and boutique apartments across Jabodetabek.",
-  requestAuditButton: "Request Free Revenue Audit",
-  compareModelsButton: "Compare Pricing Models",
-  transparentFeeHeader: "Transparent Fee Architecture",
-  zeroFixedHeadline: "Zero Fixed Costs. Pure Performance.",
-  interactiveCalculatorTitle: "Interactive Fee & Net Yield Calculator",
-  calculatorSubtitle: "Estimate your net owner payout based on gross monthly revenue",
-  estimatedGrossRevenueLabel: "Estimated Gross Revenue",
-  applyForModel: "Apply for",
 
   // Concierge & WA
   conciergeOnline: "Concierge Online",
   conciergeResponseTime: "Typically replies in under 15 minutes",
-  chatWhatsApp: "Chat on WhatsApp",
 
   // Airbnb Superhost Section
   superhostBadge: "Verified Airbnb Superhost Status",

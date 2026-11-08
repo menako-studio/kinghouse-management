@@ -211,78 +211,49 @@ export function HeroSlider() {
 
       {/* 4. Luxury Content Container */}
       <div className="relative z-20 mx-auto flex h-full min-h-[660px] sm:min-h-screen max-w-7xl flex-col justify-between px-5 pt-20 pb-8 sm:px-10 sm:pt-28 sm:pb-12 lg:px-12 lg:pt-32 lg:pb-12">
-        {/* Top Eyebrow Tag */}
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div className="flex flex-wrap items-center gap-2">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-3.5 py-1 sm:px-4 sm:py-1.5 text-xs sm:text-xs font-medium tracking-[0.18em] sm:tracking-[0.22em] uppercase text-[#E8DFC8] backdrop-blur-md shadow-2xl">
-              <Sparkles className="h-3 w-3 text-[#B8934C]" />
-              <span>{t("curatedResidencesJabodetabek")}</span>
-            </div>
-
-            {/* Official Airbnb Superhost Pill */}
-            <a
-              href="https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full border border-[#DFC58E]/50 bg-black/50 hover:bg-black/75 px-3 py-1 sm:px-3.5 sm:py-1.5 text-xs sm:text-xs font-semibold text-[#DFC58E] backdrop-blur-md shadow-xl transition-all hover:scale-105 cursor-pointer"
-              title={tc("Official Airbnb Superhost Profile — Kinghouse Management")}
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>{tc("Official Airbnb Superhost")}</span>
-              <span className="text-xs text-white/80 font-normal">★ 4.5 &bull; {tc("10 Reviews")} ↗</span>
-            </a>
-          </div>
-
-          {/* Quick Scene Pill Badge (Desktop View) */}
-          <div className="hidden sm:flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3.5 py-1 text-xs text-white/90 backdrop-blur-md">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#B8934C] animate-pulse" />
-            <span className="font-light tracking-wide">{tc(currentScene.title)}</span>
-          </div>
+        {/* Single trust signal: verified Superhost */}
+        <div>
+          <a
+            href="https://www.airbnb.com/users/profile/1470743715397835749"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-10 items-center gap-2 rounded-full border border-[#DFC58E]/50 bg-black/45 px-4 text-sm font-semibold text-[#DFC58E] backdrop-blur-md transition-colors hover:bg-black/70"
+          >
+            <span className="h-2 w-2 rounded-full bg-emerald-400" aria-hidden="true" />
+            {tc("Official Airbnb Superhost")}
+            <span className="whitespace-nowrap font-normal text-white/85">
+              ★ 4.5<span className="hidden sm:inline"> · {tc("10 Reviews")}</span>
+            </span>
+          </a>
         </div>
 
         {/* Center Main Headline & Dual Conversion Call-to-Action */}
-        <div className="max-w-4xl space-y-4 sm:space-y-8 my-auto pt-4 sm:pt-6">
-          <div className="space-y-2 sm:space-y-3">
-            <p className="text-xs sm:text-sm font-light tracking-[0.22em] sm:tracking-[0.25em] uppercase text-[#DFC58E]">
-              {t("extraordinaryHospitality")}
-            </p>
-            <h1 className="font-serif text-3xl sm:text-6xl md:text-7xl lg:text-[5.25rem] font-normal leading-[1.08] sm:leading-[1.06] tracking-tight text-white drop-shadow-md">
-              {t("curatedVillasTitle")} <br />
-              <span className="italic font-light text-[#EFEBE4]">
-                {t("managedToPerfection")}
-              </span>
-            </h1>
-          </div>
+        <div className="my-auto max-w-4xl space-y-5 pt-6 sm:space-y-7">
+          <h1 className="font-serif text-[2.6rem] font-normal leading-[1.05] tracking-tight text-white drop-shadow-md sm:text-6xl md:text-7xl lg:text-[5.25rem]">
+            {t("curatedVillasTitle")} <br />
+            <span className="italic font-light text-[#EFEBE4]">{t("managedToPerfection")}</span>
+          </h1>
 
-          <p className="max-w-2xl text-xs sm:text-lg text-white/85 font-light leading-relaxed drop-shadow">
+          <p className="max-w-xl text-lg leading-relaxed text-white/90 drop-shadow sm:text-xl">
             {t("heroDescription")}
           </p>
 
-          {/* Dual Conversion CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-1 sm:pt-4">
-            <Button
-              size="lg"
-              asChild
-              className="bg-white text-[#19191B] hover:bg-[#FAF8F5] hover:text-black border-none font-semibold text-xs uppercase tracking-[0.16em] px-6 sm:px-8 py-3.5 sm:py-6 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.4)] transition-all duration-300 hover:scale-[1.02]"
+          {/* Two clear paths: guest or property owner */}
+          <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:items-center sm:gap-4 sm:pt-2">
+            <Link
+              href="/villas"
+              className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-white px-8 text-base font-semibold text-[#19191B] shadow-[0_10px_30px_rgba(0,0,0,0.4)] transition-colors hover:bg-[#FAF8F5]"
             >
-              <Link href="/villas" className="flex items-center justify-center gap-2">
-                <Compass className="h-4 w-4 text-[#8C7F5F]" />
-                <span>{t("exploreVillasB2C")}</span>
-                <ArrowUpRight className="h-4 w-4" />
-              </Link>
-            </Button>
-
-            <Button
-              size="lg"
-              variant="outline"
-              asChild
-              className="border-white/30 bg-black/30 hover:bg-white/15 text-white hover:text-white font-medium text-xs uppercase tracking-[0.16em] px-6 sm:px-8 py-3.5 sm:py-6 rounded-full backdrop-blur-md shadow-lg transition-all duration-300 hover:scale-[1.02]"
+              <Compass className="h-5 w-5 text-[#8C7F5F]" aria-hidden="true" />
+              {t("exploreVillasB2C")}
+            </Link>
+            <Link
+              href="/owner-services"
+              className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full border border-white/40 bg-black/35 px-8 text-base font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/15"
             >
-              <Link href="/owner-services" className="flex items-center justify-center gap-2">
-                <Building2 className="h-4 w-4 text-[#DFC58E]" />
-                <span>{t("partnerWithUsB2B")}</span>
-              </Link>
-            </Button>
+              <Building2 className="h-5 w-5 text-[#DFC58E]" aria-hidden="true" />
+              {t("partnerWithUsB2B")}
+            </Link>
           </div>
         </div>
 

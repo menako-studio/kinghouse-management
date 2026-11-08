@@ -1,9 +1,7 @@
 export const ru: Record<string, string> = {
-  home: "ГЛАВНАЯ",
   ourProperties: "НАШИ ОБЪЕКТЫ",
   monthlyOffers: "ПРЕДЛОЖЕНИЯ МЕСЯЦА",
   events: "МЕРОПРИЯТИЯ",
-  rewards: "ПРОГРАММА ЛОЯЛЬНОСТИ",
   enquire: "ЗАПРОС",
   signIn: "ВОЙТИ",
   byPropertyType: "ПО ТИПУ ОБЪЕКТА",
@@ -13,19 +11,7 @@ export const ru: Record<string, string> = {
   resortApartment: "Курортные апартаменты",
   eventsAndWeddings: "Мероприятия и праздники",
   allLocations: "Все локации Джакарты",
-  subscribeNewsletter: "Подпишитесь на рассылку",
-  newsletterHeadline: "ПОЛУЧАЙТЕ ЭКСКЛЮЗИВНЫЕ СКИДКИ И НОВОСТИ",
-  emailPlaceholder: "Введите ваш e-mail",
-  signUp: "ПОДПИСАТЬСЯ",
-  aboutUs: "О НАС",
-  reservation: "БРОНИРОВАНИЕ",
-  guestAssistance: "СЛУЖБА ПОДДЕРЖКИ",
-  management: "УПРАВЛЕНИЕ",
-  office: "ОФИС",
-  hours: "ЧАСЫ РАБОТЫ",
-  connectWithUs: "МЫ В СОЦСЕТЯХ",
   perNight: "/ ночь",
-  bookOnAirbnb: "Забронировать на Airbnb",
   details: "Подробнее",
   guests: "Гостей",
   bedrooms: "Спальни",
@@ -37,12 +23,8 @@ export const ru: Record<string, string> = {
   partnerBadgeManagedHost: "Управляемый хост 2026",
   partnerBadgeVerifiedBusiness: "Проверенный бизнес",
   partnerBadgeComingSoon: "Скоро",
-  forPropertyOwners: "Для владельцев",
-  directConcierge: "Прямой консьерж-сервис",
 
   // Hero Section
-  curatedResidencesJabodetabek: "Премиальные резиденции Kinghouse • Джакарта",
-  extraordinaryHospitality: "Исключительный сервис и доверительное управление",
   curatedVillasTitle: "Коллекция вилл,",
   managedToPerfection: "Безупречное управление.",
   heroDescription: "Погрузитесь в атмосферу уникальных вилл в Южной Джакарте, Тангеранге, Пальмере и Чикаранге в сочетании с институциональным управлением для максимального дохода владельцев.",
@@ -67,16 +49,6 @@ export const ru: Record<string, string> = {
   startFrom: "От",
 
   // Dual Path Split
-  forDiscerningTravelers: "Для искушенных гостей (B2C)",
-  travelerHeadline: "Архитектурные убежища,",
-  travelerSubheadline: "Комфортный отдых через Airbnb.",
-  travelerDescription: "Виллы с частными бассейнами, персональным консьержем, изысканными завтраками и гарантией статуса Superhost.",
-  bookYourEscape: "Забронировать виллу",
-  forOwnersInvestors: "Для владельцев и инвесторов (B2B)",
-  ownerHeadline: "Управление под ключ,",
-  ownerSubheadline: "Максимизация доходности.",
-  ownerDescription: "Динамическое ценообразование, прозрачные комиссии от 15%, обслуживание стандарта 5 звезд и онлайн-отчетность.",
-  maximizeRoi: "Увеличить доход от виллы",
 
   // Trust & Proof
   globalDistributionHeader: "Проверенные партнёры",
@@ -104,14 +76,10 @@ export const ru: Record<string, string> = {
   sortPriceLowHigh: "ЦЕНА: ПО ВОЗРАСТАНИЮ",
   sortPriceHighLow: "ЦЕНА: ПО УБЫВАНИЮ",
   sortHighestRated: "ВЫСОКИЙ РЕЙТИНГ",
-  downloadBrochure: "Скачать буклет",
   noVillasFoundMessage: "По выбранным критериям объекты не найдены.",
   resetFiltersButton: "Сбросить все фильтры",
-  cleaningFeeText: "Единоразовый сбор за уборку",
 
   // Events Page
-  privateEventsHeader: "Частные мероприятия и торжества",
-  privateEventsSubtitle: "Камерные свадьбы, праздники в саду, корпоративные ретриты и съемки в частных архитектурных резиденциях.",
   packageTierHeader: "Пакет",
   capacityHeader: "Вместимость",
   durationHeader: "Длительность",
@@ -121,24 +89,12 @@ export const ru: Record<string, string> = {
   overnightStayHeader: "ВАРИАНТ ПРОЖИВАНИЯ НА ВИЛЛЕ",
   roomConfigurationHeader: "Конфигурация номеров и тарифы (Versatile House)",
   roomConfigurationDesc: "Нужно дополнительное размещение для гостей свадьбы или ретрита? В Versatile House можно гибко открыть от 2 до 6 спален.",
-  inquireWhatsApp: "Индивидуальный запрос в WhatsApp",
 
   // Owner Services Page
-  passiveVillaIncome: "Пассивный доход от виллы. Ноль операционных забот.",
-  ownerServicesHeroDesc: "Комплексное управление краткосрочной арендой элитных домов, вилл и бутик-апартаментов в Джакарте.",
-  requestAuditButton: "Заказать бесплатный аудит дохода",
-  compareModelsButton: "Сравнить модели тарифов",
-  transparentFeeHeader: "Прозрачная структура комиссий",
-  zeroFixedHeadline: "Ноль фиксированных затрат. Оплата за результат.",
-  interactiveCalculatorTitle: "Калькулятор доходности",
-  calculatorSubtitle: "Рассчитайте чистую прибыль владельца на основе ожидаемой валовой выручки",
-  estimatedGrossRevenueLabel: "Ожидаемая валовая выручка",
-  applyForModel: "Выбрать модель",
 
   // Concierge & WA
   conciergeOnline: "Консьерж на связи",
   conciergeResponseTime: "Обычно отвечает в течение 15 минут",
-  chatWhatsApp: "Написать в WhatsApp",
 
   // Airbnb Superhost Section
   superhostBadge: "Подтвержденный статус Airbnb Superhost",

@@ -149,14 +149,16 @@ export function TrustSocialProof() {
             {/* Author Footer & Controls */}
             <div className="flex items-center justify-between pt-6 border-t border-[#EBEBEB]">
               <div className="flex items-center space-x-4">
-                <div className="relative h-12 w-12 overflow-hidden rounded-full border border-[#EBEBEB] bg-[#F5F5F5]">
-                  <Image
-                    src={current.avatar}
-                    alt={current.author}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+                <span
+                  aria-hidden="true"
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#231F1A] font-serif text-lg text-[#DFC58E]"
+                >
+                  {current.author
+                    .split(" ")
+                    .map((w) => w[0])
+                    .slice(0, 2)
+                    .join("")}
+                </span>
                 <div>
                   <h4 className="text-sm font-semibold text-[#222222]">{current.author}</h4>
                   <p className="text-xs text-[#717171]">{tc(current.roleOrLocation)}</p>

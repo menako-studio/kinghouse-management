@@ -1,9 +1,7 @@
 export const zhCN: Record<string, string> = {
-  home: "首页",
   ourProperties: "精选房源",
   monthlyOffers: "月度特惠",
   events: "活动与聚会",
-  rewards: "会员奖励",
   enquire: "咨询洽谈",
   signIn: "登录",
   byPropertyType: "按房源类型",
@@ -13,19 +11,7 @@ export const zhCN: Record<string, string> = {
   resortApartment: "度假村与精品公寓",
   eventsAndWeddings: "活动与私人宴会",
   allLocations: "大雅加达所有区域",
-  subscribeNewsletter: "订阅我们的通讯",
-  newsletterHeadline: "获取独家专属优惠与最新动态",
-  emailPlaceholder: "输入您的电子邮箱",
-  signUp: "立即订阅",
-  aboutUs: "关于我们",
-  reservation: "预订服务",
-  guestAssistance: "贵宾礼宾支持",
-  management: "资产管理",
-  office: "办公地点",
-  hours: "服务时间",
-  connectWithUs: "关注我们",
   perNight: "/ 晚",
-  bookOnAirbnb: "在 Airbnb 预订",
   details: "查看详情",
   guests: "位客人",
   bedrooms: "间卧室",
@@ -37,12 +23,8 @@ export const zhCN: Record<string, string> = {
   partnerBadgeManagedHost: "托管房东 2026",
   partnerBadgeVerifiedBusiness: "认证商家",
   partnerBadgeComingSoon: "即将上线",
-  forPropertyOwners: "业主合作专区",
-  directConcierge: "专属礼宾及客服",
 
   // Hero Section
-  curatedResidencesJabodetabek: "Kinghouse 精选名邸 • 大雅加达区域",
-  extraordinaryHospitality: "卓越奢华款待与高端资产托管",
   curatedVillasTitle: "匠心严选别墅，",
   managedToPerfection: "至臻托管运营。",
   heroDescription: "置身南雅加达、唐格朗、帕尔梅拉与芝卡朗的建筑美学圣地，尊享机构级托管运营服务，为业主创造超额投资回报。",
@@ -67,16 +49,6 @@ export const zhCN: Record<string, string> = {
   startFrom: "起价",
 
   // Dual Path Split
-  forDiscerningTravelers: "品味旅行者专区（B2C）",
-  travelerHeadline: "建筑美学度假体验，",
-  travelerSubheadline: "无忧无虑的 Airbnb 入住。",
-  travelerDescription: "探索带有专属私人泳池的宁静度假屋，配备私享礼宾、精致手作早餐与 Airbnb 超赞房东品质保障。",
-  bookYourEscape: "预订您的假期",
-  forOwnersInvestors: "房产所有者与投资人专区（B2B）",
-  ownerHeadline: "一站式全托管，",
-  ownerSubheadline: "资产回报最大化。",
-  ownerDescription: "智能动态收益定价、15% 起的透明佣金模式、五星级酒店运维标准与实时财务收支看板。",
-  maximizeRoi: "提升别墅投资回报率",
 
   // Trust & Proof
   globalDistributionHeader: "认证合作平台",
@@ -104,14 +76,10 @@ export const zhCN: Record<string, string> = {
   sortPriceLowHigh: "价格：从低到高",
   sortPriceHighLow: "价格：从高到低",
   sortHighestRated: "房客评分最高",
-  downloadBrochure: "下载房源宣传册",
   noVillasFoundMessage: "未找到符合当前筛选条件的房源。",
   resetFiltersButton: "重置所有筛选",
-  cleaningFeeText: "单次深度保洁费",
 
   // Events Page
-  privateEventsHeader: "私人派对与定制宴会",
-  privateEventsSubtitle: "在雅加达私享庄园中举办私密婚礼、花园派对、企业高管团建与商业创意拍摄。",
   packageTierHeader: "套餐方案",
   capacityHeader: "容纳人数",
   durationHeader: "使用时长",
@@ -121,24 +89,12 @@ export const zhCN: Record<string, string> = {
   overnightStayHeader: "别墅客房套订选项",
   roomConfigurationHeader: "客房配置与连住价格（Versatile House）",
   roomConfigurationDesc: "需要为婚礼亲友或团建同仁提供额外住宿？Versatile House 支持 2 至 6 间卧室的灵活解锁预订。",
-  inquireWhatsApp: "通过 WhatsApp 咨询定制方案",
 
   // Owner Services Page
-  passiveVillaIncome: "坐享被动别墅收益。零运营琐事烦扰。",
-  ownerServicesHeroDesc: "面向大雅加达地区豪华独栋住宅、度假别墅及精品公寓的全链路短租资产托管。",
-  requestAuditButton: "申请免费收益评估",
-  compareModelsButton: "对比合作方案",
-  transparentFeeHeader: "透明费率架构",
-  zeroFixedHeadline: "零固定成本支出。纯靠业绩收益分成。",
-  interactiveCalculatorTitle: "净收益交互测算工具",
-  calculatorSubtitle: "基于预估月度总营业额，测算业主的实际净收益",
-  estimatedGrossRevenueLabel: "预估月度总营业额",
-  applyForModel: "申请方案",
 
   // Concierge & WA
   conciergeOnline: "客服在线",
   conciergeResponseTime: "通常在 15 分钟内快速响应",
-  chatWhatsApp: "通过 WhatsApp 咨询",
 
   // Airbnb Superhost Section
   superhostBadge: "爱彼迎官方超赞房东认证",

@@ -5,7 +5,6 @@ import { CuratedGrid } from "@/components/home/curated-grid"
 import { CURATED_VILLAS } from "@/lib/data"
 import { toVillaCardData } from "@/lib/types"
 import { TrustSocialProof } from "@/components/home/trust-social-proof"
-import { DualPathSplit } from "@/components/home/dual-path-split"
 import { FunnelEntryGate } from "@/components/home/funnel-entry-gate"
 import { localeAlternates } from "@/lib/i18n/site"
 
@@ -35,9 +34,6 @@ export default function HomePage() {
 
       {/* 5. Trust & Social Proof: Partner Logos & Verified Reviews Carousel */}
       <TrustSocialProof />
-
-      {/* 6. Dual-Path Split Section (50% Guest Escape vs 50% Owner ROI) */}
-      <DualPathSplit />
     </main>
   )
 }

@@ -1,9 +1,7 @@
 export const de: Record<string, string> = {
-  home: "STARTSEITE",
   ourProperties: "UNSERE UNTERKÜNFTE",
   monthlyOffers: "MONATSANGEBOTE",
   events: "EVENTS",
-  rewards: "PRÄMIEN",
   enquire: "ANFRAGEN",
   signIn: "ANMELDEN",
   byPropertyType: "NACH UNTERKUNFTSTYP",
@@ -13,19 +11,7 @@ export const de: Record<string, string> = {
   resortApartment: "Resort & Apartments",
   eventsAndWeddings: "Events & Hochzeiten",
   allLocations: "Alle Standorte",
-  subscribeNewsletter: "Newsletter abonnieren",
-  newsletterHeadline: "EXKLUSIVE ANGEBOTE & AKTUELLE NEWS ERHALTEN",
-  emailPlaceholder: "E-Mail-Adresse eingeben",
-  signUp: "ANMELDEN",
-  aboutUs: "ÜBER UNS",
-  reservation: "RESERVIERUNG",
-  guestAssistance: "GÄSTEBETREUUNG",
-  management: "MANAGEMENT",
-  office: "BÜRO",
-  hours: "ÖFFNUNGSZEITEN",
-  connectWithUs: "FOLGEN SIE UNS",
   perNight: "/ Nacht",
-  bookOnAirbnb: "Auf Airbnb buchen",
   details: "Details",
   guests: "Gäste",
   bedrooms: "Schlafzimmer",
@@ -37,12 +23,8 @@ export const de: Record<string, string> = {
   partnerBadgeManagedHost: "Verwalteter Gastgeber 2026",
   partnerBadgeVerifiedBusiness: "Verifiziertes Unternehmen",
   partnerBadgeComingSoon: "Demnächst",
-  forPropertyOwners: "Für Immobilieneigentümer",
-  directConcierge: "Direkter Concierge-Service",
 
   // Hero Section
-  curatedResidencesJabodetabek: "Kinghouse Kuratierte Residenzen • Großraum Jakarta",
-  extraordinaryHospitality: "Erstklassige Gastfreundschaft & Vermögensverwaltung",
   curatedVillasTitle: "Kuratierte Villen,",
   managedToPerfection: "In Perfektion verwaltet.",
   heroDescription: "Erleben Sie architektonische Meisterwerke in Süd-Jakarta, Tangerang, Palmerah und Cikarang — kombiniert mit institutionellem Asset Management für maximale Eigentümerrendite.",
@@ -67,16 +49,6 @@ export const de: Record<string, string> = {
   startFrom: "Ab",
 
   // Dual Path Split
-  forDiscerningTravelers: "Für anspruchsvolle Reisende (B2C)",
-  travelerHeadline: "Architektonische Refugien,",
-  travelerSubheadline: "Reibungslose Airbnb-Aufenthalte.",
-  travelerDescription: "Entdecken Sie Villen mit privatem Pool, persönlichem Concierge, handgemachtem Frühstück und geprüfter Superhost-Garantie.",
-  bookYourEscape: "Aufenthalt buchen",
-  forOwnersInvestors: "Für Eigentümer & Investoren (B2B)",
-  ownerHeadline: "Schlüsselfertiger Betrieb,",
-  ownerSubheadline: "Maximierte Vermögensrendite.",
-  ownerDescription: "Dynamische Preisalgorithmen, transparente Gebühren ab 15 %, 5-Sterne-Instandhaltung und Live-Eigentümer-Dashboard.",
-  maximizeRoi: "Villa-Rendite maximieren",
 
   // Trust & Proof
   globalDistributionHeader: "Verifizierte Partner",
@@ -104,14 +76,10 @@ export const de: Record<string, string> = {
   sortPriceLowHigh: "PREIS: AUFSTEIGEND",
   sortPriceHighLow: "PREIS: ABSTEIGEND",
   sortHighestRated: "BESTE BEWERTUNGEN",
-  downloadBrochure: "Broschüre herunterladen",
   noVillasFoundMessage: "Keine Unterkünfte für Ihre Filterkriterien gefunden.",
   resetFiltersButton: "Alle Filter zurücksetzen",
-  cleaningFeeText: "Einmalige Reinigungsgebühr",
 
   // Events Page
-  privateEventsHeader: "Private Feiern & Veranstaltungen",
-  privateEventsSubtitle: "Stilvolle Hochzeiten, Gartenpartys, Firmen-Offsites und Medienproduktionen in exklusiven architektonischen Anwesen.",
   packageTierHeader: "Paket-Stufe",
   capacityHeader: "Kapazität",
   durationHeader: "Dauer",
@@ -121,24 +89,12 @@ export const de: Record<string, string> = {
   overnightStayHeader: "ÜBERNACHTUNGSOPTION",
   roomConfigurationHeader: "Zimmeraufteilung & Übernachtungstarife (Versatile House)",
   roomConfigurationDesc: "Unterkunft für Hochzeitsgäste oder Retreat-Teilnehmer benötigt? Im Versatile House können 2 bis 6 Schlafzimmer flexibel gebucht werden.",
-  inquireWhatsApp: "Individuelle Anfrage via WhatsApp",
 
   // Owner Services Page
-  passiveVillaIncome: "Passives Villen-Einkommen. Kein Betriebsaufwand.",
-  ownerServicesHeroDesc: "Ganzheitliches Kurzzeitvermietungs-Management für Luxusanwesen, Villen und Boutique-Apartments im Großraum Jakarta.",
-  requestAuditButton: "Kostenlose Ertragsanalyse anfordern",
-  compareModelsButton: "Preismodelle vergleichen",
-  transparentFeeHeader: "Transparente Vergütungsstruktur",
-  zeroFixedHeadline: "Null Fixkosten. Reine Leistungsorientierung.",
-  interactiveCalculatorTitle: "Interaktiver Ertrags- & Renditerechner",
-  calculatorSubtitle: "Schätzen Sie Ihre Netto-Auszahlung basierend auf dem monatlichen Bruttoumsatz",
-  estimatedGrossRevenueLabel: "Geschätzter monatlicher Bruttoumsatz",
-  applyForModel: "Modell wählen",
 
   // Concierge & WA
   conciergeOnline: "Concierge online",
   conciergeResponseTime: "Antwortet gewöhnlich in unter 15 Minuten",
-  chatWhatsApp: "Über WhatsApp chatten",
 
   // Airbnb Superhost Section
   superhostBadge: "Verifizierter Airbnb Superhost Status",
