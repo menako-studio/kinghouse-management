@@ -1,5 +1,6 @@
 // Labels shared across pages: search bar, cards, image alt text, small UI copy.
 export const common: Record<string, string> = {
+  "Add date": "Pilih tanggal",
   // Search bar
   "Jagakarsa (South Jakarta)": "Jagakarsa (Jakarta Selatan)",
   "Tangerang (Banten)": "Tangerang (Banten)",

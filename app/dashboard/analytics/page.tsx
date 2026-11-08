@@ -25,6 +25,7 @@ import { exportExpensesToCsv, downloadCsvFile, printOwnerStatement } from "@/lib
 import { formatCurrency } from "@/lib/utils"
 import { useNotifications } from "@/components/dashboard/notification-context"
 import { Select } from "@/components/ui/select"
+import { DatePicker } from "@/components/ui/date-picker"
 
 export default function DashboardAnalyticsPage() {
   const { addAlert, showToast } = useNotifications()
@@ -688,8 +689,7 @@ export default function DashboardAnalyticsPage() {
                     <label className="block font-semibold text-[#555] uppercase tracking-wider mb-1">
                       Tanggal Pengeluaran
                     </label>
-                    <input
-                      type="date"
+                    <DatePicker
                       required
                       value={expDate}
                       onChange={(e) => setExpDate(e.target.value)}

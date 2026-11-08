@@ -19,6 +19,7 @@ import { formatDateFor } from "@/lib/i18n/funnel/core"
 import { submitLead } from "@/lib/funnel/client"
 import { HoneypotField } from "@/components/funnel/form-fields"
 import { Select } from "@/components/ui/select"
+import { DatePicker, todayIso } from "@/components/ui/date-picker"
 
 type AvailabilityState =
   | { status: "idle" }
@@ -161,9 +162,11 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
             <label className="block text-xs font-bold uppercase tracking-wider text-[#222222]">
               {tc("Check-in")}
             </label>
-            <input
-              type="date"
+            <DatePicker
+              hideIcon
               value={checkIn}
+              min={todayIso()}
+              placeholder={tc("Add date")}
               onChange={(e) => changeDates(e.target.value, checkOut)}
               className="w-full bg-transparent text-xs text-[#222222] font-medium focus:outline-none cursor-pointer pt-0.5"
             />
@@ -172,9 +175,10 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
             <label className="block text-xs font-bold uppercase tracking-wider text-[#222222]">
               {tc("Check-out")}
             </label>
-            <input
-              type="date"
+            <DatePicker
+              hideIcon
               value={checkOut}
+              placeholder={tc("Add date")}
               min={checkIn ? addDays(checkIn, 1) : undefined}
               onChange={(e) => changeDates(checkIn, e.target.value)}
               className="w-full bg-transparent text-xs text-[#222222] font-medium focus:outline-none cursor-pointer pt-0.5"

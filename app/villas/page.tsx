@@ -24,6 +24,7 @@ import { useLocalization } from "@/lib/context/localization-context"
 import { BookingChannelModal } from "@/components/villas/booking-channel-modal"
 import { trackSearchFilter } from "@/lib/analytics"
 import { Select } from "@/components/ui/select"
+import { DatePicker, todayIso } from "@/components/ui/date-picker"
 
 type SortOption = "recommended" | "price-asc" | "price-desc" | "rating"
 
@@ -424,9 +425,9 @@ function VillasCatalogContent() {
                 {t("availabilityHeader")}
               </span>
               <div className="relative">
-                <input
-                  type="date"
+                <DatePicker
                   value={availabilityDate}
+                  min={todayIso()}
                   onChange={(e) => setAvailabilityDate(e.target.value)}
                   className="w-full px-3 py-2 text-xs border border-[#E8E4DC] rounded-md bg-[#FAF8F5] text-[#222225] focus:outline-none focus:border-[#8C7F5F]"
                 />

@@ -20,6 +20,7 @@ import { trackWhatsAppClick } from "@/lib/analytics"
 import { useLocalization } from "@/lib/context/localization-context"
 import type { EventLeadInput } from "@/lib/validations"
 import { Select } from "@/components/ui/select"
+import { DatePicker, todayIso } from "@/components/ui/date-picker"
 
 type SpecialNeed = EventLeadInput["specialNeeds"][number]
 type FormErrorKey = LeadErrorKey | "f.ef.endBeforeStart"
@@ -198,10 +199,10 @@ export function EventLeadForm({ eventType, onEventTypeChange }: EventLeadFormPro
 
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <Field label={t("f.ef.date")} htmlFor="event-date" required>
-                <Input id="event-date" type="date" required className={inputClass} value={form.eventDate} onChange={(e) => update("eventDate", e.target.value)} />
+                <DatePicker id="event-date" required min={todayIso()} className={selectClassName} value={form.eventDate} onChange={(e) => update("eventDate", e.target.value)} />
               </Field>
               <Field label={t("f.ef.backupDate")} htmlFor="event-backup" hint={t("f.ef.backupHint")}>
-                <Input id="event-backup" type="date" className={inputClass} value={form.backupDate} onChange={(e) => update("backupDate", e.target.value)} />
+                <DatePicker id="event-backup" min={form.eventDate || todayIso()} className={selectClassName} value={form.backupDate} onChange={(e) => update("backupDate", e.target.value)} />
               </Field>
             </div>
 

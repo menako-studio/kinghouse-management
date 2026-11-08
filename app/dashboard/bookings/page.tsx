@@ -24,6 +24,7 @@ import { formatCurrency } from "@/lib/utils"
 import { useNotifications } from "@/components/dashboard/notification-context"
 import { BookingsGanttChart } from "@/components/dashboard/bookings-gantt-chart"
 import { Select } from "@/components/ui/select"
+import { DatePicker } from "@/components/ui/date-picker"
 
 // Generates a short, human-readable reservation id for manually added bookings.
 // Kept at module scope so the random call is not treated as impure render logic.
@@ -669,8 +670,7 @@ export default function DashboardBookingsPage() {
                     <label className="block font-semibold text-[#555] uppercase tracking-wider mb-1">
                       Tanggal Check-In
                     </label>
-                    <input
-                      type="date"
+                    <DatePicker
                       required
                       value={formCheckIn}
                       onChange={(e) => setFormCheckIn(e.target.value)}
@@ -682,8 +682,7 @@ export default function DashboardBookingsPage() {
                     <label className="block font-semibold text-[#555] uppercase tracking-wider mb-1">
                       Tanggal Check-Out
                     </label>
-                    <input
-                      type="date"
+                    <DatePicker
                       required
                       value={formCheckOut}
                       onChange={(e) => setFormCheckOut(e.target.value)}

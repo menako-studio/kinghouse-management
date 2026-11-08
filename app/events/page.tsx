@@ -32,6 +32,7 @@ import { EventLeadForm } from "@/components/events/event-lead-form"
 import { whatsappBase } from "@/lib/funnel/whatsapp"
 import type { EventTypeId } from "@/lib/funnel/config"
 import { Select } from "@/components/ui/select"
+import { DatePicker, todayIso } from "@/components/ui/date-picker"
 
 type SortOption = "recommended" | "price-asc" | "price-desc" | "capacity"
 
@@ -490,9 +491,9 @@ export default function EventsPage() {
                 {tc("AVAILABILITY")}
               </span>
               <div className="relative">
-                <input
-                  type="date"
+                <DatePicker
                   value={availabilityDate}
+                  min={todayIso()}
                   onChange={(e) => setAvailabilityDate(e.target.value)}
                   className="w-full px-3 py-2 text-xs border border-[#E8E4DC] rounded-md bg-[#FAF8F5] text-[#222225] focus:outline-none focus:border-[#8C7F5F]"
                 />

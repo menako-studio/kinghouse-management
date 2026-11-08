@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { Search, MapPin, Calendar, Users } from "lucide-react"
 import { useLocalization } from "@/lib/context/localization-context"
 import { Select } from "@/components/ui/select"
+import { DatePicker, todayIso } from "@/components/ui/date-picker"
 
 export function SearchFilterBar() {
   const router = useRouter()
@@ -66,19 +67,26 @@ export function SearchFilterBar() {
               {t("datesLabel")}
             </span>
             <div className="flex items-center space-x-2 text-xs sm:text-sm text-[#717171]">
-              <input
-                type="date"
+              <DatePicker
+                hideIcon
                 value={checkIn}
-                onChange={(e) => setCheckIn(e.target.value)}
-                className="bg-transparent text-xs text-[#717171] focus:outline-none focus:text-[#222222] cursor-pointer"
+                min={todayIso()}
+                placeholder="Check-in"
+                onChange={(e) => {
+                  setCheckIn(e.target.value)
+                  if (checkOut && e.target.value >= checkOut) setCheckOut("")
+                }}
+                className="bg-transparent text-sm text-[#222222]"
                 aria-label={tc("Check-in Date")}
               />
               <span className="text-[#A69C8E]">&rarr;</span>
-              <input
-                type="date"
+              <DatePicker
+                hideIcon
                 value={checkOut}
+                min={checkIn || todayIso()}
+                placeholder="Check-out"
                 onChange={(e) => setCheckOut(e.target.value)}
-                className="bg-transparent text-xs text-[#717171] focus:outline-none focus:text-[#222222] cursor-pointer"
+                className="bg-transparent text-sm text-[#222222]"
                 aria-label={tc("Check-out Date")}
               />
             </div>
