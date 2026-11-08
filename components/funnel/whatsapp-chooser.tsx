@@ -45,7 +45,7 @@ export function useWhatsAppChooser(): ChooserContextValue {
  * `data-wa-direct` and skip the modal.
  */
 export function WhatsAppChooserProvider({ children }: { children: React.ReactNode }) {
-  const { t, tc, language } = useLocalization()
+  const { t, language } = useLocalization()
   const [request, setRequest] = useState<OpenOptions | null>(null)
 
   const open = useCallback((options: OpenOptions) => {
@@ -127,16 +127,16 @@ export function WhatsAppChooserProvider({ children }: { children: React.ReactNod
           funnel: "stay" as const,
           target: "STAY" as const,
           icon: CalendarHeart,
-          title: tc("I'm a Guest"),
-          text: tc("Book a villa, venue or event."),
+          title: t("waGuestTitle"),
+          text: t("waGuestText"),
           message: request.suggested === "stay" && request.message ? request.message : t("f.wa.general"),
         },
         {
           funnel: "owner" as const,
           target: "OWNER" as const,
           icon: Building2,
-          title: tc("I'm a Property Owner"),
-          text: tc("Housekeeping, co-hosting or full management."),
+          title: t("waOwnerTitle"),
+          text: t("waOwnerText"),
           message:
             request.suggested === "owner" && request.message
               ? request.message
@@ -169,7 +169,7 @@ export function WhatsAppChooserProvider({ children }: { children: React.ReactNod
                 type="button"
                 onClick={close}
                 className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full text-[#CBBEA0] transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DFC58E]"
-                aria-label={tc("Close")}
+                aria-label={t("close")}
               >
                 <X className="h-5 w-5" />
               </button>
@@ -177,10 +177,10 @@ export function WhatsAppChooserProvider({ children }: { children: React.ReactNod
                 <MessageCircle className="h-6 w-6 text-[#25D366]" />
               </span>
               <h2 id="wa-chooser-title" className="mt-4 font-serif text-[2rem] leading-tight text-[#FAF7F1]">
-                {tc("Chat on WhatsApp")}
+                {t("waChooserTitle")}
               </h2>
               <p id="wa-chooser-desc" className="mt-1.5 text-base text-[#CBBEA0]">
-                {tc("Who are you chatting as?")}
+                {t("waChooserAsk")}
               </p>
             </div>
 
@@ -213,7 +213,7 @@ export function WhatsAppChooserProvider({ children }: { children: React.ReactNod
                         <span className="text-lg font-semibold leading-snug text-[#231F1A]">{choice.title}</span>
                         {isSuggested && (
                           <span className="rounded-full bg-[#EFE2CE] px-2.5 py-0.5 text-xs font-semibold text-[#6B4B2A]">
-                            {tc("Suggested")}
+                            {t("waSuggested")}
                           </span>
                         )}
                       </span>
@@ -225,7 +225,7 @@ export function WhatsAppChooserProvider({ children }: { children: React.ReactNod
               })}
               <p className="flex items-center justify-center gap-2 pt-2 text-sm text-[#5C5347]">
                 <span className="h-2 w-2 rounded-full bg-[#25D366]" aria-hidden="true" />
-                {tc("Usually replies within 15 minutes")}
+                {t("waReplies")}
               </p>
             </div>
           </div>

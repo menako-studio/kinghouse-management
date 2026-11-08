@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
 import { MessageCircle, X } from "lucide-react"
 import { useLocalization } from "@/lib/context/localization-context"
@@ -11,6 +11,13 @@ export function FloatingWhatsApp() {
   const pathname = usePathname()
   const [isTooltipDismissed, setIsTooltipDismissed] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
+
+  // The "online" hint is an intro, not a fixture: hide it after a few seconds so
+  // it never sits on top of page content or the footer.
+  useEffect(() => {
+    const timer = window.setTimeout(() => setIsTooltipDismissed(true), 8000)
+    return () => window.clearTimeout(timer)
+  }, [])
 
   const { target, message } = resolvePageWhatsApp(pathname || "/", { t, language })
   const whatsappUrl = buildWhatsAppUrl(target, message)
@@ -26,7 +33,7 @@ export function FloatingWhatsApp() {
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Direct WhatsApp Concierge"
+        aria-label={t("waChooserTitle")}
         className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_8px_30px_rgba(37,211,102,0.35)] transition-all duration-300 hover:scale-108 hover:shadow-[0_12px_36px_rgba(37,211,102,0.5)] focus:outline-none focus:ring-4 focus:ring-[#25D366]/30 active:scale-95"
       >
         {/* Subtle Ambient Pulse Ring */}
@@ -68,7 +75,7 @@ export function FloatingWhatsApp() {
               setIsTooltipDismissed(true)
             }}
             className="text-[#999999] hover:text-[#333333] transition-colors p-0.5 rounded-full hover:bg-black/5"
-            aria-label="Dismiss tooltip"
+            aria-label={t("close")}
           >
             <X className="h-3.5 w-3.5" />
           </button>

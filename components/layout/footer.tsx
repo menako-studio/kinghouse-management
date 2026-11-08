@@ -2,357 +2,209 @@
 
 import Link from "next/link"
 import Image from "next/image"
+import { ArrowRight, ArrowUpRight, Clock, Mail, MapPin, MessageCircle } from "lucide-react"
 import { useWhatsAppChooser } from "@/components/funnel/whatsapp-chooser"
-import {
-  Mail,
-  Phone,
-  ArrowRight,
-  MapPin,
-  Briefcase,
-} from "lucide-react"
 import { useLocalization } from "@/lib/context/localization-context"
 import { MANAGED_AREAS } from "@/lib/constants"
-import {
-  trackWhatsAppClick,
-  trackEmailClick,
-} from "@/lib/analytics"
+import { trackEmailClick } from "@/lib/analytics"
 
+const EMAIL = "info@kinghousemanagement.com"
+const MAPS_URL =
+  "https://maps.google.com/?q=18+Office+Park+Building+Jl.+TB+Simatupang+Kav.+18+Jakarta+Selatan+12520"
+
+const EXTERNAL = {
+  airbnb: "https://www.airbnb.com/users/profile/1470743715397835749",
+  tiktok: "https://www.tiktok.com/@kinghousemanagement",
+  google: "https://share.google/WHLcKlmJf8zZo27gO",
+  careers: "https://glints.com/id/en/companies/pt-kreasi-usman-gosse/351bd7d6-fff5-4a77-a91b-f69918d3b2fe",
+  cleaning: "https://www.kinghousecleaning.id/",
+}
+
+// Global h1/h2 rules set the serif face; column labels use the interface face.
+const SANS_HEADING = { fontFamily: "var(--font-sans-family)", fontWeight: 600, letterSpacing: "0.14em" }
+
+interface FooterLink {
+  href: string
+  label: string
+  external?: boolean
+}
+
+/**
+ * Every destination appears once: services, areas and company pages in three
+ * link columns, all contact routes in one column, legal links in the bottom bar.
+ */
 export function Footer() {
   const currentYear = new Date().getFullYear()
   const { t, localizeHref } = useLocalization()
   const { open: openChooser } = useWhatsAppChooser()
 
+  const columns: { title: string; links: FooterLink[] }[] = [
+    {
+      title: t("ftServices"),
+      links: [
+        { href: "/villas", label: t("f.footer.villas") },
+        { href: "/events", label: t("f.footer.events") },
+        { href: "/owner-services", label: t("navOwnerServices") },
+        { href: "/airbnb-cleaning-jakarta", label: t("f.footer.cleaning") },
+        { href: "/stay", label: t("ftGuestGuide") },
+      ],
+    },
+    {
+      title: t("ftAreas"),
+      links: MANAGED_AREAS.map((a) => ({ href: `/locations/${a.slug}`, label: a.name })),
+    },
+    {
+      title: t("ftCompany"),
+      links: [
+        { href: "/about", label: t("ftAbout") },
+        { href: "/blog", label: "Blog" },
+        { href: "/press", label: t("ftPress") },
+        { href: "/faq", label: "FAQ" },
+        { href: "/contact", label: t("ftContact") },
+        { href: EXTERNAL.careers, label: t("ftCareers"), external: true },
+        { href: EXTERNAL.cleaning, label: "Kinghouse Cleaning", external: true },
+      ],
+    },
+  ]
+
+  const linkClass =
+    "inline-block py-1 text-white/90 underline-offset-4 transition-colors hover:text-white hover:underline"
+  const headingClass = "text-sm font-semibold uppercase tracking-[0.14em] text-[#EFE2CE]"
 
   return (
-    <footer className="w-full">
-      {/* Newsletter Section: Hidden until an email service provider (Resend/Brevo/Mailchimp) is configured */}
-      {/* 2. Main Footer Body (Exact Nakula Olive/Khaki Palette #8C7F5F) */}
-      <div className="bg-[#8C7F5F] text-[#F5F2EB] pt-16 pb-12">
-        <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
-            
-            {/* Column 1: Monogram & ABOUT US */}
-            <div className="lg:col-span-3 space-y-6">
-              {/* Stylized Official Brand Logo */}
-              <Link href={localizeHref("/")} className="inline-flex items-center group py-1">
-                <Image
-                  src="/brand/logo-secondary-bone.svg"
-                  alt="Kinghouse Management"
-                  width={180}
-                  height={52}
-                  quality={100}
-                  className="h-10 w-auto object-contain transition-opacity group-hover:opacity-85"
-                />
-              </Link>
-
-              {/* ABOUT US Links */}
-              <div className="space-y-3 pt-2">
-                <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-white">
-                  {t("aboutUs")}
-                </h4>
-                <ul className="space-y-2 text-xs font-light text-[#F0EBE0]">
-                  <li>
-                    <Link href={localizeHref("/about")} className="hover:text-white transition-colors">
-                      About Us
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href={localizeHref("/blog")} className="hover:text-white transition-colors">
-                      Blog
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href={localizeHref("/press")} className="hover:text-white transition-colors">
-                      Press
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href={localizeHref("/contact")} className="hover:text-white transition-colors">
-                      Contact Us
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href={localizeHref("/faq")} className="hover:text-white transition-colors">
-                      FAQ
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href={localizeHref("/terms")} className="hover:text-white transition-colors">
-                      T&C
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href={localizeHref("/privacy")} className="hover:text-white transition-colors">
-                      Privacy Policy
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href={localizeHref("/management-inquiry")} className="hover:text-white font-medium text-white transition-colors">
-                      Management Enquiry
-                    </Link>
-                  </li>
-                  <li>
-                    <a
-                      href="https://glints.com/id/en/companies/pt-kreasi-usman-gosse/351bd7d6-fff5-4a77-a91b-f69918d3b2fe"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:text-white font-medium text-[#DFC58E] transition-colors inline-flex items-center space-x-1"
-                    >
-                      <Briefcase className="h-3 w-3" />
-                      <span>Careers (Glints)</span>
-                      <span className="text-xs">↗</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://www.kinghousecleaning.id/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:text-white font-medium text-[#DFC58E] transition-colors inline-flex items-center space-x-1"
-                    >
-                      <span>Kinghouse Cleaning</span>
-                      <span className="text-xs">↗</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
+    <footer className="w-full bg-[#776B4E] text-white print:hidden">
+      <div className="mx-auto max-w-7xl px-6 pb-10 pt-14 lg:px-12 lg:pt-16">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 lg:grid-cols-12 lg:gap-8">
+          {/* Brand */}
+          <div className="col-span-2 space-y-5 md:col-span-3 lg:col-span-3">
+            <Link href={localizeHref("/")} className="inline-flex py-1" aria-label="Kinghouse Management">
+              <Image
+                src="/brand/logo-secondary-bone.svg"
+                alt="Kinghouse Management"
+                width={180}
+                height={52}
+                className="h-11 w-auto"
+                style={{ width: "auto" }}
+              />
+            </Link>
+            <p className="max-w-xs text-base leading-relaxed text-white/90">
+              {t("ftTagline")}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {[
+                { href: EXTERNAL.airbnb, label: "★ Airbnb Superhost" },
+                { href: EXTERNAL.google, label: "Google" },
+                { href: EXTERNAL.tiktok, label: "TikTok" },
+              ].map((s) => (
+                <a
+                  key={s.href}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-10 items-center gap-1 rounded-full border border-white/30 px-4 text-sm font-medium text-white transition-colors hover:bg-white hover:text-[#231F1A]"
+                >
+                  {s.label}
+                  <ArrowUpRight className="h-3.5 w-3.5 opacity-70" aria-hidden="true" />
+                </a>
+              ))}
             </div>
+          </div>
 
-            {/* Column 2: EXPLORE — crawlable links to every key landing page */}
-            <nav aria-label={t("f.footer.explore")} className="lg:col-span-2 space-y-3 pt-2">
-              <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-white">
-                {t("f.footer.explore")}
-              </h4>
-              <ul className="space-y-2 text-xs font-light text-[#F0EBE0]">
-                {[
-                  { href: "/villas", label: t("f.footer.villas") },
-                  { href: "/events", label: t("f.footer.events") },
-                  { href: "/owner-services", label: t("navOwnerServices") },
-                  { href: "/airbnb-cleaning-jakarta", label: t("f.footer.cleaning") },
-                  ...MANAGED_AREAS.map((a) => ({ href: `/locations/${a.slug}`, label: a.name })),
-                ].map((l) => (
+          {/* Link columns */}
+          {columns.map((col) => (
+            <nav key={col.title} aria-label={col.title} className="space-y-3 lg:col-span-2">
+              <h2 className={headingClass} style={SANS_HEADING}>{col.title}</h2>
+              <ul className="space-y-1 text-base">
+                {col.links.map((l) => (
                   <li key={l.href}>
-                    <Link href={localizeHref(l.href)} className="hover:text-white transition-colors">
-                      {l.label}
-                    </Link>
+                    {l.external ? (
+                      <a href={l.href} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                        {l.label.split(" ").slice(0, -1).join(" ")}{" "}
+                        <span className="whitespace-nowrap">
+                          {l.label.split(" ").at(-1)}
+                          <ArrowUpRight className="ml-1 inline h-3.5 w-3.5 align-[-0.1em] opacity-70" aria-hidden="true" />
+                        </span>
+                      </a>
+                    ) : (
+                      <Link href={localizeHref(l.href)} className={linkClass}>
+                        {l.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
             </nav>
+          ))}
 
-            {/* Column 3: DIRECT CONCIERGE & INQUIRIES (Streamlined & Non-Redundant) */}
-            <div className="lg:col-span-4 space-y-5">
-              <div>
-                <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-white mb-2">
-                  Direct Concierge & Reservations
-                </h4>
-                <p className="text-xs text-[#F0EBE0] font-light leading-relaxed">
-                  Connect with our dedicated hospitality desk for guest bookings, custom event stays, or villa asset management partnerships across Jabodetabek.
-                </p>
-              </div>
-
-              <div className="space-y-2.5 text-xs font-light text-[#F0EBE0] bg-black/10 rounded-lg p-4 border border-white/10">
-                <div className="flex items-start space-x-2.5">
-                  <Phone className="h-3.5 w-3.5 text-[#DFC58E] shrink-0 mt-0.5" />
-                  <div>
-                    <span className="text-xs uppercase tracking-wider text-[#DFC58E] font-semibold block">
-                      Hotline & WhatsApp Desk
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => openChooser({ source: "footer", context: "hotline" })}
-                      className="font-medium text-white hover:underline transition-colors text-sm text-left"
-                    >
-                      Chat on WhatsApp →
-                    </button>
-                    <span className="block text-xs font-light text-[#F0EBE0] mt-0.5">Stay, Venue &amp; Events · Property Owners</span>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-2.5 pt-2 border-t border-white/10">
-                  <Mail className="h-3.5 w-3.5 text-[#DFC58E] shrink-0 mt-0.5" />
-                  <div>
-                    <span className="text-xs uppercase tracking-wider text-[#DFC58E] font-semibold block">
-                      Direct Email Inquiries
-                    </span>
-                    <a
-                      href="mailto:info@kinghousemanagement.com"
-                      onClick={() => trackEmailClick({ source: "footer", email: "info@kinghousemanagement.com" })}
-                      className="font-medium text-white hover:underline transition-colors"
-                    >
-                      info@kinghousemanagement.com
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-2.5 pt-1">
-                <Link
-                  href={localizeHref("/contact")}
-                  className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-medium text-white transition-colors"
-                >
-                  <span>Guest Assistance</span>
-                  <ArrowRight className="h-3 w-3 opacity-70" />
-                </Link>
-                <Link
-                  href={localizeHref("/management-inquiry")}
-                  className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-white text-[#8C7F5F] hover:bg-[#FAF8F5] text-xs font-semibold transition-colors"
-                >
-                  <span>Property Owner Inquiry</span>
-                  <ArrowRight className="h-3 w-3" />
-                </Link>
-              </div>
-            </div>
-
-            {/* Column 3: OFFICE, HOURS, CONNECT WITH US & ECOSYSTEM */}
-            <div className="lg:col-span-3 space-y-6">
-              {/* OFFICE / CORPORATE HEADQUARTERS */}
-              <div className="space-y-2">
-                <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-white">
-                  Corporate Headquarters
-                </h4>
-                <div className="text-xs font-light text-[#F0EBE0] leading-relaxed">
-                  <p className="font-semibold text-white">PT Kreasi Usman Gosse</p>
-                  <p className="mt-0.5">
-                    18 Office Park Building 21th Floor Unit C. Jl. TB Simatupang Kav. 18, Jakarta Selatan, 12520
-                  </p>
-                </div>
-
-                {/* Google Maps Link */}
-                <div className="pt-1">
-                  <a
-                    href="https://maps.google.com/?q=18+Office+Park+Building+Jl.+TB+Simatupang+Kav.+18+Jakarta+Selatan+12520"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-md bg-black/20 hover:bg-black/35 border border-white/15 text-xs text-white transition-all group"
-                  >
-                    <MapPin className="h-3.5 w-3.5 text-[#DFC58E]" />
-                    <span className="font-medium group-hover:text-[#DFC58E] transition-colors">Google Maps &amp; Direction</span>
-                    <span className="text-xs opacity-70">↗</span>
-                  </a>
-                </div>
-              </div>
-
-              {/* HOURS */}
-              <div className="space-y-1.5 pt-2">
-                <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-white">
-                  {t("hours")}
-                </h4>
-                <p className="text-xs font-light text-[#F0EBE0]">
-                  08:00 - 18:00 (GMT+7)<br />
-                  Monday - Friday (Concierge 24/7 on WhatsApp)
-                </p>
-              </div>
-
-              {/* CONNECT WITH US */}
-              <div className="space-y-3 pt-2">
-                <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-white">
-                  {t("connectWithUs")}
-                </h4>
-                <div className="flex flex-wrap items-center gap-2.5">
-                  <a
-                    href="https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Airbnb Superhost Profile"
-                    className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-[#DFC58E] text-[#1E1C1A] hover:bg-[#F3DCB0] hover:scale-105 transition-all text-xs font-bold shadow-xs cursor-pointer"
-                  >
-                    <span>★ Airbnb Superhost</span>
-                    <span className="text-xs font-normal opacity-75">↗</span>
-                  </a>
-
-                  <a
-                    href="https://www.tiktok.com/@kinghousemanagement"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="TikTok @kinghousemanagement"
-                    className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white text-[#8C7F5F] hover:bg-[#FAF8F3] hover:scale-105 transition-all text-xs font-semibold shadow-xs"
-                  >
-                    <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24">
-                      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.77 1.52V6.76c-.99-.02-1.95-.07-1.8-.07z" />
-                    </svg>
-                    <span>TikTok @kinghousemanagement</span>
-                  </a>
-                </div>
-              </div>
-
-              {/* AFFILIATE BUSINESS LINE: KINGHOUSE CLEANING */}
-              <div className="space-y-2 pt-2 border-t border-white/10">
-                <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-white">
-                  Our Business Lines
-                </h4>
+          {/* Contact */}
+          <div className="col-span-2 space-y-4 md:col-span-3 lg:col-span-3">
+            <h2 className={headingClass} style={SANS_HEADING}>{t("ftContact")}</h2>
+            <button
+              type="button"
+              onClick={() => openChooser({ source: "footer", context: "footer" })}
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-white px-6 text-base font-semibold text-[#231F1A] transition-colors hover:bg-[#FAF7F1] sm:w-auto"
+            >
+              <MessageCircle className="h-5 w-5 text-[#25D366]" aria-hidden="true" />
+              {t("waChooserTitle")}
+            </button>
+            <ul className="space-y-3 text-base text-white/90">
+              <li className="flex gap-3">
+                <Mail className="mt-1 h-4 w-4 shrink-0 text-[#EFE2CE]" aria-hidden="true" />
                 <a
-                  href="https://www.kinghousecleaning.id/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center justify-between p-3 rounded-lg bg-black/15 border border-white/10 hover:border-[#DFC58E]/50 hover:bg-black/25 transition-all text-xs"
+                  href={`mailto:${EMAIL}`}
+                  onClick={() => trackEmailClick({ source: "footer", email: EMAIL })}
+                  className="break-words text-[0.9375rem] hover:text-white hover:underline [overflow-wrap:anywhere]"
                 >
-                  <div>
-                    <span className="font-medium text-white block group-hover:text-[#DFC58E] transition-colors">
-                      Kinghouse Cleaning
-                    </span>
-                    <span className="text-xs text-[#F0EBE0]/80 font-light block">
-                      Housekeeping, Villa Turnover & Deep Cleaning
-                    </span>
-                  </div>
-                  <ArrowRight className="h-3.5 w-3.5 text-[#DFC58E] opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all shrink-0 ml-2" />
+                  {EMAIL}
                 </a>
-              </div>
-            </div>
-
+              </li>
+              <li className="flex gap-3">
+                <MapPin className="mt-1 h-4 w-4 shrink-0 text-[#EFE2CE]" aria-hidden="true" />
+                <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white hover:underline">
+                  18 Office Park, Lt. 21 Unit C, Jl. TB Simatupang Kav. 18, Jakarta Selatan 12520
+                </a>
+              </li>
+              <li className="flex gap-3">
+                <Clock className="mt-1 h-4 w-4 shrink-0 text-[#EFE2CE]" aria-hidden="true" />
+                <span>
+                  {t("ftOffice")}
+                  <br />
+                  {t("ftConcierge")}
+                </span>
+              </li>
+            </ul>
+            <Link
+              href={localizeHref("/management-inquiry")}
+              className="inline-flex items-center gap-1.5 text-base font-semibold text-[#EFE2CE] hover:text-white hover:underline"
+            >
+              {t("ftOwnerCta")}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
           </div>
+        </div>
 
-          {/* 3. Bottom Bar (Clean Editorial Legal Footer) */}
-          <div className="mt-14 pt-8 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#E0DACB]">
-            <div>
-              <p>&copy; {currentYear} Kinghouse Management &bull; PT Kreasi Usman Gosse. All rights reserved.</p>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-              <Link href={localizeHref("/stay")} className="hover:text-white transition-colors">
-                Guest Guide
+        {/* Bottom bar: legal only */}
+        <div className="mt-12 flex flex-col gap-3 border-t border-white/20 pt-6 text-sm text-white/80 md:flex-row md:items-center md:justify-between">
+          <p>
+            &copy; {currentYear} Kinghouse Management · PT Kreasi Usman Gosse
+          </p>
+          <ul className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <li>
+              <Link href={localizeHref("/terms")} className="hover:text-white hover:underline">
+                {t("ftTerms")}
               </Link>
-              <span>&bull;</span>
-              <a
-                href="https://www.kinghousecleaning.id/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white text-[#DFC58E] font-medium transition-colors"
-              >
-                Kinghouse Cleaning
-              </a>
-              <span>&bull;</span>
-              <a
-                href="https://glints.com/id/en/companies/pt-kreasi-usman-gosse/351bd7d6-fff5-4a77-a91b-f69918d3b2fe"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white text-[#DFC58E] font-medium transition-colors"
-              >
-                Careers
-              </a>
-              <span>&bull;</span>
-              <a
-                href="https://share.google/WHLcKlmJf8zZo27gO"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white text-[#DFC58E] font-medium transition-colors"
-              >
-                Google Business
-              </a>
-              <span>&bull;</span>
-              <Link href={localizeHref("/terms")} className="hover:text-white transition-colors">
-                Terms & Conditions
+            </li>
+            <li>
+              <Link href={localizeHref("/privacy")} className="hover:text-white hover:underline">
+                {t("ftPrivacy")}
               </Link>
-              <span>&bull;</span>
-              <Link href={localizeHref("/privacy")} className="hover:text-white transition-colors">
-                Privacy Policy
+            </li>
+            <li>
+              <Link href="/login" rel="nofollow" className="text-white/60 hover:text-white hover:underline">
+                Admin
               </Link>
-              <span>&bull;</span>
-              <Link href={localizeHref("/login")} className="hover:text-white transition-colors opacity-70 hover:opacity-100">
-                Admin Portal
-              </Link>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
       </div>
     </footer>

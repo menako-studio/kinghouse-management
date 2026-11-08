@@ -121,6 +121,7 @@ export function Header() {
             height={64}
             quality={100}
             loading="eager"
+            style={{ width: "auto" }}
             className="h-14 xl:h-16 2xl:h-[72px] w-auto object-contain transition-opacity duration-200 group-hover:opacity-85"
           />
         </Link>
