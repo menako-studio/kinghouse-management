@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const post = await getBlogPostBySlug(slug)
 
   if (!post) {
-    return { title: "Article Not Found | Kinghouse" }
+    return { title: "Article Not Found", robots: { index: false, follow: true } }
   }
 
   const pageTitle = post.seoTitle || (post.title.length > 48 ? `${post.title.slice(0, 48).trim()}... | Kinghouse` : `${post.title} | Kinghouse`)

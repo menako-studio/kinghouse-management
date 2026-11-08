@@ -87,9 +87,8 @@ export const metadata: Metadata = {
     ],
     apple: "/brand/icon-favicon-simplified.png",
   },
-  alternates: {
-    canonical: SITE_CONFIG.baseUrl,
-  },
+  // No site-wide canonical: every indexable page declares its own (localeAlternates),
+  // so 404 / thank-you pages never claim to be the homepage.
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
   },
