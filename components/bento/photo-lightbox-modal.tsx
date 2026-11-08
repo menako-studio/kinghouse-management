@@ -58,7 +58,7 @@ export function PhotoLightboxModal({
   const current = images[currentIndex]
 
   return (
-    <div className="fixed inset-0 z-[100] flex flex-col bg-white text-[#222222] animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-[100] flex flex-col bg-white text-[#222222] animate-kh-fade">
       {/* Top Bar */}
       <div className="flex h-16 items-center justify-between border-b border-[#EBEBEB] px-6 lg:px-12 bg-white">
         <button

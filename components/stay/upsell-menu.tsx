@@ -212,7 +212,7 @@ export function UpsellMenu({
 
       {/* Checkout Drawer / Order Box */}
       {orderSummary.items.length > 0 ? (
-        <div className="rounded-2xl border border-amber-500/30 bg-gradient-to-b from-stone-900/90 to-amber-950/20 p-5 shadow-xl animate-in fade-in slide-in-from-bottom-2 duration-300">
+        <div className="rounded-2xl border border-amber-500/30 bg-gradient-to-b from-stone-900/90 to-amber-950/20 p-5 shadow-xl animate-kh-fade">
           <div className="flex items-center justify-between mb-4 pb-3 border-b border-stone-800">
             <div className="flex items-center gap-2 text-stone-200 font-semibold text-sm">
               <ShoppingBag className="h-4 w-4 text-amber-400" />

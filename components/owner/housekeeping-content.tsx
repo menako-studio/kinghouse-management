@@ -49,6 +49,7 @@ export function HousekeepingContent() {
               </a>
               <a
                 href={whatsappUrl}
+                data-wa-direct
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick({ source: "owner_page", funnel: "owner", context: "hk_landing" })}

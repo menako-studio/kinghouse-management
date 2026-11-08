@@ -246,7 +246,7 @@ function ToastContainer({
         return (
           <div
             key={toast.id}
-            className={`pointer-events-auto p-4 rounded-2xl ${bgColor} border ${borderColor} shadow-[0_12px_30px_rgba(0,0,0,0.12)] flex items-start space-x-3 animate-in slide-in-from-bottom-5 fade-in duration-300`}
+            className={`pointer-events-auto p-4 rounded-2xl ${bgColor} border ${borderColor} shadow-[0_12px_30px_rgba(0,0,0,0.12)] flex items-start space-x-3 animate-kh-sheet`}
           >
             {icon}
             <div className="flex-1 min-w-0 pr-2">

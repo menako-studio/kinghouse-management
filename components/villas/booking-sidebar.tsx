@@ -363,6 +363,7 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
             ) : (
               <a
                 href={whatsappUrl}
+                data-wa-direct
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => {
@@ -390,6 +391,7 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
         {/* Help channel — WhatsApp is a fallback, not the booking path */}
         <a
           href={whatsappUrl}
+          data-wa-direct
           target="_blank"
           rel="noopener noreferrer"
           onClick={() =>

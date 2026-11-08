@@ -278,7 +278,7 @@ export function BookingsGanttChart({ reservations }: BookingsGanttChartProps) {
 
       {/* Selected Reservation Detail Modal (via Portal) */}
       {mounted && selectedRes && createPortal(
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-md animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-md animate-kh-fade">
           <div className="relative w-full max-w-md rounded-3xl border border-[#E8E4DC] bg-white p-6 sm:p-7 shadow-2xl text-[#222225]">
             <button
               type="button"

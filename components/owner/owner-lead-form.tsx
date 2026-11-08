@@ -228,6 +228,7 @@ export function OwnerLeadForm({ source = "owner_page" }: { source?: "owner_page"
             </div>
             <a
               href={whatsappUrl}
+              data-wa-direct
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackWhatsAppClick({ source, funnel: "owner", context: service })}

@@ -91,6 +91,7 @@ export default function ManagementInquiryPage() {
                 {tc("Send property photos and location to our WhatsApp for a 24-hour yield estimate.")}
               </p>
               <a
+                data-wa-direct
                 href={buildWhatsAppUrl("OWNER", ownerWhatsAppMessage({ service: "undecided" }, { t, language }))}
                 target="_blank"
                 rel="noopener noreferrer"

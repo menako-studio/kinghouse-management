@@ -214,7 +214,7 @@ export default function ContactPage() {
             <div className="lg:col-span-7">
               <div className="rounded-3xl border border-[#EBEBEB] bg-[#FAFAFA] p-8 sm:p-12 shadow-xs">
                 {submitted ? (
-                  <div className="text-center py-12 space-y-4 animate-in fade-in duration-300">
+                  <div className="text-center py-12 space-y-4 animate-kh-fade">
                     <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#222222] text-white">
                       <CheckCircle2 className="h-7 w-7 text-[#A69C8E]" />
                     </div>

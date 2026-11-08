@@ -359,8 +359,8 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
 
       {/* Account Profile & Security Modal */}
       {isProfileModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="bg-white rounded-3xl border border-[#E8E4DC] shadow-2xl max-w-lg w-full overflow-hidden animate-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-kh-fade">
+          <div className="bg-white rounded-3xl border border-[#E8E4DC] shadow-2xl max-w-lg w-full overflow-hidden animate-kh-fade">
             {/* Modal Header */}
             <div className="p-6 bg-[#19191B] text-white flex items-center justify-between relative overflow-hidden">
               <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#B8934C]/15 rounded-full blur-2xl pointer-events-none" />

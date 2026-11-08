@@ -333,6 +333,7 @@ export function EventLeadForm({ eventType, onEventTypeChange }: EventLeadFormPro
             </p>
             <a
               href={whatsappUrl}
+              data-wa-direct
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackWhatsAppClick({ source: "event_page", funnel: "event", context: eventType })}

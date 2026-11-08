@@ -97,7 +97,7 @@ export function GuideSection({
 
       {/* Tab 1: Access & Arrival */}
       {activeTab === "access" && (
-        <div className="space-y-4 animate-in fade-in duration-200">
+        <div className="space-y-4 animate-kh-fade">
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-2xl border border-stone-800 bg-stone-900/60 p-4">
               <div className="text-xs text-stone-400">Waktu Check-In</div>
@@ -141,7 +141,7 @@ export function GuideSection({
 
       {/* Tab 2: Appliances */}
       {activeTab === "appliances" && (
-        <div className="space-y-3 animate-in fade-in duration-200">
+        <div className="space-y-3 animate-kh-fade">
           {appliances.map((app, index) => {
             const IconComp = APPLIANCE_ICONS[app.icon] || Tv
             const isOpen = openAppliance === index
@@ -190,7 +190,7 @@ export function GuideSection({
 
       {/* Tab 3: House Rules */}
       {activeTab === "rules" && (
-        <div className="rounded-2xl border border-stone-800 bg-stone-900/40 p-5 sm:p-6 animate-in fade-in duration-200 space-y-4">
+        <div className="rounded-2xl border border-stone-800 bg-stone-900/40 p-5 sm:p-6 animate-kh-fade space-y-4">
           <div className="flex items-center justify-between border-b border-stone-800 pb-3">
             <h4 className="text-sm font-bold text-stone-100 flex items-center gap-2 font-serif">
               <ShieldAlert className="h-4 w-4 text-amber-400" />
@@ -249,7 +249,7 @@ export function GuideSection({
 
       {/* Tab 4: Neighborhood Recommendations */}
       {activeTab === "local" && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 animate-in fade-in duration-200">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 animate-kh-fade">
           {localGuide.map((place, i) => (
             <div
               key={i}

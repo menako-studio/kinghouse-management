@@ -100,11 +100,11 @@ export function BookingChannelModal({ villa, isOpen, onClose }: BookingChannelMo
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/60 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/60 backdrop-blur-sm animate-kh-fade"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-2xl border border-[#E8E2D6] animate-in zoom-in-95 duration-200"
+        className="relative w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-2xl border border-[#E8E2D6] animate-kh-fade"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header Banner — Nakula Style Dark Bronze */}

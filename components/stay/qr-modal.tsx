@@ -41,7 +41,7 @@ export function QrModal({ propertySlug, propertyName }: QrModalProps) {
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-md animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-md animate-kh-fade">
           <div className="relative w-full max-w-sm rounded-3xl border border-stone-800 bg-stone-950 p-6 shadow-2xl">
             <button
               onClick={() => setIsOpen(false)}

@@ -328,7 +328,7 @@ export function Header() {
       {/* Mega Menu Dropdown for "OUR PROPERTIES" (Exact Nakula Khaki Theme) */}
       {propertiesMenuOpen && (
         <div
-          className="w-full bg-[#8C7F5F] text-white shadow-2xl border-t border-[#7A6E50] animate-in fade-in slide-in-from-top-2 duration-200"
+          className="w-full bg-[#8C7F5F] text-white shadow-2xl border-t border-[#7A6E50] animate-kh-fade"
           onMouseLeave={() => setPropertiesMenuOpen(false)}
         >
           <div className="mx-auto max-w-7xl px-6 py-10 lg:px-12">
