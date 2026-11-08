@@ -29,10 +29,10 @@ export function SearchFilterBar() {
     <div className="relative mt-4 sm:-mt-10 lg:-mt-12 z-40 mx-auto max-w-5xl px-4 sm:px-6">
       <form
         onSubmit={handleSearch}
-        className="flex flex-col md:flex-row items-stretch md:items-center divide-y md:divide-y-0 md:divide-x divide-[#EBEBEB] rounded-2xl md:rounded-full bg-white p-2.5 shadow-[0_12px_45px_rgba(0,0,0,0.08)] border border-[#EBEBEB]"
+        className="flex flex-col lg:flex-row items-stretch lg:items-center divide-y lg:divide-y-0 lg:divide-x divide-[#EBEBEB] rounded-2xl lg:rounded-full bg-white p-2.5 shadow-[0_12px_45px_rgba(0,0,0,0.08)] border border-[#EBEBEB]"
       >
         {/* Destination Input */}
-        <div className="flex flex-1 items-center px-4 py-2 hover:bg-[#FAFAFA] rounded-xl md:rounded-l-full transition-colors cursor-pointer group">
+        <div className="flex flex-1 items-center px-4 py-2 hover:bg-[#FAFAFA] rounded-xl lg:rounded-l-full transition-colors cursor-pointer group">
           <div className="mr-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FAFAFA] text-[#222222] group-hover:bg-white border border-[#EBEBEB]">
             <MapPin className="h-4 w-4 text-[#222222]" />
           </div>
@@ -114,11 +114,11 @@ export function SearchFilterBar() {
         <div className="p-1.5 flex justify-end">
           <button
             type="submit"
-            className="flex h-12 w-full md:w-12 items-center justify-center rounded-xl md:rounded-full bg-[#222222] text-white hover:bg-black transition-all hover:scale-105 active:scale-95 shadow-md"
+            className="flex h-12 w-full lg:w-12 items-center justify-center rounded-xl lg:rounded-full bg-[#222222] text-white hover:bg-black transition-all hover:scale-105 active:scale-95 shadow-md"
             aria-label={tc("Search available villas")}
           >
             <Search className="h-4 w-4" />
-            <span className="ml-2 text-xs font-semibold uppercase tracking-wider md:hidden">
+            <span className="ml-2 text-xs font-semibold uppercase tracking-wider lg:hidden">
               {t("searchVillas")}
             </span>
           </button>

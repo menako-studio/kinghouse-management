@@ -339,7 +339,7 @@ function VillasCatalogContent() {
       {/* 2. Breadcrumbs & Subtitle Introduction */}
       <section className="border-b border-[#E8E4DC] bg-[#FAF8F5] py-6 text-center">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 space-y-2.5">
-          <nav className="text-xs uppercase tracking-widest text-[#6B6862] flex items-center justify-center space-x-2">
+          <nav className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs uppercase tracking-widest text-[#6B6862]">
             <Link href="/" className="hover:text-[#222225] transition-colors">
               {tc("HOME")}
             </Link>
