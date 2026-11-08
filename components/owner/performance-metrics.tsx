@@ -63,22 +63,19 @@ export function PerformanceMetrics() {
                     <h3 className="text-2xl font-semibold leading-snug text-[#222222]">{cs.propertyName}</h3>
                     <p className="text-base leading-relaxed text-[#5C5347]">{tc(cs.summary)}</p>
                   </div>
-                  <dl className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-                    <div className="rounded-xl border border-[#E8E4DC] bg-white p-4">
+                  <dl className="grid grid-cols-2 gap-3">
+                    <div className="col-span-2 rounded-xl border border-[#E8E4DC] bg-white p-4">
                       <dt className="text-sm text-[#5C5347]">
-                        {tc("Avg. monthly payout")}
-                        <span className="block text-xs">
-                          {monthLabel(first, false)}–{monthLabel(last)}
-                        </span>
+                        {tc("Avg. monthly payout")} · {monthLabel(first, false)}–{monthLabel(last)}
                       </dt>
-                      <dd className="mt-1 text-xl font-bold text-[#222222]">{formatPrice(payouts.averageIdr)}</dd>
+                      <dd className="mt-1 whitespace-nowrap font-serif text-3xl text-[#222222]">{formatPrice(payouts.averageIdr)}</dd>
                     </div>
                     <div className="rounded-xl border border-[#E8E4DC] bg-white p-4">
                       <dt className="text-sm text-[#5C5347]">
                         {tc("Best month")}
                         <span className="block text-xs">{monthLabel(payouts.best.month)}</span>
                       </dt>
-                      <dd className="mt-1 text-xl font-bold text-[#222222]">{formatPrice(payouts.best.idr)}</dd>
+                      <dd className="mt-1 whitespace-nowrap text-xl font-bold text-[#222222]">{formatPrice(payouts.best.idr)}</dd>
                     </div>
                     <div className="rounded-xl border border-[#E8E4DC] bg-white p-4">
                       <dt className="text-sm text-[#5C5347]">
