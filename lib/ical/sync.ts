@@ -5,6 +5,8 @@ import { CURATED_VILLAS } from "@/lib/data"
 import { getSupabaseServerClient } from "@/lib/supabase/server"
 import { upsertReservationsToStore } from "@/lib/erp/store"
 
+const ICAL_FETCH_TIMEOUT_MS = 8000
+
 export interface PropertyIcalConfig {
   propertyId: string
   propertySlug: string
@@ -68,7 +70,13 @@ export async function syncPropertyIcal(
   propertySlug: string,
   icalUrl: string,
   channel: ChannelType = "Airbnb"
-): Promise<{ success: boolean; importedCount: number; reservations: Reservation[]; error?: string }> {
+): Promise<{
+  success: boolean
+  importedCount: number
+  reservations: Reservation[]
+  error?: string
+  warning?: string
+}> {
   try {
     const urlValidation = validateSafeIcalUrl(icalUrl)
     if (!urlValidation.valid) {
@@ -85,24 +93,57 @@ export async function syncPropertyIcal(
       return { success: false, importedCount: 0, reservations: [], error: "Property not found." }
     }
 
-    const response = await fetch(icalUrl, {
-      headers: {
-        "User-Agent": "Kinghouse-Hospitality-Sync/1.0",
-      },
-      next: { revalidate: 0 },
-    })
+    // Bound the request: a slow OTA must never stall the dashboard render or
+    // the cron (Vercel kills functions that exceed their time limit).
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), ICAL_FETCH_TIMEOUT_MS)
+    let icsText: string
+    try {
+      const response = await fetch(icalUrl, {
+        headers: {
+          // Airbnb rejects some unknown bot user agents; identify as a calendar client.
+          "User-Agent": "Mozilla/5.0 (compatible; Kinghouse-Hospitality-Sync/1.1; +https://kinghousemanagement.com)",
+          Accept: "text/calendar, text/plain;q=0.9, */*;q=0.8",
+        },
+        cache: "no-store",
+        signal: controller.signal,
+      })
 
-    if (!response.ok) {
+      if (!response.ok) {
+        return {
+          success: false,
+          importedCount: 0,
+          reservations: [],
+          error: `Feed iCal ditolak oleh server OTA (HTTP ${response.status})`,
+        }
+      }
+      icsText = await response.text()
+    } catch (err) {
+      const aborted = err instanceof Error && err.name === "AbortError"
       return {
         success: false,
         importedCount: 0,
         reservations: [],
-        error: `Failed to fetch iCal feed (Status: ${response.status})`,
+        error: aborted
+          ? `Feed iCal tidak merespons dalam ${ICAL_FETCH_TIMEOUT_MS / 1000} detik`
+          : `Gagal menghubungi feed iCal: ${err instanceof Error ? err.message : "unknown error"}`,
+      }
+    } finally {
+      clearTimeout(timeoutId)
+    }
+
+    if (!icsText.includes("BEGIN:VCALENDAR")) {
+      return {
+        success: false,
+        importedCount: 0,
+        reservations: [],
+        error: "Respons bukan kalender iCal (token iCal kedaluwarsa atau permintaan diblokir)",
       }
     }
 
-    const icsText = await response.text()
-    const parsedEvents = parseIcalString(icsText)
+    const parsedEvents = parseIcalString(icsText).filter(
+      (evt) => evt.status?.toUpperCase() !== "CANCELLED"
+    )
 
     const newReservations: Reservation[] = parsedEvents.map((evt, idx) => {
       const checkInDate = new Date(evt.dtStart)
@@ -161,7 +202,15 @@ export async function syncPropertyIcal(
       }
     })
 
-    // Upsert into Supabase if configured
+    // Keep the runtime in-memory store in sync first, so a Supabase outage or
+    // permission error never throws away bookings that were fetched successfully.
+    if (newReservations.length > 0) {
+      upsertReservationsToStore(newReservations)
+    }
+
+    // Persist to Supabase if configured (needs SUPABASE_SERVICE_ROLE_KEY: the
+    // anon role has no access to `reservations` since the RLS hardening migration).
+    let warning: string | undefined
     const supabase = getSupabaseServerClient()
     if (supabase && newReservations.length > 0) {
       const recordsToUpsert = newReservations.map((r) => ({
@@ -188,18 +237,20 @@ export async function syncPropertyIcal(
         created_at: r.createdAt,
       }))
 
-      await supabase.from("reservations").upsert(recordsToUpsert, { onConflict: "id" })
-    }
-
-    // Always keep runtime in-memory store synced
-    if (newReservations.length > 0) {
-      upsertReservationsToStore(newReservations)
+      try {
+        const { error } = await supabase.from("reservations").upsert(recordsToUpsert, { onConflict: "id" })
+        if (error) warning = `Gagal menyimpan ke Supabase: ${error.message}`
+      } catch (err) {
+        warning = `Gagal menyimpan ke Supabase: ${err instanceof Error ? err.message : "unknown error"}`
+      }
+      if (warning) console.warn(`[ical-sync] ${propertySlug}: ${warning}`)
     }
 
     return {
       success: true,
       importedCount: newReservations.length,
       reservations: newReservations,
+      warning,
     }
   } catch (err: unknown) {
     const errorMessage = err instanceof Error ? err.message : "Failed to execute iCal sync"
@@ -212,73 +263,75 @@ export async function syncPropertyIcal(
   }
 }
 
-/**
- * Syncs all properties that have configured external iCal feeds
- */
-export async function syncAllConfiguredProperties(): Promise<{
+export interface IcalSyncFeedResult {
+  propertySlug: string
+  propertyName: string
+  channel: ChannelType
+  importedCount: number
+  error?: string
+  warning?: string
+}
+
+export interface IcalSyncSummary {
   success: boolean
   totalImported: number
-  results: Array<{
-    propertySlug: string
-    propertyName: string
-    channel: ChannelType
-    importedCount: number
-    error?: string
-  }>
-}> {
-  const propertiesWithIcal = CURATED_VILLAS.filter(
-    (v) => v.airbnbIcalUrl || v.airbnbEventIcalUrl || v.agodaIcalUrl
-  )
-  const results = []
-  let totalImported = 0
+  syncedAt: string
+  results: IcalSyncFeedResult[]
+}
 
-  for (const villa of propertiesWithIcal) {
+declare global {
+  var __kinghouse_last_ical_sync: IcalSyncSummary | undefined
+}
+
+/** Result of the most recent sync-all run in this server instance (if any). */
+export function getLastIcalSyncSummary(): IcalSyncSummary | undefined {
+  return globalThis.__kinghouse_last_ical_sync
+}
+
+/**
+ * Syncs all properties that have configured external iCal feeds.
+ * Feeds are fetched in parallel so one slow OTA does not add up to a timeout.
+ */
+export async function syncAllConfiguredProperties(): Promise<IcalSyncSummary> {
+  const jobs: Array<{ villaSlug: string; name: string; url: string; channel: ChannelType }> = []
+  for (const villa of CURATED_VILLAS) {
     if (villa.airbnbIcalUrl) {
-      const res = await syncPropertyIcal(villa.slug, villa.airbnbIcalUrl, "Airbnb")
-      if (res.success) {
-        totalImported += res.importedCount
-      }
-      results.push({
-        propertySlug: villa.slug,
-        propertyName: villa.name,
-        channel: "Airbnb" as ChannelType,
-        importedCount: res.importedCount,
-        error: res.error,
-      })
+      jobs.push({ villaSlug: villa.slug, name: villa.name, url: villa.airbnbIcalUrl, channel: "Airbnb" })
     }
-
     if (villa.airbnbEventIcalUrl) {
-      const res = await syncPropertyIcal(villa.slug, villa.airbnbEventIcalUrl, "Airbnb")
-      if (res.success) {
-        totalImported += res.importedCount
-      }
-      results.push({
-        propertySlug: villa.slug,
-        propertyName: `${villa.name} (Event Listing)`,
-        channel: "Airbnb" as ChannelType,
-        importedCount: res.importedCount,
-        error: res.error,
+      jobs.push({
+        villaSlug: villa.slug,
+        name: `${villa.name} (Event Listing)`,
+        url: villa.airbnbEventIcalUrl,
+        channel: "Airbnb",
       })
     }
-
     if (villa.agodaIcalUrl) {
-      const res = await syncPropertyIcal(villa.slug, villa.agodaIcalUrl, "Agoda")
-      if (res.success) {
-        totalImported += res.importedCount
-      }
-      results.push({
-        propertySlug: villa.slug,
-        propertyName: villa.name,
-        channel: "Agoda" as ChannelType,
-        importedCount: res.importedCount,
-        error: res.error,
-      })
+      jobs.push({ villaSlug: villa.slug, name: villa.name, url: villa.agodaIcalUrl, channel: "Agoda" })
     }
   }
 
-  return {
-    success: true,
-    totalImported,
+  const results: IcalSyncFeedResult[] = await Promise.all(
+    jobs.map(async (job) => {
+      const res = await syncPropertyIcal(job.villaSlug, job.url, job.channel)
+      if (res.error) console.warn(`[ical-sync] ${job.name}: ${res.error}`)
+      return {
+        propertySlug: job.villaSlug,
+        propertyName: job.name,
+        channel: job.channel,
+        importedCount: res.success ? res.importedCount : 0,
+        error: res.error,
+        warning: res.warning,
+      }
+    })
+  )
+
+  const summary: IcalSyncSummary = {
+    success: results.length > 0 && results.some((r) => !r.error),
+    totalImported: results.reduce((sum, r) => sum + r.importedCount, 0),
+    syncedAt: new Date().toISOString(),
     results,
   }
+  globalThis.__kinghouse_last_ical_sync = summary
+  return summary
 }

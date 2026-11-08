@@ -200,7 +200,26 @@ export default function DashboardBookingsPage() {
       if (data.success && Array.isArray(data.reservations)) {
         setReservations(data.reservations)
       }
+      const failedFeeds: Array<{ propertyName: string; error?: string }> = Array.isArray(syncData.details)
+        ? syncData.details.filter((d: { error?: string }) => d.error)
+        : []
+      if (!syncRes.ok || !syncData.success) {
+        const reason = failedFeeds[0]
+          ? `${failedFeeds[0].propertyName}: ${failedFeeds[0].error}`
+          : syncData.error || `HTTP ${syncRes.status}`
+        setSyncStatus("Sinkronisasi gagal")
+        addAlert({ title: "Sinkronisasi Airbnb Gagal", message: reason, category: "sync" })
+        showToast("Sinkronisasi Gagal", reason, "error")
+        return
+      }
       const importedText = syncData.totalImported ? ` (${syncData.totalImported} jadwal aktif)` : ""
+      if (failedFeeds.length > 0) {
+        showToast(
+          "Sebagian Feed Gagal",
+          failedFeeds.map((f) => `${f.propertyName}: ${f.error}`).join(" · "),
+          "error"
+        )
+      }
       setSyncStatus(`Baru saja disinkronkan langsung dari Airbnb${importedText}`)
       addAlert({
         title: "Sinkronisasi Airbnb Live Berhasil",

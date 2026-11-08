@@ -9,14 +9,13 @@ import {
   Search,
   ExternalLink,
   Layers,
+  AlertTriangle,
 } from "lucide-react"
 import { CURATED_VILLAS } from "@/lib/data"
 import { StatCard } from "@/components/dashboard/stat-card"
 import { ChannelBadge } from "@/components/dashboard/channel-badge"
 import { formatCurrency } from "@/lib/utils"
-import { getReservationsStore } from "@/lib/erp/store"
-import { syncAllConfiguredProperties } from "@/lib/ical/sync"
-import { getSupabaseServerClient } from "@/lib/supabase/server"
+import { loadDashboardReservations, computeDashboardMetrics } from "@/lib/erp/dashboard-data"
 
 export const dynamic = "force-dynamic"
 
@@ -27,69 +26,29 @@ export default async function DashboardOverviewPage() {
     villasWithRating.reduce((acc, v) => acc + v.rating, 0) / (villasWithRating.length || 1)
   ).toFixed(2)
 
-  // Retrieve actual reservations (from Supabase or auto-synced Airbnb iCal feeds)
-  let reservations = getReservationsStore()
+  // Retrieve actual reservations (Supabase → in-memory store → live Airbnb iCal pull)
+  const dashboardData = await loadDashboardReservations()
+  const { reservations, sync } = dashboardData
+  const metrics = computeDashboardMetrics(reservations, CURATED_VILLAS.length)
 
-  const supabase = getSupabaseServerClient()
-  if (supabase) {
-    try {
-      const { data } = await supabase.from("reservations").select("*")
-      if (data && data.length > 0) {
-        reservations = data.map((row) => ({
-          id: row.id,
-          propertyId: row.property_id,
-          propertySlug: row.property_slug,
-          propertyName: row.property_name,
-          guestName: row.guest_name,
-          guestPhone: row.guest_phone || undefined,
-          guestEmail: row.guest_email || undefined,
-          channel: row.channel,
-          checkIn: typeof row.check_in === "string" ? row.check_in.split("T")[0] : row.check_in,
-          checkOut: typeof row.check_out === "string" ? row.check_out.split("T")[0] : row.check_out,
-          nights: Number(row.nights),
-          guests: Number(row.guests),
-          grossPayoutIdr: Number(row.gross_payout_idr),
-          cleaningFeeIdr: Number(row.cleaning_fee_idr),
-          feeTier: row.fee_tier,
-          managementFeePercent: Number(row.management_fee_percent),
-          managementFeeIdr: Number(row.management_fee_idr),
-          netOwnerPayoutIdr: Number(row.net_owner_payout_idr),
-          status: row.status,
-          notes: row.notes || undefined,
-          createdAt: row.created_at,
-        }))
-      }
-    } catch {
-      // Fallback
-    }
-  }
+  const displayRevenue = formatCurrency(metrics.grossRevenueIdr, "IDR")
 
-  // If store is still empty, auto-sync live Airbnb feeds right now
-  if (reservations.length === 0) {
-    try {
-      await syncAllConfiguredProperties()
-      reservations = getReservationsStore()
-    } catch {
-      // Fallback
-    }
-  }
-
-  // Compute actual dynamic metrics strictly from actual data
-  const confirmedBookings = reservations.filter((r) => r.status !== "Blocked")
-  const actualGrossRevenueIdr = confirmedBookings.reduce((sum, r) => sum + r.grossPayoutIdr, 0)
-  const actualTotalGuests = confirmedBookings.reduce((sum, r) => sum + (r.guests || 2), 0)
-  const actualNightsBooked = confirmedBookings.reduce((sum, r) => sum + r.nights, 0)
-
-  // Occupancy rate calculation (booked nights / available unit nights per 30-day cycle)
-  const totalAvailableNights = CURATED_VILLAS.length * 30
-  const occupancyPercentage = Math.min(
-    100,
-    Math.round((actualNightsBooked / (totalAvailableNights || 1)) * 100)
-  )
-
-  const displayRevenue = actualGrossRevenueIdr > 0
-    ? formatCurrency(actualGrossRevenueIdr, "IDR")
-    : "Rp 0"
+  const feedErrors = sync?.results.filter((r) => r.error) ?? []
+  const feedWarnings = sync?.results.filter((r) => r.warning) ?? []
+  const airbnbFeeds = sync?.results.filter((r) => r.channel === "Airbnb") ?? []
+  const airbnbHealthy = sync ? airbnbFeeds.some((r) => !r.error) : reservations.some((r) => r.channel === "Airbnb")
+  const directBookings = reservations.filter((r) => r.channel === "Direct WhatsApp" || r.channel === "Walk-in").length
+  const syncedAtLabel = sync
+    ? new Date(sync.syncedAt).toLocaleString("id-ID", {
+        timeZone: "Asia/Jakarta",
+        day: "2-digit",
+        month: "short",
+        hour: "2-digit",
+        minute: "2-digit",
+      })
+    : null
+  const showDiagnostics =
+    reservations.length === 0 || feedErrors.length > 0 || feedWarnings.length > 0 || Boolean(dashboardData.supabaseError)
 
   return (
     <div className="space-y-10 animate-sana-fade-in">
@@ -136,40 +95,82 @@ export default async function DashboardOverviewPage() {
         <StatCard
           title="Total Pendapatan Terkonfirmasi"
           value={displayRevenue}
-          change={`${confirmedBookings.length} booking`}
-          trend="up"
-          period="total bruto berjalan"
+          change={`${metrics.confirmedCount} booking`}
+          trend={metrics.confirmedCount > 0 ? "up" : "neutral"}
+          period="estimasi bruto (tarif × malam)"
           icon={DollarSign}
           subtitle="Dari booking yang masuk"
         />
         <StatCard
           title="Tingkat Keterisian (Okupansi)"
-          value={`${occupancyPercentage}%`}
-          change={`${actualNightsBooked} malam terisi`}
-          trend={occupancyPercentage > 50 ? "up" : "neutral"}
-          period={`dari ${totalAvailableNights} malam tersedia`}
+          value={`${metrics.occupancyPercent}%`}
+          change={`${metrics.windowNightsBooked} malam terisi`}
+          trend={metrics.occupancyPercent > 50 ? "up" : "neutral"}
+          period={`dari ${metrics.windowAvailableNights} malam tersedia`}
           icon={TrendingUp}
-          subtitle="Rasio okupansi 30 hari"
+          subtitle="30 hari ke depan"
         />
         <StatCard
           title="Rating Kepuasan Tamu"
           value={`${averageRating} ★`}
-          change="+0.2"
-          trend="up"
+          change={`${villasWithRating.length} listing`}
+          trend="neutral"
           period={`${totalReviews} ulasan terverifikasi`}
           icon={Star}
-          subtitle="Standar Airbnb Superhost"
+          subtitle="Rata-rata rating Airbnb"
         />
         <StatCard
           title="Total Tamu Menginap"
-          value={String(actualTotalGuests)}
-          change={`${reservations.length} total reservasi`}
-          trend="up"
-          period="terdaftar di kalender"
+          value={String(metrics.totalGuests)}
+          change={`${metrics.upcomingCount} akan datang`}
+          trend={metrics.upcomingCount > 0 ? "up" : "neutral"}
+          period={`dari ${metrics.confirmedCount} reservasi`}
           icon={Users}
-          subtitle="4 Unit Aktif Jabodetabek"
+          subtitle={`${CURATED_VILLAS.length} Unit Aktif Jabodetabek`}
         />
       </div>
+
+      {showDiagnostics && (
+        <div className="rounded-3xl border border-amber-200 bg-amber-50/70 p-6 space-y-3">
+          <div className="flex items-center space-x-2">
+            <AlertTriangle className="h-4 w-4 text-amber-700" />
+            <h3 className="text-sm font-semibold text-amber-900">
+              {reservations.length === 0
+                ? "Belum ada data reservasi yang berhasil dimuat"
+                : "Sebagian sumber data bermasalah"}
+            </h3>
+          </div>
+          <ul className="text-xs text-amber-900 space-y-1.5 list-disc pl-5">
+            {!dashboardData.supabaseConfigured && (
+              <li>
+                Supabase belum dikonfigurasi (NEXT_PUBLIC_SUPABASE_URL &amp; SUPABASE_SERVICE_ROLE_KEY). Data hanya
+                disimpan sementara di memori server.
+              </li>
+            )}
+            {dashboardData.supabaseError && (
+              <li>
+                Supabase: {dashboardData.supabaseError}. Pastikan SUPABASE_SERVICE_ROLE_KEY sudah diisi di environment
+                Vercel (kunci anon tidak punya akses ke tabel reservations).
+              </li>
+            )}
+            {!sync && reservations.length === 0 && <li>Sinkronisasi iCal belum berjalan.</li>}
+            {sync && sync.results.length === 0 && <li>Tidak ada URL iCal Airbnb/Agoda yang terkonfigurasi.</li>}
+            {feedErrors.map((r, i) => (
+              <li key={`err-${i}`}>
+                <span className="font-semibold">{r.propertyName}</span> ({r.channel}): {r.error}
+              </li>
+            ))}
+            {feedWarnings.map((r, i) => (
+              <li key={`warn-${i}`}>
+                <span className="font-semibold">{r.propertyName}</span>: {r.warning}
+              </li>
+            ))}
+            {sync && feedErrors.length === 0 && reservations.length === 0 && (
+              <li>Semua feed iCal berhasil dibaca, tetapi belum ada booking di kalender Airbnb.</li>
+            )}
+          </ul>
+        </div>
+      )}
 
       {/* Multi-Channel Distribution Section */}
       <div className="rounded-3xl border border-[#E8E4DC] bg-white p-6 sm:p-8 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] space-y-6 relative overflow-hidden">
@@ -189,16 +190,27 @@ export default async function DashboardOverviewPage() {
               Kalender properti Anda terhubung otomatis dengan Airbnb dan reservasi langsung untuk mencegah booking ganda (double-booking).
             </p>
           </div>
-          <span className="text-[10px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-full self-start sm:self-auto uppercase tracking-wider">
-            Sinkronisasi Otomatis Aktif
+          <span
+            className={`text-[10px] font-semibold px-3 py-1.5 rounded-full self-start sm:self-auto uppercase tracking-wider border ${
+              airbnbHealthy
+                ? "text-emerald-800 bg-emerald-50 border-emerald-200"
+                : "text-red-800 bg-red-50 border-red-200"
+            }`}
+          >
+            {airbnbHealthy ? "Sinkronisasi Otomatis Aktif" : "Sinkronisasi Bermasalah"}
+            {syncedAtLabel ? ` · ${syncedAtLabel}` : ""}
           </span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative z-10">
-          <ChannelBadge channel="airbnb" status="connected" syncTime="Otomatis Airbnb" />
+          <ChannelBadge
+            channel="airbnb"
+            status={airbnbHealthy ? "connected" : "error"}
+            syncTime={`${reservations.filter((r) => r.channel === "Airbnb" && r.status !== "Blocked").length} booking`}
+          />
           <ChannelBadge channel="booking" status="available" syncTime="Siap Dihubungkan" />
           <ChannelBadge channel="agoda" status="available" syncTime="Siap Dihubungkan" />
-          <ChannelBadge channel="direct" status="connected" syncTime="WhatsApp / Langsung" />
+          <ChannelBadge channel="direct" status="connected" syncTime={`${directBookings} booking`} />
         </div>
       </div>
 

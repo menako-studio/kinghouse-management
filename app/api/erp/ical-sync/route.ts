@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
     if (action === "sync-all" || (!propertySlug && !icalUrl)) {
       const batchResult = await syncAllConfiguredProperties()
       return NextResponse.json({
-        success: true,
+        success: batchResult.success,
         message: `Sinkronisasi selesai. Total ${batchResult.totalImported} jadwal berhasil diperbarui.`,
         totalImported: batchResult.totalImported,
         details: batchResult.results,
@@ -82,8 +82,8 @@ export async function GET(request: NextRequest) {
     }
     const batchResult = await syncAllConfiguredProperties()
     return NextResponse.json({
-      success: true,
-      timestamp: new Date().toISOString(),
+      success: batchResult.success,
+      timestamp: batchResult.syncedAt,
       totalImported: batchResult.totalImported,
       details: batchResult.results,
     })
