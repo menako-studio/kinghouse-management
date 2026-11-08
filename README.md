@@ -40,7 +40,7 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
 
 ### 🛎️ For In-House Guests (Digital Guest Compendium & Upselling Suite — `/stay`)
 - **Vouch-Style Digital Guest Compendium (`/stay/[slug]`)**:
-  - **High-Speed WiFi Widget**: 1-Click instant copy for SSID & Password with tested speed ratings. Passwords are **not in the repo**: they come from `GUEST_WIFI_PASSWORD_<SLUG>` environment variables; when unset the widget tells guests to ask the host on WhatsApp.
+  - **High-Speed WiFi Widget**: 1-Click instant copy for SSID & Password with tested speed ratings. Passwords are kept in `lib/guest-guide/data.ts` (accepted exposure, see the security section).
   - **Digital House Manual**: Step-by-step smart lock / gate PIN instructions, check-in/out hours, and appliance manuals (AC inverter, Ariston water heater, smart TV Netflix).
   - **In-Stay Ancillary Upsell Service Menu**: Interactive add-on item selector with dynamic IDR subtotal calculation and 1-click WhatsApp concierge dispatch (Late check-out 2 PM / 4 PM, BBQ charcoal setup, extra hotel bed, mid-stay refresh).
   - **Curated Neighborhood Guide**: Top verified local cafes, Indonesian specialties, 24-hour convenience stores, and emergency pharmacies with direct Google Maps navigation.
@@ -58,7 +58,7 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
   - **2-Way OTA Synchronization Engine (Outbound & Inbound iCal - 100% Free Tier)**:
     - *Outbound*: Per-property dynamic RFC 5545 `.ics` feeds (`/api/ical/[villaSlug]`) queried directly from live Supabase reservations with fallback, exporting cleanly to Airbnb, Agoda, and Booking.com.
     - *Inbound Parser & Batch Sync*: Multi-unit background parser (`/api/erp/ical-sync?action=sync-all`) actively connected to 4 verified live Airbnb feeds (Versatile House Stay, Versatile House Events, Sky House Tangerang, and Skyline Luxury Cikarang).
-    - *Vercel Cron Automation*: Scheduled cron (`vercel.json`) running daily at 02:00 UTC on the Vercel Hobby Free Tier (`0 2 * * *`; Hobby allows one run per day), authenticated with `CRON_SECRET`. Feed URLs come from `AIRBNB_ICAL_*` environment variables.
+    - *Vercel Cron Automation*: Scheduled cron (`vercel.json`) running daily at 02:00 UTC on the Vercel Hobby Free Tier (`0 2 * * *`; Hobby allows one run per day), authenticated with `CRON_SECRET`. Feed URLs are kept in `lib/data.ts` (accepted exposure).
     - *Collision-Resistant Architecture*: Suffix-based UID deduplication, Airbnb confirmation code extraction (`HMB8PSTSB9`), and guest contact phone suffix extraction.
 - **Production-Grade CMS Authorization & Security (`/login`, `/dashboard`)**:
   - **In-Memory Sliding Window Rate Limiting**: Brute-force protection on `/api/auth/login` blocking credential stuffing.
