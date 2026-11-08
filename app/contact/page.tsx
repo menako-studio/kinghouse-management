@@ -48,6 +48,7 @@ export default function ContactPage() {
             src="/properties/versatile-house/new/VersatileHouse_02_Living_Hall.jpg"
             alt={tc("Versatile House Flagship Living Hall")}
             fill
+            sizes="100vw"
             loading="eager"
             fetchPriority="high"
             className="object-cover brightness-[0.32]"

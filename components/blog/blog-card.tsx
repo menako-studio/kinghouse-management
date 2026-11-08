@@ -46,6 +46,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
               src={post.heroImage}
               alt={post.title}
               fill
+              sizes="(max-width: 768px) 100vw, 33vw"
               className="object-cover group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
@@ -76,7 +77,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
             <div className="flex items-center justify-between pt-6 border-t border-[#EBEBEB] mt-6">
               <div className="flex items-center space-x-3">
                 <div className="relative h-8 w-8 rounded-full overflow-hidden bg-[#F5F4F0]">
-                  <Image src={post.author.avatar} alt={post.author.name} fill className="object-cover" />
+                  <Image src={post.author.avatar} alt={post.author.name} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
                 </div>
                 <div>
                   <p className="text-xs font-semibold text-[#222222]">{post.author.name}</p>
@@ -103,6 +104,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
             src={post.heroImage}
             alt={post.title}
             fill
+            sizes="(max-width: 768px) 100vw, 33vw"
             className="object-cover group-hover:scale-105 transition-transform duration-700"
           />
           <span
@@ -142,7 +144,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
           <div className="flex items-center justify-between pt-4 border-t border-[#EBEBEB]">
             <div className="flex items-center space-x-2">
               <div className="relative h-6 w-6 rounded-full overflow-hidden bg-[#F5F4F0]">
-                <Image src={post.author.avatar} alt={post.author.name} fill className="object-cover" />
+                <Image src={post.author.avatar} alt={post.author.name} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
               </div>
               <p className="text-xs font-medium text-[#717171]">{post.author.name}</p>
             </div>

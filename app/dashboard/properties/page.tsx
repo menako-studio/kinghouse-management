@@ -70,7 +70,7 @@ export default function DashboardPropertiesPage() {
             <div>
               {/* Image & Badges */}
               <div className="relative aspect-[16/9] overflow-hidden">
-                <Image src={villa.heroImage} alt={villa.name} fill className="object-cover" />
+                <Image src={villa.heroImage} alt={villa.name} fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                 <div className="absolute top-4 left-4 flex flex-wrap gap-2">
                   <span className="text-[10px] font-bold uppercase tracking-wider bg-black/60 text-white backdrop-blur-md px-3 py-1 rounded-full border border-white/10">

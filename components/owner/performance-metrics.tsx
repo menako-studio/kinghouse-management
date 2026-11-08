@@ -45,6 +45,7 @@ export function PerformanceMetrics() {
                     src={cs.image}
                     alt={cs.propertyName}
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover"
                   />
                   <div className="absolute top-3 left-3 rounded-full bg-black/60 backdrop-blur-md px-3 py-1 text-xs text-white">

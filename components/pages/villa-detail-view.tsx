@@ -296,6 +296,7 @@ export function VillaDetailView({ slug, locale }: { slug: string; locale: SiteLo
                     src="/properties/versatile-house/events/portfolio/ceremony-lawn-altar.jpg"
                     alt={tx("Intimate Wedding Ceremony Altar at Versatile House Jagakarsa")}
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />

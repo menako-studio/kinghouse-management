@@ -109,7 +109,7 @@ function renderContent(content: string) {
         elements.push(
           <figure key={`img-${i}`} className="my-8 rounded-3xl overflow-hidden border border-[#E8E4DC] bg-[#FAF8F5] p-2 space-y-2 shadow-xs">
             <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden bg-[#EAE7E0]">
-              <Image src={imageUrl} alt={altText} fill className="object-cover hover:scale-105 transition-transform duration-700" />
+              <Image src={imageUrl} alt={altText} fill sizes="100vw" className="object-cover hover:scale-105 transition-transform duration-700" />
             </div>
             {altText && (
               <figcaption className="text-center text-xs text-[#717171] font-light py-1 px-4 italic">
@@ -270,7 +270,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
       {/* Hero Image */}
       <div className="relative h-[45vh] sm:h-[55vh] w-full">
-        <Image src={post.heroImage} alt={post.title} fill className="object-cover" loading="eager" fetchPriority="high" />
+        <Image src={post.heroImage} alt={post.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" loading="eager" fetchPriority="high" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-12">
           <div className="mx-auto max-w-4xl">
@@ -292,7 +292,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className="flex flex-wrap items-center justify-between gap-4 py-6 border-b border-[#EBEBEB]">
           <div className="flex items-center space-x-3">
             <div className="relative h-9 w-9 rounded-full overflow-hidden">
-              <Image src={post.author.avatar} alt={post.author.name} fill className="object-cover" />
+              <Image src={post.author.avatar} alt={post.author.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
             </div>
             <div>
               <p className="text-sm font-semibold text-[#222222]">{post.author.name}</p>
@@ -389,6 +389,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                           src={related.heroImage}
                           alt={related.title}
                           fill
+                          sizes="(max-width: 768px) 100vw, 50vw"
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                         <span

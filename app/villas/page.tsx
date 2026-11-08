@@ -318,6 +318,7 @@ function VillasCatalogContent() {
           src="/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg"
           alt={tc("Large private villas with over 5 bedrooms")}
           fill
+          sizes="100vw"
           className="object-cover"
           loading="eager"
           fetchPriority="high"
@@ -706,6 +707,7 @@ function VillasCatalogContent() {
                   src={prop.image}
                   alt={prop.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />

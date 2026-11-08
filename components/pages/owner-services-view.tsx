@@ -72,6 +72,7 @@ export function OwnerServicesView({ locale }: { locale: SiteLocale }) {
               src="/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg"
               alt={tx("Versatile House Jagakarsa Flagship Villa")}
               fill
+              sizes="100vw"
               loading="eager"
               fetchPriority="high"
               className="object-cover brightness-[0.38]"

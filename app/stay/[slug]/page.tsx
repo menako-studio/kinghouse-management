@@ -102,6 +102,7 @@ export default async function GuestStayPage({ params }: PageProps) {
           src={compendium.heroImage}
           alt={compendium.propertyName}
           fill
+          sizes="100vw"
           loading="eager"
           fetchPriority="high"
           className="object-cover brightness-75"

@@ -239,7 +239,7 @@ export default async function DashboardOverviewPage() {
                   <td className="py-4 px-6">
                     <div className="flex items-center space-x-3.5">
                       <div className="relative h-12 w-16 rounded-2xl overflow-hidden flex-shrink-0 bg-[#FAF8F5] border border-[#E8E4DC] shadow-xs group-hover:scale-105 transition-transform">
-                        <Image src={villa.heroImage} alt={villa.name} fill className="object-cover" />
+                        <Image src={villa.heroImage} alt={villa.name} fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover" />
                       </div>
                       <div>
                         <p className="font-semibold text-[#222225] hover:text-[#8C7F5F] transition-colors line-clamp-1 max-w-[200px] sm:max-w-[260px]">

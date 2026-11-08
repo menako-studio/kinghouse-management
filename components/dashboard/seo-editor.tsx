@@ -103,7 +103,7 @@ export function SeoEditor() {
             }`}
           >
             <div className="relative h-4 w-4 rounded-full overflow-hidden flex-shrink-0">
-              <Image src={villa.heroImage} alt={villa.name} fill className="object-cover" />
+              <Image src={villa.heroImage} alt={villa.name} fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover" />
             </div>
             <span className="truncate max-w-[140px] sm:max-w-[200px]">{villa.name}</span>
             <span className="text-[10px] opacity-70">({villa.area})</span>
@@ -227,6 +227,7 @@ export function SeoEditor() {
                   src={currentVilla.heroImage}
                   alt={currentVilla.name}
                   fill
+                  sizes="(max-width: 768px) 100vw, 400px"
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-4 flex flex-col justify-end">

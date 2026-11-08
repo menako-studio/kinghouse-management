@@ -305,7 +305,7 @@ export default function DynamicPricingPage() {
               }`}
             >
               <div className="relative h-12 w-12 rounded-xl overflow-hidden flex-shrink-0 border border-[#E8E4DC]">
-                <Image src={villa.heroImage} alt={villa.name} fill className="object-cover" />
+                <Image src={villa.heroImage} alt={villa.name} fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover" />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between">

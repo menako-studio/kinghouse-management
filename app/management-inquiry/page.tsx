@@ -26,6 +26,7 @@ export default function ManagementInquiryPage() {
             src="/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg"
             alt={tc("Versatile House Flagship Villa")}
             fill
+            sizes="100vw"
             className="object-cover opacity-25"
             loading="eager"
             fetchPriority="high"

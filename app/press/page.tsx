@@ -82,6 +82,7 @@ export default function PressPage() {
             src="/properties/versatile-house/new/VersatileHouse_06_Dining_Chandelier.jpg"
             alt="Kinghouse Luxury Architectural Asset"
             fill
+            sizes="100vw"
             className="object-cover opacity-25"
             loading="eager"
             fetchPriority="high"

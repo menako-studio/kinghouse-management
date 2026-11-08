@@ -818,7 +818,7 @@ export default function DashboardBlogPage() {
                     <td className="py-4 px-6 max-w-sm">
                       <div className="flex items-center space-x-3">
                         <div className="relative h-10 w-14 rounded-xl overflow-hidden flex-shrink-0 bg-[#FAF8F5] border border-[#E8E4DC]">
-                          <Image src={article.heroImage || IMAGE_PRESETS[0].url} alt={article.title} fill className="object-cover" />
+                          <Image src={article.heroImage || IMAGE_PRESETS[0].url} alt={article.title} fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover" />
                         </div>
                         <div className="min-w-0">
                           <p className="font-semibold text-[#222225] line-clamp-1 group-hover:text-[#B8934C] transition-colors">
@@ -1253,7 +1253,7 @@ export default function DashboardBlogPage() {
                                 : "border-transparent opacity-75 hover:opacity-100"
                             }`}
                           >
-                            <Image src={preset.url} alt={preset.name} fill className="object-cover" />
+                            <Image src={preset.url} alt={preset.name} fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-2 flex items-end">
                               <span className="text-[10px] text-white font-medium line-clamp-1">{preset.name}</span>
                             </div>
@@ -1393,7 +1393,7 @@ export default function DashboardBlogPage() {
                   <div className="space-y-6 animate-sana-fade-in">
                     <div className="max-w-md mx-auto rounded-3xl overflow-hidden border border-[#E8E4DC] bg-white shadow-lg space-y-4 p-4">
                       <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#FAF8F5]">
-                        <Image src={formHeroImage} alt={formTitle || "Cover"} fill className="object-cover" />
+                        <Image src={formHeroImage} alt={formTitle || "Cover"} fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover" />
                         <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider text-[#222225]">
                           {formCategory}
                         </span>
@@ -1510,7 +1510,7 @@ export default function DashboardBlogPage() {
                             : "border-[#E8E4DC] opacity-75 hover:opacity-100"
                         }`}
                       >
-                        <Image src={preset.url} alt={preset.name} fill className="object-cover" />
+                        <Image src={preset.url} alt={preset.name} fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-1.5 flex items-end">
                           <span className="text-[10px] text-white font-medium line-clamp-1">{preset.name}</span>
                         </div>

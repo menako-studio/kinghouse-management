@@ -115,7 +115,7 @@ export function EventDetailView({ slug, locale }: { slug: string; locale: SiteLo
 
       {/* Hero */}
       <div className="relative h-[50vh] sm:h-[65vh]">
-        <Image src={event.heroImage} alt={tx(event.title)} fill className="object-cover" loading="eager" fetchPriority="high" />
+        <Image src={event.heroImage} alt={tx(event.title)} fill sizes="100vw" className="object-cover" loading="eager" fetchPriority="high" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-12">
           <div className="mx-auto max-w-7xl">
@@ -172,7 +172,7 @@ export function EventDetailView({ slug, locale }: { slug: string; locale: SiteLo
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {event.gallery.map((img, i) => (
                     <div key={i} className="relative aspect-[4/3] rounded-2xl overflow-hidden">
-                      <Image src={img} alt={`${tx(event.title)} ${i + 1}`} fill className="object-cover hover:scale-105 transition-transform duration-500" />
+                      <Image src={img} alt={`${tx(event.title)} ${i + 1}`} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover hover:scale-105 transition-transform duration-500" />
                     </div>
                   ))}
                 </div>
@@ -185,7 +185,7 @@ export function EventDetailView({ slug, locale }: { slug: string; locale: SiteLo
                 <h3 className="font-serif text-lg text-[#222222] mb-2">{tx("Venue Property")}</h3>
                 <div className="flex items-center space-x-4">
                   <div className="relative h-16 w-16 rounded-xl overflow-hidden flex-shrink-0">
-                    <Image src={property.heroImage} alt={tx(property.name)} fill className="object-cover" />
+                    <Image src={property.heroImage} alt={tx(property.name)} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
                   </div>
                   <div className="flex-1">
                     <p className="text-sm font-semibold text-[#222222]">{tx(property.name)}</p>

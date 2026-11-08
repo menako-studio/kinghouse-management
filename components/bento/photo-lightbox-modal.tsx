@@ -111,6 +111,7 @@ export function PhotoLightboxModal({
             src={current.url}
             alt={current.caption || `${propertyName} photo ${currentIndex + 1}`}
             fill
+            sizes="100vw"
             className="object-contain"
             loading="eager"
           />
@@ -140,6 +141,7 @@ export function PhotoLightboxModal({
                   src={img.url}
                   alt={`Thumbnail ${idx + 1}`}
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
                 />
               </button>

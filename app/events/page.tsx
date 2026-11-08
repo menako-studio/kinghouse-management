@@ -383,6 +383,7 @@ export default function EventsPage() {
           src="/properties/versatile-house/events/wedding-ceremony-lawn-pool.jpg"
           alt={tc("A Guide to Your Dream Wedding & Events at Kinghouse")}
           fill
+          sizes="100vw"
           className="object-cover object-center"
           loading="eager"
           fetchPriority="high"
