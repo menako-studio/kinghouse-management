@@ -313,3 +313,23 @@ h3, h4, h5, h6 {
 .tracking-brandmark-sub {
   letter-spacing: 0.32em;
 }
+
+/* Overlay & dialog entrances (modals, dropdowns) */
+@keyframes kh-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes kh-sheet {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes kh-pop {
+  from { opacity: 0; transform: translateY(-4px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-kh-fade { animation: kh-fade 0.2s ease-out both; }
+.animate-kh-sheet { animation: kh-sheet 0.3s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-kh-pop { animation: kh-pop 0.16s ease-out both; }
+@media (prefers-reduced-motion: reduce) {
+  .animate-kh-fade, .animate-kh-sheet, .animate-kh-pop { animation: none; }
+}
