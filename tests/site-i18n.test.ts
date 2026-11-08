@@ -88,7 +88,7 @@ describe("Indonesian page copy", () => {
       ...VERSATILE_HOUSE_EVENT_PRICELIST.flatMap((t) => [t.categoryLabel, t.durationText, t.description, ...t.tiers.map((x) => x.name)]),
       ...MANAGED_AREAS.flatMap((a) => [a.description, a.highlight]),
       ...TESTIMONIALS.flatMap((t) => [t.quote, t.roleOrLocation]),
-      ...CASE_STUDIES.flatMap((c) => [c.summary, c.period, c.quote.text]),
+      ...CASE_STUDIES.map((c) => c.summary),
       ...MANAGEMENT_TIERS.flatMap((t) => [t.subtitle, t.description, t.idealFor, ...t.features.map((f) => f.title)]),
       ...FAQ_CATEGORIES.flatMap((c) => [c.title, ...c.items.flatMap((i) => [i.question, i.answer])]),
     ].filter((t): t is string => Boolean(t))

@@ -15,7 +15,6 @@ export const TESTIMONIALS: Testimonial[] = [
     quote:
       "Kinghouse transformed our family home in Jagakarsa into a steady income stream. From zero bookings to 80%+ occupancy in 3 months — their Airbnb SEO and listing optimization is genuinely impressive.",
     propertyName: "Versatile House With Beautiful Garden Beyond",
-    metricLift: "+80% Occupancy in 90 Days",
   },
   {
     id: "test-2",
@@ -107,54 +106,24 @@ export const MANAGEMENT_TIERS: ManagementTier[] = [
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
-    id: "cs-1",
+    id: "cs-versatile-house",
+    propertySlug: "versatile-house-jagakarsa",
     propertyName: "Versatile House With Beautiful Garden Beyond",
     location: "Jagakarsa, Jakarta Selatan",
-    image:
-      "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
-    period: "90-Day Onboarding Performance",
-    beforeMetrics: {
-      occupancyRate: 28,
-      monthlyRevenueIdr: 12000000,
-      guestRating: 4.5,
-    },
-    afterMetrics: {
-      occupancyRate: 82,
-      monthlyRevenueIdr: 38000000,
-      guestRating: 4.9,
-      ebitdaMargin: 44,
-    },
-    summary:
-      "Repositioned from an under-priced family home listing to a sought-after Jagakarsa group stay destination. Editorial photography, keyword-optimized copy, and dynamic weekend pricing tripled monthly revenue in 90 days.",
-    quote: {
-      text: "I had no idea our house could earn this much. Kinghouse basically turned a burden into a business.",
-      author: "Budi Santoso (Owner)",
-    },
+    image: "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
+    summary: "5-bedroom family home with pool and garden, listed for group stays and small events.",
+    rating: 4.9,
+    reviewsCount: 68,
   },
   {
-    id: "cs-2",
-    propertyName: "Skyline Luxury at Orange County",
-    location: "Cikarang Selatan, Bekasi",
-    image:
-      "/properties/skyline-luxury/SkylineLuxury_OrangeCounty_KamarUtama.webp",
-    period: "6-Month Revenue Review",
-    beforeMetrics: {
-      occupancyRate: 35,
-      monthlyRevenueIdr: 8000000,
-      guestRating: 4.6,
-    },
-    afterMetrics: {
-      occupancyRate: 78,
-      monthlyRevenueIdr: 22000000,
-      guestRating: 4.83,
-      ebitdaMargin: 41,
-    },
-    summary:
-      "Targeted the high-demand expat-executive segment working in Cikarang's industrial zones. Premium positioning, Nespresso amenity add, and direct Jababeka/EJIP corporate keyword targeting doubled occupancy.",
-    quote: {
-      text: "The apartment now pays its own mortgage — and then some. The ROI has been remarkable.",
-      author: "Property Owner, Cikarang",
-    },
+    id: "cs-sky-house",
+    propertySlug: "sky-house-tangerang",
+    propertyName: "Sky House • Hotel-Style Bed + IKEA 5min",
+    location: "Pinang, Tangerang",
+    image: "/properties/sky-house/SkyHouse_IKEA_KamarUtama_Wide.jpeg",
+    summary: "1-bedroom apartment positioned as a hotel-style room for short business and IKEA-area stays.",
+    rating: 4.91,
+    reviewsCount: 22,
   },
 ]
 

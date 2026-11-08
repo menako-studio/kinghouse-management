@@ -1,5 +1,19 @@
 // Owner Services page (/id/owner-services) and its sections.
 export const owner: Record<string, string> = {
+  Results: "Hasil",
+  "Real numbers from properties we manage": "Angka nyata dari properti yang kami kelola",
+  "Payouts exactly as reported by Airbnb, after Airbnb's host fee.": "Payout persis seperti laporan Airbnb, setelah potongan biaya host Airbnb.",
+  "5-bedroom family home with pool and garden, listed for group stays and small events.":
+    "Rumah keluarga 5 kamar dengan kolam dan taman, untuk menginap rombongan dan acara kecil.",
+  "1-bedroom apartment positioned as a hotel-style room for short business and IKEA-area stays.":
+    "Apartemen 1 kamar bergaya kamar hotel untuk tamu bisnis dan menginap singkat dekat IKEA.",
+  "Avg. monthly payout": "Rata-rata payout/bulan",
+  "Best month": "Bulan terbaik",
+  "Guest rating": "Rating tamu",
+  reviews: "ulasan",
+  "Source: Airbnb host earnings export, {date}. Past results do not guarantee future income.":
+    "Sumber: laporan pendapatan host Airbnb, {date}. Hasil sebelumnya tidak menjamin pendapatan ke depan.",
+  "Guest rating on Airbnb": "Rating tamu di Airbnb",
   Fees: "Biaya",
   "No fixed costs. We earn when you earn.": "Tanpa biaya tetap. Kami dibayar saat Anda dapat hasil.",
   "What's included": "Yang termasuk",
@@ -7,7 +21,6 @@ export const owner: Record<string, string> = {
   "You just receive the income.": "Anda cukup terima hasilnya.",
   "Housekeeping, co-hosting or full Airbnb management for villas and apartments in Greater Jakarta.":
     "Housekeeping, co-hosting, atau full management Airbnb untuk villa dan apartemen di Jabodetabek.",
-  "Average occupancy": "Rata-rata okupansi",
   "Fee, no fixed costs": "Fee, tanpa biaya tetap",
   "Get a free proposal": "Minta proposal gratis",
   "Estimate my income": "Hitung estimasi pendapatan",
@@ -50,23 +63,6 @@ export const owner: Record<string, string> = {
   "Top 1% Performance": "Top 1% Performa",
 
   // Performance metrics
-  "Empirical Results": "Hasil Nyata",
-  "Before vs. After Kinghouse Management": "Sebelum vs. Sesudah Dikelola Kinghouse",
-  "Real performance audits from flagship properties under Kinghouse asset management. Verified metrics independently audited from live Airbnb and OTA reporting.":
-    "Data kinerja nyata dari properti unggulan yang kami kelola, diambil langsung dari laporan Airbnb dan OTA.",
-  "Occupancy Rate": "Tingkat Okupansi",
-  "Monthly Revenue": "Pendapatan Bulanan",
-  "EBITDA Margin": "Margin EBITDA",
-  "90-Day Onboarding Performance": "Kinerja 90 Hari Pertama",
-  "6-Month Revenue Review": "Tinjauan Pendapatan 6 Bulan",
-  "Repositioned from an under-priced family home listing to a sought-after Jagakarsa group stay destination. Editorial photography, keyword-optimized copy, and dynamic weekend pricing tripled monthly revenue in 90 days.":
-    "Dari listing rumah keluarga yang harganya terlalu rendah menjadi destinasi menginap rombongan favorit di Jagakarsa. Foto profesional, deskripsi yang dioptimasi, dan harga akhir pekan dinamis melipatgandakan pendapatan bulanan hingga 3x dalam 90 hari.",
-  "Targeted the high-demand expat-executive segment working in Cikarang's industrial zones. Premium positioning, Nespresso amenity add, and direct Jababeka/EJIP corporate keyword targeting doubled occupancy.":
-    "Menyasar segmen eksekutif ekspatriat di kawasan industri Cikarang. Positioning premium, tambahan amenitas Nespresso, dan penargetan kata kunci korporat Jababeka/EJIP membuat okupansi naik 2x lipat.",
-  "I had no idea our house could earn this much. Kinghouse basically turned a burden into a business.":
-    "Saya tidak menyangka rumah kami bisa menghasilkan sebanyak ini. Kinghouse benar-benar mengubah beban menjadi bisnis.",
-  "The apartment now pays its own mortgage — and then some. The ROI has been remarkable.":
-    "Apartemennya sekarang bisa membayar cicilannya sendiri — bahkan lebih. ROI-nya luar biasa.",
 
   // Onboarding timeline
   "Rapid 14-Day Deployment": "Siap Jalan dalam 14 Hari",

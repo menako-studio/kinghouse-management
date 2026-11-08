@@ -140,28 +140,20 @@ export interface ManagementTier {
   idealFor: string
 }
 
+/**
+ * Owner case study. Money figures are not typed in by hand: they are computed
+ * from the property's Airbnb earnings export (lib/earnings/airbnb-monthly.ts).
+ */
 export interface CaseStudy {
   id: string
+  propertySlug: string
   propertyName: string
   location: string
   image: string
-  period: string
-  beforeMetrics: {
-    occupancyRate: number
-    monthlyRevenueIdr: number
-    guestRating: number
-  }
-  afterMetrics: {
-    occupancyRate: number
-    monthlyRevenueIdr: number
-    guestRating: number
-    ebitdaMargin: number
-  }
   summary: string
-  quote: {
-    text: string
-    author: string
-  }
+  /** Airbnb listing rating and review count, as shown on the listing. */
+  rating: number
+  reviewsCount: number
 }
 
 export interface BlogPost {

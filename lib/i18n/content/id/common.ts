@@ -82,6 +82,4 @@ export const common: Record<string, string> = {
   "Next review": "Ulasan berikutnya",
   "Play video": "Putar video",
   "Pause video": "Jeda video",
-  "Budi Santoso (Owner)": "Budi Santoso (Pemilik)",
-  "Property Owner, Cikarang": "Pemilik Properti, Cikarang",
 }

@@ -1,138 +1,111 @@
 "use client"
 
 import Image from "next/image"
-
+import { Star } from "lucide-react"
 import { CASE_STUDIES } from "@/lib/marketing-data"
+import { summarizePayouts } from "@/lib/earnings/case-study"
 import { useLocalization } from "@/lib/context/localization-context"
 
+/**
+ * Owner proof section. Every money figure is computed from the Airbnb earnings
+ * export (lib/earnings/airbnb-monthly.ts), so the page can never claim more than
+ * Airbnb actually paid out.
+ */
 export function PerformanceMetrics() {
-  const { formatPrice, tc } = useLocalization()
+  const { formatPrice, tc, language } = useLocalization()
+  const locale = language === "ID" ? "id-ID" : "en-US"
+  const monthLabel = (ym: string, withYear = true) =>
+    new Date(`${ym}-01T00:00:00Z`).toLocaleDateString(locale, {
+      month: "short",
+      year: withYear ? "numeric" : undefined,
+      timeZone: "UTC",
+    })
+  const dateLabel = (d: string) =>
+    new Date(`${d}T00:00:00Z`).toLocaleDateString(locale, { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })
+
+  const studies = CASE_STUDIES.map((cs) => ({ cs, payouts: summarizePayouts(cs.propertySlug) })).filter(
+    (x): x is { cs: (typeof CASE_STUDIES)[number]; payouts: NonNullable<ReturnType<typeof summarizePayouts>> } =>
+      x.payouts !== null
+  )
+  const exportedAt = studies[0]?.payouts.exportedAt
 
   return (
     <section id="case-studies" className="section-macro-spacing bg-white">
-      <div className="mx-auto max-w-7xl px-6 lg:px-12 space-y-16">
-        {/* Section Header */}
-        <div className="max-w-3xl space-y-4">
-          <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#A69C8E]">
-            {tc("Empirical Results")}
-          </span>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#222222]">
-            {tc("Before vs. After Kinghouse Management")}
-          </h2>
-          <p className="text-sm sm:text-base text-[#717171] leading-relaxed">
-            {tc("Real performance audits from flagship properties under Kinghouse asset management. Verified metrics independently audited from live Airbnb and OTA reporting.")}
+      <div className="mx-auto max-w-7xl space-y-12 px-6 lg:px-12">
+        <div className="max-w-3xl space-y-3">
+          <span className="text-sm font-semibold uppercase tracking-[0.18em] text-[#8C7F5F]">{tc("Results")}</span>
+          <h2 className="font-serif text-4xl text-[#222222] sm:text-5xl">{tc("Real numbers from properties we manage")}</h2>
+          <p className="text-base leading-relaxed text-[#5C5347] sm:text-lg">
+            {tc("Payouts exactly as reported by Airbnb, after Airbnb's host fee.")}
           </p>
         </div>
 
-        {/* Case Studies Cards */}
-        <div className="space-y-12">
-          {CASE_STUDIES.map((cs) => {
-            const revLift = Math.round(
-              ((cs.afterMetrics.monthlyRevenueIdr - cs.beforeMetrics.monthlyRevenueIdr) /
-                cs.beforeMetrics.monthlyRevenueIdr) *
-                100
-            )
-            const occLift = cs.afterMetrics.occupancyRate - cs.beforeMetrics.occupancyRate
-
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          {studies.map(({ cs, payouts }) => {
+            const first = payouts.months[0]
+            const last = payouts.months[payouts.months.length - 1]
             return (
-              <div
-                key={cs.id}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 rounded-3xl border border-[#EBEBEB] bg-[#FAFAFA] p-8 sm:p-12 items-center"
-              >
-                {/* Visual Column */}
-                <div className="lg:col-span-5 relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xs border border-[#EBEBEB]">
+              <article key={cs.id} className="overflow-hidden rounded-3xl border border-[#E8E4DC] bg-[#FAF7F1]">
+                <div className="relative aspect-[16/9]">
                   <Image
                     src={cs.image}
                     alt={cs.propertyName}
                     fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover"
                   />
-                  <div className="absolute top-3 left-3 rounded-full bg-black/60 backdrop-blur-md px-3 py-1 text-xs text-white">
+                  <span className="absolute left-4 top-4 rounded-full bg-black/60 px-3 py-1 text-sm text-white backdrop-blur-md">
                     {tc(cs.location)}
-                  </div>
-                  <div className="absolute bottom-3 right-3 rounded-lg bg-white/95 px-3 py-1 text-xs font-semibold text-[#222222] shadow-sm">
-                    {tc(cs.period)}
-                  </div>
+                  </span>
                 </div>
-
-                {/* Metrics Column */}
-                <div className="lg:col-span-7 space-y-8">
+                <div className="space-y-6 p-6 sm:p-8">
                   <div className="space-y-2">
-                    <h3 className="font-serif text-2xl sm:text-3xl text-[#222222]">
-                      {cs.propertyName}
-                    </h3>
-                    <p className="text-xs text-[#717171] leading-relaxed">
-                      {tc(cs.summary)}
-                    </p>
+                    <h3 className="text-2xl font-semibold leading-snug text-[#222222]">{cs.propertyName}</h3>
+                    <p className="text-base leading-relaxed text-[#5C5347]">{tc(cs.summary)}</p>
                   </div>
-
-                  {/* Before vs After Comparison Grid */}
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                    {/* Occupancy Lift */}
-                    <div className="p-4 rounded-xl bg-white border border-[#EBEBEB] space-y-1">
-                      <span className="text-xs uppercase tracking-wider text-[#717171] font-medium block">
-                        {tc("Occupancy Rate")}
-                      </span>
-                      <div className="flex flex-wrap items-baseline gap-x-1.5">
-                        <span className="text-xs text-[#999999] line-through">
-                          {cs.beforeMetrics.occupancyRate}%
+                  <dl className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                    <div className="rounded-xl border border-[#E8E4DC] bg-white p-4">
+                      <dt className="text-sm text-[#5C5347]">
+                        {tc("Avg. monthly payout")}
+                        <span className="block text-xs">
+                          {monthLabel(first, false)}–{monthLabel(last)}
                         </span>
-                        <span className="text-lg font-bold text-[#222222]">
-                          {cs.afterMetrics.occupancyRate}%
-                        </span>
-                      </div>
-                      <span className="text-xs font-semibold text-[#25D366] block">
-                        +{occLift}% {tc("Net Lift")}
-                      </span>
+                      </dt>
+                      <dd className="mt-1 text-xl font-bold text-[#222222]">{formatPrice(payouts.averageIdr)}</dd>
                     </div>
-
-                    {/* Monthly RevPAR */}
-                    <div className="p-4 rounded-xl bg-white border border-[#EBEBEB] space-y-1">
-                      <span className="text-xs uppercase tracking-wider text-[#717171] font-medium block">
-                        {tc("Monthly Revenue")}
-                      </span>
-                      <div className="flex flex-wrap items-baseline gap-x-1.5">
-                        <span className="text-xs text-[#999999] line-through">
-                          {formatPrice(cs.beforeMetrics.monthlyRevenueIdr)}
-                        </span>
-                        <span className="text-lg font-bold text-[#222222]">
-                          {formatPrice(cs.afterMetrics.monthlyRevenueIdr)}
-                        </span>
-                      </div>
-                      <span className="text-xs font-semibold text-[#25D366] block">
-                        +{revLift}% {tc("Lift")}
-                      </span>
+                    <div className="rounded-xl border border-[#E8E4DC] bg-white p-4">
+                      <dt className="text-sm text-[#5C5347]">
+                        {tc("Best month")}
+                        <span className="block text-xs">{monthLabel(payouts.best.month)}</span>
+                      </dt>
+                      <dd className="mt-1 text-xl font-bold text-[#222222]">{formatPrice(payouts.best.idr)}</dd>
                     </div>
-
-                    {/* Superhost Rating & EBITDA */}
-                    <div className="p-4 rounded-xl bg-[#F5F4F0] border border-[#E4E0D8] space-y-1 col-span-2 sm:col-span-1">
-                      <span className="text-xs uppercase tracking-wider text-[#222222] font-semibold block">
-                        {tc("EBITDA Margin")}
-                      </span>
-                      <div className="flex items-baseline space-x-1">
-                        <span className="text-lg font-bold text-[#222222]">
-                          {cs.afterMetrics.ebitdaMargin}%
+                    <div className="rounded-xl border border-[#E8E4DC] bg-white p-4">
+                      <dt className="text-sm text-[#5C5347]">
+                        {tc("Guest rating")}
+                        <span className="block text-xs">
+                          {cs.reviewsCount} {tc("reviews")}
                         </span>
-                      </div>
-                      <span className="text-xs text-[#A69C8E] font-medium block">
-                        ★ {cs.afterMetrics.guestRating} {tc("Rating")}
-                      </span>
+                      </dt>
+                      <dd className="mt-1 flex items-center gap-1 text-xl font-bold text-[#222222]">
+                        <Star className="h-4 w-4 fill-[#B8934C] text-[#B8934C]" aria-hidden="true" />
+                        {cs.rating.toFixed(2)}
+                      </dd>
                     </div>
-                  </div>
-
-                  {/* Owner Pull Quote */}
-                  <blockquote className="border-l-2 border-[#A69C8E] pl-4 text-xs italic text-[#555555]">
-                    &ldquo;{tc(cs.quote.text)}&rdquo;
-                    <span className="block mt-1 font-semibold not-italic text-[#222222]">
-                      — {tc(cs.quote.author)}
-                    </span>
-                  </blockquote>
+                  </dl>
                 </div>
-              </div>
+              </article>
             )
           })}
         </div>
+
+        {exportedAt && (
+          <p className="text-sm text-[#5C5347]">
+            {tc("Source: Airbnb host earnings export, {date}. Past results do not guarantee future income.", {
+              date: dateLabel(exportedAt),
+            })}
+          </p>
+        )}
       </div>
     </section>
   )

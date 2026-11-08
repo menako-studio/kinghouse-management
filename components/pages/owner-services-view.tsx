@@ -102,8 +102,8 @@ export function OwnerServicesView({ locale }: { locale: SiteLocale }) {
               {/* Proof points */}
               <dl className="grid max-w-xl grid-cols-2 gap-6 border-t border-white/20 pt-5 text-white">
                 <div>
-                  <dt className="text-sm text-white/75">{tx("Average occupancy")}</dt>
-                  <dd className="font-serif text-4xl">91%</dd>
+                  <dt className="text-sm text-white/75">{tx("Guest rating on Airbnb")}</dt>
+                  <dd className="font-serif text-4xl">4.9★</dd>
                 </div>
                 <div>
                   <dt className="text-sm text-white/75">{tx("Fee, no fixed costs")}</dt>
