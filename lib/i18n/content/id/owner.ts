@@ -1,5 +1,16 @@
 // Owner Services page (/id/owner-services) and its sections.
 export const owner: Record<string, string> = {
+  Fees: "Biaya",
+  "No fixed costs. We earn when you earn.": "Tanpa biaya tetap. Kami dibayar saat Anda dapat hasil.",
+  "What's included": "Yang termasuk",
+  "Your property, managed.": "Properti Anda, kami kelola.",
+  "You just receive the income.": "Anda cukup terima hasilnya.",
+  "Housekeeping, co-hosting or full Airbnb management for villas and apartments in Greater Jakarta.":
+    "Housekeeping, co-hosting, atau full management Airbnb untuk villa dan apartemen di Jabodetabek.",
+  "Average occupancy": "Rata-rata okupansi",
+  "Fee, no fixed costs": "Fee, tanpa biaya tetap",
+  "Get a free proposal": "Minta proposal gratis",
+  "Estimate my income": "Hitung estimasi pendapatan",
   // Hero
   "Institutional Villa Asset Management": "Manajemen Aset Villa Profesional",
   "Official Airbnb Superhost • 4.5★ (10 reviews) ↗": "Airbnb Superhost Resmi • 4.5★ (10 ulasan) ↗",

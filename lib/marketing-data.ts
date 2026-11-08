@@ -58,7 +58,7 @@ export const TESTIMONIALS: Testimonial[] = [
 export const MANAGEMENT_TIERS: ManagementTier[] = [
   {
     id: "exclusive-marketing",
-    name: "Exclusive Marketing",
+    name: "Co-Hosting",
     subtitle: "High-yield Airbnb distribution & revenue optimization for self-operating owners",
     feeKind: "on-request",
     description:
@@ -80,7 +80,7 @@ export const MANAGEMENT_TIERS: ManagementTier[] = [
   },
   {
     id: "full-management",
-    name: "Full Asset Management",
+    name: "Full Management",
     subtitle: "Completely hands-off, 360° turnkey operations for maximum ROI",
     feeKind: "by-property",
     badge: "Most Popular",

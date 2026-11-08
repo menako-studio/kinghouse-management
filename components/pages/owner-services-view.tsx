@@ -1,8 +1,6 @@
 import Image from "next/image"
 import Script from "next/script"
-import { Sparkles, TrendingUp } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { ValuePropsGrid } from "@/components/owner/value-props-grid"
+import { ArrowRight, Sparkles } from "lucide-react"
 import { PropertyRevenueCalculator } from "@/components/owner/property-revenue-calculator"
 import { TieredPricingTable } from "@/components/owner/tiered-pricing-table"
 import { PerformanceMetrics } from "@/components/owner/performance-metrics"
@@ -82,84 +80,52 @@ export function OwnerServicesView({ locale }: { locale: SiteLocale }) {
 
           <div className="relative z-10 mx-auto max-w-7xl px-6 py-20 lg:px-12 lg:py-28">
             <div className="max-w-3xl space-y-6">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center rounded-full bg-[#A69C8E]/25 px-3.5 py-1 text-xs font-semibold uppercase tracking-widest text-[#EAE8E4] backdrop-blur-md border border-[#A69C8E]/40">
-                  <TrendingUp className="mr-1.5 h-3.5 w-3.5 text-[#DFC58E]" />
-                  {tx("Institutional Villa Asset Management")}
-                </span>
+              <a
+                href="https://www.airbnb.com/users/profile/1470743715397835749"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-10 items-center gap-2 rounded-full border border-[#DFC58E]/50 bg-black/40 px-4 text-sm font-semibold text-[#DFC58E] backdrop-blur-md transition-colors hover:bg-black/60"
+              >
+                <Sparkles className="h-4 w-4" aria-hidden="true" />
+                {tx("Official Airbnb Superhost")} · ★ 4.5
+              </a>
 
-                {/* Verified Airbnb Superhost Trust Badge */}
-                <a
-                  href="https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center rounded-full bg-[#DFC58E]/20 hover:bg-[#DFC58E]/30 px-3.5 py-1 text-xs font-semibold uppercase tracking-widest text-[#DFC58E] backdrop-blur-md border border-[#DFC58E]/50 transition-all hover:scale-105"
-                  title="Kinghouse Management — Airbnb Superhost"
-                >
-                  <Sparkles className="mr-1.5 h-3.5 w-3.5 text-[#DFC58E]" />
-                  <span>{tx("Official Airbnb Superhost • 4.5★ (10 reviews) ↗")}</span>
-                </a>
-              </div>
-
-              <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal leading-[1.08] text-white">
-                {tx("Elevate Your Asset.")} <br />
-                <span className="italic text-[#E5E2DC]">{tx("Effortless Management, Maximum Returns.")}</span>
+              <h1 className="font-serif text-[2.6rem] font-normal leading-[1.06] text-white sm:text-6xl lg:text-7xl">
+                {tx("Your property, managed.")} <br />
+                <span className="italic text-[#E5E2DC]">{tx("You just receive the income.")}</span>
               </h1>
 
-              <p className="text-base sm:text-lg text-white/80 font-light leading-relaxed max-w-2xl">
-                {tx("We turn private villas and apartments across Greater Jakarta into high-performing hospitality assets — backed by official Airbnb Superhost status, daily dynamic pricing, 5-star hotel cleaning standards and transparent revenue-share reports.")}
+              <p className="max-w-2xl text-lg leading-relaxed text-white/90 sm:text-xl">
+                {tx("Housekeeping, co-hosting or full Airbnb management for villas and apartments in Greater Jakarta.")}
               </p>
 
-              {/* Quick Metrics Bar with Verified Superhost Status */}
-              <div className="grid grid-cols-3 gap-6 pt-4 border-t border-white/15 max-w-xl text-white">
+              {/* Proof points */}
+              <dl className="grid max-w-xl grid-cols-2 gap-6 border-t border-white/20 pt-5 text-white">
                 <div>
-                  <span className="font-serif text-2xl sm:text-3xl text-white font-normal block">91%</span>
-                  <span className="text-xs text-[#A0A0A0] uppercase tracking-wider">{tx("Avg Occupancy")}</span>
+                  <dt className="text-sm text-white/75">{tx("Average occupancy")}</dt>
+                  <dd className="font-serif text-4xl">91%</dd>
                 </div>
                 <div>
-                  <span className="font-serif text-2xl sm:text-3xl text-[#DFC58E] font-normal block">+48%</span>
-                  <span className="text-xs text-[#A0A0A0] uppercase tracking-wider">{tx("EBITDA Lift")}</span>
+                  <dt className="text-sm text-white/75">{tx("Fee, no fixed costs")}</dt>
+                  <dd className="font-serif text-4xl text-[#DFC58E]">15–23%</dd>
                 </div>
-                <div>
-                  <a
-                    href="https://www.airbnb.com/users/profile/1470743715397835749?previous_page_name=PdpHomeMarketplace"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group block"
-                  >
-                    <span className="font-serif text-2xl sm:text-3xl text-white font-normal group-hover:text-[#DFC58E] transition-colors flex items-center">
-                      Superhost <span className="text-xs ml-1 opacity-70">↗</span>
-                    </span>
-                    <span className="text-xs text-[#DFC58E] uppercase tracking-wider group-hover:underline">
-                      {tx("Verified by Airbnb")}
-                    </span>
-                  </a>
-                </div>
-              </div>
+              </dl>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
-                <Button
-                  size="lg"
-                  asChild
-                  className="bg-white text-[#222222] hover:bg-[#F2EFEB] hover:text-black border-none font-semibold text-xs uppercase tracking-widest px-8 shadow-xl"
+              <div className="flex flex-col items-stretch gap-3 pt-2 sm:flex-row sm:items-center sm:gap-4">
+                <a
+                  href="#owner-form"
+                  className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-white px-8 text-base font-semibold text-[#19191B] shadow-xl transition-colors hover:bg-[#F2EFEB]"
                 >
-                  <a href="#layanan">
-                    <Sparkles className="mr-2 h-4 w-4 text-[#B8934C]" />
-                    {tx("Choose a Service & Get Advice")}
-                  </a>
-                </Button>
-
-                <Button
-                  size="lg"
-                  variant="outlineLight"
-                  asChild
-                  className="font-semibold text-xs uppercase tracking-widest px-8"
+                  {tx("Get a free proposal")}
+                  <ArrowRight className="h-5 w-5" aria-hidden="true" />
+                </a>
+                <a
+                  href="#calculator"
+                  className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/40 px-8 text-base font-semibold text-white transition-colors hover:bg-white/10"
                 >
-                  <a href="#calculator">
-                    {tx("Simulate Your Revenue")}
-                  </a>
-                </Button>
+                  {tx("Estimate my income")}
+                </a>
               </div>
             </div>
           </div>
@@ -167,9 +133,6 @@ export function OwnerServicesView({ locale }: { locale: SiteLocale }) {
 
         {/* 2. Funnel A: three owner services (HK on Demand, Co-Hosting, Full Management) */}
         <OwnerServiceCards />
-
-        {/* 3. The Kinghouse Advantage (4-Column Value Props Grid) */}
-        <ValuePropsGrid locale={locale} />
 
         {/* 4. AirDNA-Grade Interactive Revenue Simulator */}
         <PropertyRevenueCalculator />

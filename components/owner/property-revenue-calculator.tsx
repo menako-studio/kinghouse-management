@@ -544,20 +544,21 @@ Please provide information on scheduling a complimentary physical audit and onbo
                 </div>
 
                 {/* Conversion Action Buttons */}
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-4">
+                <div className="flex flex-col items-stretch gap-3 pt-4 xl:flex-row xl:items-center">
                   <Button
                     size="lg"
                     asChild
-                    className="flex-1 bg-white text-[#231F1A] hover:bg-[#FAF7F1] hover:text-black font-semibold text-xs uppercase tracking-widest py-6 shadow-xl border-none"
+                    className="h-auto min-h-14 flex-1 whitespace-normal border-none bg-white px-6 py-3 text-base font-semibold text-[#231F1A] shadow-xl hover:bg-[#FAF7F1] hover:text-black"
                   >
                     <a
                       href={whatsappUrl}
+                      data-wa-direct
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => trackWhatsAppClick({ source: "revenue_calculator", context: selectedSubmarketKey })}
                     >
                       <MessageSquare className="mr-2 h-4 w-4 text-[#25D366]" />
-                      {isId ? "Klaim Audit & Konsultasi via WhatsApp" : "Claim Audit & Fast-Track via WhatsApp"}
+                      {isId ? "Minta audit gratis via WhatsApp" : "Get my free audit on WhatsApp"}
                     </a>
                   </Button>
 
@@ -565,10 +566,10 @@ Please provide information on scheduling a complimentary physical audit and onbo
                     size="lg"
                     variant="outlineLight"
                     onClick={handlePrintAudit}
-                    className="font-semibold text-xs uppercase tracking-widest py-6 border-white/20 text-white hover:bg-white/10"
+                    className="h-auto min-h-14 whitespace-normal border-white/25 px-6 py-3 text-base font-semibold text-white hover:bg-white/10"
                   >
                     <Printer className="mr-2 h-4 w-4 text-[#CBBEA0]" />
-                    {isId ? "Cetak Lembar Audit (A4)" : "Print Official Audit Sheet (A4)"}
+                    {isId ? "Cetak (A4)" : "Print (A4)"}
                   </Button>
                 </div>
               </div>
