@@ -16,6 +16,11 @@ const RULES: { name: string; pattern: RegExp }[] = [
 // Fixtures that intentionally contain fake credentials to test rejection paths.
 const ALLOWED_FILES = new Set(["tests/no-hardcoded-secrets.test.ts", "tests/pen-testing-security.test.ts", "tests/validation-security.test.ts"])
 
+// Owner decision: the Airbnb iCal tokens and guest WiFi passwords below are kept in
+// the repository on purpose (they are already in git history). Remove this list
+// when they move to environment variables again.
+const ACCEPTED_EXPOSURE = new Set(["lib/data.ts", "lib/guest-guide/data.ts"])
+
 function trackedFiles(): string[] {
   return execFileSync("git", ["ls-files", "-z"], { encoding: "utf8" })
     .split("\0")
@@ -26,7 +31,7 @@ describe("repository contains no committed secrets", () => {
   it("has no credential patterns in tracked files", () => {
     const hits: string[] = []
     for (const file of trackedFiles()) {
-      if (ALLOWED_FILES.has(file)) continue
+      if (ALLOWED_FILES.has(file) || ACCEPTED_EXPOSURE.has(file)) continue
       const text = readFileSync(file, "utf8")
       for (const rule of RULES) {
         const m = text.match(rule.pattern)

@@ -1,7 +1,6 @@
 export interface WifiInfo {
   networkName: string
-  /** Filled from GUEST_WIFI_PASSWORD_<SLUG> at request time; undefined when not configured. */
-  password?: string
+  password: string
   speed: string
   notes?: string
 }

@@ -3,7 +3,7 @@ import {
   calculateUpsellOrder,
   generateUpsellWhatsAppUrl,
 } from "@/lib/guest-guide/calculations"
-import { GUEST_COMPENDIUMS, getGuestCompendium, wifiPasswordEnvName } from "@/lib/guest-guide/data"
+import { GUEST_COMPENDIUMS, UPSELL_SERVICES } from "@/lib/guest-guide/data"
 
 describe("Digital Guest Compendium & Upsell Engine", () => {
   it("contains valid compendiums for all 4 managed Jabodetabek properties", () => {
@@ -16,7 +16,7 @@ describe("Digital Guest Compendium & Upsell Engine", () => {
 
     slugs.forEach((slug) => {
       const comp = GUEST_COMPENDIUMS[slug]
-      expect("password" in comp.wifi, "WiFi passwords must come from env, not the repo").toBe(false)
+      expect(comp.wifi.password).toBeTruthy()
       expect(comp.wifi.networkName).toBeTruthy()
       expect(comp.access.checkInTime).toBeTruthy()
       expect(comp.houseRules.length).toBeGreaterThan(0)
@@ -24,10 +24,12 @@ describe("Digital Guest Compendium & Upsell Engine", () => {
 
     // Sky House verified credentials
     expect(GUEST_COMPENDIUMS["sky-house-tangerang"].wifi.networkName).toBe("KINGSKYHOUSE22")
+    expect(GUEST_COMPENDIUMS["sky-house-tangerang"].wifi.password).toBe("120210120069#")
     expect(GUEST_COMPENDIUMS["sky-house-tangerang"].houseRules.some((r) => r.includes("NO SMOKING"))).toBe(true)
 
     // Orange County verified credentials
     expect(GUEST_COMPENDIUMS["skyline-luxury-orange-county-cikarang"].wifi.networkName).toBe("N0510")
+    expect(GUEST_COMPENDIUMS["skyline-luxury-orange-county-cikarang"].wifi.password).toBe("Kinghouse")
     expect(GUEST_COMPENDIUMS["skyline-luxury-orange-county-cikarang"].houseRules.some((r) => r.includes("ELECTRICAL SAFETY"))).toBe(true)
   })
 

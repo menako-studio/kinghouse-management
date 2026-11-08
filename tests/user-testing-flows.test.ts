@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest"
 import { CURATED_VILLAS } from "@/lib/data"
 import { SUPPORTED_CURRENCIES } from "@/lib/context/localization-context"
-import { GUEST_COMPENDIUMS } from "@/lib/guest-guide/data"
+import { GUEST_COMPENDIUMS, UPSELL_SERVICES } from "@/lib/guest-guide/data"
 import { calculateUpsellOrder, generateUpsellWhatsAppUrl } from "@/lib/guest-guide/calculations"
 import { SUBMARKET_BENCHMARKS } from "@/lib/pricing/engine"
 import { generatePricingCsv } from "@/lib/pricing/export"
@@ -91,6 +91,7 @@ describe("End-to-End User Testing Simulation: Discerning Guest Persona", () => {
 
     // 1. One-click WiFi retrieval
     expect(skyHouse.wifi.networkName).toBe("KINGSKYHOUSE22")
+    expect(skyHouse.wifi.password).toBe("120210120069#")
 
     // 2. Clear house rules for high-value asset protection
     expect(skyHouse.houseRules.some((r) => r.includes("NO SMOKING"))).toBe(true)

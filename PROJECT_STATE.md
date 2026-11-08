@@ -686,11 +686,11 @@ kinghouse-management/
 
 ### Phase 6.0 — Secrets Hardening (Completed)
 - [x] **No defaults in code** (`lib/auth.ts`): removed the default admin password and session-signing key. `ADMIN_PASSWORD` (≥ 12) and `AUTH_SECRET` (≥ 32) are required; otherwise login returns 503 and tokens cannot be signed or verified (fails closed). Constant-time compare no longer leaks length.
-- [x] **Airbnb iCal tokens** removed from `lib/data.ts` (env-only `AIRBNB_ICAL_*`). They were previously bundled into client JS via `lib/data` imports; now non-`NEXT_PUBLIC_` vars resolve to `undefined` in the browser.
-- [x] **Guest WiFi passwords** removed from `lib/guest-guide/data.ts`; `getGuestCompendium(slug)` reads `GUEST_WIFI_PASSWORD_<SLUG>` server-side; widget shows "ask host" when unset.
+- [x] **Admin secrets** only come from env (`ADMIN_PASSWORD`, `AUTH_SECRET`, `CRON_SECRET` set in Vercel).
+- [~] **Accepted exposure (owner decision, reverted from the earlier env-only plan):** Airbnb iCal URLs stay in `lib/data.ts` and guest WiFi passwords stay in `lib/guest-guide/data.ts`. The guard test allowlists these two files (`ACCEPTED_EXPOSURE`).
 - [x] `.env.example` rewritten (empty values, REQUIRED section, `CRON_SECRET`); production/staging examples point to it.
 - [x] **Guard test** `tests/no-hardcoded-secrets.test.ts`; test auth secrets are random per run (`tests/setup-env.ts`). Built bundle scanned: no leaked values.
-- [ ] **Action required**: set `ADMIN_PASSWORD`, `AUTH_SECRET`, `CRON_SECRET` (+ iCal URLs and WiFi passwords) in Vercel and redeploy. Old values remain in git history → treat as exposed and rotate; regenerate Airbnb calendar links where possible.
+- [x] Admin variables set in Vercel by owner (`ADMIN_PASSWORD`, `AUTH_SECRET`, `CRON_SECRET`).
 - [ ] Follow-up idea: `/stay/[slug]` is reachable by anyone who knows a property slug (robots-disallowed, not secret). Gate it with a per-property key in the QR link if WiFi/entry details must be private.
 
 

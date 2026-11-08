@@ -187,9 +187,9 @@ The project includes an automated test suite powered by **Vitest** covering ERP 
 ## 🔐 Administrative Authentication & Security Architecture
 
 The CMS Dashboard is only accessible with verified administrative session tokens:
-- **No secrets in the repository**: there are no default passwords, signing keys, calendar tokens or WiFi passwords in code. Everything sensitive comes from environment variables (Vercel → Settings → Environment Variables, marked *Sensitive*; `.env.local` for development). `tests/no-hardcoded-secrets.test.ts` blocks regressions.
+- **No admin secrets in the repository**: there are no default admin passwords or signing keys in code. Those come from environment variables (Vercel → Settings → Environment Variables, marked *Sensitive*; `.env.local` for development). `tests/no-hardcoded-secrets.test.ts` blocks regressions, except for the two accepted-exposure data files listed in it.
 - **Fails closed**: `ADMIN_PASSWORD` (≥ 12 chars) and `AUTH_SECRET` (≥ 32 chars) are required. If either is missing or too short, `/api/auth/login` returns `503`, no session token can be signed, and existing tokens are rejected. A misconfigured deploy locks the dashboard instead of running on a published default.
-- **Server Runtime Isolation**: credentials are resolved server-side only. iCal feed URLs (`AIRBNB_ICAL_*`) and WiFi passwords are non-`NEXT_PUBLIC_` variables, so Next.js never inlines them into browser bundles.
+- **Server Runtime Isolation**: admin credentials and the session key are resolved server-side only and never inlined into browser bundles.
 - **Timing-Safe Authentication**: constant-time comparison that also hides the expected value's length.
 - **Search Engine Isolation**: `/dashboard` and `/login` are disallowed in `robots.txt`, omitted from `sitemap.xml`, and return `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`.
 - **Rate Limiting**: sliding-window limiter blocks brute-force attempts on `/api/auth/login`.
@@ -206,14 +206,12 @@ The CMS Dashboard is only accessible with verified administrative session tokens
 | `CRON_SECRET` | ✅ prod | Vercel sends it as `Authorization: Bearer …` to the daily iCal sync; without it the endpoint is publicly triggerable |
 | `SUPABASE_SERVICE_ROLE_KEY` | ✅ prod | Server-only, bypasses RLS. Never `NEXT_PUBLIC_` |
 | `NEXT_PUBLIC_SUPABASE_URL` / `_ANON_KEY` / `_SCHEMA` | ✅ prod | Public client config |
-| `AIRBNB_ICAL_VERSATILE_STAY`, `_VERSATILE_EVENTS`, `_SKYHOUSE_TANGERANG`, `_SKYLINE_CIKARANG` | – | Private Airbnb calendar export URLs (contain a token) |
-| `GUEST_WIFI_PASSWORD_<SLUG>` | – | One per property, slug upper-cased with `_` (e.g. `…_SKY_HOUSE_TANGERANG`) |
 | `NEXT_PUBLIC_SITE_URL`, `_GA_MEASUREMENT_ID`, `_GTM_ID`, `_GOOGLE_SITE_VERIFICATION` | – | Public site / analytics config |
 | `NEXT_PUBLIC_WA_OWNER`, `NEXT_PUBLIC_WA_GUEST` | – | Public WhatsApp business lines |
 | `LEAD_WEBHOOK_URL`, `LEAD_WEBHOOK_SECRET` | – | Optional lead forwarding (Google Sheet / CRM) |
 
-### Rotating secrets
-Old values (admin password, session key, Airbnb calendar tokens, WiFi passwords) remain in the **git history** of earlier commits. Treat them as exposed: set new values in Vercel, redeploy, and regenerate the Airbnb calendar export links where Airbnb allows. Rewriting history is not a substitute for rotation.
+### Accepted exposure (owner decision)
+The Airbnb iCal feed URLs (`lib/data.ts`) and the guest WiFi passwords (`lib/guest-guide/data.ts`) are kept in the repository on purpose. They are visible in the source and in git history. Rotate the WiFi passwords on the routers and regenerate Airbnb calendar links if that becomes necessary; the admin password and session key are the only secrets that moved to environment variables.
 
 ---
 
