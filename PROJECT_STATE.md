@@ -26,8 +26,8 @@ The platform serves two primary user personas:
 
 | Category | Technology | Version / Configuration | Purpose |
 | :--- | :--- | :--- | :--- |
-| **Framework** | Next.js (App Router) | `16.3.4` (`next dev --turbopack`) | Core fullstack framework & static/dynamic generation |
-| **Runtime / Core** | React / React DOM | `19.2.0` | Modern React UI with Server/Client Components |
+| **Framework** | Next.js (App Router) | `16.4.3` (Turbopack; `proxy.ts`, 2 root layouts, `experimental.globalNotFound`) | Core fullstack framework & static/dynamic generation |
+| **Runtime / Core** | React / React DOM | `19.3.1` | Modern React UI with Server/Client Components |
 | **Language** | TypeScript | `^5.0` (Strict mode) | Type safety across schemas, state, and props |
 | **Typography** | Cormorant Garamond & Inter | Google Fonts (`next/font/google`) | Official Brand Guidelines Vol II: Cormorant Garamond (editorial/display) & Inter (interface/body) |
 | **Localization** | Multi-Language & Multi-Currency Context | Custom `LocalizationProvider` | Real-time conversions (10 currencies) & i18n (9 languages: JA, ZH, FR, ES, DE, RU, ID, EN) |
@@ -37,99 +37,51 @@ The platform serves two primary user personas:
 | **Animations** | Framer Motion | `^12.23.25` | Fluid micro-interactions and transitions |
 | **Icons** | Lucide React | `^0.556.0` | Vector iconography |
 | **Validation** | Zod | `^4.4.3` | Runtime schema validation for forms & API payloads |
-| **Testing** | Vitest | `^4.1.11` | Automated unit testing for ERP, security, and feeds |
-| **Security** | Web Crypto HMAC-SHA256 + Rate Limiter | In-Memory Sliding Window | Edge session protection and brute-force mitigation |
+| **Testing** | Vitest | `^5.0.5` | 171 tests / 22 suites: ERP, security (incl. fail-closed auth + committed-secret guard), feeds, blog scheduling |
+| **Security** | Web Crypto HMAC-SHA256 + Rate Limiter | In-Memory Sliding Window; env-only secrets, fail-closed | Session protection, brute-force mitigation, no credentials in git |
 | **Hosting** | Vercel (Hobby Tier) | 100% Free Tier Compatible | Zero external paid API dependencies |
 
 ---
 
 ## 2. PROJECT STRUCTURE & ROUTES
 
-### 2.1 Complete Directory Tree
+### 2.1 Directory Tree (current)
 
 ```
-kinghouse-mockup/
+kinghouse-management/
 ├── app/
-│   ├── api/
-│   │   ├── auth/                     # Login (with rate-limiting & Zod), logout, me routes
-│   │   ├── erp/                      # Dynamic ERP endpoints (reservations, expenses, dynamic-pricing)
-│   │   │   ├── dynamic-pricing/      # AirDNA-grade smart rates & override REST endpoint
-│   │   │   ├── expenses/             # Operational POS expense ledger CRUD
-│   │   │   ├── ical-sync/            # Multi-unit live Airbnb iCal background sync
-│   │   │   └── reservations/         # Multi-channel reservations CRUD & store pipeline
-│   │   └── ical/[villaSlug]/         # Dynamic RFC 5545 iCal calendar feeds
-│   ├── blog/                         # Blog index & article reader with BlogPosting schema
-│   ├── dashboard/                    # Hospitality ERP/POS & CMS Suite
-│   │   ├── analytics/page.tsx        # Revenue intelligence, POS expense ledger, & print statements
-│   │   ├── blog/page.tsx             # Blog article manager
-│   │   ├── bookings/page.tsx         # Multi-channel reservations hub with 1-click CSV export
-│   │   ├── pricing/page.tsx          # AirDNA dynamic pricing & smart rates calendar heatmap
-│   │   ├── properties/page.tsx       # Portfolio asset inventory & iCal sync setup wizard
-│   │   ├── seo/page.tsx              # Interactive SEO Editor & Live Google SERP preview
-│   │   ├── settings/page.tsx         # Admin credentials, security audit, & master feeds
-│   │   ├── layout.tsx                # Dashboard layout with dark collapsible sidebar
-│   │   └── page.tsx                  # Portfolio KPIs & multi-channel OTA status
-│   ├── events/                       # Events & garden wedding venue pages
-│   ├── faq/page.tsx                  # Interactive FAQ knowledge base
-│   ├── locations/[area]/             # Dynamic area landing pages (TouristDestination schema)
-│   ├── login/page.tsx                # Sana Labs styled administrative login portal
-│   ├── management-inquiry/page.tsx   # Dedicated property owner onboarding inquiry & fast-track audit
-│   ├── owner-services/page.tsx       # Tiered fees (15% vs 20%), ROI case studies, audit form
-│   ├── press/page.tsx                # Press releases, media coverage, and media kit downloads
-│   ├── privacy/page.tsx              # Indonesian UU PDP compliant privacy policy
-│   ├── terms/page.tsx                # Official terms & conditions and booking policies
-│   ├── villas/                       # Property catalog & single villa editorial detail
-│   ├── about/page.tsx                # Company profile & hospitality standards
-│   ├── contact/page.tsx              # Contact info & direct WhatsApp concierge
-│   ├── globals.css                   # Tailwind v4 theme, variables & scrollbars
-│   ├── layout.tsx                    # Root shell with Organization + LocalBusiness JSON-LD
-│   └── page.tsx                      # Dual-path high-conversion homepage
+│   ├── (site)/                       # Root layout #1: <html lang="en">. URLs are unchanged (route group)
+│   │   ├── layout.tsx                # Renders RootDocument lang="en"
+│   │   ├── page.tsx                  # Homepage (hero → gate → curated villas → proof)
+│   │   ├── about, airbnb-cleaning-jakarta, contact, faq, press, privacy, terms, thanks, services
+│   │   ├── villas/ events/ locations/[area]/ stay/[slug]/   # Catalog, venues, area hubs, in-stay guide
+│   │   ├── owner-services/ management-inquiry/              # B2B funnel (calculator, plans, case studies, form)
+│   │   ├── blog/ blog/[slug]/        # Blog index + article (404 until publish time)
+│   │   ├── dashboard/                # ERP/POS + CMS (analytics, blog, bookings, pricing, properties, seo, settings)
+│   │   ├── login/  not-found.tsx
+│   ├── id/                           # Root layout #2: <html lang="id"> + IdContentProvider; Indonesian pages
+│   │   └── layout.tsx, page.tsx, villas, events, owner-services, contact, faq, about, ...
+│   ├── api/                          # auth/{login,logout,me}, blog, leads, availability, erp/*, ical/[villaSlug]
+│   ├── global-not-found.tsx          # 404 for URLs matching no route (needed with two root layouts)
+│   ├── globals.css                   # Tailwind v4 theme, .site-public type scale, kh-* animations
+│   ├── robots.ts  sitemap.ts
 ├── components/
-│   ├── bento/                        # Bento image gallery & lightbox modal
-│   ├── blog/                         # BlogCard component (featured & standard variants)
-│   ├── dashboard/                    # Dashboard sidebar, stat-card, channel-badge, seo-editor
-│   ├── home/                         # Hero slider, search bar, trust proof
-│   ├── layout/                       # Sticky header navigation & editorial footer
-│   ├── owner/                        # Pricing tables, ROI metrics, lead audit form
-│   ├── ui/                           # Badge, button, card, floating-whatsapp, input primitives
-│   └── villas/                       # Amenities grid, booking sidebar, map, villa card
+│   ├── layout/ (root-document, header, footer, site-shell)
+│   ├── ui/ (select, date-picker, button, input, card, badge, floating-whatsapp, localized-link)
+│   ├── funnel/ (whatsapp-chooser, form-fields, lead-source-capture)
+│   ├── home/ owner/ events/ villas/ stay/ blog/ dashboard/ bento/ pages/ i18n/ analytics/
 ├── lib/
-│   ├── erp/                          # Calculations, types, export engine, seed data
-│   │   ├── calculations.ts           # 15% vs 20% fee splits, ADR, RevPAR, owner statements
-│   │   ├── export.ts                 # 1-click CSV and printable HTML statements
-│   │   ├── initial-data.ts           # Zero-dummy reservations and POS expenses store
-│   │   ├── store.ts                  # In-memory runtime persistence & iCal trigger
-│   │   └── types.ts                  # ERP domain models (Reservation, ExpenseRecord, OwnerStatement)
-│   ├── earnings/
-│   │   └── airbnb-monthly.ts         # Exact Airbnb monthly earnings exports (Paid / Upcoming)
-│   ├── pricing/                      # Dynamic pricing & revenue outlook engine
-│   │   ├── benchmarks.ts             # Submarket benchmarks (internal research)
-│   │   ├── engine.ts                 # Multi-factor nightly pricing algorithm
-│   │   ├── export.ts                 # 1-click CSV rate calendar exporter
-│   │   ├── holidays.ts               # Indonesian Public Holidays API & long weekend service
-│   │   ├── store.ts                  # In-memory custom price overrides & rules store
-│   │   ├── types.ts                  # Dynamic pricing domain models & multiplier breakdown
-│   │   └── yield.ts                  # 60-day outlook anchored to Airbnb payouts
-│   ├── security/
-│   │   └── rate-limiter.ts           # Zero-cost in-memory sliding window rate limiter
-│   ├── validations/
-│   │   └── index.ts                  # Zod validation schemas for forms, APIs, and auth
-│   ├── auth.ts                       # HMAC-SHA256 session tokenization
-│   ├── constants.ts                  # SITE_CONFIG, MANAGED_AREAS, MANAGEMENT_SERVICES
-│   ├── data.ts                       # Real Airbnb properties, 11 blog posts, 3 event packages
-│   ├── types.ts                      # Core domain models (Villa, BlogPost, VillaEvent, SeoMeta)
-│   └── utils.ts                      # VacationRental schema generator, currency formatters
-├── tests/
-│   ├── airbnb-yield.test.ts          # Airbnb CSV figures, run-rate & yield outlook math
-│   ├── analytics-seo.test.ts         # Automated unit tests for GTM/GA4 & Schema.org
-│   ├── dynamic-pricing.test.ts       # Automated unit tests for AirDNA dynamic pricing engine
-│   ├── erp-calculations.test.ts      # Automated unit tests for financial math & statement generator
-│   ├── guest-compendium.test.ts      # Automated unit tests for guest stay & house rules
-│   ├── ical-feed.test.ts             # Automated unit tests for CSV and calendar feeds
-│   ├── ical-sync-engine.test.ts      # Automated unit tests for 2-way Airbnb calendar sync
-│   ├── localization-currency.test.ts # Automated unit tests for 10 currencies & 9 languages
-│   └── validation-security.test.ts   # Automated unit tests for Zod schemas & rate limiter
-└── middleware.ts                     # Edge security headers & route protection
+│   ├── auth.ts                       # HMAC session tokens; ADMIN_PASSWORD/AUTH_SECRET required, fails closed
+│   ├── blog/ (schedule.ts, scheduled.ts, service.ts, posts.ts)   # Scheduled publishing + editorial calendar
+│   ├── earnings/ (airbnb-monthly.ts, case-study.ts)              # Airbnb payout exports → yield & case studies
+│   ├── guest-guide/                  # Compendium data (WiFi passwords from env), upsell calculations
+│   ├── i18n/ (ui, funnel, content/id)  data.ts  marketing-data.ts  constants.ts  types.ts
+│   ├── erp/ pricing/ ical/ funnel/ security/ supabase/ validations/
+├── supabase/ (schema.sql, migrations/)   # incl. 20261108_blog_scheduled_publishing.sql
+├── tests/ (22 suites)  # + setup-env.ts, blog-schedule, case-study, no-hardcoded-secrets
+├── proxy.ts                          # Security headers & dashboard route protection (was middleware.ts)
+├── next.config.ts  vercel.json  vitest.config.mts
+└── .env.example                      # Complete documented env template (all values empty)
 ```
 
 ---
@@ -158,7 +110,7 @@ kinghouse-mockup/
   - **Enhanced Legibility**: CMS `/dashboard` and `/login` enforced 100% **Plus Jakarta Sans** (sans-serif) for high data legibility, numbers, and operational table scans.
 - [x] **Live Two-Way OTA Synchronization** (`app/api/ical/[villaSlug]/route.ts`):
   - Dynamic RFC 5545 `.ics` calendar feed generation per villa for seamless import into Airbnb, Agoda, and Booking.com.
-- [x] **Security Fortification & Runtime Validation** (`lib/security/`, `lib/validations/`, `middleware.ts`):
+- [x] **Security Fortification & Runtime Validation** (`lib/security/`, `lib/validations/`, `proxy.ts`):
   - Zero-dependency in-memory sliding window rate limiting on `/api/auth/login` to thwart brute-force attacks.
   - Strict **Zod** schema validation across login, manual reservations, expenses, and SEO metadata.
   - HTTP defense-in-depth headers: `X-Frame-Options`, `X-Content-Type-Options`, `X-XSS-Protection`, `Referrer-Policy`.
@@ -282,11 +234,11 @@ kinghouse-mockup/
   - Digital Guest Stay Compendium WiFi password copies & Google Maps directions clicks.
   - Localization preference changes (10 currencies & 9 languages).
 ### Phase 3.2 — CMS Security Fortification, Credential Isolation, Detailed SEO Extension Compliance & Organic Traffic Expansion (Completed)
-- [x] **CMS Security & Superadmin Isolation** (`lib/auth.ts`, `app/login/`, `middleware.ts`):
+- [x] **CMS Security & Superadmin Isolation** (`lib/auth.ts`, `app/login/`, `proxy.ts`):
   - Completely removed evaluation credentials box and auto-fill button from the public login page (`/login`).
-  - Isolated admin credentials on server runtime using environment variables (`ADMIN_EMAIL`, `ADMIN_PASSWORD`, `AUTH_SECRET_KEY`) with constant-time string comparison to prevent timing attacks.
+  - Isolated admin credentials on server runtime using environment variables (`ADMIN_EMAIL`, `ADMIN_PASSWORD`, `AUTH_SECRET`) with constant-time string comparison to prevent timing attacks.
   - Added server-side metadata to `/login/layout.tsx` enforcing `robots: { index: false, follow: false, noarchive: true, nocache: true }`.
-  - Added edge `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet` response header in `middleware.ts` for all `/dashboard` and `/login` routes.
+  - Added edge `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet` response header in `proxy.ts` for all `/dashboard` and `/login` routes.
   - Strengthened `robots.txt` disallow rules and verified that `sitemap.xml` strictly never exposes `/dashboard`, `/login`, or `/api/*`.
 - [x] **Detailed SEO Extension & Canonical Domain Alignment**:
   - Standardized canonical base URL across all pages and schemas to `https://www.kinghousemanagement.com`.
@@ -702,12 +654,52 @@ kinghouse-mockup/
 - [x] 11 new tests in `tests/airbnb-yield.test.ts`.
 - Known gap: the dashboard sidebar does not collapse on phone widths (all dashboard pages).
 
+### Phase 5.5 — WhatsApp Chooser Restyle & Landing Journey Simplification (Completed)
+- [x] **Chooser modal (`components/funnel/whatsapp-chooser.tsx`)**: charcoal header, Cormorant title, 18 px option titles / 16 px body, bottom sheet on mobile, focus trap + Esc + scroll lock + focus return, copy moved to the UI dictionary so `/id` is Indonesian.
+- [x] **Fewer redundant questions**: CTAs with a clear purpose carry `data-wa-direct` (owner form, villa booking sidebar, event form, housekeeping, revenue calculator, management inquiry) and skip the chooser; generic CTAs still open it.
+- [x] **Homepage**: hero reduced to one Superhost badge + 2 CTAs ("Find a Stay" / "I Own a Property"), shorter description; removed the bottom `DualPathSplit`; testimonials use initials instead of stock photos; B2B/B2C wording removed. 44 unused UI strings dropped in all languages.
+- [x] **Type scale**: `.site-public` minimum 14 px, small text 16 px.
+- [x] Undefined `animate-in` utilities replaced with defined `kh-fade / kh-sheet / kh-pop` keyframes (reduced-motion aware).
+
+### Phase 5.6 — Brand Form Components & Footer (Completed)
+- [x] **`components/ui/select.tsx`** replaces all 27 native selects: ARIA combobox/listbox, typeahead, portalled fixed positioning that flips above near the screen edge, accepts `<option>` children and `onChange(e.target.value)`.
+- [x] **`components/ui/date-picker.tsx`** replaces all native date inputs: Monday-first grid, 44 px days, EN/ID names, min/max, keyboard, Today/Clear. Past dates disabled for check-in/availability/event; check-out ≥ check-in.
+- [x] **Footer** rewritten: every destination once; Services / Areas / Company / Contact columns; legal links only in the bottom bar; translated on `/id`.
+- [x] Layout fixes: tablet search bar stacks until `lg`; breadcrumbs wrap on mobile; footer link wrapping; `sizes` on all 32 `fill` images.
+
+### Phase 5.7 — Owner Page Honesty & Brevity (Completed)
+- [x] **Case studies use real data**: the old cards contradicted the Airbnb export (Skyline Cikarang claimed Rp 22 jt/month vs Rp 2–4 jt paid). `CaseStudy` now has only descriptive fields; `lib/earnings/case-study.ts` computes average (last 4 paid months) and best month from `airbnb-monthly.ts`, shown with the export date. Unverifiable occupancy/EBITDA numbers, the 91 % hero claim and the "+80 % occupancy" testimonial badge were removed.
+- [x] Owner hero shortened (badge, headline, 4.9★ + fee 15–23 %, 2 CTAs); `ValuePropsGrid` ("Top 1 %") and the second fee calculator removed; plans renamed *Co-Hosting* / *Full Management*.
+- [ ] To verify with the owner: testimonial text/names on the homepage and the older blog post "Studi Kasus: Okupansi Jagakarsa naik 82 %".
+
+### Phase 5.8 — SEO & Locale Architecture (Completed)
+- [x] Removed the site-wide canonical (404, `/thanks` and missing articles no longer claim the homepage); missing articles `noindex` with a single-brand title.
+- [x] **Two root layouts**: English routes moved into `app/(site)` (URLs unchanged); `app/id` is its own root layout so server HTML is `<html lang="id">`. Shared document in `components/layout/root-document.tsx`; `app/global-not-found.tsx` + `experimental.globalNotFound` handle unmatched URLs. Language switches now do a full page load.
+- [x] `middleware.ts` → `proxy.ts` (Next.js 16 convention).
+
+### Phase 5.9 — Scheduled Blog Publishing & Editorial Calendar (Completed)
+- [x] **Rules** in `lib/blog/schedule.ts` (Published + publish time passed = live; date-only = 07:00 WIB). `getBlogPosts` / `getBlogPostBySlug` take `visibility: "public" | "admin"`; public is the default everywhere, so Drafts no longer leak into the sitemap or anonymous `/api/blog`.
+- [x] **Dashboard**: *Jadwal Tayang (WIB)* date + time, *Terjadwal* tab/badge, readable dates, categories saved as slugs, no fabricated read counts. API accepts `publishedAt`.
+- [x] **Editorial calendar** `lib/blog/scheduled.ts` (merged with Supabase rows; DB wins on slug): 16 Nov, 26 Nov, 6 Dec, 16 Dec 2026 at 07:00 WIB. Prices/fees come from `lib/data.ts` and `MANAGEMENT_FEES`.
+- [x] **Supabase**: run `supabase/migrations/20261108_blog_scheduled_publishing.sql` (anon can read only published posts whose time has passed; index on status + published_at). Already applied in production.
+- [x] Why staggered: matches search demand (year-end venue → late Nov, New Year villas → early Dec), keeps freshness signals and crawl frequency up, spreads promotion, and makes per-article results measurable in Search Console.
+
+### Phase 6.0 — Secrets Hardening (Completed)
+- [x] **No defaults in code** (`lib/auth.ts`): removed the default admin password and session-signing key. `ADMIN_PASSWORD` (≥ 12) and `AUTH_SECRET` (≥ 32) are required; otherwise login returns 503 and tokens cannot be signed or verified (fails closed). Constant-time compare no longer leaks length.
+- [x] **Airbnb iCal tokens** removed from `lib/data.ts` (env-only `AIRBNB_ICAL_*`). They were previously bundled into client JS via `lib/data` imports; now non-`NEXT_PUBLIC_` vars resolve to `undefined` in the browser.
+- [x] **Guest WiFi passwords** removed from `lib/guest-guide/data.ts`; `getGuestCompendium(slug)` reads `GUEST_WIFI_PASSWORD_<SLUG>` server-side; widget shows "ask host" when unset.
+- [x] `.env.example` rewritten (empty values, REQUIRED section, `CRON_SECRET`); production/staging examples point to it.
+- [x] **Guard test** `tests/no-hardcoded-secrets.test.ts`; test auth secrets are random per run (`tests/setup-env.ts`). Built bundle scanned: no leaked values.
+- [ ] **Action required**: set `ADMIN_PASSWORD`, `AUTH_SECRET`, `CRON_SECRET` (+ iCal URLs and WiFi passwords) in Vercel and redeploy. Old values remain in git history → treat as exposed and rotate; regenerate Airbnb calendar links where possible.
+- [ ] Follow-up idea: `/stay/[slug]` is reachable by anyone who knows a property slug (robots-disallowed, not secret). Gate it with a per-property key in the QR link if WiFi/entry details must be private.
+
+
 ---
 
 ## 4. VERIFICATION COMMANDS
 
 ```bash
-# Run automated Vitest test suite (159 tests across 19 suites)
+# Run automated Vitest test suite (171 tests across 22 suites)
 npm test
 
 # Run TypeScript strict type verification (0 errors)
@@ -716,7 +708,7 @@ npx tsc --noEmit
 # Run ESLint validation (0 errors)
 npm run lint
 
-# Run Next.js optimized production build (66 static & dynamic routes)
+# Run Next.js optimized production build (all routes; needs no env secrets to build)
 npm run build
 ```
 
