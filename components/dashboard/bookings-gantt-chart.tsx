@@ -59,9 +59,14 @@ const CHANNEL_STYLES: Record<
   },
 }
 
+function startOfCurrentMonth(): Date {
+  const now = new Date()
+  return new Date(now.getFullYear(), now.getMonth(), 1)
+}
+
 export function BookingsGanttChart({ reservations }: BookingsGanttChartProps) {
   const mounted = useMounted()
-  const [viewDate, setViewDate] = useState(() => new Date(2026, 7, 1)) // August 2026
+  const [viewDate, setViewDate] = useState(startOfCurrentMonth)
   const [selectedRes, setSelectedRes] = useState<Reservation | null>(null)
 
   const year = viewDate.getFullYear()
@@ -100,7 +105,7 @@ export function BookingsGanttChart({ reservations }: BookingsGanttChartProps) {
   }
 
   const handleToday = () => {
-    setViewDate(new Date(2026, 7, 1))
+    setViewDate(startOfCurrentMonth())
   }
 
   return (

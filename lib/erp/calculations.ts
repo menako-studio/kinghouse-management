@@ -1,5 +1,10 @@
 import { Reservation, ExpenseRecord, OwnerStatement, FeeTier } from "./types"
 
+/** Calendar blocks and cancelled bookings never count toward revenue, nights or guests. */
+export function isCountedBooking(r: { status: string }): boolean {
+  return r.status !== "Blocked" && r.status !== "Cancelled"
+}
+
 /**
  * Calculates management fee and net owner payout for a single reservation.
  * Standard tier = 15%, Premium tier = 20%
