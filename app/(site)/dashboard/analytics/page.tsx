@@ -20,7 +20,7 @@ import {
 } from "lucide-react"
 import { CURATED_VILLAS } from "@/lib/data"
 import { Reservation, ExpenseRecord, ExpenseCategory } from "@/lib/erp/types"
-import { generateOwnerStatement, calculateADR, calculateRevPAR } from "@/lib/erp/calculations"
+import { generateOwnerStatement, calculateADR, calculateRevPAR, isCountedBooking } from "@/lib/erp/calculations"
 import { exportExpensesToCsv, downloadCsvFile, printOwnerStatement } from "@/lib/erp/export"
 import { formatCurrency } from "@/lib/utils"
 import { useNotifications } from "@/components/dashboard/notification-context"
@@ -85,9 +85,10 @@ export default function DashboardAnalyticsPage() {
   const [expRecordedBy, setExpRecordedBy] = useState("Staff Operasional")
 
   // Filtered dataset
+  const countedReservations = reservations.filter(isCountedBooking)
   const activeReservations = selectedPropertyId === "all"
-    ? reservations
-    : reservations.filter((r) => r.propertyId === selectedPropertyId || r.propertySlug === selectedPropertyId)
+    ? countedReservations
+    : countedReservations.filter((r) => r.propertyId === selectedPropertyId || r.propertySlug === selectedPropertyId)
 
   const activeExpenses = selectedPropertyId === "all"
     ? expenses
