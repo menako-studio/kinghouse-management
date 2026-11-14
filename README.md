@@ -59,6 +59,7 @@ An editorial-grade property management, SEO CMS, and 100% Free-Tier Hospitality 
     - *Outbound*: Per-property dynamic RFC 5545 `.ics` feeds (`/api/ical/[villaSlug]`) queried directly from live Supabase reservations with fallback, exporting cleanly to Airbnb, Agoda, and Booking.com.
     - *Inbound Parser & Batch Sync*: Multi-unit background parser (`/api/erp/ical-sync?action=sync-all`) actively connected to 4 verified live Airbnb feeds (Versatile House Stay, Versatile House Events, Sky House Tangerang, and Skyline Luxury Cikarang).
     - *Vercel Cron Automation*: Scheduled cron (`vercel.json`) running daily at 02:00 UTC on the Vercel Hobby Free Tier (`0 2 * * *`; Hobby allows one run per day), authenticated with `CRON_SECRET`. Feed URLs are kept in `lib/data.ts` (accepted exposure).
+    - *Supabase keep-alive*: a second daily cron (`0 5 * * *`) calls `/api/cron/supabase-keepalive`, which runs one row-less count query so the Supabase free-tier project is never paused for 7 days of inactivity. Same `CRON_SECRET` auth; returns no data.
     - *Collision-Resistant Architecture*: Suffix-based UID deduplication, Airbnb confirmation code extraction (`HMB8PSTSB9`), and guest contact phone suffix extraction.
 - **Production-Grade CMS Authorization & Security (`/login`, `/dashboard`)**:
   - **In-Memory Sliding Window Rate Limiting**: Brute-force protection on `/api/auth/login` blocking credential stuffing.
@@ -203,7 +204,7 @@ The CMS Dashboard is only accessible with verified administrative session tokens
 | `ADMIN_PASSWORD` | ✅ | ≥ 12 chars, unique to this site |
 | `AUTH_SECRET` | ✅ | ≥ 32 chars: `openssl rand -base64 48`. Changing it signs everyone out |
 | `ADMIN_EMAIL` / `ADMIN_NAME` | – | Default `info@kinghousemanagement.com` / `Kinghouse Admin` |
-| `CRON_SECRET` | ✅ prod | Vercel sends it as `Authorization: Bearer …` to the daily iCal sync; without it the endpoint is publicly triggerable |
+| `CRON_SECRET` | ✅ prod | ≥ 16 chars. Vercel sends it as `Authorization: Bearer …` to the daily iCal sync; without it the cron is rejected (fails closed) and only a signed-in admin can sync |
 | `SUPABASE_SERVICE_ROLE_KEY` | ✅ prod | Server-only, bypasses RLS. Never `NEXT_PUBLIC_` |
 | `NEXT_PUBLIC_SUPABASE_URL` / `_ANON_KEY` / `_SCHEMA` | ✅ prod | Public client config |
 | `NEXT_PUBLIC_SITE_URL`, `_GA_MEASUREMENT_ID`, `_GTM_ID`, `_GOOGLE_SITE_VERIFICATION` | – | Public site / analytics config |

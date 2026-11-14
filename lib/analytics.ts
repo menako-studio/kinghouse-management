@@ -204,7 +204,7 @@ export function trackOwnerLead(options: {
     property_type: options.propertyType,
     property_area: options.area,
     bedrooms: options.bedrooms,
-    owner_name: options.ownerName,
+    // No owner_name: personal data must not be sent to GA/GTM (Google's analytics terms forbid PII).
     service_tier: options.serviceTier || "15% Full Service",
   })
 

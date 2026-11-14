@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { localeAlternates } from "@/lib/i18n/site"
 import { SITE_CONFIG, DEFAULT_OG_IMAGES } from "@/lib/constants"
 import Script from "next/script"
+import { serializeJsonLd } from "@/lib/security/json-ld"
 
 export const metadata: Metadata = {
   title: {
@@ -79,7 +80,7 @@ export default function ManagementInquiryLayout({
       <Script
         id="management-inquiry-schema"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(inquirySchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(inquirySchema) }}
       />
       {children}
     </>

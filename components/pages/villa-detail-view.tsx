@@ -15,6 +15,7 @@ import { Badge } from "@/components/ui/badge"
 import { whatsappBase } from "@/lib/funnel/whatsapp"
 import { contentTranslator } from "@/lib/i18n/content"
 import { idPageMetadata, localeAlternates, localizePath, type SiteLocale } from "@/lib/i18n/site"
+import { serializeJsonLd } from "@/lib/security/json-ld"
 
 /** Indonesian search titles and descriptions per villa. */
 const ID_SEO: Record<string, { title: string; description: string }> = {
@@ -162,12 +163,12 @@ export function VillaDetailView({ slug, locale }: { slug: string; locale: SiteLo
       <script
         id="breadcrumb-schema"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
       />
       <script
         id="faq-schema"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqSchema) }}
       />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-12 pt-6">

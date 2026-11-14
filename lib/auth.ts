@@ -83,7 +83,7 @@ function base64UrlDecode(str: string): string {
 /**
  * Constant time string comparison to prevent timing attacks
  */
-function constantTimeStringCompare(a: string, b: string): boolean {
+export function constantTimeStringCompare(a: string, b: string): boolean {
   // Walk the longer string and fold the length difference in, so neither the
   // content nor the length of the expected value leaks through timing.
   const length = Math.max(a.length, b.length)

@@ -4,6 +4,7 @@ import { getBlogPosts } from "@/lib/blog/service"
 import { BlogIndexClient } from "@/components/blog/blog-index-client"
 import { SITE_CONFIG, DEFAULT_OG_IMAGES } from "@/lib/constants"
 import { whatsappBase } from "@/lib/funnel/whatsapp"
+import { serializeJsonLd } from "@/lib/security/json-ld"
 
 export const revalidate = 120
 
@@ -70,7 +71,7 @@ export default async function BlogPage() {
       <script
         id="blog-schema"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogIndexSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(blogIndexSchema) }}
       />
 
       {/* Hero Header */}

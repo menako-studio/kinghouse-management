@@ -4,6 +4,10 @@
     {
       "path": "/api/erp/ical-sync?action=sync-all",
       "schedule": "0 2 * * *"
+    },
+    {
+      "path": "/api/cron/supabase-keepalive",
+      "schedule": "0 5 * * *"
     }
   ]
 }

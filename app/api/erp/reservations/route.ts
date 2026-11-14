@@ -10,6 +10,7 @@ import {
 } from "@/lib/erp/store"
 import { syncAllConfiguredProperties } from "@/lib/ical/sync"
 import { verifyAdminRequest } from "@/lib/auth-server"
+import { isSafeIdentifier } from "@/lib/validations"
 
 // Map snake_case database row to TypeScript domain model
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -48,6 +49,9 @@ export async function GET(request: NextRequest) {
 
   const { searchParams } = new URL(request.url)
   const propertyId = searchParams.get("propertyId")
+  if (propertyId && !isSafeIdentifier(propertyId)) {
+    return NextResponse.json({ error: "propertyId tidak valid." }, { status: 400 })
+  }
   const channel = searchParams.get("channel")
   const forceSync = searchParams.get("sync") === "true"
 

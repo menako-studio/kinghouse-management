@@ -127,9 +127,10 @@ describe("Google Analytics 4 & Tag Manager Event Dispatcher", () => {
       property_type: "villa",
       property_area: "Jagakarsa",
       bedrooms: 5,
-      owner_name: "Budi Santoso",
       service_tier: "15% Full Service",
     })
+    // Personal data never goes to GA/GTM.
+    expect(window.dataLayer![0]).not.toHaveProperty("owner_name")
     expect(window.dataLayer![1]).toMatchObject({
       event: "generate_lead",
       event_category: "Lead Generation",

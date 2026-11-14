@@ -21,7 +21,12 @@ import Image from "next/image"
 function LoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard"
+  // Only same-site paths: "?callbackUrl=https://evil.example" must not turn login into an open redirect.
+  const requestedCallback = searchParams.get("callbackUrl") || ""
+  const callbackUrl =
+    requestedCallback.startsWith("/") && !requestedCallback.startsWith("//") && !requestedCallback.includes("\\")
+      ? requestedCallback
+      : "/dashboard"
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")

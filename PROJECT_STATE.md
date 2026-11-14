@@ -545,7 +545,7 @@ kinghouse-management/
 ### Phase 4.9 — Official Corporate Email Transition & Full Repo Standardization (Completed)
 - [x] **Custom Domain Email Infrastructure (`info@kinghousemanagement.com`)**:
   - Activated zero-cost, enterprise-grade inbound routing using **Cloudflare Email Routing** with automated MX and SPF DNS records.
-  - Configured outbound authenticated SMTP alias using **Brevo Relay** (`smtp-relay.brevo.com:587`) for `ptkreasiusmangosse@gmail.com` with sender authentication and unblocked IP policy.
+  - Configured outbound authenticated SMTP alias via a transactional relay (account and relay details kept out of this public repo).
 - [x] **Codebase-Wide Standardization & Public Touchpoints**:
   - Synchronized `lib/constants.ts` (`brand.contact.email`).
   - Standardized default admin credentials and timing-safe authentication in `lib/auth.ts` and `tests/validation-security.test.ts`.

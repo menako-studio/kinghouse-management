@@ -2,6 +2,7 @@ import Script from "next/script"
 import { FAQ_CATEGORIES } from "@/lib/faq"
 import { contentTranslator } from "@/lib/i18n/content"
 import { type SiteLocale } from "@/lib/i18n/site"
+import { serializeJsonLd } from "@/lib/security/json-ld"
 
 /** FAQPage JSON-LD built from the same questions and answers the page shows. */
 export function FaqSchema({ locale }: { locale: SiteLocale }) {
@@ -17,5 +18,5 @@ export function FaqSchema({ locale }: { locale: SiteLocale }) {
       }))
     ),
   }
-  return <Script id="faq-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+  return <Script id="faq-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(schema) }} />
 }

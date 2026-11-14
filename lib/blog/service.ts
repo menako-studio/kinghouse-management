@@ -3,6 +3,7 @@ import { BLOG_POSTS } from "@/lib/blog/posts"
 import { SCHEDULED_POSTS } from "@/lib/blog/scheduled"
 import { isLive } from "@/lib/blog/schedule"
 import { getSupabaseServerClient } from "@/lib/supabase/server"
+import { isSafeIdentifier } from "@/lib/validations"
 
 // In-memory runtime store initialized with verified seed articles and the
 // editorial calendar (scheduled posts go live on their own publish time).
@@ -256,6 +257,8 @@ export async function saveBlogPost(post: BlogPost, status: "Published" | "Draft"
  * Soft delete or hard delete a blog post
  */
 export async function deleteBlogPost(idOrSlug: string, permanent = false): Promise<boolean> {
+  // idOrSlug is interpolated into a PostgREST `.or()` filter below.
+  if (!isSafeIdentifier(idOrSlug)) return false
   const supabase = getSupabaseServerClient()
 
   if (permanent) {
@@ -295,6 +298,7 @@ export async function deleteBlogPost(idOrSlug: string, permanent = false): Promi
  * Restore a soft-deleted blog post
  */
 export async function restoreBlogPost(idOrSlug: string): Promise<boolean> {
+  if (!isSafeIdentifier(idOrSlug)) return false
   const supabase = getSupabaseServerClient()
 
   if (supabase) {

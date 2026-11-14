@@ -3,6 +3,7 @@ import { HK_FAQ } from "@/lib/funnel/config"
 import { MANAGED_AREAS, SITE_CONFIG } from "@/lib/constants"
 import { createTranslator } from "@/lib/i18n/funnel"
 import { localizePath, type SiteLocale } from "@/lib/i18n/site"
+import { serializeJsonLd } from "@/lib/security/json-ld"
 
 const PATH = "/airbnb-cleaning-jakarta"
 
@@ -51,7 +52,7 @@ function buildJsonLd(locale: SiteLocale) {
 export function HousekeepingView({ locale }: { locale: SiteLocale }) {
   return (
     <main className="min-h-screen bg-white">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildJsonLd(locale)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildJsonLd(locale)) }} />
       <HousekeepingContent />
     </main>
   )
