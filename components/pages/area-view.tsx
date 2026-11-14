@@ -9,6 +9,7 @@ import { VillaCard } from "@/components/villas/villa-card"
 import { whatsappBase } from "@/lib/funnel/whatsapp"
 import { contentTranslator } from "@/lib/i18n/content"
 import { idPageMetadata, localeAlternates, localizePath, type SiteLocale } from "@/lib/i18n/site"
+import { serializeJsonLd } from "@/lib/security/json-ld"
 
 export function areaMetadata(area: string, locale: SiteLocale): Metadata {
   const areaData = MANAGED_AREAS.find((a) => a.slug === area)
@@ -158,18 +159,18 @@ export function AreaView({ area, locale }: { area: string; locale: SiteLocale })
       <script
         id="area-schema"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(areaSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(areaSchema) }}
       />
       <script
         id="area-breadcrumb-schema"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
       />
       {faqSchema && (
         <script
           id="area-faq-schema"
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqSchema) }}
         />
       )}
 

@@ -3,6 +3,7 @@ import { SITE_CONFIG } from "@/lib/constants"
 import { CURATED_VILLAS } from "@/lib/data"
 import { contentTranslator } from "@/lib/i18n/content"
 import { localizePath, type SiteLocale } from "@/lib/i18n/site"
+import { serializeJsonLd } from "@/lib/security/json-ld"
 
 /** ItemList JSON-LD for the villa catalog in the page's language. */
 export function VillasSchema({ locale }: { locale: SiteLocale }) {
@@ -25,7 +26,7 @@ export function VillasSchema({ locale }: { locale: SiteLocale }) {
     <Script
       id="villas-itemlist-schema"
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(schema) }}
     />
   )
 }

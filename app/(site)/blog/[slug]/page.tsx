@@ -6,6 +6,8 @@ import { Clock, Calendar, ArrowLeft, Tag, ArrowRight } from "lucide-react"
 import { getBlogPostBySlug, getBlogPosts } from "@/lib/blog/service"
 import { SITE_CONFIG } from "@/lib/constants"
 import { whatsappBase } from "@/lib/funnel/whatsapp"
+import { formatInlineMarkdown } from "@/lib/blog/inline-markdown"
+import { serializeJsonLd } from "@/lib/security/json-ld"
 
 export const dynamic = "force-dynamic"
 export const dynamicParams = true
@@ -105,7 +107,14 @@ function renderContent(content: string) {
       const match = line.match(/^!\[(.*?)\]\((.*?)\)$/)
       if (match) {
         const altText = match[1] || "Kinghouse Hospitality Visual"
-        const imageUrl = match[2]
+        const imageUrl = match[2].trim()
+        // Only local images or the configured remote host: anything else would make next/image throw.
+        const isAllowedImage =
+          (imageUrl.startsWith("/") && !imageUrl.startsWith("//")) || imageUrl.startsWith("https://images.unsplash.com/")
+        if (!isAllowedImage) {
+          i++
+          continue
+        }
         elements.push(
           <figure key={`img-${i}`} className="my-8 rounded-3xl overflow-hidden border border-[#E8E4DC] bg-[#FAF8F5] p-2 space-y-2 shadow-xs">
             <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden bg-[#EAE7E0]">
@@ -138,9 +147,7 @@ function renderContent(content: string) {
       elements.push(
         <ul key={`ul-${i}`} className="list-none space-y-2.5 my-5 pl-2">
           {listItems.map((item, idx) => {
-            const formatted = item
-              .replace(/\*\*([^*]+)\*\*/g, "<strong class='text-[#222222] font-semibold'>$1</strong>")
-              .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "<a href='$2' class='text-[#B8934C] hover:underline font-semibold'>$1</a>")
+            const formatted = formatInlineMarkdown(item)
             return (
               <li key={idx} className="flex items-start space-x-3 text-sm sm:text-base text-[#555] leading-relaxed">
                 <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#B8934C] flex-shrink-0" />
@@ -162,9 +169,7 @@ function renderContent(content: string) {
     }
     // 7. Regular paragraph with links and bold formatting
     else if (line.trim() !== "") {
-      const formatted = line
-        .replace(/\*\*([^*]+)\*\*/g, "<strong class='text-[#222222] font-semibold'>$1</strong>")
-        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "<a href='$2' class='text-[#B8934C] hover:underline font-semibold'>$1</a>")
+      const formatted = formatInlineMarkdown(line)
 
       elements.push(
         <p
@@ -261,12 +266,12 @@ export default async function BlogPostPage({ params }: PageProps) {
       <script
         id="article-schema"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(articleSchema) }}
       />
       <script
         id="breadcrumb-schema"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
       />
 
       {/* Hero Image */}

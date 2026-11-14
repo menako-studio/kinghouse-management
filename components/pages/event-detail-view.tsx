@@ -9,6 +9,7 @@ import { formatCurrency } from "@/lib/utils"
 import { whatsappBase } from "@/lib/funnel/whatsapp"
 import { contentTranslator } from "@/lib/i18n/content"
 import { idPageMetadata, localeAlternates, localizePath, type SiteLocale } from "@/lib/i18n/site"
+import { serializeJsonLd } from "@/lib/security/json-ld"
 
 /** Indonesian search titles for the event package pages. */
 const ID_TITLES: Record<string, string> = {
@@ -110,7 +111,7 @@ export function EventDetailView({ slug, locale }: { slug: string; locale: SiteLo
       <script
         id="event-schema"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(eventSchema) }}
       />
 
       {/* Hero */}

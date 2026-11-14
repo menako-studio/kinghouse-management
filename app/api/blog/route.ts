@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { getBlogPosts, getBlogPostBySlug, saveBlogPost, deleteBlogPost, restoreBlogPost } from "@/lib/blog/service"
 import { BlogPost } from "@/lib/types"
 import { verifyAdminRequest } from "@/lib/auth-server"
+import { isSafeIdentifier } from "@/lib/validations"
 
 /** Accepts `YYYY-MM-DD` or an ISO timestamp; a future value schedules the post. */
 function parsePublishedAt(value: unknown): string | undefined {
@@ -53,6 +54,9 @@ export async function POST(request: NextRequest) {
     const { action, id, slug } = body
 
     if (action === "restore" && (id || slug)) {
+      if (!isSafeIdentifier(id || slug)) {
+        return NextResponse.json({ error: "ID atau slug artikel tidak valid." }, { status: 400 })
+      }
       await restoreBlogPost(id || slug)
       return NextResponse.json({ success: true, message: "Artikel berhasil dipulihkan (Restored)." })
     }
@@ -66,7 +70,17 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const finalSlug = slug || title.toLowerCase().trim().replace(/[^\w\s-]/g, "").replace(/[\s_-]+/g, "-")
+    // Slugs end up in URLs and PostgREST filters: lowercase letters, digits and dashes only.
+    const finalSlug = String(slug || title)
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9\s-]/g, "")
+      .replace(/[\s_-]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+      .slice(0, 120)
+    if (!isSafeIdentifier(finalSlug)) {
+      return NextResponse.json({ error: "Slug artikel tidak valid." }, { status: 400 })
+    }
     const postId = id || `post-${Date.now()}`
 
     const newPost: BlogPost = {
@@ -168,6 +182,10 @@ export async function DELETE(request: NextRequest) {
 
     if (!target) {
       return NextResponse.json({ error: "Parameter ID atau Slug wajib diisi untuk menghapus artikel." }, { status: 400 })
+    }
+
+    if (!isSafeIdentifier(target)) {
+      return NextResponse.json({ error: "ID atau slug artikel tidak valid." }, { status: 400 })
     }
 
     await deleteBlogPost(target, permanent)

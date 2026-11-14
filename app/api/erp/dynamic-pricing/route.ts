@@ -13,11 +13,18 @@ import { Reservation } from "@/lib/erp/types"
 import { verifyAdminRequest } from "@/lib/auth-server"
 
 export async function GET(request: NextRequest) {
+  // Owner revenue, yield outlook and occupancy, and it can trigger an OTA sync: admin only.
+  const admin = await verifyAdminRequest(request)
+  if (!admin) {
+    return NextResponse.json({ success: false, error: "Akses ditolak: Diperlukan sesi admin Kinghouse." }, { status: 401 })
+  }
+
   try {
     const { searchParams } = new URL(request.url)
     const propertySlug = searchParams.get("propertySlug") || "versatile-house-jagakarsa"
     const strategy = (searchParams.get("strategy") || "balanced") as PricingStrategy
-    const horizon = parseInt(searchParams.get("horizon") || "60", 10)
+    const parsedHorizon = parseInt(searchParams.get("horizon") || "60", 10)
+    const horizon = Number.isFinite(parsedHorizon) ? Math.min(Math.max(parsedHorizon, 1), 365) : 60
     const forceSync = searchParams.get("sync") === "true"
 
     // 1. Sync from Supabase PostgreSQL if configured
@@ -74,8 +81,9 @@ export async function GET(request: NextRequest) {
       data: pricingData,
     })
   } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : "Failed to calculate dynamic pricing"
-    return NextResponse.json({ success: false, error: message }, { status: 500 })
+    // Log the detail server-side; never echo internal error text to the client.
+    console.error("[dynamic-pricing]", error)
+    return NextResponse.json({ success: false, error: "Failed to calculate dynamic pricing" }, { status: 500 })
   }
 }
 
@@ -130,8 +138,9 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: false, error: "Invalid action specified" }, { status: 400 })
   } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : "Failed to save pricing configuration"
-    return NextResponse.json({ success: false, error: message }, { status: 500 })
+    // Log the detail server-side; never echo internal error text to the client.
+    console.error("[dynamic-pricing]", error)
+    return NextResponse.json({ success: false, error: "Failed to save pricing configuration" }, { status: 500 })
   }
 }
 
@@ -162,7 +171,8 @@ export async function DELETE(request: NextRequest) {
         : "Tidak ditemukan override untuk tanggal tersebut.",
     })
   } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : "Failed to delete pricing override"
-    return NextResponse.json({ success: false, error: message }, { status: 500 })
+    // Log the detail server-side; never echo internal error text to the client.
+    console.error("[dynamic-pricing]", error)
+    return NextResponse.json({ success: false, error: "Failed to delete pricing override" }, { status: 500 })
   }
 }

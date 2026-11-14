@@ -7,6 +7,7 @@ import { LocalizationProvider } from "@/lib/context/localization-context"
 import { GoogleAnalytics } from "@/components/analytics/google-analytics"
 import { PageViewTracker } from "@/components/analytics/page-view-tracker"
 import { SITE_CONFIG } from "@/lib/constants"
+import { serializeJsonLd } from "@/lib/security/json-ld"
 
 const cormorant = Cormorant_Garamond({
   weight: ["400", "500", "600", "700"],
@@ -358,7 +359,7 @@ export function RootDocument({ lang, children }: { lang: "en" | "id"; children: 
         <Script
           id="structured-data-schema"
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(comprehensiveSchema) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(comprehensiveSchema) }}
         />
 
         <LocalizationProvider>

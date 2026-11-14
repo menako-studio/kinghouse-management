@@ -11,6 +11,7 @@ import { OwnerLeadForm } from "@/components/owner/owner-lead-form"
 import { SITE_CONFIG, MANAGEMENT_FEES } from "@/lib/constants"
 import { contentTranslator } from "@/lib/i18n/content"
 import { type SiteLocale } from "@/lib/i18n/site"
+import { serializeJsonLd } from "@/lib/security/json-ld"
 
 const ownerServicesSchema = {
   "@context": "https://schema.org",
@@ -60,7 +61,7 @@ export function OwnerServicesView({ locale }: { locale: SiteLocale }) {
         <Script
           id="owner-services-schema"
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(ownerServicesSchema) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(ownerServicesSchema) }}
         />
         {/* 1. Sophisticated Architectural Dark Hero Section */}
         <section className="relative min-h-[75vh] w-full overflow-hidden bg-[#111111] flex items-center select-none">

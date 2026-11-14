@@ -1,8 +1,20 @@
 import { z } from "zod"
 
+/**
+ * IDs and slugs that end up inside a PostgREST filter string (`.or("id.eq.X")`)
+ * must not contain filter syntax (`,`, `.`, `(`, `)`), or a caller could append
+ * extra conditions. Letters, digits, `_` and `-` only.
+ */
+const SAFE_IDENTIFIER = /^[A-Za-z0-9_-]{1,160}$/
+
+export function isSafeIdentifier(value: unknown): value is string {
+  return typeof value === "string" && SAFE_IDENTIFIER.test(value)
+}
+
 export const LoginSchema = z.object({
-  email: z.string().email("Format email tidak valid").min(5, "Email minimal 5 karakter"),
-  password: z.string().min(6, "Password minimal 6 karakter"),
+  email: z.string().email("Format email tidak valid").min(5, "Email minimal 5 karakter").max(254, "Email terlalu panjang"),
+  // Upper bound keeps the constant-time comparison cheap for oversized payloads.
+  password: z.string().min(6, "Password minimal 6 karakter").max(256, "Password terlalu panjang"),
   rememberMe: z.boolean().optional(),
 })
 

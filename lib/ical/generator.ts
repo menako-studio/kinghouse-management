@@ -31,7 +31,8 @@ export function generateIcalFeed(villa: Villa, reservations: Reservation[]): str
       `DTSTART;VALUE=DATE:${dtStart}`,
       `DTEND;VALUE=DATE:${dtEnd}`,
       `SUMMARY:Reserved - Kinghouse (${res.channel})`,
-      `DESCRIPTION:Channel: ${res.channel} | Stay for ${res.guests} guests | Booking Ref: ${res.id}`,
+      // Public feed (OTAs poll it without auth): blocked dates only, no guest or booking details.
+      "DESCRIPTION:Not available",
       "STATUS:CONFIRMED",
       "TRANSP:OPAQUE",
       "END:VEVENT"

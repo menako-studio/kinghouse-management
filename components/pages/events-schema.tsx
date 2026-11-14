@@ -2,6 +2,7 @@ import Script from "next/script"
 import { SITE_CONFIG } from "@/lib/constants"
 import { contentTranslator } from "@/lib/i18n/content"
 import { localizePath, type SiteLocale } from "@/lib/i18n/site"
+import { serializeJsonLd } from "@/lib/security/json-ld"
 
 /** EventVenue JSON-LD shared by the events pages in both languages. */
 export function EventsVenueSchema({ locale }: { locale: SiteLocale }) {
@@ -21,6 +22,6 @@ export function EventsVenueSchema({ locale }: { locale: SiteLocale }) {
     maximumAttendeeCapacity: 150,
   }
   return (
-    <Script id="event-venue-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+    <Script id="event-venue-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(schema) }} />
   )
 }

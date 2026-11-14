@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import { localeAlternates } from "@/lib/i18n/site"
 import Script from "next/script"
 import { SITE_CONFIG, DEFAULT_OG_IMAGES } from "@/lib/constants"
+import { serializeJsonLd } from "@/lib/security/json-ld"
 
 export const metadata: Metadata = {
   title: {
@@ -59,7 +60,7 @@ export default function ContactLayout({
       <Script
         id="contact-page-schema"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(contactPageSchema) }}
       />
       {children}
     </>
