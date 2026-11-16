@@ -5,7 +5,8 @@ import type { BlogPost } from "@/lib/types"
 // (see lib/blog/schedule.ts). Until then they are invisible on the site: not in
 // /blog, the sitemap or related posts, and their URL returns 404.
 //
-// Campaign: 16 November – 16 December 2026, one article every 10 days at 07:00 WIB.
+// Campaign: 16 November – 6 December 2026 at 07:00 WIB. The management-fee article
+// (villa-focused) was moved up to go first; the Nataru checklist follows the next day.
 // Prices and fees quoted below come from lib/data.ts and lib/constants.ts
 // (MANAGEMENT_FEES); update the articles if those change.
 
@@ -24,7 +25,7 @@ export const SCHEDULED_POSTS: BlogPost[] = [
     excerpt:
       "Desember adalah musim tersibuk untuk sewa harian di Jabodetabek. Ini 9 hal yang perlu pemilik properti siapkan sejak pertengahan November agar kalender penuh dan tamu puas.",
     category: "owner-tips",
-    publishedAt: "2026-11-16T07:00:00+07:00",
+    publishedAt: "2026-11-17T07:00:00+07:00",
     author: AUTHOR,
     heroImage: "/properties/versatile-house/new/VersatileHouse_03_Master_Bedroom.jpg",
     tags: ["Airbnb", "Libur Natal", "Tahun Baru", "Tips Pemilik", "Dynamic Pricing"],
@@ -268,17 +269,19 @@ Untuk pasangan atau keluarga kecil, apartemen harian bisa menjadi pilihan yang l
 
   // ── 4. Management fees explained (owner, commercial intent) ───────────────
   {
-    id: "blog-2026-12-16-biaya-jasa-kelola",
+    id: "blog-2026-11-16-biaya-jasa-kelola",
     slug: "biaya-jasa-kelola-airbnb-jakarta",
     title: "Biaya Jasa Kelola Airbnb di Jakarta: Rincian Fee & Contoh Hitungan",
     excerpt:
       "Sebelum menyerahkan properti ke jasa pengelola, pahami dulu cara fee dihitung, apa yang termasuk, dan berapa yang Anda terima. Lengkap dengan contoh hitungan.",
     category: "revenue-management",
-    publishedAt: "2026-12-16T07:00:00+07:00",
+    publishedAt: "2026-11-16T07:00:00+07:00",
     author: AUTHOR,
-    heroImage: "/properties/sky-house/SkyHouse_IKEA_KamarUtama_Wide.jpeg",
-    tags: ["Jasa Kelola Airbnb", "Biaya Pengelolaan", "Co-Hosting", "Pemilik Properti"],
+    heroImage: "/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg",
+    tags: ["Jasa Kelola Villa", "Jasa Kelola Airbnb", "Biaya Pengelolaan", "Co-Hosting", "Pemilik Properti"],
     seoKeywords: [
+      "biaya jasa kelola villa jakarta",
+      "fee pengelola villa airbnb",
       "biaya jasa kelola airbnb",
       "fee co host airbnb jakarta",
       "jasa manajemen airbnb jakarta",
@@ -290,9 +293,9 @@ Untuk pasangan atau keluarga kecil, apartemen harian bisa menjadi pilihan yang l
     readTime: 6,
     featured: true,
     language: "id",
-    content: `Pertanyaan pertama hampir setiap pemilik properti soal biaya jasa kelola Airbnb adalah: berapa fee-nya, dan berapa yang saya terima? Artikel ini menjelaskan cara umum fee dihitung dan contoh hitungannya.
+    content: `Pertanyaan pertama hampir setiap pemilik villa atau properti soal biaya jasa kelola Airbnb adalah: berapa fee-nya, dan berapa yang saya terima? Artikel ini menjelaskan cara umum fee dihitung dan contoh hitungannya.
 
-![Apartemen bergaya hotel yang dikelola Kinghouse di Tangerang](/properties/sky-house/SkyHouse_IKEA_KamarUtama_Wide.jpeg)
+![Villa dengan kolam renang dan taman yang dikelola Kinghouse di Jagakarsa](/properties/versatile-house/new/VersatileHouse_01_Pool_Hero.jpg)
 
 ## Model biaya yang umum
 
@@ -306,8 +309,8 @@ Kinghouse memakai model bagi hasil, tanpa biaya tetap bulanan, dan biaya per lay
 
 ## Fee Kinghouse
 
-- **Apartemen:** 23% dari pendapatan sewa
 - **Villa dan rumah dengan 6 kamar atau lebih:** 15–18% dari pendapatan sewa
+- **Apartemen:** 23% dari pendapatan sewa
 - **Co-hosting:** fee disesuaikan dengan properti dan lingkup pekerjaan
 - **Housekeeping on demand:** dibayar per kunjungan
 
@@ -328,19 +331,19 @@ Biaya operasional seperti listrik, air, internet, dan bahan habis pakai umumnya 
 
 ## Contoh hitungan sederhana
 
-### Apartemen
-
-Misalnya apartemen Anda menghasilkan pendapatan sewa **Rp 10.000.000** dalam satu bulan.
-
-- Fee pengelola 23%: **Rp 2.300.000**
-- Diterima pemilik sebelum biaya operasional: **Rp 7.700.000**
-
 ### Villa
 
 Untuk villa 6 kamar dengan pendapatan sewa **Rp 40.000.000** per bulan dan fee 15%:
 
 - Fee pengelola: **Rp 6.000.000**
 - Diterima pemilik sebelum biaya operasional: **Rp 34.000.000**
+
+### Apartemen
+
+Misalnya apartemen Anda menghasilkan pendapatan sewa **Rp 10.000.000** dalam satu bulan.
+
+- Fee pengelola 23%: **Rp 2.300.000**
+- Diterima pemilik sebelum biaya operasional: **Rp 7.700.000**
 
 Angka di atas hanya ilustrasi untuk menunjukkan cara hitung, bukan proyeksi pendapatan properti Anda. Pendapatan nyata bergantung pada lokasi, ukuran, kondisi properti, dan musim.
 

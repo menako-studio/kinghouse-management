@@ -61,6 +61,12 @@ export const eventPackages: Record<string, string> = {
   "Vendor coordination support (catering, MUA, photography)": "Bantuan koordinasi vendor (katering, MUA, fotografi)",
   "Zero vendor corkage fees": "Tanpa biaya corkage vendor",
   "Parking for 10+ vehicles with on-site staff assistance": "Parkir 10+ kendaraan dengan bantuan staf di lokasi",
+  "Wedding packages are Full Board only: setup, MUA and loading take far more than a fixed 6 or 12-hour slot, so you get the whole property plus an overnight stay for up to 15 family members":
+    "Paket wedding hanya Full Board: persiapan, rias, dan loading butuh waktu jauh lebih lama dari slot 6 atau 12 jam, jadi Anda mendapat seluruh properti plus menginap untuk hingga 15 anggota keluarga",
+  "Flexible setup & preparation time (no fixed 6 or 12-hour cut-off)": "Waktu persiapan & setup fleksibel (tanpa batas 6 atau 12 jam)",
+  "Wedding packages are Full Board only: flexible setup time plus overnight stay": "Paket wedding hanya Full Board: waktu persiapan fleksibel plus menginap",
+  "Looking for a half-day or full-day booking for a photo/video shoot, podcast or small event? Ask us for the event rate list":
+    "Butuh sewa half day atau full day untuk shooting foto/video, podcast, atau acara kecil? Tanyakan daftar harga event kami",
   "Full Board Wedding + Overnight Stay (15 Pax Stay)": "Paket Pernikahan + Menginap (15 Orang)",
   "Event venue access + overnight villa stay for up to 15 family members":
     "Akses venue acara + menginap di villa untuk hingga 15 anggota keluarga",

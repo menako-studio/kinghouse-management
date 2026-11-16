@@ -31,7 +31,7 @@ describe("editorial calendar visibility", () => {
   beforeEach(() => vi.useFakeTimers())
   afterEach(() => vi.useRealTimers())
 
-  const first = SCHEDULED_POSTS.find((p) => p.slug === "persiapan-airbnb-libur-natal-tahun-baru")!
+  const first = SCHEDULED_POSTS.find((p) => p.slug === "biaya-jasa-kelola-airbnb-jakarta")!
 
   it("hides scheduled posts from public listings and their URL until publish time", async () => {
     vi.setSystemTime(new Date("2026-11-10T00:00:00Z"))
@@ -47,17 +47,17 @@ describe("editorial calendar visibility", () => {
     vi.setSystemTime(new Date("2026-11-16T00:00:01Z")) // 07:00:01 WIB
     const slugs = (await getBlogPosts()).map((p) => p.slug)
     expect(slugs).toContain(first.slug)
-    expect(slugs).not.toContain("biaya-jasa-kelola-airbnb-jakarta")
+    expect(slugs).not.toContain("persiapan-airbnb-libur-natal-tahun-baru")
     expect(await getBlogPostBySlug(first.slug)).not.toBeNull()
 
-    vi.setSystemTime(new Date("2026-12-16T00:00:01Z"))
+    vi.setSystemTime(new Date("2026-12-06T00:00:01Z"))
     const all = (await getBlogPosts()).map((p) => p.slug)
     for (const p of SCHEDULED_POSTS) expect(all).toContain(p.slug)
   })
 
   it("spreads the campaign over 16 Nov – 16 Dec with unique slugs and internal links that exist", () => {
     const dates = SCHEDULED_POSTS.map((p) => publishInstant(p.publishedAt).toISOString().slice(0, 10)).sort()
-    expect(dates).toEqual(["2026-11-16", "2026-11-26", "2026-12-06", "2026-12-16"])
+    expect(dates).toEqual(["2026-11-16", "2026-11-17", "2026-11-26", "2026-12-06"])
     expect(new Set(SCHEDULED_POSTS.map((p) => p.slug)).size).toBe(SCHEDULED_POSTS.length)
     const routes = new Set([
       "/owner-services",
