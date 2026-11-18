@@ -10,6 +10,8 @@ export const de: FunnelDictionary = {
   "f.errorRateLimited": "Zu viele Versuche. Bitte warten Sie einige Minuten oder schreiben Sie uns per WhatsApp.",
   "f.officeHours": "Bürozeiten: Mo.–Fr., 08:00–18:00 Uhr (WIB)",
   "f.conciergeNote": "Der 24/7-Concierge ist für Gäste während ihres Aufenthalts.",
+  "f.privacyNote": "Mit dem Absenden stimmen Sie unserer",
+  "f.privacyLink": "Datenschutzerklärung zu",
   "f.confidential": "Vertraulich. Unverbindlich.",
   "f.nights": "{n} Nächte",
   "f.night": "1 Nacht",

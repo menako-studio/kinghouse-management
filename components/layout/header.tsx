@@ -1,5 +1,6 @@
 "use client"
 
+import { trackOwnerCtaClick } from "@/lib/analytics"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
@@ -174,6 +175,7 @@ export function Header() {
           {/* OWNER SERVICES */}
           <Link
             href={localizeHref("/owner-services")}
+            onClick={() => trackOwnerCtaClick({ location: "header_nav" })}
             className={`text-xs font-medium uppercase tracking-[0.08em] 2xl:tracking-[0.14em] whitespace-nowrap transition-colors py-2 ${
               pathname === "/owner-services" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
             }`}

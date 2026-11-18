@@ -5,8 +5,9 @@ import "@/app/globals.css"
 import { SiteShell } from "@/components/layout/site-shell"
 import { LocalizationProvider } from "@/lib/context/localization-context"
 import { GoogleAnalytics } from "@/components/analytics/google-analytics"
+import { AnalyticsGate } from "@/components/analytics/analytics-gate"
 import { PageViewTracker } from "@/components/analytics/page-view-tracker"
-import { SITE_CONFIG } from "@/lib/constants"
+import { SITE_CONFIG, SITE_RATING } from "@/lib/constants"
 import { serializeJsonLd } from "@/lib/security/json-ld"
 
 const cormorant = Cormorant_Garamond({
@@ -219,8 +220,8 @@ const comprehensiveSchema = {
       paymentAccepted: "Bank Transfer, Credit Card, QRIS, Cash, Airbnb, Agoda, Booking.com",
       aggregateRating: {
         "@type": "AggregateRating",
-        ratingValue: "4.90",
-        reviewCount: "96",
+        ratingValue: SITE_RATING.value.toFixed(1),
+        reviewCount: String(SITE_RATING.reviewCount),
         bestRating: "5",
         worstRating: "1",
       },
@@ -351,9 +352,11 @@ export function RootDocument({ lang, children }: { lang: "en" | "id"; children: 
       </head>
       <body suppressHydrationWarning className="min-h-screen bg-[var(--bg-main)] font-sans text-[var(--text-primary)] antialiased selection:bg-[#CBBEA0] selection:text-[#231F1A]">
         {/* Google Analytics 4 & Google Tag Manager */}
-        <GoogleAnalytics />
-        {/* Virtual Page View Route Tracker */}
-        <PageViewTracker />
+        <AnalyticsGate>
+          <GoogleAnalytics />
+          {/* One GA4 page_view per route (never on CMS routes) */}
+          <PageViewTracker />
+        </AnalyticsGate>
 
         {/* Unified Schema.org Structured Data */}
         <Script

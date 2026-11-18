@@ -12,6 +12,8 @@ export const en = {
   "f.errorRateLimited": "Too many attempts. Please wait a few minutes or message us on WhatsApp.",
   "f.officeHours": "Office hours: Mon–Fri, 08:00–18:00 WIB",
   "f.conciergeNote": "24/7 concierge is for in-house guests.",
+  "f.privacyNote": "By sending this form you agree to our",
+  "f.privacyLink": "Privacy Policy",
   "f.confidential": "Confidential. No obligation.",
   "f.nights": "{n} nights",
   "f.night": "1 night",

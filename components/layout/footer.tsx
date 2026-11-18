@@ -199,11 +199,6 @@ export function Footer() {
                 {t("ftPrivacy")}
               </Link>
             </li>
-            <li>
-              <Link href="/login" rel="nofollow" className="text-white/60 hover:text-white hover:underline">
-                Admin
-              </Link>
-            </li>
           </ul>
         </div>
       </div>

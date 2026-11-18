@@ -13,37 +13,48 @@ export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? "GTM-PH9N4N7H"
 /**
  * Designated GA4 Key Events (conversions) — single source of truth.
  *
- * These events already fire from the tracking functions in this file. GA4 only
- * counts them as conversions once each is flagged as a Key Event in the GA4
- * Admin UI: Admin → Data display → Events → toggle "Mark as key event".
- * Keep this list in sync with what is marked in GA4.
+ * Only real leads are key events. In GA4: Admin → Data display → Events →
+ * toggle "Mark as key event" for exactly these four, and REMOVE the flag from
+ * everything else (scroll, page-level engagement events, outbound clicks...).
  *
- *   whatsapp_click         — WhatsApp concierge / inquiry
- *   booking_inquiry        — booking intent on a property
- *   owner_lead_submit      — property-owner partnership lead
- *   generate_lead          — GA4 standard lead event (fired alongside the above)
- *   airbnb_outbound_click  — outbound click to Airbnb listing
- *   agoda_outbound_click   — outbound click to Agoda listing
- *   submit_owner_form      — Funnel A: owner qualification form sent
- *   submit_event_form      — Funnel B2: event qualification form sent
+ *   generate_lead     — a form was submitted (owner / event / stay)
+ *   click_whatsapp    — WhatsApp inquiry button
+ *   click_phone       — tap-to-call
+ *   booking_request   — booking intent on a property
  *
- * Funnel engagement events (not conversions): `check_availability` and
- * `submit_stay_form` (Funnel B1 "notify me"). WhatsApp clicks keep the
- * `whatsapp_click` name so existing GA4 history and Key Event setup stay
- * intact; the `funnel` parameter (owner / stay / event / general) splits them.
+ * Legacy names (`whatsapp_click`, `phone_call_click`, `booking_inquiry`,
+ * `owner_lead_submit`, `submit_*_form`) are still sent next to the new ones so
+ * old reports keep working, but they are NOT key events any more — otherwise
+ * one lead would be counted twice.
+ *
+ * Every lead event carries `villa_name` and `service_type` (guest / owner /
+ * wedding / event). Register both as event-scoped custom dimensions in GA4
+ * (Admin → Custom definitions) so leads can be split per page and service.
  */
-export const KEY_EVENTS = [
+export const KEY_EVENTS = ["generate_lead", "click_whatsapp", "click_phone", "booking_request"] as const
+
+/** Values of the `service_type` custom dimension. */
+export type ServiceType = "guest" | "owner" | "wedding" | "event"
+
+export const LEGACY_EVENTS = [
   "whatsapp_click",
+  "phone_call_click",
   "booking_inquiry",
   "owner_lead_submit",
-  "generate_lead",
-  "airbnb_outbound_click",
-  "agoda_outbound_click",
   "submit_owner_form",
   "submit_event_form",
+  "submit_stay_form",
 ] as const
 
 export type FunnelName = "owner" | "stay" | "event" | "general"
+
+/** Maps the funnel (and event kind) to the `service_type` dimension. */
+export function serviceTypeFor(funnel?: FunnelName, eventNeed?: string): ServiceType | undefined {
+  if (funnel === "owner") return "owner"
+  if (funnel === "stay") return "guest"
+  if (funnel === "event") return eventNeed === "wedding" ? "wedding" : "event"
+  return undefined
+}
 
 declare global {
   interface Window {
@@ -78,31 +89,45 @@ export function trackEvent(eventName: string, params: Record<string, unknown> = 
 }
 
 /**
- * Track virtual page view on Next.js App Router navigation
+ * True for the admin area. These pages must never reach GA4/GTM: they made up
+ * ~30% of the reported views and polluted every report.
+ */
+export function isCmsPath(pathname: string | null | undefined): boolean {
+  if (!pathname) return false
+  return pathname === "/login" || pathname === "/dashboard" || pathname.startsWith("/dashboard/")
+}
+
+/**
+ * Sends exactly one GA4 `page_view` for the current route. The initial gtag
+ * config has send_page_view disabled, so this is the only source (no doubles).
+ * Callers should run it after the route's <title> has updated.
  */
 export function trackPageView(url: string, title?: string) {
   if (typeof window === "undefined") return
+  const path = url.split("?")[0]
+  if (isCmsPath(path)) return
 
   const pageTitle = title || (typeof document !== "undefined" ? document.title : "")
   const pageLocation = typeof window.location !== "undefined" && window.location.href ? window.location.href : url
 
-  // GA4 standard config update
-  if (typeof window.gtag === "function" && GA_MEASUREMENT_ID) {
-    window.gtag("config", GA_MEASUREMENT_ID, {
+  if (typeof window.gtag === "function") {
+    window.gtag("event", "page_view", {
       page_path: url,
       page_title: pageTitle,
       page_location: pageLocation,
     })
   }
 
-  // GTM virtual page view event
-  trackEvent("virtual_page_view", {
+  // dataLayer-only event so a GTM trigger can react to SPA navigation.
+  window.dataLayer = window.dataLayer || []
+  window.dataLayer.push({
+    event: "virtual_page_view",
     page_path: url,
     page_title: pageTitle,
     page_location: pageLocation,
+    timestamp: new Date().toISOString(),
   })
 }
-
 
 /**
  * Track WhatsApp Concierge / Inquiries
@@ -113,17 +138,23 @@ export function trackWhatsAppClick(options: {
   propertyName?: string
   context?: string
   value?: number
+  serviceType?: ServiceType
 }) {
-  trackEvent("whatsapp_click", {
+  const params = {
     event_category: "Conversion",
     event_label: options.propertyName || options.context || options.source,
     click_source: options.source,
     funnel: options.funnel,
     property_name: options.propertyName,
+    villa_name: options.propertyName,
+    service_type: options.serviceType ?? serviceTypeFor(options.funnel),
     context: options.context,
     currency: "IDR",
     value: options.value,
-  })
+  }
+  // Legacy name first (kept for report continuity), then the key event.
+  trackEvent("whatsapp_click", params)
+  trackEvent("click_whatsapp", params)
 }
 
 /**
@@ -184,6 +215,17 @@ export function trackBookingInquiry(options: {
       },
     ],
   })
+
+  // 1b. Key event (lead intent) — see KEY_EVENTS
+  trackEvent("booking_request", {
+    event_category: "Lead Generation",
+    property_name: options.propertyName,
+    villa_name: options.propertyName,
+    service_type: "guest",
+    booking_channel: options.channel,
+    currency: "IDR",
+    value: options.estimatedTotal,
+  })
 }
 
 /**
@@ -206,6 +248,7 @@ export function trackOwnerLead(options: {
     bedrooms: options.bedrooms,
     // No owner_name: personal data must not be sent to GA/GTM (Google's analytics terms forbid PII).
     service_tier: options.serviceTier || "15% Full Service",
+    service_type: "owner",
   })
 
   // 2. GA4 standard recommended generate_lead conversion event
@@ -216,6 +259,7 @@ export function trackOwnerLead(options: {
     lead_type: "owner_management_inquiry",
     property_type: options.propertyType,
     property_area: options.area,
+    service_type: "owner",
   })
 }
 
@@ -236,12 +280,15 @@ export function trackLeadFormSubmit(options: {
   leadId: string
   propertyName?: string
 }) {
+  const funnel: FunnelName = options.target === "OWNER" ? "owner" : options.target === "EVENT" ? "event" : "stay"
   const params = {
     event_category: "Lead Generation",
     lead_target: options.target,
     lead_need: options.need,
     lead_id: options.leadId,
     property_name: options.propertyName,
+    villa_name: options.propertyName,
+    service_type: serviceTypeFor(funnel, options.need),
   }
 
   trackEvent(LEAD_FORM_EVENTS[options.target], params)
@@ -418,13 +465,19 @@ export function trackDirectionsClick(options: {
 export function trackPhoneCall(options: {
   source: string
   phoneNumber: string
+  propertyName?: string
+  serviceType?: ServiceType
 }) {
-  trackEvent("phone_call_click", {
+  const params = {
     event_category: "Conversion",
     event_label: `${options.source} - ${options.phoneNumber}`,
     click_source: options.source,
     phone_number: options.phoneNumber,
-  })
+    villa_name: options.propertyName,
+    service_type: options.serviceType,
+  }
+  trackEvent("phone_call_click", params)
+  trackEvent("click_phone", params)
 }
 
 /**
@@ -459,5 +512,28 @@ export function trackCurrencyChange(currency: string) {
   trackEvent("currency_change", {
     event_category: "Localization",
     selected_currency: currency,
+  })
+}
+
+/**
+ * The revenue calculator scrolled into view (fired once per page load).
+ */
+export function trackCalculatorOpen(options: { submarket?: string } = {}) {
+  trackEvent("calculator_open", {
+    event_category: "Engagement",
+    submarket: options.submarket,
+    service_type: "owner",
+  })
+}
+
+/**
+ * Click on a primary owner call-to-action (hero, nav, pricing table...).
+ */
+export function trackOwnerCtaClick(options: { location: string; service?: string }) {
+  trackEvent("cta_owner_click", {
+    event_category: "Engagement",
+    cta_location: options.location,
+    service_tier: options.service,
+    service_type: "owner",
   })
 }

@@ -3,14 +3,13 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { ArrowRight, Clock, MessageCircle, ShieldCheck } from "lucide-react"
+import Link from "@/components/ui/localized-link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Field, FormError, HoneypotField, selectClassName } from "@/components/funnel/form-fields"
 import {
-  OWNER_PROPERTY_STATUSES,
   OWNER_PROPERTY_TYPES,
   OWNER_SERVICE_CHOICES,
-  type OwnerServiceChoice,
 } from "@/lib/funnel/config"
 import { buildWhatsAppUrl, ownerWhatsAppMessage } from "@/lib/funnel/whatsapp"
 import { submitLead, type LeadErrorKey } from "@/lib/funnel/client"
@@ -21,24 +20,21 @@ import { useOwnerService } from "./owner-service-context"
 import { Select } from "@/components/ui/select"
 
 type PropertyType = OwnerLeadInput["propertyType"]
-type PropertyStatus = OwnerLeadInput["propertyStatus"]
 
 /**
- * Funnel A step 3 — owner qualification form (8 fields, so it is not abandoned).
+ * Funnel A step 3 — owner qualification form (5 fields, so it is not abandoned).
  * Sends the lead tagged OWNER + service, then continues on /thanks.
  */
 export function OwnerLeadForm({ source = "owner_page" }: { source?: "owner_page" | "management_inquiry" }) {
   const router = useRouter()
   const { t, language } = useLocalization()
-  const { service, setService } = useOwnerService()
+  const { service } = useOwnerService()
   const [form, setForm] = useState({
     name: "",
     whatsapp: "",
-    email: "",
     propertyType: "rumah" as PropertyType,
     location: "",
     units: "1",
-    propertyStatus: "not-listed" as PropertyStatus,
     website: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -57,12 +53,11 @@ export function OwnerLeadForm({ source = "owner_page" }: { source?: "owner_page"
         target: "OWNER",
         name: form.name,
         whatsapp: form.whatsapp,
-        email: form.email,
         service,
         propertyType: form.propertyType,
         location: form.location,
         units: Number(form.units) || 1,
-        propertyStatus: form.propertyStatus,
+        propertyStatus: "not-listed" as const,
         website: form.website,
       },
       { language }
@@ -107,6 +102,9 @@ export function OwnerLeadForm({ source = "owner_page" }: { source?: "owner_page"
                 <Input
                   id="owner-wa"
                   type="tel"
+                  inputMode="tel"
+                  pattern="(\+62|62|0)[0-9 ]{8,16}|\+[1-9][0-9 ]{8,16}"
+                  title="+62 8xx xxxx xxxx / 08xx xxxx xxxx"
                   required
                   autoComplete="tel"
                   className="h-12 text-base"
@@ -114,33 +112,6 @@ export function OwnerLeadForm({ source = "owner_page" }: { source?: "owner_page"
                   value={form.whatsapp}
                   onChange={(e) => update("whatsapp", e.target.value)}
                 />
-              </Field>
-            </div>
-
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-              <Field label={t("f.field.email")} htmlFor="owner-email" hint={t("f.optional")}>
-                <Input
-                  id="owner-email"
-                  type="email"
-                  autoComplete="email"
-                  className="h-12 text-base"
-                  value={form.email}
-                  onChange={(e) => update("email", e.target.value)}
-                />
-              </Field>
-              <Field label={t("f.owner.service")} htmlFor="owner-service" required>
-                <Select
-                  id="owner-service"
-                  value={service}
-                  onChange={(e) => setService(e.target.value as OwnerServiceChoice)}
-                  className={selectClassName}
-                >
-                  {OWNER_SERVICE_CHOICES.map((s) => (
-                    <option key={s.id} value={s.id}>
-                      {t(s.labelKey)}
-                    </option>
-                  ))}
-                </Select>
               </Field>
             </div>
 
@@ -164,6 +135,7 @@ export function OwnerLeadForm({ source = "owner_page" }: { source?: "owner_page"
                   id="owner-location"
                   required
                   minLength={2}
+                  autoComplete="address-level2"
                   className="h-12 text-base"
                   placeholder={t("f.owner.locationPlaceholder")}
                   value={form.location}
@@ -185,20 +157,14 @@ export function OwnerLeadForm({ source = "owner_page" }: { source?: "owner_page"
               </Field>
             </div>
 
-            <Field label={t("f.owner.status")} htmlFor="owner-status" required>
-              <Select
-                id="owner-status"
-                value={form.propertyStatus}
-                onChange={(e) => update("propertyStatus", e.target.value as PropertyStatus)}
-                className={selectClassName}
-              >
-                {OWNER_PROPERTY_STATUSES.map((status) => (
-                  <option key={status} value={status}>
-                    {t(`f.owner.status.${status}`)}
-                  </option>
-                ))}
-              </Select>
-            </Field>
+            {/* The chosen package comes from the cards above; the rest (email,
+                listing status) is asked after the form is sent. */}
+            <p className="text-sm text-[#5C5347]">
+              {t("f.owner.service")}:{" "}
+              <strong className="text-[#222222]">
+                {t(OWNER_SERVICE_CHOICES.find((s) => s.id === service)?.labelKey ?? OWNER_SERVICE_CHOICES[0].labelKey)}
+              </strong>
+            </p>
 
             <FormError message={errorKey ? t(errorKey) : null} />
 
@@ -216,7 +182,14 @@ export function OwnerLeadForm({ source = "owner_page" }: { source?: "owner_page"
                 </span>
               )}
             </Button>
+            <p className="text-center text-xs text-[#5C5347]">
+              {t("f.privacyNote")}{" "}
+              <Link href="/privacy" className="font-semibold underline">
+                {t("f.privacyLink")}
+              </Link>
+            </p>
           </form>
+
 
           <div className="mt-6 flex flex-col gap-4 border-t border-[#E8E4DC] pt-5 text-sm text-[#5C5347] sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-1">

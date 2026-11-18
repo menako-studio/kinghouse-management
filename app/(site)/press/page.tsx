@@ -38,7 +38,7 @@ const PRESS_RELEASES = [
     category: "Industry Recognition",
     title: "Kinghouse Awarded Top Superhost Hospitality Partner in Greater Jakarta",
     excerpt:
-      "Recognized for outstanding 4.9+ average guest reviews, 100% response rates, and editorial interior photography standards that set a new benchmark for private vacation rentals.",
+      "Recognized for outstanding guest reviews, 100% response rates, and editorial interior photography standards that set a new benchmark for private vacation rentals.",
     readTime: "2 min read",
     publication: "Hospitality Insider Asia",
   },

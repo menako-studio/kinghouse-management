@@ -15,6 +15,7 @@ import {
   Users,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { SITE_RATING } from "@/lib/constants"
 import type { SiteLocale } from "@/lib/i18n/site"
 
 interface ServiceItem {
@@ -52,7 +53,7 @@ export function AboutView({ locale }: { locale: SiteLocale }) {
         btnViewPortfolio: "Lihat Portofolio Unit",
         photoTag: "Hospitality Standar Superhost",
         photoTitle: "Versatile House With Garden, Jagakarsa",
-        photoReviews: "4.90 ★ Superhost • 68+ Ulasan Tamu Terverifikasi",
+        photoReviews: `${SITE_RATING.value.toFixed(1)} ★ Superhost • ${SITE_RATING.reviewCount} Ulasan Tamu di Airbnb`,
 
         pillars: [
           {
@@ -164,7 +165,7 @@ export function AboutView({ locale }: { locale: SiteLocale }) {
         btnViewPortfolio: "View Unit Portfolio",
         photoTag: "Superhost Hospitality",
         photoTitle: "Versatile House With Garden, Jagakarsa",
-        photoReviews: "4.90 ★ Superhost • 68+ Verified Guest Reviews",
+        photoReviews: `${SITE_RATING.value.toFixed(1)} ★ Superhost • ${SITE_RATING.reviewCount} Airbnb Guest Reviews`,
 
         pillars: [
           {
