@@ -10,6 +10,8 @@ export const zhCN: FunnelDictionary = {
   "f.errorRateLimited": "尝试次数过多。请稍候几分钟，或通过 WhatsApp 联系我们。",
   "f.officeHours": "办公时间：周一至周五 08:00–18:00（雅加达时间）",
   "f.conciergeNote": "24/7 礼宾服务仅限在住客人。",
+  "f.privacyNote": "提交此表单即表示您同意我们的",
+  "f.privacyLink": "隐私政策",
   "f.confidential": "信息严格保密，无任何义务。",
   "f.nights": "{n} 晚",
   "f.night": "1 晚",

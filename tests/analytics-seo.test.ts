@@ -58,7 +58,9 @@ describe("Google Analytics 4 & Tag Manager Event Dispatcher", () => {
       value: 1900000,
     })
 
-    expect(window.dataLayer).toHaveLength(1)
+    // Legacy whatsapp_click + the click_whatsapp key event
+    expect(window.dataLayer).toHaveLength(2)
+    expect(window.dataLayer![1]).toMatchObject({ event: "click_whatsapp", villa_name: "Versatile House" })
     expect(window.dataLayer![0]).toMatchObject({
       event: "whatsapp_click",
       event_category: "Conversion",

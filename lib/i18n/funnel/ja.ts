@@ -10,6 +10,8 @@ export const ja: FunnelDictionary = {
   "f.errorRateLimited": "試行回数が多すぎます。数分後に再度お試しいただくか、WhatsAppでご連絡ください。",
   "f.officeHours": "営業時間：月〜金 08:00〜18:00（WIB）",
   "f.conciergeNote": "24時間コンシェルジュはご滞在中のお客様専用です。",
+  "f.privacyNote": "送信すると次に同意したことになります:",
+  "f.privacyLink": "プライバシーポリシー",
   "f.confidential": "情報は厳重に管理します。義務は一切ありません。",
   "f.nights": "{n}泊",
   "f.night": "1泊",

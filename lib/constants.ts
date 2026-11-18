@@ -201,3 +201,15 @@ export const BLOG_CATEGORIES = [
   { slug: "revenue-management", label: "Revenue Management" },
   { slug: "guest-experience", label: "Guest Experience" },
 ] as const
+
+/**
+ * The ONE guest rating shown anywhere on the site (hero, owner page, About,
+ * press, structured data). It mirrors the Airbnb host profile that the contact
+ * page links to. Update it here, nowhere else, and keep it equal to what the
+ * linked profile shows: an unverifiable or inflated rating costs owner trust.
+ */
+export const SITE_RATING = {
+  value: 4.5,
+  reviewCount: 10,
+  source: "Airbnb",
+} as const

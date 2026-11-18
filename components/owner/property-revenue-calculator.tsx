@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect, useRef } from "react"
 import {
   TrendingUp,
   Sparkles,
@@ -10,8 +10,9 @@ import {
 } from "lucide-react"
 import { useLocalization } from "@/lib/context/localization-context"
 import { MANAGEMENT_FEES } from "@/lib/constants"
+import { calculateRevenue } from "@/lib/owner/revenue"
 import { SUBMARKET_BENCHMARKS } from "@/lib/pricing/benchmarks"
-import { trackWhatsAppClick } from "@/lib/analytics"
+import { trackWhatsAppClick, trackCalculatorOpen } from "@/lib/analytics"
 import { Button } from "@/components/ui/button"
 import { whatsappBase } from "@/lib/funnel/whatsapp"
 import { Select } from "@/components/ui/select"
@@ -107,10 +108,6 @@ export function PropertyRevenueCalculator() {
   // Full Management fee follows the property type (apartment vs villa / 6+ bedrooms).
   const kindOf = (s: { propertyTypeEn: string }) => (/villa/i.test(s.propertyTypeEn) ? "villa" : "apartment")
   const [propertyKind, setPropertyKind] = useState<"apartment" | "villa">(kindOf(currentSubmarket))
-  const [hasPool, setHasPool] = useState<boolean>(selectedSubmarketKey === "versatile-house-jagakarsa")
-  const [hasNetflix, setHasNetflix] = useState<boolean>(true)
-  const [hasSmartLock, setHasSmartLock] = useState<boolean>(true)
-  const [hasWifi, setHasWifi] = useState<boolean>(true)
 
   // Sync default values when changing submarket
   const handleSubmarketChange = (key: string) => {
@@ -121,78 +118,57 @@ export function PropertyRevenueCalculator() {
     if (found) {
       setBedrooms(found.defaultBedrooms)
       setCustomAdrIdr(found.benchmarkAdrIdr)
-      setHasPool(key === "versatile-house-jagakarsa")
     }
   }
 
-  // Purely dynamic calculations based on real benchmarks and dynamic pricing algorithms
-  const calculations = useMemo(() => {
-    const baseAdr = Math.max(150000, customAdrIdr)
-    
-    // Amenity multiplier factor
-    let amenityMultiplier = 1.0
-    if (hasPool) amenityMultiplier += 0.12 // Pool adds ~12% ADR premium
-    if (hasNetflix) amenityMultiplier += 0.03
-    if (hasSmartLock) amenityMultiplier += 0.02
-    if (hasWifi) amenityMultiplier += 0.03
-
-    // 1. Self-Managed Scenario (Conventional flat pricing on OTA)
-    const selfOccupancyRate = currentSubmarket.marketOccupancyPercent / 100
-    const selfNightsBooked = Math.round(365 * selfOccupancyRate)
-    const selfGrossAnnual = Math.round(selfNightsBooked * baseAdr)
-    // Airbnb OTA platform fee ~15% + estimated cleaning/linen hassle cost ~5%
-    const selfNetAnnual = Math.round(selfGrossAnnual * 0.80)
-    const selfNetMonthly = Math.round(selfNetAnnual / 12)
-
-    // 2. Kinghouse Managed Scenario (AirDNA Dynamic Pricing + Direct Booking SEO)
-    // Dynamic Pricing delivers higher average daily rate (+18% weighted across weekend & holiday surges)
-    const kinghouseWeightedAdr = Math.round(baseAdr * 1.18 * amenityMultiplier)
-    const kinghouseOccupancyRate = currentSubmarket.kinghouseOccupancyPercent / 100
-    const kinghouseNightsBooked = Math.round(365 * kinghouseOccupancyRate)
-    const kinghouseGrossAnnual = Math.round(kinghouseNightsBooked * kinghouseWeightedAdr)
-    
-    // Management fee by property type. Villas use the top of their range so
-    // the projection never looks better than the agreed rate can deliver.
+  // One nightly rate drives every row (see lib/owner/revenue.ts).
+  const result = useMemo(() => {
     const commissionPercent =
       propertyKind === "villa" ? MANAGEMENT_FEES.villaMaxPercent : MANAGEMENT_FEES.apartmentPercent
-    const kinghouseManagementFeeAnnual = Math.round((kinghouseGrossAnnual * commissionPercent) / 100)
-    // Cleaning fee is paid 100% by guests on Airbnb/Direct, so it is not deducted from owner
-    const kinghouseNetAnnual = Math.round(kinghouseGrossAnnual - kinghouseManagementFeeAnnual)
-    const kinghouseNetMonthly = Math.round(kinghouseNetAnnual / 12)
-
-    // Lift / Increment
-    const netAnnualLift = Math.max(0, kinghouseNetAnnual - selfNetAnnual)
-    const netMonthlyLift = Math.round(netAnnualLift / 12)
-    const percentageLift = selfNetAnnual > 0 ? Math.round((netAnnualLift / selfNetAnnual) * 100) : 0
-
-    return {
-      baseAdr,
+    return calculateRevenue({
+      nightlyRateIdr: Math.max(150000, customAdrIdr),
       selfOccupancyPercent: currentSubmarket.marketOccupancyPercent,
-      selfNightsBooked,
-      selfGrossAnnual,
-      selfNetAnnual,
-      selfNetMonthly,
-      kinghouseWeightedAdr,
-      kinghouseOccupancyPercent: currentSubmarket.kinghouseOccupancyPercent,
-      kinghouseNightsBooked,
-      kinghouseGrossAnnual,
-      kinghouseManagementFeeAnnual,
-      kinghouseNetAnnual,
-      kinghouseNetMonthly,
-      netAnnualLift,
-      netMonthlyLift,
-      percentageLift,
-      commissionPercent,
-    }
-  }, [
-    customAdrIdr,
-    currentSubmarket,
-    propertyKind,
-    hasPool,
-    hasNetflix,
-    hasSmartLock,
-    hasWifi,
-  ])
+      managedOccupancyPercent: currentSubmarket.kinghouseOccupancyPercent,
+      feePercent: commissionPercent,
+    })
+  }, [customAdrIdr, currentSubmarket, propertyKind])
+
+  const calculations = useMemo(() => ({
+    baseAdr: result.nightlyRateIdr,
+    selfOccupancyPercent: currentSubmarket.marketOccupancyPercent,
+    selfNightsBooked: result.selfNights,
+    selfGrossAnnual: result.selfGross,
+    selfNetAnnual: result.selfNet,
+    kinghouseOccupancyPercent: currentSubmarket.kinghouseOccupancyPercent,
+    kinghouseNightsBooked: result.managedNights,
+    kinghouseGrossAnnual: result.managedGross,
+    kinghouseManagementFeeAnnual: result.managedFee,
+    kinghouseNetAnnual: result.managedNet,
+    kinghouseNetMonthly: result.managedNetMonthly,
+    netAnnualLift: result.netLift,
+    netMonthlyLift: Math.max(0, result.netLiftMonthly),
+    percentageLift: Math.max(0, result.netLiftPercent),
+    commissionPercent: result.feePercent,
+  }), [result, currentSubmarket])
+
+  // Fire calculator_open once, the first time the section scrolls into view.
+  const sectionRef = useRef<HTMLElement | null>(null)
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el || typeof IntersectionObserver === "undefined") return
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          trackCalculatorOpen({ submarket: selectedSubmarketKey })
+          io.disconnect()
+        }
+      },
+      { threshold: 0.3 }
+    )
+    io.observe(el)
+    return () => io.disconnect()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // Pre-filled WhatsApp consultation message (bilingual)
   const whatsappUrl = useMemo(() => {
@@ -223,7 +199,7 @@ Please provide information on scheduling a complimentary physical audit and onbo
   }
 
   return (
-    <section id="calculator" className="section-macro-spacing bg-[#FAF7F1] relative border-y border-[#CBBEA0]/30 select-none">
+    <section ref={sectionRef} id="calculator" className="section-macro-spacing bg-[#FAF7F1] relative border-y border-[#CBBEA0]/30 select-none">
       <div className="mx-auto max-w-7xl px-6 lg:px-12 space-y-12">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
@@ -279,6 +255,40 @@ Please provide information on scheduling a complimentary physical audit and onbo
               </Select>
             </div>
 
+            {/* Apartment presets */}
+            <div className="space-y-2">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#231F1A] block">
+                {isId ? "Preset Apartemen" : "Apartment presets"}
+              </span>
+              <div className="grid grid-cols-2 gap-2">
+                {[
+                  { key: "bright-airy-apartment-palmerah", beds: 1, en: "Studio apartment", id: "Apartemen studio" },
+                  { key: "custom-jabodetabek", beds: 2, en: "2-bedroom apartment", id: "Apartemen 2 kamar" },
+                ].map((preset) => {
+                  const active = selectedSubmarketKey === preset.key && bedrooms === preset.beds
+                  return (
+                    <button
+                      key={preset.key}
+                      type="button"
+                      aria-pressed={active}
+                      onClick={() => {
+                        handleSubmarketChange(preset.key)
+                        setBedrooms(preset.beds)
+                        setPropertyKind("apartment")
+                      }}
+                      className={`rounded-xl border px-3 py-2 text-xs font-semibold transition-all ${
+                        active
+                          ? "border-[#231F1A] bg-[#231F1A] text-white"
+                          : "border-[#CBBEA0]/40 bg-[#FAF7F1] text-[#231F1A] hover:border-[#B8934C]"
+                      }`}
+                    >
+                      {isId ? preset.id : preset.en}
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+
             {/* Bedrooms and Custom ADR */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
@@ -310,51 +320,6 @@ Please provide information on scheduling a complimentary physical audit and onbo
                   onChange={(e) => setCustomAdrIdr(Number(e.target.value))}
                   className="w-full rounded-xl border border-[#CBBEA0]/40 bg-[#FAF7F1] px-3.5 py-2 text-xs sm:text-sm text-[#231F1A] focus:outline-hidden focus:ring-2 focus:ring-[#B8934C]/30 font-medium"
                 />
-              </div>
-            </div>
-
-            {/* Key Amenities Multi-Check */}
-            <div className="space-y-2.5">
-              <label className="text-xs font-semibold uppercase tracking-wider text-[#231F1A] block">
-                {isId ? "Fasilitas Unggulan Unit" : "Key Unit Amenities"}
-              </label>
-              <div className="grid grid-cols-2 gap-2 text-xs text-[#231F1A]">
-                <label className="flex items-center space-x-2 p-2 rounded-lg bg-[#FAF7F1] border border-[#E8E4DC] cursor-pointer hover:border-[#B8934C] transition-colors">
-                  <input
-                    type="checkbox"
-                    checked={hasPool}
-                    onChange={(e) => setHasPool(e.target.checked)}
-                    className="accent-[#B8934C] rounded"
-                  />
-                  <span>{isId ? "Kolam Renang" : "Private Swimming Pool"}</span>
-                </label>
-                <label className="flex items-center space-x-2 p-2 rounded-lg bg-[#FAF7F1] border border-[#E8E4DC] cursor-pointer hover:border-[#B8934C] transition-colors">
-                  <input
-                    type="checkbox"
-                    checked={hasSmartLock}
-                    onChange={(e) => setHasSmartLock(e.target.checked)}
-                    className="accent-[#B8934C] rounded"
-                  />
-                  <span>{isId ? "Smart Lock PIN" : "Smart Keypad Lock"}</span>
-                </label>
-                <label className="flex items-center space-x-2 p-2 rounded-lg bg-[#FAF7F1] border border-[#E8E4DC] cursor-pointer hover:border-[#B8934C] transition-colors">
-                  <input
-                    type="checkbox"
-                    checked={hasNetflix}
-                    onChange={(e) => setHasNetflix(e.target.checked)}
-                    className="accent-[#B8934C] rounded"
-                  />
-                  <span>{isId ? "Smart TV Netflix" : "Smart TV 4K & Netflix"}</span>
-                </label>
-                <label className="flex items-center space-x-2 p-2 rounded-lg bg-[#FAF7F1] border border-[#E8E4DC] cursor-pointer hover:border-[#B8934C] transition-colors">
-                  <input
-                    type="checkbox"
-                    checked={hasWifi}
-                    onChange={(e) => setHasWifi(e.target.checked)}
-                    className="accent-[#B8934C] rounded"
-                  />
-                  <span>{isId ? "WiFi Cepat" : "High-Speed WiFi"}</span>
-                </label>
               </div>
             </div>
 
@@ -501,13 +466,43 @@ Please provide information on scheduling a complimentary physical audit and onbo
                       {isId ? "Total Surplus Bersih / Thn" : "Net Annual Surplus"}
                     </span>
                     <span className="text-sm sm:text-base font-bold text-[#4ADE80] block">
-                      +{formatPrice(calculations.netAnnualLift)}
+                      {calculations.netAnnualLift >= 0 ? "+" : "−"}{formatPrice(Math.abs(calculations.netAnnualLift))}
                     </span>
                     <span className="text-xs text-[#4ADE80]/80">
                       {isId ? "Surplus di atas kelola sendiri" : "Surplus above self-management"}
                     </span>
                   </div>
                 </div>
+
+                {/* Step-by-step working: one rate in every row */}
+                <details className="rounded-xl border border-white/10 bg-white/5 p-4 text-xs text-white/80" open>
+                  <summary className="cursor-pointer text-xs font-bold uppercase tracking-wider text-[#CBBEA0]">
+                    {isId ? "Lihat perhitungan langkah demi langkah" : "See the step-by-step calculation"}
+                  </summary>
+                  <ol className="mt-3 space-y-2 font-mono leading-relaxed">
+                    <li>
+                      1. {isId ? "Tarif per malam (sama di semua baris)" : "Nightly rate (same in every row)"}: {formatPrice(result.nightlyRateIdr)}
+                    </li>
+                    <li>
+                      2. {isId ? "Kelola sendiri" : "Self-managed"}: {result.selfNights} {isId ? "malam" : "nights"} × {formatPrice(result.nightlyRateIdr)} = {formatPrice(result.selfGross)}{" "}
+                      → {isId ? "setelah" : "after"} {result.selfCostPercent}% {isId ? "biaya OTA & kebersihan" : "OTA & cleaning costs"} = {formatPrice(result.selfNet)}
+                    </li>
+                    <li>
+                      3. Kinghouse: {result.managedNights} {isId ? "malam" : "nights"} × {formatPrice(result.nightlyRateIdr)} = {formatPrice(result.managedGross)}
+                    </li>
+                    <li>
+                      4. {isId ? "Fee" : "Fee"} {result.feePercent}% × {formatPrice(result.managedGross)} = {formatPrice(result.managedFee)} → {isId ? "bersih" : "net"} {formatPrice(result.managedNet)}
+                    </li>
+                    <li>
+                      5. {isId ? "Selisih" : "Difference"}: {formatPrice(result.managedNet)} − {formatPrice(result.selfNet)} = {result.netLift >= 0 ? "+" : "−"}{formatPrice(Math.abs(result.netLift))} / {isId ? "tahun" : "year"}
+                    </li>
+                  </ol>
+                  <p className="mt-3 text-white/60">
+                    {isId
+                      ? "Proyeksi memakai tarif yang sama untuk kedua skenario; perbedaannya hanya pada okupansi dan fee. Ini estimasi, bukan jaminan."
+                      : "The projection uses the same rate in both scenarios; the only differences are occupancy and fee. It is an estimate, not a guarantee."}
+                  </p>
+                </details>
 
                 {/* Dynamic Pricing Engine Explainer Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs text-white/80">

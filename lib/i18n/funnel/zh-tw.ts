@@ -10,6 +10,8 @@ export const zhTW: FunnelDictionary = {
   "f.errorRateLimited": "嘗試次數過多。請稍候幾分鐘，或透過 WhatsApp 與我們聯繫。",
   "f.officeHours": "營業時間：週一至週五 08:00–18:00（雅加達時間）",
   "f.conciergeNote": "24/7 禮賓服務僅限住宿中的旅客。",
+  "f.privacyNote": "提交此表單即表示您同意我們的",
+  "f.privacyLink": "隱私權政策",
   "f.confidential": "資料絕對保密，無任何義務。",
   "f.nights": "{n} 晚",
   "f.night": "1 晚",

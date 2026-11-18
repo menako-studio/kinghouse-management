@@ -10,6 +10,8 @@ export const id: FunnelDictionary = {
   "f.errorRateLimited": "Terlalu banyak percobaan. Tunggu beberapa menit atau hubungi kami via WhatsApp.",
   "f.officeHours": "Jam kantor: Senin–Jumat, 08.00–18.00 WIB",
   "f.conciergeNote": "Concierge 24/7 khusus tamu yang sedang menginap.",
+  "f.privacyNote": "Dengan mengirim formulir ini Anda menyetujui",
+  "f.privacyLink": "Kebijakan Privasi",
   "f.confidential": "Data Anda rahasia. Tanpa kewajiban.",
   "f.nights": "{n} malam",
   "f.night": "1 malam",

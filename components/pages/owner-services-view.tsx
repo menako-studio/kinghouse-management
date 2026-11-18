@@ -1,14 +1,16 @@
+import { OwnerCtaAnchor } from "@/components/analytics/tracked-anchor"
 import Image from "next/image"
 import Script from "next/script"
 import { ArrowRight, Sparkles } from "lucide-react"
 import { PropertyRevenueCalculator } from "@/components/owner/property-revenue-calculator"
+import { PlanComparisonTable } from "@/components/owner/plan-comparison-table"
 import { TieredPricingTable } from "@/components/owner/tiered-pricing-table"
 import { PerformanceMetrics } from "@/components/owner/performance-metrics"
 import { OnboardingTimeline } from "@/components/owner/onboarding-timeline"
 import { OwnerServiceProvider } from "@/components/owner/owner-service-context"
 import { OwnerServiceCards } from "@/components/owner/owner-service-cards"
 import { OwnerLeadForm } from "@/components/owner/owner-lead-form"
-import { SITE_CONFIG, MANAGEMENT_FEES } from "@/lib/constants"
+import { SITE_CONFIG, MANAGEMENT_FEES, SITE_RATING } from "@/lib/constants"
 import { contentTranslator } from "@/lib/i18n/content"
 import { type SiteLocale } from "@/lib/i18n/site"
 import { serializeJsonLd } from "@/lib/security/json-ld"
@@ -88,7 +90,7 @@ export function OwnerServicesView({ locale }: { locale: SiteLocale }) {
                 className="inline-flex min-h-10 items-center gap-2 rounded-full border border-[#DFC58E]/50 bg-black/40 px-4 text-sm font-semibold text-[#DFC58E] backdrop-blur-md transition-colors hover:bg-black/60"
               >
                 <Sparkles className="h-4 w-4" aria-hidden="true" />
-                {tx("Official Airbnb Superhost")} · ★ 4.5
+                {tx("Official Airbnb Superhost")} · ★ {SITE_RATING.value.toFixed(1)}
               </a>
 
               <h1 className="font-serif text-[2.6rem] font-normal leading-[1.06] text-white sm:text-6xl lg:text-7xl">
@@ -104,7 +106,7 @@ export function OwnerServicesView({ locale }: { locale: SiteLocale }) {
               <dl className="grid max-w-xl grid-cols-2 gap-6 border-t border-white/20 pt-5 text-white">
                 <div>
                   <dt className="text-sm text-white/75">{tx("Guest rating on Airbnb")}</dt>
-                  <dd className="font-serif text-4xl">4.9★</dd>
+                  <dd className="font-serif text-4xl">{SITE_RATING.value.toFixed(1)}★</dd>
                 </div>
                 <div>
                   <dt className="text-sm text-white/75">{tx("Fee, no fixed costs")}</dt>
@@ -114,13 +116,14 @@ export function OwnerServicesView({ locale }: { locale: SiteLocale }) {
 
               {/* CTAs */}
               <div className="flex flex-col items-stretch gap-3 pt-2 sm:flex-row sm:items-center sm:gap-4">
-                <a
+                <OwnerCtaAnchor
+                  location="owner_hero"
                   href="#owner-form"
                   className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-white px-8 text-base font-semibold text-[#19191B] shadow-xl transition-colors hover:bg-[#F2EFEB]"
                 >
                   {tx("Get a free proposal")}
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />
-                </a>
+                </OwnerCtaAnchor>
                 <a
                   href="#calculator"
                   className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/40 px-8 text-base font-semibold text-white transition-colors hover:bg-white/10"
@@ -140,6 +143,7 @@ export function OwnerServicesView({ locale }: { locale: SiteLocale }) {
 
         {/* 5. Tiered Management Models & Pricing Table */}
         <TieredPricingTable />
+        <PlanComparisonTable />
 
         {/* 6. Empirical Performance Proof (Before vs After Case Studies) */}
         <PerformanceMetrics />
