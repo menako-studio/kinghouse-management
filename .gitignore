@@ -46,3 +46,21 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# extra safety for a public repo: never commit secrets, dumps or local tooling state
+.env*
+!.env.example
+!.env.*.example
+*.key
+*.p12
+*.pfx
+*.der
+*.crt
+*.sql.gz
+*.dump
+*.bak
+supabase/.temp/
+supabase/.branches/
+.claude/settings.local.json
+.mcp.json
+service-account*.json
