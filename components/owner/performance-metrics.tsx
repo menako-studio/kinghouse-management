@@ -33,7 +33,7 @@ export function PerformanceMetrics() {
     <section id="case-studies" className="section-macro-spacing bg-white">
       <div className="mx-auto max-w-7xl space-y-12 px-6 lg:px-12">
         <div className="max-w-3xl space-y-3">
-          <span className="text-sm font-semibold uppercase tracking-[0.18em] text-[#8C7F5F]">{tc("Results")}</span>
+          <span className="text-sm font-semibold uppercase tracking-[0.18em] text-[#776B4E]">{tc("Results")}</span>
           <h2 className="font-serif text-4xl text-[#222222] sm:text-5xl">{tc("Real numbers from properties we manage")}</h2>
           <p className="text-base leading-relaxed text-[#5C5347] sm:text-lg">
             {tc("Payouts exactly as reported by Airbnb, after Airbnb's host fee.")}

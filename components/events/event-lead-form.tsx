@@ -136,7 +136,7 @@ export function EventLeadForm({ eventType, onEventTypeChange }: EventLeadFormPro
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         {/* Venue rules — written once here so they are not asked again in chat */}
         <aside className="space-y-5 self-start rounded-3xl border border-[#E8E4DC] bg-[#FAF8F5] p-6 sm:p-8 lg:order-2">
-          <div className="flex items-center gap-2 text-[#8C7F5F]">
+          <div className="flex items-center gap-2 text-[#776B4E]">
             <Info className="h-5 w-5" />
             <h3 className="text-sm font-bold uppercase tracking-wider">{t("f.rules.title")}</h3>
           </div>
@@ -149,14 +149,14 @@ export function EventLeadForm({ eventType, onEventTypeChange }: EventLeadFormPro
             ))}
           </dl>
           <p className="text-sm text-[#5C5347]">{t("f.rules.fullRules")}</p>
-          <a href="#pricelist" className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#8C7F5F] hover:underline">
+          <a href="#pricelist" className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#776B4E] hover:underline">
             {t("f.rules.priceList")} <ArrowRight className="h-4 w-4" />
           </a>
         </aside>
 
         <div className="rounded-3xl border border-[#E8E4DC] bg-white p-6 shadow-xs sm:p-10 lg:col-span-2">
           <div className="mb-6 space-y-1">
-            <span className="text-sm font-bold uppercase tracking-[0.15em] text-[#8C7F5F]">{t("f.ef.eyebrow")}</span>
+            <span className="text-sm font-bold uppercase tracking-[0.15em] text-[#776B4E]">{t("f.ef.eyebrow")}</span>
             <h2 className="font-serif text-3xl text-[#222225]">{t("f.ef.title")}</h2>
             <p className="text-base text-[#5C5347]">{t("f.ef.subtitle")}</p>
           </div>
@@ -317,7 +317,7 @@ export function EventLeadForm({ eventType, onEventTypeChange }: EventLeadFormPro
               type="submit"
               size="lg"
               disabled={isSubmitting}
-              className="h-14 w-full bg-[#8C7F5F] text-base font-semibold text-white shadow-md hover:bg-[#776B4E]"
+              className="h-14 w-full bg-[#776B4E] text-base font-semibold text-white shadow-md hover:bg-[#62583F]"
             >
               {isSubmitting ? (
                 t("f.sending")
@@ -331,7 +331,7 @@ export function EventLeadForm({ eventType, onEventTypeChange }: EventLeadFormPro
 
           <div className="mt-6 flex flex-col gap-3 border-t border-[#E8E4DC] pt-5 text-sm text-[#5C5347] sm:flex-row sm:items-center sm:justify-between">
             <p className="flex items-center gap-1.5">
-              <Clock className="h-4 w-4 text-[#8C7F5F]" /> {t("f.officeHours")}
+              <Clock className="h-4 w-4 text-[#776B4E]" /> {t("f.officeHours")}
             </p>
             <a
               href={whatsappUrl}

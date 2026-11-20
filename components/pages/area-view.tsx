@@ -188,14 +188,14 @@ export function AreaView({ area, locale }: { area: string; locale: SiteLocale })
 
           <div className="max-w-3xl space-y-4">
             <div className="inline-flex items-center space-x-2 bg-white border border-[#EBEBEB] rounded-full px-3.5 py-1 text-xs font-semibold text-[#222222]">
-              <MapPin className="h-3.5 w-3.5 text-[#A69C8E]" />
+              <MapPin className="h-3.5 w-3.5 text-[#736A5E]" />
               <span>{areaData.region}</span>
             </div>
 
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#222222] font-normal leading-tight">
               {tx("Curated Properties in")}
               <br />
-              <span className="text-[#A69C8E]">{areaData.name}</span>
+              <span className="text-[#736A5E]">{areaData.name}</span>
             </h1>
 
             <p className="text-base sm:text-lg text-[#717171] font-light leading-relaxed">
@@ -203,7 +203,7 @@ export function AreaView({ area, locale }: { area: string; locale: SiteLocale })
             </p>
 
             <div className="flex items-center space-x-2 pt-2 text-xs text-[#222222] font-medium">
-              <Sparkles className="h-4 w-4 text-[#A69C8E]" />
+              <Sparkles className="h-4 w-4 text-[#736A5E]" />
               <span>{tx("Area Highlight:")} <strong>{tx(areaData.highlight)}</strong></span>
             </div>
           </div>
@@ -222,7 +222,7 @@ export function AreaView({ area, locale }: { area: string; locale: SiteLocale })
                 {tx("{count} verified listings managed to Kinghouse Superhost standards", { count: villasInArea.length })}
               </p>
             </div>
-            <span className="text-xs text-[#A69C8E] font-medium uppercase tracking-wider">
+            <span className="text-xs text-[#736A5E] font-medium uppercase tracking-wider">
               {tx("{count} Available", { count: villasInArea.length })}
             </span>
           </div>
@@ -246,7 +246,7 @@ export function AreaView({ area, locale }: { area: string; locale: SiteLocale })
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#A69C8E]">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#736A5E]">
                 {tx("Local Area Guide")}
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl text-[#222222]">
@@ -264,7 +264,7 @@ export function AreaView({ area, locale }: { area: string; locale: SiteLocale })
                   "Transparent, secure reservations processed directly through Airbnb",
                 ].map((point, idx) => (
                   <div key={idx} className="flex items-start space-x-3 text-xs text-[#222222]">
-                    <CheckCircle2 className="h-4 w-4 text-[#A69C8E] mt-0.5 flex-shrink-0" />
+                    <CheckCircle2 className="h-4 w-4 text-[#736A5E] mt-0.5 flex-shrink-0" />
                     <span>{tx(point)}</span>
                   </div>
                 ))}
@@ -274,7 +274,7 @@ export function AreaView({ area, locale }: { area: string; locale: SiteLocale })
             <div className="lg:col-span-6">
               <div className="rounded-3xl border border-[#EBEBEB] bg-white p-8 space-y-6 shadow-sm">
                 <div className="flex items-center space-x-3 pb-4 border-b border-[#F5F4F0]">
-                  <ShieldCheck className="h-6 w-6 text-[#A69C8E]" />
+                  <ShieldCheck className="h-6 w-6 text-[#736A5E]" />
                   <div>
                     <h3 className="font-serif text-lg text-[#222222]">
                       {tx("Own a Property in {area}?", { area: areaData.name })}
@@ -316,7 +316,7 @@ export function AreaView({ area, locale }: { area: string; locale: SiteLocale })
         <section className="bg-white border-b border-[#EBEBEB] py-20">
           <div className="mx-auto max-w-4xl px-6 lg:px-12">
             <div className="text-center space-y-3 mb-12">
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#A69C8E]">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#736A5E]">
                 {tx("Frequently Asked Questions")}
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl text-[#222222]">
@@ -360,10 +360,10 @@ export function AreaView({ area, locale }: { area: string; locale: SiteLocale })
                 className="group p-6 rounded-2xl border border-[#EBEBEB] bg-white hover:border-[#222222] transition-colors"
               >
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs text-[#A69C8E] font-medium">{other.region}</span>
-                  <ArrowRight className="h-4 w-4 text-[#A69C8E] group-hover:translate-x-1 group-hover:text-[#222222] transition-all" />
+                  <span className="text-xs text-[#736A5E] font-medium">{other.region}</span>
+                  <ArrowRight className="h-4 w-4 text-[#736A5E] group-hover:translate-x-1 group-hover:text-[#222222] transition-all" />
                 </div>
-                <h3 className="font-serif text-xl text-[#222222] mb-1 group-hover:text-[#A69C8E] transition-colors">
+                <h3 className="font-serif text-xl text-[#222222] mb-1 group-hover:text-[#736A5E] transition-colors">
                   {other.name}
                 </h3>
                 <p className="text-xs text-[#717171] line-clamp-2">{tx(other.description)}</p>

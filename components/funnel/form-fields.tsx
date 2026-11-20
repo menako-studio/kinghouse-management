@@ -5,7 +5,7 @@ export const selectClassName =
   "flex h-12 w-full rounded-lg border border-[#D9D3C7] bg-white px-3.5 py-2 text-base text-[#222222] focus:border-[#222222] focus:outline-none cursor-pointer"
 
 export const textareaClassName =
-  "flex min-h-[96px] w-full rounded-lg border border-[#D9D3C7] bg-white px-3.5 py-2.5 text-base text-[#222222] placeholder:text-[#999999] focus-visible:border-[#222222] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#222222]"
+  "flex min-h-[96px] w-full rounded-lg border border-[#D9D3C7] bg-white px-3.5 py-2.5 text-base text-[#222222] placeholder:text-[#717171] focus-visible:border-[#222222] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#222222]"
 
 interface FieldProps {
   label: string
@@ -21,7 +21,7 @@ export function Field({ label, htmlFor, required, hint, className, children }: F
   const text = (
     <>
       {label}
-      {required && <span className="text-[#8C7F5F]"> *</span>}
+      {required && <span className="text-[#776B4E]"> *</span>}
     </>
   )
   const labelClass = "block text-sm font-semibold text-[#222222]"
@@ -64,7 +64,7 @@ export function ChoiceChip({ checked, onChange, label, type = "checkbox", name }
         "inline-flex cursor-pointer select-none items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition-colors",
         "focus-within:ring-2 focus-within:ring-[#8C7F5F]/40",
         checked
-          ? "border-[#8C7F5F] bg-[#8C7F5F] text-white"
+          ? "border-[#8C7F5F] bg-[#776B4E] text-white"
           : "border-[#E8E4DC] bg-white text-[#222222] hover:border-[#8C7F5F]"
       )}
     >

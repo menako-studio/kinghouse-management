@@ -26,9 +26,9 @@ export default function SeoManagerPage() {
       {/* Header Banner - Clean Operational Hospitality Standard */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-[#E8E4DC]">
         <div className="space-y-2">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#FAF8F5] border border-[#E8E4DC] text-[10px] font-semibold tracking-wider text-[#222225]">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#FAF8F5] border border-[#E8E4DC] text-[11px] font-semibold tracking-wider text-[#222225]">
             <Search className="h-3.5 w-3.5 text-[#B8934C]" />
-            <span className="text-[#8C7F5F] uppercase">PENCARIAN GOOGLE & AIRBNB</span>
+            <span className="text-[#776B4E] uppercase">PENCARIAN GOOGLE & AIRBNB</span>
             <span className="text-[#D5CFC3]">&bull;</span>
             <span>TRAFIK ORGANIK</span>
           </div>
@@ -49,7 +49,7 @@ export default function SeoManagerPage() {
             rel="noopener noreferrer"
             className="inline-flex items-center space-x-2 bg-white border border-[#E8E4DC] text-[#222225] px-4 py-2.5 rounded-2xl text-xs font-semibold hover:bg-[#FAF8F5] transition-all shadow-xs"
           >
-            <FileCode className="h-3.5 w-3.5 text-[#8C7F5F]" />
+            <FileCode className="h-3.5 w-3.5 text-[#776B4E]" />
             <span>XML Sitemap</span>
           </a>
           <a
@@ -68,7 +68,7 @@ export default function SeoManagerPage() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         <div className="p-6 rounded-3xl bg-white border border-[#E8E4DC] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B6862]">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#6B6862]">
               Unit Terindeks Google
             </span>
             <ShieldCheck className="h-4 w-4 text-emerald-600" />
@@ -76,14 +76,14 @@ export default function SeoManagerPage() {
           <p className="text-3xl font-semibold text-[#222225] tracking-tight">
             {indexedPropertiesCount} / {indexedPropertiesCount}
           </p>
-          <p className="text-xs text-[#8C7F5F] font-light">
+          <p className="text-xs text-[#776B4E] font-light">
             Schema.org VacationRental & BreadcrumbList aktif
           </p>
         </div>
 
         <div className="p-6 rounded-3xl bg-white border border-[#E8E4DC] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B6862]">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#6B6862]">
               Artikel Editorial
             </span>
             <TrendingUp className="h-4 w-4 text-[#B8934C]" />
@@ -91,14 +91,14 @@ export default function SeoManagerPage() {
           <p className="text-3xl font-semibold text-[#222225] tracking-tight">
             {BLOG_POSTS.length} Artikel
           </p>
-          <p className="text-xs text-[#8C7F5F] font-light">
+          <p className="text-xs text-[#776B4E] font-light">
             {totalKeywordsTargeted} kata kunci spesifik Jabodetabek
           </p>
         </div>
 
         <div className="p-6 rounded-3xl bg-white border border-[#E8E4DC] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B6862]">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#6B6862]">
               Status Canonical URL
             </span>
             <CheckCircle2 className="h-4 w-4 text-emerald-600" />
@@ -106,7 +106,7 @@ export default function SeoManagerPage() {
           <p className="text-3xl font-semibold text-emerald-700 tracking-tight">
             100% Valid
           </p>
-          <p className="text-xs text-[#8C7F5F] font-light">
+          <p className="text-xs text-[#776B4E] font-light">
             Domain resmi: kinghousemanagement.com
           </p>
         </div>
@@ -121,7 +121,7 @@ export default function SeoManagerPage() {
               Pilih properti untuk memeriksa dan memperbarui judul, deskripsi, serta skor optimasi Google
             </p>
           </div>
-          <span className="text-[10px] text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full font-semibold border border-emerald-200 self-start sm:self-auto uppercase tracking-wider">
+          <span className="text-[11px] text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full font-semibold border border-emerald-200 self-start sm:self-auto uppercase tracking-wider">
             Pratinjau Google Aktif
           </span>
         </div>
@@ -143,7 +143,7 @@ export default function SeoManagerPage() {
           <Link
             href="/blog"
             target="_blank"
-            className="inline-flex items-center space-x-1.5 text-xs font-semibold text-[#222225] hover:text-[#8C7F5F] transition-colors"
+            className="inline-flex items-center space-x-1.5 text-xs font-semibold text-[#222225] hover:text-[#776B4E] transition-colors"
           >
             <span>Buka Halaman Blog</span>
             <ArrowRight className="h-3.5 w-3.5" />
@@ -153,7 +153,7 @@ export default function SeoManagerPage() {
         <div className="rounded-3xl border border-[#E8E4DC] bg-white overflow-hidden shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)]">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-[#E8E4DC] bg-[#FAF8F5] text-[10px] font-bold uppercase tracking-wider text-[#6B6862]">
+              <tr className="border-b border-[#E8E4DC] bg-[#FAF8F5] text-[11px] font-bold uppercase tracking-wider text-[#6B6862]">
                 <th className="py-4 px-6">Judul Artikel & Target Area</th>
                 <th className="py-4 px-6">Kategori</th>
                 <th className="py-4 px-6">Kata Kunci Sasaran</th>
@@ -165,10 +165,10 @@ export default function SeoManagerPage() {
                 <tr key={post.id} className="hover:bg-[#FAF8F5]/90 transition-colors">
                   <td className="py-4 px-6">
                     <p className="font-semibold text-[#222225] line-clamp-1">{post.title}</p>
-                    <p className="text-[11px] text-[#8C7F5F] mt-0.5 font-mono">/blog/{post.slug}</p>
+                    <p className="text-xs text-[#776B4E] mt-0.5 font-mono">/blog/{post.slug}</p>
                   </td>
                   <td className="py-4 px-6">
-                    <span className="px-3 py-1 rounded-full text-[10px] font-semibold bg-[#FAF8F5] text-[#222225] border border-[#E8E4DC]">
+                    <span className="px-3 py-1 rounded-full text-[11px] font-semibold bg-[#FAF8F5] text-[#222225] border border-[#E8E4DC]">
                       {post.category}
                     </span>
                   </td>
@@ -177,7 +177,7 @@ export default function SeoManagerPage() {
                       {post.seoKeywords.slice(0, 2).map((kw) => (
                         <span
                           key={kw}
-                          className="px-2 py-0.5 rounded-md text-[10px] bg-[#FAF8F5] text-[#5C5347] font-mono border border-[#E8E4DC]"
+                          className="px-2 py-0.5 rounded-md text-[11px] bg-[#FAF8F5] text-[#5C5347] font-mono border border-[#E8E4DC]"
                         >
                           {kw}
                         </span>
@@ -185,7 +185,7 @@ export default function SeoManagerPage() {
                     </div>
                   </td>
                   <td className="py-4 px-6">
-                    <span className="inline-flex items-center space-x-1 text-[11px] text-emerald-800 font-medium bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                    <span className="inline-flex items-center space-x-1 text-xs text-emerald-800 font-medium bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
                       <CheckCircle2 className="h-3 w-3 text-emerald-600" />
                       <span>Terindeks Google</span>
                     </span>

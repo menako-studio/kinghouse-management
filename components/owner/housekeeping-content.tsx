@@ -70,14 +70,14 @@ export function HousekeepingContent() {
             <ul className="space-y-3">
               {INCLUDED.map((key) => (
                 <li key={key} className="flex items-start gap-2.5 text-base text-[#222222]">
-                  <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-[#8C7F5F]" />
+                  <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-[#776B4E]" />
                   {t(key)}
                 </li>
               ))}
             </ul>
             <div className="rounded-2xl border border-[#E8E4DC] bg-white p-5">
               <h3 className="flex items-center gap-2 text-base font-semibold text-[#222222]">
-                <MapPin className="h-5 w-5 text-[#8C7F5F]" /> {t("f.hk.areasTitle")}
+                <MapPin className="h-5 w-5 text-[#776B4E]" /> {t("f.hk.areasTitle")}
               </h3>
               <p className="mt-1.5 text-base text-[#5C5347]">{t("f.hk.areasText")}</p>
             </div>
@@ -114,7 +114,7 @@ export function HousekeepingContent() {
               </details>
             ))}
           </div>
-          <Link href="/owner-services#layanan" className="inline-flex items-center gap-1.5 text-base font-semibold text-[#8C7F5F] hover:underline">
+          <Link href="/owner-services#layanan" className="inline-flex items-center gap-1.5 text-base font-semibold text-[#776B4E] hover:underline">
             {t("f.hk.otherServices")} <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

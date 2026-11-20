@@ -162,7 +162,7 @@ function renderContent(content: string) {
     // 6. Italic single line
     else if (line.startsWith("*") && line.endsWith("*") && !line.startsWith("**")) {
       elements.push(
-        <p key={`it-${i}`} className="text-xs text-[#8C7F5F] italic border-l-2 border-[#E8E4DC] pl-4 my-4">
+        <p key={`it-${i}`} className="text-xs text-[#776B4E] italic border-l-2 border-[#E8E4DC] pl-4 my-4">
           {line.slice(1, -1)}
         </p>
       )
@@ -302,10 +302,10 @@ export default async function BlogPostPage({ params }: PageProps) {
             </div>
             <div>
               <p className="text-sm font-semibold text-[#222222]">{post.author.name}</p>
-              <p className="text-xs text-[#A69C8E]">{post.author.role}</p>
+              <p className="text-xs text-[#736A5E]">{post.author.role}</p>
             </div>
           </div>
-          <div className="flex items-center space-x-4 text-xs text-[#A69C8E]">
+          <div className="flex items-center space-x-4 text-xs text-[#736A5E]">
             <span className="flex items-center space-x-1">
               <Calendar className="h-3 w-3" />
               <span>{formattedDate}</span>
@@ -334,7 +334,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           {post.tags.map((tag) => (
             <span
               key={tag}
-              className="flex items-center space-x-1 text-xs text-[#A69C8E] bg-[#F5F4F0] border border-[#EBEBEB] px-3 py-1 rounded-full"
+              className="flex items-center space-x-1 text-xs text-[#736A5E] bg-[#F5F4F0] border border-[#EBEBEB] px-3 py-1 rounded-full"
             >
               <Tag className="h-2.5 w-2.5" />
               <span>{tag}</span>
@@ -361,7 +361,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             <h2 className="font-serif text-3xl sm:text-4xl text-white mb-3">
               Optimize Your Property with Kinghouse
             </h2>
-            <p className="text-[#A69C8E] text-sm mb-8 max-w-sm mx-auto">
+            <p className="text-[#736A5E] text-sm mb-8 max-w-sm mx-auto">
               Complimentary asset audit for villas and apartments across Greater Jakarta.
             </p>
             <a
@@ -405,7 +405,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                         </span>
                       </div>
                       <div className="p-5">
-                        <h3 className="font-serif text-base text-[#222222] leading-snug group-hover:text-[#A69C8E] transition-colors">
+                        <h3 className="font-serif text-base text-[#222222] leading-snug group-hover:text-[#736A5E] transition-colors">
                           {related.title}
                         </h3>
                         <p className="text-xs text-[#717171] mt-2 line-clamp-2">{related.excerpt}</p>

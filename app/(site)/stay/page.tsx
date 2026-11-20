@@ -71,9 +71,9 @@ export default function GuestDirectoryPage() {
                   </div>
                 </div>
 
-                <h3 className="text-base font-medium text-stone-100 font-serif group-hover:text-[#CBBEA0] transition-colors">
+                <h2 className="text-base font-medium text-stone-100 font-serif group-hover:text-[#CBBEA0] transition-colors">
                   {prop.propertyName}
-                </h3>
+                </h2>
               </div>
 
               <div className="mt-4 flex items-center justify-between border-t border-stone-800/80 pt-3">

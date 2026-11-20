@@ -252,7 +252,7 @@ function ToastContainer({
             <div className="flex-1 min-w-0 pr-2">
               <p className="text-xs font-semibold text-[#222225] leading-snug">{toast.title}</p>
               {toast.message && (
-                <p className="text-[11px] text-[#717171] mt-0.5 leading-relaxed font-light">
+                <p className="text-xs text-[#717171] mt-0.5 leading-relaxed font-light">
                   {toast.message}
                 </p>
               )}

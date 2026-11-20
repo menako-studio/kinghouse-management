@@ -106,7 +106,7 @@ export function SeoEditor() {
               <Image src={villa.heroImage} alt={villa.name} fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover" />
             </div>
             <span className="truncate max-w-[140px] sm:max-w-[200px]">{villa.name}</span>
-            <span className="text-[10px] opacity-70">({villa.area})</span>
+            <span className="text-[11px] opacity-70">({villa.area})</span>
           </button>
         ))}
       </div>
@@ -137,10 +137,10 @@ export function SeoEditor() {
                 <label className="text-xs font-bold text-[#222222] uppercase tracking-wider">
                   Kata Kunci Sasaran (Target Keyword)
                 </label>
-                <span className="text-[11px] text-[#A69C8E]">Frasa pencarian yang dicari tamu</span>
+                <span className="text-xs text-[#736A5E]">Frasa pencarian yang dicari tamu</span>
               </div>
               <div className="relative">
-                <Search className="absolute left-3.5 top-3 h-4 w-4 text-[#A69C8E]" />
+                <Search className="absolute left-3.5 top-3 h-4 w-4 text-[#736A5E]" />
                 <input
                   type="text"
                   value={focusKeyword}
@@ -158,7 +158,7 @@ export function SeoEditor() {
                   Judul di Google (Meta Title)
                 </label>
                 <span
-                  className={`text-[11px] font-mono font-medium ${
+                  className={`text-xs font-mono font-medium ${
                     isTitleOptimal ? "text-emerald-600" : "text-amber-600"
                   }`}
                 >
@@ -180,7 +180,7 @@ export function SeoEditor() {
                   Deskripsi di Google (Meta Description)
                 </label>
                 <span
-                  className={`text-[11px] font-mono font-medium ${
+                  className={`text-xs font-mono font-medium ${
                     isDescOptimal ? "text-emerald-600" : "text-amber-600"
                   }`}
                 >
@@ -201,10 +201,10 @@ export function SeoEditor() {
                 <label className="text-xs font-bold text-[#222222] uppercase tracking-wider">
                   Alamat Web Resmi (Canonical URL)
                 </label>
-                <span className="text-[11px] text-[#A69C8E]">Alamat Utama</span>
+                <span className="text-xs text-[#736A5E]">Alamat Utama</span>
               </div>
               <div className="relative">
-                <Globe className="absolute left-3.5 top-3 h-4 w-4 text-[#A69C8E]" />
+                <Globe className="absolute left-3.5 top-3 h-4 w-4 text-[#736A5E]" />
                 <input
                   type="text"
                   value={canonicalUrl}
@@ -220,7 +220,7 @@ export function SeoEditor() {
                 <label className="text-xs font-bold text-[#222222] uppercase tracking-wider">
                   Pratinjau Saat Link Dibagikan (WhatsApp / Medsos)
                 </label>
-                <span className="text-[11px] text-emerald-600 font-semibold">1200 x 630px Otomatis Dioptimalkan</span>
+                <span className="text-xs text-emerald-600 font-semibold">1200 x 630px Otomatis Dioptimalkan</span>
               </div>
               <div className="relative aspect-[1200/630] rounded-xl overflow-hidden border border-[#EBEBEB] group">
                 <Image
@@ -231,7 +231,7 @@ export function SeoEditor() {
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-4 flex flex-col justify-end">
-                  <span className="text-[10px] uppercase font-bold tracking-widest text-[#D4B896]">
+                  <span className="text-[11px] uppercase font-bold tracking-widest text-[#D4B896]">
                     Kinghouse Curated Property &bull; {currentVilla.area}
                   </span>
                   <p className="text-sm font-semibold text-white truncate">
@@ -288,15 +288,15 @@ export function SeoEditor() {
               <span className="text-xs font-bold uppercase tracking-wider text-[#717171]">
                 Pratinjau Hasil Pencarian Google
               </span>
-              <span className="text-[10px] text-[#A69C8E]">Tampilan Desktop</span>
+              <span className="text-[11px] text-[#736A5E]">Tampilan Desktop</span>
             </div>
             <div className="p-4 rounded-xl bg-[#FAFAFA] border border-[#EBEBEB] space-y-1.5 font-sans">
-              <div className="flex items-center space-x-2 text-[11px] text-[#202124]">
-                <div className="h-4 w-4 rounded-full bg-[#EBEBEB] flex items-center justify-center text-[9px] font-bold">
+              <div className="flex items-center space-x-2 text-xs text-[#202124]">
+                <div className="h-4 w-4 rounded-full bg-[#EBEBEB] flex items-center justify-center text-[11px] font-bold">
                   K
                 </div>
                 <span className="text-[#202124] font-medium">kinghousemanagement.com</span>
-                <span className="text-[#5f6368] text-[10px]">
+                <span className="text-[#5f6368] text-[11px]">
                   &rsaquo; locations &rsaquo; {currentVilla.areaSlug}
                 </span>
               </div>
@@ -312,7 +312,7 @@ export function SeoEditor() {
           {/* Airbnb Conversion Algorithm Highlights */}
           <div className="rounded-2xl border border-[#EBEBEB] bg-[#F5F4F0] p-6 space-y-3">
             <div className="flex items-center space-x-2">
-              <Sparkles className="h-4 w-4 text-[#A69C8E]" />
+              <Sparkles className="h-4 w-4 text-[#736A5E]" />
               <h4 className="font-semibold text-xs text-[#222222] uppercase tracking-wider">
                 Pengaruh Judul Menarik pada Okupansi
               </h4>

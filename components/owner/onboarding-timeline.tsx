@@ -51,7 +51,7 @@ export function OnboardingTimeline({ locale }: { locale: SiteLocale }) {
       <div className="mx-auto max-w-7xl px-6 lg:px-12 space-y-16">
         {/* Header */}
         <div className="max-w-3xl space-y-4">
-          <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#A69C8E]">
+          <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#736A5E]">
             {tc("Rapid 14-Day Deployment")}
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#222222]">
@@ -75,7 +75,7 @@ export function OnboardingTimeline({ locale }: { locale: SiteLocale }) {
                 <div className="space-y-6">
                   {/* Step Monogram & Duration */}
                   <div className="flex items-center justify-between">
-                    <span className="font-serif text-4xl text-[#A69C8E] font-normal">
+                    <span className="font-serif text-4xl text-[#736A5E] font-normal">
                       {item.step}
                     </span>
                     <span className="rounded-full bg-[#FAFAFA] border border-[#EBEBEB] px-3 py-1 text-xs font-semibold text-[#222222]">
@@ -101,7 +101,7 @@ export function OnboardingTimeline({ locale }: { locale: SiteLocale }) {
                     <ul className="space-y-1.5">
                       {item.deliverables.map((deliv, dIdx) => (
                         <li key={dIdx} className="flex items-start space-x-2 text-xs text-[#555555]">
-                          <CheckCircle2 className="h-3.5 w-3.5 text-[#A69C8E] shrink-0 mt-0.5" />
+                          <CheckCircle2 className="h-3.5 w-3.5 text-[#736A5E] shrink-0 mt-0.5" />
                           <span>{tc(deliv)}</span>
                         </li>
                       ))}

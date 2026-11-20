@@ -219,7 +219,7 @@ export function WhatsAppChooserProvider({ children }: { children: React.ReactNod
                       </span>
                       <span className="mt-0.5 block text-base leading-snug text-[#5C5347]">{choice.text}</span>
                     </span>
-                    <ArrowRight className="h-5 w-5 shrink-0 text-[#8C7F5F] transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="h-5 w-5 shrink-0 text-[#776B4E] transition-transform group-hover:translate-x-1" />
                   </a>
                 )
               })}

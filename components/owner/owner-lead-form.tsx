@@ -78,7 +78,7 @@ export function OwnerLeadForm({ source = "owner_page" }: { source?: "owner_page"
       <div className="mx-auto max-w-4xl px-6 lg:px-12">
         <div className="rounded-3xl border border-[#E8E4DC] bg-[#FAFAFA] p-6 shadow-[0_10px_50px_rgba(0,0,0,0.03)] sm:p-12">
           <div className="mb-8 space-y-2">
-            <span className="text-sm font-semibold uppercase tracking-[0.15em] text-[#8C7F5F]">{t("f.owner.eyebrow")}</span>
+            <span className="text-sm font-semibold uppercase tracking-[0.15em] text-[#776B4E]">{t("f.owner.eyebrow")}</span>
             <h2 className="font-serif text-3xl text-[#222222] sm:text-4xl">{t("f.owner.title")}</h2>
             <p className="max-w-xl text-base leading-relaxed text-[#5C5347]">{t("f.owner.subtitle")}</p>
           </div>
@@ -194,10 +194,10 @@ export function OwnerLeadForm({ source = "owner_page" }: { source?: "owner_page"
           <div className="mt-6 flex flex-col gap-4 border-t border-[#E8E4DC] pt-5 text-sm text-[#5C5347] sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-1">
               <p className="flex items-center gap-1.5">
-                <ShieldCheck className="h-4 w-4 text-[#8C7F5F]" /> {t("f.confidential")}
+                <ShieldCheck className="h-4 w-4 text-[#776B4E]" /> {t("f.confidential")}
               </p>
               <p className="flex items-center gap-1.5">
-                <Clock className="h-4 w-4 text-[#8C7F5F]" /> {t("f.officeHours")}
+                <Clock className="h-4 w-4 text-[#776B4E]" /> {t("f.officeHours")}
               </p>
             </div>
             <a

@@ -80,7 +80,7 @@ export function QrModal({ propertySlug, propertyName }: QrModalProps) {
                 type="text"
                 readOnly
                 value={stayUrl}
-                className="w-full bg-transparent text-xs text-stone-300 font-mono focus:outline-none"
+                className="w-full bg-transparent text-xs text-stone-300 font-mono"
               />
               <button
                 onClick={handleCopy}

@@ -41,8 +41,8 @@ export function ChannelBadge({ channel, status, syncTime }: ChannelBadgeProps) {
         </span>
       </div>
       <div className="flex items-center space-x-2">
-        {syncTime && <span className="text-[10px] text-[#717171] font-mono">{syncTime}</span>}
-        <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${currentStatus.badgeClass}`}>
+        {syncTime && <span className="text-[11px] text-[#717171] font-mono">{syncTime}</span>}
+        <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${currentStatus.badgeClass}`}>
           {currentStatus.label}
         </span>
       </div>

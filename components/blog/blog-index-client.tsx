@@ -59,9 +59,10 @@ export function BlogIndexClient({ initialPosts }: BlogIndexClientProps) {
           </div>
 
           <div className="relative max-w-xs w-full">
-            <Search className="h-3.5 w-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[#717171]" />
+            <Search className="h-3.5 w-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[#717171]" aria-hidden="true" />
             <input
-              type="text"
+              type="search"
+              aria-label="Search insights"
               placeholder="Search insights..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -77,7 +78,7 @@ export function BlogIndexClient({ initialPosts }: BlogIndexClientProps) {
           <div className="mx-auto max-w-7xl px-6 lg:px-12">
             <div className="flex items-center justify-between mb-8">
               <h2 className="font-serif text-2xl text-[#222222]">Featured Article</h2>
-              <span className="text-xs text-[#A69C8E] uppercase tracking-wider font-medium">Editor&apos;s Pick</span>
+              <span className="text-xs text-[#736A5E] uppercase tracking-wider font-medium">Editor&apos;s Pick</span>
             </div>
             <div className="space-y-6">
               {featuredPosts.map((post) => (
@@ -95,7 +96,7 @@ export function BlogIndexClient({ initialPosts }: BlogIndexClientProps) {
             <h2 className="font-serif text-2xl text-[#222222]">
               {selectedCategory === "all" && !searchQuery ? "All Articles" : "Filtered Articles"}
             </h2>
-            <span className="text-xs text-[#A69C8E]">{filteredPosts.length} posts</span>
+            <span className="text-xs text-[#736A5E]">{filteredPosts.length} posts</span>
           </div>
 
           {filteredPosts.length > 0 ? (

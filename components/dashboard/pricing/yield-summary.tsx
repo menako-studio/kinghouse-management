@@ -14,7 +14,7 @@ function SourceBadge({ kind }: { kind: "airbnb" | "calendar" | "estimate" }) {
   }
   const labels = { airbnb: "Data Airbnb", calendar: "Kalender Airbnb", estimate: "Estimasi sistem" }
   return (
-    <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border whitespace-nowrap ${styles[kind]}`}>
+    <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full border whitespace-nowrap ${styles[kind]}`}>
       {labels[kind]}
     </span>
   )
@@ -61,7 +61,7 @@ export function YieldSummary({ outlook, propertyName }: { outlook: YieldOutlook;
         <p className="text-xs text-[#717171] mt-0.5">
           {propertyName}. Label <strong className="text-rose-700">Data Airbnb</strong> = angka persis dari laporan
           Earnings Airbnb{a ? ` (diekspor ${new Date(a.exportedAt).toLocaleDateString("id-ID", { day: "numeric", month: "short", year: "numeric" })})` : ""}.
-          Label <strong className="text-[#8C7F5F]">Estimasi sistem</strong> = hasil perhitungan, bukan uang yang sudah pasti.
+          Label <strong className="text-[#776B4E]">Estimasi sistem</strong> = hasil perhitungan, bukan uang yang sudah pasti.
         </p>
       </div>
 

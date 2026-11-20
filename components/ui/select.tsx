@@ -266,12 +266,12 @@ export function Select({
         )}
         {...aria}
       >
-        <span className={cn("min-w-0 flex-1 truncate", !selected && "text-[#8A8275]")}>
+        <span className={cn("min-w-0 flex-1 truncate", !selected && "text-[#6B6862]")}>
           {selected ? selected.label : placeholder ?? "—"}
         </span>
         <ChevronDown
           aria-hidden="true"
-          className={cn("h-4 w-4 shrink-0 text-[#8C7F5F] transition-transform duration-200", open && "rotate-180")}
+          className={cn("h-4 w-4 shrink-0 text-[#776B4E] transition-transform duration-200", open && "rotate-180")}
         />
       </button>
       {name && <input type="hidden" name={name} value={current} />}
@@ -316,7 +316,7 @@ export function Select({
                   )}
                 >
                   <span className="min-w-0">{option.label}</span>
-                  {isSelected && <Check aria-hidden="true" className="h-4 w-4 shrink-0 text-[#8C7F5F]" />}
+                  {isSelected && <Check aria-hidden="true" className="h-4 w-4 shrink-0 text-[#776B4E]" />}
                 </li>
               )
             })}

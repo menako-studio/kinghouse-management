@@ -225,7 +225,7 @@ function NakulaEventCard({ event }: { event: VillaEvent }) {
                 value: startingPriceIdr,
               })
             }}
-            className="inline-flex items-center space-x-1 px-3 py-1 bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-xs font-bold uppercase tracking-wider rounded-md transition-colors shadow-2xs shrink-0 cursor-pointer"
+            className="inline-flex items-center space-x-1 px-3 py-1 bg-[#776B4E] hover:bg-[#62583F] text-white text-xs font-bold uppercase tracking-wider rounded-md transition-colors shadow-2xs shrink-0 cursor-pointer"
           >
             <Download className="h-2.5 w-2.5" />
             <span>{tc("DOWNLOAD BROCHURE")}</span>
@@ -234,7 +234,7 @@ function NakulaEventCard({ event }: { event: VillaEvent }) {
 
         {/* Venue / Event Title */}
         <Link href={`/events/${event.slug}`}>
-          <h2 className="font-serif text-xl sm:text-2xl text-[#222225] font-normal leading-snug group-hover:text-[#8C7F5F] transition-colors line-clamp-1">
+          <h2 className="font-serif text-xl sm:text-2xl text-[#222225] font-normal leading-snug group-hover:text-[#776B4E] transition-colors line-clamp-1">
             {tc(event.title)}
           </h2>
         </Link>
@@ -242,21 +242,21 @@ function NakulaEventCard({ event }: { event: VillaEvent }) {
         {/* Specs Row with Seating, Standing, Area */}
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-[#6B6862] pt-0.5">
           <span className="flex items-center space-x-1.5">
-            <Users className="h-3.5 w-3.5 text-[#8C7F5F]" />
+            <Users className="h-3.5 w-3.5 text-[#776B4E]" />
             <span>{seatingPax} {tc("Seating")}</span>
           </span>
           <span className="flex items-center space-x-1.5">
-            <Users className="h-3.5 w-3.5 text-[#8C7F5F]" />
+            <Users className="h-3.5 w-3.5 text-[#776B4E]" />
             <span>{standingPax} {tc("Standing")}</span>
           </span>
           <span className="flex items-center space-x-1.5">
-            <Maximize2 className="h-3.5 w-3.5 text-[#8C7F5F]" />
+            <Maximize2 className="h-3.5 w-3.5 text-[#776B4E]" />
             <span>{areaSqm} {tc("m² Garden")}</span>
           </span>
         </div>
 
         {/* Suitable for Event / Features Flag */}
-        <div className="flex items-center space-x-1.5 text-xs font-semibold text-[#8C7F5F]">
+        <div className="flex items-center space-x-1.5 text-xs font-semibold text-[#776B4E]">
           <Sparkles className="h-3.5 w-3.5" />
           <span>{tc("Suitable for Private Event & Ceremonies")}</span>
         </div>
@@ -406,7 +406,7 @@ export default function EventsPage() {
               {tc("HOME")}
             </Link>
             <span>/</span>
-            <span className="text-[#8C7F5F] font-semibold">{tc("EVENTS & VENUES")}</span>
+            <span className="text-[#776B4E] font-semibold">{tc("EVENTS & VENUES")}</span>
           </nav>
           <p className="text-xs sm:text-sm text-[#6B6862] max-w-3xl mx-auto font-light leading-relaxed">
             {tc("At Kinghouse, we've curated a collection of private villa venues across Greater Jakarta — each one a beautiful, intimate setting where your celebration can unfold with total privacy, zero vendor markup, and dedicated staff.")}
@@ -427,11 +427,11 @@ export default function EventsPage() {
             className="w-full py-3 px-4 rounded-xl border border-[#E8E4DC] bg-[#FAF8F5] flex items-center justify-between text-xs font-semibold text-[#222225] shadow-xs cursor-pointer"
           >
             <div className="flex items-center space-x-2">
-              <SlidersHorizontal className="h-4 w-4 text-[#8C7F5F]" />
+              <SlidersHorizontal className="h-4 w-4 text-[#776B4E]" />
               <span>{tc(showMobileFilters ? "Hide Filter Options" : "Show Filter Options")}</span>
             </div>
             {isFilterActive && (
-              <span className="bg-[#8C7F5F] text-white px-2 py-0.5 rounded-full text-xs">
+              <span className="bg-[#776B4E] text-white px-2 py-0.5 rounded-full text-xs">
                 {tc("Active Filters")}
               </span>
             )}
@@ -470,13 +470,13 @@ export default function EventsPage() {
                   return (
                     <label
                       key={item.id}
-                      className="flex items-center space-x-2.5 text-xs text-[#222225] hover:text-[#8C7F5F] cursor-pointer select-none transition-colors"
+                      className="flex items-center space-x-2.5 text-xs text-[#222225] hover:text-[#776B4E] cursor-pointer select-none transition-colors"
                     >
                       <input
                         type="checkbox"
                         checked={checked}
                         onChange={() => toggleEventType(item.id)}
-                        className="h-4 w-4 rounded border-[#D5CFC3] text-[#8C7F5F] focus:ring-0 focus:ring-offset-0 accent-[#8C7F5F]"
+                        className="h-4 w-4 rounded border-[#D5CFC3] text-[#776B4E] focus:ring-0 focus:ring-offset-0 accent-[#8C7F5F]"
                       />
                       <span>{tc(item.label)}</span>
                     </label>
@@ -557,6 +557,7 @@ export default function EventsPage() {
               <div className="relative">
                 <input
                   type="text"
+                  aria-label={tc("Search...")}
                   placeholder={tc("Search...")}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -571,7 +572,7 @@ export default function EventsPage() {
               <button
                 type="button"
                 onClick={() => setShowMobileFilters(false)}
-                className="w-full py-2.5 px-3 bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-xs font-semibold uppercase tracking-widest rounded-md transition-colors text-center cursor-pointer shadow-xs"
+                className="w-full py-2.5 px-3 bg-[#776B4E] hover:bg-[#62583F] text-white text-xs font-semibold uppercase tracking-widest rounded-md transition-colors text-center cursor-pointer shadow-xs"
               >
                 {tc("APPLY")}
               </button>
@@ -598,6 +599,7 @@ export default function EventsPage() {
                 <div className="relative">
                   <input
                     type="text"
+                    aria-label={tc("PROPERTY NAME")}
                     placeholder={tc("PROPERTY NAME")}
                     value={gridSearchQuery}
                     onChange={(e) => setGridSearchQuery(e.target.value)}
@@ -637,7 +639,7 @@ export default function EventsPage() {
                 </p>
                 <button
                   onClick={handleClear}
-                  className="px-5 py-2 bg-[#8C7F5F] text-white text-xs font-semibold uppercase tracking-wider rounded-md hover:bg-[#776B4E] transition-colors cursor-pointer"
+                  className="px-5 py-2 bg-[#776B4E] text-white text-xs font-semibold uppercase tracking-wider rounded-md hover:bg-[#62583F] transition-colors cursor-pointer"
                 >
                   {tc("Clear All Filters")}
                 </button>
@@ -653,7 +655,7 @@ export default function EventsPage() {
           {/* Section Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
             <div className="max-w-2xl space-y-2">
-              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-[#8C7F5F]">
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-[#776B4E]">
                 <Camera className="h-3.5 w-3.5" />
                 <span>{tc("REAL OCCASIONS & VENUE INSPIRATION")}</span>
               </div>
@@ -681,7 +683,7 @@ export default function EventsPage() {
                     onClick={() => setActiveGalleryFilter(tab.id)}
                     className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wider transition-all cursor-pointer ${
                       isActive
-                        ? "bg-[#8C7F5F] text-white shadow-xs"
+                        ? "bg-[#776B4E] text-white shadow-xs"
                         : "bg-white text-[#6B6862] hover:text-[#222225] hover:bg-[#F3EFE6] border border-[#E8E4DC]"
                     }`}
                   >
@@ -740,7 +742,7 @@ export default function EventsPage() {
                   <p className="text-xs text-[#6B6862] leading-relaxed line-clamp-2">
                     {tc(photo.caption)}
                   </p>
-                  <div className="flex items-center justify-between pt-1 text-xs font-semibold text-[#8C7F5F]">
+                  <div className="flex items-center justify-between pt-1 text-xs font-semibold text-[#776B4E]">
                     <span>{tc("View Setup Details")}</span>
                     <ChevronRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                   </div>
@@ -752,7 +754,7 @@ export default function EventsPage() {
           {/* Quick Value Props Banner matching Nakula Standard */}
           <div className="mt-12 rounded-2xl border border-[#E8E4DC] bg-white p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xs">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-left">
-              <div className="h-12 w-12 rounded-full bg-[#FAF8F5] border border-[#E8E4DC] flex items-center justify-center shrink-0 text-[#8C7F5F]">
+              <div className="h-12 w-12 rounded-full bg-[#FAF8F5] border border-[#E8E4DC] flex items-center justify-center shrink-0 text-[#776B4E]">
                 <Sparkles className="h-6 w-6" />
               </div>
               <div className="space-y-1">
@@ -769,7 +771,7 @@ export default function EventsPage() {
               href={`${whatsappBase("EVENT")}?text=${encodeURIComponent("Hello Kinghouse Concierge! I am interested in viewing more wedding & event venue photos and checking date availability.")}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 rounded-full bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-colors shadow-sm cursor-pointer shrink-0"
+              className="px-6 py-3 rounded-full bg-[#776B4E] hover:bg-[#62583F] text-white text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-colors shadow-sm cursor-pointer shrink-0"
             >
               {tc("Request Venue Tour")}
             </a>
@@ -813,14 +815,14 @@ export default function EventsPage() {
             <div className="p-6 space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#F0ECE1] pb-3">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#8C7F5F]">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#776B4E]">
                     {tc(lightboxPhoto.categoryLabel)} &bull; {tc(lightboxPhoto.area)}
                   </span>
                   <h3 className="font-serif text-xl sm:text-2xl text-[#222225] font-normal">
                     {tc(lightboxPhoto.title)}
                   </h3>
                 </div>
-                <span className="inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-[#FAF8F5] text-[#8C7F5F] border border-[#E8E4DC] self-start sm:self-auto">
+                <span className="inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-[#FAF8F5] text-[#776B4E] border border-[#E8E4DC] self-start sm:self-auto">
                   {tc(lightboxPhoto.capacity)}
                 </span>
               </div>
@@ -830,14 +832,14 @@ export default function EventsPage() {
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-                <span className="text-xs text-[#888888]">
+                <span className="text-xs text-[#717171]">
                   {tc("Kinghouse Curated Residences • Jagakarsa, South Jakarta")}
                 </span>
                 <a
                   href={`${whatsappBase("EVENT")}?text=${encodeURIComponent(`Hello Kinghouse! I saw the "${lightboxPhoto.title}" setup in your events gallery and would like to inquire about date availability and package rates.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-xl bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-xs font-semibold uppercase tracking-wider transition-colors shadow-sm"
+                  className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-xl bg-[#776B4E] hover:bg-[#62583F] text-white text-xs font-semibold uppercase tracking-wider transition-colors shadow-sm"
                 >
                   <MessageCircle className="h-4 w-4" />
                   <span>{tc("Inquire This Setup on WhatsApp")}</span>
@@ -852,7 +854,7 @@ export default function EventsPage() {
       <section id="pricelist" className="mx-auto max-w-7xl px-6 lg:px-12 pt-16 pb-12 border-t border-[#E8E4DC]">
         <div className="rounded-3xl border border-[#E8E4DC] bg-[#FAF8F5] p-6 sm:p-10 shadow-xs">
           <div className="max-w-3xl mb-8">
-            <span className="text-xs uppercase tracking-widest font-bold text-[#8C7F5F]">
+            <span className="text-xs uppercase tracking-widest font-bold text-[#776B4E]">
               {tc("OFFICIAL PRICE MATRIX 2026")}
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl text-[#222225] mt-1 font-normal">
@@ -889,7 +891,7 @@ export default function EventsPage() {
               <p className="text-xs sm:text-sm text-[#222225] max-w-xl">
                 {tc(currentPricelistTier.description)}
                 {currentPricelistTier.overnightStayMax && (
-                  <strong className="block text-[#8C7F5F] mt-1">
+                  <strong className="block text-[#776B4E] mt-1">
                     * Includes overnight stay for up to {currentPricelistTier.overnightStayMax} guests in 5–6 bedrooms.
                   </strong>
                 )}
@@ -943,7 +945,7 @@ export default function EventsPage() {
                     <tr key={tier.name} className="hover:bg-[#FAF8F5] transition-colors">
                       <td className="px-5 py-4 font-semibold text-[#222225]">{tc(tier.name)}</td>
                       <td className="px-5 py-4 text-[#6B6862]">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#FAF8F5] text-[#8C7F5F] border border-[#E8E4DC]">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#FAF8F5] text-[#776B4E] border border-[#E8E4DC]">
                           {tier.pax} Pax
                         </span>
                       </td>
@@ -959,7 +961,7 @@ export default function EventsPage() {
                           href={`${whatsappBase("EVENT")}?text=${message}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center space-x-1 px-3 py-1.5 rounded-md bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-xs font-semibold transition-colors"
+                          className="inline-flex items-center space-x-1 px-3 py-1.5 rounded-md bg-[#776B4E] hover:bg-[#62583F] text-white text-xs font-semibold transition-colors"
                         >
                           <MessageCircle className="h-3 w-3 text-white" />
                           <span>{t("reserveButton")}</span>
@@ -1006,7 +1008,7 @@ export default function EventsPage() {
             <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2">
               <div className="flex items-center space-x-2.5 text-[#DFC58E]">
                 <UtensilsCrossed className="h-5 w-5" />
-                <h4 className="font-semibold text-sm text-white">{tc("0% Vendor Corkage")}</h4>
+                <h3 className="font-semibold text-sm text-white">{tc("0% Vendor Corkage")}</h3>
               </div>
               <p className="text-xs text-white/70 leading-relaxed font-light">
                 {tc("Bring your preferred international wedding planner, private chef, local or western caterer, wine collection, and photographer with zero corkage fees or vendor penalties.")}
@@ -1016,7 +1018,7 @@ export default function EventsPage() {
             <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2">
               <div className="flex items-center space-x-2.5 text-[#DFC58E]">
                 <Plane className="h-5 w-5" />
-                <h4 className="font-semibold text-sm text-white">{tc("Airport & Hotel Proximity")}</h4>
+                <h3 className="font-semibold text-sm text-white">{tc("Airport & Hotel Proximity")}</h3>
               </div>
               <p className="text-xs text-white/70 leading-relaxed font-light">
                 {tc("Convenient 35–45 min direct highway connection from Soekarno-Hatta (CGK) via Desari toll. 4-star and 5-star partner hotels on TB Simatupang are just 10 mins away for overflow guests.")}
@@ -1026,7 +1028,7 @@ export default function EventsPage() {
             <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2">
               <div className="flex items-center space-x-2.5 text-[#DFC58E]">
                 <CloudSun className="h-5 w-5" />
-                <h4 className="font-semibold text-sm text-white">{tc("100% Weather Backup Plan")}</h4>
+                <h3 className="font-semibold text-sm text-white">{tc("100% Weather Backup Plan")}</h3>
               </div>
               <p className="text-xs text-white/70 leading-relaxed font-light">
                 {tc("Sudden tropical rain? Seamlessly transition from the 500m² lawn to our Grand Living Hall with 5-meter ceilings and sheltered garden terrace, comfortably seating up to 50 guests.")}
@@ -1036,7 +1038,7 @@ export default function EventsPage() {
             <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2">
               <div className="flex items-center space-x-2.5 text-[#DFC58E]">
                 <ShieldCheck className="h-5 w-5" />
-                <h4 className="font-semibold text-sm text-white">{tc("Any Ceremony Style Welcomed")}</h4>
+                <h3 className="font-semibold text-sm text-white">{tc("Any Ceremony Style Welcomed")}</h3>
               </div>
               <p className="text-xs text-white/70 leading-relaxed font-light">
                 {tc("From intimate Christian or secular vow exchanges to traditional Akad Nikah, tea ceremonies, or vow renewals, our private residence offers complete peace and sacred privacy.")}
@@ -1046,7 +1048,7 @@ export default function EventsPage() {
             <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2">
               <div className="flex items-center space-x-2.5 text-[#DFC58E]">
                 <Users className="h-5 w-5" />
-                <h4 className="font-semibold text-sm text-white">{tc("15 Pax Family Accommodation")}</h4>
+                <h3 className="font-semibold text-sm text-white">{tc("15 Pax Family Accommodation")}</h3>
               </div>
               <p className="text-xs text-white/70 leading-relaxed font-light">
                 {tc("The full 5-bedroom residence is exclusively yours. Close family members can stay together overnight with private pool access, hotel-grade linens, and daily housekeeping.")}
@@ -1056,7 +1058,7 @@ export default function EventsPage() {
             <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2">
               <div className="flex items-center space-x-2.5 text-[#DFC58E]">
                 <Globe className="h-5 w-5" />
-                <h4 className="font-semibold text-sm text-white">{tc("Multi-Currency & Virtual Tours")}</h4>
+                <h3 className="font-semibold text-sm text-white">{tc("Multi-Currency & Virtual Tours")}</h3>
               </div>
               <p className="text-xs text-white/70 leading-relaxed font-light">
                 {tc("Transparent quotes and contracts in USD, EUR, AUD, SGD, or IDR. We offer live WhatsApp or FaceTime video walkthroughs for overseas couples before signing.")}
@@ -1113,7 +1115,7 @@ export default function EventsPage() {
         <section className="mx-auto max-w-7xl px-6 lg:px-12 pb-20">
           <div className="rounded-3xl border border-[#E8E4DC] bg-[#FAF8F5] p-6 sm:p-10 shadow-xs">
             <div className="max-w-3xl mb-8">
-              <span className="text-xs uppercase tracking-widest font-bold text-[#8C7F5F]">
+              <span className="text-xs uppercase tracking-widest font-bold text-[#776B4E]">
                 {t("overnightStayHeader")}
               </span>
               <h2 className="font-serif text-3xl text-[#222225] mt-1 font-normal">
@@ -1150,7 +1152,7 @@ export default function EventsPage() {
                       <td className="px-5 py-4 text-[#6B6862]">
                         {formatPrice(stay.peakSeasonPriceIdr)}
                       </td>
-                      <td className="px-5 py-4 text-[#8C7F5F]">
+                      <td className="px-5 py-4 text-[#776B4E]">
                         {formatPrice(stay.extraGuestPriceIdr)}{tc("/pax")}
                       </td>
                     </tr>
@@ -1167,7 +1169,7 @@ export default function EventsPage() {
                 href={`${whatsappBase("EVENT")}?text=${encodeURIComponent("Hello Kinghouse! I would like to inquire about room stay configurations at Versatile House Jagakarsa.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center space-x-1 text-[#8C7F5F] hover:text-[#222225] font-semibold"
+                className="inline-flex items-center space-x-1 text-[#776B4E] hover:text-[#222225] font-semibold"
               >
                 <span>{tc("Inquire Custom Stay via WhatsApp")}</span>
                 <ChevronRight className="h-3.5 w-3.5" />

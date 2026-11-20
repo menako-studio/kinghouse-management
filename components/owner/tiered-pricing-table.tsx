@@ -17,7 +17,7 @@ export function TieredPricingTable() {
       <div className="mx-auto max-w-7xl px-6 lg:px-12 space-y-16">
         {/* Section Header */}
         <div className="max-w-3xl space-y-4 text-center mx-auto">
-          <span className="text-sm uppercase tracking-[0.18em] font-semibold text-[#8C7F5F]">
+          <span className="text-sm uppercase tracking-[0.18em] font-semibold text-[#776B4E]">
             {tc("Fees")}
           </span>
           <h2 className="font-serif text-4xl sm:text-5xl text-[#222222]">
@@ -99,7 +99,7 @@ export function TieredPricingTable() {
                               <Check className="h-3 w-3 text-[#222222]" />
                             </div>
                           ) : (
-                            <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#F5F5F5] text-[#999999] mt-0.5">
+                            <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#F5F5F5] text-[#717171] mt-0.5">
                               <X className="h-3 w-3" />
                             </div>
                           )}
@@ -109,7 +109,7 @@ export function TieredPricingTable() {
                                 ? feature.highlight
                                   ? "font-semibold text-[#222222]"
                                   : "text-[#444444]"
-                                : "text-[#999999] line-through opacity-60"
+                                : "text-[#717171] line-through opacity-60"
                             }`}
                           >
                             {tc(feature.title)}

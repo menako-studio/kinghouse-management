@@ -26,7 +26,7 @@ export function StatCard({
 
       <div>
         <div className="flex items-center justify-between mb-4">
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B6862]">
+          <span className="text-xs font-semibold uppercase tracking-wider text-[#6B6862]">
             {title}
           </span>
           <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] text-[#222225] group-hover:bg-[#222225] group-hover:text-[#DFC58E] transition-colors duration-300 shadow-xs">
@@ -46,17 +46,17 @@ export function StatCard({
       {change && (
         <div className="flex items-center space-x-2 mt-5 pt-3.5 border-t border-[#FAF8F5] text-xs">
           {trend === "up" ? (
-            <span className="inline-flex items-center space-x-1 font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-full text-[11px]">
+            <span className="inline-flex items-center space-x-1 font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-full text-xs">
               <TrendingUp className="h-3 w-3" />
               <span>{change}</span>
             </span>
           ) : (
-            <span className="inline-flex items-center space-x-1 font-semibold text-rose-700 bg-rose-50 border border-rose-200/80 px-2 py-0.5 rounded-full text-[11px]">
+            <span className="inline-flex items-center space-x-1 font-semibold text-rose-700 bg-rose-50 border border-rose-200/80 px-2 py-0.5 rounded-full text-xs">
               <TrendingDown className="h-3 w-3" />
               <span>{change}</span>
             </span>
           )}
-          <span className="text-[#8C7F5F] text-[11px] truncate">{period}</span>
+          <span className="text-[#776B4E] text-xs truncate">{period}</span>
         </div>
       )}
     </div>

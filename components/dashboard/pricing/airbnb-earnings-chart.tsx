@@ -27,7 +27,7 @@ export function AirbnbEarningsChart({ data }: { data: AirbnbRunRate }) {
             {data.fxRateIdr ? ` Dikonversi dari JPY dengan kurs Rp ${data.fxRateIdr}/¥.` : ""}
           </p>
         </div>
-        <div className="flex flex-wrap items-center gap-3 text-[11px] text-[#5C5347]">
+        <div className="flex flex-wrap items-center gap-3 text-xs text-[#5C5347]">
           <span className="flex items-center gap-1.5">
             <span className="h-2.5 w-2.5 rounded-sm bg-rose-500" /> Sudah dibayar
           </span>
@@ -47,7 +47,7 @@ export function AirbnbEarningsChart({ data }: { data: AirbnbRunRate }) {
             const barPct = (p.totalIdr / max) * 100
             return (
               <div key={p.month} className="flex flex-col items-center h-full justify-end gap-1">
-                <span className="text-[10px] font-semibold text-[#222225] whitespace-nowrap">{shortIdr(p.totalIdr)}</span>
+                <span className="text-[11px] font-semibold text-[#222225] whitespace-nowrap">{shortIdr(p.totalIdr)}</span>
                 <div
                   className="w-full flex-1 flex flex-col justify-end"
                   title={`${p.label}: dibayar ${formatCurrency(p.paidIdr, "IDR")}, terkonfirmasi ${formatCurrency(p.upcomingIdr, "IDR")}`}
@@ -62,7 +62,7 @@ export function AirbnbEarningsChart({ data }: { data: AirbnbRunRate }) {
                     </div>
                   )}
                 </div>
-                <span className="text-[11px] text-[#717171]">{p.label}</span>
+                <span className="text-xs text-[#717171]">{p.label}</span>
               </div>
             )
           })}

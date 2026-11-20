@@ -32,8 +32,13 @@ export function SiteShell({ children }: SiteShellProps) {
   return (
     <WhatsAppChooserProvider>
     <div className="site-public contents">
+      <a href="#main-content" className="skip-link">
+        {pathname.startsWith("/id") ? "Langsung ke konten" : "Skip to content"}
+      </a>
       <LeadSourceCapture />
       <Header />
+      {/* Skip-link target: focus lands here, next Tab enters page content. */}
+      <span id="main-content" tabIndex={-1} className="block outline-none" />
       {children}
       <Footer />
       <FloatingWhatsApp />

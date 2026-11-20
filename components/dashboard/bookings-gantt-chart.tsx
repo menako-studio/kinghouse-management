@@ -113,7 +113,7 @@ export function BookingsGanttChart({ reservations }: BookingsGanttChartProps) {
       {/* Header & Controls */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E8E4DC] pb-5 mb-6">
         <div>
-          <div className="inline-flex items-center gap-2 rounded-full bg-[#FAF8F5] px-3 py-1 text-xs font-semibold text-[#8C7F5F] border border-[#E8E4DC] mb-2">
+          <div className="inline-flex items-center gap-2 rounded-full bg-[#FAF8F5] px-3 py-1 text-xs font-semibold text-[#776B4E] border border-[#E8E4DC] mb-2">
             <Calendar className="h-3.5 w-3.5 text-[#B8934C]" />
             <span>Front-Desk Calendar Timeline</span>
           </div>
@@ -130,16 +130,18 @@ export function BookingsGanttChart({ reservations }: BookingsGanttChartProps) {
           <button
             type="button"
             onClick={handlePrevMonth}
+            aria-label="Bulan sebelumnya"
             className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#E8E4DC] bg-white text-[#222225] hover:bg-[#FAF8F5] transition-colors active:scale-95 cursor-pointer shadow-xs"
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
-          <span className="min-w-[140px] text-center text-xs font-bold text-[#222225] font-mono">
+          <span aria-live="polite" className="min-w-[140px] text-center text-xs font-bold text-[#222225] font-mono">
             {monthLabel}
           </span>
           <button
             type="button"
             onClick={handleNextMonth}
+            aria-label="Bulan berikutnya"
             className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#E8E4DC] bg-white text-[#222225] hover:bg-[#FAF8F5] transition-colors active:scale-95 cursor-pointer shadow-xs"
           >
             <ChevronRight className="h-4 w-4" />
@@ -159,7 +161,7 @@ export function BookingsGanttChart({ reservations }: BookingsGanttChartProps) {
         <div className="min-w-[960px]">
           {/* Header Row: Days */}
           <div className="grid grid-cols-[220px_repeat(31,minmax(28px,1fr))] gap-1 border-b border-[#E8E4DC] pb-3 mb-2 text-center text-[11px]">
-            <div className="text-left font-semibold text-[#6B6862] pl-2 uppercase tracking-wider text-[10px]">
+            <div className="text-left font-semibold text-[#6B6862] pl-2 uppercase tracking-wider text-[11px]">
               Properti / Unit
             </div>
             {daysArray.map((d) => (
@@ -167,11 +169,11 @@ export function BookingsGanttChart({ reservations }: BookingsGanttChartProps) {
                 key={d.dayNumber}
                 className={`flex flex-col items-center justify-center rounded-lg py-1 ${
                   d.isWeekend
-                    ? "bg-[#FAF8F5] text-[#8C7F5F] font-bold"
+                    ? "bg-[#FAF8F5] text-[#776B4E] font-bold"
                     : "text-[#6B6862]"
                 }`}
               >
-                <span className="text-[10px] text-[#6B6862]">{d.dayOfWeek}</span>
+                <span className="text-[11px] text-[#6B6862]">{d.dayOfWeek}</span>
                 <span className="text-xs font-semibold">{d.dayNumber}</span>
               </div>
             ))}
@@ -196,7 +198,7 @@ export function BookingsGanttChart({ reservations }: BookingsGanttChartProps) {
                     <div className="text-xs font-semibold text-[#222225] truncate" title={villa.name}>
                       {villa.name}
                     </div>
-                    <div className="text-[10px] text-[#8C7F5F] truncate">
+                    <div className="text-[11px] text-[#776B4E] truncate">
                       {villa.location} &bull; {villa.capacity.guests} Tamu
                     </div>
                   </div>
@@ -251,7 +253,7 @@ export function BookingsGanttChart({ reservations }: BookingsGanttChartProps) {
                             {res.guestName}
                           </span>
                         </div>
-                        <span className="text-[10px] font-mono opacity-80 shrink-0 ml-1">
+                        <span className="text-[11px] font-mono opacity-80 shrink-0 ml-1">
                           {res.nights}m
                         </span>
                       </button>
@@ -275,7 +277,7 @@ export function BookingsGanttChart({ reservations }: BookingsGanttChartProps) {
             </div>
           ))}
         </div>
-        <div className="flex items-center gap-1.5 text-[11px] text-[#8C7F5F]">
+        <div className="flex items-center gap-1.5 text-[11px] text-[#776B4E]">
           <Info className="h-3.5 w-3.5" />
           <span>Klik bar reservasi untuk memeriksa rincian tamu & bagi hasil komisi.</span>
         </div>
@@ -296,7 +298,7 @@ export function BookingsGanttChart({ reservations }: BookingsGanttChartProps) {
             <div className="mb-4">
               <div className="flex items-center gap-2 mb-1.5">
                 <span
-                  className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[10px] font-bold border ${
+                  className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-bold border ${
                     CHANNEL_STYLES[selectedRes.channel]?.bg || "bg-stone-100"
                   } ${CHANNEL_STYLES[selectedRes.channel]?.text || "text-stone-800"} ${
                     CHANNEL_STYLES[selectedRes.channel]?.border || "border-stone-300"
@@ -321,17 +323,17 @@ export function BookingsGanttChart({ reservations }: BookingsGanttChartProps) {
 
             <div className="grid grid-cols-2 gap-3 mb-4 text-xs">
               <div className="rounded-2xl border border-[#E8E4DC] bg-[#FAF8F5] p-3">
-                <div className="text-[10px] uppercase font-semibold text-[#6B6862]">Jadwal Menginap</div>
+                <div className="text-[11px] uppercase font-semibold text-[#6B6862]">Jadwal Menginap</div>
                 <div className="font-semibold text-[#222225] mt-0.5">
                   {selectedRes.checkIn} &rarr; {selectedRes.checkOut}
                 </div>
-                <div className="text-[11px] text-[#8C7F5F] mt-0.5 font-medium">
+                <div className="text-[11px] text-[#776B4E] mt-0.5 font-medium">
                   {selectedRes.nights} Malam &bull; {selectedRes.guests} Tamu
                 </div>
               </div>
 
               <div className="rounded-2xl border border-[#E8E4DC] bg-[#FAF8F5] p-3">
-                <div className="text-[10px] uppercase font-semibold text-[#6B6862]">Status Reservasi</div>
+                <div className="text-[11px] uppercase font-semibold text-[#6B6862]">Status Reservasi</div>
                 <div className="font-bold text-emerald-700 mt-0.5">
                   {selectedRes.status}
                 </div>
@@ -351,7 +353,7 @@ export function BookingsGanttChart({ reservations }: BookingsGanttChartProps) {
               </div>
               <div className="flex justify-between text-[#6B6862]">
                 <span>Komisi Kinghouse ({selectedRes.managementFeePercent}%)</span>
-                <span className="font-mono text-[#8C7F5F]">
+                <span className="font-mono text-[#776B4E]">
                   - {formatCurrency(selectedRes.managementFeeIdr)}
                 </span>
               </div>

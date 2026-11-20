@@ -268,7 +268,7 @@ export default function DashboardAnalyticsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E8E4DC] pb-6">
         <div>
-          <div className="inline-flex items-center space-x-2 text-[10px] font-semibold uppercase tracking-wider text-[#222225] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E8E4DC] mb-3">
+          <div className="inline-flex items-center space-x-2 text-[11px] font-semibold uppercase tracking-wider text-[#222225] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E8E4DC] mb-3">
             <BarChart3 className="h-3.5 w-3.5 text-[#B8934C]" />
             <span>LAPORAN PENDAPATAN & KEUANGAN</span>
           </div>
@@ -353,52 +353,52 @@ export default function DashboardAnalyticsPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="p-7 rounded-3xl bg-white border border-[#E8E4DC] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] space-y-2 hover:-translate-y-1 transition-all duration-300">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-semibold text-[#717171] uppercase tracking-wider">Pendapatan Kotor (Gross)</span>
+            <span className="text-xs font-semibold text-[#717171] uppercase tracking-wider">Pendapatan Kotor (Gross)</span>
             <div className="h-8 w-8 rounded-xl bg-[#FAF8F5] flex items-center justify-center text-[#222225]">
               <DollarSign className="h-4 w-4 text-[#B8934C]" />
             </div>
           </div>
           <p className="text-3xl font-semibold text-[#222225] tracking-tight">{formatCurrency(grossRevenue, "IDR")}</p>
-          <span className="inline-block text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+          <span className="inline-block text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
             {activeReservations.length} Transaksi Menginap
           </span>
         </div>
 
         <div className="p-7 rounded-3xl bg-white border border-[#E8E4DC] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] space-y-2 hover:-translate-y-1 transition-all duration-300">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-semibold text-[#717171] uppercase tracking-wider">Bagi Hasil Bersih Pemilik (Net)</span>
+            <span className="text-xs font-semibold text-[#717171] uppercase tracking-wider">Bagi Hasil Bersih Pemilik (Net)</span>
             <div className="h-8 w-8 rounded-xl bg-[#FAF8F5] flex items-center justify-center text-[#222225]">
               <Award className="h-4 w-4 text-[#B8934C]" />
             </div>
           </div>
           <p className="text-3xl font-bold text-emerald-700 tracking-tight">{formatCurrency(netOwnerRemittance, "IDR")}</p>
-          <span className="inline-block text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+          <span className="inline-block text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
             Setelah dikurangi komisi & operasional
           </span>
         </div>
 
         <div className="p-7 rounded-3xl bg-white border border-[#E8E4DC] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] space-y-2 hover:-translate-y-1 transition-all duration-300">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-semibold text-[#717171] uppercase tracking-wider">Total Biaya Operasional</span>
+            <span className="text-xs font-semibold text-[#717171] uppercase tracking-wider">Total Biaya Operasional</span>
             <div className="h-8 w-8 rounded-xl bg-[#FAF8F5] flex items-center justify-center text-[#222225]">
               <Receipt className="h-4 w-4 text-[#B8934C]" />
             </div>
           </div>
           <p className="text-3xl font-semibold text-rose-700 tracking-tight">{formatCurrency(totalExpenses, "IDR")}</p>
-          <span className="inline-block text-[11px] font-semibold text-rose-700 bg-rose-50 px-2 py-0.5 rounded-full border border-rose-200">
+          <span className="inline-block text-xs font-semibold text-rose-700 bg-rose-50 px-2 py-0.5 rounded-full border border-rose-200">
             {activeExpenses.length} Nota Pembelian Tercatat
           </span>
         </div>
 
         <div className="p-7 rounded-3xl bg-white border border-[#E8E4DC] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] space-y-2 hover:-translate-y-1 transition-all duration-300">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-semibold text-[#717171] uppercase tracking-wider">Rata-rata Tarif / Malam (ADR)</span>
+            <span className="text-xs font-semibold text-[#717171] uppercase tracking-wider">Rata-rata Tarif / Malam (ADR)</span>
             <div className="h-8 w-8 rounded-xl bg-[#FAF8F5] flex items-center justify-center text-[#222225]">
               <TrendingUp className="h-4 w-4 text-[#B8934C]" />
             </div>
           </div>
           <p className="text-3xl font-semibold text-[#222225] tracking-tight">{formatCurrency(adr, "IDR")}</p>
-          <span className="inline-block text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+          <span className="inline-block text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
             {totalNights} Total Malam Terjual
           </span>
         </div>
@@ -425,7 +425,7 @@ export default function DashboardAnalyticsPage() {
 
         {activeExpenses.length === 0 ? (
           <div className="p-12 text-center space-y-4">
-            <div className="h-12 w-12 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] flex items-center justify-center mx-auto text-[#8C7F5F]">
+            <div className="h-12 w-12 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] flex items-center justify-center mx-auto text-[#776B4E]">
               <Receipt className="h-6 w-6" />
             </div>
             <div className="space-y-1">
@@ -447,7 +447,7 @@ export default function DashboardAnalyticsPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-[#E8E4DC] bg-[#FAFAF8] text-[10px] font-bold uppercase tracking-wider text-[#717171]">
+                <tr className="border-b border-[#E8E4DC] bg-[#FAFAF8] text-[11px] font-bold uppercase tracking-wider text-[#717171]">
                   <th className="py-4 px-6">ID & Tanggal</th>
                   <th className="py-4 px-6">Properti</th>
                   <th className="py-4 px-6">Kategori POS</th>
@@ -462,22 +462,22 @@ export default function DashboardAnalyticsPage() {
                   <tr key={exp.id} className="hover:bg-[#FAFAF8]/90 transition-colors">
                     <td className="py-4 px-6">
                       <p className="font-semibold text-[#222225]">{exp.date}</p>
-                      <span className="text-[10px] text-[#717171] font-mono">{exp.id}</span>
+                      <span className="text-[11px] text-[#717171] font-mono">{exp.id}</span>
                     </td>
                     <td className="py-4 px-6">
                       <p className="font-medium text-[#222225] max-w-[200px] truncate">{exp.propertyName}</p>
                     </td>
                     <td className="py-4 px-6">
-                      <span className="inline-block px-2.5 py-1 rounded-full text-[10px] font-semibold bg-[#FAF8F5] text-[#222225] border border-[#E8E4DC]">
+                      <span className="inline-block px-2.5 py-1 rounded-full text-[11px] font-semibold bg-[#FAF8F5] text-[#222225] border border-[#E8E4DC]">
                         {exp.category}
                       </span>
                     </td>
                     <td className="py-4 px-6">
                       <p className="text-[#222225] font-medium">{exp.description}</p>
                     </td>
-                    <td className="py-4 px-6 text-[11px] text-[#717171]">
+                    <td className="py-4 px-6 text-xs text-[#717171]">
                       <p className="font-medium text-[#222225]">{exp.recordedBy}</p>
-                      {exp.vendorName && <span className="text-[10px]">{exp.vendorName}</span>}
+                      {exp.vendorName && <span className="text-[11px]">{exp.vendorName}</span>}
                     </td>
                     <td className="py-4 px-6 font-bold text-rose-700">
                       - {formatCurrency(exp.amountIdr, "IDR")}
@@ -513,7 +513,7 @@ export default function DashboardAnalyticsPage() {
             <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-[0_25px_70px_rgba(0,0,0,0.35)] border border-[#E8E4DC] max-h-[90vh] overflow-y-auto space-y-5">
               <div className="flex items-center justify-between pb-4 border-b border-[#E8E4DC]">
                 <div className="flex items-center space-x-3">
-                  <div className="h-10 w-10 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] flex items-center justify-center text-[#8C7F5F]">
+                  <div className="h-10 w-10 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] flex items-center justify-center text-[#776B4E]">
                     <FileSpreadsheet className="h-5 w-5" />
                   </div>
                   <div>
@@ -535,9 +535,9 @@ export default function DashboardAnalyticsPage() {
                   onClick={() => fileInputRef.current?.click()}
                   className="border-2 border-dashed border-[#E8E4DC] hover:border-[#8C7F5F] rounded-2xl p-6 text-center cursor-pointer transition-colors bg-[#FAF8F5]/60 hover:bg-[#FAF8F5] space-y-2"
                 >
-                  <Upload className="h-6 w-6 text-[#8C7F5F] mx-auto" />
+                  <Upload className="h-6 w-6 text-[#776B4E] mx-auto" />
                   <p className="font-semibold text-[#222225]">Pilih file CSV Payout dari komputer</p>
-                  <p className="text-[11px] text-[#717171]">File .csv resmi yang diunduh dari akun Airbnb Host</p>
+                  <p className="text-xs text-[#717171]">File .csv resmi yang diunduh dari akun Airbnb Host</p>
                   <input
                     ref={fileInputRef}
                     type="file"
@@ -553,13 +553,13 @@ export default function DashboardAnalyticsPage() {
                       <CheckCircle2 className="h-4 w-4 text-emerald-600" />
                       <span>{importStats.rows} Baris Payout Terdeteksi!</span>
                     </div>
-                    <p className="text-[11px]">
+                    <p className="text-xs">
                       Total Gross Terbaca: <strong>{formatCurrency(importStats.totalIdr, "IDR")}</strong>
                     </p>
                   </div>
                 )}
 
-                <div className="p-3.5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] text-[#717171] text-[11px] space-y-1">
+                <div className="p-3.5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] text-[#717171] text-xs space-y-1">
                   <div className="flex items-center space-x-1.5 font-semibold text-[#222225]">
                     <AlertCircle className="h-3.5 w-3.5 text-[#B8934C]" />
                     <span>Cara Download CSV dari Airbnb Host:</span>

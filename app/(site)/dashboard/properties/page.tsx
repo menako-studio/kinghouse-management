@@ -41,7 +41,7 @@ export default function DashboardPropertiesPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E8E4DC] pb-6">
         <div>
-          <div className="inline-flex items-center space-x-2 text-[10px] font-semibold uppercase tracking-wider text-[#222225] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E8E4DC] mb-3">
+          <div className="inline-flex items-center space-x-2 text-[11px] font-semibold uppercase tracking-wider text-[#222225] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E8E4DC] mb-3">
             <Sparkles className="h-3.5 w-3.5 text-[#B8934C]" />
             <span>DAFTAR UNIT & KALENDER OTA</span>
           </div>
@@ -71,16 +71,16 @@ export default function DashboardPropertiesPage() {
                 <Image src={villa.heroImage} alt={villa.name} fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                 <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider bg-black/60 text-white backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+                  <span className="text-[11px] font-bold uppercase tracking-wider bg-black/60 text-white backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
                     {villa.area}
                   </span>
-                  <span className="text-[10px] font-semibold bg-white/95 text-[#222225] backdrop-blur-md px-3 py-1 rounded-full shadow-xs">
+                  <span className="text-[11px] font-semibold bg-white/95 text-[#222225] backdrop-blur-md px-3 py-1 rounded-full shadow-xs">
                     {villa.architecturalStyle}
                   </span>
                 </div>
                 <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between text-white">
                   <div>
-                    <p className="text-[10px] text-white/75 uppercase tracking-wider font-semibold">Tarif Dasar / Malam</p>
+                    <p className="text-[11px] text-white/75 uppercase tracking-wider font-semibold">Tarif Dasar / Malam</p>
                     <p className="text-2xl font-bold text-white tracking-tight">
                       {formatCurrency(villa.price.idr, "IDR")}
                     </p>
@@ -132,7 +132,7 @@ export default function DashboardPropertiesPage() {
 
                 {/* iCal Feed URL for Non-Tech Operators */}
                 <div className="pt-2 p-3.5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] space-y-2">
-                  <div className="flex items-center justify-between text-[11px]">
+                  <div className="flex items-center justify-between text-xs">
                     <span className="font-bold uppercase tracking-wider text-[#222225] flex items-center space-x-1">
                       <Calendar className="h-3 w-3 text-[#B8934C]" />
                       <span>URL Kalender iCal (Airbnb Sync)</span>
@@ -152,12 +152,12 @@ export default function DashboardPropertiesPage() {
                       type="text"
                       readOnly
                       value={`/api/ical/${villa.slug}`}
-                      className="flex-1 px-3 py-1.5 rounded-xl bg-white border border-[#E8E4DC] text-[11px] font-mono text-[#555] focus:outline-none"
+                      className="flex-1 px-3 py-1.5 rounded-xl bg-white border border-[#E8E4DC] text-xs font-mono text-[#555]"
                     />
                     <button
                       type="button"
                       onClick={() => handleCopyIcal(villa.slug)}
-                      className="px-3 py-1.5 rounded-xl bg-[#222225] text-white hover:bg-[#2B2A30] text-[11px] font-semibold transition-all flex items-center space-x-1 cursor-pointer flex-shrink-0"
+                      className="px-3 py-1.5 rounded-xl bg-[#222225] text-white hover:bg-[#2B2A30] text-xs font-semibold transition-all flex items-center space-x-1 cursor-pointer flex-shrink-0"
                     >
                       {copiedSlug === villa.slug ? (
                         <>
@@ -176,7 +176,7 @@ export default function DashboardPropertiesPage() {
 
                 {/* Channel Status */}
                 <div className="pt-1">
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-[#717171] mb-2">
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-[#717171] mb-2">
                     Status Konektivitas Saluran OTA
                   </p>
                   <div className="flex flex-wrap gap-2">

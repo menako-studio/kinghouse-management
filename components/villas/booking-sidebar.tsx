@@ -138,7 +138,7 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
             <span className="text-sm text-[#717171]"> {t("perNight")}</span>
           </div>
           {currency !== "IDR" && (
-            <span className="text-xs text-[#8C7F5F] block">
+            <span className="text-xs text-[#776B4E] block">
               ≈ {formatPrice(villa.price.idr, "IDR")} {t("perNight")}
             </span>
           )}
@@ -149,7 +149,7 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
             <span>★ {villa.rating.toFixed(2)}</span>
             <span className="text-[#717171] font-normal">({tc("{count} reviews", { count: villa.reviewsCount })})</span>
           </div>
-          <span className="text-xs uppercase tracking-wider text-[#8C7F5F] font-semibold block">
+          <span className="text-xs uppercase tracking-wider text-[#776B4E] font-semibold block">
             Airbnb Superhost
           </span>
         </div>
@@ -168,7 +168,7 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
               min={todayIso()}
               placeholder={tc("Add date")}
               onChange={(e) => changeDates(e.target.value, checkOut)}
-              className="w-full bg-transparent text-xs text-[#222222] font-medium focus:outline-none cursor-pointer pt-0.5"
+              className="w-full bg-transparent text-xs text-[#222222] font-medium cursor-pointer pt-0.5"
             />
           </div>
           <div className="p-3">
@@ -181,7 +181,7 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
               placeholder={tc("Add date")}
               min={checkIn ? addDays(checkIn, 1) : undefined}
               onChange={(e) => changeDates(checkIn, e.target.value)}
-              className="w-full bg-transparent text-xs text-[#222222] font-medium focus:outline-none cursor-pointer pt-0.5"
+              className="w-full bg-transparent text-xs text-[#222222] font-medium cursor-pointer pt-0.5"
             />
           </div>
         </div>
@@ -193,7 +193,7 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
           <Select
             value={guestCount}
             onChange={(e) => setGuestCount(e.target.value)}
-            className="w-full bg-transparent text-xs text-[#222222] font-medium focus:outline-none cursor-pointer pt-0.5"
+            className="w-full bg-transparent text-xs text-[#222222] font-medium cursor-pointer pt-0.5"
           >
             {Array.from({ length: villa.capacity.guests }, (_, i) => i + 1).map((n) => (
               <option key={n} value={n}>
@@ -439,14 +439,14 @@ export function BookingSidebar({ villa }: BookingSidebarProps) {
 
         <div className="flex justify-between pt-3 border-t border-[#F0ECE1] text-sm font-semibold text-[#222222]">
           <span>{tc("Estimated Total")} ({currency})</span>
-          <span className="text-[#8C7F5F] font-bold">{formatPrice(estimatedTotal)}</span>
+          <span className="text-[#776B4E] font-bold">{formatPrice(estimatedTotal)}</span>
         </div>
       </div>
 
       {/* Trust Badges */}
       <div className="mt-6 pt-6 border-t border-[#F0ECE1] space-y-2 text-xs text-[#717171]">
         <div className="flex items-center space-x-2">
-          <ShieldCheck className="h-4 w-4 text-[#8C7F5F]" />
+          <ShieldCheck className="h-4 w-4 text-[#776B4E]" />
           <span>{tc("Best Price Guarantee & Verified Airbnb Superhost")}</span>
         </div>
         <div className="flex items-center space-x-2">

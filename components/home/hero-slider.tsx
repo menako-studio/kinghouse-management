@@ -243,7 +243,7 @@ export function HeroSlider() {
               href="/villas"
               className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-white px-8 text-base font-semibold text-[#19191B] shadow-[0_10px_30px_rgba(0,0,0,0.4)] transition-colors hover:bg-[#FAF8F5]"
             >
-              <Compass className="h-5 w-5 text-[#8C7F5F]" aria-hidden="true" />
+              <Compass className="h-5 w-5 text-[#776B4E]" aria-hidden="true" />
               {t("exploreVillasB2C")}
             </Link>
             <Link
@@ -280,7 +280,7 @@ export function HeroSlider() {
                 onClick={() => changeScene("lifestyle")}
                 className={`flex items-center gap-1.5 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-xs font-medium tracking-wide transition-all duration-300 ${
                   scene === "lifestyle"
-                    ? "bg-[#B8934C] text-white shadow-sm font-semibold"
+                    ? "bg-[#8A6A2E] text-white shadow-sm font-semibold"
                     : "text-white/90 hover:text-white"
                 }`}
               >
@@ -292,7 +292,7 @@ export function HeroSlider() {
                 onClick={() => changeScene("architecture")}
                 className={`flex items-center gap-1.5 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-xs font-medium tracking-wide transition-all duration-300 ${
                   scene === "architecture"
-                    ? "bg-[#B8934C] text-white shadow-sm font-semibold"
+                    ? "bg-[#8A6A2E] text-white shadow-sm font-semibold"
                     : "text-white/90 hover:text-white"
                 }`}
               >

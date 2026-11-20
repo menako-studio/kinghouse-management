@@ -79,9 +79,9 @@ export default async function BlogPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="flex items-center space-x-3 mb-6">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#222222]">
-              <BookOpen className="h-4 w-4 text-[#A69C8E]" />
+              <BookOpen className="h-4 w-4 text-[#736A5E]" />
             </div>
-            <span className="text-xs font-semibold uppercase tracking-[0.15em] text-[#A69C8E]">
+            <span className="text-xs font-semibold uppercase tracking-[0.15em] text-[#736A5E]">
               Kinghouse Journal
             </span>
           </div>
@@ -89,7 +89,7 @@ export default async function BlogPage() {
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#222222] font-normal leading-tight mb-4">
               Insights & Strategic Guides
               <br />
-              <span className="text-[#A69C8E]">for Jabodetabek Properties</span>
+              <span className="text-[#736A5E]">for Jabodetabek Properties</span>
             </h1>
             <p className="text-base sm:text-lg text-[#717171] font-light leading-relaxed max-w-xl">
               Airbnb algorithms, regional market analyses, and operational guides from the Kinghouse team to maximize your property yields.
@@ -100,18 +100,18 @@ export default async function BlogPage() {
           <div className="flex flex-wrap items-center gap-8 mt-10 pt-10 border-t border-[#EBEBEB]">
             <div className="space-y-0.5">
               <p className="font-serif text-2xl text-[#222225]">{posts.length}</p>
-              <p className="text-xs text-[#A69C8E] uppercase tracking-wider">Articles Live</p>
+              <p className="text-xs text-[#736A5E] uppercase tracking-wider">Articles Live</p>
             </div>
             <div className="space-y-0.5">
               <p className="font-serif text-2xl text-[#222225]">4</p>
-              <p className="text-xs text-[#A69C8E] uppercase tracking-wider">Managed Areas</p>
+              <p className="text-xs text-[#736A5E] uppercase tracking-wider">Managed Areas</p>
             </div>
             <div className="space-y-0.5">
               <p className="font-serif text-2xl text-[#222225]">Free</p>
-              <p className="text-xs text-[#A69C8E] uppercase tracking-wider">Open Access</p>
+              <p className="text-xs text-[#736A5E] uppercase tracking-wider">Open Access</p>
             </div>
             <div className="flex items-center space-x-2 ml-auto">
-              <Rss className="h-4 w-4 text-[#A69C8E]" />
+              <Rss className="h-4 w-4 text-[#736A5E]" />
               <span className="text-xs text-[#717171]">Direct API Dynamic Synced</span>
             </div>
           </div>
@@ -127,7 +127,7 @@ export default async function BlogPage() {
           <h2 className="font-serif text-3xl sm:text-4xl text-white mb-4">
             Ready to Maximize Your Property Yields?
           </h2>
-          <p className="text-[#A69C8E] text-sm mb-8 max-w-md mx-auto">
+          <p className="text-[#C9C1B4] text-sm mb-8 max-w-md mx-auto">
             Consult with Kinghouse asset managers regarding your Airbnb listing. Zero commitment, complimentary audit.
           </p>
           <a

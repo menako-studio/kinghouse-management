@@ -72,7 +72,7 @@ export function Footer() {
   const headingClass = "text-sm font-semibold uppercase tracking-[0.14em] text-[#EFE2CE]"
 
   return (
-    <footer className="w-full bg-[#776B4E] text-white print:hidden">
+    <footer className="w-full bg-[#62583F] text-white print:hidden">
       <div className="mx-auto max-w-7xl px-6 pb-10 pt-14 lg:px-12 lg:pt-16">
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 lg:grid-cols-12 lg:gap-8">
           {/* Brand */}

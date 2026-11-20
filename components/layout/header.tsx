@@ -141,14 +141,14 @@ export function Header() {
               onMouseEnter={() => setPropertiesMenuOpen(true)}
               className={`flex items-center space-x-1 text-xs font-medium uppercase tracking-[0.08em] 2xl:tracking-[0.14em] whitespace-nowrap transition-colors py-2 cursor-pointer ${
                 propertiesMenuOpen || pathname.startsWith("/villas") || pathname.startsWith("/locations")
-                  ? "text-[#8C7F5F] font-semibold"
-                  : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
+                  ? "text-[#776B4E] font-semibold"
+                  : "text-[#231F1A]/85 hover:text-[#776B4E]"
               }`}
             >
               <span>{t("ourProperties")}</span>
               <ChevronDown
                 className={`h-3.5 w-3.5 transition-transform duration-200 ${
-                  propertiesMenuOpen ? "rotate-180 text-[#8C7F5F]" : "text-[#888888]"
+                  propertiesMenuOpen ? "rotate-180 text-[#776B4E]" : "text-[#717171]"
                 }`}
               />
             </button>
@@ -157,7 +157,7 @@ export function Header() {
           <Link
             href={localizeHref("/villas")}
             className={`text-xs font-medium uppercase tracking-[0.08em] 2xl:tracking-[0.14em] whitespace-nowrap transition-colors py-2 ${
-              pathname === "/offers" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
+              pathname === "/offers" ? "text-[#776B4E] font-semibold" : "text-[#231F1A]/85 hover:text-[#776B4E]"
             }`}
           >
             {t("monthlyOffers")}
@@ -166,7 +166,7 @@ export function Header() {
           <Link
             href={localizeHref("/events")}
             className={`text-xs font-medium uppercase tracking-[0.08em] 2xl:tracking-[0.14em] whitespace-nowrap transition-colors py-2 ${
-              pathname === "/events" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
+              pathname === "/events" ? "text-[#776B4E] font-semibold" : "text-[#231F1A]/85 hover:text-[#776B4E]"
             }`}
           >
             {t("events")}
@@ -177,7 +177,7 @@ export function Header() {
             href={localizeHref("/owner-services")}
             onClick={() => trackOwnerCtaClick({ location: "header_nav" })}
             className={`text-xs font-medium uppercase tracking-[0.08em] 2xl:tracking-[0.14em] whitespace-nowrap transition-colors py-2 ${
-              pathname === "/owner-services" ? "text-[#8C7F5F] font-semibold" : "text-[#231F1A]/85 hover:text-[#8C7F5F]"
+              pathname === "/owner-services" ? "text-[#776B4E] font-semibold" : "text-[#231F1A]/85 hover:text-[#776B4E]"
             }`}
           >
             {t("navOwnerServices")}
@@ -186,7 +186,7 @@ export function Header() {
           {/* ENQUIRE underlined (Exact Nakula styling) */}
           <Link
             href={localizeHref("/contact")}
-            className="text-xs font-semibold uppercase tracking-[0.08em] 2xl:tracking-[0.14em] whitespace-nowrap text-[#8C7F5F] underline underline-offset-6 decoration-1 hover:text-[#776B4E] transition-colors py-2"
+            className="text-xs font-semibold uppercase tracking-[0.08em] 2xl:tracking-[0.14em] whitespace-nowrap text-[#776B4E] underline underline-offset-6 decoration-1 hover:text-[#776B4E] transition-colors py-2"
           >
             {t("enquire")}
           </Link>
@@ -206,20 +206,20 @@ export function Header() {
                 setLanguageDropdownOpen(false)
                 setPropertiesMenuOpen(false)
               }}
-              className="flex items-center space-x-1.5 text-xs uppercase tracking-[0.14em] font-medium text-[#231F1A]/90 hover:text-[#8C7F5F] transition-colors py-1.5 px-2 rounded-md hover:bg-[#F5F2EB]/80 cursor-pointer"
+              className="flex items-center space-x-1.5 text-xs uppercase tracking-[0.14em] font-medium text-[#231F1A]/90 hover:text-[#776B4E] transition-colors py-1.5 px-2 rounded-md hover:bg-[#F5F2EB]/80 cursor-pointer"
             >
               <span className="text-xs font-light text-[#231F1A]">$</span>
               <span className="font-semibold text-xs">{currentCurrencyConfig.short}</span>
               <ChevronDown
                 className={`h-3 w-3 text-[#5C5347] transition-transform duration-200 ${
-                  currencyDropdownOpen ? "rotate-180 text-[#8C7F5F]" : ""
+                  currencyDropdownOpen ? "rotate-180 text-[#776B4E]" : ""
                 }`}
               />
             </button>
 
             {currencyDropdownOpen && (
               <div className="absolute right-0 mt-2 w-48 rounded-lg bg-white py-1.5 shadow-2xl border border-[#E8E4DC] ring-1 ring-black/5 z-50">
-                <div className="px-3 py-1 text-xs uppercase font-semibold text-[#8C7F5F] tracking-wider border-b border-[#F0ECE1]">
+                <div className="px-3 py-1 text-xs uppercase font-semibold text-[#776B4E] tracking-wider border-b border-[#F0ECE1]">
                   Select Currency
                 </div>
                 <div className="max-h-64 overflow-y-auto py-1">
@@ -233,17 +233,17 @@ export function Header() {
                       }}
                       className={`w-full flex items-center justify-between px-3.5 py-2 text-left text-xs transition-colors ${
                         currency === curr.code
-                          ? "bg-[#FAF8F3] text-[#8C7F5F] font-semibold"
+                          ? "bg-[#FAF8F3] text-[#776B4E] font-semibold"
                           : "text-[#444444] hover:bg-[#F7F5F0] hover:text-[#222222]"
                       }`}
                     >
                       <div className="flex items-center space-x-2">
-                        <span className="w-6 font-semibold text-center text-[#8C7F5F]">
+                        <span className="w-6 font-semibold text-center text-[#776B4E]">
                           {curr.symbol}
                         </span>
                         <span>{curr.label}</span>
                       </div>
-                      {currency === curr.code && <Check className="h-3.5 w-3.5 text-[#8C7F5F]" />}
+                      {currency === curr.code && <Check className="h-3.5 w-3.5 text-[#776B4E]" />}
                     </button>
                   ))}
                 </div>
@@ -260,20 +260,20 @@ export function Header() {
                 setCurrencyDropdownOpen(false)
                 setPropertiesMenuOpen(false)
               }}
-              className="flex items-center space-x-1.5 text-xs uppercase tracking-[0.14em] font-medium text-[#231F1A]/90 hover:text-[#8C7F5F] transition-colors py-1.5 px-2 rounded-md hover:bg-[#F5F2EB]/80 cursor-pointer"
+              className="flex items-center space-x-1.5 text-xs uppercase tracking-[0.14em] font-medium text-[#231F1A]/90 hover:text-[#776B4E] transition-colors py-1.5 px-2 rounded-md hover:bg-[#F5F2EB]/80 cursor-pointer"
             >
               <Globe className="h-3.5 w-3.5 text-[#231F1A]/85" />
               <span className="font-semibold text-xs">{currentLanguageConfig.code}</span>
               <ChevronDown
                 className={`h-3 w-3 text-[#5C5347] transition-transform duration-200 ${
-                  languageDropdownOpen ? "rotate-180 text-[#8C7F5F]" : ""
+                  languageDropdownOpen ? "rotate-180 text-[#776B4E]" : ""
                 }`}
               />
             </button>
 
             {languageDropdownOpen && (
               <div className="absolute right-0 mt-2 w-52 rounded-lg bg-white py-1.5 shadow-2xl border border-[#E8E4DC] ring-1 ring-black/5 z-50">
-                <div className="px-3 py-1 text-xs uppercase font-semibold text-[#8C7F5F] tracking-wider border-b border-[#F0ECE1]">
+                <div className="px-3 py-1 text-xs uppercase font-semibold text-[#776B4E] tracking-wider border-b border-[#F0ECE1]">
                   Select Language
                 </div>
                 <div className="max-h-72 overflow-y-auto py-1">
@@ -287,17 +287,17 @@ export function Header() {
                       }}
                       className={`w-full flex items-center justify-between px-3.5 py-2 text-left text-xs transition-colors ${
                         language === lang.code
-                          ? "bg-[#FAF8F3] text-[#8C7F5F] font-semibold"
+                          ? "bg-[#FAF8F3] text-[#776B4E] font-semibold"
                           : "text-[#444444] hover:bg-[#F7F5F0] hover:text-[#222222]"
                       }`}
                     >
                       <div className="flex items-center space-x-2.5">
-                        <span className="w-9 font-mono text-xs font-semibold text-[#8C7F5F]">
+                        <span className="w-9 font-mono text-xs font-semibold text-[#776B4E]">
                           {lang.code}
                         </span>
                         <span>{lang.nativeName}</span>
                       </div>
-                      {language === lang.code && <Check className="h-3.5 w-3.5 text-[#8C7F5F]" />}
+                      {language === lang.code && <Check className="h-3.5 w-3.5 text-[#776B4E]" />}
                     </button>
                   ))}
                 </div>
@@ -331,7 +331,7 @@ export function Header() {
       {/* Mega Menu Dropdown for "OUR PROPERTIES" (Exact Nakula Khaki Theme) */}
       {propertiesMenuOpen && (
         <div
-          className="w-full bg-[#8C7F5F] text-white shadow-2xl border-t border-[#7A6E50] animate-kh-fade"
+          className="w-full bg-[#776B4E] text-white shadow-2xl border-t border-[#7A6E50] animate-kh-fade"
           onMouseLeave={() => setPropertiesMenuOpen(false)}
         >
           <div className="mx-auto max-w-7xl px-6 py-10 lg:px-12">
@@ -454,7 +454,7 @@ export function Header() {
                   value={currency}
                   onChange={(e) => setCurrency(e.target.value as CurrencyCode)}
                   aria-label="Select Currency"
-                  className="rounded border border-[#E8E4DC] bg-[#FAF8F3] px-2.5 py-1 text-xs font-semibold text-[#8C7F5F]"
+                  className="rounded border border-[#E8E4DC] bg-[#FAF8F3] px-2.5 py-1 text-xs font-semibold text-[#776B4E]"
                 >
                   {SUPPORTED_CURRENCIES.map((curr) => (
                     <option key={curr.code} value={curr.code}>
@@ -470,7 +470,7 @@ export function Header() {
                   value={language}
                   onChange={(e) => setLanguage(e.target.value as LanguageCode)}
                   aria-label="Select Language"
-                  className="rounded border border-[#E8E4DC] bg-[#FAF8F3] px-2.5 py-1 text-xs font-semibold text-[#8C7F5F]"
+                  className="rounded border border-[#E8E4DC] bg-[#FAF8F3] px-2.5 py-1 text-xs font-semibold text-[#776B4E]"
                 >
                   {SUPPORTED_LANGUAGES.map((lang) => (
                     <option key={lang.code} value={lang.code}>
@@ -485,28 +485,28 @@ export function Header() {
             <nav className="flex flex-col space-y-3">
               <Link
                 href={localizeHref("/villas")}
-                className="font-serif text-xl text-[#222222] hover:text-[#8C7F5F] py-1 border-b border-[#F5F3EF]"
+                className="font-serif text-xl text-[#222222] hover:text-[#776B4E] py-1 border-b border-[#F5F3EF]"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t("ourProperties")}
               </Link>
               <Link
                 href={localizeHref("/events")}
-                className="font-serif text-xl text-[#222222] hover:text-[#8C7F5F] py-1 border-b border-[#F5F3EF]"
+                className="font-serif text-xl text-[#222222] hover:text-[#776B4E] py-1 border-b border-[#F5F3EF]"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t("events")}
               </Link>
               <Link
                 href={localizeHref("/owner-services")}
-                className="font-serif text-xl text-[#222222] hover:text-[#8C7F5F] py-1 border-b border-[#F5F3EF]"
+                className="font-serif text-xl text-[#222222] hover:text-[#776B4E] py-1 border-b border-[#F5F3EF]"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t("ownerServices")}
               </Link>
               <Link
                 href={localizeHref("/contact")}
-                className="font-serif text-xl text-[#8C7F5F] py-1 border-b border-[#F5F3EF]"
+                className="font-serif text-xl text-[#776B4E] py-1 border-b border-[#F5F3EF]"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t("enquire")}
@@ -517,14 +517,14 @@ export function Header() {
             <div className="pt-4 space-y-2.5">
               <Link
                 href={localizeHref("/villas")}
-                className="w-full flex items-center justify-center rounded-lg bg-[#8C7F5F] py-3 text-xs font-semibold uppercase tracking-wider text-white"
+                className="w-full flex items-center justify-center rounded-lg bg-[#776B4E] py-3 text-xs font-semibold uppercase tracking-wider text-white"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t("exploreProperties")}
               </Link>
               <Link
                 href={localizeHref("/contact")}
-                className="w-full flex items-center justify-center rounded-lg border border-[#8C7F5F] py-3 text-xs font-semibold uppercase tracking-wider text-[#8C7F5F] hover:bg-[#FAF8F3] transition-colors"
+                className="w-full flex items-center justify-center rounded-lg border border-[#8C7F5F] py-3 text-xs font-semibold uppercase tracking-wider text-[#776B4E] hover:bg-[#FAF8F3] transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t("enquire")}

@@ -309,10 +309,12 @@ Please provide information on scheduling a complimentary physical audit and onbo
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs font-semibold uppercase tracking-wider text-[#231F1A] block">
+                <label htmlFor="calc-nightly-rate" className="text-xs font-semibold uppercase tracking-wider text-[#231F1A] block">
                   {isId ? "Harga Sewa / Malam (IDR)" : "Nightly Base Rate (IDR)"}
                 </label>
                 <input
+                  id="calc-nightly-rate"
+                  inputMode="numeric"
                   type="number"
                   step={50000}
                   min={100000}

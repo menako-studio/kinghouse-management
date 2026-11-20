@@ -55,9 +55,9 @@ export default async function DashboardOverviewPage() {
       {/* Header Banner */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-[#E8E4DC]">
         <div className="space-y-2">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#FAF8F5] border border-[#E8E4DC] text-[10px] font-semibold tracking-wider text-[#222225]">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#FAF8F5] border border-[#E8E4DC] text-[11px] font-semibold tracking-wider text-[#222225]">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-[#8C7F5F] uppercase">KINGHOUSE MANAGEMENT</span>
+            <span className="text-[#776B4E] uppercase">KINGHOUSE MANAGEMENT</span>
             <span className="text-[#D5CFC3]">&bull;</span>
             <span>PORTAL BISNIS</span>
           </div>
@@ -180,7 +180,7 @@ export default async function DashboardOverviewPage() {
           <div className="space-y-1">
             <div className="flex items-center space-x-2">
               <div className="flex h-7 w-7 items-center justify-center rounded-xl bg-[#FAF8F5] border border-[#E8E4DC] text-[#222225]">
-                <Layers className="h-3.5 w-3.5 text-[#8C7F5F]" />
+                <Layers className="h-3.5 w-3.5 text-[#776B4E]" />
               </div>
               <h3 className="text-xl text-[#222225] font-semibold">
                 Sinkronisasi Kalender Otomatis
@@ -191,7 +191,7 @@ export default async function DashboardOverviewPage() {
             </p>
           </div>
           <span
-            className={`text-[10px] font-semibold px-3 py-1.5 rounded-full self-start sm:self-auto uppercase tracking-wider border ${
+            className={`text-[11px] font-semibold px-3 py-1.5 rounded-full self-start sm:self-auto uppercase tracking-wider border ${
               airbnbHealthy
                 ? "text-emerald-800 bg-emerald-50 border-emerald-200"
                 : "text-red-800 bg-red-50 border-red-200"
@@ -225,7 +225,7 @@ export default async function DashboardOverviewPage() {
           </div>
           <Link
             href="/dashboard/properties"
-            className="text-xs font-semibold text-[#8C7F5F] hover:text-[#222225] flex items-center space-x-1.5 transition-colors"
+            className="text-xs font-semibold text-[#776B4E] hover:text-[#222225] flex items-center space-x-1.5 transition-colors"
           >
             <span>Lihat Semua Properti</span>
             <ArrowUpRight className="h-3.5 w-3.5" />
@@ -235,7 +235,7 @@ export default async function DashboardOverviewPage() {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-[#E8E4DC] bg-[#FAF8F5] text-[10px] font-bold uppercase tracking-wider text-[#6B6862]">
+              <tr className="border-b border-[#E8E4DC] bg-[#FAF8F5] text-[11px] font-bold uppercase tracking-wider text-[#6B6862]">
                 <th className="py-4 px-6">Properti & Lokasi</th>
                 <th className="py-4 px-6">Kategori</th>
                 <th className="py-4 px-6">Tarif per Malam</th>
@@ -254,17 +254,17 @@ export default async function DashboardOverviewPage() {
                         <Image src={villa.heroImage} alt={villa.name} fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover" />
                       </div>
                       <div>
-                        <p className="font-semibold text-[#222225] hover:text-[#8C7F5F] transition-colors line-clamp-1 max-w-[200px] sm:max-w-[260px]">
+                        <p className="font-semibold text-[#222225] hover:text-[#776B4E] transition-colors line-clamp-1 max-w-[200px] sm:max-w-[260px]">
                           {villa.name}
                         </p>
-                        <p className="text-[11px] text-[#8C7F5F] font-medium">{villa.location}</p>
+                        <p className="text-xs text-[#776B4E] font-medium">{villa.location}</p>
                       </div>
                     </div>
                   </td>
 
                   {/* Type */}
                   <td className="py-4 px-6">
-                    <span className="inline-block px-3 py-1 rounded-full text-[10px] font-semibold bg-[#FAF8F5] text-[#222225] border border-[#E8E4DC]">
+                    <span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold bg-[#FAF8F5] text-[#222225] border border-[#E8E4DC]">
                       {villa.propertyType === "entire-home"
                         ? "5BR Sanctuary Villa"
                         : villa.propertyType === "private-room"
@@ -292,7 +292,7 @@ export default async function DashboardOverviewPage() {
                         <span className="text-[#6B6862] font-normal">({villa.reviewsCount})</span>
                       </div>
                     ) : (
-                      <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                      <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
                         New Listing
                       </span>
                     )}
@@ -303,7 +303,7 @@ export default async function DashboardOverviewPage() {
                     <div className="inline-flex items-center space-x-2">
                       <Link
                         href="/dashboard/seo"
-                        className="px-3 py-1.5 rounded-xl border border-[#E8E4DC] hover:border-[#222225] text-[11px] font-semibold transition-colors bg-white hover:bg-[#FAF8F5]"
+                        className="px-3 py-1.5 rounded-xl border border-[#E8E4DC] hover:border-[#222225] text-xs font-semibold transition-colors bg-white hover:bg-[#FAF8F5]"
                       >
                         SEO
                       </Link>

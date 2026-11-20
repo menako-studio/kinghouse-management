@@ -76,7 +76,7 @@ export function DashboardSidebar({ adminUser }: { adminUser?: AdminUser | null }
               <span className="text-sm font-semibold text-white tracking-tight leading-tight group-hover:text-[#CBBEA0] transition-colors">
                 Kinghouse
               </span>
-              <span className="text-[8px] uppercase tracking-[0.25em] text-[#CBBEA0] font-medium leading-none mt-0.5">
+              <span className="text-[11px] uppercase tracking-[0.25em] text-[#CBBEA0] font-medium leading-none mt-0.5">
                 Hospitality CMS
               </span>
             </div>
@@ -100,10 +100,10 @@ export function DashboardSidebar({ adminUser }: { adminUser?: AdminUser | null }
 
       {/* Primary CMS Navigation Links */}
       <nav className="flex-1 p-3 space-y-1.5 overflow-y-auto">
-        <div className="text-[10px] uppercase font-mono tracking-widest text-white/40 px-3 py-1 mb-1 flex items-center justify-between">
+        <div className="text-[11px] uppercase font-mono tracking-widest text-white/40 px-3 py-1 mb-1 flex items-center justify-between">
           <span>{!collapsed ? "Management Suite" : "•"}</span>
           {!collapsed && (
-            <span className="text-[9px] text-[#DFC58E]/90 font-sans tracking-normal font-semibold">2026</span>
+            <span className="text-[11px] text-[#DFC58E]/90 font-sans tracking-normal font-semibold">2026</span>
           )}
         </div>
         {NAV_ITEMS.map((item) => {
@@ -133,7 +133,7 @@ export function DashboardSidebar({ adminUser }: { adminUser?: AdminUser | null }
                 <>
                   <span className="flex-1 truncate">{item.label}</span>
                   {item.badge && (
-                    <span className="text-[9px] font-bold bg-[#B8934C] text-[#19191B] px-2 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
+                    <span className="text-[11px] font-bold bg-[#B8934C] text-[#19191B] px-2 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
                       {item.badge}
                     </span>
                   )}
@@ -148,7 +148,7 @@ export function DashboardSidebar({ adminUser }: { adminUser?: AdminUser | null }
 
         {/* Public Website Preview Link */}
         <div className="pt-4 mt-4 border-t border-white/[0.08]">
-          <div className="text-[10px] uppercase font-mono tracking-widest text-white/40 px-3 py-1 mb-1">
+          <div className="text-[11px] uppercase font-mono tracking-widest text-white/40 px-3 py-1 mb-1">
             {!collapsed ? "Halaman Tamu" : "•"}
           </div>
           <a
@@ -180,7 +180,7 @@ export function DashboardSidebar({ adminUser }: { adminUser?: AdminUser | null }
                   <span>{adminUser.name}</span>
                   <ShieldCheck className="h-3 w-3 text-emerald-400 flex-shrink-0" />
                 </div>
-                <div className="text-[10px] text-white/50 font-mono truncate">
+                <div className="text-[11px] text-white/50 font-mono truncate">
                   {adminUser.email}
                 </div>
               </div>
