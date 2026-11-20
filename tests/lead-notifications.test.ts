@@ -136,7 +136,17 @@ describe("Live OTA calendar for availability", () => {
     "END:VCALENDAR",
   ].join("\r\n")
 
-  afterEach(() => vi.unstubAllGlobals())
+  // The fixtures use fixed November 2026 dates; pin "today" so past-date
+  // filtering does not make the suite depend on when it runs.
+  beforeEach(() => {
+    vi.useFakeTimers({ toFake: ["Date"] })
+    vi.setSystemTime(new Date("2026-11-01T03:00:00Z"))
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+    vi.unstubAllGlobals()
+  })
 
   it("reads booked ranges from the villa's iCal feed", async () => {
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue(new Response(ics, { status: 200 })))
