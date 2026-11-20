@@ -5,7 +5,11 @@ import type { BlogPost } from "@/lib/types"
 // (see lib/blog/schedule.ts). Until then they are invisible on the site: not in
 // /blog, the sitemap or related posts, and their URL returns 404.
 //
-// Campaign: 16 November – 6 December 2026 at 07:00 WIB. The management-fee article
+// Campaign: 16 November – 18 December 2026 at 07:00 WIB (the first four articles are
+// owner/guest content; the last six are the B2B series for owners, investors and
+// corporate buyers).
+//
+// First four: 16 Nov – 6 Dec at 07:00 WIB. The management-fee article
 // (villa-focused) was moved up to go first; the Nataru checklist follows the next day.
 // Prices and fees quoted below come from lib/data.ts and lib/constants.ts
 // (MANAGEMENT_FEES); update the articles if those change.
@@ -361,5 +365,493 @@ Jika Anda masih ragu, baca perbandingan lengkap [kelola sendiri vs jasa manajeme
 ## Hitung untuk properti Anda
 
 Lihat dulu [properti yang kami kelola](/villas), gunakan [kalkulator pendapatan](/owner-services#calculator) untuk melihat estimasi berdasarkan lokasi dan jumlah kamar, atau [minta proposal gratis](/management-inquiry). Kami membalas dalam 1 jam kerja.`,
+  },
+
+  // ══ B2B SERIES (24 Nov – 18 Dec 2026): owners, investors and corporate buyers ══
+  // Illustrative figures below are labelled as examples in the text. Fees come from
+  // MANAGEMENT_FEES; event prices come from the corporate-retreat packages in lib/data.ts.
+
+  // ── 5. Investors: how to calculate net yield ──────────────────────────────
+  {
+    id: "blog-2026-11-24-net-yield",
+    slug: "cara-menghitung-net-yield-properti-sewa-harian",
+    title: "Cara Menghitung Net Yield Properti Sewa Harian: Rumus & Contoh untuk Investor",
+    excerpt:
+      "Pendapatan kotor Airbnb belum menunjukkan keuntungan sebenarnya. Pelajari rumus net yield, contoh hitungan apartemen, dan titik impas fee pengelola.",
+    category: "revenue-management",
+    publishedAt: "2026-11-24T07:00:00+07:00",
+    author: AUTHOR,
+    heroImage: "/properties/skyline-luxury/SkylineLuxury_OrangeCounty_KamarUtama.webp",
+    tags: ["Net Yield", "ROI Properti", "Investor", "Apartemen Harian", "Pemilik Properti"],
+    seoKeywords: [
+      "cara menghitung net yield airbnb",
+      "roi properti sewa harian",
+      "investasi apartemen airbnb jakarta",
+      "hitung keuntungan airbnb",
+      "break even fee pengelola airbnb",
+    ],
+    seoTitle: "Cara Menghitung Net Yield Properti Sewa Harian",
+    metaDescription:
+      "Rumus net yield properti sewa harian, contoh hitungan apartemen, dan cara menghitung titik impas fee pengelola. Panduan praktis untuk investor di Jabodetabek.",
+    readTime: 6,
+    featured: false,
+    language: "id",
+    content: `Banyak investor menilai properti sewa harian dari satu angka: pendapatan kotor per bulan. Angka itu menarik, tetapi belum menjawab pertanyaan yang sebenarnya penting: setelah semua biaya, berapa persen dari nilai properti yang kembali ke kantong Anda dalam setahun? Itulah net yield.
+
+![Kamar utama apartemen yang dikelola untuk sewa harian di Cikarang](/properties/skyline-luxury/SkylineLuxury_OrangeCounty_KamarUtama.webp)
+
+## Rumus dasar
+
+**Net yield = (pendapatan kotor setahun − seluruh biaya) ÷ nilai properti × 100%**
+
+Pendapatan kotor dihitung dari tarif per malam dikali jumlah malam terisi. Biaya yang sering terlewat saat menghitung:
+
+- Biaya layanan platform (Airbnb, Booking.com, Agoda)
+- Fee pengelola, bila memakai jasa manajemen
+- Kebersihan dan laundry setiap pergantian tamu
+- Listrik, air, internet, dan langganan hiburan
+- Iuran pengelola gedung dan pajak properti
+- Perawatan, penggantian perlengkapan, dan dana cadangan
+
+## Contoh hitungan (ilustrasi)
+
+Angka berikut hanya contoh untuk menunjukkan cara hitung, bukan proyeksi untuk properti Anda. Misalnya sebuah apartemen bernilai **Rp 1,5 miliar**, tarif **Rp 900.000** per malam, okupansi **60%** (sekitar 219 malam terisi per tahun), dikelola dengan fee 23%.
+
+- Pendapatan kotor: 219 × Rp 900.000 = **Rp 197.100.000**
+- Fee pengelola 23%: **Rp 45.333.000**
+- Biaya operasional (diasumsikan 20% dari pendapatan kotor): **Rp 39.420.000**
+- Pendapatan bersih untuk pemilik: **Rp 112.347.000**
+- Net yield: Rp 112.347.000 ÷ Rp 1,5 miliar = sekitar **7,5% per tahun**
+
+Ganti angka tarif, okupansi, dan biaya dengan data properti Anda sendiri. Bagian yang paling sensitif adalah okupansi: selisih 10 poin persentase pada contoh di atas mengubah pendapatan kotor sekitar Rp 33 juta setahun.
+
+## Titik impas fee pengelola
+
+Fee pengelola hanya masuk akal jika kenaikan pendapatan lebih besar dari fee yang dibayarkan. Dengan asumsi biaya operasional sama di kedua skenario, kenaikan pendapatan kotor minimal yang dibutuhkan adalah **fee ÷ (1 − fee)**:
+
+- Fee 15%: pendapatan kotor perlu naik sekitar **17,6%**
+- Fee 18%: sekitar **22,0%**
+- Fee 23%: sekitar **29,9%**
+
+Artinya, jika Anda sudah mengelola properti sendiri dengan okupansi dan tarif yang optimal, pengelola profesional belum tentu menambah keuntungan finansial. Jika okupansi Anda stagnan atau tarif Anda flat sepanjang tahun, ruang peningkatannya biasanya jauh lebih besar. Waktu yang Anda hemat juga bernilai, tetapi hitung keduanya secara terpisah.
+
+## Tiga pertanyaan sebelum membeli properti
+
+1. **Berapa okupansi realistis di area ini?** Minta data properti sejenis di lokasi yang sama, bukan angka rata-rata nasional.
+2. **Apakah gedung mengizinkan sewa harian?** Aturan pengelola gedung dan peraturan setempat berbeda-beda, jadi pastikan tertulis sebelum membeli.
+3. **Berapa dana cadangan untuk perawatan?** Menyisihkan sebagian pendapatan setiap bulan mencegah kejutan biaya besar.
+
+## Hitung untuk portofolio Anda
+
+Gunakan [kalkulator pendapatan](/owner-services) untuk membandingkan kelola sendiri dan kelola bersama pengelola, atau baca [panduan biaya jasa kelola Airbnb](/blog/biaya-jasa-kelola-airbnb-jakarta) untuk rincian fee. Jika Anda ingin penilaian properti tertentu, [kirim data singkat ke tim kami](/management-inquiry).`,
+  },
+
+  // ── 6. Owners: due diligence before choosing a manager ────────────────────
+  {
+    id: "blog-2026-11-30-due-diligence-pengelola",
+    slug: "checklist-memilih-pengelola-properti-sewa-harian",
+    title: "Checklist Memilih Pengelola Properti Sewa Harian: 12 Pertanyaan Sebelum Tanda Tangan",
+    excerpt:
+      "Menyerahkan properti ke pengelola berarti memberi akses ke aset dan pendapatan Anda. Gunakan 12 pertanyaan ini untuk menilai pengelola sebelum menandatangani kontrak.",
+    category: "owner-tips",
+    publishedAt: "2026-11-30T07:00:00+07:00",
+    author: AUTHOR,
+    heroImage: "/properties/versatile-house/new/VersatileHouse_02_Living_Hall.jpg",
+    tags: ["Pengelola Properti", "Kontrak", "Due Diligence", "Pemilik Properti", "Jasa Kelola Airbnb"],
+    seoKeywords: [
+      "memilih jasa pengelola airbnb",
+      "kontrak jasa kelola villa",
+      "pertanyaan untuk pengelola properti",
+      "checklist pengelola airbnb jakarta",
+      "perjanjian kerja sama pengelolaan properti sewa harian",
+    ],
+    seoTitle: "Checklist Memilih Pengelola Properti Sewa Harian",
+    metaDescription:
+      "12 pertanyaan untuk menilai pengelola properti sewa harian sebelum tanda tangan: fee, laporan, akses akun, kerusakan, kontrak, dan cara keluar kerja sama.",
+    readTime: 6,
+    featured: false,
+    language: "id",
+    content: `Memilih pengelola untuk villa atau apartemen sewa harian adalah keputusan bisnis, bukan sekadar mencari yang paling murah. Pengelola akan memegang kunci properti, berbicara dengan tamu atas nama Anda, dan menerima pembayaran yang menjadi pendapatan Anda. Karena itu, perlakukan prosesnya seperti due diligence.
+
+![Ruang tamu villa yang dikelola secara profesional di Jagakarsa](/properties/versatile-house/new/VersatileHouse_02_Living_Hall.jpg)
+
+Berikut 12 pertanyaan yang kami sarankan diajukan kepada pengelola mana pun, termasuk kepada kami.
+
+## Biaya dan uang
+
+### 1. Berapa fee-nya dan dihitung dari apa?
+
+Tanyakan apakah fee dihitung dari pendapatan kotor atau bersih, dan apakah sudah termasuk biaya layanan platform. Di Kinghouse, fee full management adalah 23% untuk apartemen dan 15–18% untuk villa 6 kamar atau lebih; angka final ditulis di perjanjian.
+
+### 2. Biaya apa saja yang di luar fee?
+
+Biasanya listrik, air, internet, perawatan, dan bahan habis pakai ditanggung pemilik. Minta daftar tertulis agar tidak ada kejutan di bulan pertama.
+
+### 3. Bagaimana dan kapan pendapatan dibayarkan?
+
+Pastikan Anda tahu tanggal pembayaran, rekening yang dipakai, dan bagaimana pengelola mencatat setiap pemesanan.
+
+### 4. Siapa yang menanggung kerusakan oleh tamu?
+
+Tanyakan prosedurnya: siapa yang melapor ke platform, siapa yang menalangi biaya perbaikan, dan batas nilai yang boleh diputuskan pengelola tanpa persetujuan Anda.
+
+## Transparansi dan kontrol
+
+### 5. Laporan apa yang saya terima?
+
+Minta contoh laporan bulanan. Laporan yang baik memuat okupansi, tarif rata-rata, pendapatan kotor, biaya, dan pendapatan bersih per properti.
+
+### 6. Atas nama siapa akun listing?
+
+Idealnya listing dan ulasannya tetap menjadi milik Anda, atau jelas bagaimana dipindahkan jika kerja sama berakhir. Ulasan yang terkumpul bertahun-tahun adalah aset.
+
+### 7. Siapa yang mengatur harga, dan seberapa sering diubah?
+
+Tanyakan dasar penentuan harga: musim, hari libur, acara, dan data pesaing. Harga flat sepanjang tahun adalah tanda bahaya.
+
+### 8. Seberapa cepat tamu dibalas?
+
+Respons cepat memengaruhi peringkat dan konversi. Tanyakan juga siapa yang menangani keluhan pukul 2 pagi.
+
+## Operasional
+
+### 9. Siapa yang membersihkan dan mengecek properti?
+
+Tim sendiri atau pihak ketiga? Bagaimana standar dan pengecekan setelah pembersihan? Layanan [cleaning Airbnb & villa on demand](/airbnb-cleaning-jakarta) cocok jika Anda hanya butuh housekeeping tanpa full management.
+
+### 10. Bagaimana menangani aturan rumah dan lingkungan?
+
+Villa di kompleks perumahan perlu pengelola yang tegas soal jumlah tamu, kebisingan, dan acara. Tanyakan contoh kasus yang pernah ditangani.
+
+## Kontrak dan kerja sama
+
+### 11. Berapa lama durasi kontrak dan bagaimana cara keluar?
+
+Pahami masa kontrak, masa pemberitahuan, dan apa yang terjadi pada pemesanan yang sudah masuk jika kontrak berakhir. Syarat ini berbeda per properti dan per pengelola, jadi pastikan tertulis.
+
+### 12. Properti apa yang sudah mereka kelola?
+
+Lihat langsung, bukan hanya foto. Cek ulasan tamu, kondisi listing, dan konsistensi kualitas. Anda dapat melihat [properti yang kami kelola](/villas) sebagai contoh.
+
+## Cara memakai checklist ini
+
+Kirim 12 pertanyaan ini ke dua atau tiga pengelola dan bandingkan jawaban tertulisnya. Pengelola yang baik menjawab dengan data dan dokumen, bukan hanya janji. Jika Anda ingin membandingkan model kerja sama, baca [kelola sendiri vs jasa manajemen](/blog/kelola-sendiri-vs-jasa-manajemen-properti-airbnb), lalu lihat [layanan untuk pemilik properti](/owner-services) atau [minta proposal](/management-inquiry).`,
+  },
+
+  // ── 7. Corporate buyers: Q1 2027 offsite planning ─────────────────────────
+  {
+    id: "blog-2026-12-03-offsite-q1-2027",
+    slug: "panduan-offsite-kantor-q1-2027-villa-jakarta-selatan",
+    title: "Panduan Offsite Kantor Q1 2027: Memilih Venue Villa & Menghitung Biaya per Peserta",
+    excerpt:
+      "Rencanakan offsite awal 2027 sekarang. Panduan untuk HR dan GA: membandingkan paket venue, menghitung biaya per peserta, dan menyiapkan dokumen penagihan.",
+    category: "jabodetabek-guide",
+    publishedAt: "2026-12-03T07:00:00+07:00",
+    author: AUTHOR,
+    heroImage: "/properties/versatile-house/new/VersatileHouse_08_Media_Lounge.jpg",
+    tags: ["Corporate Offsite", "Team Retreat", "HR & GA", "Venue Jakarta Selatan", "Acara Kantor"],
+    seoKeywords: [
+      "venue offsite kantor jakarta selatan",
+      "sewa villa untuk offsite perusahaan",
+      "tempat workshop tim jakarta",
+      "biaya offsite per peserta",
+      "venue strategy meeting awal tahun",
+    ],
+    seoTitle: "Panduan Offsite Kantor Q1 2027: Villa Jakarta Selatan",
+    metaDescription:
+      "Panduan HR & GA merencanakan offsite Q1 2027: perbandingan paket venue villa, biaya per peserta, kapasitas, timeline booking, dan dokumen penagihan.",
+    readTime: 6,
+    featured: false,
+    language: "id",
+    content: `Kuartal pertama adalah waktu favorit banyak perusahaan untuk strategy session, kick-off tahunan, dan workshop tim. Tanggal yang bagus, terutama hari kerja di Januari dan Februari, cepat terisi. Jika Anda dari tim HR atau GA yang bertugas mengurus acara, berikut cara menyusun perencanaannya mulai sekarang.
+
+![Ruang media lounge villa yang dipakai untuk sesi kerja tim](/properties/versatile-house/new/VersatileHouse_08_Media_Lounge.jpg)
+
+## Mulai dari tujuan acara
+
+Tujuan menentukan format. Sesi strategi 3–4 jam cukup dengan paket setengah hari. Jika agendanya mencakup presentasi pagi, workshop siang, dan makan malam bersama, paket satu hari penuh lebih masuk akal. Bila tim perlu menginap agar sesi berlanjut keesokan hari, pilih paket residensial.
+
+## Bandingkan paket di Versatile House Jagakarsa
+
+Harga di bawah adalah harga hari kerja dari [paket corporate retreat kami](/events/corporate-retreat-jagakarsa), belum termasuk katering makan (Anda bisa membawa katering sendiri). Hitungan per peserta kami tambahkan agar mudah dibandingkan dengan penawaran lain.
+
+- **Setengah hari (6 jam):** Rp 2,8 juta untuk 20 peserta (sekitar **Rp 140.000** per orang) hingga Rp 4,9 juta untuk 50 peserta (sekitar **Rp 98.000** per orang)
+- **Satu hari (12 jam):** Rp 4,0 juta untuk 20 peserta (sekitar **Rp 200.000** per orang) hingga Rp 7,0 juta untuk 50 peserta (sekitar **Rp 140.000** per orang)
+- **Residensial (menginap, 15 orang):** Rp 5,6 juta untuk 20 peserta (sekitar **Rp 280.000** per orang) hingga Rp 8,4 juta untuk 50 peserta (sekitar **Rp 168.000** per orang)
+
+Akhir pekan lebih mahal dari hari kerja. Jika jadwal tim fleksibel, hari Selasa hingga Kamis biasanya paling hemat. Harga dapat berubah, jadi konfirmasi tanggal Anda sebelum memutuskan.
+
+## Cara membandingkan dengan venue lain
+
+Saat meminta penawaran dari hotel atau venue lain, samakan dulu komponennya supaya perbandingannya adil:
+
+- Apakah harga sudah termasuk sewa ruang, peralatan presentasi, dan makanan?
+- Apakah ada minimum belanja makanan dan minuman?
+- Berapa lama ruang bisa dipakai, dan apakah ada biaya lembur?
+- Berapa mobil yang bisa parkir? Paket satu hari kami menyediakan parkir hingga 8 mobil.
+- Apakah ada area terbuka untuk sesi kelompok dan ice breaking?
+
+Bandingkan total biaya per peserta, bukan hanya harga sewa.
+
+## Yang biasanya dibutuhkan tim HR dan GA
+
+- **Dokumen penagihan.** Paket corporate kami menyertakan invoice resmi dan bukti pajak untuk keperluan administrasi perusahaan.
+- **Ruang kerja yang nyaman.** Ruang dalam ber-AC dengan cahaya alami, WiFi cepat, serta area taman untuk sesi kelompok.
+- **Katering fleksibel.** Anda dapat membawa katering sendiri dan memakai dapur lengkap di lokasi.
+- **Opsi menginap.** Hingga 15 peserta dapat menginap di kamar pribadi jika sesi berlanjut dua hari.
+
+## Timeline yang disarankan
+
+- **4–6 minggu sebelumnya:** tentukan tanggal dan jumlah peserta, lalu minta penawaran dari 2–3 venue
+- **3–4 minggu sebelumnya:** kunci tanggal dan konfirmasi katering serta peralatan
+- **1 minggu sebelumnya:** kirim peta lokasi, informasi parkir, dan agenda ke peserta
+- **H-1:** konfirmasi akhir jumlah peserta dan jam kedatangan vendor
+
+## Cek ketersediaan
+
+Lihat detail [paket corporate retreat](/events/corporate-retreat-jagakarsa) atau [kirim tanggal dan jumlah peserta](/events) untuk cek ketersediaan. Untuk acara akhir tahun yang lebih santai, baca juga [panduan venue year-end party kantor](/blog/venue-year-end-party-kantor-jakarta-selatan).`,
+  },
+
+  // ── 8. Investors: scaling from one unit to several ────────────────────────
+  {
+    id: "blog-2026-12-09-skala-portofolio",
+    slug: "menskalakan-portofolio-sewa-harian-dari-1-ke-5-unit",
+    title: "Dari 1 ke 5 Unit: Cara Menskalakan Portofolio Sewa Harian Tanpa Menurunkan Kualitas",
+    excerpt:
+      "Menambah unit tidak sama dengan menambah pendapatan dalam jumlah yang sama. Ini pelajaran operasional untuk investor yang ingin berkembang dari satu properti ke beberapa.",
+    category: "revenue-management",
+    publishedAt: "2026-12-09T07:00:00+07:00",
+    author: AUTHOR,
+    heroImage: "/properties/sky-house/SkyHouse_IKEA_KamarUtama_Wide.jpeg",
+    tags: ["Portofolio Properti", "Investor", "Skala Bisnis", "Operasional", "Sewa Harian"],
+    seoKeywords: [
+      "menambah unit airbnb",
+      "portofolio properti sewa harian",
+      "investasi beberapa apartemen airbnb",
+      "skala bisnis airbnb jakarta",
+      "diversifikasi properti jabodetabek",
+    ],
+    seoTitle: "Menskalakan Portofolio Sewa Harian dari 1 ke 5 Unit",
+    metaDescription:
+      "Cara investor menambah unit sewa harian tanpa menurunkan kualitas: standar operasional, diversifikasi lokasi, laporan per properti, dan dana cadangan.",
+    readTime: 6,
+    featured: false,
+    language: "id",
+    content: `Satu properti sewa harian yang berjalan baik sering mendorong pemiliknya membeli unit kedua, ketiga, dan seterusnya. Pendapatan memang bertambah, tetapi pekerjaan operasional juga bertambah, dan di sinilah banyak investor tersandung. Berikut pelajaran yang paling sering kami lihat saat portofolio tumbuh dari satu menjadi beberapa unit.
+
+![Kamar utama apartemen di Tangerang dengan standar yang konsisten](/properties/sky-house/SkyHouse_IKEA_KamarUtama_Wide.jpeg)
+
+## 1. Standarkan sebelum menambah
+
+Jika unit pertama berjalan baik karena Anda mengurusnya sendiri, belum tentu unit kelima akan sama. Tuliskan standar yang selama ini ada di kepala Anda:
+
+- Daftar isi unit: jenis linen, jumlah handuk, perlengkapan mandi, perlengkapan dapur
+- Prosedur pembersihan dan foto bukti setelah setiap pergantian tamu
+- Pesan otomatis untuk tamu: sebelum check-in, saat check-in, dan check-out
+- Aturan rumah yang sama di semua listing
+
+Standar tertulis membuat kualitas bisa direplikasi oleh siapa pun yang menangani unit tersebut.
+
+## 2. Sebar risiko lewat lokasi dan segmen
+
+Memiliki beberapa unit di gedung yang sama berarti Anda bersaing dengan diri sendiri dan terpapar pada risiko yang sama. Jabodetabek menawarkan segmen yang berbeda:
+
+- **Jagakarsa, Jakarta Selatan:** hunian keluarga dengan taman, cocok untuk kumpul keluarga dan acara kecil
+- **Tangerang:** dekat pusat bisnis, dengan permintaan dari wisatawan dan tamu bisnis
+- **Palmerah, Jakarta Barat:** akses mudah ke stasiun dan kawasan Sudirman
+- **Cikarang:** kawasan industri dengan permintaan dari profesional dan expat
+
+Mengombinasikan segmen yang berbeda membantu menjaga okupansi tetap stabil ketika satu segmen melemah.
+
+## 3. Pisahkan pembukuan per properti
+
+Gabungan angka portofolio menutupi unit yang lemah. Catat pendapatan, biaya, dan okupansi **per properti** setiap bulan. Dengan begitu Anda bisa memutuskan unit mana yang perlu perbaikan, perubahan harga, atau bahkan dijual.
+
+## 4. Sisihkan dana cadangan
+
+Setiap unit pasti memerlukan perbaikan: AC, pemanas air, kasur, atau perabot. Menyisihkan persentase tetap dari pendapatan setiap bulan membuat biaya besar tidak mengganggu arus kas. Tentukan angkanya berdasarkan usia dan kondisi properti Anda.
+
+## 5. Putuskan model operasional lebih awal
+
+Ada tiga jalur umum:
+
+- **Tim sendiri:** kontrol penuh, tetapi Anda yang merekrut, melatih, dan mengawasi
+- **Housekeeping on demand:** Anda tetap mengurus tamu dan harga, pembersihan dibayar per kunjungan
+- **Pengelola penuh:** pengelola menangani harga, tamu, housekeeping, dan laporan dengan fee persentase
+
+Kinghouse menyediakan ketiganya: HK on Demand, Co-Hosting, dan Full Management. Anda juga bisa memakai model berbeda untuk unit berbeda, misalnya mengelola sendiri unit dekat rumah dan menyerahkan unit di luar kota. Baca [perbandingan kelola sendiri dan jasa manajemen](/blog/kelola-sendiri-vs-jasa-manajemen-properti-airbnb).
+
+## 6. Pantau metrik yang sama untuk semua unit
+
+Gunakan definisi yang sama untuk okupansi, tarif rata-rata, dan pendapatan per malam tersedia, supaya unit bisa dibandingkan secara adil. Rumus dan cara membacanya kami bahas di artikel berikutnya tentang laporan bulanan pengelola.
+
+## Langkah berikutnya
+
+Sebelum membeli unit baru, hitung dulu hasil bersihnya dengan [rumus net yield](/blog/cara-menghitung-net-yield-properti-sewa-harian). Jika Anda sudah memiliki beberapa unit dan ingin menyederhanakan operasionalnya, lihat [layanan untuk pemilik properti](/owner-services) atau [bicara dengan tim kami](/management-inquiry).`,
+  },
+
+  // ── 9. Owners: what to read in the monthly report ─────────────────────────
+  {
+    id: "blog-2026-12-14-laporan-bulanan",
+    slug: "laporan-bulanan-pengelola-metrik-pemilik-properti",
+    title: "Laporan Bulanan Pengelola Properti: 6 Metrik yang Harus Dipahami Pemilik",
+    excerpt:
+      "Okupansi, ADR, dan RevPAR: tiga angka yang menunjukkan apakah properti Anda dikelola dengan baik. Lengkap dengan rumus dan contoh hitungan.",
+    category: "owner-tips",
+    publishedAt: "2026-12-14T07:00:00+07:00",
+    author: AUTHOR,
+    heroImage: "/properties/versatile-house/new/VersatileHouse_06_Dining_Chandelier.jpg",
+    tags: ["Laporan Pengelola", "Okupansi", "ADR", "RevPAR", "Pemilik Properti"],
+    seoKeywords: [
+      "laporan bulanan pengelola airbnb",
+      "apa itu adr dan revpar",
+      "cara menghitung okupansi airbnb",
+      "metrik performa properti sewa harian",
+      "evaluasi pengelola properti",
+    ],
+    seoTitle: "Laporan Bulanan Pengelola: 6 Metrik untuk Pemilik",
+    metaDescription:
+      "Cara membaca laporan bulanan pengelola properti sewa harian: okupansi, ADR, RevPAR, lead time, pembatalan, dan skor ulasan, lengkap dengan rumus dan contoh.",
+    readTime: 5,
+    featured: false,
+    language: "id",
+    content: `Laporan bulanan dari pengelola hanya berguna jika Anda tahu cara membacanya. Angka pendapatan saja bisa menyesatkan: pendapatan naik karena bulan itu libur panjang, bukan karena pengelolaan membaik. Enam metrik berikut membantu Anda menilai performa properti secara objektif.
+
+![Ruang makan villa dengan kualitas yang konsisten bagi setiap tamu](/properties/versatile-house/new/VersatileHouse_06_Dining_Chandelier.jpg)
+
+## Tiga metrik utama
+
+### 1. Okupansi
+
+**Okupansi = malam terisi ÷ malam tersedia × 100%**
+
+Hitung hanya malam yang memang dibuka untuk dipesan. Malam yang Anda blokir untuk pemakaian pribadi atau perawatan sebaiknya dikeluarkan dari pembagi, atau dilaporkan terpisah.
+
+### 2. ADR (Average Daily Rate)
+
+**ADR = pendapatan kamar ÷ malam terisi**
+
+ADR menunjukkan tarif rata-rata yang benar-benar dibayar tamu, bukan tarif yang tertulis di listing. Diskon mingguan dan bulanan menurunkan ADR, sehingga penting untuk melihatnya bersama okupansi.
+
+### 3. RevPAR (Revenue per Available Night)
+
+**RevPAR = pendapatan kamar ÷ malam tersedia = ADR × okupansi**
+
+RevPAR menggabungkan dua metrik sebelumnya dan merupakan ukuran paling adil untuk membandingkan bulan atau properti. Okupansi tinggi dengan tarif terlalu rendah dan tarif tinggi dengan listing yang sepi sama-sama menghasilkan RevPAR yang lemah.
+
+## Contoh hitungan (ilustrasi)
+
+Sebuah apartemen terisi **18 malam** dari 30 malam tersedia dengan pendapatan kamar **Rp 16.200.000**:
+
+- Okupansi: 18 ÷ 30 = **60%**
+- ADR: Rp 16.200.000 ÷ 18 = **Rp 900.000**
+- RevPAR: Rp 16.200.000 ÷ 30 = **Rp 540.000** (sama dengan Rp 900.000 × 60%)
+
+Jika bulan berikutnya okupansi turun menjadi 50% tetapi ADR naik menjadi Rp 1.100.000, RevPAR menjadi Rp 550.000. Strategi harga yang berbeda, hasil yang hampir sama. Pengelola yang baik bisa menjelaskan pilihan di balik angka seperti ini.
+
+## Tiga metrik pendukung
+
+### 4. Lead time
+
+Jarak rata-rata antara tanggal pemesanan dan tanggal menginap. Lead time pendek berarti banyak pemesanan last minute dan harga perlu lebih agresif. Lead time panjang di musim libur berarti Anda bisa menaikkan harga lebih awal.
+
+### 5. Tingkat pembatalan
+
+Pembatalan yang tinggi menyisakan malam kosong di menit akhir. Tanyakan penyebabnya: kebijakan pembatalan, harga, atau komunikasi sebelum menginap.
+
+### 6. Skor dan isi ulasan
+
+Skor rata-rata saja tidak cukup. Baca komentar yang berulang, misalnya soal kebersihan, kebisingan, atau fasilitas. Itu petunjuk langsung tentang apa yang perlu diperbaiki.
+
+## Seperti apa laporan yang baik?
+
+Laporan yang bisa Anda gunakan untuk mengambil keputusan umumnya memuat:
+
+- Okupansi, ADR, dan RevPAR bulan ini dibanding bulan lalu dan bulan yang sama tahun lalu
+- Pendapatan kotor, biaya, dan pendapatan bersih per properti
+- Catatan keluhan tamu dan tindak lanjutnya
+- Rencana bulan berikutnya: perubahan harga, perawatan, atau perbaikan listing
+
+Jika pengelola Anda hanya mengirim total pendapatan, minta rincian di atas. Daftar pertanyaan lain untuk menilai pengelola ada di [checklist memilih pengelola properti](/blog/checklist-memilih-pengelola-properti-sewa-harian).
+
+## Mulai dari data Anda
+
+Hitung hasil bersih properti Anda dengan [rumus net yield](/blog/cara-menghitung-net-yield-properti-sewa-harian), atau [hubungi kami](/management-inquiry) untuk melihat contoh laporan yang kami kirim kepada pemilik.`,
+  },
+
+  // ── 10. Owners: preparing units for business travellers and expats ────────
+  {
+    id: "blog-2026-12-18-tamu-bisnis-expat",
+    slug: "menyiapkan-unit-untuk-tamu-bisnis-dan-expat-cikarang-tangerang",
+    title: "Menyiapkan Unit untuk Tamu Bisnis & Expat di Cikarang dan Tangerang",
+    excerpt:
+      "Tamu bisnis dan expat menginap lebih lama dan menilai hal yang berbeda dari wisatawan. Panduan bagi pemilik apartemen untuk menyiapkan unit, harga, dan komunikasi.",
+    category: "revenue-management",
+    publishedAt: "2026-12-18T07:00:00+07:00",
+    author: AUTHOR,
+    heroImage: "/properties/skyline-luxury/SkylineLuxury_OrangeCounty_PemandanganView.jpeg",
+    tags: ["Tamu Bisnis", "Expat", "Cikarang", "Tangerang", "Apartemen Harian"],
+    seoKeywords: [
+      "apartemen untuk expat cikarang",
+      "airbnb tamu bisnis jakarta",
+      "apartemen harian orange county cikarang",
+      "menyewakan apartemen untuk karyawan",
+      "sewa jangka menengah apartemen tangerang",
+    ],
+    seoTitle: "Unit untuk Tamu Bisnis & Expat di Cikarang dan Tangerang",
+    metaDescription:
+      "Cara pemilik apartemen menyiapkan unit untuk tamu bisnis dan expat di Cikarang dan Tangerang: ruang kerja, WiFi, harga menginap lama, dan komunikasi.",
+    readTime: 5,
+    featured: false,
+    language: "id",
+    content: `Cikarang dan Tangerang punya kebutuhan akomodasi yang berbeda dari Jakarta Selatan. Cikarang adalah kawasan industri dengan banyak profesional dan expat yang bekerja di sekitar Jababeka, EJIP, dan MM2100. Tangerang menarik tamu bisnis dan penghuni sementara di sekitar IKEA dan Alam Sutera. Jika unit Anda berada di area ini, menyiapkannya untuk tamu bisnis dapat membuat okupansi lebih stabil.
+
+![Pemandangan dari apartemen di Orange County Cikarang yang dikelola Kinghouse](/properties/skyline-luxury/SkylineLuxury_OrangeCounty_PemandanganView.jpeg)
+
+## Apa yang berbeda dari tamu bisnis?
+
+Wisatawan mencari pengalaman, sedangkan tamu bisnis mencari kelancaran. Mereka biasanya:
+
+- Menginap lebih lama, dari beberapa hari hingga beberapa minggu
+- Bekerja dari unit di malam hari atau saat tidak di lokasi proyek
+- Membutuhkan proses check-in yang cepat dan tanpa drama
+- Memerlukan bukti pembayaran untuk diklaim ke kantor
+
+## Checklist menyiapkan unit
+
+### Ruang kerja yang nyata
+
+Meja yang cukup lebar, kursi yang nyaman, dan stop kontak yang mudah dijangkau sering lebih berharga daripada dekorasi tambahan. Foto sudut kerja di listing agar tamu bisnis langsung menemukannya.
+
+### WiFi yang bisa diandalkan
+
+Internet cepat dan stabil adalah syarat dasar. Cantumkan kecepatan di listing, dan uji koneksi secara berkala. Internet yang putus saat tamu rapat daring akan langsung muncul di ulasan.
+
+### Dapur dan fasilitas untuk menginap lama
+
+Dapur dengan perlengkapan memasak lengkap, mesin cuci, dan lemari yang cukup membuat tamu betah menginap lebih dari seminggu. Kinghouse menyediakan fasilitas standar seperti WiFi cepat, AC, air panas, dapur lengkap, mesin cuci, dan self check-in di properti yang kami kelola.
+
+### Self check-in yang jelas
+
+Tamu yang tiba larut malam setelah perjalanan kerja membutuhkan petunjuk akses yang tidak membingungkan. Kirim panduan langkah demi langkah dengan foto sebelum hari kedatangan.
+
+## Harga untuk menginap lebih lama
+
+Menginap lebih lama menurunkan biaya pergantian tamu per malam, sehingga Anda bisa memberi diskon mingguan atau bulanan dan tetap sehat secara margin. Aktifkan diskon ini di platform dan bandingkan hasilnya:
+
+- Okupansi cenderung lebih stabil karena lebih sedikit malam kosong di antara tamu
+- ADR sedikit turun, tetapi biaya kebersihan dan pergantian per malam juga turun
+- Hitung dengan [rumus net yield](/blog/cara-menghitung-net-yield-properti-sewa-harian), jangan hanya melihat tarif per malam
+
+## Komunikasi dan administrasi
+
+- Balas cepat dan singkat. Tamu bisnis menghargai jawaban yang jelas.
+- Siapkan informasi akses gedung, parkir, dan kurir sebelum tamu tiba.
+- Pastikan bukti pemesanan dari platform mudah diunduh tamu untuk keperluan klaim kantor.
+- Periksa aturan gedung soal sewa harian dan pendaftaran tamu, karena aturan tiap gedung berbeda.
+
+## Mulai dari lokasi yang tepat
+
+Baca [strategi memaksimalkan okupansi apartemen Cikarang](/blog/strategi-maksimalkan-okupansi-apartemen-cikarang) dan [potensi investasi Airbnb di Cikarang](/blog/cikarang-hidden-gem-investasi-airbnb) untuk konteks lokasinya. Anda juga bisa melihat contoh unit yang kami kelola, seperti [apartemen di Orange County Cikarang](/locations/cikarang/villas/skyline-luxury-orange-county-cikarang) dan [apartemen di Tangerang](/locations/tangerang/villas/sky-house-tangerang). Jika Anda ingin unit Anda dikelola untuk segmen ini, [kirim detail properti Anda](/management-inquiry).`,
   },
 ]

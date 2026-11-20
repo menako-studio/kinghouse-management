@@ -50,14 +50,25 @@ describe("editorial calendar visibility", () => {
     expect(slugs).not.toContain("persiapan-airbnb-libur-natal-tahun-baru")
     expect(await getBlogPostBySlug(first.slug)).not.toBeNull()
 
-    vi.setSystemTime(new Date("2026-12-06T00:00:01Z"))
+    vi.setSystemTime(new Date("2026-12-18T00:00:01Z")) // 07:00:01 WIB, last scheduled article
     const all = (await getBlogPosts()).map((p) => p.slug)
     for (const p of SCHEDULED_POSTS) expect(all).toContain(p.slug)
   })
 
-  it("spreads the campaign over 16 Nov – 16 Dec with unique slugs and internal links that exist", () => {
+  it("spreads the campaign over 16 Nov – 18 Dec with unique slugs and internal links that exist", () => {
     const dates = SCHEDULED_POSTS.map((p) => publishInstant(p.publishedAt).toISOString().slice(0, 10)).sort()
-    expect(dates).toEqual(["2026-11-16", "2026-11-17", "2026-11-26", "2026-12-06"])
+    expect(dates).toEqual([
+      "2026-11-16",
+      "2026-11-17",
+      "2026-11-24",
+      "2026-11-26",
+      "2026-11-30",
+      "2026-12-03",
+      "2026-12-06",
+      "2026-12-09",
+      "2026-12-14",
+      "2026-12-18",
+    ])
     expect(new Set(SCHEDULED_POSTS.map((p) => p.slug)).size).toBe(SCHEDULED_POSTS.length)
     const routes = new Set([
       "/owner-services",
@@ -67,6 +78,7 @@ describe("editorial calendar visibility", () => {
       "/airbnb-cleaning-jakarta",
       ...VILLA_EVENTS.map((e) => `/events/${e.slug}`),
       ...BLOG_POSTS.map((b) => `/blog/${b.slug}`),
+      ...SCHEDULED_POSTS.map((b) => `/blog/${b.slug}`),
       ...CURATED_VILLAS.map((v) => `/locations/${v.areaSlug}/villas/${v.slug}`),
     ])
     for (const p of SCHEDULED_POSTS) {
