@@ -159,7 +159,7 @@ export function EventDetailView({ slug, locale }: { slug: string; locale: SiteLo
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {event.highlights.map((h) => (
                   <div key={h} className="flex items-start space-x-2.5 p-3 rounded-xl bg-[#FAFAFA] border border-[#EBEBEB]">
-                    <CheckCircle2 className="h-4 w-4 text-[#A69C8E] mt-0.5 flex-shrink-0" />
+                    <CheckCircle2 className="h-4 w-4 text-[#736A5E] mt-0.5 flex-shrink-0" />
                     <span className="text-xs text-[#717171] leading-relaxed">{tx(h)}</span>
                   </div>
                 ))}
@@ -191,7 +191,7 @@ export function EventDetailView({ slug, locale }: { slug: string; locale: SiteLo
                   <div className="flex-1">
                     <p className="text-sm font-semibold text-[#222222]">{tx(property.name)}</p>
                     <p className="text-xs text-[#717171]">{tx(property.location)}</p>
-                    <p className="text-xs text-[#A69C8E] mt-1">
+                    <p className="text-xs text-[#736A5E] mt-1">
                       {property.capacity.guests} {tx("guests")} &bull; {property.capacity.bedrooms} {tx("bedrooms")} &bull; {property.capacity.bathrooms} {tx("baths")}
                     </p>
                   </div>
@@ -208,7 +208,7 @@ export function EventDetailView({ slug, locale }: { slug: string; locale: SiteLo
             {/* International / Expat Couples Concierge Box */}
             {event.category === "wedding" && (
               <div className="rounded-2xl border border-[#DFC58E]/40 bg-[#FAF8F5] p-6 space-y-4">
-                <div className="flex items-center space-x-2 text-[#8C7F5F]">
+                <div className="flex items-center space-x-2 text-[#776B4E]">
                   <Globe className="h-4 w-4" />
                   <span className="text-xs uppercase tracking-widest font-bold">
                     {tx("International & Destination Couples Desk")}
@@ -239,7 +239,7 @@ export function EventDetailView({ slug, locale }: { slug: string; locale: SiteLo
           <div className="lg:col-span-5">
             <div className="sticky top-28 space-y-4">
               <div className="flex items-center space-x-2 mb-2">
-                <Users className="h-4 w-4 text-[#A69C8E]" />
+                <Users className="h-4 w-4 text-[#736A5E]" />
                 <span className="text-xs text-[#717171]">{tx("Max.")} {event.maxCapacity} {tx("guests")}</span>
               </div>
               <h3 className="font-serif text-xl text-[#222222]">{tx("Select Package")}</h3>
@@ -261,16 +261,16 @@ export function EventDetailView({ slug, locale }: { slug: string; locale: SiteLo
                       <span className="text-xs font-normal text-[#717171]"> ({tx("Weekday")})</span>
                     </p>
                     {pkg.weekendPriceIdr && (
-                      <p className="text-xs text-[#8C7F5F] font-semibold mt-0.5">
+                      <p className="text-xs text-[#776B4E] font-semibold mt-0.5">
                         {tx("Weekend Rate:")} {formatCurrency(pkg.weekendPriceIdr, "IDR")}
                       </p>
                     )}
                   </div>
-                  <p className="text-xs text-[#A69C8E] mb-4">{tx(pkg.priceNote)}</p>
+                  <p className="text-xs text-[#736A5E] mb-4">{tx(pkg.priceNote)}</p>
                   <div className="space-y-1.5 mb-5 border-t border-[#EBEBEB] pt-4">
                     {pkg.includes.map((item) => (
                       <div key={item} className="flex items-start space-x-2">
-                        <CheckCircle2 className="h-3 w-3 text-[#A69C8E] mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="h-3 w-3 text-[#736A5E] mt-0.5 flex-shrink-0" />
                         <span className="text-xs text-[#717171] leading-relaxed">{tx(item)}</span>
                       </div>
                     ))}
@@ -290,7 +290,7 @@ export function EventDetailView({ slug, locale }: { slug: string; locale: SiteLo
                   </a>
                 </div>
               ))}
-              <p className="text-xs text-[#A69C8E] text-center">
+              <p className="text-xs text-[#736A5E] text-center">
                 {tx("* Prices exclude catering, floral decor, and photography. Custom packages available.")}
               </p>
             </div>

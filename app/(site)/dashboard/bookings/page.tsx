@@ -297,7 +297,7 @@ export default function DashboardBookingsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E8E4DC] pb-6">
         <div>
-          <div className="inline-flex items-center space-x-2 text-[10px] font-semibold uppercase tracking-wider text-[#222225] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E8E4DC] mb-3">
+          <div className="inline-flex items-center space-x-2 text-[11px] font-semibold uppercase tracking-wider text-[#222225] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E8E4DC] mb-3">
             <CalendarDays className="h-3.5 w-3.5 text-[#B8934C]" />
             <span>KALENDER & JADWAL RESERVASI</span>
           </div>
@@ -372,7 +372,7 @@ export default function DashboardBookingsPage() {
           <div className="h-3 w-3 rounded-full bg-emerald-500 animate-pulse ring-4 ring-emerald-100" />
           <div>
             <p className="text-xs font-semibold text-[#222225]">Sinkronisasi Otomatis iCal 2-Arah Aktif</p>
-            <p className="text-[11px] text-[#717171] font-light">{syncStatus}. Menjaga agar kalender Airbnb dan WhatsApp tidak bentrok (Zero Double-Booking).</p>
+            <p className="text-xs text-[#717171] font-light">{syncStatus}. Menjaga agar kalender Airbnb dan WhatsApp tidak bentrok (Zero Double-Booking).</p>
           </div>
         </div>
         <div className="flex items-center space-x-2.5 self-start md:self-auto">
@@ -410,7 +410,7 @@ export default function DashboardBookingsPage() {
         </div>
 
         <div className="flex items-center space-x-2 overflow-x-auto pb-1 sm:pb-0">
-          <span className="text-[11px] text-[#717171] font-semibold flex items-center space-x-1">
+          <span className="text-xs text-[#717171] font-semibold flex items-center space-x-1">
             <Filter className="h-3 w-3" />
             <span>Channel:</span>
           </span>
@@ -446,7 +446,7 @@ export default function DashboardBookingsPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-[#E8E4DC] bg-[#FAFAF8] text-[10px] font-bold uppercase tracking-wider text-[#717171]">
+                <tr className="border-b border-[#E8E4DC] bg-[#FAFAF8] text-[11px] font-bold uppercase tracking-wider text-[#717171]">
                   <th className="py-4 px-6">ID & Tamu</th>
                   <th className="py-4 px-6">Properti</th>
                   <th className="py-4 px-6">Saluran Booking</th>
@@ -464,18 +464,18 @@ export default function DashboardBookingsPage() {
                     <tr key={res.id} className="hover:bg-[#FAFAF8]/90 transition-colors">
                       <td className="py-4 px-6">
                         <p className="font-semibold text-[#222225]">{res.guestName}</p>
-                        <span className="text-[10px] text-[#717171] font-mono">{res.id}</span>
+                        <span className="text-[11px] text-[#717171] font-mono">{res.id}</span>
                         {res.guestPhone && (
-                          <p className="text-[10px] text-[#717171] mt-0.5">{res.guestPhone}</p>
+                          <p className="text-[11px] text-[#717171] mt-0.5">{res.guestPhone}</p>
                         )}
                       </td>
                       <td className="py-4 px-6">
                         <p className="font-medium text-[#222225] max-w-[220px] truncate">{res.propertyName}</p>
-                        <span className="text-[11px] text-[#717171]">{res.guests} Tamu &bull; {res.nights} Malam</span>
+                        <span className="text-xs text-[#717171]">{res.guests} Tamu &bull; {res.nights} Malam</span>
                       </td>
                       <td className="py-4 px-6">
                         <span
-                          className={`inline-block px-2.5 py-1 rounded-full text-[10px] font-semibold border ${
+                          className={`inline-block px-2.5 py-1 rounded-full text-[11px] font-semibold border ${
                             isDirect
                               ? "bg-emerald-50/70 text-emerald-800 border-emerald-200"
                               : "bg-rose-50/70 text-rose-800 border-rose-200"
@@ -486,19 +486,19 @@ export default function DashboardBookingsPage() {
                       </td>
                       <td className="py-4 px-6">
                         <p className="font-medium text-[#222225]">{res.checkIn} &rarr; {res.checkOut}</p>
-                        <span className="text-[10px] text-[#B8934C] font-medium">{res.nights} malam menginap</span>
+                        <span className="text-[11px] text-[#B8934C] font-medium">{res.nights} malam menginap</span>
                       </td>
                       <td className="py-4 px-6 font-semibold text-[#222225]">
                         {formatCurrency(res.grossPayoutIdr, "IDR")}
                       </td>
                       <td className="py-4 px-6">
                         <p className="font-bold text-emerald-700">{formatCurrency(res.netOwnerPayoutIdr, "IDR")}</p>
-                        <span className="text-[10px] text-[#717171]">
+                        <span className="text-[11px] text-[#717171]">
                           Komisi: {formatCurrency(res.managementFeeIdr, "IDR")} ({res.managementFeePercent}%)
                         </span>
                       </td>
                       <td className="py-4 px-6">
-                        <span className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                        <span className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
                           <CheckCircle2 className="h-3 w-3 text-emerald-600" />
                           <span>{res.status}</span>
                         </span>
@@ -582,7 +582,7 @@ export default function DashboardBookingsPage() {
                     onChange={(e) => setInboundSyncUrl(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] font-mono text-xs text-[#222225] focus:outline-none focus:border-[#B8934C]"
                   />
-                  <p className="text-[11px] text-[#717171] mt-1.5 leading-relaxed">
+                  <p className="text-xs text-[#717171] mt-1.5 leading-relaxed">
                     Salin URL dari menu <em>Airbnb Host Dashboard &rarr; Pricing and availability &rarr; Calendar sync &rarr; Export calendar</em>.
                   </p>
                 </div>
@@ -778,7 +778,7 @@ export default function DashboardBookingsPage() {
                     <Sparkles className="h-3.5 w-3.5 text-[#B8934C]" />
                     <span>Kalkulasi Otomatis Sistem ERP:</span>
                   </div>
-                  <div className="grid grid-cols-3 gap-2 text-[11px] pt-1">
+                  <div className="grid grid-cols-3 gap-2 text-xs pt-1">
                     <div>
                       <span className="text-[#717171] block">Lama Menginap:</span>
                       <strong className="text-[#222225]">{nightsCount} Malam</strong>

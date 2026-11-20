@@ -79,6 +79,37 @@
   box-sizing: border-box;
 }
 
+/* Anchored sections land below the sticky header instead of under it. */
+html {
+  scroll-padding-top: 6rem;
+}
+
+/*
+ * Visible keyboard focus everywhere (WCAG 2.4.7). Gold-dark reads at >=3:1 on
+ * both the white/bone surfaces and the charcoal sections, so one ring works
+ * site-wide. Mouse clicks don't trigger :focus-visible, so this stays quiet.
+ */
+:where(a, button, input, select, textarea, summary, [role="button"], [tabindex]):focus-visible {
+  outline: 2px solid var(--brand-gold-dark);
+  outline-offset: 2px;
+}
+
+/* Skip link: hidden until focused by keyboard. */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  background: var(--brand-charcoal);
+  color: #fff;
+  font-weight: 600;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
 /*
  * Readable type scale for the public site (owners are mostly 30+): small text
  * never drops below 14px and body copy reads at 17px. Applied by SiteShell;
@@ -332,4 +363,22 @@ h3, h4, h5, h6 {
 .animate-kh-pop { animation: kh-pop 0.16s ease-out both; }
 @media (prefers-reduced-motion: reduce) {
   .animate-kh-fade, .animate-kh-sheet, .animate-kh-pop { animation: none; }
+}
+
+/*
+ * Respect the OS "reduce motion" setting site-wide: decorative loops
+ * (float/glow/shimmer/pulse), hover zooms and smooth scrolling all stop.
+ * Durations are near-zero rather than none so transitionend still fires.
+ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

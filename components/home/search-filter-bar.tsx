@@ -46,7 +46,7 @@ export function SearchFilterBar() {
               aria-label={tc("Filter by destination in Greater Jakarta")}
               value={destination}
               onChange={(e) => setDestination(e.target.value)}
-              className="w-full bg-transparent text-xs sm:text-sm font-normal text-[#717171] focus:outline-none focus:text-[#222222] cursor-pointer"
+              className="w-full bg-transparent text-xs sm:text-sm font-normal text-[#717171] focus:text-[#222222] cursor-pointer"
             >
               <option value="">{t("allGreaterJakarta")}</option>
               <option value="jagakarsa">{tc("Jagakarsa (South Jakarta)")}</option>
@@ -79,7 +79,7 @@ export function SearchFilterBar() {
                 className="bg-transparent text-sm text-[#222222]"
                 aria-label={tc("Check-in Date")}
               />
-              <span className="text-[#A69C8E]">&rarr;</span>
+              <span className="text-[#736A5E]">&rarr;</span>
               <DatePicker
                 hideIcon
                 value={checkOut}
@@ -107,7 +107,7 @@ export function SearchFilterBar() {
               aria-label={tc("Filter by number of guests")}
               value={guests}
               onChange={(e) => setGuests(e.target.value)}
-              className="w-full bg-transparent text-xs sm:text-sm font-normal text-[#717171] focus:outline-none focus:text-[#222222] cursor-pointer"
+              className="w-full bg-transparent text-xs sm:text-sm font-normal text-[#717171] focus:text-[#222222] cursor-pointer"
             >
               <option value="1">{tc("1 Guest")}</option>
               <option value="2">{tc("2 Guests")}</option>

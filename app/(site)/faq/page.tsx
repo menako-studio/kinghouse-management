@@ -52,7 +52,7 @@ export default function FaqPage() {
                   }}
                   className={`flex items-center space-x-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all ${
                     isActive
-                      ? "bg-[#8C7F5F] text-white shadow-md scale-102"
+                      ? "bg-[#776B4E] text-white shadow-md scale-102"
                       : "bg-white text-[#666666] border border-[#E8E4DC] hover:border-[#8C7F5F] hover:text-[#222222]"
                   }`}
                 >
@@ -83,7 +83,7 @@ export default function FaqPage() {
                       {tc(item.question)}
                     </span>
                     <ChevronDown
-                      className={`h-4 w-4 text-[#8C7F5F] shrink-0 transition-transform duration-200 ${
+                      className={`h-4 w-4 text-[#776B4E] shrink-0 transition-transform duration-200 ${
                         isOpen ? "rotate-180" : ""
                       }`}
                     />
@@ -100,11 +100,11 @@ export default function FaqPage() {
           </div>
 
           {/* Still Have Questions CTA */}
-          <div className="mt-14 rounded-3xl bg-[#8C7F5F] text-white p-8 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-lg">
+          <div className="mt-14 rounded-3xl bg-[#62583F] text-white p-8 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-lg">
             <div className="space-y-2 text-center sm:text-left">
-              <h3 className="font-serif text-2xl uppercase tracking-wider font-normal">
+              <h2 className="font-serif text-2xl uppercase tracking-wider font-normal">
                 {tc("Have a specific question?")}
-              </h3>
+              </h2>
               <p className="text-xs text-[#F0EBE0] font-light max-w-md">
                 {tc("Our concierge team is available 24/7 on WhatsApp to assist with bespoke villa requests, check-in logistics, or asset management feasibility audits.")}
               </p>
@@ -114,7 +114,7 @@ export default function FaqPage() {
               <button
                 type="button"
                 onClick={() => openChooser({ source: "contact_page", context: "faq" })}
-                className="inline-flex items-center space-x-2 rounded-full bg-white text-[#8C7F5F] px-6 py-3 text-xs font-semibold uppercase tracking-wider hover:bg-[#FAF8F5] transition-all shadow-sm"
+                className="inline-flex items-center space-x-2 rounded-full bg-white text-[#776B4E] px-6 py-3 text-xs font-semibold uppercase tracking-wider hover:bg-[#FAF8F5] transition-all shadow-sm"
               >
                 <MessageCircle className="h-4 w-4 text-[#25D366]" />
                 <span>{tc("Chat on WhatsApp")}</span>

@@ -204,8 +204,8 @@ export function DatePicker({
         )}
         {...aria}
       >
-        {!hideIcon && <Calendar className="h-4 w-4 shrink-0 text-[#8C7F5F]" aria-hidden="true" />}
-        <span className={cn("min-w-0 flex-1 truncate", !selected && "text-[#8A8275]")}>{label}</span>
+        {!hideIcon && <Calendar className="h-4 w-4 shrink-0 text-[#776B4E]" aria-hidden="true" />}
+        <span className={cn("min-w-0 flex-1 truncate", !selected && "text-[#6B6862]")}>{label}</span>
       </button>
       {name && <input type="hidden" name={name} value={value} />}
 
@@ -247,7 +247,7 @@ export function DatePicker({
 
             <div role="grid" onKeyDown={onGridKey} className="grid grid-cols-7 gap-0.5 text-center">
               {weekdayNames.map((w) => (
-                <span key={w} role="columnheader" className="py-1 text-xs font-semibold uppercase text-[#8A8275]">
+                <span key={w} role="columnheader" className="py-1 text-xs font-semibold uppercase text-[#6B6862]">
                   {w}
                 </span>
               ))}

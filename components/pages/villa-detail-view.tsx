@@ -202,7 +202,7 @@ export function VillaDetailView({ slug, locale }: { slug: string; locale: SiteLo
               </div>
             )}
             {villa.rating === 0 && (
-              <div className="flex items-center space-x-1 text-[#A69C8E]">
+              <div className="flex items-center space-x-1 text-[#736A5E]">
                 <Sparkles className="h-3.5 w-3.5" />
                 <span className="text-xs">{tx("New Listing")}</span>
               </div>
@@ -213,7 +213,7 @@ export function VillaDetailView({ slug, locale }: { slug: string; locale: SiteLo
             {/* Superhost Badge */}
             {villa.superhost && (
               <div className="flex items-center space-x-1.5 font-medium">
-                <Sparkles className="h-3.5 w-3.5 text-[#A69C8E]" />
+                <Sparkles className="h-3.5 w-3.5 text-[#736A5E]" />
                 <span>Airbnb Superhost</span>
               </div>
             )}
@@ -279,7 +279,7 @@ export function VillaDetailView({ slug, locale }: { slug: string; locale: SiteLo
             {/* In-House Hospitality Commitment Badge */}
             <div className="rounded-2xl border border-[#EBEBEB] bg-[#FAFAFA] p-6 flex items-start space-x-4">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#222222] text-white">
-                <ShieldCheck className="h-5 w-5 text-[#A69C8E]" />
+                <ShieldCheck className="h-5 w-5 text-[#736A5E]" />
               </div>
               <div className="space-y-1">
                 <h4 className="text-sm font-semibold text-[#222222]">{tx("Kinghouse Superhost Standard")}</h4>
@@ -372,7 +372,7 @@ export function VillaDetailView({ slug, locale }: { slug: string; locale: SiteLo
                   </div>
                   <Link
                     href={`/stay/${villa.slug}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#B8934C] hover:text-[#8C7F5F] transition-colors self-start sm:self-auto"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#B8934C] hover:text-[#776B4E] transition-colors self-start sm:self-auto"
                   >
                     <span>{tx("Open the Digital Stay Guide")}</span>
                     <ChevronRight className="h-3.5 w-3.5" />

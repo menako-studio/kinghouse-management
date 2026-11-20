@@ -93,7 +93,7 @@ function LoginForm() {
             <span className="text-lg font-semibold tracking-tight text-white group-hover:text-[#DFC58E] transition-colors">
               Kinghouse
             </span>
-            <span className="text-[8px] uppercase tracking-[0.25em] text-[#DFC58E] -mt-1 font-medium">
+            <span className="text-[11px] uppercase tracking-[0.25em] text-[#DFC58E] -mt-1 font-medium">
               Hospitality Portal
             </span>
           </div>
@@ -118,13 +118,13 @@ function LoginForm() {
 
             {/* Protocol Badge Header */}
             <div className="flex items-center justify-between mb-7">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#B8934C]/15 border border-[#B8934C]/30 text-[10px] font-semibold tracking-wider text-white/90">
+              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#B8934C]/15 border border-[#B8934C]/30 text-[11px] font-semibold tracking-wider text-white/90">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#DFC58E] animate-pulse" />
                 <span className="text-[#DFC58E] uppercase">
                   MANAGEMENT CMS
                 </span>
               </div>
-              <div className="flex items-center space-x-1.5 text-[10px] uppercase font-mono tracking-widest text-white/50">
+              <div className="flex items-center space-x-1.5 text-[11px] uppercase font-mono tracking-widest text-white/50">
                 <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
                 <span>Admin Protected</span>
               </div>
@@ -158,7 +158,7 @@ function LoginForm() {
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label className="block text-[11px] uppercase tracking-wider font-semibold text-white/80 mb-2">
+                <label htmlFor="login-email" className="block text-xs uppercase tracking-wider font-semibold text-white/80 mb-2">
                   Administrative Email
                 </label>
                 <div className="relative group">
@@ -166,7 +166,9 @@ function LoginForm() {
                     <Mail className="h-4 w-4" />
                   </div>
                   <input
+                    id="login-email"
                     type="email"
+                    autoComplete="username"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -178,16 +180,18 @@ function LoginForm() {
 
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <label className="block text-[11px] uppercase tracking-wider font-semibold text-white/80">
+                  <label htmlFor="login-password" className="block text-xs uppercase tracking-wider font-semibold text-white/80">
                     Master Password
                   </label>
-                  <span className="text-[10px] text-white/40 font-mono">Encrypted Token</span>
+                  <span className="text-xs text-white/60 font-mono">Encrypted Token</span>
                 </div>
                 <div className="relative group">
                   <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-white/40 group-focus-within:text-[#DFC58E] transition-colors">
                     <Lock className="h-4 w-4" />
                   </div>
                   <input
+                    id="login-password"
+                    autoComplete="current-password"
                     type={showPassword ? "text" : "password"}
                     required
                     value={password}
@@ -198,7 +202,9 @@ function LoginForm() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-white/40 hover:text-white transition-colors cursor-pointer"
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                    aria-pressed={showPassword}
+                    className="absolute inset-y-0 right-0 px-3.5 flex items-center text-white/40 hover:text-white transition-colors cursor-pointer"
                   >
                     {showPassword ? (
                       <EyeOff className="h-4 w-4" />
@@ -245,7 +251,7 @@ function LoginForm() {
           </div>
 
           {/* Footer Security Badge */}
-          <div className="mt-6 flex items-center justify-center space-x-2 text-[11px] text-white/50 text-center">
+          <div className="mt-6 flex items-center justify-center space-x-2 text-xs text-white/50 text-center">
             <Fingerprint className="h-3.5 w-3.5 text-[#DFC58E]" />
             <span>Kinghouse Hospitality Group &bull; Secure HMAC-SHA256 Token Auth</span>
           </div>

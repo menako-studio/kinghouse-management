@@ -39,7 +39,7 @@ export function VillaCard({ villa, priority = false }: VillaCardProps) {
           {/* Top Badges */}
           <div className="absolute top-3.5 inset-x-3.5 flex items-center justify-between pointer-events-none">
             {villa.guestFavorite ? (
-              <Badge variant="superhost" className="text-xs font-medium tracking-tight bg-[#8C7F5F] text-white">
+              <Badge variant="superhost" className="text-xs font-medium tracking-tight bg-[#776B4E] text-white">
                 {t("guestFavorite")}
               </Badge>
             ) : (
@@ -55,7 +55,7 @@ export function VillaCard({ villa, priority = false }: VillaCardProps) {
                   <span>{villa.rating.toFixed(2)}</span>
                 </>
               ) : (
-                <span className="text-xs text-[#8C7F5F]">{tc("New")}</span>
+                <span className="text-xs text-[#776B4E]">{tc("New")}</span>
               )}
             </div>
           </div>
@@ -75,7 +75,7 @@ export function VillaCard({ villa, priority = false }: VillaCardProps) {
             <div>
               <Link
                 href={`/locations/${villa.areaSlug}/villas/${villa.slug}`}
-                className="text-base font-semibold tracking-tight text-[#222222] hover:text-[#8C7F5F] line-clamp-1 transition-colors"
+                className="text-base font-semibold tracking-tight text-[#222222] hover:text-[#776B4E] line-clamp-1 transition-colors"
               >
                 {villa.name}
               </Link>
@@ -86,17 +86,17 @@ export function VillaCard({ villa, priority = false }: VillaCardProps) {
           {/* Spec Icons */}
           <div className="flex items-center space-x-3 text-xs text-[#717171] pt-0.5">
             <span className="flex items-center space-x-1">
-              <Users className="h-3.5 w-3.5 text-[#8C7F5F]" />
+              <Users className="h-3.5 w-3.5 text-[#776B4E]" />
               <span>{villa.capacity.guests} {t("guests")}</span>
             </span>
             <span>&bull;</span>
             <span className="flex items-center space-x-1">
-              <Bed className="h-3.5 w-3.5 text-[#8C7F5F]" />
+              <Bed className="h-3.5 w-3.5 text-[#776B4E]" />
               <span>{villa.capacity.bedrooms} {t("bedrooms")}</span>
             </span>
             <span>&bull;</span>
             <span className="flex items-center space-x-1">
-              <Bath className="h-3.5 w-3.5 text-[#8C7F5F]" />
+              <Bath className="h-3.5 w-3.5 text-[#776B4E]" />
               <span>{villa.capacity.bathrooms} {t("baths")}</span>
             </span>
           </div>
@@ -109,7 +109,7 @@ export function VillaCard({ villa, priority = false }: VillaCardProps) {
               </span>
               <span className="text-xs text-[#717171]"> {t("perNight")}</span>
               {currency !== "IDR" && (
-                <span className="block text-xs text-[#8C7F5F]">
+                <span className="block text-xs text-[#776B4E]">
                   ≈ {formatPrice(villa.price.idr, "IDR")} / malam
                 </span>
               )}

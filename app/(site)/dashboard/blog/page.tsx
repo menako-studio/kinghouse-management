@@ -677,7 +677,7 @@ export default function DashboardBlogPage() {
       {/* Header Banner */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E8E4DC] pb-6">
         <div>
-          <div className="inline-flex items-center space-x-2 text-[10px] font-semibold uppercase tracking-wider text-[#222225] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E8E4DC] mb-3">
+          <div className="inline-flex items-center space-x-2 text-[11px] font-semibold uppercase tracking-wider text-[#222225] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E8E4DC] mb-3">
             <BookOpen className="h-3.5 w-3.5 text-[#B8934C]" />
             <span>ARTIKEL &amp; BLOG EDUKASI</span>
           </div>
@@ -712,41 +712,41 @@ export default function DashboardBlogPage() {
       {/* Dynamic Stats Summary */}
       <div className="grid grid-cols-1 sm:grid-cols-4 gap-5">
         <div className="p-6 rounded-3xl bg-white border border-[#E8E4DC] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] space-y-1 hover:-translate-y-0.5 transition-transform">
-          <span className="text-[11px] font-semibold text-[#717171] uppercase tracking-wider">
+          <span className="text-xs font-semibold text-[#717171] uppercase tracking-wider">
             Total Artikel Aktif
           </span>
           <p className="text-3xl font-bold text-[#222225] tracking-tight">{activeArticles.length}</p>
-          <span className="inline-block text-[10px] font-semibold text-[#717171] bg-[#FAF8F5] px-2 py-0.5 rounded-full border border-[#E8E4DC]">
+          <span className="inline-block text-[11px] font-semibold text-[#717171] bg-[#FAF8F5] px-2 py-0.5 rounded-full border border-[#E8E4DC]">
             {publishedCount} Terbit &bull; {scheduledCount} Terjadwal &bull; {draftCount} Draft
           </span>
         </div>
 
         <div className="p-6 rounded-3xl bg-white border border-[#E8E4DC] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] space-y-1 hover:-translate-y-0.5 transition-transform">
-          <span className="text-[11px] font-semibold text-[#717171] uppercase tracking-wider">
+          <span className="text-xs font-semibold text-[#717171] uppercase tracking-wider">
             Artikel Tayang (Live)
           </span>
           <p className="text-3xl font-bold text-emerald-700 tracking-tight">{publishedCount} Live</p>
-          <span className="inline-block text-[10px] font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+          <span className="inline-block text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
             Terindeks di Google &amp; Halaman Blog
           </span>
         </div>
 
         <div className="p-6 rounded-3xl bg-white border border-[#E8E4DC] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] space-y-1 hover:-translate-y-0.5 transition-transform">
-          <span className="text-[11px] font-semibold text-[#717171] uppercase tracking-wider">
+          <span className="text-xs font-semibold text-[#717171] uppercase tracking-wider">
             Rata-Rata Skor SEO
           </span>
           <p className="text-3xl font-bold text-[#222225] tracking-tight">{avgSeo} / 100</p>
-          <span className="inline-block text-[10px] font-semibold text-[#B8934C] bg-[#FAF8F5] px-2 py-0.5 rounded-full border border-[#E8E4DC]">
+          <span className="inline-block text-[11px] font-semibold text-[#B8934C] bg-[#FAF8F5] px-2 py-0.5 rounded-full border border-[#E8E4DC]">
             Standar Kualitas Google
           </span>
         </div>
 
         <div className="p-6 rounded-3xl bg-white border border-[#E8E4DC] shadow-[0_4px_20px_-2px_rgba(0,0,0,0.03)] space-y-1 hover:-translate-y-0.5 transition-transform">
-          <span className="text-[11px] font-semibold text-[#717171] uppercase tracking-wider">
+          <span className="text-xs font-semibold text-[#717171] uppercase tracking-wider">
             Arsip &amp; Sampah
           </span>
           <p className="text-3xl font-bold text-[#717171] tracking-tight">{archivedCount}</p>
-          <span className="inline-block text-[10px] font-semibold text-amber-800 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
+          <span className="inline-block text-[11px] font-semibold text-amber-800 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
             Dapat dipulihkan kapan saja
           </span>
         </div>
@@ -834,7 +834,7 @@ export default function DashboardBlogPage() {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-[#E8E4DC] bg-[#FAFAF8] text-[10px] font-bold uppercase tracking-wider text-[#717171]">
+              <tr className="border-b border-[#E8E4DC] bg-[#FAFAF8] text-[11px] font-bold uppercase tracking-wider text-[#717171]">
                 <th className="py-4 px-6">Judul & Kategori</th>
                 <th className="py-4 px-6">Status Publikasi</th>
                 <th className="py-4 px-6">SEO Score</th>
@@ -856,10 +856,10 @@ export default function DashboardBlogPage() {
                           <p className="font-semibold text-[#222225] line-clamp-1 group-hover:text-[#B8934C] transition-colors">
                             {article.title}
                           </p>
-                          <div className="flex items-center space-x-2 text-[11px] text-[#717171] mt-0.5">
+                          <div className="flex items-center space-x-2 text-xs text-[#717171] mt-0.5">
                             <span className="font-medium text-[#B8934C]">{article.category}</span>
                             <span>&bull;</span>
-                            <span className="font-mono text-[10px]">/blog/{article.slug}</span>
+                            <span className="font-mono text-[11px]">/blog/{article.slug}</span>
                           </div>
                         </div>
                       </div>
@@ -867,7 +867,7 @@ export default function DashboardBlogPage() {
 
                     <td className="py-4 px-6">
                       {article.status === "Archived" ? (
-                        <span className="inline-flex items-center space-x-1 px-3 py-1 rounded-full text-[10px] font-bold bg-gray-100 text-gray-700 border border-gray-300">
+                        <span className="inline-flex items-center space-x-1 px-3 py-1 rounded-full text-[11px] font-bold bg-gray-100 text-gray-700 border border-gray-300">
                           <span>Archived (Trash)</span>
                         </span>
                       ) : (
@@ -875,7 +875,7 @@ export default function DashboardBlogPage() {
                           type="button"
                           onClick={() => handleToggleStatus(article)}
                           title="Klik untuk mengubah status Publikasi"
-                          className={`inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-[10px] font-bold border transition-all cursor-pointer ${
+                          className={`inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-[11px] font-bold border transition-all cursor-pointer ${
                             article.status === "Published" && isScheduled({ status: article.status, publishedAt: article.date })
                               ? "bg-[#EFE2CE] text-[#6B4B2A] border-[#CBBEA0] hover:bg-[#E8D8BF]"
                               : article.status === "Published"
@@ -923,7 +923,7 @@ export default function DashboardBlogPage() {
                             <button
                               type="button"
                               onClick={() => handleRestoreArticle(article)}
-                              className="inline-flex items-center space-x-1 px-2.5 py-1.5 rounded-xl bg-emerald-50 text-emerald-800 hover:bg-emerald-100 font-semibold text-[11px] transition-colors cursor-pointer border border-emerald-200"
+                              className="inline-flex items-center space-x-1 px-2.5 py-1.5 rounded-xl bg-emerald-50 text-emerald-800 hover:bg-emerald-100 font-semibold text-xs transition-colors cursor-pointer border border-emerald-200"
                               title="Pulihkan Artikel ke Draft"
                             >
                               <Undo className="h-3.5 w-3.5" />
@@ -1081,7 +1081,7 @@ export default function DashboardBlogPage() {
                           <label className="font-semibold text-[#555] uppercase tracking-wider">
                             Judul Artikel (Headline H1) *
                           </label>
-                          <span className={`text-[11px] font-mono ${seoChecklist.titleLengthOk ? "text-emerald-700 font-bold" : "text-amber-700"}`}>
+                          <span className={`text-xs font-mono ${seoChecklist.titleLengthOk ? "text-emerald-700 font-bold" : "text-amber-700"}`}>
                             {formTitle.length} karakter (Rekomendasi: 40-60)
                           </span>
                         </div>
@@ -1125,7 +1125,7 @@ export default function DashboardBlogPage() {
                             placeholder="cara-meningkatkan-okupansi-villa"
                             value={formSlug}
                             onChange={(e) => setFormSlug(slugify(e.target.value))}
-                            className="w-full px-4 py-2.5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] font-mono text-[11px] text-[#555] focus:outline-none focus:border-[#B8934C]"
+                            className="w-full px-4 py-2.5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] font-mono text-xs text-[#555] focus:outline-none focus:border-[#B8934C]"
                           />
                         </div>
 
@@ -1154,7 +1154,7 @@ export default function DashboardBlogPage() {
                         <label className="font-semibold text-[#555] uppercase tracking-wider">
                           Ringkasan Singkat (Lead / Meta Description Google) *
                         </label>
-                        <span className={`text-[11px] font-mono ${seoChecklist.excerptLengthOk ? "text-emerald-700 font-bold" : "text-amber-700"}`}>
+                        <span className={`text-xs font-mono ${seoChecklist.excerptLengthOk ? "text-emerald-700 font-bold" : "text-amber-700"}`}>
                           {formExcerpt.length} karakter (Rekomendasi: 120-160)
                         </span>
                       </div>
@@ -1174,7 +1174,7 @@ export default function DashboardBlogPage() {
                         <label className="font-semibold text-[#555] uppercase tracking-wider">
                           Isi Konten Artikel (Markdown) *
                         </label>
-                        <span className="text-[11px] text-[#717171] font-mono">
+                        <span className="text-xs text-[#717171] font-mono">
                           {seoChecklist.wordCount} kata &bull; Est. {Math.max(1, Math.ceil(seoChecklist.wordCount / 200))} menit baca
                         </span>
                       </div>
@@ -1254,7 +1254,7 @@ export default function DashboardBlogPage() {
                               e.target.value = ""
                             }
                           }}
-                          className="px-2.5 py-1 rounded-xl bg-white border border-[#E8E4DC] text-[11px] font-medium text-[#222225] focus:outline-none cursor-pointer"
+                          className="px-2.5 py-1 rounded-xl bg-white border border-[#E8E4DC] text-xs font-medium text-[#222225] cursor-pointer"
                         >
                           <option value="">🔗 Sisipkan Link Villa...</option>
                           {CURATED_VILLAS.map((v) => (
@@ -1294,7 +1294,7 @@ export default function DashboardBlogPage() {
                           >
                             <Image src={preset.url} alt={preset.name} fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-2 flex items-end">
-                              <span className="text-[10px] text-white font-medium line-clamp-1">{preset.name}</span>
+                              <span className="text-[11px] text-white font-medium line-clamp-1">{preset.name}</span>
                             </div>
                           </div>
                         ))}
@@ -1324,7 +1324,7 @@ export default function DashboardBlogPage() {
                           <span className="font-semibold text-[#555] uppercase tracking-wider">Jadwal Tayang (WIB)</span>
                           {formStatus === "Published" &&
                             isScheduled({ status: formStatus, publishedAt: wibToIso(formPublishDate, formPublishTime) }) && (
-                              <span className="rounded-full bg-[#EFE2CE] px-3 py-1 text-[11px] font-semibold text-[#6B4B2A]">
+                              <span className="rounded-full bg-[#EFE2CE] px-3 py-1 text-xs font-semibold text-[#6B4B2A]">
                                 Terjadwal · {formatPublishWib(wibToIso(formPublishDate, formPublishTime))}
                               </span>
                             )}
@@ -1350,7 +1350,7 @@ export default function DashboardBlogPage() {
                             ))}
                           </Select>
                         </div>
-                        <p className="text-[11px] leading-relaxed text-[#717171]">
+                        <p className="text-xs leading-relaxed text-[#717171]">
                           Pilih tanggal ke depan untuk menjadwalkan: artikel tetap tersembunyi (tidak muncul di /blog,
                           sitemap, dan URL-nya 404) lalu tayang otomatis pada waktu tersebut. Status harus Published.
                         </p>
@@ -1376,7 +1376,7 @@ export default function DashboardBlogPage() {
                     {/* Meter Gauge Card */}
                     <div className="p-6 rounded-3xl bg-[#FAF8F5] border border-[#E8E4DC] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                       <div>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#717171]">
+                        <span className="text-[11px] font-bold uppercase tracking-wider text-[#717171]">
                           TOTAL SEO QUALITY SCORE
                         </span>
                         <div className="flex items-baseline space-x-2 mt-1">
@@ -1394,14 +1394,14 @@ export default function DashboardBlogPage() {
 
                       {/* Google SERP Preview Card */}
                       <div className="p-4 rounded-2xl bg-white border border-[#E8E4DC] max-w-sm w-full space-y-1 shadow-xs">
-                        <div className="flex items-center space-x-1.5 text-[11px] text-[#717171]">
-                          <span className="h-3.5 w-3.5 rounded-full bg-[#222225] text-white flex items-center justify-center text-[9px] font-bold">K</span>
+                        <div className="flex items-center space-x-1.5 text-xs text-[#717171]">
+                          <span className="h-3.5 w-3.5 rounded-full bg-[#222225] text-white flex items-center justify-center text-[11px] font-bold">K</span>
                           <span className="truncate">https://www.kinghousemanagement.com/blog/{formSlug || "artikel"}</span>
                         </div>
                         <p className="font-semibold text-blue-700 text-sm hover:underline line-clamp-1">
                           {formTitle || "Judul Artikel Kinghouse"}
                         </p>
-                        <p className="text-[11px] text-[#555] line-clamp-2 leading-relaxed">
+                        <p className="text-xs text-[#555] line-clamp-2 leading-relaxed">
                           {formExcerpt || "Ringkasan artikel Anda akan muncul di sini sebagai cuplikan hasil pencarian Google..."}
                         </p>
                       </div>
@@ -1418,7 +1418,7 @@ export default function DashboardBlogPage() {
                           {seoChecklist.hasTitleKw ? <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0" /> : <AlertCircle className="h-5 w-5 text-rose-600 shrink-0" />}
                           <div>
                             <strong className="block font-semibold">Focus Keyword di Judul H1</strong>
-                            <span className="text-[11px] opacity-85">Keyword &quot;{formFocusKeyword}&quot; harus ada di headline utama.</span>
+                            <span className="text-xs opacity-85">Keyword &quot;{formFocusKeyword}&quot; harus ada di headline utama.</span>
                           </div>
                         </div>
 
@@ -1426,7 +1426,7 @@ export default function DashboardBlogPage() {
                           {seoChecklist.hasExcerptKw ? <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0" /> : <AlertCircle className="h-5 w-5 text-rose-600 shrink-0" />}
                           <div>
                             <strong className="block font-semibold">Keyword di Paragraf Pembuka / Excerpt</strong>
-                            <span className="text-[11px] opacity-85">Muncul di lead teks atau 100 kata pertama.</span>
+                            <span className="text-xs opacity-85">Muncul di lead teks atau 100 kata pertama.</span>
                           </div>
                         </div>
 
@@ -1434,7 +1434,7 @@ export default function DashboardBlogPage() {
                           {seoChecklist.hasH2 ? <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0" /> : <AlertCircle className="h-5 w-5 text-amber-600 shrink-0" />}
                           <div>
                             <strong className="block font-semibold">Struktur Subheading (H2 / H3)</strong>
-                            <span className="text-[11px] opacity-85">Gunakan tombol H2 pada toolbar untuk membagi topik.</span>
+                            <span className="text-xs opacity-85">Gunakan tombol H2 pada toolbar untuk membagi topik.</span>
                           </div>
                         </div>
 
@@ -1442,7 +1442,7 @@ export default function DashboardBlogPage() {
                           {seoChecklist.hasImage ? <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0" /> : <AlertCircle className="h-5 w-5 text-amber-600 shrink-0" />}
                           <div>
                             <strong className="block font-semibold">Gambar In-Content dengan Alt Tag</strong>
-                            <span className="text-[11px] opacity-85">Gunakan tombol &quot;+ Sisipkan Foto&quot; di toolbar.</span>
+                            <span className="text-xs opacity-85">Gunakan tombol &quot;+ Sisipkan Foto&quot; di toolbar.</span>
                           </div>
                         </div>
 
@@ -1450,7 +1450,7 @@ export default function DashboardBlogPage() {
                           {seoChecklist.hasInternalLink ? <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0" /> : <AlertCircle className="h-5 w-5 text-amber-600 shrink-0" />}
                           <div>
                             <strong className="block font-semibold">Tautan Internal (Internal Link)</strong>
-                            <span className="text-[11px] opacity-85">Tautkan ke salah satu listing properti Kinghouse.</span>
+                            <span className="text-xs opacity-85">Tautkan ke salah satu listing properti Kinghouse.</span>
                           </div>
                         </div>
 
@@ -1458,7 +1458,7 @@ export default function DashboardBlogPage() {
                           {seoChecklist.wordCountOk ? <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0" /> : <AlertCircle className="h-5 w-5 text-amber-600 shrink-0" />}
                           <div>
                             <strong className="block font-semibold">Kedalaman Konten ({seoChecklist.wordCount} Kata)</strong>
-                            <span className="text-[11px] opacity-85">Minimal 300 kata untuk otoritas mesin pencari.</span>
+                            <span className="text-xs opacity-85">Minimal 300 kata untuk otoritas mesin pencari.</span>
                           </div>
                         </div>
                       </div>
@@ -1470,7 +1470,7 @@ export default function DashboardBlogPage() {
                     <div className="max-w-md mx-auto rounded-3xl overflow-hidden border border-[#E8E4DC] bg-white shadow-lg space-y-4 p-4">
                       <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#FAF8F5]">
                         <Image src={formHeroImage} alt={formTitle || "Cover"} fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover" />
-                        <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider text-[#222225]">
+                        <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[11px] font-bold uppercase tracking-wider text-[#222225]">
                           {formCategory}
                         </span>
                       </div>
@@ -1481,7 +1481,7 @@ export default function DashboardBlogPage() {
                         <p className="text-xs text-[#717171] line-clamp-2 leading-relaxed">
                           {formExcerpt || "Ringkasan artikel akan tampil di kartu pratinjau publik..."}
                         </p>
-                        <div className="flex items-center justify-between text-[11px] text-[#717171] pt-2 border-t border-[#FAF8F5]">
+                        <div className="flex items-center justify-between text-xs text-[#717171] pt-2 border-t border-[#FAF8F5]">
                           <span>{formAuthorName}</span>
                           <span>{formReadTime} min read</span>
                         </div>
@@ -1588,7 +1588,7 @@ export default function DashboardBlogPage() {
                       >
                         <Image src={preset.url} alt={preset.name} fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-1.5 flex items-end">
-                          <span className="text-[10px] text-white font-medium line-clamp-1">{preset.name}</span>
+                          <span className="text-[11px] text-white font-medium line-clamp-1">{preset.name}</span>
                         </div>
                       </div>
                     ))}
@@ -1615,7 +1615,7 @@ export default function DashboardBlogPage() {
                   <label className="font-semibold text-[#555] uppercase tracking-wider">
                     Image Alt-Text (Deskripsi Kata Kunci SEO) *
                   </label>
-                  <span className="text-[10px] text-[#B8934C] font-semibold">Wajib untuk Google Image Index</span>
+                  <span className="text-[11px] text-[#B8934C] font-semibold">Wajib untuk Google Image Index</span>
                 </div>
                 <input
                   type="text"

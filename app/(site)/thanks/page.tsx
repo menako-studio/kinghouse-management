@@ -12,7 +12,7 @@ import { CURATED_VILLAS } from "@/lib/data"
 
 const FUNNEL_OF: Record<LeadTarget, FunnelName> = { OWNER: "owner", EVENT: "event", STAY: "stay" }
 
-const linkClass = "inline-flex items-center gap-1.5 text-base font-semibold text-[#8C7F5F] hover:underline"
+const linkClass = "inline-flex items-center gap-1.5 text-base font-semibold text-[#776B4E] hover:underline"
 
 /** Next step per funnel: price list for events, the property for stays, the income simulator for owners. */
 function NextStep({ payload }: { payload: ThanksPayload }) {
@@ -91,7 +91,7 @@ export default function ThanksPage() {
                 onClick={() =>
                   trackWhatsAppClick({ source: "thank_you_page", funnel: FUNNEL_OF[lead.target], context: payload.leadId })
                 }
-                className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-4 text-base font-bold text-white shadow-md transition-opacity hover:opacity-90"
+                className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-4 text-base font-bold text-white shadow-md transition-opacity hover:opacity-90"
               >
                 <MessageCircle className="h-5 w-5 fill-white" /> {t("f.thanks.sendWhatsapp")}
               </a>

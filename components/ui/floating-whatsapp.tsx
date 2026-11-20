@@ -74,7 +74,7 @@ export function FloatingWhatsApp() {
               e.stopPropagation()
               setIsTooltipDismissed(true)
             }}
-            className="text-[#999999] hover:text-[#333333] transition-colors p-0.5 rounded-full hover:bg-black/5"
+            className="text-[#717171] hover:text-[#333333] transition-colors p-0.5 rounded-full hover:bg-black/5"
             aria-label={t("close")}
           >
             <X className="h-3.5 w-3.5" />

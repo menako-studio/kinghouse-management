@@ -105,7 +105,7 @@ export default function PressPage() {
           <div className="mt-8 flex flex-wrap gap-4">
             <a
               href="#press-releases"
-              className="inline-flex items-center space-x-2 rounded-full bg-[#8C7F5F] px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#776B4E] transition-all"
+              className="inline-flex items-center space-x-2 rounded-full bg-[#776B4E] px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#62583F] transition-all"
             >
               <span>View Releases</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -131,7 +131,7 @@ export default function PressPage() {
                 className="rounded-2xl border border-[#E8E4DC] bg-[#FAF8F5] p-6 flex flex-col justify-between hover:shadow-md transition-shadow"
               >
                 <div>
-                  <div className="flex items-center space-x-2 text-[#8C7F5F] mb-3">
+                  <div className="flex items-center space-x-2 text-[#776B4E] mb-3">
                     <Sparkles className="h-4 w-4" />
                     <span className="font-semibold text-xs tracking-wider uppercase">{item.outlet}</span>
                   </div>
@@ -153,7 +153,7 @@ export default function PressPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-4 border-b border-[#E8E4DC]">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8C7F5F]">
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#776B4E]">
                 Official Announcements
               </span>
               <h2 className="font-serif text-2xl sm:text-4xl text-[#222222] uppercase tracking-[0.08em] mt-1 font-normal">
@@ -171,8 +171,8 @@ export default function PressPage() {
                 key={item.id}
                 className="rounded-2xl border border-[#E8E4DC] bg-white p-7 sm:p-8 transition-all hover:border-[#8C7F5F]/60 hover:shadow-lg"
               >
-                <div className="flex flex-wrap items-center gap-3 text-xs text-[#888888] mb-3">
-                  <span className="rounded-full bg-[#FAF8F3] px-3 py-1 font-medium text-[#8C7F5F] border border-[#8C7F5F]/20">
+                <div className="flex flex-wrap items-center gap-3 text-xs text-[#717171] mb-3">
+                  <span className="rounded-full bg-[#FAF8F3] px-3 py-1 font-medium text-[#776B4E] border border-[#8C7F5F]/20">
                     {item.category}
                   </span>
                   <span>&bull;</span>
@@ -181,7 +181,7 @@ export default function PressPage() {
                   <span>{item.readTime}</span>
                 </div>
 
-                <h3 className="font-serif text-xl sm:text-2xl text-[#222222] hover:text-[#8C7F5F] transition-colors leading-snug">
+                <h3 className="font-serif text-xl sm:text-2xl text-[#222222] hover:text-[#776B4E] transition-colors leading-snug">
                   {item.title}
                 </h3>
                 <p className="mt-3 text-sm text-[#666666] font-light leading-relaxed">
@@ -189,10 +189,10 @@ export default function PressPage() {
                 </p>
 
                 <div className="mt-5 pt-4 border-t border-[#F5F3EE] flex items-center justify-between">
-                  <span className="text-xs font-medium text-[#888888]">Source: {item.publication}</span>
+                  <span className="text-xs font-medium text-[#717171]">Source: {item.publication}</span>
                   <a
                     href="mailto:info@kinghousemanagement.com?subject=Press%20Inquiry:%20"
-                    className="inline-flex items-center space-x-1.5 text-xs font-semibold text-[#8C7F5F] hover:text-[#776B4E]"
+                    className="inline-flex items-center space-x-1.5 text-xs font-semibold text-[#776B4E] hover:text-[#776B4E]"
                   >
                     <span>Request Full Media Pack</span>
                     <ExternalLink className="h-3 w-3" />
@@ -207,7 +207,7 @@ export default function PressPage() {
       {/* 4. Brand Assets & Media Kit */}
       <section id="media-kit" className="border-t border-[#E8E4DC] bg-white py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <div className="rounded-3xl bg-[#8C7F5F] text-white p-8 sm:p-12 lg:p-16">
+          <div className="rounded-3xl bg-[#776B4E] text-white p-8 sm:p-12 lg:p-16">
             <div className="max-w-3xl">
               <div className="inline-flex items-center space-x-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-medium uppercase tracking-wider mb-4">
                 <Award className="h-3.5 w-3.5" />
@@ -223,7 +223,7 @@ export default function PressPage() {
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a
                   href="mailto:info@kinghousemanagement.com?subject=Media%20Kit%20Request%20-%20Kinghouse"
-                  className="inline-flex items-center space-x-2 rounded-full bg-white text-[#8C7F5F] px-6 py-3 text-xs font-semibold uppercase tracking-wider hover:bg-[#FAF8F5] transition-all shadow-md"
+                  className="inline-flex items-center space-x-2 rounded-full bg-white text-[#776B4E] px-6 py-3 text-xs font-semibold uppercase tracking-wider hover:bg-[#FAF8F5] transition-all shadow-md"
                 >
                   <Mail className="h-4 w-4" />
                   <span>Request Media Kit Access</span>

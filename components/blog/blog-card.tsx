@@ -60,7 +60,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
           {/* Content */}
           <div className="p-8 lg:p-10 flex flex-col justify-between">
             <div className="space-y-4">
-              <div className="flex items-center space-x-4 text-xs text-[#A69C8E]">
+              <div className="flex items-center space-x-4 text-xs text-[#736A5E]">
                 <span className="flex items-center space-x-1">
                   <Calendar className="h-3 w-3" />
                   <span>{formattedDate}</span>
@@ -70,7 +70,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
                   <span>{post.readTime} min read</span>
                 </span>
               </div>
-              <h2 className="font-serif text-2xl lg:text-3xl text-[#222222] leading-snug group-hover:text-[#A69C8E] transition-colors">
+              <h2 className="font-serif text-2xl lg:text-3xl text-[#222222] leading-snug group-hover:text-[#736A5E] transition-colors">
                 {post.title}
               </h2>
               <p className="text-sm text-[#717171] leading-relaxed line-clamp-3">{post.excerpt}</p>
@@ -82,7 +82,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
                 </div>
                 <div>
                   <p className="text-xs font-semibold text-[#222222]">{post.author.name}</p>
-                  <p className="text-xs text-[#A69C8E]">{post.author.role}</p>
+                  <p className="text-xs text-[#736A5E]">{post.author.role}</p>
                 </div>
               </div>
               <span className="flex items-center space-x-1 text-xs font-semibold text-[#222222] group-hover:gap-2 transition-all">
@@ -116,7 +116,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
         </div>
         {/* Content */}
         <div className="p-6 flex flex-col flex-1">
-          <div className="flex items-center space-x-3 text-xs text-[#A69C8E] mb-3">
+          <div className="flex items-center space-x-3 text-xs text-[#736A5E] mb-3">
             <span className="flex items-center space-x-1">
               <Calendar className="h-2.5 w-2.5" />
               <span>{formattedDate}</span>
@@ -127,7 +127,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
               <span>{post.readTime} min</span>
             </span>
           </div>
-          <h3 className="font-serif text-lg text-[#222222] leading-snug group-hover:text-[#A69C8E] transition-colors mb-3 flex-1">
+          <h3 className="font-serif text-lg text-[#222222] leading-snug group-hover:text-[#736A5E] transition-colors mb-3 flex-1">
             {post.title}
           </h3>
           <p className="text-xs text-[#717171] leading-relaxed line-clamp-2 mb-4">{post.excerpt}</p>
@@ -135,7 +135,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
             {post.tags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
-                className="flex items-center space-x-1 text-xs text-[#A69C8E] bg-[#F5F4F0] px-2 py-0.5 rounded-full"
+                className="flex items-center space-x-1 text-xs text-[#736A5E] bg-[#F5F4F0] px-2 py-0.5 rounded-full"
               >
                 <Tag className="h-2 w-2" />
                 <span>{tag}</span>
@@ -149,7 +149,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
               </div>
               <p className="text-xs font-medium text-[#717171]">{post.author.name}</p>
             </div>
-            <ArrowRight className="h-3.5 w-3.5 text-[#A69C8E] group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="h-3.5 w-3.5 text-[#736A5E] group-hover:translate-x-1 transition-transform" />
           </div>
         </div>
       </article>

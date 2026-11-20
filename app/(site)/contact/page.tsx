@@ -89,7 +89,7 @@ export default function ContactPage() {
             {/* Direct Contact Channels Column */}
             <div className="lg:col-span-5 space-y-8">
               <div className="space-y-3">
-                <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#A69C8E]">
+                <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#736A5E]">
                   {tc("Direct Channels")}
                 </span>
                 <h2 className="font-serif text-3xl text-[#222222]">
@@ -123,7 +123,7 @@ export default function ContactPage() {
                     className="w-full h-auto rounded-xl object-contain shadow-xs transition-transform duration-300 group-hover:scale-[1.01]"
                   />
                 </div>
-                <div className="bg-[#FAF8F5] px-4 py-2.5 border-t border-[#E8E4DC] flex items-center justify-between text-xs text-[#8C7F5F] font-semibold group-hover:bg-[#F2ECE1] transition-colors">
+                <div className="bg-[#FAF8F5] px-4 py-2.5 border-t border-[#E8E4DC] flex items-center justify-between text-xs text-[#776B4E] font-semibold group-hover:bg-[#F2ECE1] transition-colors">
                   <span>{tc("View the original profile on airbnb.com")}</span>
                   <ArrowUpRight className="h-3.5 w-3.5" />
                 </div>
@@ -153,7 +153,7 @@ export default function ContactPage() {
               {/* Contact Details List */}
               <div className="space-y-4 pt-2 text-sm text-[#222222]">
                 <div className="flex items-start space-x-3">
-                  <Mail className="h-5 w-5 text-[#A69C8E] shrink-0 mt-0.5" />
+                  <Mail className="h-5 w-5 text-[#736A5E] shrink-0 mt-0.5" />
                   <div>
                     <span className="text-xs text-[#717171] block">{tc("Direct Inquiries")}</span>
                     <a
@@ -167,7 +167,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start space-x-3">
-                  <Phone className="h-5 w-5 text-[#A69C8E] shrink-0 mt-0.5" />
+                  <Phone className="h-5 w-5 text-[#736A5E] shrink-0 mt-0.5" />
                   <div>
                     <span className="text-xs text-[#717171] block">{tc("Property Owner Desk (B2B)")}</span>
                     <a
@@ -183,18 +183,18 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start space-x-3">
-                  <MapPin className="h-5 w-5 text-[#A69C8E] shrink-0 mt-0.5" />
+                  <MapPin className="h-5 w-5 text-[#736A5E] shrink-0 mt-0.5" />
                   <div>
                     <span className="text-xs text-[#717171] block">{tc("Headquarters • PT Kreasi Usman Gosse")}</span>
                     <a
                       href="https://maps.google.com/?q=18+Office+Park+Building+Jl.+TB+Simatupang+Kav.+18+Jakarta+Selatan+12520"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-[#222222] font-medium leading-relaxed block hover:text-[#8C7F5F] hover:underline transition-colors"
+                      className="text-xs text-[#222222] font-medium leading-relaxed block hover:text-[#776B4E] hover:underline transition-colors"
                     >
                       18 Office Park Building 21th Floor Unit C. Jl. TB Simatupang Kav. 18, Jakarta Selatan, 12520
                     </a>
-                    <span className="inline-flex items-center space-x-1 text-xs text-[#8C7F5F] mt-1 font-semibold">
+                    <span className="inline-flex items-center space-x-1 text-xs text-[#776B4E] mt-1 font-semibold">
                       <a
                         href="https://maps.google.com/?q=18+Office+Park+Building+Jl.+TB+Simatupang+Kav.+18+Jakarta+Selatan+12520"
                         target="_blank"
@@ -216,7 +216,7 @@ export default function ContactPage() {
                 {submitted ? (
                   <div className="text-center py-12 space-y-4 animate-kh-fade">
                     <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#222222] text-white">
-                      <CheckCircle2 className="h-7 w-7 text-[#A69C8E]" />
+                      <CheckCircle2 className="h-7 w-7 text-[#736A5E]" />
                     </div>
                     <h3 className="font-serif text-2xl text-[#222222]">{tc("Message Dispatched")}</h3>
                     <p className="text-xs text-[#717171] max-w-sm mx-auto">
@@ -235,10 +235,12 @@ export default function ContactPage() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-1.5">
-                        <label className="text-xs font-bold uppercase tracking-wider text-[#222222]">
+                        <label htmlFor="contact-name" className="text-xs font-bold uppercase tracking-wider text-[#222222]">
                           {tc("Full Name *")}
                         </label>
                         <Input
+                          id="contact-name"
+                          autoComplete="name"
                           required
                           placeholder="Marcus Aurelius"
                           value={tc(formData.name)}
@@ -248,10 +250,12 @@ export default function ContactPage() {
                       </div>
 
                       <div className="space-y-1.5">
-                        <label className="text-xs font-bold uppercase tracking-wider text-[#222222]">
+                        <label htmlFor="contact-email" className="text-xs font-bold uppercase tracking-wider text-[#222222]">
                           {tc("Email Address *")}
                         </label>
                         <Input
+                          id="contact-email"
+                          autoComplete="email"
                           type="email"
                           required
                           placeholder="marcus@example.com"
@@ -279,10 +283,11 @@ export default function ContactPage() {
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-bold uppercase tracking-wider text-[#222222]">
+                      <label htmlFor="contact-message" className="text-xs font-bold uppercase tracking-wider text-[#222222]">
                         {tc("Message Details *")}
                       </label>
                       <textarea
+                        id="contact-message"
                         required
                         rows={4}
                         placeholder={tc("Tell us about your property, dates, or specific requirements...")}

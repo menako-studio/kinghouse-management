@@ -80,7 +80,7 @@ export function PhotoLightboxModal({
         </div>
 
         <div className="flex items-center space-x-2">
-          <span className="text-xs uppercase tracking-wider text-[#A69C8E] font-medium px-2 py-1 bg-[#FAFAFA] rounded-md border border-[#EBEBEB]">
+          <span className="text-xs uppercase tracking-wider text-[#736A5E] font-medium px-2 py-1 bg-[#FAFAFA] rounded-md border border-[#EBEBEB]">
             {current.category}
           </span>
         </div>

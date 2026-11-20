@@ -305,7 +305,7 @@ export function AboutView({ locale }: { locale: SiteLocale }) {
             
             <div className="lg:col-span-7 space-y-6">
               <div className="space-y-2">
-                <span className="text-xs uppercase tracking-[0.22em] font-semibold text-[#8C7F5F]">
+                <span className="text-xs uppercase tracking-[0.22em] font-semibold text-[#776B4E]">
                   {content.visionEyebrow}
                 </span>
                 <h2 className="font-serif text-3xl sm:text-4xl text-[#231F1A] font-normal leading-tight">
@@ -371,7 +371,7 @@ export function AboutView({ locale }: { locale: SiteLocale }) {
                   key={idx}
                   className="p-6 rounded-xl bg-[#FAF7F1] border border-[#E8E4DC] hover:border-[#8C7F5F] hover:shadow-subtle transition-all duration-300 space-y-3"
                 >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#8C7F5F] text-white">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#776B4E] text-white">
                     <Icon className="h-5 w-5 text-[#FAF7F1]" />
                   </div>
                   <h3 className="font-serif text-lg text-[#231F1A] font-semibold">
@@ -397,8 +397,8 @@ export function AboutView({ locale }: { locale: SiteLocale }) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7 space-y-6">
               <div className="space-y-2">
-                <div className="inline-flex items-center space-x-2 text-xs uppercase tracking-widest text-[#8C7F5F] font-semibold">
-                  <HeartHandshake className="h-4 w-4 text-[#8C7F5F]" />
+                <div className="inline-flex items-center space-x-2 text-xs uppercase tracking-widest text-[#776B4E] font-semibold">
+                  <HeartHandshake className="h-4 w-4 text-[#776B4E]" />
                   <span>{content.heritageEyebrow}</span>
                 </div>
                 <h2 className="font-serif text-3xl sm:text-4xl text-[#231F1A] font-normal leading-tight">
@@ -421,7 +421,7 @@ export function AboutView({ locale }: { locale: SiteLocale }) {
                   href="https://www.kinghousecleaning.id/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 px-5 py-3 rounded-full bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-xs font-semibold transition-colors shadow-xs"
+                  className="inline-flex items-center space-x-2 px-5 py-3 rounded-full bg-[#776B4E] hover:bg-[#62583F] text-white text-xs font-semibold transition-colors shadow-xs"
                 >
                   <span>{content.heritageBtn}</span>
                   <ArrowRight className="h-3.5 w-3.5" />
@@ -437,30 +437,30 @@ export function AboutView({ locale }: { locale: SiteLocale }) {
                     <Users className="h-5 w-5 text-[#DFC58E]" />
                   </div>
                   <div>
-                    <h4 className="font-serif text-xl text-[#231F1A] font-semibold">
+                    <h3 className="font-serif text-xl text-[#231F1A] font-semibold">
                       {content.impactTitle}
-                    </h4>
+                    </h3>
                     <p className="text-xs text-[#5C5347]">{content.impactSubtitle}</p>
                   </div>
                 </div>
 
                 <div className="space-y-4 text-xs text-[#5C5347] leading-relaxed">
                   <div className="flex items-start space-x-3">
-                    <CheckCircle2 className="h-4 w-4 text-[#8C7F5F] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="h-4 w-4 text-[#776B4E] shrink-0 mt-0.5" />
                     <p>
                       <strong className="text-[#231F1A]">{content.impactCheck1Title}</strong>
                       {content.impactCheck1Desc}
                     </p>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <CheckCircle2 className="h-4 w-4 text-[#8C7F5F] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="h-4 w-4 text-[#776B4E] shrink-0 mt-0.5" />
                     <p>
                       <strong className="text-[#231F1A]">{content.impactCheck2Title}</strong>
                       {content.impactCheck2Desc}
                     </p>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <CheckCircle2 className="h-4 w-4 text-[#8C7F5F] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="h-4 w-4 text-[#776B4E] shrink-0 mt-0.5" />
                     <p>
                       <strong className="text-[#231F1A]">{content.impactCheck3Title}</strong>
                       {content.impactCheck3Desc}
@@ -536,7 +536,7 @@ export function AboutView({ locale }: { locale: SiteLocale }) {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 items-center">
               
               <div className="lg:col-span-7 space-y-3">
-                <div className="inline-flex items-center space-x-2 text-xs uppercase tracking-wider text-[#8C7F5F] font-semibold">
+                <div className="inline-flex items-center space-x-2 text-xs uppercase tracking-wider text-[#776B4E] font-semibold">
                   <Building2 className="h-4 w-4" />
                   <span>{content.corpEyebrow}</span>
                 </div>
@@ -558,7 +558,7 @@ export function AboutView({ locale }: { locale: SiteLocale }) {
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center space-x-2 px-4 py-2.5 rounded-xl bg-[#FAF7F1] hover:bg-white border border-[#CBBEA0] text-xs font-medium text-[#231F1A] transition-all group"
                 >
-                  <MapPin className="h-3.5 w-3.5 text-[#8C7F5F]" />
+                  <MapPin className="h-3.5 w-3.5 text-[#776B4E]" />
                   <span>{content.btnGbp}</span>
                   <ExternalLink className="h-3 w-3 opacity-60 group-hover:opacity-100" />
                 </a>

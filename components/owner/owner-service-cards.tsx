@@ -38,7 +38,7 @@ export function OwnerServiceCards() {
     <section id="layanan" className="scroll-mt-24 border-b border-[#E8E4DC] bg-[#FAF7F1] py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="mb-10 max-w-2xl">
-          <span className="text-sm font-semibold uppercase tracking-[0.15em] text-[#8C7F5F]">{t("f.svc.eyebrow")}</span>
+          <span className="text-sm font-semibold uppercase tracking-[0.15em] text-[#776B4E]">{t("f.svc.eyebrow")}</span>
           <h2 className="mt-1 font-serif text-3xl text-[#222222] sm:text-4xl">{t("f.svc.title")}</h2>
           <p className="mt-2 text-base text-[#5C5347]">{t("f.svc.subtitle")}</p>
         </div>
@@ -55,7 +55,7 @@ export function OwnerServiceCards() {
                   isSelected ? "border-[#8C7F5F] ring-1 ring-[#8C7F5F]" : "border-[#E8E4DC]"
                 }`}
               >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-[#E8E4DC] bg-[#FAF8F5] text-[#8C7F5F]">
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-[#E8E4DC] bg-[#FAF8F5] text-[#776B4E]">
                   <Icon className="h-6 w-6" />
                 </div>
                 <h3 className="font-serif text-2xl text-[#222222]">{t(`${s.key}.name`)}</h3>
@@ -63,7 +63,7 @@ export function OwnerServiceCards() {
                 <ul className="mt-5 flex-1 space-y-2.5">
                   {features.map((f) => (
                     <li key={f} className="flex items-start gap-2 text-base text-[#222222]">
-                      <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#8C7F5F]" />
+                      <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#776B4E]" />
                       <span>{f}</span>
                     </li>
                   ))}
@@ -71,7 +71,7 @@ export function OwnerServiceCards() {
                 {SERVICE_PAGES[s.id] && (
                   <Link
                     href={SERVICE_PAGES[s.id]!}
-                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#8C7F5F] hover:underline"
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#776B4E] hover:underline"
                   >
                     {t("f.svc.learnMore")} <ArrowRight className="h-4 w-4" />
                   </Link>

@@ -217,7 +217,7 @@ export default function DynamicPricingPage() {
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-[#E8E4DC] pb-6">
         <div>
-          <div className="inline-flex items-center space-x-2 text-[10px] font-semibold uppercase tracking-wider text-[#222225] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E8E4DC] mb-3">
+          <div className="inline-flex items-center space-x-2 text-[11px] font-semibold uppercase tracking-wider text-[#222225] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E8E4DC] mb-3">
             <Coins className="h-3.5 w-3.5 text-[#B8934C]" />
             <span>PENGATURAN HARGA OTOMATIS</span>
           </div>
@@ -246,7 +246,7 @@ export default function DynamicPricingPage() {
             onClick={() => setShowSettingsDrawer(true)}
             className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-2xl bg-white border border-[#E8E4DC] text-xs font-semibold text-[#222225] hover:bg-[#FAF8F5] hover:border-[#CBBEA0] shadow-xs transition-all cursor-pointer"
           >
-            <SlidersHorizontal className="h-3.5 w-3.5 text-[#8C7F5F]" />
+            <SlidersHorizontal className="h-3.5 w-3.5 text-[#776B4E]" />
             <span>Batas Harga Min &amp; Max</span>
           </button>
 
@@ -281,7 +281,7 @@ export default function DynamicPricingPage() {
             </span>
           </div>
 
-          <div className="text-[11px] text-[#717171] font-mono self-start md:self-auto flex items-center space-x-2">
+          <div className="text-xs text-[#717171] font-mono self-start md:self-auto flex items-center space-x-2">
             <span className="bg-white text-[#5C5347] px-2.5 py-0.5 rounded-lg border border-[#E8E4DC] font-medium">
               Terakhir Diperbarui: {new Date(pricingData.lastUpdated).toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })} WIB
             </span>
@@ -309,7 +309,7 @@ export default function DynamicPricingPage() {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#8C7F5F]">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#776B4E]">
                     {villa.area}
                   </span>
                   {isSelected && <span className="h-2 w-2 rounded-full bg-[#B8934C]" />}
@@ -317,7 +317,7 @@ export default function DynamicPricingPage() {
                 <h4 className="text-xs font-semibold text-[#222225] truncate mt-0.5">
                   {villa.name}
                 </h4>
-                <p className="text-[11px] font-mono text-[#717171] mt-0.5">
+                <p className="text-xs font-mono text-[#717171] mt-0.5">
                   Base: {formatCurrency(villa.price.idr, "IDR")}
                 </p>
               </div>
@@ -381,7 +381,7 @@ export default function DynamicPricingPage() {
           <div className="p-5 rounded-3xl bg-white border border-[#E8E4DC] shadow-xs space-y-3">
             <div className="flex items-start justify-between gap-2">
               <span className="text-sm font-semibold text-[#222225]">Indeks keramaian 60 hari</span>
-              <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full border bg-[#FAF8F5] text-[#8C7F5F] border-[#E8E4DC]">
+              <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full border bg-[#FAF8F5] text-[#776B4E] border-[#E8E4DC]">
                 Estimasi sistem
               </span>
             </div>
@@ -404,10 +404,10 @@ export default function DynamicPricingPage() {
           <div className="p-5 rounded-3xl bg-white border border-[#E8E4DC] shadow-xs space-y-3">
             <div className="flex items-start justify-between gap-2">
               <span className="text-sm font-semibold text-[#222225] flex items-center gap-2">
-                <Building className="h-4 w-4 text-[#8C7F5F]" />
+                <Building className="h-4 w-4 text-[#776B4E]" />
                 Acuan tarif kawasan
               </span>
-              <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full border bg-[#FAF8F5] text-[#8C7F5F] border-[#E8E4DC]">
+              <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full border bg-[#FAF8F5] text-[#776B4E] border-[#E8E4DC]">
                 Riset internal
               </span>
             </div>
@@ -469,7 +469,7 @@ export default function DynamicPricingPage() {
 
         {/* Legend strip */}
         <div className="flex flex-wrap items-center gap-3 text-xs bg-white p-3 rounded-2xl border border-[#E8E4DC] text-[#717171]">
-          <span className="font-semibold text-[#222225] text-[11px] uppercase tracking-wider">Keterangan:</span>
+          <span className="font-semibold text-[#222225] text-xs uppercase tracking-wider">Keterangan:</span>
           <span className="flex items-center space-x-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
             <span>Sudah dipesan</span>
@@ -495,7 +495,7 @@ export default function DynamicPricingPage() {
         {/* Calendar Grid */}
         <div className="bg-white rounded-3xl border border-[#E8E4DC] p-4 sm:p-6 shadow-xs overflow-hidden">
           {/* Weekday Header */}
-          <div className="grid grid-cols-7 gap-2 pb-3 mb-2 border-b border-[#FAF8F5] text-center text-xs font-bold uppercase tracking-wider text-[#8C7F5F]">
+          <div className="grid grid-cols-7 gap-2 pb-3 mb-2 border-b border-[#FAF8F5] text-center text-xs font-bold uppercase tracking-wider text-[#776B4E]">
             <div>Min</div>
             <div>Sen</div>
             <div>Sel</div>
@@ -554,19 +554,19 @@ export default function DynamicPricingPage() {
 
                       {/* Small badge */}
                       {rec.isBooked ? (
-                        <span className="text-[9px] font-semibold bg-emerald-600 text-white px-1.5 py-0.5 rounded-full">
+                        <span className="text-[11px] font-semibold bg-emerald-600 text-white px-1.5 py-0.5 rounded-full">
                           Terisi
                         </span>
                       ) : isOverridden ? (
-                        <span className="text-[9px] font-bold bg-[#B8934C] text-white px-1.5 py-0.5 rounded-full flex items-center space-x-0.5">
+                        <span className="text-[11px] font-bold bg-[#B8934C] text-white px-1.5 py-0.5 rounded-full flex items-center space-x-0.5">
                           <span>★</span>
                         </span>
                       ) : rec.isHoliday ? (
-                        <span className="text-[9px] font-semibold bg-purple-600 text-white px-1.5 py-0.5 rounded-full">
+                        <span className="text-[11px] font-semibold bg-purple-600 text-white px-1.5 py-0.5 rounded-full">
                           Libur
                         </span>
                       ) : rec.multipliers.dayOfWeekFactor > 1.15 ? (
-                        <span className="text-[9px] font-semibold bg-amber-600 text-white px-1.5 py-0.5 rounded-full">
+                        <span className="text-[11px] font-semibold bg-amber-600 text-white px-1.5 py-0.5 rounded-full">
                           Ramai
                         </span>
                       ) : null}
@@ -579,7 +579,7 @@ export default function DynamicPricingPage() {
                       </div>
                       {priceDiff !== 0 && !rec.isBooked && (
                         <div
-                          className={`text-[10px] font-semibold flex items-center mt-0.5 ${
+                          className={`text-[11px] font-semibold flex items-center mt-0.5 ${
                             priceDiff > 0 ? "text-emerald-700" : "text-blue-700"
                           }`}
                         >
@@ -596,7 +596,7 @@ export default function DynamicPricingPage() {
                     </div>
 
                     {/* Bottom: Note / Channel indicator */}
-                    <div className="text-[9px] text-[#717171] truncate font-light">
+                    <div className="text-[11px] text-[#717171] truncate font-light">
                       {rec.isBooked ? (
                         <span className="text-emerald-700 font-medium truncate">
                           {rec.bookingChannel || "Airbnb"}
@@ -627,11 +627,11 @@ export default function DynamicPricingPage() {
               <div className="p-6 border-b border-[#E8E4DC] flex items-center justify-between bg-[#FAF8F5]">
                 <div>
                   <div className="flex items-center space-x-2">
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#8C7F5F]">
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#776B4E]">
                       {selectedDateRec.dayOfWeek}, {selectedDateRec.date}
                     </span>
                     {selectedDateRec.isBooked && (
-                      <span className="text-[10px] font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">
+                      <span className="text-[11px] font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">
                         Terpesan ({selectedDateRec.bookingChannel || "Airbnb"})
                       </span>
                     )}
@@ -654,7 +654,7 @@ export default function DynamicPricingPage() {
                 {/* Price Display */}
                 <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] flex items-center justify-between">
                   <div>
-                    <span className="text-[10px] uppercase font-bold text-[#717171] tracking-wider">
+                    <span className="text-[11px] uppercase font-bold text-[#717171] tracking-wider">
                       Harga yang disarankan
                     </span>
                     <div className="text-2xl font-bold text-[#222225] mt-0.5">
@@ -662,7 +662,7 @@ export default function DynamicPricingPage() {
                     </div>
                   </div>
                   <div className="text-right">
-                    <span className="text-[10px] uppercase font-bold text-[#717171] tracking-wider">
+                    <span className="text-[11px] uppercase font-bold text-[#717171] tracking-wider">
                       Tarif Dasar
                     </span>
                     <div className="text-sm font-semibold text-[#717171] mt-0.5">
@@ -726,12 +726,12 @@ export default function DynamicPricingPage() {
                       <span>Atur Harga Manual</span>
                     </span>
                     {selectedDateRec.overridePriceIdr && (
-                      <span className="text-[10px] font-bold bg-amber-200 text-amber-900 px-2 py-0.5 rounded-full">
+                      <span className="text-[11px] font-bold bg-amber-200 text-amber-900 px-2 py-0.5 rounded-full">
                         Sedang dipakai
                       </span>
                     )}
                   </div>
-                  <p className="text-[11px] text-[#717171]">
+                  <p className="text-xs text-[#717171]">
                     Isi kalau ingin memakai harga sendiri untuk tanggal ini. Harga manual menggantikan saran sistem.
                   </p>
 
@@ -833,7 +833,7 @@ export default function DynamicPricingPage() {
                       <label className="text-xs font-semibold text-[#222225]">
                         Harga terendah per malam
                       </label>
-                      <span className="text-xs font-mono font-bold text-[#8C7F5F]">
+                      <span className="text-xs font-mono font-bold text-[#776B4E]">
                         {formatCurrency(editableRules.minPriceIdr, "IDR")}
                       </span>
                     </div>
@@ -846,7 +846,7 @@ export default function DynamicPricingPage() {
                       }
                       className="w-full px-3.5 py-2 rounded-xl border border-[#E8E4DC] text-sm font-mono text-[#222225] bg-white focus:border-[#B8934C] focus:outline-none"
                     />
-                    <p className="text-[11px] text-[#717171]">
+                    <p className="text-xs text-[#717171]">
                       Harga terendah yang diizinkan untuk mencegah kerugian biaya listrik, laundry, dan staf.
                     </p>
                   </div>
@@ -857,7 +857,7 @@ export default function DynamicPricingPage() {
                       <label className="text-xs font-semibold text-[#222225]">
                         Harga tertinggi per malam
                       </label>
-                      <span className="text-xs font-mono font-bold text-[#8C7F5F]">
+                      <span className="text-xs font-mono font-bold text-[#776B4E]">
                         {formatCurrency(editableRules.maxPriceIdr, "IDR")}
                       </span>
                     </div>
@@ -870,7 +870,7 @@ export default function DynamicPricingPage() {
                       }
                       className="w-full px-3.5 py-2 rounded-xl border border-[#E8E4DC] text-sm font-mono text-[#222225] bg-white focus:border-[#B8934C] focus:outline-none"
                     />
-                    <p className="text-[11px] text-[#717171]">
+                    <p className="text-xs text-[#717171]">
                       Batas atas saat musim ramai atau libur nasional.
                     </p>
                   </div>

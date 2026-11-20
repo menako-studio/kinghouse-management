@@ -155,7 +155,7 @@ export function BookingChannelModal({ villa, isOpen, onClose }: BookingChannelMo
           <div className="space-y-2.5">
             {/* Perk 1 */}
             <div className="flex items-start space-x-3 rounded-xl border border-[#EFE9DF] bg-white p-3 shadow-xs">
-              <div className="rounded-lg bg-[#FAF6EE] p-2 text-[#8C7F5F] shrink-0">
+              <div className="rounded-lg bg-[#FAF6EE] p-2 text-[#776B4E] shrink-0">
                 <Star className="h-4 w-4 fill-[#8C7F5F]" />
               </div>
               <div className="flex-1">
@@ -168,7 +168,7 @@ export function BookingChannelModal({ villa, isOpen, onClose }: BookingChannelMo
 
             {/* Perk 2 */}
             <div className="flex items-start space-x-3 rounded-xl border border-[#EFE9DF] bg-white p-3 shadow-xs">
-              <div className="rounded-lg bg-[#FAF6EE] p-2 text-[#8C7F5F] shrink-0">
+              <div className="rounded-lg bg-[#FAF6EE] p-2 text-[#776B4E] shrink-0">
                 <Coffee className="h-4 w-4" />
               </div>
               <div className="flex-1">
@@ -181,7 +181,7 @@ export function BookingChannelModal({ villa, isOpen, onClose }: BookingChannelMo
 
             {/* Perk 3 */}
             <div className="flex items-start space-x-3 rounded-xl border border-[#EFE9DF] bg-white p-3 shadow-xs">
-              <div className="rounded-lg bg-[#FAF6EE] p-2 text-[#8C7F5F] shrink-0">
+              <div className="rounded-lg bg-[#FAF6EE] p-2 text-[#776B4E] shrink-0">
                 <Car className="h-4 w-4" />
               </div>
               <div className="flex-1">
@@ -194,7 +194,7 @@ export function BookingChannelModal({ villa, isOpen, onClose }: BookingChannelMo
 
             {/* Perk 4 */}
             <div className="flex items-start space-x-3 rounded-xl border border-[#EFE9DF] bg-white p-3 shadow-xs">
-              <div className="rounded-lg bg-[#FAF6EE] p-2 text-[#8C7F5F] shrink-0">
+              <div className="rounded-lg bg-[#FAF6EE] p-2 text-[#776B4E] shrink-0">
                 <Award className="h-4 w-4" />
               </div>
               <div className="flex-1">
@@ -210,12 +210,12 @@ export function BookingChannelModal({ villa, isOpen, onClose }: BookingChannelMo
           <div className="rounded-xl border border-[#E8DFC8] bg-[#FDFCF9] p-4 space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-1.5">
-                <Car className="h-4 w-4 text-[#8C7F5F]" />
+                <Car className="h-4 w-4 text-[#776B4E]" />
                 <h4 className="text-xs font-bold uppercase tracking-wider text-[#222222]">
                   Add Airport Transfer (Upsell Service)
                 </h4>
               </div>
-              <span className="text-xs font-semibold text-[#8C7F5F] uppercase">Optional</span>
+              <span className="text-xs font-semibold text-[#776B4E] uppercase">Optional</span>
             </div>
             <p className="text-xs text-[#717171]">
               Private air-conditioned MPV with dedicated Kinghouse chauffeur from Soekarno-Hatta (CGK) or Halim (HLP).
@@ -236,19 +236,19 @@ export function BookingChannelModal({ villa, isOpen, onClose }: BookingChannelMo
                     }`}
                   >
                     {opt.badge && (
-                      <span className="absolute top-2 right-2 text-xs font-bold bg-[#8C7F5F] text-white px-1.5 py-0.5 rounded-sm">
+                      <span className="absolute top-2 right-2 text-xs font-bold bg-[#776B4E] text-white px-1.5 py-0.5 rounded-sm">
                         {opt.badge}
                       </span>
                     )}
                     <div>
                       <div className="flex items-center space-x-1.5 font-semibold text-[#222222]">
-                        {opt.id !== "none" && <CheckCircle2 className={`h-3 w-3 ${isSelected ? "text-[#8C7F5F]" : "text-[#CCCCCC]"}`} />}
+                        {opt.id !== "none" && <CheckCircle2 className={`h-3 w-3 ${isSelected ? "text-[#776B4E]" : "text-[#CCCCCC]"}`} />}
                         <span>{opt.label}</span>
                       </div>
                       <p className="text-xs text-[#717171] mt-0.5">{opt.sublabel}</p>
                     </div>
                     <div className="mt-2 text-right font-semibold text-[#222222]">
-                      {opt.price > 0 ? formatPrice(opt.price) : <span className="text-[#8C7F5F]">Included</span>}
+                      {opt.price > 0 ? formatPrice(opt.price) : <span className="text-[#776B4E]">Included</span>}
                     </div>
                   </button>
                 )
@@ -282,7 +282,7 @@ export function BookingChannelModal({ villa, isOpen, onClose }: BookingChannelMo
 
             {/* Other Channel Options */}
             <div className="pt-2">
-              <p className="text-center text-xs uppercase tracking-wider text-[#A69C8E] font-medium mb-2">
+              <p className="text-center text-xs uppercase tracking-wider text-[#736A5E] font-medium mb-2">
                 — Or Book Via Travel Partner Channels —
               </p>
               <div className="grid grid-cols-2 gap-2">
@@ -351,7 +351,7 @@ export function BookingChannelModal({ villa, isOpen, onClose }: BookingChannelMo
         </div>
 
         {/* Footer Guarantee */}
-        <div className="flex items-center justify-center space-x-1.5 border-t border-[#F0EBE1] bg-[#FAF8F5] py-2.5 text-xs text-[#8C7F5F]">
+        <div className="flex items-center justify-center space-x-1.5 border-t border-[#F0EBE1] bg-[#FAF8F5] py-2.5 text-xs text-[#776B4E]">
           <ShieldCheck className="h-3.5 w-3.5" />
           <span>Secure direct reservation &bull; Best Price Guarantee &bull; Verified Host</span>
         </div>

@@ -60,7 +60,7 @@ export default function DashboardSettingsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E8E4DC] pb-6">
         <div>
-          <div className="inline-flex items-center space-x-2 text-[10px] font-semibold uppercase tracking-wider text-[#222225] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E8E4DC] mb-3">
+          <div className="inline-flex items-center space-x-2 text-[11px] font-semibold uppercase tracking-wider text-[#222225] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E8E4DC] mb-3">
             <Settings className="h-3.5 w-3.5 text-[#B8934C]" />
             <span>PENGATURAN AKUN &amp; SISTEM</span>
           </div>
@@ -99,7 +99,7 @@ export default function DashboardSettingsPage() {
           <div>
             <div className="flex items-center space-x-2">
               <h3 className="text-xl text-[#222225] font-semibold">Kinghouse Admin</h3>
-              <span className="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
+              <span className="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
                 <ShieldCheck className="h-3 w-3 text-emerald-600" />
                 <span>Super Admin</span>
               </span>
@@ -155,21 +155,21 @@ export default function DashboardSettingsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
           <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] space-y-1.5">
-            <span className="text-[10px] uppercase font-bold text-[#717171]">Status Akun</span>
+            <span className="text-[11px] uppercase font-bold text-[#717171]">Status Akun</span>
             <p className="font-semibold text-emerald-700">Terverifikasi &amp; Aktif</p>
-            <p className="text-[11px] text-[#717171]">Sesi login tersimpan aman selama 7 hari</p>
+            <p className="text-xs text-[#717171]">Sesi login tersimpan aman selama 7 hari</p>
           </div>
 
           <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] space-y-1.5">
-            <span className="text-[10px] uppercase font-bold text-[#717171]">Tingkat Akses</span>
+            <span className="text-[11px] uppercase font-bold text-[#717171]">Tingkat Akses</span>
             <p className="font-semibold text-[#222225]">Super Admin Penuh</p>
-            <p className="text-[11px] text-[#717171]">Dapat mengedit harga, blog, dan kalender</p>
+            <p className="text-xs text-[#717171]">Dapat mengedit harga, blog, dan kalender</p>
           </div>
 
           <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] space-y-1.5">
-            <span className="text-[10px] uppercase font-bold text-[#717171]">Proteksi Website</span>
+            <span className="text-[11px] uppercase font-bold text-[#717171]">Proteksi Website</span>
             <p className="font-semibold text-[#222225]">Enkripsi SSL Aktif</p>
-            <p className="text-[11px] text-[#717171]">Data dilindungi dari akses pihak luar</p>
+            <p className="text-xs text-[#717171]">Data dilindungi dari akses pihak luar</p>
           </div>
         </div>
       </div>
@@ -193,7 +193,7 @@ export default function DashboardSettingsPage() {
                 type="text"
                 readOnly
                 value="https://www.kinghousemanagement.com/api/ical/sync/jabodetabek-master.ics"
-                className="flex-1 px-4 py-2.5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] text-xs font-mono text-[#555555] focus:outline-none"
+                className="flex-1 px-4 py-2.5 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] text-xs font-mono text-[#555555]"
               />
               <button
                 type="button"
@@ -213,7 +213,7 @@ export default function DashboardSettingsPage() {
                 )}
               </button>
             </div>
-            <p className="text-[11px] text-[#717171] mt-1.5 font-light">
+            <p className="text-xs text-[#717171] mt-1.5 font-light">
               Salin link ini untuk dimasukkan ke akun Airbnb atau OTA lain agar jadwal booking tamu otomatis tersinkronisasi tanpa bentrok.
             </p>
           </div>

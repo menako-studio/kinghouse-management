@@ -106,7 +106,7 @@ function NakulaVillaCard({ villa }: { villa: Villa }) {
 
           {/* Villa Name */}
           <Link href={`/locations/${villa.areaSlug}/villas/${villa.slug}`}>
-            <h2 className="font-serif text-xl sm:text-2xl text-[#222225] font-normal leading-snug group-hover:text-[#8C7F5F] transition-colors line-clamp-1">
+            <h2 className="font-serif text-xl sm:text-2xl text-[#222225] font-normal leading-snug group-hover:text-[#776B4E] transition-colors line-clamp-1">
               {villa.name}
             </h2>
           </Link>
@@ -114,26 +114,26 @@ function NakulaVillaCard({ villa }: { villa: Villa }) {
           {/* Specs Row */}
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-[#6B6862] pt-0.5">
             <span className="flex items-center space-x-1.5">
-              <Users className="h-3.5 w-3.5 text-[#8C7F5F]" />
+              <Users className="h-3.5 w-3.5 text-[#776B4E]" />
               <span>{villa.capacity.guests} {tc("Guests")}</span>
             </span>
             <span className="flex items-center space-x-1.5">
-              <Bed className="h-3.5 w-3.5 text-[#8C7F5F]" />
+              <Bed className="h-3.5 w-3.5 text-[#776B4E]" />
               <span>{villa.capacity.bedrooms} {tc(villa.capacity.bedrooms > 1 ? "Bedrooms" : "Bedroom")}</span>
             </span>
             <span className="flex items-center space-x-1.5">
-              <Bath className="h-3.5 w-3.5 text-[#8C7F5F]" />
+              <Bath className="h-3.5 w-3.5 text-[#776B4E]" />
               <span>{villa.capacity.bathrooms} {tc(villa.capacity.bathrooms > 1 ? "Bathrooms" : "Bathroom")}</span>
             </span>
             <span className="flex items-center space-x-1.5">
-              <Maximize2 className="h-3.5 w-3.5 text-[#8C7F5F]" />
+              <Maximize2 className="h-3.5 w-3.5 text-[#776B4E]" />
               <span>{areaSqm} m²</span>
             </span>
           </div>
 
           {/* Suitable for Event Flag */}
           {isEventCapable && (
-            <div className="flex items-center space-x-1.5 text-xs font-semibold text-[#8C7F5F]">
+            <div className="flex items-center space-x-1.5 text-xs font-semibold text-[#776B4E]">
               <Sparkles className="h-3.5 w-3.5" />
               <span>{tc("Suitable for Event")}</span>
             </div>
@@ -156,7 +156,7 @@ function NakulaVillaCard({ villa }: { villa: Villa }) {
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
-              className="text-xs text-[#8C7F5F] hover:text-[#222225] font-semibold flex items-center space-x-1 cursor-pointer transition-colors"
+              className="text-xs text-[#776B4E] hover:text-[#222225] font-semibold flex items-center space-x-1 cursor-pointer transition-colors"
             >
               <span>{tc("View Multi-Channel Booking Options")}</span>
               <ChevronRight className="h-3.5 w-3.5" />
@@ -339,7 +339,7 @@ function VillasCatalogContent() {
               {tc("HOME")}
             </Link>
             <span>/</span>
-            <Link href="/villas" className="text-[#8C7F5F] font-semibold">
+            <Link href="/villas" className="text-[#776B4E] font-semibold">
               {tc("PROPERTIES")}
             </Link>
             <span>/</span>
@@ -363,11 +363,11 @@ function VillasCatalogContent() {
             className="w-full py-3 px-4 rounded-xl border border-[#E8E4DC] bg-[#FAF8F5] flex items-center justify-between text-xs font-semibold text-[#222225] shadow-xs cursor-pointer"
           >
             <div className="flex items-center space-x-2">
-              <SlidersHorizontal className="h-4 w-4 text-[#8C7F5F]" />
+              <SlidersHorizontal className="h-4 w-4 text-[#776B4E]" />
               <span>{tc(showMobileFilters ? "Hide Filter Options" : "Show Filter Options")}</span>
             </div>
             {isFilterActive && (
-              <span className="bg-[#8C7F5F] text-white px-2 py-0.5 rounded-full text-xs">
+              <span className="bg-[#776B4E] text-white px-2 py-0.5 rounded-full text-xs">
                 {tc("Active Filters")}
               </span>
             )}
@@ -404,13 +404,13 @@ function VillasCatalogContent() {
                   return (
                     <label
                       key={item.id}
-                      className="flex items-center space-x-2.5 text-xs text-[#222225] hover:text-[#8C7F5F] cursor-pointer select-none transition-colors"
+                      className="flex items-center space-x-2.5 text-xs text-[#222225] hover:text-[#776B4E] cursor-pointer select-none transition-colors"
                     >
                       <input
                         type="checkbox"
                         checked={checked}
                         onChange={() => togglePropertyType(item.id)}
-                        className="h-4 w-4 rounded border-[#D5CFC3] text-[#8C7F5F] focus:ring-0 focus:ring-offset-0 accent-[#8C7F5F]"
+                        className="h-4 w-4 rounded border-[#D5CFC3] text-[#776B4E] focus:ring-0 focus:ring-offset-0 accent-[#8C7F5F]"
                       />
                       <span>{item.label}</span>
                     </label>
@@ -491,6 +491,7 @@ function VillasCatalogContent() {
               <div className="relative">
                 <input
                   type="text"
+                  aria-label={t("searchByNameOrArea")}
                   placeholder={t("searchByNameOrArea")}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -505,7 +506,7 @@ function VillasCatalogContent() {
               <button
                 type="button"
                 onClick={() => setShowMobileFilters(false)}
-                className="w-full py-2.5 px-3 bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-xs font-semibold uppercase tracking-widest rounded-md transition-colors text-center cursor-pointer shadow-xs"
+                className="w-full py-2.5 px-3 bg-[#776B4E] hover:bg-[#62583F] text-white text-xs font-semibold uppercase tracking-widest rounded-md transition-colors text-center cursor-pointer shadow-xs"
               >
                 {t("applyButton")}
               </button>
@@ -532,6 +533,7 @@ function VillasCatalogContent() {
                 <div className="relative">
                   <input
                     type="text"
+                    aria-label={t("propertyNamePlaceholder")}
                     placeholder={t("propertyNamePlaceholder")}
                     value={gridSearchQuery}
                     onChange={(e) => setGridSearchQuery(e.target.value)}
@@ -568,7 +570,7 @@ function VillasCatalogContent() {
                 <p className="font-serif text-2xl text-[#222225]">{t("noVillasFoundMessage")}</p>
                 <button
                   onClick={handleClear}
-                  className="px-5 py-2 bg-[#8C7F5F] text-white text-xs font-semibold uppercase tracking-wider rounded-md hover:bg-[#776B4E] transition-colors cursor-pointer"
+                  className="px-5 py-2 bg-[#776B4E] text-white text-xs font-semibold uppercase tracking-wider rounded-md hover:bg-[#62583F] transition-colors cursor-pointer"
                 >
                   {t("resetFiltersButton")}
                 </button>
@@ -580,7 +582,7 @@ function VillasCatalogContent() {
               <button
                 type="button"
                 onClick={handleClear}
-                className="inline-flex items-center px-8 py-3 bg-[#8C7F5F] hover:bg-[#776B4E] text-white text-xs font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm cursor-pointer"
+                className="inline-flex items-center px-8 py-3 bg-[#776B4E] hover:bg-[#62583F] text-white text-xs font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm cursor-pointer"
               >
                 {tc("VIEW ALL PROPERTIES")}
               </button>
@@ -595,7 +597,7 @@ function VillasCatalogContent() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Left: About Column */}
             <div className="space-y-4">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#8C7F5F]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#776B4E]">
                 {tc("ABOUT")}
               </span>
               <h3 className="font-serif text-2xl sm:text-3xl text-[#222225] font-normal uppercase tracking-wide">
@@ -607,7 +609,7 @@ function VillasCatalogContent() {
               <div className="pt-2">
                 <Link
                   href="/about"
-                  className="text-xs uppercase font-bold tracking-widest text-[#222225] border-b border-[#222225] pb-0.5 hover:text-[#8C7F5F] hover:border-[#8C7F5F] transition-colors"
+                  className="text-xs uppercase font-bold tracking-widest text-[#222225] border-b border-[#222225] pb-0.5 hover:text-[#776B4E] hover:border-[#8C7F5F] transition-colors"
                 >
                   {tc("READ MORE")}
                 </Link>
@@ -641,7 +643,7 @@ function VillasCatalogContent() {
                   </div>
                   <div className="grid grid-cols-3 p-3.5">
                     <span className="font-medium text-[#6B6862]">{tc("Price Range")}</span>
-                    <span className="col-span-2 font-semibold text-[#8C7F5F]">
+                    <span className="col-span-2 font-semibold text-[#776B4E]">
                       {tc("Start from IDR 390,000 to IDR 3,500,000 / night")}
                     </span>
                   </div>
@@ -725,7 +727,7 @@ function VillasCatalogContent() {
             <h3 className="font-serif text-2xl sm:text-3xl text-[#222225] uppercase tracking-wide font-normal">
               {tc("WHY STAY IN STANDALONE VILLAS 5BR PLUS?")}
             </h3>
-            <div className="w-12 h-0.5 bg-[#8C7F5F] mx-auto" />
+            <div className="w-12 h-0.5 bg-[#776B4E] mx-auto" />
           </div>
 
           <div className="divide-y divide-[#E8E4DC] border-y border-[#E8E4DC]">
@@ -736,10 +738,10 @@ function VillasCatalogContent() {
                   <button
                     type="button"
                     onClick={() => setOpenFaq(isOpen ? null : idx)}
-                    className="w-full flex items-center justify-between text-left text-xs sm:text-sm font-medium text-[#222225] hover:text-[#8C7F5F] transition-colors py-1 cursor-pointer"
+                    className="w-full flex items-center justify-between text-left text-xs sm:text-sm font-medium text-[#222225] hover:text-[#776B4E] transition-colors py-1 cursor-pointer"
                   >
                     <span>{tc(faq.q)}</span>
-                    <span className="ml-4 shrink-0 text-[#8C7F5F]">
+                    <span className="ml-4 shrink-0 text-[#776B4E]">
                       {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
                     </span>
                   </button>

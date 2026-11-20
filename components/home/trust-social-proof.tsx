@@ -96,7 +96,7 @@ export function TrustSocialProof() {
                   <span className="inline-block h-2 w-2 rounded-full bg-emerald-500" />
                   <span className="text-xs font-medium text-[#222222]">{t("superhostActiveHost")}</span>
                 </span>
-                <span className="text-xs font-semibold text-[#8C7F5F] flex items-center space-x-1 group-hover:underline">
+                <span className="text-xs font-semibold text-[#776B4E] flex items-center space-x-1 group-hover:underline">
                   <span>{t("viewOnAirbnb")}</span>
                   <ArrowUpRight className="h-3.5 w-3.5" />
                 </span>
@@ -107,7 +107,7 @@ export function TrustSocialProof() {
 
         {/* Verified Reviews Carousel */}
         <div className="mx-auto max-w-4xl rounded-2xl bg-white p-8 sm:p-12 lg:p-16 shadow-[0_10px_40px_rgba(0,0,0,0.03)] border border-[#EBEBEB] relative">
-          <Quote className="h-10 w-10 text-[#A69C8E]/25 absolute top-8 right-8" />
+          <Quote className="h-10 w-10 text-[#736A5E]/25 absolute top-8 right-8" />
 
           <div className="flex flex-col space-y-6">
             {/* Top Tag & Stars */}
@@ -141,7 +141,7 @@ export function TrustSocialProof() {
             {/* Metric Highlight (if owner) */}
             {current.metricLift && (
               <div className="inline-flex items-center space-x-2 text-xs font-semibold text-[#222222] bg-[#FAFAFA] border border-[#EBEBEB] rounded-lg px-3 py-1.5 self-start">
-                <CheckCircle className="h-3.5 w-3.5 text-[#A69C8E]" />
+                <CheckCircle className="h-3.5 w-3.5 text-[#736A5E]" />
                 <span>{t("verifiedMetricHighlight")}: {tc(current.metricLift)}</span>
               </div>
             )}

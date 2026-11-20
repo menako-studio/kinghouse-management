@@ -167,11 +167,11 @@ export default function TermsPage() {
 
           {/* Quick links footer */}
           <div className="mt-8 flex items-center justify-between text-xs text-[#777777]">
-            <Link href="/privacy" className="hover:text-[#8C7F5F] transition-colors flex items-center space-x-1">
+            <Link href="/privacy" className="hover:text-[#776B4E] transition-colors flex items-center space-x-1">
               <Shield className="h-3.5 w-3.5" />
               <span>Read Privacy Policy</span>
             </Link>
-            <Link href="/contact" className="hover:text-[#8C7F5F] transition-colors flex items-center space-x-1">
+            <Link href="/contact" className="hover:text-[#776B4E] transition-colors flex items-center space-x-1">
               <span>Contact Concierge</span>
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>

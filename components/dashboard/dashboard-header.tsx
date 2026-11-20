@@ -79,17 +79,17 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
   const getCategoryBadge = (cat: AlertCategory) => {
     switch (cat) {
       case "blog":
-        return <span className="text-[9px] font-bold uppercase bg-[#FAF6EE] text-[#8C7F5F] px-1.5 py-0.5 rounded-md border border-[#E8DFC8]">Blog</span>
+        return <span className="text-[11px] font-bold uppercase bg-[#FAF6EE] text-[#776B4E] px-1.5 py-0.5 rounded-md border border-[#E8DFC8]">Blog</span>
       case "booking":
-        return <span className="text-[9px] font-bold uppercase bg-emerald-50 text-emerald-700 px-1.5 py-0.5 rounded-md border border-emerald-200">Booking</span>
+        return <span className="text-[11px] font-bold uppercase bg-emerald-50 text-emerald-700 px-1.5 py-0.5 rounded-md border border-emerald-200">Booking</span>
       case "expense":
-        return <span className="text-[9px] font-bold uppercase bg-rose-50 text-rose-700 px-1.5 py-0.5 rounded-md border border-rose-200">POS</span>
+        return <span className="text-[11px] font-bold uppercase bg-rose-50 text-rose-700 px-1.5 py-0.5 rounded-md border border-rose-200">POS</span>
       case "seo":
-        return <span className="text-[9px] font-bold uppercase bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded-md border border-blue-200">SEO</span>
+        return <span className="text-[11px] font-bold uppercase bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded-md border border-blue-200">SEO</span>
       case "sync":
-        return <span className="text-[9px] font-bold uppercase bg-amber-50 text-amber-800 px-1.5 py-0.5 rounded-md border border-amber-200">iCal</span>
+        return <span className="text-[11px] font-bold uppercase bg-amber-50 text-amber-800 px-1.5 py-0.5 rounded-md border border-amber-200">iCal</span>
       default:
-        return <span className="text-[9px] font-bold uppercase bg-[#FAF8F5] text-[#6B6862] px-1.5 py-0.5 rounded-md border border-[#E8E4DC]">System</span>
+        return <span className="text-[11px] font-bold uppercase bg-[#FAF8F5] text-[#6B6862] px-1.5 py-0.5 rounded-md border border-[#E8E4DC]">System</span>
     }
   }
 
@@ -105,7 +105,7 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
             Kinghouse CMS
           </Link>
           <ChevronRight className="h-3.5 w-3.5 text-[#B8934C]" />
-          <span className="font-semibold text-[#222225] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E8E4DC] text-[11px] tracking-wide">
+          <span className="font-semibold text-[#222225] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E8E4DC] text-xs tracking-wide">
             {getBreadcrumb()}
           </span>
         </div>
@@ -113,7 +113,7 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
         {/* Right: Live Sync Badge, Notifications, & Profile Menu */}
         <div className="flex items-center space-x-3 sm:space-x-4">
           {/* Environment & Live Sync Status */}
-          <div className="hidden lg:flex items-center space-x-2 text-[11px] text-[#6B6862] bg-[#FAF8F5] px-3.5 py-1.5 rounded-full border border-[#E8E4DC]">
+          <div className="hidden lg:flex items-center space-x-2 text-xs text-[#6B6862] bg-[#FAF8F5] px-3.5 py-1.5 rounded-full border border-[#E8E4DC]">
             <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
             <span className="font-medium text-[#222225]">4 Properti Terhubung</span>
             <span className="text-[#D5CFC3]">&bull;</span>
@@ -130,7 +130,7 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
                 setIsNotificationsOpen(!isNotificationsOpen)
                 setIsProfileOpen(false)
               }}
-              className="relative p-2 rounded-xl text-[#6B6862] hover:text-[#222225] hover:bg-[#FAF8F5] transition-colors focus:outline-none cursor-pointer"
+              className="relative p-2 rounded-xl text-[#6B6862] hover:text-[#222225] hover:bg-[#FAF8F5] transition-colors cursor-pointer"
               aria-label="Pemberitahuan"
             >
               <Bell className="h-4 w-4" />
@@ -147,11 +147,11 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
                       Pemberitahuan Sistem
                     </span>
                     {unreadCount > 0 ? (
-                      <span className="text-[10px] bg-[#B8934C]/15 text-[#B8934C] px-2 py-0.5 rounded-full font-bold">
+                      <span className="text-[11px] bg-[#B8934C]/15 text-[#B8934C] px-2 py-0.5 rounded-full font-bold">
                         {unreadCount} Baru
                       </span>
                     ) : (
-                      <span className="text-[10px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-bold border border-emerald-200">
+                      <span className="text-[11px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-bold border border-emerald-200">
                         Sudah Dibaca
                       </span>
                     )}
@@ -161,7 +161,7 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
                       <button
                         type="button"
                         onClick={markAllAsRead}
-                        className="text-[11px] font-semibold text-[#8C7F5F] hover:text-[#222225] cursor-pointer"
+                        className="text-xs font-semibold text-[#776B4E] hover:text-[#222225] cursor-pointer"
                       >
                         Tandai Dibaca
                       </button>
@@ -203,7 +203,7 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
                           </div>
                           <div className="flex items-center space-x-1.5 flex-shrink-0">
                             {getCategoryBadge(alert.category)}
-                            <span className="text-[10px] text-[#8C7F5F] font-mono">{alert.timeAgo}</span>
+                            <span className="text-[11px] text-[#776B4E] font-mono">{alert.timeAgo}</span>
                             <button
                               type="button"
                               onClick={(e) => {
@@ -217,7 +217,7 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
                             </button>
                           </div>
                         </div>
-                        <p className="text-[11px] text-[#6B6862] mt-1 leading-relaxed">
+                        <p className="text-xs text-[#6B6862] mt-1 leading-relaxed">
                           {alert.message}
                         </p>
                       </div>
@@ -225,13 +225,13 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
                   ) : (
                     <div className="py-8 text-center space-y-1">
                       <p className="text-xs font-semibold text-[#222225]">Tidak Ada Notifikasi</p>
-                      <p className="text-[11px] text-[#6B6862]">Semua sistem beroperasi normal tanpa kendala.</p>
+                      <p className="text-xs text-[#6B6862]">Semua sistem beroperasi normal tanpa kendala.</p>
                     </div>
                   )}
                 </div>
 
                 {alerts.length > 0 && (
-                  <div className="pt-2 border-t border-[#FAF8F5] flex items-center justify-between text-[11px]">
+                  <div className="pt-2 border-t border-[#FAF8F5] flex items-center justify-between text-xs">
                     <span className="text-[#6B6862] font-mono">{alerts.length} Total Alerts</span>
                     <button
                       type="button"
@@ -254,7 +254,7 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
                 setIsProfileOpen(!isProfileOpen)
                 setIsNotificationsOpen(false)
               }}
-              className="flex items-center space-x-2.5 p-1.5 rounded-2xl hover:bg-[#FAF8F5] transition-colors border border-transparent hover:border-[#E8E4DC] focus:outline-none cursor-pointer"
+              className="flex items-center space-x-2.5 p-1.5 rounded-2xl hover:bg-[#FAF8F5] transition-colors border border-transparent hover:border-[#E8E4DC] cursor-pointer"
             >
               <div className="h-8 w-8 rounded-xl bg-gradient-to-br from-[#19191B] to-[#28282B] text-[#DFC58E] flex items-center justify-center text-xs font-bold ring-2 ring-[#B8934C]/30 shadow-xs">
                 KH
@@ -264,7 +264,7 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
                   <span>{adminUser.name}</span>
                   <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" />
                 </div>
-                <span className="text-[10px] text-[#6B6862] font-mono leading-none">
+                <span className="text-[11px] text-[#6B6862] font-mono leading-none">
                   Super Admin
                 </span>
               </div>
@@ -285,12 +285,12 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
                       <p className="text-xs font-semibold text-white truncate flex items-center space-x-1">
                         <span>{adminUser.name}</span>
                       </p>
-                      <p className="text-[10px] text-white/60 font-mono truncate">
+                      <p className="text-[11px] text-white/60 font-mono truncate">
                         {adminUser.email}
                       </p>
                     </div>
                   </div>
-                  <div className="mt-2.5 pt-2 border-t border-white/10 flex items-center justify-between text-[10px]">
+                  <div className="mt-2.5 pt-2 border-t border-white/10 flex items-center justify-between text-[11px]">
                     <span className="text-emerald-400 font-medium flex items-center space-x-1">
                       <ShieldCheck className="h-3 w-3" />
                       <span>Verified Super Admin</span>
@@ -332,7 +332,7 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
                       <ExternalLink className="h-4 w-4" />
                       <span>Buka Website Tamu</span>
                     </span>
-                    <span className="text-[10px] uppercase font-mono text-[#8C7F5F]">Tab Baru</span>
+                    <span className="text-[11px] uppercase font-mono text-[#776B4E]">Tab Baru</span>
                   </a>
                 </div>
 
@@ -388,7 +388,7 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4 text-xs">
                   <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC]">
-                    <span className="text-[10px] uppercase font-semibold tracking-wider text-[#6B6862] block mb-1">
+                    <span className="text-[11px] uppercase font-semibold tracking-wider text-[#6B6862] block mb-1">
                       Account Name
                     </span>
                     <span className="font-semibold text-[#222225] text-sm">
@@ -397,7 +397,7 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
                   </div>
 
                   <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC]">
-                    <span className="text-[10px] uppercase font-semibold tracking-wider text-[#6B6862] block mb-1">
+                    <span className="text-[11px] uppercase font-semibold tracking-wider text-[#6B6862] block mb-1">
                       Role & Permissions
                     </span>
                     <span className="inline-flex items-center space-x-1 font-semibold text-emerald-700 text-sm">
@@ -408,7 +408,7 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
                 </div>
 
                 <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#E8E4DC] text-xs">
-                  <span className="text-[10px] uppercase font-semibold tracking-wider text-[#6B6862] block mb-1">
+                  <span className="text-[11px] uppercase font-semibold tracking-wider text-[#6B6862] block mb-1">
                     Administrative Email
                   </span>
                   <span className="font-mono text-[#222225] font-semibold text-sm">
@@ -421,10 +421,10 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
               <div className="p-4 rounded-2xl bg-[#F3EFE6] border border-[#E8E4DC] space-y-3">
                 <div className="flex items-center justify-between text-xs">
                   <div className="flex items-center space-x-2">
-                    <Lock className="h-4 w-4 text-[#8C7F5F]" />
+                    <Lock className="h-4 w-4 text-[#776B4E]" />
                     <span className="font-semibold text-[#222225]">Session Security</span>
                   </div>
-                  <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">
+                  <span className="text-[11px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">
                     Active &bull; HMAC-SHA256
                   </span>
                 </div>
@@ -436,7 +436,7 @@ export function DashboardHeader({ adminUser }: DashboardHeaderProps) {
                   </div>
                   <div className="flex justify-between">
                     <span>Cookie Policy:</span>
-                    <span className="font-mono text-[11px] text-[#222225]">HttpOnly, SameSite=Lax</span>
+                    <span className="font-mono text-xs text-[#222225]">HttpOnly, SameSite=Lax</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Multi-Factor Authorization:</span>

@@ -35,7 +35,7 @@ export function FunnelEntryGate() {
     <section id="mulai" aria-labelledby="funnel-gate-heading" className="bg-[#FAF7F1] py-14 lg:py-20">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="mb-10 max-w-2xl">
-          <span className="text-sm font-semibold uppercase tracking-[0.15em] text-[#8C7F5F]">{t("f.gate.eyebrow")}</span>
+          <span className="text-sm font-semibold uppercase tracking-[0.15em] text-[#776B4E]">{t("f.gate.eyebrow")}</span>
           <h2 id="funnel-gate-heading" className="mt-1 font-serif text-3xl text-[#222222] sm:text-4xl">
             {t("f.gate.title")}
           </h2>
@@ -87,12 +87,12 @@ export function FunnelEntryGate() {
                     />
                   </div>
                   <div className="flex flex-1 flex-col gap-2 p-6">
-                    <div className="flex items-center gap-2 text-[#8C7F5F]">
+                    <div className="flex items-center gap-2 text-[#776B4E]">
                       <path.icon className="h-5 w-5" />
                       <h3 className="font-serif text-2xl text-[#222222]">{t(path.titleKey)}</h3>
                     </div>
                     <p className="flex-1 text-base leading-relaxed text-[#5C5347]">{t(path.textKey)}</p>
-                    <span className="inline-flex items-center gap-1.5 pt-2 text-sm font-semibold text-[#8C7F5F]">
+                    <span className="inline-flex items-center gap-1.5 pt-2 text-sm font-semibold text-[#776B4E]">
                       {t(path.ctaKey)}
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>

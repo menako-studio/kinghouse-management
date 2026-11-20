@@ -81,7 +81,7 @@ export function LocationProximityMap({ location, area, nearbySpots, locale }: Lo
 
               <div className="text-right">
                 <span className="text-xs font-semibold text-[#222222]">{spot.distance}</span>
-                <span className="block text-xs text-[#A69C8E]">{tc(spot.travelTime)}</span>
+                <span className="block text-xs text-[#736A5E]">{tc(spot.travelTime)}</span>
               </div>
             </div>
           )

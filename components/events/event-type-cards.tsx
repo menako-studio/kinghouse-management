@@ -23,7 +23,7 @@ export function EventTypeCards({ selected, onSelect }: EventTypeCardsProps) {
     <section id="jenis-acara" className="scroll-mt-24 border-b border-[#E8E4DC] bg-white py-14">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="mb-8 max-w-2xl">
-          <span className="text-sm font-bold uppercase tracking-[0.15em] text-[#8C7F5F]">{t("f.evt.eyebrow")}</span>
+          <span className="text-sm font-bold uppercase tracking-[0.15em] text-[#776B4E]">{t("f.evt.eyebrow")}</span>
           <h2 className="mt-1 font-serif text-3xl text-[#222225] sm:text-4xl">{t("f.evt.title")}</h2>
           <p className="mt-2 text-base leading-relaxed text-[#5C5347]">{t("f.evt.subtitle")}</p>
         </div>
@@ -58,12 +58,12 @@ export function EventTypeCards({ selected, onSelect }: EventTypeCardsProps) {
                   <ul className="flex-1 space-y-2">
                     {highlights.map((h) => (
                       <li key={h} className="flex items-start gap-2 text-base text-[#222225]">
-                        <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#8C7F5F]" />
+                        <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#776B4E]" />
                         {h}
                       </li>
                     ))}
                   </ul>
-                  <span className="inline-flex items-center gap-1.5 pt-2 text-sm font-semibold text-[#8C7F5F]">
+                  <span className="inline-flex items-center gap-1.5 pt-2 text-sm font-semibold text-[#776B4E]">
                     {t("f.evt.cta")} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>
                 </div>

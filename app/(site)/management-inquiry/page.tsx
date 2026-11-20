@@ -87,7 +87,7 @@ export default function ManagementInquiryPage() {
             {/* Quick WhatsApp fast-track badge */}
             <div className="w-full lg:w-auto shrink-0 bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center max-w-sm">
               <Sparkles className="h-6 w-6 text-[#DFC58E] mx-auto mb-2" />
-              <h3 className="font-serif text-lg text-white font-normal">{tc("Need an Instant Feasibility Audit?")}</h3>
+              <h2 className="font-serif text-lg text-white font-normal">{tc("Need an Instant Feasibility Audit?")}</h2>
               <p className="text-xs text-[#E0DACB] font-light mt-1 mb-4">
                 {tc("Send property photos and location to our WhatsApp for a 24-hour yield estimate.")}
               </p>
@@ -97,7 +97,7 @@ export default function ManagementInquiryPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick({ source: "management_inquiry", funnel: "owner", context: "fast_track" })}
-                className="w-full inline-flex items-center justify-center space-x-2 rounded-full bg-[#25D366] text-white py-3 px-5 text-xs font-semibold uppercase tracking-wider hover:opacity-90 transition-all shadow-md"
+                className="w-full inline-flex items-center justify-center space-x-2 rounded-full bg-[#15803D] text-white py-3 px-5 text-xs font-semibold uppercase tracking-wider hover:opacity-90 transition-all shadow-md"
               >
                 <MessageCircle className="h-4 w-4 fill-white" />
                 <span>{tc("Fast-Track WhatsApp Audit")}</span>
@@ -111,7 +111,7 @@ export default function ManagementInquiryPage() {
       <section className="py-16 lg:py-20 border-b border-[#E8E4DC]">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#8C7F5F]">
+            <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#776B4E]">
               {tc("End-to-End Asset Care")}
             </span>
             <h2 className="font-serif text-2xl sm:text-4xl text-[#222222] uppercase tracking-wider font-normal mt-1">
@@ -121,7 +121,7 @@ export default function ManagementInquiryPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="rounded-2xl border border-[#E8E4DC] bg-white p-8 hover:shadow-md transition-shadow">
-              <div className="h-12 w-12 rounded-xl bg-[#FAF8F5] border border-[#E8E4DC] flex items-center justify-center text-[#8C7F5F] mb-5">
+              <div className="h-12 w-12 rounded-xl bg-[#FAF8F5] border border-[#E8E4DC] flex items-center justify-center text-[#776B4E] mb-5">
                 <TrendingUp className="h-6 w-6" />
               </div>
               <h3 className="font-serif text-xl text-[#222222] font-normal mb-2">
@@ -133,7 +133,7 @@ export default function ManagementInquiryPage() {
             </div>
 
             <div className="rounded-2xl border border-[#E8E4DC] bg-white p-8 hover:shadow-md transition-shadow">
-              <div className="h-12 w-12 rounded-xl bg-[#FAF8F5] border border-[#E8E4DC] flex items-center justify-center text-[#8C7F5F] mb-5">
+              <div className="h-12 w-12 rounded-xl bg-[#FAF8F5] border border-[#E8E4DC] flex items-center justify-center text-[#776B4E] mb-5">
                 <ShieldCheck className="h-6 w-6" />
               </div>
               <h3 className="font-serif text-xl text-[#222222] font-normal mb-2">
@@ -145,7 +145,7 @@ export default function ManagementInquiryPage() {
             </div>
 
             <div className="rounded-2xl border border-[#E8E4DC] bg-white p-8 hover:shadow-md transition-shadow">
-              <div className="h-12 w-12 rounded-xl bg-[#FAF8F5] border border-[#E8E4DC] flex items-center justify-center text-[#8C7F5F] mb-5">
+              <div className="h-12 w-12 rounded-xl bg-[#FAF8F5] border border-[#E8E4DC] flex items-center justify-center text-[#776B4E] mb-5">
                 <CalendarCheck className="h-6 w-6" />
               </div>
               <h3 className="font-serif text-xl text-[#222222] font-normal mb-2">
